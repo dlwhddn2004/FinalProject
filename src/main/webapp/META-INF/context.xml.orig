@@ -18,12 +18,9 @@
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
 		</Resource>
 		
-<!-- 		fefef -->
-<!-- 		fwfawgawg -->
 <<<<<<< HEAD
-
-<!-- 충돌!! 김재석 -->
+<!-- 		충돌(재석) -->
 =======
-<!-- 충돌!! 나버려라!! -->
->>>>>>> 67ceaa464d546b5789a1a1d74252292e6690e665
+<!-- 		충돌 -->
+>>>>>>> 15854604c5a64f50193f4aca4da215576ed9c909
 </Context>

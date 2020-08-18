@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 		<Resource name="jdbc/ddit" 
@@ -19,4 +19,5 @@
 		</Resource>
 		
 <!-- 		충돌(재석) -->
+<!-- 		충돌 -->
 </Context>
