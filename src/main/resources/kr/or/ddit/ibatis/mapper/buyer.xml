@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="buyer">
+	<typeAlias alias="bVO" type="kr.or.ddit.vo.BuyerVO" />
+	
+	<sql id="selectAll">
+		select * 
+		from lprod l, buyer b
+		where l.lprod_gu = b.buyer_lgu
+		and b.buyer_delete = 'n'
+	</sql>
+	
+	<sql id="searchCondition">
+			<dynamic prepend="and">
+				<isNotEmpty property="search_keyword" open="(" close=")">
+					<isEqual property="search_keycode" compareValue="ALL">
+						buyer_id like '%'||#search_keyword#||'%'
+						or buyer_name like '%'||#search_keyword#||'%'
+						or buyer_charger like '%'||#search_keyword#||'%'
+					</isEqual>
+					<isEqual property="search_keycode" compareValue="BUYERID">
+						buyer_id like '%'||#search_keyword#||'%'
+					</isEqual>
+					<isEqual property="search_keycode" compareValue="BUYERNAME">
+						buyer_name like '%'||#search_keyword#||'%'
+					</isEqual>
+					<isEqual property="search_keycode" compareValue="BUYERCHARGER">
+						buyer_charger like '%'||#search_keyword#||'%'
+					</isEqual>
+				</isNotEmpty>		
+			</dynamic>
+		</sql>
+
+	<select id="buyerList" parameterClass="map" resultClass="bVO">
+		select * from buyer where buyer_name like '%'||#buyer_name#||'%'
+	</select>
+	
+	<select id="buyerInfo" parameterClass="map" resultClass="bVO">
+		select
+		* from buyer
+		where buyer_delete = 'n'
+		and buyer_id = #buyer_id#
+	</select>
+	
+	<!-- 반환값 : List<Map>  
+				<c:forEach items="List<Map>" var="item">
+					<td>${item.['BUYER_ID']}</td>
+				</c:forEach>
+	-->
+	<select id="buyerAllList" resultClass="java.util.HashMap" parameterClass="map">
+		select b.*
+		from (
+			select rownum r, a.*
+			from(
+				<include refid="selectAll" />
+				<include refid="searchCondition" />
+				order by buyer_id desc)a
+				)b
+			<![CDATA[
+			where b.r <= #startCount#
+			  and b.r >= #endCount#
+			]]>
+		order by b.r desc
+	</select>
+	
+	<update id="deleteBuyer" parameterClass="map">
+		update buyer
+		set
+		buyer_delete = 'y'
+		where buyer_id = #buyer_id#
+	</update>
+
+	<update id="updateBuyer" parameterClass="bVO">
+		update buyer
+
+		set 
+		buyer_id = #buyer_id#
+		,buyer_name = #buyer_name#
+		,buyer_charger = #buyer_charger#
+		,buyer_bank = #buyer_bank#
+		,buyer_add1 = #buyer_add1#
+		,buyer_add2 = #buyer_add2#
+		,buyer_comtel = #buyer_comtel#
+		,buyer_fax = #buyer_fax#
+		,buyer_mail = #buyer_mail#
+		
+		where buyer_id = #buyer_id#
+	</update>
+
+	<insert id="insertBuyer" parameterClass="bVO">
+		insert into buyer
+			(
+			buyer_id, 
+			buyer_name, 
+			buyer_charger, 
+			buyer_bank, 
+			buyer_add1,
+			buyer_add2, 
+			buyer_comtel, 
+			buyer_fax, 
+			buyer_mail
+			)
+		values
+			(
+			 #buyer_id#,
+			 #buyer_name#, 
+			 #buyer_lgu#, 
+			 #buyer_charger#, 
+			 #buyer_bank#, 
+			 #buyer_add1#,
+			 #buyer_add2#, 
+			 #buyer_comtel#, 
+			 #buyer_fax#, 
+			 #buyer_mail#
+			)
+	</insert>
+
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		select count(buyer_id)
+		from buyer
+		where buyer_delete = 'n'
+		<include refid="searchCondition"/>
+	</select>
+</sqlMap>

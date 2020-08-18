@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+	<typeAlias alias="memberVO" type="kr.or.ddit.vo.MemberVO" />
+	
+	<sql id="selectAll">
+		select
+		* from member
+		where mem_delete = 'n'
+	</sql>
+	
+	<sql id="searchCondition">
+		<dynamic prepend="and">
+			<isNotEmpty property="search_keyword" open="(" close=")">
+				<isEqual property="search_keycode" compareValue="ALL">
+					mem_id like '%'||#search_keyword#||'%'
+					or mem_name like '%'||#search_keyword#||'%'
+					or mem_add1 like '%'||#search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="MEMID">
+					mem_id like '%'||#search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="MEMNAME">
+					mem_name like '%'||#search_keyword#||'%'
+				</isEqual>
+				<isEqual property="search_keycode" compareValue="MEMADDR">
+					mem_add1 like '%'||#search_keyword#||'%'
+				</isEqual>
+			</isNotEmpty>		
+		</dynamic>
+	</sql>
+
+	<select id="memberInfo" parameterClass="map" resultClass="memberVO">
+		<include refid="selectAll" />
+		and mem_id = #mem_id#
+		<dynamic prepend="AND">
+			<isNotEmpty property="mem_pass">
+				mem_pass = #mem_pass#
+			</isNotEmpty>
+		</dynamic>
+	</select>
+
+	<select id="memberList" resultClass="memberVO" parameterClass="map">
+			select b.*
+			from (
+				select rownum r, a.*
+				from(
+					<include refid="selectAll" />
+					<include refid="searchCondition" />
+					order by mem_id desc)a
+					)b
+<!-- 				<![CDATA[ -->
+<!-- 				where b.r <= #startCount# -->
+<!-- 				  and b.r >= #endCount# -->
+<!-- 				]]> -->
+<!-- 			order by b.r desc -->
+	</select>
+
+	<update id="deleteMember" parameterClass="map">
+		update member
+		set
+		mem_delete = 'y'
+		where mem_id = #mem_id#
+	</update>
+
+	<update id="updateMember" parameterClass="memberVO">
+		update member
+		set
+		mem_pass = #mem_pass#
+		, mem_add1 = #mem_add1#
+		, mem_add2 = #mem_add2#
+		, mem_hometel = #mem_hometel#
+		, mem_hp = #mem_hp#
+		, mem_mail = #mem_mail#
+		, mem_job = #mem_job#
+		, mem_like = #mem_like#
+		where mem_id = #mem_id#
+	</update>
+
+	<insert id="insertMember" parameterClass="memberVO">
+		insert into member
+		(mem_id, mem_pass, mem_name, mem_regno1, mem_regno2, mem_bir, mem_zip,
+		mem_add1, mem_add2, mem_hometel,
+		mem_hp, mem_mail, mem_job, mem_like)
+		values
+		(#mem_id#, #mem_pass#, #mem_name#,
+		#mem_regno1#, #mem_regno2#, #mem_bir#,
+		#mem_zip#, #mem_add1#, #mem_add2#, #mem_hometel#,
+		#mem_hp#, #mem_mail#, #mem_job#, #mem_like#)
+	</insert>
+	
+	<select id="totalCount" parameterClass="map" resultClass="string">
+		select count(mem_id)
+		from member
+		where mem_delete = 'y'
+		<include refid="searchCondition"/>
+	</select>
+</sqlMap>
+
+
+
+
