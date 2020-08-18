@@ -18,9 +18,6 @@
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
 		</Resource>
 		
-<<<<<<< HEAD
 <!-- 		fefef -->
-=======
 <!-- 		fwfawgawg -->
->>>>>>> origin/master
 </Context>
