@@ -100,7 +100,7 @@
 </script>
 <style>
   #calendar {
-    max-width: 900px;
+    max-width: 1900px;
     margin: 0 auto;
   }
 </style>
