@@ -13,8 +13,10 @@
 <div class="main-content" id="panel">
 	<tiles:insertAttribute name="topnav"></tiles:insertAttribute>
 	<tiles:insertAttribute name="header"></tiles:insertAttribute>
-	<tiles:insertAttribute name="content"></tiles:insertAttribute>
-<%-- 	<tiles:insertAttribute name="footer"></tiles:insertAttribute> --%>
+	<div class="container-fluid mt--6">
+		<tiles:insertAttribute name="content"></tiles:insertAttribute>
+		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+	</div>
 </div>
 </body>
 </html>

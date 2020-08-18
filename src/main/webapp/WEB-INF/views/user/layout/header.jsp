@@ -48,7 +48,7 @@
                   	<li class="breadcrumb-item"><a href="${breadcrumb_first_url }">${breadcrumb_first }</a></li>
                   </c:if>
                   <c:if test="${!empty breadcrumb_second }">
-                  	<li class="breadcrumb-item active" aria-current="page">Default</li>
+                  	<li class="breadcrumb-item active" aria-current="page">${breadcrumb_second }</li>
                	  </c:if>
                 </ol>
               </nav>

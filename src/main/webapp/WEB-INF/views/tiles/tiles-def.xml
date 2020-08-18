@@ -20,7 +20,7 @@
 		<put-attribute name="sidenav" value="/WEB-INF/views/user/layout/sidenav.jsp"></put-attribute>
 		<put-attribute name="topnav" value="/WEB-INF/views/user/layout/topnav.jsp"></put-attribute>
 		<put-attribute name="header" value="/WEB-INF/views/user/layout/header.jsp"></put-attribute>
-		<put-attribute name="footer" value="/WEB-INF/views/user/layout/header.jsp"></put-attribute>
+		<put-attribute name="footer" value="/WEB-INF/views/user/layout/footer.jsp"></put-attribute>
 	</definition>	
 	
 	<definition name="user/*/*" extends="user/main">
