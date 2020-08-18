@@ -40,4 +40,8 @@ public class SuccessBoardController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("successboardView")
+	public void successboardView() {
+		
+	}
 }
