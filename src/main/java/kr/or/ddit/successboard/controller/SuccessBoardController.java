@@ -2,6 +2,8 @@ package kr.or.ddit.successboard.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ddit.successboard.service.ISuccessBoardService;
 import kr.or.ddit.vo.SuccessBoardVO;
 
@@ -18,13 +20,19 @@ public class SuccessBoardController {
 	private ISuccessBoardService service;
 
 	@RequestMapping("successboardList")
-	public ModelAndView successList(ModelAndView modelAndView) {
+	public ModelAndView successList(HttpServletRequest request,
+									ModelAndView modelAndView) {
 		List<SuccessBoardVO> successboardList = null;		
 		try {
 			successboardList = service.successboardList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
+		modelAndView.addObject("breadcrumb_first", "성공 사례 게시판");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/successboard/successboardList.do");
 		
 		modelAndView.addObject("successboardList", successboardList);
 		modelAndView.setViewName("user/successboard/successboardList");
