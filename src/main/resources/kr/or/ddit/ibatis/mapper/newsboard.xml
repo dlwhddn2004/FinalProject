@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="newsboard">
+	<typeAlias alias="newsboardVO" type="kr.or.ddit.vo.newsboardVO" />
+	
+	<select id="newsboardList" resultClass="newsboardVO">
+		select b.*
+		from (
+		         select rownum r,
+		                news_no,
+		                mem_id,
+		                news_title,
+		                news_content,
+		                TO_CHAR(news_regdate, 'YYYY-MM-DD') news_regdate,
+		                news_hit
+		         from (
+		                  SELECT *
+		                  FROM NEWS_BOARD) a
+		     ) b
+		order by b.r
+	</select>
+</sqlMap>
+
+ 
+
+

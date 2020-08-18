@@ -15,6 +15,7 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeboard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/fileitem.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/successboard.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/newsboard.xml"/>
 </sqlMapConfig>
 
 
