@@ -17,12 +17,4 @@
 				  maxWait="-1"
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
 		</Resource>
-		
-<!-- 		충돌(재석) -->
-<!-- 		충돌 -->
-
-<!-- 충돌 나네? (재석) -->
-</Context>
-
-<!-- 충돌나버려라!! (나라) -->
 </Context>
