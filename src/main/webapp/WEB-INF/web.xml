@@ -49,28 +49,6 @@
 	   
 	 -->
 	 <servlet>
-	 	<servlet-name>firstDispatcher</servlet-name>
-	 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	 </servlet>
-	 
-	 <servlet-mapping>
-	 	<servlet-name>firstDispatcher</servlet-name>
-	 	<url-pattern>*.first</url-pattern>
-	 </servlet-mapping>
-	 
-	 	 <servlet>
-	 	<servlet-name>secondDispatcher</servlet-name>
-	 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	 </servlet>
-	 
-	 <servlet-mapping>
-	 	<servlet-name>secondDispatcher</servlet-name>
-	 	<url-pattern>*.second</url-pattern>
-	 </servlet-mapping>
-	 
-	 
-	 
-	 <servlet>
 	 	<servlet-name>doDispatcher</servlet-name>
 	 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	<!-- 	 	다른위치에 다른이름으로 설정파일을 만든다면 init-param 
