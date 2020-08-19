@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Argon Dashboard PRO - Premium Bootstrap 4 Admin Template</title>
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -103,6 +102,10 @@
 					message: '제목을 입력해주세요!' 
 				},{
 					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
 					type: 'info'
 				});
 			}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,7 +30,11 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</form>
+			
+			
 			<!-- Navbar links -->
+			<!-- 로그인 했을 때 (여기부터) -->
+			<c:if test="${!empty MEMBER_LOGININFO }">
 			<ul class="navbar-nav align-items-center  ml-md-auto ">
 				<li class="nav-item d-xl-none">
 					<!-- Sidenav toggler -->
@@ -236,9 +241,20 @@
 						<a href="#!" class="dropdown-item"> <i class="ni ni-user-run"></i>
 							<span>Logout</span>
 						</a>
-					</div></li>
+					</div>
+				</li>
 			</ul>
+			</c:if>
+			<!-- 로그인 했을 때 (여기까지) -->
 		</div>
+		<c:if test="${empty MEMBER_LOGININFO }">
+		<div align="right">
+	        <button class="btn btn-icon btn-secondary" type="button">
+	          <span class="btn-inner--icon"><i class="far fa-id-card"></i></span>
+	          <span class="btn-inner--text">Log In</span>
+	        </button>
+      	</div>
+      	</c:if>
 	</div>
 	</nav>
 
