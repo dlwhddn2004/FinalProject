@@ -22,4 +22,17 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 		return noticebaordDAO.noticeboardList(parmas);
 	}
 
+	@Override
+	public NoticeboardVO noticeboardInfo(Map<String, String> params)
+			throws Exception {
+		
+		return noticebaordDAO.noticeboardInfo(params);
+	}
+
+	@Override
+	public String insertNoticeboard(NoticeboardVO noticeboardInfo)
+			throws Exception {
+		return noticebaordDAO.insertNoticeboard(noticeboardInfo);
+	}
+
 }

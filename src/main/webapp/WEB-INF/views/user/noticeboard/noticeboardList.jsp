@@ -81,10 +81,10 @@
 								<th>조회수</th>
 							</tr>
 						</tfoot>
-						<tbody>
+						<tbody id="noticeboardTBY">
 							<c:forEach items="${noticeboardList }" var="item">
 								<tr class="table-row-data">
-									<td>${item.r }</td>
+									<td><input type="hidden" value="${item.notice_no}"/>${item.r }</td>
 									<td>${item.notice_title }</td>
 									<td>${item.mem_id }</td>
 									<td>${item.notice_regdate }</td>
@@ -94,7 +94,7 @@
 						</tbody>
 					</table>
 					<div align="right" style="padding: 15px 15px 0px 0px;">
-						<button type="button" class="btn btn-primary btn-write">등록</button>
+						<button type="button" class="btn btn-primary btn-write" id="btn1">등록</button>
 					</div>
 				</div>
 			</div>
@@ -138,23 +138,20 @@
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
 	
 	<!-- My JavaScript -->
-<!-- 	<script type="text/javascript">
-		// 등록 버튼(게시글 작성)
-		$('.btn-write').on('click', function() {
-			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
-			if (${empty MEMBER_LOGININFO}) {
-				Swal.fire(
-				  'Warning',
-				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
-				  'warning'
-				)
-				
-				return;
-			}
-			
-			// 로그인 한 상태!
-			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do";
+ 	<script type="text/javascript">
+	$(function(){
+		$('#noticeboardTBY tr').click(function(){
+			const notice_no = $(this).find('td:eq(0) input').val();
+			const r = $(this).find('td:eq(0)').text();
+			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardView.do?notice_no=' + notice_no + '&rnum=' + r);
 		});
-	</script> -->
+		
+		/* $('#btn1').click(function(){
+			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do');
+		}); */
+	
+	});
+	
+	</script> 
 </body>
 </html>

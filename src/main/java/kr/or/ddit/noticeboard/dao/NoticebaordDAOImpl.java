@@ -23,4 +23,17 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 		return client.queryForList("noticeboard.noticeboardList", params);
 	}
 
+	@Override
+	public NoticeboardVO noticeboardInfo(Map<String, String> params)
+			throws Exception {
+		
+		return (NoticeboardVO) client.queryForObject("noticeboard.noticeboardInfo", params);
+	}
+
+	@Override
+	public String insertNoticeboard(NoticeboardVO noticeboardInfo)
+			throws Exception {
+		return (String) client.insert("noticeboard.insertNoticeboard", noticeboardInfo);
+	}
+
 }

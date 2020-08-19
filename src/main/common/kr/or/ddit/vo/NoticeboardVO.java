@@ -1,7 +1,7 @@
 package kr.or.ddit.vo;
 
 public class NoticeboardVO {
-	private String r;
+	public String r;
 	public String notice_no;
 	public String mem_id;
 	public String notice_title;

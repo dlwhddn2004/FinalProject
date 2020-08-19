@@ -6,7 +6,9 @@
 <sqlMap namespace="noticeboard">
 	<typeAlias alias="NoticeboardVO" type="kr.or.ddit.vo.NoticeboardVO" />
 	
-	<select id="noticeboardList" resultClass="NoticeBoardVO" parameterClass="map">
+
+	
+	<select id="noticeboardList" resultClass="NoticeboardVO" parameterClass="map">
 		select b.*
 		from (
 		         select rownum r,
@@ -22,6 +24,28 @@
 		     ) b
 		order by b.r
 	</select>
+	
+	<select id="noticeboardInfo" resultClass="NoticeboardVO" parameterClass="map">
+		select * from notice_board
+		where notice_no = #notice_no#
+	</select>
+	
+	<insert id="insertNoticboard" parameterClass="NoticeboardVO">
+	insert into notice_board
+		(notice_no,
+		 mem_id,
+		 notice_title,
+		 notice_content,
+		 notic_regdate,
+		 notice_hit)
+    values
+    	(#notice_no#,
+    	 #mem_id#,
+    	 #notice_title#,
+    	 sysdate,
+    	 0)
+	</insert>
+	
 </sqlMap>
 
  
