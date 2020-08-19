@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,9 +38,14 @@
 			
 			
 			<!-- Navbar links -->
+<<<<<<< HEAD
+			<!-- 로그인시 보이는 nav -->
+			<%-- <ul class="navbar-nav align-items-center  ml-md-auto ">
+=======
 			<!-- 로그인 했을 때 (여기부터) -->
 			<c:if test="${!empty MEMBER_LOGININFO }">
 			<ul class="navbar-nav align-items-center  ml-md-auto ">
+>>>>>>> f3db74fc234886b9f76a065061645e2284fe988a
 				<li class="nav-item d-xl-none">
 					<!-- Sidenav toggler -->
 					<div class="pr-3 sidenav-toggler sidenav-toggler-dark"
@@ -246,13 +251,16 @@
 						<a href="#!" class="dropdown-item"> <i class="ni ni-user-run"></i>
 							<span>Logout</span>
 						</a>
+<<<<<<< HEAD
+					</div></li>
+			</ul> --%>
+=======
 					</div>
 				</li>
 			</ul>
-			</ul> --%>
-			</ul>
 			</c:if>
 			<!-- 로그인 했을 때 (여기까지) -->
+>>>>>>> f3db74fc234886b9f76a065061645e2284fe988a
 		</div>
 		<c:if test="${empty MEMBER_LOGININFO }">
 		<div align="right">

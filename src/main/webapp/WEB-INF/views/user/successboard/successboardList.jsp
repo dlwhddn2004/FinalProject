@@ -37,6 +37,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
 	type="text/css">
+<!-- Sweet Alerts -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 
 <!-- My CSS -->
 <style type="text/css">
@@ -47,13 +49,6 @@
 	transition: 0.5s;
 }
 </style>
-
-<!-- My Script -->
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
 </head>
 <body>
 	<!-- Page content -->
@@ -98,6 +93,9 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<div align="right" style="padding: 15px 15px 0px 0px;">
+						<button type="button" class="btn btn-primary btn-write">등록</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -132,10 +130,31 @@
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 	<!-- Argon JS -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+	
+	<!-- My JavaScript -->
+	<script type="text/javascript">
+		// 등록 버튼(게시글 작성)
+		$('.btn-write').on('click', function() {
+			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
+			if (${empty MEMBER_LOGININFO}) {
+				Swal.fire(
+				  'Warning',
+				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
+				  'warning'
+				)
+				
+				return;
+			}
+			
+			// 로그인 한 상태!
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do";
+		});
+	</script>
 </body>
 </html>
