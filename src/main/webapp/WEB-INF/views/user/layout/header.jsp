@@ -174,6 +174,14 @@
 	<script async src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 	<script async src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 	<script async src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<!-- 없는것들 추가 -->
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datetimepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+	<!-- 끝 -->
 	<script async src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<!-- Argon JS -->
 	<script async src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
