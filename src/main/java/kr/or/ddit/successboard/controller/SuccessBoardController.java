@@ -1,6 +1,7 @@
 package kr.or.ddit.successboard.controller;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.successboard.service.ISuccessBoardService;
+import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 import kr.or.ddit.vo.newsboardVO;
 
@@ -44,11 +46,24 @@ public class SuccessBoardController {
 	
 	@RequestMapping("successboardForm")
 	public ModelAndView successboardView(HttpServletRequest request,
-										 ModelAndView modelAndView) throws Exception {
+										 ModelAndView modelAndView,
+										 String mem_id) throws Exception {
 		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
 		modelAndView.addObject("breadcrumb_first", "성공 사례 게시판");
 		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/successboard/successboardList.do");
 		modelAndView.addObject("breadcrumb_second", "성공 사례 게시글 등록");
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		List<JoinVO> tempList = service.attendProjectList(params);
+		
+		List<JoinVO> attendProjectList = new ArrayList<JoinVO>();
+		for (int i = 0; i < tempList.size(); i++) {
+			if (tempList.get(i).getProject_endstatus().equals("N")) {
+				attendProjectList.add(tempList.get(i));
+			}
+		}
+		modelAndView.addObject("attendProjectList", attendProjectList);
 		
 		modelAndView.setViewName("user/successboard/successboardForm");
 		
@@ -74,10 +89,12 @@ public class SuccessBoardController {
 								     HttpServletResponse response,
 								     String success_title,
 								     String success_content,
-								     String project_name,
+								     String project_no,
 								     String mem_id) throws Exception {
+		
+		
 		SuccessBoardVO successboardInfo = new SuccessBoardVO();
-		successboardInfo.setProject_no("1");
+		successboardInfo.setProject_no(project_no);
 		successboardInfo.setMem_id(mem_id);
 		successboardInfo.setSuccess_title(success_title);
 		successboardInfo.setSuccess_content(success_content);

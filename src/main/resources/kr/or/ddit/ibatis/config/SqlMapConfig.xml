@@ -9,15 +9,13 @@
 
 	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/member.xml"/>
-	<sqlMap resource="kr/or/ddit/ibatis/mapper/prod.xml"/>
-	<sqlMap resource="kr/or/ddit/ibatis/mapper/zipcode.xml"/>
-	<sqlMap resource="kr/or/ddit/ibatis/mapper/buyer.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeboard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/fileitem.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/successboard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/newsboard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticeboard.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/project.xml"/>	
 </sqlMapConfig>
 
 

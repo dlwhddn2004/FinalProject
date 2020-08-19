@@ -3,6 +3,7 @@ package kr.or.ddit.successboard.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,12 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	@Override
 	public List<SuccessBoardVO> successboardList() throws Exception {
 		return client.queryForList("successboard.successboardList");
+	}
+	
+	@Override
+	public List<JoinVO> attendProjectList(Map<String, String> params)
+			throws Exception {
+		return client.queryForList("project.attendProjectList", params);
 	}
 	
 	@Override
