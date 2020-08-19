@@ -3,16 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-
 <head>
-<style>
-.news_title {
-	background: black;
-}
-.data-form {
-	padding: 30px;
-}
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -46,7 +37,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
 	type="text/css">
-	<!-- Sweet Alerts -->
+<!-- Sweet Alerts -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 
 <!-- My CSS -->
@@ -58,61 +49,56 @@
 	transition: 0.5s;
 }
 </style>
-
-
-<!-- My Script -->
-<script type="text/javascript">
-	$(function() {
-
-	});
-</script>
 </head>
 <body>
-
 	<!-- Page content -->
 	<!-- Table -->
 	<div class="row">
 		<div class="col">
 			<div class="card">
 				<!-- Card header -->
-					<div class="card-header">
-					<h3 class="mb-0">성공 사례 게시판</h3>
-					<p class="text-sm mb-0">우수한 프로젝트 사례 게시판 등록창 입니다.</p>
+				<div class="card-header">
+					<h3 class="mb-0">공지사항 게시판</h3>
+					<p class="text-sm mb-0">공지사항 게시판 입니다.</p>
 				</div>
-
-
-				<form class="data-form">
-					<div class="form-group">
-						<label for="example-text-input" class="form-control-label">제목</label>
-						<input class="form-control abc" type="text" value="John Snow"
-							id="news_title">
-					</div>
-					<div class="form-group">
-						<label for="example-search-input" class="form-control-label">작성자</label>
-						<input class="form-control" type="text"
-							value="Tell me your secret ..." id="mem_id">
-					</div>
-
-					<div class="form-group">
-						<label for="example-email-input" class="form-control-label">Email</label>
-						<input class="form-control" type="email" value="argon@example.com"
-							id="mem_mail">
-					</div>
-					<!-- <div class="form-group">
-						<label for="example-datetime-local-input"
-						
-							class="form-control-label">내용</label> <input class="form-control"
-							type="text" value="내용이당" id="news_content">
-					</div> -->
-					<label for="example-content-input" class="form-control-label">내용</label>
-					  <div data-toggle="quill" data-quill-placeholder="내용을 입력해주세요.">내용을 입력해주세요.</div>
-			<div align="right" style="padding: 15px 15px 0px 0px;">
+				<div class="table-responsive py-4">
+					<table class="table table-flush" id="datatable-buttons">
+						<thead class="thead-light">
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>등록일</th>
+								<th>조회수</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>번호</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>등록일</th>
+								<th>조회수</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<c:forEach items="${noticeboardList }" var="item">
+								<tr class="table-row-data">
+									<td>${item.r }</td>
+									<td>${item.notice_title }</td>
+									<td>${item.mem_id }</td>
+									<td>${item.notice_regdate }</td>
+									<td>${item.notice_hit }</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<div align="right" style="padding: 15px 15px 0px 0px;">
 						<button type="button" class="btn btn-primary btn-write">등록</button>
-						<button type="button" class="btn btn-primary btn-write">취소</button>
 					</div>
+				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 
 	<!-- Argon Scripts -->
@@ -128,7 +114,6 @@
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
 	<!-- Optional JS -->
-	<script src="${pageContext.request.contextPath}/assets/vendor/quill/dist/quill.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 	<script
@@ -145,11 +130,31 @@
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 	<!-- Argon JS -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
-	</form>
+	
+	<!-- My JavaScript -->
+<!-- 	<script type="text/javascript">
+		// 등록 버튼(게시글 작성)
+		$('.btn-write').on('click', function() {
+			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
+			if (${empty MEMBER_LOGININFO}) {
+				Swal.fire(
+				  'Warning',
+				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
+				  'warning'
+				)
+				
+				return;
+			}
+			
+			// 로그인 한 상태!
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do";
+		});
+	</script> -->
 </body>
 </html>
