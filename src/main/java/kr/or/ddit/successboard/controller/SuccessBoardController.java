@@ -40,7 +40,7 @@ public class SuccessBoardController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("successboardView")
+	@RequestMapping("successboardForm")
 	public ModelAndView successboardView(HttpServletRequest request,
 										 ModelAndView modelAndView) throws Exception {
 		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
@@ -48,7 +48,7 @@ public class SuccessBoardController {
 		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/successboard/successboardList.do");
 		modelAndView.addObject("breadcrumb_second", "성공 사례 게시글 등록");
 		
-		modelAndView.setViewName("user/successboard/successboardView");
+		modelAndView.setViewName("user/successboard/successboardForm");
 		
 		return modelAndView;
 	}

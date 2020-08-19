@@ -153,7 +153,7 @@
 			}
 			
 			// 로그인 한 상태!
-			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do";
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardForm.do";
 		});
 	</script>
 </body>
