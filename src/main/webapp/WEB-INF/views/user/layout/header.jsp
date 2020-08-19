@@ -1,4 +1,4 @@
-<%@ page language="JAVA" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="JAVA" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
@@ -158,6 +158,8 @@
     <!-- Argon Scripts -->
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+	
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">

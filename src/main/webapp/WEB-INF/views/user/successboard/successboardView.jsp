@@ -61,9 +61,9 @@
 					<div id="editor"></div>
 
                     <div class="form-button-area" align="right">
-<%--                     	<c:if test="${MEMBER_LOGININFO == successboardInfo.mem_id }"> --%>
+                    	<c:if test="${MEMBER_LOGININFO.mem_id == successboardInfo.mem_id }">
                         	<button class="btn btn-primary btn-submit" type="button">수정</button>
-<%--                         </c:if> --%>
+                        </c:if>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
                 </form>
@@ -112,7 +112,6 @@
 			
 			if (button_status === "수정") {
 				$('input[name=success_title]').removeAttr('readonly');
-				$('.project-selector').removeAttr('disabled');
 				quill.enable(true);
 				
 				$('.btn-submit').text('완료');
@@ -133,8 +132,10 @@
 			if (button_status === "뒤로가기") {
 				location.href = '${pageContext.request.contextPath}/user/successboard/successboardList.do';
 			} else if (button_status === "취소") {
+				$('input[name=success_title]').val('${successboardInfo.success_title}');
+				quill.clipboard.dangerouslyPasteHTML('${successboardInfo.success_content}');
+				
 				$('input[name=success_title]').attr('readonly', 'readonly');
-				$('.project-selector').attr('disabled', 'disabled');
 				quill.enable(false);
 				
 				$('.btn-submit').text('수정');

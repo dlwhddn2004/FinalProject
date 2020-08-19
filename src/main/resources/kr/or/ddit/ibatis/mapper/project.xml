@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="project">
+	<typeAlias alias="ProjectVO" type="kr.or.ddit.vo.ProjectVO" />
+	<typeAlias alias="JoinVO" type="kr.or.ddit.vo.JoinVO" />
+	
+	<select id="attendProjectList" parameterClass="map" resultClass="JoinVO">
+		SELECT PROJECT.PROJECT_NO project_no,
+		       PROJECT.mem_id,
+		       project_clientinformation,
+		       project_clientintroduce,
+		       project_processstatus,
+		       project_processcategory,
+		       project_consullting,
+		       project_readystatus,
+		       project_currentstatus,
+		       project_businessinfo,
+		       project_reference,
+		       project_note,
+		       project_technologies,
+		       project_budget,
+		       project_startdate,
+		       project_duration,
+		       project_endstatus,
+		       project_premeeting,
+		       project_proceedingmeeting,
+		       project_meetingcycle,
+		       project_clientlocation,
+		       project_applicationdeadline,
+		       project_supportstatus,
+		       project_essentialrequirements,
+		       project_manpower,
+		       project_managementexperience,
+		       project_futureplans,
+		       project_priority,
+		       project_enddate,
+		       project_position,
+		       project_title
+		FROM PROJECT,
+		     PROJECT_PARTICIPANTS
+		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		AND PROJECT.MEM_ID = #mem_id#
+	</select>
+</sqlMap>
+
+ 
+
+
