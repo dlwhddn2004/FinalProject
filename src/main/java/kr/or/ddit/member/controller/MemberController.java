@@ -29,7 +29,7 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.sun.org.glassfish.gmbal.ParameterNames;
 
 
-@Controller
+/*@Controller
 @RequestMapping("/user/member/")
 public class MemberController {
 	
@@ -144,7 +144,7 @@ public class MemberController {
 	}
 	
 }
-
+*/
 
 
 

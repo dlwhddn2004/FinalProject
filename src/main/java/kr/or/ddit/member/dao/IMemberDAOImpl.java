@@ -19,9 +19,6 @@ public class IMemberDAOImpl implements IMemberDAO {
 //	@Inject
 	@Autowired
 	private SqlMapClient client;
-	
-	
-
 
 	@Override
 	public MemberVO memberInfo(Map<String, String> params) throws Exception{
@@ -29,7 +26,7 @@ public class IMemberDAOImpl implements IMemberDAO {
 		return (MemberVO) client.queryForObject("member.memberInfo", params);
 	}
 
-	@Override
+/*	@Override
 	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
 
 		return client.queryForList("member.memberList", params);
@@ -61,5 +58,5 @@ public class IMemberDAOImpl implements IMemberDAO {
 	@Override
 	public String totalCount(Map<String, String> params) throws Exception {
 		return (String) client.queryForObject("member.totalCount", params);
-	}
+	}*/
 }

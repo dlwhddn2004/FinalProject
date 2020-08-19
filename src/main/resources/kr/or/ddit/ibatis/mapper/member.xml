@@ -7,12 +7,11 @@
 	<typeAlias alias="memberVO" type="kr.or.ddit.vo.MemberVO" />
 	
 	<sql id="selectAll">
-		select
-		* from member
-		where mem_delete = 'n'
+		select * 
+		from member
 	</sql>
 	
-	<sql id="searchCondition">
+	<!-- <sql id="searchCondition">
 		<dynamic prepend="and">
 			<isNotEmpty property="search_keyword" open="(" close=")">
 				<isEqual property="search_keycode" compareValue="ALL">
@@ -31,11 +30,11 @@
 				</isEqual>
 			</isNotEmpty>		
 		</dynamic>
-	</sql>
+	</sql> -->
 
 	<select id="memberInfo" parameterClass="map" resultClass="memberVO">
 		<include refid="selectAll" />
-		and mem_id = #mem_id#
+		where mem_id = #mem_id#
 		<dynamic prepend="AND">
 			<isNotEmpty property="mem_pass">
 				mem_pass = #mem_pass#
@@ -43,7 +42,7 @@
 		</dynamic>
 	</select>
 
-	<select id="memberList" resultClass="memberVO" parameterClass="map">
+	<!-- <select id="memberList" resultClass="memberVO" parameterClass="map">
 			select b.*
 			from (
 				select rownum r, a.*
@@ -52,11 +51,11 @@
 					<include refid="searchCondition" />
 					order by mem_id desc)a
 					)b
-<!-- 				<![CDATA[ -->
-<!-- 				where b.r <= #startCount# -->
-<!-- 				  and b.r >= #endCount# -->
-<!-- 				]]> -->
-<!-- 			order by b.r desc -->
+				<![CDATA[
+				where b.r <= #startCount#
+				  and b.r >= #endCount#
+				]]>
+			order by b.r desc
 	</select>
 
 	<update id="deleteMember" parameterClass="map">
@@ -97,7 +96,7 @@
 		from member
 		where mem_delete = 'y'
 		<include refid="searchCondition"/>
-	</select>
+	</select> -->
 </sqlMap>
 
 

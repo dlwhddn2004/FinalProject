@@ -26,7 +26,7 @@ public class IMemberServiceImpl implements IMemberService {
 			return dao.memberInfo(params);
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+/*	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
 
@@ -59,6 +59,6 @@ public class IMemberServiceImpl implements IMemberService {
 	@Override
 	public String totalCount(Map<String, String> params) throws Exception{
 			return  dao.totalCount(params);
-	}
+	}*/
 
 }
