@@ -30,6 +30,8 @@
 	<!-- Page plugins -->
 	<!-- Argon CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/argon.css?v=1.2.0" type="text/css">
+	<!-- Sweet Alerts -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 </head>
 
 <body>
@@ -152,5 +154,20 @@
         </div>
       </div>
     </div>
+    
+    <!-- Argon Scripts -->
+	<!-- Core -->
+	<script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+	
+	<!-- My JavaScript -->
+	<script type="text/javascript">
+		if (${!empty param.message}) {
+			Swal.fire(
+			  '${param.taskResult}',
+			  '${param.message}',
+			  '${param.taskResult}'
+			)
+		}
+	</script>
 </body>
 </html>

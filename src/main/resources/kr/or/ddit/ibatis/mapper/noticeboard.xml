@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="noticeboard">
+	<typeAlias alias="NoticeboardVO" type="kr.or.ddit.vo.NoticeboardVO" />
+	
+	<select id="noticeboardList" resultClass="NoticeBoardVO" parameterClass="map">
+		select b.*
+		from (
+		         select rownum r,
+		                notice_no,
+		                mem_id,
+		                notice_title,
+		                notice_content,
+		                TO_CHAR(notice_regdate, 'YYYY-MM-DD') notice_regdate,
+		                notice_hit
+		         from (
+		                  SELECT *
+		                  FROM NOTICE_BOARD) a
+		     ) b
+		order by b.r
+	</select>
+</sqlMap>
+
+ 
+
+

@@ -82,7 +82,6 @@ public class FreeboardController {
 		modelView.setViewName("user/freeboard/freeboardList");
 
 		return modelView;
-
 	}
 
 	@RequestMapping("freeboardForm")
