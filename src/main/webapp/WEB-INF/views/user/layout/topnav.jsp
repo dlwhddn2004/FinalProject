@@ -30,7 +30,8 @@
 				</button>
 			</form>
 			<!-- Navbar links -->
-			<ul class="navbar-nav align-items-center  ml-md-auto ">
+			<!-- 로그인시 보이는 nav -->
+			<%-- <ul class="navbar-nav align-items-center  ml-md-auto ">
 				<li class="nav-item d-xl-none">
 					<!-- Sidenav toggler -->
 					<div class="pr-3 sidenav-toggler sidenav-toggler-dark"
@@ -237,7 +238,7 @@
 							<span>Logout</span>
 						</a>
 					</div></li>
-			</ul>
+			</ul> --%>
 		</div>
 	</div>
 	</nav>
