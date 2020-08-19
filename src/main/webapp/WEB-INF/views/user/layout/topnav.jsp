@@ -6,6 +6,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	.btn-login:hover {
+		color: #5e72e4 !important;
+	}
+</style>
 </head>
 <body>
 
@@ -249,10 +254,8 @@
 		</div>
 		<c:if test="${empty MEMBER_LOGININFO }">
 		<div align="right">
-	        <button class="btn btn-icon btn-secondary" type="button">
-	          <span class="btn-inner--icon"><i class="far fa-id-card"></i></span>
-	          <span class="btn-inner--text">Log In</span>
-	        </button>
+	        <button type="button" class="btn btn-outline-secondary btn-login" style="color: white;">Log In</button>
+	        <button type="button" class="btn btn-outline-secondary btn-login" style="color: white;">Sign In</button>
       	</div>
       	</c:if>
 	</div>
