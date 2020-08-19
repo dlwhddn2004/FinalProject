@@ -1,4 +1,4 @@
-<%@ page language="JAVA" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="JAVA" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--
@@ -157,36 +157,7 @@
     
     <!-- Argon Scripts -->
 	<!-- Core -->
-	<script async src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-	<!-- Optional JS -->
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-	<script async src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
-	<script async src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
-	<script async src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
-	<!-- 없는것들 추가 -->
-	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datetimepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-	<!-- 끝 -->
-	<script async src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-	<!-- Argon JS -->
-	<script async src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
-	<!-- Demo JS - remove this in your project -->
-	<script async src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
