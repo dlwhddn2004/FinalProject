@@ -1,7 +1,9 @@
 package kr.or.ddit.successboard.controller;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -53,17 +55,26 @@ public class SuccessBoardController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("successboardView")
+	public ModelAndView successboardView(ModelAndView modelAndView,
+								         String success_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("success_no", success_no);
+		
+		SuccessBoardVO successboardInfo = service.selectSuccessBoardInfo(params);
+		
+		modelAndView.addObject("successboardInfo", successboardInfo);
+		modelAndView.setViewName("user/successboard/successboardView");
+		
+		return modelAndView;
+	}
+	
 	@RequestMapping("insertSuccessBoard")
 	public String insertSuccessBoard(HttpServletRequest request,
 								     HttpServletResponse response,
-								     HttpSession session,
 								     String success_title,
 								     String success_content,
 								     String project_name) throws Exception {
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-		
 		SuccessBoardVO successboardInfo = new SuccessBoardVO();
 		successboardInfo.setProject_no("1");
 		successboardInfo.setMem_id("iai6203");

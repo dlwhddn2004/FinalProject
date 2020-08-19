@@ -6,7 +6,7 @@
 <sqlMap namespace="successboard">
 	<typeAlias alias="SuccessBoardVO" type="kr.or.ddit.vo.SuccessBoardVO" />
 	
-	<select id="successboardList" resultClass="SuccessBoardVO">
+	<sql id="selectAll">
 		select b.*
 		from (
 		         select rownum r,
@@ -24,7 +24,15 @@
 		                  SELECT *
 		                  FROM SUCCESS_BOARD) a
 		     ) b
-		order by b.r
+	</sql>
+	
+	<select id="successboardList" resultClass="SuccessBoardVO">
+		<include refid="selectAll"/>
+	</select>
+	
+	<select id="selectSuccessBoardInfo" parameterClass="map" resultClass="SuccessBoardVO">
+		<include refid="selectAll"/>
+		WHERE SUCCESS_NO = #success_no#
 	</select>
 	
 	<insert id="insertSuccessBoard" parameterClass="SuccessBoardVO">

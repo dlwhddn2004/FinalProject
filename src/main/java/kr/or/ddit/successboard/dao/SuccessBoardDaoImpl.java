@@ -1,6 +1,7 @@
 package kr.or.ddit.successboard.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.vo.SuccessBoardVO;
 
@@ -17,18 +18,18 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 
 	@Override
 	public List<SuccessBoardVO> successboardList() throws Exception {
-		List<SuccessBoardVO> list = null;
-		
-		list = client.queryForList("successboard.successboardList");
-		
-		return list;
+		return client.queryForList("successboard.successboardList");
+	}
+	
+	@Override
+	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params)
+			throws Exception {
+		return (SuccessBoardVO) client.queryForObject("successboard.selectSuccessBoardInfo", params);
 	}
 
 	@Override
 	public void insertSuccessBoard(SuccessBoardVO successboardInfo)
 			throws Exception {
-		
 		client.insert("successboard.insertSuccessBoard", successboardInfo);
 	}
-
 }

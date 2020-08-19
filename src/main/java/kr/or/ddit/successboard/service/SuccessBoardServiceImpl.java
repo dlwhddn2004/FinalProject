@@ -1,6 +1,7 @@
 package kr.or.ddit.successboard.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.successboard.dao.ISuccessBoardDao;
 import kr.or.ddit.vo.SuccessBoardVO;
@@ -21,6 +22,13 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 	public List<SuccessBoardVO> successboardList() throws Exception {
 		return dao.successboardList();
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params)
+			throws Exception {
+		return dao.selectSuccessBoardInfo(params);
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
@@ -28,5 +36,4 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 			throws Exception {
 		dao.insertSuccessBoard(successboardInfo);
 	}
-
 }

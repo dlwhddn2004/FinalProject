@@ -84,7 +84,7 @@
 						<tbody>
 							<c:forEach items="${successboardList }" var="item">
 								<tr class="table-row-data">
-									<td>${item.r }</td>
+									<td>${item.r }<input type="hidden" name="success_no" value="${item.success_no }"></td>
 									<td>${item.success_title }</td>
 									<td>${item.mem_id }</td>
 									<td>${item.success_regdate }</td>
@@ -139,6 +139,13 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
+		// 게시글 상세 보기
+		$('.table-row-data').on('click', function() {
+			const success_no = $(this).find('input[name=success_no]').val();
+			
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no;
+		});
+	
 		// 등록 버튼(게시글 작성)
 		$('.btn-write').on('click', function() {
 			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기

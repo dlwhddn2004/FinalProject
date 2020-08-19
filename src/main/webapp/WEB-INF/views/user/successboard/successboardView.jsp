@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -48,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" value="iai6203" disabled id="example-search-input">
+                        <input class="form-control" type="text" name="mem_id" disabled id="example-search-input">
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
@@ -60,7 +61,9 @@
 					<div id="editor"></div>
 
                     <div class="form-button-area" align="right">
-                        <button class="btn btn-primary btn-submit" type="button">등록</button>
+                    	<c:if test="${MEMBER_LOGININFO == successboardInfo.mem_id }">
+                        	<button class="btn btn-primary btn-submit" type="button">수정</button>
+                        </c:if>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
                 </form>
@@ -87,6 +90,10 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
+		$('input[name=success_title]').val('${successboardInfo.success_title}');
+		$('input[name=mem_id]').val('${successboardInfo.mem_id}');
+		
+	
 		<!-- 프로젝트 선택 DROPDOWN DB 값 불러와서 채우기 -->
 		const $option = $("<option>1</option>");
 		
@@ -96,6 +103,7 @@
 		const quill = new Quill('#editor', {
 			theme: 'snow'
 		});
+		quill.clipboard.dangerouslyPasteHTML('${successboardInfo.success_content}');
 		
 		<!-- 등록 버튼 -->
 		$(".form-button-area .btn-submit").on("click", function() {
