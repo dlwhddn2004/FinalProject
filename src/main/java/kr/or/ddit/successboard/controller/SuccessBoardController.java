@@ -41,7 +41,15 @@ public class SuccessBoardController {
 	}
 	
 	@RequestMapping("successboardView")
-	public void successboardView() {
+	public ModelAndView successboardView(HttpServletRequest request,
+										 ModelAndView modelAndView) {
+		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
+		modelAndView.addObject("breadcrumb_first", "성공 사례 게시판");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/successboard/successboardList.do");
+		modelAndView.addObject("breadcrumb_second", "성공 사례 게시글 등록");
 		
+		modelAndView.setViewName("user/successboard/successboardView");
+		
+		return modelAndView;
 	}
 }
