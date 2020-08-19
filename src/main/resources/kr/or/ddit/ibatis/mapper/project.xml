@@ -44,6 +44,12 @@
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		AND PROJECT.MEM_ID = #mem_id#
 	</select>
+	
+	<select id="selectProjectInfo" parameterClass="map" resultClass="ProjectVO">
+		SELECT *
+		FROM PROJECT
+		WHERE PROJECT_NO = #project_no#
+	</select>
 </sqlMap>
 
  

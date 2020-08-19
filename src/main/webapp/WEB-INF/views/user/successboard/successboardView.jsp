@@ -53,7 +53,8 @@
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
-                        <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="프로젝트를 선택해주세요." disabled>
+                        <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다." disabled>
+                        	<option>번호 : ${projectInfo.project_no } 이름 : ${projectInfo.project_title }</option>
                         </select>
                     </div>
                     
@@ -92,12 +93,6 @@
 	<script type="text/javascript">
 		$('input[name=success_title]').val('${successboardInfo.success_title}');
 		$('input[name=mem_id]').val('${successboardInfo.mem_id}');
-		
-	
-		<!-- 프로젝트 선택 DROPDOWN DB 값 불러와서 채우기 -->
-		const $option = $("<option>1</option>");
-		
-		$(".project-selector").append($option);
 		
 		<!-- Quill Text Editor Initialize -->
 		const quill = new Quill('#editor', {

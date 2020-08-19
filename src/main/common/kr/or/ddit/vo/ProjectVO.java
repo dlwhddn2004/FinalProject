@@ -29,6 +29,7 @@ public class ProjectVO {
 	private String project_managementexperience;
 	private String project_futureplans;
 	private String project_priority;
+	private String project_title;
 	
 	public String getProject_no() {
 		return project_no;
@@ -198,5 +199,11 @@ public class ProjectVO {
 	}
 	public void setProject_priority(String project_priority) {
 		this.project_priority = project_priority;
+	}
+	public String getProject_title() {
+		return project_title;
+	}
+	public void setProject_title(String project_title) {
+		this.project_title = project_title;
 	}
 }

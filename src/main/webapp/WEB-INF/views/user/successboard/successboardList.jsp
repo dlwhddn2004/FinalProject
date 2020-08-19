@@ -73,6 +73,7 @@
 	
 	function viewBoardInfo(e) {
 		const success_no = $(e).find('input[name=success_no]').val();
+		const mem_id = $(e).find('input[name=mem_id]').val();
 		
 		location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no;
 	}
@@ -114,7 +115,7 @@
 								<tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
 									<td>${item.r }<input type="hidden" name="success_no" value="${item.success_no }"></td>
 									<td>${item.success_title }</td>
-									<td>${item.mem_id }</td>
+									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
 									<td>${item.success_regdate }</td>
 									<td>${item.success_hit }</td>
 								</tr>

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.successboard.service.ISuccessBoardService;
 import kr.or.ddit.vo.JoinVO;
+import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 import kr.or.ddit.vo.newsboardVO;
 
@@ -45,7 +46,7 @@ public class SuccessBoardController {
 	}
 	
 	@RequestMapping("successboardForm")
-	public ModelAndView successboardView(HttpServletRequest request,
+	public ModelAndView successboardForm(HttpServletRequest request,
 										 ModelAndView modelAndView,
 										 String mem_id) throws Exception {
 		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
@@ -78,7 +79,11 @@ public class SuccessBoardController {
 		
 		SuccessBoardVO successboardInfo = service.selectSuccessBoardInfo(params);
 		
+		params.put("project_no", successboardInfo.getProject_no());
+		ProjectVO projectInfo = service.selectProjectInfo(params);
+		
 		modelAndView.addObject("successboardInfo", successboardInfo);
+		modelAndView.addObject("projectInfo", projectInfo);
 		modelAndView.setViewName("user/successboard/successboardView");
 		
 		return modelAndView;
