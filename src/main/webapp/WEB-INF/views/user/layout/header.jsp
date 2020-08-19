@@ -159,6 +159,8 @@
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
 	
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
 		if (${!empty param.message}) {

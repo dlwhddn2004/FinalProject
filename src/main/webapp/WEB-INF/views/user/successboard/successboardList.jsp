@@ -49,6 +49,35 @@
 	transition: 0.5s;
 }
 </style>
+
+<!-- My JavaScript -->
+<script type="text/javascript">
+	$(function() {
+		// 게시글 상세 보기
+		$('.table-row-data').on('click', function() {
+			const success_no = $(this).find('input[name=success_no]').val();
+			
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no;
+		});
+
+		// 등록 버튼(게시글 작성)
+		$('.btn-write').on('click', function() {
+			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
+			if (${empty MEMBER_LOGININFO}) {
+				Swal.fire(
+				  'Warning',
+				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
+				  'warning'
+				)
+				
+				return;
+			}
+			
+			// 로그인 한 상태!
+			location.href = "${pageContext.request.contextPath}/user/successboard/successboardForm.do";
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- Page content -->
@@ -136,32 +165,5 @@
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
-	
-	<!-- My JavaScript -->
-	<script type="text/javascript">
-		// 게시글 상세 보기
-		$('.table-row-data').on('click', function() {
-			const success_no = $(this).find('input[name=success_no]').val();
-			
-			location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no;
-		});
-	
-		// 등록 버튼(게시글 작성)
-		$('.btn-write').on('click', function() {
-			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
-			if (${empty MEMBER_LOGININFO}) {
-				Swal.fire(
-				  'Warning',
-				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
-				  'warning'
-				)
-				
-				return;
-			}
-			
-			// 로그인 한 상태!
-			location.href = "${pageContext.request.contextPath}/user/successboard/successboardForm.do";
-		});
-	</script>
 </body>
 </html>

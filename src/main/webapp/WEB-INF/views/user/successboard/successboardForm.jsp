@@ -141,7 +141,7 @@
 			const project_name = $('.project-selector').select2('val');
 			
 			// 데이터 넘겨서 Insert 작업하기
-			location.href = '${pageContext.request.contextPath}/user/successboard/insertSuccessBoard.do?success_title=' + success_title + "&success_content=" + success_content + "&project_name=" + project_name;
+			location.href = '${pageContext.request.contextPath}/user/successboard/insertSuccessBoard.do?success_title=' + success_title + "&success_content=" + success_content + "&project_name=" + project_name + "&mem_id=${MEMBER_LOGININFO.mem_id}";
 		});
 		
 		<!-- 뒤로 가기 버튼 -->
