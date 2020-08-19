@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" value="${MEMBER_LOGININFO.mem_id }" disabled id="example-search-input">
+                        <input class="form-control" type="text" value="iai6203" disabled id="example-search-input">
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
@@ -72,18 +72,18 @@
 	<!-- Argon Scripts -->
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script> --%>
-<!-- 	<!-- Optional JS --> -->
-<!-- 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> -->
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script> --%>
-<%-- 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script> --%>
-<!-- 	<!-- Argon JS --> -->
-<%-- 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script> --%>
-<!-- 	<!-- Demo JS - remove this in your project --> -->
-<%-- 	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script> --%>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	<!-- Optional JS -->
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<!-- Argon JS -->
+	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
+	<!-- Demo JS - remove this in your project -->
+	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
@@ -141,7 +141,7 @@
 			const project_name = $('.project-selector').select2('val');
 			
 			// 데이터 넘겨서 Insert 작업하기
-			location.href = '${pageContext.request.contextPath}/user/successboard/insertSuccessBoard.do?success_title=' + success_title + "&success_content=" + success_content + "&project_name=" + project_name + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+			location.href = '${pageContext.request.contextPath}/user/successboard/insertSuccessBoard.do?success_title=' + success_title + "&success_content=" + success_content + "&project_name=" + project_name;
 		});
 		
 		<!-- 뒤로 가기 버튼 -->
