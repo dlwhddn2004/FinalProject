@@ -1,6 +1,7 @@
 package kr.or.ddit.vo;
 
 public class NoticeboardVO {
+	private String r;
 	public String notice_no;
 	public String mem_id;
 	public String notice_title;
@@ -44,6 +45,12 @@ public class NoticeboardVO {
 	}
 	public void setNotice_hit(String notice_hit) {
 		this.notice_hit = notice_hit;
+	}
+	public String getR() {
+		return r;
+	}
+	public void setR(String r) {
+		this.r = r;
 	}
 	
 	
