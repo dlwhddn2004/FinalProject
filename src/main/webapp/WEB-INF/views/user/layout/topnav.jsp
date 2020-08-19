@@ -263,7 +263,7 @@
                      class="ni ni-support-16"></i> <span>Support</span>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a href="#!" class="dropdown-item"> <i class="ni ni-user-run"></i>
+                  <a href="#!" class="dropdown-item" id="btnLogout"> <i class="ni ni-user-run"></i>
                      <span>Logout</span>
                   </a>
                </div>
@@ -447,6 +447,10 @@
                $frm.submit();
                
             });
+            
+            $('#btnLogout').on('click', function() {
+				$(location).attr('href', '${pageContext.request.contextPath}/user/join/logout.do');
+			});
 		});
 	</script>
 

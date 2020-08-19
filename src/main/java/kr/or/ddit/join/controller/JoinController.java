@@ -37,16 +37,25 @@ public class JoinController {
 	      
 	      MemberVO memberInfo = this.service.memberInfo(params);
 	      
+	      String taskResult = null;
+	  	  String message = null;
 	      if(memberInfo == null){
 	         // 리다이렉트(컨텍스트 루트 | 패스 생략)
-	         String message = "탈락!";
-	         message = URLEncoder.encode(message, "UTF-8");
-	         return "redirect:/user/join/loginForm.do?message=" + message;
+	  		taskResult = "warning";
+	  		message = URLEncoder.encode("로그인에 실패하였습니다!", "UTF-8");
 	      }else{
 	         session.setAttribute("MEMBER_LOGININFO", memberInfo);
-	         
-	         return "redirect:/user/successboard/successboardList.do";
+	         taskResult = "success";
+		  	 message = URLEncoder.encode("로그인에 성공하였습니다!", "UTF-8");
 	      }
+	      return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	///user/join/logout.do
+	@RequestMapping("logout")
+	public String logout(HttpSession session) throws Exception{
+		session.invalidate();
+		
+		return "redirect:/user/successboard/successboardList.do";
 	}
 
 }
