@@ -136,7 +136,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/forms/validation.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/successboard/successboardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> V </span>
                       <span class="sidenav-normal"> 프로젝트 성공 사례 </span>
                     </a>
