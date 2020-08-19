@@ -42,6 +42,7 @@
             <div class="card">
                 <form class="successboard-form" action="${pageContext.request.contextPath }/user/successboard/insertSuccessBoard.do" method="POST">
                     <div class="form-group">
+                    
                         <label for="example-text-input" class="form-control-label">제목</label>
                         <input class="form-control" type="text" name="success_title" id="example-text-input">
                     </div>
@@ -52,12 +53,9 @@
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
                         <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="프로젝트를 선택해주세요.">
-                            <option>데이터 추가</option>
                         </select>
                     </div>
                     
-<!--                     <div class="quill" data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div> -->
-
 					<!-- Create the editor container -->
 					<div id="editor"></div>
 
@@ -95,32 +93,55 @@
 		$(".project-selector").append($option);
 		
 		<!-- Quill Text Editor Initialize -->
-		var quill = new Quill('#editor', {
-	    	theme: 'snow'
-	  	});
+		const quill = new Quill('#editor', {
+			theme: 'snow'
+		});
 		
 		<!-- 등록 버튼 -->
 		$(".form-button-area .btn-submit").on("click", function() {
 			// 제목을 입력하지 않았을 때!
-// 			const success_title = $('input[name=success_title]').val();
+			const success_title = $('input[name=success_title]').val();
 			
-// 			if (success_title == "") {
-// 				$.notify({
-// 					// options
-// 					message: '제목을 입력해주세요!' 
-// 				},{
-// 					// settings
-// 					placement: {
-// 						from: "top",
-// 						align: "center"
-// 					},
-// 					type: 'info'
-// 				});
-// 			}
+			if (success_title == "") {
+				$.notify({
+					// options
+					message: '제목을 입력해주세요!' 
+				},{
+					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
+					type: 'info'
+				});
+				
+				return;
+			}
 			
 			// 내용을 입력하지 않았을 때!
-// 			const success_content = quill.getText(0, 10);
-// 			alert(success_content);
+			const success_content = quill.root.innerHTML;
+			const text = quill.getText();
+			
+			if (text.length == 1) {
+				$.notify({
+					// options
+					message: '내용을 입력해주세요!' 
+				},{
+					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
+					type: 'info'
+				});
+				
+				return;
+			}
+			
+			const project_name = $('.project-selector').select2('val');
+			
+			// 데이터 넘겨서 Insert 작업하기
+			location.href = '${pageContext.request.contextPath}/user/successboard/insertSuccessBoard.do?success_title=' + success_title + "&success_content=" + success_content + "&project_name=" + project_name;
 		});
 	</script>
 </body>

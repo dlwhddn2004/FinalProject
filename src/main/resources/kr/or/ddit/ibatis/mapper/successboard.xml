@@ -26,6 +26,26 @@
 		     ) b
 		order by b.r
 	</select>
+	
+	<insert id="insertSuccessBoard" parameterClass="SuccessBoardVO">
+		<selectKey keyProperty="success_no" resultClass="string">
+			SELECT SUCCESSBOARD_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO SUCCESS_BOARD (SUCCESS_NO,
+		                           PROJECT_NO,
+		                           MEM_ID,
+		                           SUCCESS_TITLE,
+		                           SUCCESS_CONTENT,
+		                           SUCCESS_REGDATE,
+		                           SUCCESS_GROUP)
+		VALUES (#success_no#,
+		        #project_no#,
+		        #mem_id#,
+		        #success_title#,
+		        #success_content#,
+		        SYSDATE,
+		        #success_no#)
+	</insert>
 </sqlMap>
 
  

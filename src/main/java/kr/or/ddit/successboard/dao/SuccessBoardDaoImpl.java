@@ -24,4 +24,11 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 		return list;
 	}
 
+	@Override
+	public void insertSuccessBoard(SuccessBoardVO successboardInfo)
+			throws Exception {
+		
+		client.insert("successboard.insertSuccessBoard", successboardInfo);
+	}
+
 }
