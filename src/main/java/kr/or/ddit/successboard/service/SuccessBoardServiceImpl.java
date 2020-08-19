@@ -36,4 +36,10 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 			throws Exception {
 		dao.insertSuccessBoard(successboardInfo);
 	}
+
+	@Override
+	public int modifySuccessBoard(SuccessBoardVO successboardInfo)
+			throws Exception {
+		return dao.modifySuccessBoard(successboardInfo);
+	}
 }

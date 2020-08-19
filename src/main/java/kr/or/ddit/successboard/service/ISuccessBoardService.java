@@ -9,4 +9,5 @@ public interface ISuccessBoardService {
 	public List<SuccessBoardVO> successboardList() throws Exception;
 	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params) throws Exception;
 	public void insertSuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
+	public int modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 }

@@ -74,14 +74,26 @@ public class SuccessBoardController {
 								     HttpServletResponse response,
 								     String success_title,
 								     String success_content,
-								     String project_name) throws Exception {
+								     String project_name,
+								     String mem_id) throws Exception {
 		SuccessBoardVO successboardInfo = new SuccessBoardVO();
 		successboardInfo.setProject_no("1");
-		successboardInfo.setMem_id("iai6203");
+		successboardInfo.setMem_id(mem_id);
 		successboardInfo.setSuccess_title(success_title);
 		successboardInfo.setSuccess_content(success_content);
 		
 		service.insertSuccessBoard(successboardInfo);
+		
+		String taskResult = null;
+		String message = null;
+		taskResult = "success";
+		message = URLEncoder.encode("게시글이 정상적으로 등록되었습니다.", "UTF-8");
+		
+		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	
+	@RequestMapping("modifySuccessBoard")
+	public String modifySuccessBoard() throws Exception {
 		
 		String taskResult = null;
 		String message = null;
