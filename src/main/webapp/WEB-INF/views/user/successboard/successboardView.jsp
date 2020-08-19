@@ -20,7 +20,7 @@
     <!-- Argon CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
     <!-- Quill -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/quill/dist/quill.core.css" type="text/css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- Select2 -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
     <!-- Notify -->
@@ -56,7 +56,10 @@
                         </select>
                     </div>
                     
-                    <div data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div>
+<!--                     <div class="quill" data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div> -->
+
+					<!-- Create the editor container -->
+					<div id="editor"></div>
 
                     <div class="form-button-area" align="right">
                         <button class="btn btn-primary btn-submit" type="button">등록</button>
@@ -76,7 +79,7 @@
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
 	<!-- Optional JS -->
-	<script src="${pageContext.request.contextPath}/assets/vendor/quill/dist/quill.min.js"></script>
+	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 	<!-- Argon JS -->
@@ -91,24 +94,33 @@
 		
 		$(".project-selector").append($option);
 		
+		<!-- Quill Text Editor Initialize -->
+		var quill = new Quill('#editor', {
+	    	theme: 'snow'
+	  	});
+		
 		<!-- 등록 버튼 -->
 		$(".form-button-area .btn-submit").on("click", function() {
 			// 제목을 입력하지 않았을 때!
-			const success_title = $('input[name=success_title]').val();
+// 			const success_title = $('input[name=success_title]').val();
 			
-			if (success_title == "") {
-				$.notify({
-					// options
-					message: '제목을 입력해주세요!' 
-				},{
-					// settings
-					placement: {
-						from: "top",
-						align: "center"
-					},
-					type: 'info'
-				});
-			}
+// 			if (success_title == "") {
+// 				$.notify({
+// 					// options
+// 					message: '제목을 입력해주세요!' 
+// 				},{
+// 					// settings
+// 					placement: {
+// 						from: "top",
+// 						align: "center"
+// 					},
+// 					type: 'info'
+// 				});
+// 			}
+			
+			// 내용을 입력하지 않았을 때!
+// 			const success_content = quill.getText(0, 10);
+// 			alert(success_content);
 		});
 	</script>
 </body>
