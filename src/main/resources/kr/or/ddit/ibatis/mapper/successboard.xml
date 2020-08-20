@@ -16,9 +16,6 @@
 		                success_title,
 		                success_content,
 		                TO_CHAR(success_regdate, 'YYYY-MM-DD') success_regdate,
-		                success_group,
-		                success_seq,
-		                success_depth,
 		                success_hit
 		         from (
 		                  SELECT *
@@ -36,23 +33,18 @@
 	</select>
 	
 	<insert id="insertSuccessBoard" parameterClass="SuccessBoardVO">
-		<selectKey keyProperty="success_no" resultClass="string">
-			SELECT SUCCESSBOARD_SEQ.nextval FROM DUAL
-		</selectKey>
 		INSERT INTO SUCCESS_BOARD (SUCCESS_NO,
 		                           PROJECT_NO,
 		                           MEM_ID,
 		                           SUCCESS_TITLE,
 		                           SUCCESS_CONTENT,
-		                           SUCCESS_REGDATE,
-		                           SUCCESS_GROUP)
-		VALUES (#success_no#,
+		                           SUCCESS_REGDATE)
+		VALUES (SUCCESSBOARD_SEQ.nextval,
 		        #project_no#,
 		        #mem_id#,
 		        #success_title#,
 		        #success_content#,
-		        SYSDATE,
-		        #success_no#)
+		        SYSDATE)
 	</insert>
 	
 	<update id="modifySuccessBoard" parameterClass="SuccessBoardVO">

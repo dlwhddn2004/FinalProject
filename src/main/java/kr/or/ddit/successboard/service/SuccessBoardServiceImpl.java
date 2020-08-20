@@ -48,9 +48,9 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
-	public void insertSuccessBoard(SuccessBoardVO successboardInfo)
+	public int insertSuccessBoard(SuccessBoardVO successboardInfo)
 			throws Exception {
-		dao.insertSuccessBoard(successboardInfo);
+		return dao.insertSuccessBoard(successboardInfo);
 	}
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})

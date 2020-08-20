@@ -12,7 +12,7 @@ public interface ISuccessBoardService {
 	public List<JoinVO> attendProjectList(Map<String, String> params) throws Exception;
 	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params) throws Exception;
 	public ProjectVO selectProjectInfo(Map<String, String> params) throws Exception;
-	public void insertSuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
+	public int insertSuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 	public int modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception;
 }

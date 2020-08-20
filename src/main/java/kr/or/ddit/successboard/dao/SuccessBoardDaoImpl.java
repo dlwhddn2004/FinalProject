@@ -42,9 +42,16 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	}
 
 	@Override
-	public void insertSuccessBoard(SuccessBoardVO successboardInfo)
+	public int insertSuccessBoard(SuccessBoardVO successboardInfo)
 			throws Exception {
-		client.insert("successboard.insertSuccessBoard", successboardInfo);
+		int chk = 0;
+		
+		Object obj = client.insert("successboard.insertSuccessBoard", successboardInfo);
+		if (obj == null) {
+			chk = 1;
+		}
+		
+		return chk;
 	}
 
 	@Override

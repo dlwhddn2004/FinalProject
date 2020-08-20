@@ -8,9 +8,6 @@ public class SuccessBoardVO {
 	private String success_title;
 	private String success_content;
 	private String success_regdate;
-	private String success_group;
-	private String success_seq;
-	private String success_depth;
 	private String success_hit;
 	
 	public String getR() {
@@ -54,24 +51,6 @@ public class SuccessBoardVO {
 	}
 	public void setSuccess_regdate(String success_regdate) {
 		this.success_regdate = success_regdate;
-	}
-	public String getSuccess_group() {
-		return success_group;
-	}
-	public void setSuccess_group(String success_group) {
-		this.success_group = success_group;
-	}
-	public String getSuccess_seq() {
-		return success_seq;
-	}
-	public void setSuccess_seq(String success_seq) {
-		this.success_seq = success_seq;
-	}
-	public String getSuccess_depth() {
-		return success_depth;
-	}
-	public void setSuccess_depth(String success_depth) {
-		this.success_depth = success_depth;
 	}
 	public String getSuccess_hit() {
 		return success_hit;
