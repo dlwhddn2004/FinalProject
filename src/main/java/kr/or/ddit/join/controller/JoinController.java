@@ -24,7 +24,7 @@ public class JoinController {
 	private IMemberService service;
 	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
-	   public String loginCheck(String mem_id, 
+	public String loginCheck(String mem_id, 
 	                       String mem_pass,
 	                       HttpServletRequest request,
 	                       HttpSession session,
@@ -55,7 +55,10 @@ public class JoinController {
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
 		
-		return "redirect:/user/successboard/successboardList.do";
+		String taskResult = "info";
+	  	String message = URLEncoder.encode("로그아웃 되었습니다.", "UTF-8");
+		
+		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 	}
 
 }
