@@ -66,4 +66,18 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 			Map<String, String> params) throws Exception {
 		return dao.selectCommentList(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertSuccessComment(SuccessBoardCommentVO successCommentInfo)
+			throws Exception {
+		return dao.insertSuccessComment(successCommentInfo);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteSuccessComment(Map<String, String> params)
+			throws Exception {
+		return dao.deleteSuccessComment(params);
+	}
 }

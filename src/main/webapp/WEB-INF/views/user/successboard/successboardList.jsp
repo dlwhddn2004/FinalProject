@@ -75,7 +75,7 @@
 		const success_no = $(e).find('input[name=success_no]').val();
 		const mem_id = $(e).find('input[name=mem_id]').val();
 		
-		location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no;
+		location.href = "${pageContext.request.contextPath}/user/successboard/successboardView.do?success_no=" + success_no + "&mem_id=${MEMBER_LOGININFO.mem_id}";
 	}
 </script>
 </head>

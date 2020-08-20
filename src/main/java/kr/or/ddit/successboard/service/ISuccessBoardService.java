@@ -18,4 +18,6 @@ public interface ISuccessBoardService {
 	
 	// comment
 	public List<SuccessBoardCommentVO> selectCommentList(Map<String, String> params) throws Exception;
+	public int insertSuccessComment(SuccessBoardCommentVO successCommentInfo) throws Exception;
+	public int deleteSuccessComment(Map<String, String> params) throws Exception;
 }

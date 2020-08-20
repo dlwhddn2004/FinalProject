@@ -1,11 +1,18 @@
 package kr.or.ddit.vo;
 
 public class SuccessBoardCommentVO {
+	private String comment_seqString;
 	private String success_no;
 	private String mem_id;
 	private String comment_content;
 	private String comment_regdate;
 	
+	public String getComment_seqString() {
+		return comment_seqString;
+	}
+	public void setComment_seqString(String comment_seqString) {
+		this.comment_seqString = comment_seqString;
+	}
 	public String getSuccess_no() {
 		return success_no;
 	}

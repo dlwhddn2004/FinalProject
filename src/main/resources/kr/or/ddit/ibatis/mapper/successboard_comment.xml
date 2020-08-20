@@ -6,16 +6,48 @@
 <sqlMap namespace="successboard_comment">
 	<typeAlias alias="SuccessBoardVO" type="kr.or.ddit.vo.SuccessBoardVO" />
 	<typeAlias alias="SuccessBoardCommentVO" type="kr.or.ddit.vo.SuccessBoardCommentVO" />
+	<typeAlias alias="JoinVO" type="kr.or.ddit.vo.JoinVO" />
 	
 	<sql id="selectAll">
 		SELECT success_no, mem_id, comment_content, TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') comment_regdate
 		FROM SUCCESS_BOARD_COMMENT
 	</sql>
 	
-	<select id="selectCommentList" parameterClass="map" resultClass="SuccessBoardCommentVO">
-		<include refid="selectAll"/>
-		WHERE SUCCESS_NO = #success_no#
+	<select id="selectCommentList" parameterClass="map" resultClass="JoinVO">
+		SELECT SUCCESS_NO,
+		       PROFILE_FILE.MEM_ID mem_id,
+		       COMMENT_CONTENT,
+		       COMMENT_REGDATE,
+		       COMMENT_SEQ,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT
+		FROM SUCCESS_BOARD_COMMENT,
+		     PROFILE_FILE
+		WHERE (SUCCESS_BOARD_COMMENT.MEM_ID = PROFILE_FILE.MEM_ID)
+		AND SUCCESS_NO = #success_no#
 	</select>
+	
+	<insert id="insertSuccessComment" parameterClass="SuccessBoardCommentVO">
+		INSERT INTO SUCCESS_BOARD_COMMENT (SUCCESS_NO,
+		                                   MEM_ID,
+		                                   COMMENT_CONTENT,
+		                                   COMMENT_REGDATE,
+		                                   COMMENT_SEQ) 
+		VALUES (#success_no#,
+		        #mem_id#,
+		        #comment_content#,
+		        SYSDATE,
+		        SUCCESS_BOARD_COMMENT_SEQ.nextval)
+	</insert>
+	
+	<delete id="deleteSuccessComment" parameterClass="map">
+		DELETE SUCCESS_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
+	</delete>
 </sqlMap>
 
  

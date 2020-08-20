@@ -22,6 +22,13 @@
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
+
+<style>
+	footer {
+		margin: 0px 50px 0px 50px;
+		padding: 10px;
+	}
+</style>
 <body>
 	<!-- Footer -->
 	<footer class="footer pt-0">

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
+import com.lowagie.text.Paragraph;
 
 @Repository
 public class SuccessBoardDaoImpl implements ISuccessBoardDao {
@@ -64,5 +65,25 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	public List<SuccessBoardCommentVO> selectCommentList(
 			Map<String, String> params) throws Exception {
 		return client.queryForList("successboard_comment.selectCommentList", params);
+	}
+
+	@Override
+	public int insertSuccessComment(SuccessBoardCommentVO successCommentInfo)
+			throws Exception {
+		int chk = 0;
+		
+		Object obj = client.insert("successboard_comment.insertSuccessComment", successCommentInfo);
+		
+		if (obj == null) {
+			chk = 1;
+		}
+		
+		return chk;
+	}
+
+	@Override
+	public int deleteSuccessComment(Map<String, String> params)
+			throws Exception {
+		return client.delete("successboard_comment.deleteSuccessComment", params);
 	}
 }
