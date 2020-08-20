@@ -30,7 +30,7 @@
 		<include refid="selectAll"/>
 	</select>
 	
-	<select id="newsBoardInfo" parameterClass="map" resultClass="newsboardVO">
+	<select id="newsboardInfo" parameterClass="map" resultClass="newsboardVO">
 		<include refid="selectAll"/>
 		WHERE NEWS_NO = #news_no#
 	</select>
@@ -52,6 +52,14 @@
 		        SYSDATE,
 		        #news_no#)
 	</insert>
+		<update id="modifyNewsBoard" parameterClass="newsboardVO">
+		UPDATE NEWS_BOARD SET NEWS_TITLE = #news_title#,
+		                         NEWS_CONTENT = #news_content#
+		WHERE NEWS_NO = #news_no#
+	</update>
+	<delete id="deleteNewsBoard" parameterClass="map">
+		DELETE NEWS_BOARD WHERE NEWS_NO = #news_no#
+	</delete>
 </sqlMap>
 
  

@@ -55,9 +55,10 @@
 					<div id="editor"></div>
 
                     <div class="form-button-area" align="right">
-<%--                     	<c:if test="${MEMBER_LOGININFO == successboardInfo.mem_id }"> --%>
+                     	<c:if test="${MEMBER_LOGININFO.mem_id == newsboardInfo.mem_id }">
                         	<button class="btn btn-primary btn-submit" type="button">수정</button>
-<%--                         </c:if> --%>
+                        		<button class="btn btn-danger btn-delete" type="button">삭제</button>
+                         </c:if>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
                 </form>
@@ -88,11 +89,6 @@
 		$('input[name=mem_id]').val('${newsboardInfo.mem_id}');
 		
 	
-		<!-- 프로젝트 선택 DROPDOWN DB 값 불러와서 채우기 -->
-		const $option = $("<option>1</option>");
-		
-		$(".project-selector").append($option);
-		
 		<!-- Quill Text Editor Initialize -->
 		const quill = new Quill('#editor', {
 			theme: 'snow'
@@ -106,7 +102,6 @@
 			
 			if (button_status === "수정") {
 				$('input[name=news_title]').removeAttr('readonly');
-				$('.project-selector').removeAttr('disabled');
 				quill.enable(true);
 				
 				$('.btn-submit').text('완료');
@@ -117,6 +112,21 @@
 				$('.btn-back').addClass('btn-warning');
 			} else if (button_status === "완료") {
 				// 수정 기능 실행
+				const news_title = $('input[name=news_title]').val();
+				const news_content = quill.root.innerHTML;
+				
+				const $ipt_news_no = $("<input type='hidden' name='news_no' value='${param.news_no}'>");
+				const $ipt_news_title = $("<input type='hidden' name='news_title' value='" + news_title + "'>");
+				const $ipt_news_content = $("<input type='hidden' name='news_content' value='" + news_content + "'>");
+				
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/newsboard/modifyNewsBoard.do' method='POST'> ");
+				
+				$('body').append($frm);
+				$frm.append($ipt_news_no);
+				$frm.append($ipt_news_title);
+				$frm.append($ipt_news_content);
+				
+				$frm.submit();
 			}
 		});
 		
@@ -127,8 +137,10 @@
 			if (button_status === "뒤로가기") {
 				location.href = '${pageContext.request.contextPath}/user/newsboard/newsboardList.do';
 			} else if (button_status === "취소") {
+				$('input[name=news_title]').val('${newsboardInfo.news_title}');
+				quill.clipboard.dangerouslyPasteHTML('${newsboardInfo.news_content}');
+				
 				$('input[name=news_title]').attr('readonly', 'readonly');
-				$('.project-selector').attr('disabled', 'disabled');
 				quill.enable(false);
 				
 				$('.btn-submit').text('수정');
@@ -138,6 +150,24 @@
 				$('.btn-back').removeClass('btn-warning');
 				$('.btn-back').addClass('btn-primary');
 			}
+		});
+		
+		<!-- 삭제 버튼 -->
+		$('.btn-delete').on('click', function() {
+			Swal.fire({
+			  title: '정말 삭제하시겠습니까?',
+			  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  location.href = '${pageContext.request.contextPath}/user/newsboard/deleteNewsBoard.do?news_no=${param.news_no}';
+			  }
+			});
 		});
 	</script>
 </body>

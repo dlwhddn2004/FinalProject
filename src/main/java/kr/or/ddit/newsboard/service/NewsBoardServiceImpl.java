@@ -35,6 +35,18 @@ public class NewsBoardServiceImpl implements NewsBoardService{
 		// TODO Auto-generated method stub
 		return dao.newsboardInfo(params);
 	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int modifyNewsBoard(newsboardVO newsboardInfo) throws Exception {
+		
+		return dao.modifyNewsBoard(newsboardInfo);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteNewsBoard(Map<String, String> params) throws Exception {
+	
+		return dao.deleteNewsBoard(params);
+	}
 	
 	
 

@@ -65,9 +65,9 @@ import org.springframework.web.servlet.ModelAndView;
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("news_no", news_no);
 			
-			newsboardVO newsboardInfo = service.newsboardInfo(params);
+			newsboardVO newsBoardInfo = service.newsboardInfo(params);
 			
-			modelAndView.addObject("newsboardInfo", newsboardInfo);
+			modelAndView.addObject("newsboardInfo", newsBoardInfo);
 			modelAndView.setViewName("user/newsboard/newsboardView");
 			
 			return modelAndView;
@@ -100,6 +100,41 @@ import org.springframework.web.servlet.ModelAndView;
 			
 		}
 		
+		@RequestMapping("modifyNewsBoard")
+		public String modifyNewsBoard(newsboardVO newsboardInfo) throws Exception {
+			int chk = service.modifyNewsBoard(newsboardInfo);
+			
+			String taskResult = null;
+			String message = null;
+			if (chk > 0) {
+				taskResult = "success";
+				message = URLEncoder.encode("게시글이 정상적으로 수정되었습니다.", "UTF-8");
+			} else {
+				taskResult = "warning";
+				message = URLEncoder.encode("게시글 수정에 실패했습니다.", "UTF-8");
+			}
+			
+			return "redirect:/user/newsboard/newsboardList.do?taskResult=" + taskResult + "&message=" + message;
+		}
+		@RequestMapping("deleteNewsBoard")
+		public String deleteNewsBoard(String news_no) throws Exception {
+			
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("news_no", news_no);
+			int chk = service.deleteNewsBoard(params);
+			
+			String taskResult = null;
+			String message = null;
+			if (chk > 0) {
+				taskResult = "success";
+				message = URLEncoder.encode("게시글이 정상적으로 삭제되었습니다.", "UTF-8");
+			} else {
+				taskResult = "warning";
+				message = URLEncoder.encode("게시글 삭제에 실패했습니다.", "UTF-8");
+			}
+			
+			return "redirect:/user/newsboard/newsboardList.do?taskResult=" + taskResult + "&message=" + message;
+		}
 		
 	
 }

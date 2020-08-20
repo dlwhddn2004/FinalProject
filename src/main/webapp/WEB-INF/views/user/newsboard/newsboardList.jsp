@@ -93,7 +93,7 @@
 							<tbody>
 								<c:forEach items="${newsboardList}" var="item">
 									<tr class="table-row-data">
-										<td>${item.r }</td>
+										<td>${item.r }<input type="hidden" value="${item.news_no }" name="news_no"></td>
 										<td>${item.news_title }</td>
 										<td>${item.mem_id }</td>
 										<td>${item.news_regdate }</td>

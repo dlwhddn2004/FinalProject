@@ -37,5 +37,17 @@ public class NewsBoardDaoImpl implements NewsBoardDao{
 		return (newsboardVO) client.queryForObject("newsboard.newsboardInfo",params);
 	}
 
+	@Override
+	public int modifyNewsBoard(newsboardVO newsboardInfo) throws Exception {
+		// TODO Auto-generated method stub
+		return client.update("newsboard.modifyNewsBoard", newsboardInfo);
+	}
+
+	@Override
+	public int deleteNewsBoard(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return client.update("newsboard.deleteNewsBoard",params);
+	}
+
 
 }
