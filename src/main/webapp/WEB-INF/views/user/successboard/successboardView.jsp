@@ -342,7 +342,7 @@
 		function loadModifyView(e) {
 			comment_content = $(e).parent().parent().find('.modi-ipt-comment-content').val();
 			
-			$(e).parent().parent().parent().find('.process-first').hide();
+			$(e).parent().parent().find('.process-first').hide();
 			$(e).parent().parent().find('.process-second').show();
 		}
 		
