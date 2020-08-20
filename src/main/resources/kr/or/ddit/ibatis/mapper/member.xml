@@ -97,6 +97,33 @@
 		where mem_delete = 'y'
 		<include refid="searchCondition"/>
 	</select> -->
+	
+	<insert id="insertMember" parameterClass="memberVO">
+		insert into member
+		    (mem_id,
+			category_no,
+			notification_no,
+			mem_pass,
+			mem_name,
+			mem_mail,
+			mem_addr,
+			mem_tel,
+			mem_bankno,
+			mem_businessno,
+			mem_identityauthentication)
+		values
+			(#mem_id#,
+			#category_no#,
+			#notification_no#,
+			#mem_pass#,
+			#mem_name#,
+			#mem_mail#,
+			#mem_addr#,
+			#mem_tel#,
+			#mem_bankno#,
+			#mem_businessno#,
+			#mem_identityauthentication#)
+	</insert>
 </sqlMap>
 
 

@@ -26,26 +26,26 @@ public class IMemberServiceImpl implements IMemberService {
 			return dao.memberInfo(params);
 	}
 	
-/*	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	@Override
-	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
-
-		return	dao.memberList(params);
-	}
-
-	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
-	@Override
-	public void deleteMemberInfo(Map<String, String> params)  throws Exception{
-
-			dao.deleteMemberInfo(params);
-	}
-	
-	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
-	@Override
-	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
-
-			dao.updateMemberInfo(memberInfo);
-	}
+//	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+//	@Override
+//	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
+//
+//		return	dao.memberList(params);
+//	}
+//
+//	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
+//	@Override
+//	public void deleteMemberInfo(Map<String, String> params)  throws Exception{
+//
+//			dao.deleteMemberInfo(params);
+//	}
+//	
+//	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
+//	@Override
+//	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
+//
+//			dao.updateMemberInfo(memberInfo);
+//	}
 	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
 	@Override
@@ -55,10 +55,10 @@ public class IMemberServiceImpl implements IMemberService {
 
 	}
 	
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	@Override
-	public String totalCount(Map<String, String> params) throws Exception{
-			return  dao.totalCount(params);
-	}*/
+//	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+//	@Override
+//	public String totalCount(Map<String, String> params) throws Exception{
+//			return  dao.totalCount(params);
+//	}
 
 }

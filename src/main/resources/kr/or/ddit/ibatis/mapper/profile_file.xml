@@ -11,6 +11,13 @@
 		FROM PROFILE_FILE
 		WHERE MEM_ID = #mem_id#
 	</select>
+	
+	<insert id="insertProfileFile" parameterClass="profileFileVO">
+		INSERT INTO PROFILE_FILE (PROFILE_SEQ,
+		                          MEM_ID) 
+		VALUES (PROFILE_FILE_SEQ.nextval,
+        		#mem_id#) 
+	</insert>
 </sqlMap>
 
  

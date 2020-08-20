@@ -292,13 +292,16 @@
 			              <div class="text-muted text-center mt-2 mb-3"><h3>로그인</h3></div>
 			            </div>
 			            <div class="card-body">
-			              <form role="form">
+			              <form role="form" class="needs-validation" novalidate>
 			                <div class="form-group mb-3">
 			                  <div class="input-group input-group-merge input-group-alternative">
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="아이디" type="text" name="mem_id">
+			                    <input id="validationCustom01" class="form-control" placeholder="아이디" type="text" name="mem_id">
+			                    <div class="valid-feedback">
+			                    	Good!
+			                    </div>
 			                  </div>
 			                </div>
 			                <div class="form-group">
@@ -350,12 +353,12 @@
 			                  <span class="btn-inner&#45;&#45;text">파트너스</span>
 			                </a>-->
 			                <div class="custom-control custom-radio  box-developer">
-			                  <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+			                  <input type="radio" id="customRadioInline1" name="category" class="custom-control-input" value=2>
 			                  <label class="custom-control-label" for="customRadioInline1">디벨로퍼</label>
 			                  <div class="text-muted text-center mt-2 mb-3"><small>포트폴리오를 등록하고 프로젝트를 수주하고자 하는 개발자</small></div>
 			                </div>
 			                <div class="custom-control custom-radio box-partners">
-			                  <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+			                  <input type="radio" id="customRadioInline2" name="category" class="custom-control-input" value=1>
 			                  <label class="custom-control-label" for="customRadioInline2">파트너스</label>
 			                  <div class="text-muted text-center mt-2 mb-3"><small>프로젝트를 의뢰하고자 하는 기업, 개발자</small></div>
 			                </div>
@@ -369,7 +372,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="아이디" type="text">
+			                    <input class="form-control" placeholder="아이디" type="text" name="sign_id">
 			                  </div>
 			                </div>
 			                <div class="form-group mb-3">
@@ -377,7 +380,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="이메일" type="email">
+			                    <input class="form-control" placeholder="이메일" type="email" name="sign_email">
 			                    <button type="button" class="btn btn-outline-primary">인증</button>
 			                  </div>
 			                </div>
@@ -386,7 +389,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="이메일 인증번호" type="text">
+			                    <input class="form-control" placeholder="이메일 인증번호" type="text" name="sign_emailCheck">
 			                  </div>
 			                </div>
 			                <div class="form-group">
@@ -394,7 +397,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="비밀번호" type="password">
+			                    <input class="form-control" placeholder="비밀번호" type="password" name="sign_pass">
 			                  </div>
 			                </div>
 			                <div class="form-group">
@@ -402,7 +405,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="fas fa-check"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="비밀번호 확인" type="password">
+			                    <input class="form-control" placeholder="비밀번호 확인" type="password" name="sign_passCheck">
 			                  </div>
 			                </div>
 			 <!--               <div id="capcha">
@@ -419,7 +422,7 @@
 			                  </div>
 			                </div>
 			                <div class="text-center">
-			                  <button type="button" class="btn btn-primary my-4">회원가입</button>
+			                  <button type="button" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button>
 			                </div>
 			              </form>
 			            </div>
@@ -438,7 +441,7 @@
                var mem_id = $('input[name = mem_id]').val();
                var mem_pass = $('input[name = mem_pass]').val();
                               
-               var $frm = $('<form action="${pageContext.request.contextPath}/user/join/loginCheck.do" method="post"></form>');
+               var $frm = $('<form action="${pageContext.request.contextPath}/user/member/loginCheck.do" method="post"></form>');
                var $inputID = $('<input type="hidden" value="' +mem_id+ '" name="mem_id" />');
                var $inputPWD = $('<input type="hidden" value="' +mem_pass+ '" name="mem_pass" />');
                $frm.append($inputID);
@@ -449,10 +452,50 @@
             });
             
             $('#btnLogout').on('click', function() {
-				$(location).attr('href', '${pageContext.request.contextPath}/user/join/logout.do');
+				$(location).attr('href', '${pageContext.request.contextPath}/user/member/logout.do');
+			});
+            
+            $('#btnRegistMember').on('click', function() {
+            	var category_no = $('input[name=category]:checked').val();
+            	var mem_id = $('input[name=sign_id]').val();
+            	var mem_mail = $('input[name=sign_email]').val();
+            	var mem_pass = $('input[name=sign_pass]').val();
+				
+
+				var $form = $('<form action="${pageContext.request.contextPath}/user/member/insertMember.do"></form>');
+				var $inputCAT = $('<input type="hidden" value="' + category_no + '"name="category_no"/>');
+				var $inputID = $('<input type="hidden" value="' +mem_id+ '" name="mem_id" />');
+				var $inputMAIL = $('<input type="hidden" value="' +mem_mail+ '" name="mem_mail" />');
+				var $inputPWD = $('<input type="hidden" value="' +mem_pass+ '" name="mem_pass" />');
+				$form.append($inputCAT);
+				$form.append($inputID);
+				$form.append($inputMAIL);
+	            $form.append($inputPWD);
+	            $(document.body).append($form);
+	            $form.submit();	
 			});
 		});
 	</script>
+	<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('.loginBtn', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+  </script>
 
 </body>
 </html>
