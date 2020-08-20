@@ -48,4 +48,10 @@ public class IJobsBoardDaoImpl implements IJobsBoardDao {
 		return client.update("JobsBoard.hitup",params);
 	}
 
+
+	@Override
+	public int deleteJobsBoard(Map<String, String> params) throws Exception {
+		return client.delete("JobsBoard.deleteJobsBoard",params);
+	}
+
 }

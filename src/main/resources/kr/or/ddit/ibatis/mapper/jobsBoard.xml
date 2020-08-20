@@ -9,7 +9,7 @@
 	
 	
 	<sql id="selectAll">
-select b.*
+		select b.*
 		from (
 		         select rownum r,
 		                JOBS_NO,
@@ -27,7 +27,11 @@ select b.*
 		         from (
 		                  SELECT *
 		                  FROM JOBS_BOARD) a
-		     ) b
+		     ) b order by b.r 
+	</sql>
+	
+	<sql id="selectInfo">
+	select * from jobs_board
 	</sql>
 	
 	
@@ -69,7 +73,7 @@ select b.*
 	
 	
 	<select id="jobsBoardInfo" parameterClass="map" resultClass="jobsBoardVO">
-		<include refid="selectAll"/>
+		<include refid="selectInfo"/>
 		where jobs_no= #jobs_no#
 	</select>
 	
@@ -87,6 +91,9 @@ select b.*
 		update JOBS_BOARD set JOBS_HIT = JOBS_HIT + 1 where JOBS_NO = #jobs_no#
 	</update>
 	
+	<delete id="deleteJobsBoard" parameterClass="map">
+		delete jobs_board where jobs_no = #jobs_no#
+	</delete>
 	
 </sqlMap>
 

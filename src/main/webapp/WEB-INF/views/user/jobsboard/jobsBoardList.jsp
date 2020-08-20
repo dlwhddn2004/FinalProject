@@ -28,13 +28,50 @@
   <!-- My CSS -->
 <style type="text/css">
 .table-row-data:hover {
-	background-color: #5e72e4;
-	color: white;
-	cursor: pointer;
-	transition: 0.5s;
+   background-color: #5e72e4;
+   color: white;
+   cursor: pointer;
+   transition: 0.5s;
 }
 </style>
 </head>
+   <!-- My JavaScript -->
+   <script type="text/javascript">
+   $(function(){
+//       $('.table-row-data').on('click',function(){
+//          const jobs_no = $(this).find('input[name=jobs_no]').val();
+         
+//          location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardView.do?jobs_no=" + jobs_no;
+//       });
+   
+      
+   
+      $('#btn-write').on('click', function() {
+         // 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
+         if (${empty MEMBER_LOGININFO}) {
+            Swal.fire(
+              'Warning',
+              '게시글 작성은 로그인 후 이용하실 수 있습니다.',
+              'warning'
+            )
+            
+            return;
+         }
+            
+            // 로그인 한 상태!
+            location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardForm.do";
+         });
+   
+})
+
+ function viewBoardInfo(info) {
+  	const jobs_no = $(info).find('input[name=jobs_no]').val();
+  	const mem_id = $(info).find('input[name=mem_id]').val();
+  	
+  	location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardView.do?jobs_no=" + jobs_no;
+  	}	
+   </script>
+
 
 <body>
 <div class="row">
@@ -70,31 +107,24 @@
           </tfoot>
           <tbody>
           <c:forEach items="${jobsBoardList }" var="jobsBoardList">
-	          <tr class="table-row-data">
-	          		<td>${jobsBoardList.r }<input type="hidden" name="jobs_no" value="${jobsBoardList.jobs_no }"/></td>
-					<td>
-						<c:if test="${jobsBoardList.jobs_depth != 0 }">
-							<c:forEach begin="1" end="${jobsBoardList.jobs_depth }">
-								&nbsp;&nbsp;&nbsp;&nbsp;&gt;&gt;
-							</c:forEach>
-						</c:if>
-						${jobsBoardList.jobs_title }
-					</td>
-					<td>${jobsBoardList.mem_id}</td>
-					<td>${jobsBoardList.jobs_regdate }</td>
-					<td>${jobsBoardList.jobs_startdate }~${jobsBoardList.jobs_enddate }</td>
-					<td>${jobsBoardList.jobs_hit }</td>
-	          </tr>
-	          
+             <tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
+                   <td>${jobsBoardList.r }<input type="hidden" name="jobs_no" value="${jobsBoardList.jobs_no }"/></td>
+               <td>${jobsBoardList.jobs_title }</td>
+               <td>${jobsBoardList.mem_id}</td>
+               <td>${jobsBoardList.jobs_regdate }</td>
+               <td>${jobsBoardList.jobs_startdate }~${jobsBoardList.jobs_enddate }</td>
+               <td>${jobsBoardList.jobs_hit }</td>
+             </tr>
+             
           </c:forEach>
 
 
 
           </tbody>
         </table>
-        	<div align="right" style="padding: 15px 15px 0px 0px;">
-        	<button type="button" class="btn btn-outline-success" id="btn-write">등록</button>
-        	</div>
+           <div align="right" style="padding: 15px 15px 0px 0px;">
+           <button type="button" class="btn btn-outline-success" id="btn-write">등록</button>
+           </div>
       </div>
     </div>
   </div>
@@ -122,38 +152,7 @@
 
 
 
-	<!-- My JavaScript -->
-	<script type="text/javascript">
-	$(function(){
-		$('.table-row-data').on('click',function(){
-			const jobs_no = $(this).find('input[name=jobs_no]').val();
-			
-			location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardView.do?jobs_no=" + jobs_no;
-		});
-	
-		
-	
-		$('#btn-write').on('click', function() {
-			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
-			if (${empty MEMBER_LOGININFO}) {
-				Swal.fire(
-				  'Warning',
-				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
-				  'warning'
-				)
-				
-				return;
-			}
-				
-				// 로그인 한 상태!
-				location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardForm.do";
-			});
-	
-	
-		
-})
-	</script>
+
 </body>
 
 </html>
-

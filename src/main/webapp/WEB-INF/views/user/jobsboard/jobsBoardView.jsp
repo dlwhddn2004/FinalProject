@@ -42,6 +42,7 @@
         <div class="col">
             <div class="card">
 <%--                 <form class="jobsBoard-form" action="${pageContext.request.contextPath }/user/jobsboard/updateJobsBoard.do" method="POST"> --%>
+				<div class="jobsBoard-form">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">제목</label>
                         <input class="form-control" type="text" name="jobs_title" id="example-text-input" readonly>
@@ -74,9 +75,9 @@
                    			<button type="submit" class="btn btn-primary" id="btn-modefiy">수정</button>
                    			<button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
                    		</c:if> 	
-                            <button type="button" class="btn btn-primary" id="btn-back">목록</button>
+                            <button type="button" class="btn btn-primary" id="btn-back">뒤로가기</button>
                     </div>                 
-<!--                 </form> -->
+<!--                 </form> --></div>
             </div>
         </div>
     </div>
@@ -177,8 +178,54 @@
 		
 		<!-- 뒤로 가기 버튼 -->
 		$('#btn-back').on('click', function() {
-			location.href = '${pageContext.request.contextPath}/user/jobsboard/jobsBoardList.do'; 
+			
+			const button_status = $('#btn-back').text();
+			
+			if(button_status ==='뒤로가기'){
+				location.href = '${pageContext.request.contextPath}/user/jobsboard/jobsBoardList.do'; 
+			}else if(button_status=== "취소"){
+				$('input[name=jobs_title]').val('${jobsboardInfo.jobs_title}');
+				quill.clipboard.dangerouslyPasteHTML('${jobsboardInfo.jobs_content}');
+				
+				$('#btn-delete').show();
+				$('input[name=jobs_title]').attr('readonly','readonly');
+				$('input[name=jobs_startdate]').attr('disabled',true);
+				$('input[name=jobs_enddate]').attr('disabled',true);
+				quill.enable(false);
+				
+				$('#btn-modefiy').text('수정');
+				$('#btn-modefiy').removeClass('btn-success');
+				$('#btn-modefiy').addClass('btn-primary');
+				$('#btn-back').text('뒤로가기');
+				$('#btn-back').removeClass('btn-warning');
+				$('#btn-back').addClass('btn-primary');
+			}
 		});
+		
+		$('#btn-delete').on('click',function(){
+			Swal.fire({
+				  title: '정말 삭제하시겠습니까?',
+				  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '삭제',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+				  if (result.value) {
+					  location.href = '${pageContext.request.contextPath}/user/jobsboard/deleteJobsBoard.do?jobs_no=${jobsboardInfo.jobs_no}';
+				  } 
+				});
+			
+		});
+		
+		
+
+		
+		
+		
+		
 	</script>
 	
 <%-- 	 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script> --%>

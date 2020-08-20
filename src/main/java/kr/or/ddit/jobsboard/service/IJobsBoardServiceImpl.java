@@ -51,4 +51,10 @@ public class IJobsBoardServiceImpl implements IJobsBoardService {
 		return dao.hitup(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteJobsBoard(Map<String, String> params) throws Exception {
+		return dao.deleteJobsBoard(params);
+	}
+
 }

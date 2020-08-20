@@ -1,6 +1,7 @@
 package kr.or.ddit.jobsboard.controller;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -108,8 +109,26 @@ public class JobsBoardController {
 			message = URLEncoder.encode("게시글 수정에 실패했습니다.", "UTF-8");
 		}
 		
-		return "redirect:/user/jobsboard/jobsBoardList.jsp.do?taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/user/jobsboard/jobsBoardList.do?taskResult=" + taskResult + "&message=" + message;
 		
+	}
+	
+	@RequestMapping("deleteJobsBoard")
+	public String deleteJobsBoard(String jobs_no ) throws Exception{
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("jobs_no", jobs_no);
+		
+		int cnt =this.jobsBoardSerivce.deleteJobsBoard(params);
+		String taskResult= null;
+		String message= null;
+		if(cnt > 0){
+			taskResult= "success";
+			message= URLEncoder.encode("게시글이 정상적으로 삭제되었습니다.", "UTF-8");
+		} else{
+			taskResult= "warning";
+			message= URLEncoder.encode("게시글 삭제에 실패했습니다 ","UTF-8");
+		}
+		return "redirect:/user/jobsboard/jobsBoardList.do?taskResult=" + taskResult + "&message=" + message;
 	}
 	
 }
