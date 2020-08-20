@@ -96,46 +96,31 @@
 		              </tr>
 		            </thead>
 		            <tbody>
-		              <tr>
-		                <td class="table-user">
-		                  <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
-		                  <b>신나라</b>
-		                </td>
-		                <td>
-		                  <span class="text-muted">저도 다음에 한번 프로젝트에 참여해보고 싶네요!</span>
-		                </td>
-		                <td>
-		                  <a href="#!" class="font-weight-bold">2020-08-20</a>
-		                </td>
-		                <td class="table-actions">
-		                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-		                    <i class="fas fa-user-edit"></i>
-		                  </a>
-		                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-		                    <i class="fas fa-trash"></i>
-		                  </a>
-		                </td>
-		              </tr>
-		              <tr>
-		                <td class="table-user">
-		                  <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-		                  <b>김재석</b>
-		                </td>
-		                <td>
-		                  <span class="text-muted">1등!</span>
-		                </td>
-		                <td>
-		                  <a href="#!" class="font-weight-bold">2020-08-19</a>
-		                </td>
-		                <td class="table-actions">
-<!-- 		                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product"> -->
-<!-- 		                    <i class="fas fa-user-edit"></i> -->
-<!-- 		                  </a> -->
-<!-- 		                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product"> -->
-<!-- 		                    <i class="fas fa-trash"></i> -->
-<!-- 		                  </a> -->
-		                </td>
-		              </tr>
+		            	<c:forEach items="${commentList }" var="item">
+							<tr>
+							    <td class="table-user">
+							      <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
+							      <b>${item.mem_id }</b>
+							    </td>
+							    <td>
+							      <span class="text-muted">${item.comment_content }</span>
+							    </td>
+							    <td>
+							      <a href="#!" class="font-weight-bold">${item.comment_regdate }</a>
+							    </td>
+							    
+							    <td class="table-actions">
+							      <c:if test="${MEMBER_LOGININFO.mem_id == item.mem_id }">
+								      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
+								        <i class="fas fa-user-edit"></i>
+								      </a>
+								      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
+								        <i class="fas fa-trash"></i>
+								      </a>
+							      </c:if>
+							    </td>
+							 </tr>
+		            	</c:forEach>
 		            </tbody>
 		          </table>
 		        </div>

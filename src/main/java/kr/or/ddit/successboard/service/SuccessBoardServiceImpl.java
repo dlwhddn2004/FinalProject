@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.or.ddit.successboard.dao.ISuccessBoardDao;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
+import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,13 +39,6 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 			throws Exception {
 		return dao.selectSuccessBoardInfo(params);
 	}
-	
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	@Override
-	public ProjectVO selectProjectInfo(Map<String, String> params)
-			throws Exception {
-		return dao.selectProjectInfo(params);
-	}
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
@@ -64,5 +58,12 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 	@Override
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception {
 		return dao.deleteSuccessBoard(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<SuccessBoardCommentVO> selectCommentList(
+			Map<String, String> params) throws Exception {
+		return dao.selectCommentList(params);
 	}
 }

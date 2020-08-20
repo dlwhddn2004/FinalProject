@@ -1,5 +1,9 @@
 package kr.or.ddit.project.service;
 
-public interface IProjectService {
+import java.util.Map;
 
+import kr.or.ddit.vo.ProjectVO;
+
+public interface IProjectService {
+	public ProjectVO selectProjectInfo(Map<String, String> params) throws Exception;
 }

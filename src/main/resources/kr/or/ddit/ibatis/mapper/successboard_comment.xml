@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="successboard_comment">
+	<typeAlias alias="SuccessBoardVO" type="kr.or.ddit.vo.SuccessBoardVO" />
+	<typeAlias alias="SuccessBoardCommentVO" type="kr.or.ddit.vo.SuccessBoardCommentVO" />
+	
+	<sql id="selectAll">
+		SELECT success_no, mem_id, comment_content, TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') comment_regdate
+		FROM SUCCESS_BOARD_COMMENT
+	</sql>
+	
+	<select id="selectCommentList" parameterClass="map" resultClass="SuccessBoardCommentVO">
+		<include refid="selectAll"/>
+		WHERE SUCCESS_NO = #success_no#
+	</select>
+</sqlMap>
+
+ 
+
+

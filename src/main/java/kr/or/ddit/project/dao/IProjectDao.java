@@ -1,5 +1,9 @@
 package kr.or.ddit.project.dao;
 
-public interface IProjectDao {
+import java.util.Map;
 
+import kr.or.ddit.vo.ProjectVO;
+
+public interface IProjectDao {
+	public ProjectVO selectProjectInfo(Map<String, String> params) throws Exception;
 }

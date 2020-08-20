@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
+import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 import kr.or.ddit.vo.newsboardVO;
 
@@ -26,13 +28,15 @@ import org.springframework.web.servlet.ModelAndView;
 public class SuccessBoardController {
 	
 	@Autowired
-	private ISuccessBoardService service;
+	private ISuccessBoardService successBoardService;
+	@Autowired
+	private IProjectService projectService;
 
 	@RequestMapping("successboardList")
 	public ModelAndView successList(HttpServletRequest request,
 									ModelAndView modelAndView) throws Exception {
 		List<SuccessBoardVO> successboardList = null;		
-		successboardList = service.successboardList();
+		successboardList = successBoardService.successboardList();
 		
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
@@ -56,7 +60,7 @@ public class SuccessBoardController {
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
-		List<JoinVO> tempList = service.attendProjectList(params);
+		List<JoinVO> tempList = successBoardService.attendProjectList(params);
 		
 		List<JoinVO> attendProjectList = new ArrayList<JoinVO>();
 		for (int i = 0; i < tempList.size(); i++) {
@@ -77,13 +81,15 @@ public class SuccessBoardController {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("success_no", success_no);
 		
-		SuccessBoardVO successboardInfo = service.selectSuccessBoardInfo(params);
+		SuccessBoardVO successboardInfo = successBoardService.selectSuccessBoardInfo(params);
+		List<SuccessBoardCommentVO> commentList = successBoardService.selectCommentList(params);
 		
 		params.put("project_no", successboardInfo.getProject_no());
-		ProjectVO projectInfo = service.selectProjectInfo(params);
+		ProjectVO projectInfo = projectService.selectProjectInfo(params);
 		
 		modelAndView.addObject("successboardInfo", successboardInfo);
 		modelAndView.addObject("projectInfo", projectInfo);
+		modelAndView.addObject("commentList", commentList);
 		modelAndView.setViewName("user/successboard/successboardView");
 		
 		return modelAndView;
@@ -104,7 +110,7 @@ public class SuccessBoardController {
 		successboardInfo.setSuccess_title(success_title);
 		successboardInfo.setSuccess_content(success_content);
 		
-		service.insertSuccessBoard(successboardInfo);
+		successBoardService.insertSuccessBoard(successboardInfo);
 		
 		String taskResult = null;
 		String message = null;
@@ -116,7 +122,7 @@ public class SuccessBoardController {
 	
 	@RequestMapping("modifySuccessBoard")
 	public String modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception {
-		int chk = service.modifySuccessBoard(successboardInfo);
+		int chk = successBoardService.modifySuccessBoard(successboardInfo);
 		
 		String taskResult = null;
 		String message = null;
@@ -136,7 +142,7 @@ public class SuccessBoardController {
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("success_no", success_no);
-		int chk = service.deleteSuccessBoard(params);
+		int chk = successBoardService.deleteSuccessBoard(params);
 		
 		String taskResult = null;
 		String message = null;

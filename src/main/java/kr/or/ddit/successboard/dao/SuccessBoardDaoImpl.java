@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
+import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +35,6 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 			throws Exception {
 		return (SuccessBoardVO) client.queryForObject("successboard.selectSuccessBoardInfo", params);
 	}
-	
-	@Override
-	public ProjectVO selectProjectInfo(Map<String, String> params)
-			throws Exception {
-		return (ProjectVO) client.queryForObject("project.selectProjectInfo", params);
-	}
 
 	@Override
 	public int insertSuccessBoard(SuccessBoardVO successboardInfo)
@@ -63,5 +58,11 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	@Override
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception {
 		return client.update("successboard.deleteSuccessBoard", params);
+	}
+
+	@Override
+	public List<SuccessBoardCommentVO> selectCommentList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("successboard_comment.selectCommentList", params);
 	}
 }
