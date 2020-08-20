@@ -48,6 +48,14 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 		return noticebaordDAO.updateNoticeboard(noticeboardInfo);
 	}
 	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteNoticeboard(Map<String, String> params)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return noticebaordDAO.deleteNoticeboard(params);
+	}
+	
 	
 	
 

@@ -28,7 +28,7 @@
 
     <!-- My CSS -->
     <style>
-        .successboard-form {
+        .noticeboard-form {
             padding: 30px;
         }
         .form-button-area {
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">내용</label>
                         <!--  <input class="form-control" type="text" name="notice_content" disabled id="example-search-input">-->
-                        <divid id="editor"></div>
+                        <div id="editor"></div>
                     </div>
                    
                    
@@ -64,6 +64,7 @@
                     <div class="form-button-area" align="right">
                     		<%--                     	<c:if test="${MEMBER_LOGININFO == noticeboardInfo.mem_id }"> --%>
                         	<button class="btn btn-primary btn-submit" type="button">수정</button>
+                        	<button class="btn btn-danger btn-delete" type="button">삭제</button>
 <%--                         </c:if> --%>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
@@ -148,7 +149,7 @@
 			
 			$('.btn-delete').show();
 			
-			$('input[name=success_title]').attr('readonly', 'readonly');
+			$('input[name=notice_title]').attr('readonly', 'readonly');
 			quill.enable(false);
 			
 			$('.btn-submit').text('수정');
@@ -158,6 +159,24 @@
 			$('.btn-back').removeClass('btn-warning');
 			$('.btn-back').addClass('btn-primary');
 		}
+	});
+	
+	<!-- 삭제 버튼 -->
+	$('.btn-delete').on('click', function() {
+		Swal.fire({
+		  title: '정말 삭제하시겠습니까?',
+		  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '삭제',
+		  cancelButtonText: '취소'
+		}).then((result) => {
+		  if (result.value) {
+			  location.href = '${pageContext.request.contextPath}/user/noticeboard/deleteNoticeboardInfo.do?notice_no=${param.notice_no}';
+		  }
+		});
 	});
 		 
 		

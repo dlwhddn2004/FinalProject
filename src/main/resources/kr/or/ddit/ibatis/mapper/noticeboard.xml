@@ -52,6 +52,9 @@
 		WHERE NOTICE_NO = #notice_no#
 	</update>
 	
+	<delete id="deleteNoticeboard" parameterClass="map">
+		DELETE NOTICE_BOARD WHERE NOTICE_NO = #notice_no#
+	</delete>
 </sqlMap>
 
  
