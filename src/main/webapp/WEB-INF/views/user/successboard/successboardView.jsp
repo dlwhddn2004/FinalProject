@@ -29,7 +29,7 @@
 
     <!-- My CSS -->
     <style>
-        .successboard-form {
+        .card {
             padding: 30px;
         }
         .form-button-area {
@@ -41,29 +41,27 @@
 	<div class="row">
         <div class="col">
             <div class="card">
-                <form class="successboard-form" action="${pageContext.request.contextPath }/user/successboard/insertSuccessBoard.do" method="POST">
-                    <div class="form-group">
-                    
-                        <label for="example-text-input" class="form-control-label">제목</label>
-                        <input class="form-control" type="text" name="success_title" id="example-text-input" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" name="mem_id" disabled id="example-search-input" readonly>
-                    </div>
-                    <div style="margin: 25px 0px 25px 0px">
-                        <label for="example-search-input" class="form-control-label">프로젝트</label>
-                        <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다." disabled>
-                        	<option>번호 : ${projectInfo.project_no } 이름 : ${projectInfo.project_title }</option>
-                        </select>
-                    </div>
-                    
-					<!-- Create the editor container -->
-					<div id="editor"></div>
-                </form>
-                <div class="form-button-area" align="right">
+                <div class="form-group">
+                
+                    <label for="example-text-input" class="form-control-label">제목</label>
+                    <input class="form-control" type="text" name="success_title" id="example-text-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="example-search-input" class="form-control-label">작성자</label>
+                    <input class="form-control" type="text" name="mem_id" disabled id="example-search-input" readonly>
+                </div>
+                <div style="margin: 0px 0px 25px 0px">
+                    <label for="example-search-input" class="form-control-label">프로젝트</label>
+                    <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다." disabled>
+                    	<option>번호 : ${projectInfo.project_no } 이름 : ${projectInfo.project_title }</option>
+                    </select>
+                </div>
+                   
+				<!-- Create the editor container -->
+				<div id="editor"></div>
+				<div class="form-button-area" align="right">
                 	<c:if test="${MEMBER_LOGININFO.mem_id == successboardInfo.mem_id }">
-                    	<button class="btn btn-primary btn-submit" type="button">수정</button>
+                    	<button class="btn btn-primary btn-submit" type="submit">수정</button>
                     	<button class="btn btn-danger btn-delete" type="button">삭제</button>
                     </c:if>
                     <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
@@ -110,6 +108,8 @@
 				$('input[name=success_title]').removeAttr('readonly');
 				quill.enable(true);
 				
+				$('.btn-delete').hide();
+				
 				$('.btn-submit').text('완료');
 				$('.btn-submit').removeClass('btn-primary');
 				$('.btn-submit').addClass('btn-success');
@@ -145,6 +145,8 @@
 			} else if (button_status === "취소") {
 				$('input[name=success_title]').val('${successboardInfo.success_title}');
 				quill.clipboard.dangerouslyPasteHTML('${successboardInfo.success_content}');
+				
+				$('.btn-delete').show();
 				
 				$('input[name=success_title]').attr('readonly', 'readonly');
 				quill.enable(false);
