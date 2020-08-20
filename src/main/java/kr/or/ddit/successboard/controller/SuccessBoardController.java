@@ -202,4 +202,29 @@ public class SuccessBoardController {
 		
 		return "redirect:/user/successboard/successboardView.do?taskResult=" + taskResult + "&message=" + message + "&success_no=" + success_no + "&mem_id=" + mem_id;
 	}
+	
+	@RequestMapping("modifySuccessComment")
+	public String modifySuccessComment(String comment_seq,
+			  						   String success_no,
+			  						   String mem_id,
+			  						   String comment_content) throws Exception {
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("comment_seq", comment_seq);
+		params.put("comment_content", comment_content);
+		
+		int chk = successBoardService.modifySuccessComment(params);
+		
+		String taskResult = null;
+		String message = null;
+		if (chk > 0) {
+			taskResult = "success";
+			message = URLEncoder.encode("댓글이 정상적으로 수정되었습니다.", "UTF-8");
+		} else {
+			taskResult = "warning";
+			message = URLEncoder.encode("댓글 수정에 실패했습니다.", "UTF-8");
+		}
+		
+		return "redirect:/user/successboard/successboardView.do?taskResult=" + taskResult + "&message=" + message + "&success_no=" + success_no + "&mem_id=" + mem_id;
+	}
 }

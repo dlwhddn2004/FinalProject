@@ -102,8 +102,9 @@
 							      <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3">
 							      <b>${item.mem_id }</b>
 							    </td>
-							    <td>
-							      <span class="text-muted">${item.comment_content }</span>
+							    <td class="td-comment_content">
+							      <span class="text-muted span-comment_content process-first">${item.comment_content }</span>
+							      <input type="text" class="form-control form-control-alternative process-second modi-ipt-comment-content" value="${item.comment_content }">
 							    </td>
 							    <td>
 							      <span class="text-muted">${item.comment_regdate }</span>
@@ -111,13 +112,22 @@
 							    
 							    <td class="table-actions">
 							      <c:if test="${MEMBER_LOGININFO.mem_id == item.mem_id }">
-								      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="modifyComment(this);">
+								      <a class="table-action process-first" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="loadModifyView(this);">
 								        <i class="fas fa-user-edit"></i>
 								      </a>
-								      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="댓글을 삭제합니다." onclick="deleteComment(this);">
+								      <a class="table-action table-action-delete process-first" data-toggle="tooltip" data-original-title="댓글을 삭제합니다." onclick="deleteComment(this);">
 								      	<input type="hidden" name="comment_seq" value="${item.comment_seq }">
 								        <i class="fas fa-trash"></i>
 								      </a>
+								      
+								      <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="modifyComment(this);">
+						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+						                <span class="btn-inner--text">수정</span>
+						              </a>
+						              <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글 수정을 취소합니다." onclick="unloadModifyView(this)">
+						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+						                <span class="btn-inner--text">취소</span>
+						              </a>
 							      </c:if>
 							    </td>
 							 </tr>
@@ -133,11 +143,11 @@
 							    <input type="text" class="form-control form-control-alternative ipt-comment-area" placeholder="내용을 입력해주세요.">
 						    </td>
 						    <td>
-							    <a class="btn btn-sm btn-neutral btn-round btn-icon" data-toggle="tooltip" data-original-title="댓글을 작성합니다." onclick="inCommentWrite()">
+							    <a class="btn btn-sm btn-neutral btn-round btn-icon write-tooltip" data-toggle="tooltip" data-original-title="댓글을 작성합니다." onclick="inCommentWrite()">
 				                  <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
 				                  <span class="btn-inner--text btn-comment-inwrite">등록</span>
 				                </a>
-				                <a class="btn btn-sm btn-neutral btn-round btn-icon" data-toggle="tooltip" data-original-title="댓글 작성을 취소합니다." onclick="inCommentCancel()">
+				                <a class="btn btn-sm btn-neutral btn-round btn-icon cancel-tooltip" data-toggle="tooltip" data-original-title="댓글 작성을 취소합니다." onclick="inCommentCancel()">
 				                  <span class="btn-inner--icon"><i class="fas fa-ban"></i></span>
 				                  <span class="btn-inner--text btn-comment-cancel">취소</span>
 				                </a>
@@ -170,6 +180,8 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
+	$('.process-second').hide();
+	
 	$('.comment-write-area').hide();
 	
 		$('input[name=success_title]').val('${successboardInfo.success_title}');
@@ -324,9 +336,30 @@
 			});
 		}
 		
+		let comment_content = "";
+		
+		<!-- 댓글 수정 준비 -->
+		function loadModifyView(e) {
+			comment_content = $(e).parent().parent().find('.modi-ipt-comment-content').val();
+			
+			$(e).parent().parent().parent().find('.process-first').hide();
+			$(e).parent().parent().find('.process-second').show();
+		}
+		
+		<!-- 댓글 수정 준비 취소 -->
+		function unloadModifyView(e) {
+			$(e).parent().parent().find('.modi-ipt-comment-content').val(comment_content);
+			
+			$(e).parent().parent().parent().find('.process-first').show();
+			$(e).parent().parent().find('.process-second').hide();
+		}
+		
 		<!-- 댓글 수정 -->
 		function modifyComment(e) {
-			alert('click');
+			const comment_seq = $(e).parent().parent().find('input[name=comment_seq]').val();
+			const comment_content = $(e).parent().parent().find('.modi-ipt-comment-content').val();
+			
+			location.href = '${pageContext.request.contextPath}/user/successboard/modifySuccessComment.do?success_no=${param.success_no}&comment_seq=' + comment_seq + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&comment_content=" + comment_content;
 		}
 	</script>
 </body>

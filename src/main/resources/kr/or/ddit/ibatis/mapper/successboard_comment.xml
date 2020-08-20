@@ -48,6 +48,11 @@
 	<delete id="deleteSuccessComment" parameterClass="map">
 		DELETE SUCCESS_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
 	</delete>
+	
+	<update id="modifySuccessComment" parameterClass="map">
+		UPDATE SUCCESS_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content#
+		WHERE COMMENT_SEQ = #comment_seq#
+	</update>
 </sqlMap>
 
  

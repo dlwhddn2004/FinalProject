@@ -20,4 +20,5 @@ public interface ISuccessBoardService {
 	public List<SuccessBoardCommentVO> selectCommentList(Map<String, String> params) throws Exception;
 	public int insertSuccessComment(SuccessBoardCommentVO successCommentInfo) throws Exception;
 	public int deleteSuccessComment(Map<String, String> params) throws Exception;
+	public int modifySuccessComment(Map<String, String> params) throws Exception;
 }
