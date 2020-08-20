@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" value="iai6203" disabled id="example-search-input">
+                        <input class="form-control" name="mem_id" type="text" disabled id="example-search-input">
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
@@ -91,6 +91,8 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
+		$('input[name=mem_id]').val('${MEMBER_LOGININFO.mem_id}');
+	
 		<!-- Quill Text Editor Initialize -->
 		const quill = new Quill('#editor', {
 			theme: 'snow'
