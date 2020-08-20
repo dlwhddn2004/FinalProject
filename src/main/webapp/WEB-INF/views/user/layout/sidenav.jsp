@@ -130,7 +130,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/forms/validation.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/jobsboard/jobsBoardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> V </span>
                       <span class="sidenav-normal"> 채용 공고 </span>
                     </a>

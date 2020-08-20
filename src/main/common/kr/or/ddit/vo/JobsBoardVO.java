@@ -12,9 +12,22 @@ public class JobsBoardVO {
 	private String jobs_status;
 	private String jobs_depth;
 	private String jobs_hit;
-	
+	private String jobs_startdate;
+	private String jobs_enddate;
 	
 
+	public String getJobs_startdate() {
+		return jobs_startdate;
+	}
+	public void setJobs_startdate(String jobs_startdate) {
+		this.jobs_startdate = jobs_startdate;
+	}
+	public String getJobs_enddate() {
+		return jobs_enddate;
+	}
+	public void setJobs_enddate(String jobs_enddate) {
+		this.jobs_enddate = jobs_enddate;
+	}
 	public String getJobs_hit() {
 		return jobs_hit;
 	}
@@ -75,6 +88,7 @@ public class JobsBoardVO {
 	public void setR(String r) {
 		this.r = r;
 	}
+
 
 	
 }

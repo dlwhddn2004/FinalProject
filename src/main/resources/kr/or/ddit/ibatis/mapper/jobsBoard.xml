@@ -9,26 +9,84 @@
 	
 	
 	<sql id="selectAll">
-		select
-		* from JOBS_BOARD
-		where JOBS_STATUS = 'n'
+select b.*
+		from (
+		         select rownum r,
+		                JOBS_NO,
+		                MEM_ID,
+		                JOBS_TITLE,
+		                JOBS_CONTENT,
+		                TO_CHAR(JOBS_REGDATE, 'MM/DD/YYYY') jobs_regdate,
+		                JOBS_GROUP,
+		                JOBS_DEPTH,
+		                JOBS_SEQ,
+		                JOBS_STATUS,
+		                JOBS_STARTDATE,
+		                JOBS_ENDDATE,
+		                JOBS_HIT
+		         from (
+		                  SELECT *
+		                  FROM JOBS_BOARD) a
+		     ) b
 	</sql>
 	
 	
 	<select id="JobsBoardList" resultClass="JobsBoardVO">
-		select b.*
+<!-- 		select b.*
 		from (
 			select rownum r, a.*
 			from(
 				<include refid="selectAll" />
 				order by jobs_group, jobs_seq desc)a
 				)b
-		order by b.r desc
+		order by b.r desc -->
+		<include refid="selectAll" />
 	</select>
 	
-	<update id="hupUp" parameterClass="map">
+	
+	<insert id="InsertJobsBoard" parameterClass="JobsBoardVO">
+		<selectKey keyProperty="jobs_no" resultClass="string">
+			select JOBSBOARDSEQ.nextval FROM DUAL
+		</selectKey>
+		insert into JOBS_BOARD (jobs_no,
+								mem_id,
+								jobs_title,
+								JOBS_CONTENT,
+								JOBS_REGDATE,
+								JOBS_STARTDATE,
+								JOBS_ENDDATE,
+								JOBS_HIT)
+								 values
+								(#jobs_no#,
+								 #mem_id#,
+								 #jobs_title#, 
+								 #jobs_content#,
+								 sysdate,
+								 #jobs_startdate#,
+								 #jobs_enddate#,
+								  0)
+	</insert>
+	
+	
+	<select id="jobsBoardInfo" parameterClass="map" resultClass="jobsBoardVO">
+		<include refid="selectAll"/>
+		where jobs_no= #jobs_no#
+	</select>
+	
+	
+	<update id="modifyJobsBoard" parameterClass="jobsBoardVO">
+		UPDATE JOBS_BOARD SET  
+		jobs_title =  #jobs_title#,
+		jobs_startdate= #jobs_startdate#,
+		jobs_enddate= #jobs_enddate#,
+		jobs_content = #jobs_content#
+		where jobs_no = #jobs_no#
+	</update>
+	
+	<update id="hitup" parameterClass="map">
 		update JOBS_BOARD set JOBS_HIT = JOBS_HIT + 1 where JOBS_NO = #jobs_no#
 	</update>
+	
 	
 </sqlMap>
 
