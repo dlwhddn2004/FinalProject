@@ -25,5 +25,17 @@ public class NewsBoardDaoImpl implements NewsBoardDao{
 		return list;
 	}
 
+	@Override
+	public void insertNewsboard(newsboardVO newsboardInfo) throws Exception {
+		// TODO Auto-generated method stub
+	 client.insert("newsboard.insertNewsboard",newsboardInfo);
+	}
+
+	@Override
+	public newsboardVO newsboardInfo(Map<String, String>params) throws Exception {
+		
+		return (newsboardVO) client.queryForObject("newsboard.newsboardInfo",params);
+	}
+
 
 }

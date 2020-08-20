@@ -9,5 +9,7 @@ import kr.or.ddit.vo.newsboardVO;
 public interface NewsBoardDao {
 
 	public List<newsboardVO> newsboardList() throws Exception;
+	public void insertNewsboard(newsboardVO newsboardInfo) throws Exception;
+	public newsboardVO newsboardInfo(Map<String, String>params) throws Exception;
 
 }

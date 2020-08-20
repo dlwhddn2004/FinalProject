@@ -6,22 +6,52 @@
 <sqlMap namespace="newsboard">
 	<typeAlias alias="newsboardVO" type="kr.or.ddit.vo.newsboardVO" />
 	
-	<select id="newsboardList" resultClass="newsboardVO">
+	<sql id="selectAll">
 		select b.*
 		from (
 		         select rownum r,
 		                news_no,
+		                
 		                mem_id,
 		                news_title,
 		                news_content,
 		                TO_CHAR(news_regdate, 'YYYY-MM-DD') news_regdate,
+		                news_group,
+		               
+		             
 		                news_hit
 		         from (
 		                  SELECT *
 		                  FROM NEWS_BOARD) a
 		     ) b
-		order by b.r
+	</sql>
+	
+	<select id="newsboardList" resultClass="newsboardVO">
+		<include refid="selectAll"/>
 	</select>
+	
+	<select id="newsBoardInfo" parameterClass="map" resultClass="newsboardVO">
+		<include refid="selectAll"/>
+		WHERE NEWS_NO = #news_no#
+	</select>
+	
+	<insert id="insertNewsboard" parameterClass="newsboardVO">
+		<selectKey keyProperty="news_no" resultClass="string">
+			SELECT NEWS_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO NEWS_BOARD (NEWS_NO,
+		                           MEM_ID,
+		                           NEWS_TITLE,
+		                           NEWS_CONTENT,
+		                           NEWS_REGDATE,
+		                           NEWS_GROUP)
+		VALUES (#news_no#,
+		        #mem_id#,
+		        #news_title#,
+		        #news_content#,
+		        SYSDATE,
+		        #news_no#)
+	</insert>
 </sqlMap>
 
  
