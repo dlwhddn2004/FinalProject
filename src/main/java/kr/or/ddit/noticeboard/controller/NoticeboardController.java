@@ -1,5 +1,6 @@
 package kr.or.ddit.noticeboard.controller;
 
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +61,23 @@ public class NoticeboardController {
 	}
 	@RequestMapping("noticeboardForm")
 	public void noticeboardForm(){}
+	
+	@RequestMapping("updateNoticeboardInfo")
+	public String updateNoticeboard(NoticeboardVO noticeboardInfo) throws Exception{
+		int chk = noticeboardService.updateNoticeboard(noticeboardInfo);
+		
+		String taskResult = null;
+		String message = null;
+		if (chk > 0){
+			taskResult = "success";
+			message = URLEncoder.encode("게시글이 정상적으로 수정되었습니다", "UTF-8");
+		}else{
+			taskResult = "warning";
+			message = URLEncoder.encode("게시글 수정에 실패했습니다", "UTF-8");
+		}
+		
+		return "redirect:/user/noticeboard/noticeboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
 	
 	
 	

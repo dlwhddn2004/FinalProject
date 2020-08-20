@@ -12,4 +12,6 @@ public interface INoticeboardService {
 	public NoticeboardVO noticeboardInfo(Map<String, String> params) throws Exception;
 	//공지사항 등록(관리자)
 	public String insertNoticeboard(NoticeboardVO noticeboardInfo) throws Exception;
+	//공지사항 수정
+	public int updateNoticeboard(NoticeboardVO noticeboardInfo) throws Exception;
 }

@@ -36,4 +36,10 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 		return (String) client.insert("noticeboard.insertNoticeboard", noticeboardInfo);
 	}
 
+	@Override
+	public int updateNoticeboard(NoticeboardVO noticeboardInfo)
+			throws Exception {
+		return client.update("noticeboard.updateNoticeboard", noticeboardInfo);
+	}
+
 }

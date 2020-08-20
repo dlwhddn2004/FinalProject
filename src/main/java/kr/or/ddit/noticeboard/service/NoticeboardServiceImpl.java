@@ -39,5 +39,16 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 			throws Exception {
 		return noticebaordDAO.insertNoticeboard(noticeboardInfo);
 	}
+    
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateNoticeboard(NoticeboardVO noticeboardInfo)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return noticebaordDAO.updateNoticeboard(noticeboardInfo);
+	}
+	
+	
+	
 
 }

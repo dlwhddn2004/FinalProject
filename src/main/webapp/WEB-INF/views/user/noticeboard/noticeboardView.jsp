@@ -40,7 +40,7 @@
 	<div class="row">
         <div class="col">
             <div class="card">
-                <form class="successboard-form" action="${pageContext.request.contextPath }/user/successboard/insertSuccessBoard.do" method="POST">
+                <form class="noticeboard-form" action="${pageContext.request.contextPath }/user/noticeboard/insertNoticeboardInfo.do" method="POST">
                     <div class="form-group">
                         <label for="example-text-input" class="form-control-label">제목</label>
                         <input class="form-control" type="text" name="notice_title" id="example-text-input">
@@ -52,6 +52,7 @@
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">내용</label>
                         <!--  <input class="form-control" type="text" name="notice_content" disabled id="example-search-input">-->
+                        <divid id="editor"></div>
                     </div>
                    
                    
@@ -59,7 +60,7 @@
 <!--                     <div class="quill" data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div> -->
 
 					<!-- Create the editor container -->
-					<divid id="editor"></div>
+					
                     <div class="form-button-area" align="right">
                     		<%--                     	<c:if test="${MEMBER_LOGININFO == noticeboardInfo.mem_id }"> --%>
                         	<button class="btn btn-primary btn-submit" type="button">수정</button>
@@ -99,6 +100,65 @@
 	});
 	quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
 	quill.enable(false);
+	
+	$(".form-button-area .btn-submit").on("click", function() {
+		const button_status = $('.btn-submit').text();
+		
+		if (button_status === "수정") {
+			$('input[name=notice_title]').removeAttr('readonly');
+			quill.enable(true);
+			
+			$('.btn-delete').hide();
+			
+			$('.btn-submit').text('완료');
+			$('.btn-submit').removeClass('btn-primary');
+			$('.btn-submit').addClass('btn-success');
+			$('.btn-back').text('취소');
+			$('.btn-back').removeClass('btn-primary');
+			$('.btn-back').addClass('btn-warning');
+		} else if (button_status === "완료") {
+			// 수정 기능 실행
+			const notice_title = $('input[name=notice_title]').val();
+			const notice_content = quill.root.innerHTML;
+			
+			const $ipt_notice_no = $("<input type='hidden' name='notice_no' value='${param.notice_no}'>");
+			const $ipt_notice_title = $("<input type='hidden' name='notice_title' value='" + notice_title + "'>");
+			const $ipt_notice_content = $("<input type='hidden' name='notice_content' value='" + notice_content + "'>");
+			
+			const $frm = $("<form action='${pageContext.request.contextPath}/user/noticeboard/updateNoticeboardInfo.do' method='POST'> ");
+			
+			$('body').append($frm);
+			$frm.append($ipt_notice_no);
+			$frm.append($ipt_notice_title);
+			$frm.append($ipt_notice_content);
+			
+			$frm.submit();
+		}
+	});
+	
+	<!-- 뒤로 가기 버튼 -->
+	$('.btn-back').on('click', function() {
+		const button_status = $('.btn-back').text();
+		
+		if (button_status === "뒤로가기") {
+			location.href = '${pageContext.request.contextPath}/user/noticeboard/noticeboardList.do';
+		} else if (button_status === "취소") {
+			$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
+			quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
+			
+			$('.btn-delete').show();
+			
+			$('input[name=success_title]').attr('readonly', 'readonly');
+			quill.enable(false);
+			
+			$('.btn-submit').text('수정');
+			$('.btn-submit').removeClass('btn-success');
+			$('.btn-submit').addClass('btn-primary');
+			$('.btn-back').text('뒤로가기');
+			$('.btn-back').removeClass('btn-warning');
+			$('.btn-back').addClass('btn-primary');
+		}
+	});
 		 
 		
 		
