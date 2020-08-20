@@ -9,6 +9,7 @@
 
 	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/member.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/member_rate.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/profile_file.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeboard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/fileitem.xml"/>

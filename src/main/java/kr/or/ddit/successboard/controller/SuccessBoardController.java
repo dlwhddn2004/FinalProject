@@ -82,7 +82,13 @@ public class SuccessBoardController {
 	@RequestMapping("successboardView")
 	public ModelAndView successboardView(ModelAndView modelAndView,
 								         String success_no,
-								         String mem_id) throws Exception {
+								         String mem_id,
+								         HttpServletRequest request) throws Exception {
+		modelAndView.addObject("breadcrumb_title", "뉴스 센터");
+		modelAndView.addObject("breadcrumb_first", "성공 사례 게시판");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/successboard/successboardList.do");
+		modelAndView.addObject("breadcrumb_second", "성공 사례 게시글 보기");
+		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("success_no", success_no);
 		params.put("mem_id", mem_id);

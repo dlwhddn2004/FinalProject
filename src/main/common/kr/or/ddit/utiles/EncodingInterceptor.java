@@ -61,8 +61,8 @@ public class EncodingInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request,
-			HttpServletResponse response,
-			Object handler) throws Exception {
+								  HttpServletResponse response,
+								  Object handler) throws Exception {
 		System.out.println("컨트롤러 클래스 내 클라이언트의 해당 요청을 처리하는 컨트롤러 메서드 호출 전에 콜백");
 		
 		//return false : 컨트롤러 메서드 호출 무시
