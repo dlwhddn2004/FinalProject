@@ -6,7 +6,11 @@
 <sqlMap namespace="profile_file">
 	<typeAlias alias="ProfileFileVO" type="kr.or.ddit.vo.ProfileFileVO" />
 	
-	
+	<select id="selectProfileFileInfo" parameterClass="map" resultClass="ProfileFileVO">
+		SELECT *
+		FROM PROFILE_FILE
+		WHERE MEM_ID = #mem_id#
+	</select>
 </sqlMap>
 
  

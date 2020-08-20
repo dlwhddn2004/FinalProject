@@ -16,7 +16,7 @@ public class ProfileFileDaoImpl implements IProfileFileDao {
 	@Override
 	public ProfileFileVO selectProfileFileInfo(Map<String, String> params)
 			throws Exception {
-		return null;
+		return (ProfileFileVO) client.queryForObject("profile_file.selectProfileFileInfo", params);
 	}
 	
 }
