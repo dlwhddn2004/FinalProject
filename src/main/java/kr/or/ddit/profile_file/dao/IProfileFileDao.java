@@ -1,5 +1,9 @@
 package kr.or.ddit.profile_file.dao;
 
-public interface IProfileFileDao {
+import java.util.Map;
 
+import kr.or.ddit.vo.ProfileFileVO;
+
+public interface IProfileFileDao {
+	public ProfileFileVO selectProfileFileInfo(Map<String, String> params) throws Exception;
 }
