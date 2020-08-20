@@ -115,12 +115,38 @@ public class SuccessBoardController {
 	}
 	
 	@RequestMapping("modifySuccessBoard")
-	public String modifySuccessBoard() throws Exception {
+	public String modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception {
+		int chk = service.modifySuccessBoard(successboardInfo);
 		
 		String taskResult = null;
 		String message = null;
-		taskResult = "success";
-		message = URLEncoder.encode("게시글이 정상적으로 등록되었습니다.", "UTF-8");
+		if (chk > 0) {
+			taskResult = "success";
+			message = URLEncoder.encode("게시글이 정상적으로 수정되었습니다.", "UTF-8");
+		} else {
+			taskResult = "warning";
+			message = URLEncoder.encode("게시글 수정에 실패했습니다.", "UTF-8");
+		}
+		
+		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	
+	@RequestMapping("deleteSuccessBoard")
+	public String deleteSuccessBoard(String success_no) throws Exception {
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("success_no", success_no);
+		int chk = service.deleteSuccessBoard(params);
+		
+		String taskResult = null;
+		String message = null;
+		if (chk > 0) {
+			taskResult = "success";
+			message = URLEncoder.encode("게시글이 정상적으로 삭제되었습니다.", "UTF-8");
+		} else {
+			taskResult = "warning";
+			message = URLEncoder.encode("게시글 삭제에 실패했습니다.", "UTF-8");
+		}
 		
 		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 	}

@@ -54,6 +54,16 @@
 		        SYSDATE,
 		        #success_no#)
 	</insert>
+	
+	<update id="modifySuccessBoard" parameterClass="SuccessBoardVO">
+		UPDATE SUCCESS_BOARD SET SUCCESS_TITLE = #success_title#,
+		                         SUCCESS_CONTENT = #success_content#
+		WHERE SUCCESS_NO = #success_no#
+	</update>
+	
+	<delete id="deleteSuccessBoard" parameterClass="map">
+		DELETE SUCCESS_BOARD WHERE SUCCESS_NO = #success_no#
+	</delete>
 </sqlMap>
 
  

@@ -52,4 +52,9 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 			throws Exception {
 		return client.update("successboard.modifySuccessBoard", successboardInfo);
 	}
+
+	@Override
+	public int deleteSuccessBoard(Map<String, String> params) throws Exception {
+		return client.update("successboard.deleteSuccessBoard", params);
+	}
 }

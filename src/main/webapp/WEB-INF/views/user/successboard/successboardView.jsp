@@ -60,14 +60,14 @@
                     
 					<!-- Create the editor container -->
 					<div id="editor"></div>
-
-                    <div class="form-button-area" align="right">
-                    	<c:if test="${MEMBER_LOGININFO.mem_id == successboardInfo.mem_id }">
-                        	<button class="btn btn-primary btn-submit" type="button">수정</button>
-                        </c:if>
-                        <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
-                    </div>
                 </form>
+                <div class="form-button-area" align="right">
+                	<c:if test="${MEMBER_LOGININFO.mem_id == successboardInfo.mem_id }">
+                    	<button class="btn btn-primary btn-submit" type="button">수정</button>
+                    	<button class="btn btn-danger btn-delete" type="button">삭제</button>
+                    </c:if>
+                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
+                </div>
             </div>
         </div>
     </div>
@@ -84,6 +84,7 @@
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- Argon JS -->
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
@@ -117,6 +118,21 @@
 				$('.btn-back').addClass('btn-warning');
 			} else if (button_status === "완료") {
 				// 수정 기능 실행
+				const success_title = $('input[name=success_title]').val();
+				const success_content = quill.root.innerHTML;
+				
+				const $ipt_success_no = $("<input type='hidden' name='success_no' value='${param.success_no}'>");
+				const $ipt_success_title = $("<input type='hidden' name='success_title' value='" + success_title + "'>");
+				const $ipt_success_content = $("<input type='hidden' name='success_content' value='" + success_content + "'>");
+				
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/successboard/modifySuccessBoard.do' method='POST'> ");
+				
+				$('body').append($frm);
+				$frm.append($ipt_success_no);
+				$frm.append($ipt_success_title);
+				$frm.append($ipt_success_content);
+				
+				$frm.submit();
 			}
 		});
 		
@@ -140,6 +156,24 @@
 				$('.btn-back').removeClass('btn-warning');
 				$('.btn-back').addClass('btn-primary');
 			}
+		});
+		
+		<!-- 삭제 버튼 -->
+		$('.btn-delete').on('click', function() {
+			Swal.fire({
+			  title: '정말 삭제하시겠습니까?',
+			  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  location.href = '${pageContext.request.contextPath}/user/successboard/deleteSuccessBoard.do?success_no=${param.success_no}';
+			  }
+			});
 		});
 	</script>
 </body>
