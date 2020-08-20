@@ -6,44 +6,44 @@
 <sqlMap namespace="noticeboard">
 	<typeAlias alias="NoticeboardVO" type="kr.or.ddit.vo.NoticeboardVO" />
 	
-
-	
-	<select id="noticeboardList" resultClass="NoticeboardVO" parameterClass="map">
-		select b.*
-		from (
-		         select rownum r,
-		                notice_no,
-		                mem_id,
-		                notice_title,
-		                notice_content,
+	<sql id="selectAll">
+	SELECT b.*
+		FROM (
+		         SELECT ROWNUM r,
+		                NOTICE_NO,
+		                MEM_ID,
+		                NOTICE_TITLE,
+		                NOTICE_CONTENT,
 		                TO_CHAR(notice_regdate, 'YYYY-MM-DD') notice_regdate,
-		                notice_hit
-		         from (
+		                NOTICE_HIT
+		         FROM (
 		                  SELECT *
 		                  FROM NOTICE_BOARD) a
 		     ) b
-		order by b.r
+		ORDER BY b.r
+	</sql>
+	
+	<select id="noticeboardList" resultClass="NoticeboardVO" parameterClass="map">
+		<include refid="selectAll"/>
 	</select>
 	
 	<select id="noticeboardInfo" resultClass="NoticeboardVO" parameterClass="map">
-		select * from notice_board
-		where notice_no = #notice_no#
+		SELECT * FROM NOTICE_BOARD
+		WHERE NOTICE_NO = #notice_no#
 	</select>
 	
-	<insert id="insertNoticboard" parameterClass="NoticeboardVO">
-	insert into notice_board
-		(notice_no,
-		 mem_id,
-		 notice_title,
-		 notice_content,
-		 notic_regdate,
-		 notice_hit)
-    values
-    	(#notice_no#,
-    	 #mem_id#,
-    	 #notice_title#,
-    	 sysdate,
-    	 0)
+	<insert id="insertNoticeboard" parameterClass="NoticeboardVO">
+		INSERT INTO NOTICE_BOARD (NOTICE_NO,
+                          MEM_ID,
+                          NOTICE_TITLE,
+                          NOTICE_CONTENT,
+                          NOTICE_REGDATE
+                          )
+		VALUES (NOTICE_BOARD_SEQ.nextval,
+        				#mem_id#,
+                        #notice_title#,
+                        #notice_content#,
+                        SYSDATE)
 	</insert>
 	
 </sqlMap>

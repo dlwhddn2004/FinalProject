@@ -49,6 +49,22 @@
 	transition: 0.5s;
 }
 </style>
+<script type="text/javascript">
+	$(function(){
+		$('#noticeboardTBY tr').click(function(){
+			const notice_no = $(this).find('td:eq(0) input').val();
+			const r = $(this).find('td:eq(0)').text();
+			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardView.do?notice_no=' + notice_no + '&rnum=' + r);
+		});
+		
+		$('.btn-write').click(function(){
+			//$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do');
+			location.href = "${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do";
+		}); 
+	
+	});
+	
+</script> 
 </head>
 <body>
 	<!-- Page content -->
@@ -94,7 +110,7 @@
 						</tbody>
 					</table>
 					<div align="right" style="padding: 15px 15px 0px 0px;">
-						<button type="button" class="btn btn-primary btn-write" id="btn1">등록</button>
+						<button type="button" class="btn btn-primary btn-write">등록</button>
 					</div>
 				</div>
 			</div>
@@ -138,20 +154,6 @@
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
 	
 	<!-- My JavaScript -->
- 	<script type="text/javascript">
-	$(function(){
-		$('#noticeboardTBY tr').click(function(){
-			const notice_no = $(this).find('td:eq(0) input').val();
-			const r = $(this).find('td:eq(0)').text();
-			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardView.do?notice_no=' + notice_no + '&rnum=' + r);
-		});
-		
-		/* $('#btn1').click(function(){
-			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do');
-		}); */
-	
-	});
-	
-	</script> 
+ 	
 </body>
 </html>

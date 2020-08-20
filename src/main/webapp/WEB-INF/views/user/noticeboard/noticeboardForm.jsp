@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,30 +41,27 @@
 	<div class="row">
         <div class="col">
             <div class="card">
-                <form class="successboard-form" action="${pageContext.request.contextPath }/user/successboard/insertSuccessBoard.do" method="POST">
+                <form class="noticeboard-form" action="${pageContext.request.contextPath }/user/noticeboard/insertNoticeboardInfo.do" method="POST">
                     <div class="form-group">
+                    
                         <label for="example-text-input" class="form-control-label">제목</label>
                         <input class="form-control" type="text" name="notice_title" id="example-text-input">
                     </div>
                     <div class="form-group">
                         <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" name="mem_id" disabled id="example-search-input">
+                        <input class="form-control" name="mem_id" type="text" disabled id="example-search-input">
                     </div>
-                    <div class="form-group">
+                    <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">내용</label>
-                        <!--  <input class="form-control" type="text" name="notice_content" disabled id="example-search-input">-->
+                        <div id="editor"></div>
+                        </select>
                     </div>
-                   
-                   
                     
-<!--                     <div class="quill" data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div> -->
-
 					<!-- Create the editor container -->
-					<divid id="editor"></div>
+					
+
                     <div class="form-button-area" align="right">
-                    		<%--                     	<c:if test="${MEMBER_LOGININFO == noticeboardInfo.mem_id }"> --%>
-                        	<button class="btn btn-primary btn-submit" type="button">수정</button>
-<%--                         </c:if> --%>
+                        <button class="btn btn-primary btn-submit" id="btn1" type="button">등록</button>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
                 </form>
@@ -90,20 +88,62 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
-	$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
-	$('input[name=mem_id]').val('${noticeboardInfo.mem_id}');
-	//$('input[name=notice_content]').val('${noticeboardInfo.notice_content}');
+		$('input[name=mem_id]').val('${MEMBER_LOGININFO.mem_id}');
 	
-	const quill = new Quill('#editor',{
-		theme: 'snow'
-	});
-	quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
-	quill.enable(false);
-		 
+		<!-- Quill Text Editor Initialize -->
+		const quill = new Quill('#editor', {
+			theme: 'snow'
+		});
 		
+		<!-- 등록 버튼 -->
+		$("#btn1").on("click", function() {
+			// 제목을 입력하지 않았을 때!
+			const notice_title = $('input[name=notice_title]').val();
+			
+			if (notice_title == "") {
+				$.notify({
+					// options
+					message: '제목을 입력해주세요!' 
+				},{
+					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
+					type: 'info'
+				});
+				
+				return;
+			}
+			
+			// 내용을 입력하지 않았을 때!
+			const notice_content = quill.root.innerHTML;
+			const text = quill.getText();
+			
+			if (text.length == 1) {
+				$.notify({
+					// options
+					message: '내용을 입력해주세요!' 
+				},{
+					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
+					type: 'info'
+				});
+				
+				return;
+			}
+			
+			// 데이터 넘겨서 Insert 작업하기
+			location.href = '${pageContext.request.contextPath}/user/noticeboard/insertNoticeboardInfo.do?notice_title=' + notice_title + "&notice_content=" + notice_content + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+		});
 		
-	
-	
+		<!-- 뒤로 가기 버튼 -->
+		$('.btn-back').on('click', function() {
+			location.href = '${pageContext.request.contextPath}/user/noticeboard/noticeboardList.do'; 
+		});
 	</script>
 </body>
 </html>

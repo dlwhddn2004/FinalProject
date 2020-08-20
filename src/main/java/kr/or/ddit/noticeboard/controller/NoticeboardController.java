@@ -3,9 +3,12 @@ package kr.or.ddit.noticeboard.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ddit.noticeboard.service.INoticeboardService;
 import kr.or.ddit.vo.NoticeboardVO;
 
+import org.bouncycastle.asn1.ocsp.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,8 +24,13 @@ public class NoticeboardController {
 	
 	@RequestMapping("noticeboardList")
 	public ModelAndView freeboardList(Map<String, String> params,
-									 ModelAndView modelView) throws Exception{
+									 ModelAndView modelView,
+									 HttpServletRequest request) throws Exception{
 	List<NoticeboardVO> noticeboardList = this.noticeboardService.noticeboardList(params);
+	
+	modelView.addObject("breadcrumb_title", "뉴스센터");
+	modelView.addObject("breadcrumb_first", "공지사항 게시판");
+	modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/noticeboard/noticeboardList.do");
 	
 	modelView.addObject("noticeboardList",noticeboardList);
 	modelView.setViewName("user/noticeboard/noticeboardList");
@@ -30,7 +38,8 @@ public class NoticeboardController {
 	return modelView;
 	
 	}
-	// 공지사항 상세 조회 
+	
+	// 공지사항 상세 조회
 	@RequestMapping("noticeboardView")
 	@ModelAttribute("noticeboardInfo")
 	public NoticeboardVO noticeView(String notice_no, String r,
@@ -49,6 +58,11 @@ public class NoticeboardController {
 		this.noticeboardService.insertNoticeboard(noticeboardInfo);
 		return "redirect:/user/noticeboard/noticeboardList.do";
 	}
+	@RequestMapping("noticeboardForm")
+	public void noticeboardForm(){}
+	
+	
+	
 	
 	
 									
