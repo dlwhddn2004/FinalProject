@@ -46,6 +46,12 @@
                         SYSDATE)
 	</insert>
 	
+	<update id="updateNoticeboard" parameterClass="NoticeboardVO">
+		UPDATE NOTICE_BOARD SET  NOTICE_TITLE = #notice_title#,
+                         		NOTICE_CONTENT = #notice_content#
+		WHERE NOTICE_NO = #notice_no#
+	</update>
+	
 </sqlMap>
 
  
