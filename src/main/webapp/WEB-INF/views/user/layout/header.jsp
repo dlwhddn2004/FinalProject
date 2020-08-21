@@ -197,7 +197,7 @@
 		
 		playAlert = setInterval(function() {
 			loadRate();
-		}, 3000);
+		}, 10000000000);
 		
 		function loadRate() {
 			$.ajax({
