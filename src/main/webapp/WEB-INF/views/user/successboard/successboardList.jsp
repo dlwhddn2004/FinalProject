@@ -91,7 +91,7 @@
 					<p class="text-sm mb-0">우수한 프로젝트 사례 게시판입니다.</p>
 				</div>
 				<div class="table-responsive py-4">
-					<table class="table table-flush" id="datatable-buttons">
+					<table class="table table-flush datatable-basic">
 						<thead class="thead-light">
 							<tr>
 								<th>번호</th>

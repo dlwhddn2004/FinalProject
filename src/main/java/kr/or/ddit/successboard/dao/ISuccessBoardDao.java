@@ -15,6 +15,7 @@ public interface ISuccessBoardDao {
 	public int insertSuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 	public int modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception;
+	public int updateHit(Map<String, String> params) throws Exception;
 	
 	// comment
 	public List<SuccessBoardCommentVO> selectCommentList(Map<String, String> params) throws Exception;

@@ -1,8 +1,10 @@
 package kr.or.ddit.project.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.vo.ProjectVO;
+import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,12 @@ public class ProjectDaoImpl implements IProjectDao {
 	public ProjectVO selectProjectInfo(Map<String, String> params)
 			throws Exception {
 		return (ProjectVO) client.queryForObject("project.selectProjectInfo", params);
+	}
+
+	@Override
+	public List<Map<String, String>> selectProjectListByDevelopId(Map<String, String> params)
+			throws Exception {
+		return client.queryForList("project.selectProjectListByDevelopId", params);
 	}
 
 }

@@ -60,6 +60,11 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception {
 		return client.update("successboard.deleteSuccessBoard", params);
 	}
+	
+	@Override
+	public int updateHit(Map<String, String> params) throws Exception {
+		return client.update("successboard.updateHit", params);
+	}
 
 	@Override
 	public List<SuccessBoardCommentVO> selectCommentList(
