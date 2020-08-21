@@ -45,6 +45,7 @@
                   </tr>
                 </thead>
                 <tbody class="list">
+                  <c:forEach items="${projectList }" var="item">
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
@@ -52,12 +53,12 @@
                           <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
                         </a>
                         <div class="media-body">
-                          <span class="name mb-0 text-sm">IT 아웃 소싱</span>
+                          <span class="name mb-0 text-sm">${item.PROJECT_TITLE }</span>
                         </div>
                       </div>
                     </th>
                     <td class="budget">
-                      2500 KW
+                      ${item.PROJECT_BUDGET } KW
                     </td>
                     <td>
                       <span class="badge badge-dot mr-4">
@@ -67,21 +68,60 @@
                     </td>
                     <td>
                       <div class="avatar-group">
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="김재석">
-                          <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg">
+                        <c:if test="${!empty item.PL }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.PL }">
+                          <img alt="Image placeholder" src="/team-1.jpg">
                         </a>
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="이종우">
-                          <img alt="Image placeholder" src="../../assets/img/theme/team-2.jpg">
+                        </c:if>
+                        <c:if test="${empty item.PL }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
                         </a>
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="신나라">
-                          <img alt="Image placeholder" src="../../assets/img/theme/team-3.jpg">
+                        </c:if>
+                        
+                        <c:if test="${!empty item.TA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.TA }">
+                          <img alt="Image placeholder" src="/team-2.jpg">
                         </a>
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="김덕년">
-                          <img alt="Image placeholder" src="../../assets/img/theme/team-4.jpg">
+                        </c:if>
+                        <c:if test="${empty item.TA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
                         </a>
-                        <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="김태진">
-                          <img alt="Image placeholder" src="../../assets/img/theme/team-5.jpg">
+                        </c:if>
+                        
+                        <c:if test="${!empty item.DA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.DA }">
+                          <img alt="Image placeholder" src="/team-3.jpg">
                         </a>
+                        </c:if>
+                        <c:if test="${empty item.DA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.UA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.UA }">
+                          <img alt="Image placeholder" src="/team-4.jpg">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.UA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.AA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.AA }">
+                          <img alt="Image placeholder" src="/team-5.jpg">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.AA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
                       </div>
                     </td>
                     <td>
@@ -98,6 +138,7 @@
 
                     </td>
                   </tr>
+                  </c:forEach>
                 </tbody>
               </table>
             </div>

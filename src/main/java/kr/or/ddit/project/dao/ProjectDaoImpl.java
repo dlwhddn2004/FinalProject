@@ -24,9 +24,8 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 
 	@Override
-	public List<Map<String, String>> selectProjectListByDevelopId(Map<String, String> params)
-			throws Exception {
-		return client.queryForList("project.selectProjectListByDevelopId", params);
+	public List<Map<String, String>> selectProjectListById(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("project.selectProjectListById", params);
 	}
-
 }

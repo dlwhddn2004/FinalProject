@@ -52,44 +52,17 @@
 		WHERE PROJECT_NO = #project_no#
 	</select>
 	
-	<select id="selectProjectListByDevelopId" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT PROJECT.PROJECT_NO pro_project_no,
-		       PROJECT.MEM_ID pro_mem_id,
-		       PROJECT_CLIENTINFORMATION,
-		       PROJECT_CLIENTINTRODUCE,
-		       PROJECT_PROCESSSTATUS,
-		       PROJECT_PROCESSCATEGORY,
-		       PROJECT_CONSULLTING,
-		       PROJECT_READYSTATUS,
-		       PROJECT_CURRENTSTATUS,
-		       PROJECT_BUSINESSINFO,
-		       PROJECT_REFERENCE,
-		       PROJECT_NOTE,
-		       PROJECT_TECHNOLOGIES,
-		       PROJECT_BUDGET,
-		       PROJECT_STARTDATE,
-		       PROJECT_DURATION,
-		       PROJECT_ENDSTATUS,
-		       PROJECT_PREMEETING,
-		       PROJECT_PROCEEDINGMEETING,
-		       PROJECT_MEETINGCYCLE,
-		       PROJECT_CLIENTLOCATION,
-		       PROJECT_APPLICATIONDEADLINE,
-		       PROJECT_SUPPORTSTATUS,
-		       PROJECT_ESSENTIALREQUIREMENTS,
-		       PROJECT_MANPOWER,
-		       PROJECT_MANAGEMENTEXPERIENCE,
-		       PROJECT_FUTUREPLANS,
-		       PROJECT_PRIORITY,
-		       PROJECT_ENDDATE,
-		       PROJECT_TITLE,
-		       PROJECT_PARTICIPANTS.PROJECT_NO pro_parti_project_no,
-		       PROJECT_PARTICIPANTS.MEM_ID pro_parti_mem_id,
-		       PROJECT_POSITION
-		FROM PROJECT,
-		     PROJECT_PARTICIPANTS
-		WHERE (PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO)
-		AND PROJECT_PARTICIPANTS.MEM_ID = #mem_id#
+	<select id="selectProjectListById" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT, PROJECT_PARTICIPANTS
+		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		AND PROJECT_ENDSTATUS = 'N'
+		AND (MEM_ID = #mem_id#
+		OR PL = #mem_id#
+		OR DA = #mem_id#
+		OR UA = #mem_id#
+		OR TA = #mem_id#
+		OR AA = #mem_id#)
 	</select>
 </sqlMap>
 

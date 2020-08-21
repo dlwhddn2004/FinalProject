@@ -32,6 +32,12 @@ public class ProjectController {
 		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
 		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do");
 		modelAndView.addObject("breadcrumb_second", "프로젝트");
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		List<Map<String, String>> projectList = projectService.selectProjectListById(params);
+		
+		modelAndView.addObject("projectList", projectList);
 		
 		modelAndView.setViewName("user/project/project");
 		return modelAndView;
