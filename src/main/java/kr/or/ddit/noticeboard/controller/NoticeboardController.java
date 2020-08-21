@@ -1,6 +1,7 @@
 package kr.or.ddit.noticeboard.controller;
 
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,6 +78,27 @@ public class NoticeboardController {
 		}
 		
 		return "redirect:/user/noticeboard/noticeboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	
+	@RequestMapping("deleteNoticeboardInfo")
+	public String deleteNoticeboard(String notice_no) throws Exception{
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("notice_no", notice_no);
+		int chk = noticeboardService.deleteNoticeboard(params);
+		
+		String taskResult = null;
+		String message = null;
+		if (chk > 0) {
+			taskResult = "success";
+			message = URLEncoder.encode("게시글이 정상적으로 삭제되었습니다.", "UTF-8");
+		} else {
+			taskResult = "warning";
+			message = URLEncoder.encode("게시글 삭제에 실패했습니다.", "UTF-8");
+		}
+		
+		return "redirect:/user/noticeboard/noticeboardList.do?taskResult=" + taskResult + "&message=" + message;
+		
 	}
 	
 	

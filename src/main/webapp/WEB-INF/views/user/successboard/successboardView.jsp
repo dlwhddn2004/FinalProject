@@ -29,7 +29,7 @@
 
     <!-- My CSS -->
     <style>
-        .card {
+        .here {
             padding: 30px;
         }
         .form-button-area {
@@ -40,7 +40,7 @@
 <body>
 	<div class="row">
         <div class="col">
-            <div class="card">
+            <div class="card here">
                 <div class="form-group">
                 
                     <label for="example-text-input" class="form-control-label">제목</label>
@@ -69,7 +69,7 @@
             </div>
             
             <!-- 댓글 -->
-            <div class="card">
+            <div class="card here">
 		        <!-- Card header -->
 		        <div class="card-header border-0">
 		          <div class="row">

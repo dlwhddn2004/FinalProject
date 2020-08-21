@@ -62,14 +62,14 @@
           </div>
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-md-6">
+            <div class="col-xl-2 col-md-4">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body card-professional">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Total traffic</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">전문성</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
@@ -78,20 +78,20 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                    <span class="text-nowrap">Since last score</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-4">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body card-communication">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
-                      <span class="h2 font-weight-bold mb-0">2,356</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">의사 소통</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -100,20 +100,20 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                    <span class="text-nowrap">Since last score</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            <div class="col-xl-2 col-md-4">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body card-positiveness">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
-                      <span class="h2 font-weight-bold mb-0">924</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">긍정도</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -122,20 +122,20 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                    <span class="text-nowrap">Since last score</span>
                   </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-md-6">
+            <div class="col-xl-3 col-md-4">
               <div class="card card-stats">
                 <!-- Card body -->
-                <div class="card-body">
+                <div class="card-body card-satisfaction">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">만족도</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
@@ -144,8 +144,30 @@
                     </div>
                   </div>
                   <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                    <span class="text-nowrap">Since last score</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-4">
+              <div class="card card-stats">
+                <!-- Card body -->
+                <div class="card-body card-compliance">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">협동심</h5>
+                      <span class="h2 font-weight-bold mb-0"></span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                        <i class="ni ni-chart-bar-32"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                    <span class="text-nowrap">Since last score</span>
                   </p>
                 </div>
               </div>
@@ -169,6 +191,58 @@
 			  '${param.message}',
 			  '${param.taskResult}'
 			)
+		}
+		
+		loadRate();
+		
+		playAlert = setInterval(function() {
+			loadRate();
+		}, 3000);
+		
+		function loadRate() {
+			$.ajax({
+				type: 'POST'
+				,url: '${pageContext.request.contextPath}/user/memrate/getMemRate.do'
+				,dataType: 'json'
+				,data: {mem_id: '${MEMBER_LOGININFO.mem_id}'}
+				,success: function(result) {
+					if (result.memberRateInfo == null) {
+						$('.card-professional').hide();
+						$('.card-communication').hide();
+						$('.card-positiveness').hide();
+						$('.card-satisfaction').hide();
+						$('.card-compliance').hide();
+					} else {
+						let professional_rate = ((result.memberRateInfo.professional - result.memberRateInfo.professional_bef) / result.memberRateInfo.professional_bef) * 100;
+						professional_rate = professional_rate.toFixed(2);
+						$('.card-professional').find('span:eq(0)').text(result.memberRateInfo.professional + ' POINT');
+						$('.card-professional').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + professional_rate + '%');
+						
+						let communication_rate = ((result.memberRateInfo.communication - result.memberRateInfo.communication_bef) / result.memberRateInfo.communication_bef) * 100;
+						communication_rate = communication_rate.toFixed(2);
+						$('.card-communication').find('span:eq(0)').text(result.memberRateInfo.communication + ' POINT');
+						$('.card-communication').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + communication_rate + '%');
+						
+						let positiveness_rate = ((result.memberRateInfo.positiveness - result.memberRateInfo.positiveness_bef) / result.memberRateInfo.positiveness_bef) * 100;
+						positiveness_rate = positiveness_rate.toFixed(2);
+						$('.card-positiveness').find('span:eq(0)').text(result.memberRateInfo.positiveness + ' POINT');
+						$('.card-positiveness').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + positiveness_rate + '%');
+						
+						let satisfaction_rate = ((result.memberRateInfo.satisfaction - result.memberRateInfo.satisfaction_bef) / result.memberRateInfo.satisfaction_bef) * 100;
+						satisfaction_rate = satisfaction_rate.toFixed(2);
+						$('.card-satisfaction').find('span:eq(0)').text(result.memberRateInfo.satisfaction + ' POINT');
+						$('.card-satisfaction').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + satisfaction_rate + '%');
+						
+						let compliance_rate = ((result.memberRateInfo.compliance - result.memberRateInfo.compliance_bef) / result.memberRateInfo.compliance_bef) * 100;
+						compliance_rate = compliance_rate.toFixed(2);
+						$('.card-compliance').find('span:eq(0)').text(result.memberRateInfo.compliance + ' POINT');
+						$('.card-compliance').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + compliance_rate + '%');
+					}
+				}
+				,error: function(response, status, request) {
+					alert(request.status);
+				}
+			});
 		}
 	</script>
 </body>
