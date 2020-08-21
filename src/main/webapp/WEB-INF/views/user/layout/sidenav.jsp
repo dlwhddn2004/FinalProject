@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,19 +42,20 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a href="../../pages/dashboards/dashboard.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> D </span>
+                      <span class="sidenav-mini-icon"> 등록 </span>
                       <span class="sidenav-normal"> 프로젝트 등록 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/dashboards/alternative.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> A </span>
+                      <span class="sidenav-mini-icon"> 찾기 </span>
                       <span class="sidenav-normal"> 프로젝트 찾기 </span>
                     </a>
                   </li>
+                  <c:if test="${!empty MEMBER_LOGININFO }">
                   <li class="nav-item">
                     <a href="#navbar-multilevel" class="nav-link" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-multilevel">
-                      <span class="sidenav-mini-icon"> M </span>
+                      <span class="sidenav-mini-icon"> 관리 </span>
                       <span class="sidenav-normal"> 프로젝트 관리 </span>
                     </a>
                     <div class="collapse show" id="navbar-multilevel" style="">
@@ -76,6 +78,7 @@
                       </ul>
                     </div>
                   </li>
+                  </c:if>
                 </ul>
               </div>
             </li>
@@ -88,13 +91,13 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a href="../../pages/examples/pricing.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> P </span>
+                      <span class="sidenav-mini-icon"> 찾기 </span>
                       <span class="sidenav-normal"> 포트폴리오 찾기 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/examples/login.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> L </span>
+                      <span class="sidenav-mini-icon"> 등록 </span>
                       <span class="sidenav-normal"> 포트폴리오 등록 </span>
                     </a>
                   </li>
@@ -110,25 +113,25 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a href="../../pages/components/buttons.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> B </span>
+                      <span class="sidenav-mini-icon"> 소개 </span>
                       <span class="sidenav-normal"> 서비스 소개 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/components/cards.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> C </span>
+                      <span class="sidenav-mini-icon"> 이용 </span>
                       <span class="sidenav-normal"> 디벨로퍼 이용 방법 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/components/grid.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> G </span>
+                      <span class="sidenav-mini-icon"> 이용 </span>
                       <span class="sidenav-normal"> 파트너스 이용 방법 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/components/notifications.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> N </span>
+                      <span class="sidenav-mini-icon"> 질문 </span>
                       <span class="sidenav-normal"> 자주 묻는 질문 </span>
                     </a>
                   </li>
@@ -144,31 +147,31 @@
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
                     <a href="../../pages/forms/elements.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> E </span>
+                      <span class="sidenav-mini-icon"> 공지 </span>
                       <span class="sidenav-normal"> 공지 사항 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="../../pages/forms/components.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> C </span>
+                      <span class="sidenav-mini-icon"> 후기 </span>
                       <span class="sidenav-normal"> 이용 후기 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="${pageContext.request.contextPath }/user/jobsboard/jobsBoardList.do" class="nav-link">
-                      <span class="sidenav-mini-icon"> V </span>
+                      <span class="sidenav-mini-icon"> 채용 </span>
                       <span class="sidenav-normal"> 채용 공고 </span>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="${pageContext.request.contextPath }/user/successboard/successboardList.do" class="nav-link">
-                      <span class="sidenav-mini-icon"> V </span>
+                      <span class="sidenav-mini-icon"> 성공 </span>
                       <span class="sidenav-normal"> 프로젝트 성공 사례 </span>
                     </a>
                   </li>
                     <li class="nav-item">
                     <a href="../../pages/forms/validation.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> V </span>
+                      <span class="sidenav-mini-icon"> 소식 </span>
                       <span class="sidenav-normal"> 소식 게시판 </span>
                     </a>
                   </li>
