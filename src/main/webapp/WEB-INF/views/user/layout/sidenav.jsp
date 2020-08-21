@@ -51,6 +51,31 @@
                       <span class="sidenav-normal"> 프로젝트 찾기 </span>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="#navbar-multilevel" class="nav-link" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-multilevel">
+                      <span class="sidenav-mini-icon"> M </span>
+                      <span class="sidenav-normal"> 프로젝트 관리 </span>
+                    </a>
+                    <div class="collapse show" id="navbar-multilevel" style="">
+                      <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                          <a href="#!" class="nav-link ">프로젝트</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#!" class="nav-link ">작업 내역</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#!" class="nav-link ">일감</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#!" class="nav-link ">Gantt 차트</a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#!" class="nav-link ">달력</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </li>
