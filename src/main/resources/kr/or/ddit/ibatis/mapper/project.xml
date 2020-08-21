@@ -52,11 +52,24 @@
 		WHERE PROJECT_NO = #project_no#
 	</select>
 	
-	<select id="selectProjectListById" parameterClass="map" resultClass="java.util.HashMap">
+	<select id="selectNotProjectListById" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT *
 		FROM PROJECT, PROJECT_PARTICIPANTS
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		AND PROJECT_ENDSTATUS = 'N'
+		AND (MEM_ID = #mem_id#
+		OR PL = #mem_id#
+		OR DA = #mem_id#
+		OR UA = #mem_id#
+		OR TA = #mem_id#
+		OR AA = #mem_id#)
+	</select>
+	
+	<select id="selectFinishProjectListById" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT, PROJECT_PARTICIPANTS
+		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		AND PROJECT_ENDSTATUS = 'Y'
 		AND (MEM_ID = #mem_id#
 		OR PL = #mem_id#
 		OR DA = #mem_id#

@@ -24,8 +24,14 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 
 	@Override
-	public List<Map<String, String>> selectProjectListById(
+	public List<Map<String, String>> selectNotProjectListById(
 			Map<String, String> params) throws Exception {
-		return client.queryForList("project.selectProjectListById", params);
+		return client.queryForList("project.selectNotProjectListById", params);
+	}
+
+	@Override
+	public List<Map<String, String>> selectFinishProjectListById(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("project.selectFinishProjectListById", params);
 	}
 }

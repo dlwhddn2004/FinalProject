@@ -27,8 +27,15 @@ public class ProjectServiceImpl implements IProjectService {
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<Map<String, String>> selectProjectListById(
+	public List<Map<String, String>> selectNotProjectListById(
 			Map<String, String> params) throws Exception {
-		return dao.selectProjectListById(params);
+		return dao.selectNotProjectListById(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectFinishProjectListById(
+			Map<String, String> params) throws Exception {
+		return dao.selectFinishProjectListById(params);
 	}
 }
