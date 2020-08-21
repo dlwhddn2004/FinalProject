@@ -1560,7 +1560,7 @@ var DatatableBasic = (function() {
 
 	// Variables
 
-	var $dtBasic = $('#datatable-basic');
+	var $dtBasic = $('.datatable-basic');
 
 
 	// Methods
@@ -1609,7 +1609,7 @@ var DatatableButtons = (function() {
 
 	// Variables
 
-	var $dtButtons = $('#datatable-buttons');
+	var $dtButtons = $('.datatable-buttons');
 
 
 	// Methods

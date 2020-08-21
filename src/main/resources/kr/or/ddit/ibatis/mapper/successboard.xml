@@ -56,6 +56,11 @@
 	<delete id="deleteSuccessBoard" parameterClass="map">
 		DELETE SUCCESS_BOARD WHERE SUCCESS_NO = #success_no#
 	</delete>
+	
+	<update id="updateHit" parameterClass="map">
+		UPDATE SUCCESS_BOARD SET SUCCESS_HIT = SUCCESS_HIT + 1
+		WHERE SUCCESS_NO = #success_no#
+	</update>
 </sqlMap>
 
  

@@ -61,7 +61,7 @@
                     <div class="collapse show" id="navbar-multilevel" style="">
                       <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                          <a href="#!" class="nav-link ">프로젝트</a>
+                          <a href="${pageContext.request.contextPath }/user/project/project.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">프로젝트</a>
                         </li>
                         <li class="nav-item">
                           <a href="#!" class="nav-link ">작업 내역</a>

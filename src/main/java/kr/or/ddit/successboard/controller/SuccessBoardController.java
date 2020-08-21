@@ -95,6 +95,7 @@ public class SuccessBoardController {
 		
 		SuccessBoardVO successboardInfo = successBoardService.selectSuccessBoardInfo(params);
 		List<SuccessBoardCommentVO> commentList = successBoardService.selectCommentList(params);
+		successBoardService.updateHit(params);
 		ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
 		
 		params.put("project_no", successboardInfo.getProject_no());

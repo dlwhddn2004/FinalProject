@@ -59,6 +59,12 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 	public int deleteSuccessBoard(Map<String, String> params) throws Exception {
 		return dao.deleteSuccessBoard(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateHit(Map<String, String> params) throws Exception {
+		return dao.updateHit(params);
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
