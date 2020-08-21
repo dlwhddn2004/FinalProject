@@ -193,49 +193,57 @@
 			)
 		}
 		
-		$.ajax({
-			type: 'POST'
-			,url: '${pageContext.request.contextPath}/user/memrate/getMemRate.do'
-			,dataType: 'json'
-			,data: {mem_id: '${MEMBER_LOGININFO.mem_id}'}
-			,success: function(result) {
-				if (result.memberRateInfo == null) {
-					$('.card-professional').hide();
-					$('.card-communication').hide();
-					$('.card-positiveness').hide();
-					$('.card-satisfaction').hide();
-					$('.card-compliance').hide();
-				} else {
-					let professional_rate = ((result.memberRateInfo.professional - result.memberRateInfo.professional_bef) / result.memberRateInfo.professional_bef) * 100;
-					professional_rate = professional_rate.toFixed(2);
-					$('.card-professional').find('span:eq(0)').text(result.memberRateInfo.professional);
-					$('.card-professional').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + professional_rate + '%');
-					
-					let communication_rate = ((result.memberRateInfo.communication - result.memberRateInfo.communication_bef) / result.memberRateInfo.communication_bef) * 100;
-					communication_rate = communication_rate.toFixed(2);
-					$('.card-communication').find('span:eq(0)').text(result.memberRateInfo.communication);
-					$('.card-communication').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + communication_rate + '%');
-					
-					let positiveness_rate = ((result.memberRateInfo.positiveness - result.memberRateInfo.positiveness_bef) / result.memberRateInfo.positiveness_bef) * 100;
-					positiveness_rate = positiveness_rate.toFixed(2);
-					$('.card-positiveness').find('span:eq(0)').text(result.memberRateInfo.positiveness);
-					$('.card-positiveness').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + positiveness_rate + '%');
-					
-					let satisfaction_rate = ((result.memberRateInfo.satisfaction - result.memberRateInfo.satisfaction_bef) / result.memberRateInfo.satisfaction_bef) * 100;
-					satisfaction_rate = satisfaction_rate.toFixed(2);
-					$('.card-satisfaction').find('span:eq(0)').text(result.memberRateInfo.satisfaction);
-					$('.card-satisfaction').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + satisfaction_rate + '%');
-					
-					let compliance_rate = ((result.memberRateInfo.compliance - result.memberRateInfo.compliance_bef) / result.memberRateInfo.compliance_bef) * 100;
-					compliance_rate = compliance_rate.toFixed(2);
-					$('.card-compliance').find('span:eq(0)').text(result.memberRateInfo.compliance);
-					$('.card-compliance').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + compliance_rate + '%');
+		loadRate();
+		
+		playAlert = setInterval(function() {
+			loadRate();
+		}, 3000);
+		
+		function loadRate() {
+			$.ajax({
+				type: 'POST'
+				,url: '${pageContext.request.contextPath}/user/memrate/getMemRate.do'
+				,dataType: 'json'
+				,data: {mem_id: '${MEMBER_LOGININFO.mem_id}'}
+				,success: function(result) {
+					if (result.memberRateInfo == null) {
+						$('.card-professional').hide();
+						$('.card-communication').hide();
+						$('.card-positiveness').hide();
+						$('.card-satisfaction').hide();
+						$('.card-compliance').hide();
+					} else {
+						let professional_rate = ((result.memberRateInfo.professional - result.memberRateInfo.professional_bef) / result.memberRateInfo.professional_bef) * 100;
+						professional_rate = professional_rate.toFixed(2);
+						$('.card-professional').find('span:eq(0)').text(result.memberRateInfo.professional + ' POINT');
+						$('.card-professional').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + professional_rate + '%');
+						
+						let communication_rate = ((result.memberRateInfo.communication - result.memberRateInfo.communication_bef) / result.memberRateInfo.communication_bef) * 100;
+						communication_rate = communication_rate.toFixed(2);
+						$('.card-communication').find('span:eq(0)').text(result.memberRateInfo.communication + ' POINT');
+						$('.card-communication').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + communication_rate + '%');
+						
+						let positiveness_rate = ((result.memberRateInfo.positiveness - result.memberRateInfo.positiveness_bef) / result.memberRateInfo.positiveness_bef) * 100;
+						positiveness_rate = positiveness_rate.toFixed(2);
+						$('.card-positiveness').find('span:eq(0)').text(result.memberRateInfo.positiveness + ' POINT');
+						$('.card-positiveness').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + positiveness_rate + '%');
+						
+						let satisfaction_rate = ((result.memberRateInfo.satisfaction - result.memberRateInfo.satisfaction_bef) / result.memberRateInfo.satisfaction_bef) * 100;
+						satisfaction_rate = satisfaction_rate.toFixed(2);
+						$('.card-satisfaction').find('span:eq(0)').text(result.memberRateInfo.satisfaction + ' POINT');
+						$('.card-satisfaction').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + satisfaction_rate + '%');
+						
+						let compliance_rate = ((result.memberRateInfo.compliance - result.memberRateInfo.compliance_bef) / result.memberRateInfo.compliance_bef) * 100;
+						compliance_rate = compliance_rate.toFixed(2);
+						$('.card-compliance').find('span:eq(0)').text(result.memberRateInfo.compliance + ' POINT');
+						$('.card-compliance').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + compliance_rate + '%');
+					}
 				}
-			}
-			,error: function(response, status, request) {
-				alert(request.status);
-			}
-		});
+				,error: function(response, status, request) {
+					alert(request.status);
+				}
+			});
+		}
 	</script>
 </body>
 </html>
