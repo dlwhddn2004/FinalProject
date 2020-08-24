@@ -28,13 +28,6 @@ public class SuccessBoardServiceImpl implements ISuccessBoardService {
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<JoinVO> attendProjectList(Map<String, String> params)
-			throws Exception {
-		return dao.attendProjectList(params);
-	}
-	
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-	@Override
 	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params)
 			throws Exception {
 		return dao.selectSuccessBoardInfo(params);
