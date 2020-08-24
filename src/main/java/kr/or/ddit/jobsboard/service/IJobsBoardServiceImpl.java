@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ddit.jobsboard.dao.IJobsBoardDao;
+import kr.or.ddit.vo.JobsBoardCommentVO;
 import kr.or.ddit.vo.JobsBoardVO;
 
 @Service("jobsBoardService")
@@ -55,6 +56,33 @@ public class IJobsBoardServiceImpl implements IJobsBoardService {
 	@Override
 	public int deleteJobsBoard(Map<String, String> params) throws Exception {
 		return dao.deleteJobsBoard(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<JobsBoardCommentVO> jobsBoardCommentList(
+			Map<String, String> params) throws Exception {
+		return dao.jobsBoardCommentList(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertJobsBoardComment(JobsBoardCommentVO jobsCommentInfo)
+			throws Exception {
+		return dao.insertJobsBoardComment(jobsCommentInfo);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteJobsComment(Map<String, String> params) throws Exception {
+		return dao.deleteJobsComment(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int modifyJobsComment(Map<String,String> params)
+			throws Exception {
+		return dao.modifyJobsComment(params);
 	}
 
 }
