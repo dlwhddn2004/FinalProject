@@ -64,7 +64,7 @@
                           <a href="${pageContext.request.contextPath }/user/project/project.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">프로젝트</a>
                         </li>
                         <li class="nav-item">
-                          <a href="${pageContext.request.contextPath }/user/project/project_timeline.do" class="nav-link ">작업 내역</a>
+                          <a href="${pageContext.request.contextPath }/user/project/project_timeline.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">작업 내역</a>
                         </li>
                         <li class="nav-item">
                           <a href="#!" class="nav-link ">일감</a>
