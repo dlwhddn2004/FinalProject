@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
+import kr.or.ddit.vo.JobsBoardCommentVO;
 import kr.or.ddit.vo.JobsBoardVO;
 @Repository("jobsBoardDao")
 public class IJobsBoardDaoImpl implements IJobsBoardDao {
@@ -52,6 +53,41 @@ public class IJobsBoardDaoImpl implements IJobsBoardDao {
 	@Override
 	public int deleteJobsBoard(Map<String, String> params) throws Exception {
 		return client.delete("JobsBoard.deleteJobsBoard",params);
+	}
+
+
+	@Override
+	public List<JobsBoardCommentVO> jobsBoardCommentList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("jobsBoardComment.jobsBoardCommentList", params);
+	}
+
+
+	@Override
+	public int insertJobsBoardComment(JobsBoardCommentVO jobsCommentInfo)
+			throws Exception {
+		int cnt = 0;
+		
+		Object obj = client.insert("jobsBoardComment.insertJobsBoardComment",jobsCommentInfo);
+		if (obj == null) {
+			cnt =1;
+		}
+		
+		return cnt;
+	}
+
+
+	@Override
+	public int deleteJobsComment(Map<String, String> params)
+			throws Exception {
+		return client.delete("jobsBoardComment.deleteJobsComment",params);
+	}
+
+
+	@Override
+	public int modifyJobsComment(Map<String,String> params)
+			throws Exception {
+		return client.update("jobsBoardComment.modifyJobsComment",params);
 	}
 
 }

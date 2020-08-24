@@ -26,7 +26,7 @@
 	<div class="row">
         <div class="col">
           <!-- 진행 프로젝트 -->
-          <div class="card">
+          <div class="card" style="padding-bottom: 20px;">
             <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">진행 프로젝트</h3>
@@ -41,11 +41,10 @@
                     <th scope="col" class="sort" data-sort="status">Status</th>
                     <th scope="col">Users</th>
                     <th scope="col">Completion</th>
-                    <th scope="col"></th>
                   </tr>
                 </thead>
                 <tbody class="list">
-                  <c:forEach items="${projectList }" var="item">
+                  <c:forEach items="${notProjectList }" var="item">
                   <tr>
                     <th scope="row">
                       <div class="media align-items-center">
@@ -70,7 +69,7 @@
                       <div class="avatar-group">
                         <c:if test="${!empty item.PL }">
                         <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.PL }">
-                          <img alt="Image placeholder" src="/team-1.jpg">
+                          <img alt="Image placeholder" src="/${item.PL_PIC_SAVENAME }">
                         </a>
                         </c:if>
                         <c:if test="${empty item.PL }">
@@ -81,7 +80,7 @@
                         
                         <c:if test="${!empty item.TA }">
                         <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.TA }">
-                          <img alt="Image placeholder" src="/team-2.jpg">
+                          <img alt="Image placeholder" src="/${item.TA_PIC_SAVENAME }">
                         </a>
                         </c:if>
                         <c:if test="${empty item.TA }">
@@ -92,7 +91,7 @@
                         
                         <c:if test="${!empty item.DA }">
                         <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.DA }">
-                          <img alt="Image placeholder" src="/team-3.jpg">
+                          <img alt="Image placeholder" src="/${item.DA_PIC_SAVENAME }">
                         </a>
                         </c:if>
                         <c:if test="${empty item.DA }">
@@ -103,7 +102,7 @@
                         
                         <c:if test="${!empty item.UA }">
                         <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.UA }">
-                          <img alt="Image placeholder" src="/team-4.jpg">
+                          <img alt="Image placeholder" src="/${item.UA_PIC_SAVENAME }">
                         </a>
                         </c:if>
                         <c:if test="${empty item.UA }">
@@ -114,7 +113,7 @@
                         
                         <c:if test="${!empty item.AA }">
                         <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.AA }">
-                          <img alt="Image placeholder" src="/team-5.jpg">
+                          <img alt="Image placeholder" src="/${item.AA_PIC_SAVENAME }">
                         </a>
                         </c:if>
                         <c:if test="${empty item.AA }">
@@ -134,9 +133,6 @@
                         </div>
                       </div>
                     </td>
-                    <td class="text-right">
-
-                    </td>
                   </tr>
                   </c:forEach>
                 </tbody>
@@ -145,7 +141,7 @@
           </div>
 
           <!-- 완료 프로젝트 -->
-          <div class="card">
+          <div class="card" style="padding-bottom: 20px;">
             <!-- Card header -->
             <div class="card-header border-0">
               <h3 class="mb-0">완료 프로젝트</h3>
@@ -154,61 +150,107 @@
             <div class="table-responsive">
               <table class="table align-items-center table-flush datatable-buttons">
                 <thead class="thead-light">
-                <tr>
-                  <th scope="col" class="sort" data-sort="name">Project</th>
-                  <th scope="col" class="sort" data-sort="budget">Budget</th>
-                  <th scope="col" class="sort" data-sort="status">Status</th>
-                  <th scope="col">Users</th>
-                  <th scope="col">Completion</th>
-                  <th scope="col"></th>
-                </tr>
+                  <tr>
+                    <th scope="col" class="sort" data-sort="name">Project</th>
+                    <th scope="col" class="sort" data-sort="budget">Budget</th>
+                    <th scope="col" class="sort" data-sort="status">Status</th>
+                    <th scope="col">Users</th>
+                    <th scope="col">Completion</th>
+                  </tr>
                 </thead>
                 <tbody class="list">
-                <tr>
-                  <th scope="row">
-                    <div class="media align-items-center">
-                      <a href="#" class="avatar rounded-circle mr-3">
-                        <img alt="Image placeholder" src="../../assets/img/theme/angular.jpg">
-                      </a>
-                      <div class="media-body">
-                        <span class="name mb-0 text-sm">ERP 매니징</span>
-                      </div>
-                    </div>
-                  </th>
-                  <td class="budget">
-                    1200 KW
-                  </td>
-                  <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-danger"></i>
-                        <span class="status">종료</span>
-                      </span>
-                  </td>
-                  <td>
-                    <div class="avatar-group">
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="김재석">
-                        <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg">
-                      </a>
-                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="이종우">
-                        <img alt="Image placeholder" src="../../assets/img/theme/team-2.jpg">
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <span class="completion mr-2">100%</span>
-                      <div>
-                        <div class="progress">
-                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                  <c:forEach items="${finishProjectList }" var="item">
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+                        <a href="#" class="avatar rounded-circle mr-3">
+                          <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
+                        </a>
+                        <div class="media-body">
+                          <span class="name mb-0 text-sm">${item.PROJECT_TITLE }</span>
                         </div>
                       </div>
-                    </div>
-                  </td>
-                  <td class="text-right">
-
-                  </td>
-                </tr>
-                </tbody>	
+                    </th>
+                    <td class="budget">
+                      ${item.PROJECT_BUDGET } KW
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                        <i class="bg-danger"></i>
+                        <span class="status">완료</span>
+                      </span>
+                    </td>
+                    <td>
+                      <div class="avatar-group">
+                        <c:if test="${!empty item.PL }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.PL }">
+                          <img alt="Image placeholder" src="/${item.PL_PIC_SAVENAME }">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.PL }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.TA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.TA }">
+                          <img alt="Image placeholder" src="/${item.TA_PIC_SAVENAME }">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.TA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.DA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.DA }">
+                          <img alt="Image placeholder" src="/${item.DA_PIC_SAVENAME }">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.DA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.UA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.UA }">
+                          <img alt="Image placeholder" src="/${item.UA_PIC_SAVENAME }">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.UA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                        
+                        <c:if test="${!empty item.AA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="${item.AA }">
+                          <img alt="Image placeholder" src="/${item.AA_PIC_SAVENAME }">
+                        </a>
+                        </c:if>
+                        <c:if test="${empty item.AA }">
+                        <a class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="모집 중">
+                          <img alt="Image placeholder" src="/default-pic.png">
+                        </a>
+                        </c:if>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <span class="completion mr-2">30%</span>
+                        <div>
+                          <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  </c:forEach>
+                </tbody>
               </table>
             </div>
           </div>

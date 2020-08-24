@@ -68,8 +68,8 @@
   	const jobs_no = $(info).find('input[name=jobs_no]').val();
   	const mem_id = $(info).find('input[name=mem_id]').val();
   	
-  	location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardView.do?jobs_no=" + jobs_no;
-  	}	
+  	location.href = "${pageContext.request.contextPath}/user/jobsboard/jobsBoardView.do?jobs_no=" + jobs_no + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+	}	
    </script>
 
 
@@ -85,7 +85,7 @@
         </p>
       </div>
       <div class="table-responsive py-4">
-        <table class="table table-flush" id="datatable-basic">
+        <table class="table table-flush datatable-basic">
           <thead class="thead-light">
           <tr>
             <th>번호</th>
@@ -110,7 +110,7 @@
              <tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
                    <td>${jobsBoardList.r }<input type="hidden" name="jobs_no" value="${jobsBoardList.jobs_no }"/></td>
                <td>${jobsBoardList.jobs_title }</td>
-               <td>${jobsBoardList.mem_id}</td>
+               <td>${jobsBoardList.mem_id}<input type="hidden" name=mem_id value=${jobsBoardList.mem_id }></td>
                <td>${jobsBoardList.jobs_regdate }</td>
                <td>${jobsBoardList.jobs_startdate }~${jobsBoardList.jobs_enddate }</td>
                <td>${jobsBoardList.jobs_hit }</td>

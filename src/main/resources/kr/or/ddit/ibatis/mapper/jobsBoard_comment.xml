@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="jobsBoardComment">
+	<typeAlias alias="jobsboardVO" type="kr.or.ddit.vo.JobsBoardVO" />
+	<typeAlias alias="jobsboardCommentVO" type="kr.or.ddit.vo.JobsBoardCommentVO" />
+	<typeAlias alias="jobsBoardJoinVO" type="kr.or.ddit.vo.JobsBoardJoinVO" />
+	
+	<sql id="selectAll">
+		SELECT JOBS_NO, mem_id, comment_content, TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') comment_regdate
+		FROM JOBS_BOARD_COMMENT
+	</sql>
+	
+	<select id="jobsBoardCommentList" parameterClass="map" resultClass="jobsBoardJoinVO">		
+		SELECT JOBS_NO,
+		       PROFILE_FILE.MEM_ID mem_id,
+		       COMMENT_CONTENT,
+		       TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') comment_regdate,
+		       COMMENT_SEQ,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT
+		FROM JOBS_BOARD_COMMENT,
+		     PROFILE_FILE
+		WHERE (JOBS_BOARD_COMMENT.MEM_ID = PROFILE_FILE.MEM_ID)
+		AND JOBS_NO = #jobs_no#
+	</select>
+	
+
+		<insert id="insertJobsBoardComment" parameterClass="jobsboardCommentVO">
+			INSERT INTO JOBS_BOARD_COMMENT 
+			(JOBS_NO,
+			MEM_ID,
+			COMMENT_CONTENT,
+			COMMENT_REGDATE,
+			COMMENT_SEQ)
+			 VALUES				(#jobs_no#, #mem_id#,#comment_content#, SYSDATE, JOBS_BOARD_COMMENT_SEQ.nextval) 
+			  
+		</insert>
+	
+<!-- 	<delete id="deleteSuccessComment" parameterClass="map"> -->
+<!-- 		DELETE SUCCESS_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq# -->
+<!-- 	</delete> -->
+
+	<delete id="deleteJobsComment" parameterClass="map">
+		DELETE JOBS_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
+	</delete>
+	
+	<update id="modifyJobsComment" parameterClass="map">
+		UPDATE JOBS_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content# 
+		WHERE COMMENT_SEQ = #comment_seq#
+	</update>
+</sqlMap>
+
+ 
+
+

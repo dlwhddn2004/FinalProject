@@ -22,10 +22,38 @@ public class ProjectDaoImpl implements IProjectDao {
 			throws Exception {
 		return (ProjectVO) client.queryForObject("project.selectProjectInfo", params);
 	}
+	
+	@Override
+	public List<Map<String, String>> selectProjectList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("project.selectProjectList", params);
+	}
 
 	@Override
-	public List<Map<String, String>> selectProjectListById(
+	public List<Map<String, String>> selectNotProjectListById(
 			Map<String, String> params) throws Exception {
-		return client.queryForList("project.selectProjectListById", params);
+		return client.queryForList("project.selectNotProjectListById", params);
+	}
+
+	@Override
+	public List<Map<String, String>> selectFinishProjectListById(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("project.selectFinishProjectListById", params);
+	}
+	
+	@Override
+	public List<Map<String, String>> selectTodo(Map<String, String> params)
+			throws Exception {
+		return client.queryForList("project.selectTodo", params);
+	}
+
+	@Override
+	public String insertTODO(Map<String, String> params) throws Exception {
+		return (String) client.insert("project.insertTODO", params);
+	}
+
+	@Override
+	public int deleteTodo(Map<String, String> params) throws Exception {
+		return client.delete("project.deleteTodo", params);
 	}
 }

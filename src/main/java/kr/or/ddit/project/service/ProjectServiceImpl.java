@@ -24,11 +24,44 @@ public class ProjectServiceImpl implements IProjectService {
 			throws Exception {
 		return dao.selectProjectInfo(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectProjectList(
+			Map<String, String> params) throws Exception {
+		return dao.selectProjectList(params);
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<Map<String, String>> selectProjectListById(
+	public List<Map<String, String>> selectNotProjectListById(
 			Map<String, String> params) throws Exception {
-		return dao.selectProjectListById(params);
+		return dao.selectNotProjectListById(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectFinishProjectListById(
+			Map<String, String> params) throws Exception {
+		return dao.selectFinishProjectListById(params);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectTodo(Map<String, String> params)
+			throws Exception {
+		return dao.selectTodo(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public String insertTODO(Map<String, String> params) throws Exception {
+		return dao.insertTODO(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteTodo(Map<String, String> params) throws Exception {
+		return dao.deleteTodo(params);
 	}
 }

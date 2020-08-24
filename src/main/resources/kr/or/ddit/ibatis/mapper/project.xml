@@ -8,42 +8,15 @@
 	<typeAlias alias="JoinVO" type="kr.or.ddit.vo.JoinVO" />
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
-	<select id="attendProjectList" parameterClass="map" resultClass="JoinVO">
-		SELECT PROJECT.PROJECT_NO project_no,
-		       PROJECT.mem_id,
-		       project_clientinformation,
-		       project_clientintroduce,
-		       project_processstatus,
-		       project_processcategory,
-		       project_consullting,
-		       project_readystatus,
-		       project_currentstatus,
-		       project_businessinfo,
-		       project_reference,
-		       project_note,
-		       project_technologies,
-		       project_budget,
-		       project_startdate,
-		       project_duration,
-		       project_endstatus,
-		       project_premeeting,
-		       project_proceedingmeeting,
-		       project_meetingcycle,
-		       project_clientlocation,
-		       project_applicationdeadline,
-		       project_supportstatus,
-		       project_essentialrequirements,
-		       project_manpower,
-		       project_managementexperience,
-		       project_futureplans,
-		       project_priority,
-		       project_enddate,
-		       project_position,
-		       project_title
-		FROM PROJECT,
-		     PROJECT_PARTICIPANTS
-		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
-		AND PROJECT.MEM_ID = #mem_id#
+	<select id="selectProjectList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT JOIN PROJECT_PARTICIPANTS on PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		WHERE MEM_ID = #mem_id#
+		OR PL = #mem_id#
+		OR DA = #mem_id#
+		OR UA = #mem_id#
+		OR TA = #mem_id#
+		OR AA = #mem_id#
 	</select>
 	
 	<select id="selectProjectInfo" parameterClass="map" resultClass="ProjectVO">
@@ -52,7 +25,7 @@
 		WHERE PROJECT_NO = #project_no#
 	</select>
 	
-	<select id="selectProjectListById" parameterClass="map" resultClass="java.util.HashMap">
+	<select id="selectNotProjectListById" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT *
 		FROM PROJECT, PROJECT_PARTICIPANTS
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
@@ -64,6 +37,47 @@
 		OR TA = #mem_id#
 		OR AA = #mem_id#)
 	</select>
+	
+	<select id="selectFinishProjectListById" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT, PROJECT_PARTICIPANTS
+		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		AND PROJECT_ENDSTATUS = 'Y'
+		AND (MEM_ID = #mem_id#
+		OR PL = #mem_id#
+		OR DA = #mem_id#
+		OR UA = #mem_id#
+		OR TA = #mem_id#
+		OR AA = #mem_id#)
+	</select>
+	
+	<select id="selectTodo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM TODO_LIST
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</select>
+	
+	<insert id="insertTODO" parameterClass="map">
+		<selectKey keyProperty="todo_seq" resultClass="String">
+			SELECT
+			TODO_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO TODO_LIST (TODO_SEQ,
+		                       PROJECT_NO,
+		                       MEM_ID,
+		                       TODO_TITLE,
+		                       TODO_CATEGORY)
+		VALUES (#todo_seq#,
+		        #project_no#,
+		        #mem_id#,
+		        #todo_title#,
+		        #todo_category#)
+	</insert>
+	
+	<delete id="deleteTodo" parameterClass="map">
+		DELETE TODO_LIST WHERE TODO_SEQ = #todo_seq#
+	</delete>
 </sqlMap>
 
  
