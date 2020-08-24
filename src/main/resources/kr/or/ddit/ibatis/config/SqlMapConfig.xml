@@ -19,6 +19,8 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticeboard.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/project.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticefile.xml"/>
+    <sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard.xml"/>		
 </sqlMapConfig>
 
 
