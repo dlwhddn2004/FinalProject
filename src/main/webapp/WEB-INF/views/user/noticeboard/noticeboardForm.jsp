@@ -26,14 +26,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
     <!-- Notify -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
+    <!-- DropZone -->
+    <link rel="stylesheet" herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
 
     <!-- My CSS -->
     <style>
-        .successboard-form {
+        .noticeboard-form {
             padding: 30px;
         }
         .form-button-area {
-            padding: 30px 0px 10px 10px;
+            padding: 40px 0px 20px 20px;
         }
     </style>
 </head>
@@ -53,13 +55,51 @@
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">내용</label>
-                        <div id="editor"></div>
-                        </select>
+                        <div id="editor"></div> 
                     </div>
-                    
-					<!-- Create the editor container -->
-					
+                    <!-- 파일 등록  -->
+					<div class="dropzone dropzone-multiple" data-toggle="dropzone"
+						data-dropzone-multiple data-dropzone-url="http://">
+						<div class="fallback">
+							<div class="custom-file">
+								<input type="file" class="custom-file-input"
+									id="dropzoneMultipleUpload" multiple> <label
+									class="custom-file-label" for="dropzoneMultipleUpload">Choose
+									file</label>
+							</div>
+						</div>
+						<ul
+							class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+							<li class="list-group-item px-0">
+								<div class="row align-items-center">
+									<div class="col-auto">
+										<div class="avatar">
+											<img class="avatar-img rounded" src="..." alt="..."
+												data-dz-thumbnail>
+										</div>
+									</div>
+									<div class="col ml--3">
+										<h4 class="mb-1" data-dz-name>...</h4>
+										<p class="small text-muted mb-0" data-dz-size>...</p>
+									</div>
+									<div class="col-auto">
+										<div class="dropdown">
+											<a href="#" class="dropdown-ellipses dropdown-toggle"
+												role="button" data-toggle="dropdown" aria-haspopup="true"
+												aria-expanded="false"> <i class="fe fe-more-vertical"></i>
+											</a>
+											<div class="dropdown-menu dropdown-menu-right">
+												<a href="#" class="dropdown-item" data-dz-remove> 파일삭제
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
 
+					<!-- Create the editor container -->
                     <div class="form-button-area" align="right">
                         <button class="btn btn-primary btn-submit" id="btn1" type="button">등록</button>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
@@ -77,6 +117,8 @@
 	<script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	<!-- DropZone JS -->
+	<script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- Optional JS -->
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
@@ -85,6 +127,7 @@
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
+	
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">

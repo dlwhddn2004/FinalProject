@@ -35,9 +35,33 @@ public class ProjectController {
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
-		List<Map<String, String>> projectList = projectService.selectProjectListById(params);
+		List<Map<String, String>> notProjectList = projectService.selectNotProjectListById(params);
+		List<Map<String, String>> finishProjectList = projectService.selectFinishProjectListById(params);
 		
-		modelAndView.addObject("projectList", projectList);
+		modelAndView.addObject("notProjectList", notProjectList);
+		modelAndView.addObject("finishProjectList", finishProjectList);
+		
+		modelAndView.setViewName("user/project/project");
+		return modelAndView;
+	}
+	
+	@RequestMapping("project_timeline")
+	public ModelAndView project_timeline(ModelAndView modelAndView,
+								String mem_id,
+								HttpServletRequest request) throws Exception {
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project_timeline.do");
+		modelAndView.addObject("breadcrumb_second", "작업 내역");
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		List<Map<String, String>> notProjectList = projectService.selectNotProjectListById(params);
+		List<Map<String, String>> finishProjectList = projectService.selectFinishProjectListById(params);
+		
+		modelAndView.addObject("notProjectList", notProjectList);
+		modelAndView.addObject("finishProjectList", finishProjectList);
 		
 		modelAndView.setViewName("user/project/project");
 		return modelAndView;
