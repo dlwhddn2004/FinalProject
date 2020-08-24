@@ -9,5 +9,6 @@ import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface ITimelineService {
-	
+	// project_no, mem_id를 넘겨줘서 타임라인 목록을 조회
+	public List<Map<String, String>> selectTimelineList(Map<String, String> params) throws Exception;
 }

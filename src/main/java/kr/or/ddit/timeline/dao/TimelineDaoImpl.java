@@ -20,4 +20,9 @@ public class TimelineDaoImpl implements ITimelineDao {
 	@Autowired
 	private SqlMapClient client;
 
+	@Override
+	public List<Map<String, String>> selectTimelineList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("timeline.selectTimelineList", params);
+	}
 }

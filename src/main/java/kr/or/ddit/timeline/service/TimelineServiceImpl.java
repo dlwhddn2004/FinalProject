@@ -21,4 +21,10 @@ public class TimelineServiceImpl implements ITimelineService {
 	@Autowired
 	private ITimelineDao dao;
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectTimelineList(
+			Map<String, String> params) throws Exception {
+		return dao.selectTimelineList(params);
+	}
 }

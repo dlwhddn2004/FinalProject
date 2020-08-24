@@ -42,6 +42,12 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 	
 	@Override
+	public List<Map<String, String>> selectTimelineList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("timeline.selectTimelineList");
+	}
+	
+	@Override
 	public List<Map<String, String>> selectTodo(Map<String, String> params)
 			throws Exception {
 		return client.queryForList("project.selectTodo", params);

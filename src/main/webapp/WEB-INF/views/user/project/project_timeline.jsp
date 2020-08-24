@@ -54,7 +54,7 @@
 				<div class="card-header bg-transparent">
 					<div style="display: flex; justify-content: space-between;">
 						<div style="width: 400px;">
-							<select class="form-control"
+							<select class="form-control project-category"
 								data-toggle="select" title="Simple select"
 								data-placeholder="카테고리">
 								<c:forEach items="${projectList }" var="item">
@@ -86,178 +86,9 @@
 	                </script>
 				</div>
 				<div class="card-body" style="overflow: auto; height: 700px;">
-					<div class="timeline timeline-view-method timeline-one-side"
+					<div class="timeline timeline-view-method timeline-one-side timeline-list-area"
 						data-timeline-content="axis" data-timeline-axis-style="dashed">
-						<div class="timeline-block">
-							<span class="timeline-step badge-success"> <i
-								class="ni ni-bell-55"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">New message</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-success">design</span> <span
-										class="badge badge-pill badge-success">system</span> <span
-										class="badge badge-pill badge-success">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-info"> <i
-								class="ni ni-like-2"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">New likes</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-info">design</span> <span
-										class="badge badge-pill badge-info">system</span> <span
-										class="badge badge-pill badge-info">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-success"> <i
-								class="ni ni-bell-55"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">New message</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-success">design</span> <span
-										class="badge badge-pill badge-success">system</span> <span
-										class="badge badge-pill badge-success">creative</span>
-								</div>
-							</div>
-						</div>
-						<div class="timeline-block">
-							<span class="timeline-step badge-danger"> <i
-								class="ni ni-html5"></i>
-							</span>
-							<div class="timeline-content">
-								<small class="text-muted font-weight-bold">10:30 AM</small>
-								<h5 class=" mt-3 mb-0">Product issue</h5>
-								<p class=" text-sm mt-1 mb-0">Nullam id dolor id nibh
-									ultricies vehicula ut id elit. Cum sociis natoque penatibus et
-									magnis dis parturient montes, nascetur ridiculus mus.</p>
-								<div class="mt-3">
-									<span class="badge badge-pill badge-danger">design</span> <span
-										class="badge badge-pill badge-danger">system</span> <span
-										class="badge badge-pill badge-danger">creative</span>
-								</div>
-							</div>
-						</div>
+
 					</div>
 				</div>
 			</div>
@@ -395,9 +226,10 @@
   			type: 'POST'
   			,url: '${pageContext.request.contextPath}/user/project/selectTodo.do'
   			,dataType: 'json'
-  			,data: {project_no: '1',
+  			,data: {project_no: project_no,
   				    mem_id: '${MEMBER_LOGININFO.mem_id}'}
   			,success: function(result) {
+  				$('.todo-list-ul').empty();
   				$.each(result.todoList, function(index, todoList) {
   					const todo_item = $('' +
     			              '<li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">' +
@@ -422,12 +254,67 @@
   		});
     }
     
-    // Todo List 로딩!
-    loadTodoList(1);
-
+    // loadTimeline
+    function loadTimeline(project_no) {
+    	$.ajax({
+			type: 'POST'
+			,url: '${pageContext.request.contextPath}/user/project/selectTimeline.do'
+			,dataType: 'json'
+			,data: {project_no: project_no,
+				    mem_id: '${MEMBER_LOGININFO.mem_id}'}
+			,success: function(result) {
+				$.each(result.timelineList, function(index, timelineList) {
+					const tag_arr = timelineList.TIMELINE_TAG.split(',');
+					let tag_str = "";
+					$.each(tag_arr, function(index, tag_arr) {
+						tag_str += '<span class="badge badge-pill badge-success">' + tag_arr + '</span>';
+					});
+					const $timelineItem = $('' +
+				            '<div class="timeline-block">' +
+				            '<span class="timeline-step badge-success">' +
+				            '<i class="ni ni-bell-55"></i>' +
+				            '</span>' +
+				            '<div class="timeline-content">' +
+				            '<small class="text-muted font-weight-bold">' + timelineList.TIMELINE_DATE + '</small>' +
+				            '<h5 class=" mt-3 mb-0">' + timelineList.TIMELINE_TITLE + '</h5>' +
+				            '<p class=" text-sm mt-1 mb-0">' + timelineList.TIMELINE_CONTENT + '</p>' +
+				            '<div class="mt-3">' +
+				            tag_str +
+				            '</div>' +
+				            '</div>' +
+				            '</div>');
+					$('.timeline-list-area').append($timelineItem);
+				});
+			}
+			,error: function(response, status, request) {
+				alert(request.status);
+			}
+		});
+    }
+    
+    // Project List 선택 시!
+    $(document.body).on("change",".project-category", function(){
+	  let project_no = $('.project-category').select2('val');
+	  project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
+	  
+	  loadTimeline(project_no);
+	  loadTodoList(project_no);
+	});
+    
+    
+    let first_project_no = $('.project-category').select2('val');
+    first_project_no = first_project_no.substring(first_project_no.indexOf(':') + 2, first_project_no.indexOf('이') - 1);
+    // TIMELINE List 로딩!
+    loadTimeline(first_project_no);
+    
+    // TODO List 로딩!
+    loadTodoList(first_project_no);
+    
     // Todo 추가!
     function insertTodoList() {
       const todo_title = $('.ipt-todo-title').val();
+      let project_no = $('.project-category').select2('val');
+	  project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
       let todo_category = $('.todo-category').select2('val');
       if (todo_category === "SUCCESS") {
         todo_category = "success";
@@ -445,7 +332,7 @@
 			type: 'POST'
 			,url: '${pageContext.request.contextPath}/user/project/insertTodo.do'
 			,dataType: 'json'
-			,data: {project_no: '1',
+			,data: {project_no: project_no,
 				    mem_id: '${MEMBER_LOGININFO.mem_id}',
 				    todo_title: todo_title,
 				    todo_category: todo_category}
