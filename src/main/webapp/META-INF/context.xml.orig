@@ -1,39 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
-<!-- 		<Resource name="jdbc/ddit"  -->
-<!-- 				  auth="CONNECTOR"  -->
-<!-- 				  type="javax.sql.DataSource"  -->
-<!-- 				  driverClassName="oracle.jdbc.driver.OracleDriver"  -->
-<!-- 				  url="jdbc:oracle:thin:@112.220.114.130:1521:XE" -->
-<!-- 				  username="CONNECTOR"  -->
-<!-- 				  password="java"  -->
-<!-- 				  initialSize="10" -->
-<!-- 				  maxActive="7"  -->
-<!-- 				  maxIdle="6"  -->
-<!-- 				  minIdle="3" -->
-<!-- 				  removeAbandoned="true" -->
-<!-- 				  removeAbandonedTimeout="60" -->
-<!-- 				  maxWait="-1" -->
-<!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
-<!-- 		</Resource> -->
-<<<<<<< HEAD
-		
-=======
->>>>>>> 2e5f2716acbb7a31aa5a346a7f640ca7fe3a8807
 		<Resource name="jdbc/ddit" 
 				  auth="CONNECTOR" 
 				  type="javax.sql.DataSource" 
 				  driverClassName="oracle.jdbc.driver.OracleDriver" 
-<<<<<<< HEAD
-				  url="jdbc:oracle:thin:@localhost:1521:XE"
-				  username="local" 
+				  url="jdbc:oracle:thin:@112.220.114.130:1521:XE"
+				  username="CONNECTOR" 
 				  password="java" 
-=======
-				  url="jdbc:oracle:thin:@localhost:1521:oracle"
-				  username="FinalProject" 
-				  password="oracle" 
->>>>>>> 2e5f2716acbb7a31aa5a346a7f640ca7fe3a8807
 				  initialSize="10"
 				  maxActive="7" 
 				  maxIdle="6" 
@@ -43,4 +17,15 @@
 				  maxWait="-1"
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
 		</Resource>
+		
+<!-- 		충돌(재석) -->
+<!-- 		충돌 -->
+
+<<<<<<< HEAD
+<!-- 충돌 나네? (재석) -->
 </Context>
+=======
+
+<!-- 충돌나버려라!! (나라) -->
+</Context>
+>>>>>>> 19ec5c32e193060b1e35740f603eb81e6089e8ad
