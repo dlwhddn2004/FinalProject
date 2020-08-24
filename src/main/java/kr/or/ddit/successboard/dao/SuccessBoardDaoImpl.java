@@ -26,12 +26,6 @@ public class SuccessBoardDaoImpl implements ISuccessBoardDao {
 	}
 	
 	@Override
-	public List<JoinVO> attendProjectList(Map<String, String> params)
-			throws Exception {
-		return client.queryForList("project.attendProjectList", params);
-	}
-	
-	@Override
 	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params)
 			throws Exception {
 		return (SuccessBoardVO) client.queryForObject("successboard.selectSuccessBoardInfo", params);

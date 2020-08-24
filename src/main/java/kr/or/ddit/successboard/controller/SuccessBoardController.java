@@ -64,14 +64,8 @@ public class SuccessBoardController {
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
-		List<JoinVO> tempList = successBoardService.attendProjectList(params);
+		List<Map<String, String>> attendProjectList = projectService.selectNotProjectListById(params);
 		
-		List<JoinVO> attendProjectList = new ArrayList<JoinVO>();
-		for (int i = 0; i < tempList.size(); i++) {
-			if (tempList.get(i).getProject_endstatus().equals("N")) {
-				attendProjectList.add(tempList.get(i));
-			}
-		}
 		modelAndView.addObject("attendProjectList", attendProjectList);
 		
 		modelAndView.setViewName("user/successboard/successboardForm");

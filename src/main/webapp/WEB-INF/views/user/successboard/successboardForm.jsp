@@ -55,7 +55,7 @@
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
                         <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다.">
                         	<c:forEach items="${attendProjectList }" var="item" varStatus="status">
-								<option>번호 : ${item.project_no } 이름 : ${item.project_title }</option>
+								<option>번호 : ${item.PROJECT_NO } 이름 : ${item.PROJECT_TITLE }</option>
 							</c:forEach>
                         </select>
                     </div>
