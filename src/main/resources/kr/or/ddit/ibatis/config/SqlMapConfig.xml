@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMapConfig      
     PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
@@ -19,6 +19,8 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard.xml"/>
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticeboard.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/project.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticefile.xml"/>
+    <sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard.xml"/>		
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard_comment.xml"/>	
 </sqlMapConfig>
 

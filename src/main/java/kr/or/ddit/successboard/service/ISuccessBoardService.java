@@ -10,7 +10,6 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface ISuccessBoardService {
 	public List<SuccessBoardVO> successboardList() throws Exception;
-	public List<JoinVO> attendProjectList(Map<String, String> params) throws Exception;
 	public SuccessBoardVO selectSuccessBoardInfo(Map<String, String> params) throws Exception;
 	public int insertSuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
 	public int modifySuccessBoard(SuccessBoardVO successboardInfo) throws Exception;
