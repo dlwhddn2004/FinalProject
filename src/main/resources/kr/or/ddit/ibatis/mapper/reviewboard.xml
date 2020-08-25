@@ -11,7 +11,6 @@
 		from (
 		         select rownum r,
 		                review_no,
-		                project_no,
 		                mem_id,
 		                review_title,
 		                review_content,
@@ -30,6 +29,23 @@
 <!-- 		from review_board -->
 <!-- 		left join project -->
 <!-- 		on review_board.project_no = project.project_no -->
+
+	<insert id="insertReviewboard" parameterClass="ReviewBoardVO">
+		INSERT INTO REVIEW_BOARD (REVIEW_NO,
+									MEM_ID,
+									REVIEW_TITLE,
+									REVIEW_CONTENT,
+									REVIEW_REGDATE,
+									REVIEW_HIT,
+									REVIEW_SCORE)
+		VALUES (REVIEWBOARD_SEQ.nextval,
+				#mem_id#,
+				#review_title#,
+				#review_content#,
+				SYSDATE,
+				#review_hit#,
+				#review_score#)
+	</insert>
 
 </sqlMap>
 

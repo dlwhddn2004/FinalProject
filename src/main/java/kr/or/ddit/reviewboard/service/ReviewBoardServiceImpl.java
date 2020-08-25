@@ -21,4 +21,11 @@ public class ReviewBoardServiceImpl implements IReviewBoardService {
 		return dao.reviewboardList();
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertReviewBoard(ReviewBoardVO reviewboardInfo)
+			throws Exception {
+		return dao.insertReviewBoard(reviewboardInfo);
+	}
+
 }
