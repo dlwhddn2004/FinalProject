@@ -9,6 +9,7 @@ public class NoticefileVO {
 	public String file_size;
 	public String file_downhit;
 	public String file_regdate;
+	public String file_content_type;
 	
 	public String getFile_seq() {
 		return file_seq;
@@ -51,6 +52,12 @@ public class NoticefileVO {
 	}
 	public void setFile_regdate(String file_regdate) {
 		this.file_regdate = file_regdate;
+	}
+	public String getFile_content_type() {
+		return file_content_type;
+	}
+	public void setFile_content_type(String file_content_type) {
+		this.file_content_type = file_content_type;
 	}
 	
 	
