@@ -23,6 +23,7 @@
     <sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard.xml"/>		
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard_comment.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/timeline.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/reviewboard.xml"/>	
 </sqlMapConfig>
 
 
