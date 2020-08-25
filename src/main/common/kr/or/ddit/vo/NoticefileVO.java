@@ -59,9 +59,4 @@ public class NoticefileVO {
 	public void setFile_content_type(String file_content_type) {
 		this.file_content_type = file_content_type;
 	}
-	
-	
-	
-	
-
 }

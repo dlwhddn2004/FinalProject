@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ddit.project.service.IProjectService;
+import kr.or.ddit.timeline.service.ITimelineService;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 import kr.or.ddit.vo.newsboardVO;
@@ -22,6 +23,9 @@ public class ProjectController {
 	
 	@Autowired
 	private IProjectService projectService;
+	
+	@Autowired
+	private ITimelineService timelineService;
 	
 	@RequestMapping("project")
 	public ModelAndView project(ModelAndView modelAndView,
@@ -113,6 +117,21 @@ public class ProjectController {
 		} else {
 			modelAndView.addObject("result", "N");
 		}
+		
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
+	}
+	
+	@RequestMapping("selectTimeline")
+	public ModelAndView selectTimeline(String mem_id,
+									   String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		params.put("project_no", project_no);
+		List<Map<String, String>> timelineList = timelineService.selectTimelineList(params);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("timelineList", timelineList);
 		
 		modelAndView.setViewName("jsonConvertView");
 		return modelAndView;

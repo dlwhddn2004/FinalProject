@@ -4,6 +4,12 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="timeline">
+	<select id="selectTimelineList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM TIMELINE
+		WHERE MEM_ID = #mem_id#
+		AND PROJECT_NO = #project_no#
+	</select>
 </sqlMap>
 
  

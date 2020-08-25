@@ -48,6 +48,13 @@ public class ProjectServiceImpl implements IProjectService {
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
+	public List<Map<String, String>> selectTimelineList(
+			Map<String, String> params) throws Exception {
+		return dao.selectTimelineList(params);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
 	public List<Map<String, String>> selectTodo(Map<String, String> params)
 			throws Exception {
 		return dao.selectTodo(params);
