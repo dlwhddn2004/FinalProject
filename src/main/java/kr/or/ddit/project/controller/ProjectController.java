@@ -34,7 +34,7 @@ public class ProjectController {
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
-		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "프로젝트");
 
 		Map<String, String> params = new HashMap<String, String>();
@@ -56,7 +56,7 @@ public class ProjectController {
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
-		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project_timeline.do");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project_timeline.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "작업 내역");
 
 		Map<String, String> params = new HashMap<String, String>();

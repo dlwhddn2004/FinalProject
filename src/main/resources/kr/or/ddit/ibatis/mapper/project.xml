@@ -19,10 +19,50 @@
 		OR AA = #mem_id#
 	</select>
 	
-	<select id="selectProjectInfo" parameterClass="map" resultClass="ProjectVO">
-		SELECT *
+	<select id="selectProjectInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT PROJECT.PROJECT_NO PROJECT_NO,
+		       MEM_ID,
+		       PROJECT_CLIENTINFORMATION,
+		       PROJECT_CLIENTINTRODUCE,
+		       PROJECT_PROCESSSTATUS,
+		       PROJECT_PROCESSCATEGORY,
+		       PROJECT_CONSULLTING,
+		       PROJECT_READYSTATUS,
+		       PROJECT_CURRENTSTATUS,
+		       PROJECT_BUSINESSINFO,
+		       PROJECT_REFERENCE,
+		       PROJECT_NOTE,
+		       PROJECT_TECHNOLOGIES,
+		       PROJECT_BUDGET,
+		       PROJECT_STARTDATE,
+		       PROJECT_DURATION,
+		       PROJECT_ENDSTATUS,
+		       PROJECT_PREMEETING,
+		       PROJECT_PROCEEDINGMEETING,
+		       PROJECT_MEETINGCYCLE,
+		       PROJECT_CLIENTLOCATION,
+		       PROJECT_APPLICATIONDEADLINE,
+		       PROJECT_SUPPORTSTATUS,
+		       PROJECT_ESSENTIALREQUIREMENTS,
+		       PROJECT_MANPOWER,
+		       PROJECT_MANAGEMENTEXPERIENCE,
+		       PROJECT_FUTUREPLANS,
+		       PROJECT_PRIORITY,
+		       PROJECT_ENDDATE,
+		       PROJECT_TITLE,
+		       PL,
+		       DA,
+		       UA,
+		       TA,
+		       AA,
+		       PL_PIC_SAVENAME,
+		       DA_PIC_SAVENAME,
+		       UA_PIC_SAVENAME,
+		       TA_PIC_SAVENAME,
+		       AA_PIC_SAVENAME
 		FROM PROJECT
-		WHERE PROJECT_NO = #project_no#
+		         JOIN PROJECT_PARTICIPANTS ON PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		WHERE PROJECT.PROJECT_NO = #project_no#
 	</select>
 	
 	<select id="selectNotProjectListById" parameterClass="map" resultClass="java.util.HashMap">
@@ -52,10 +92,10 @@
 	</select>
 	
 	<select id="selectTodo" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
+		SELECT TODO_SEQ, PROJECT_NO, MEM_ID, TODO_TITLE, TO_CHAR(TODO_REGDATE, 'YYYY-MM-DD') TODO_REGDATE, TODO_CATEGORY
 		FROM TODO_LIST
 		WHERE PROJECT_NO = #project_no#
-		AND MEM_ID = #mem_id#
+		  AND MEM_ID = #mem_id#
 	</select>
 	
 	<insert id="insertTODO" parameterClass="map">

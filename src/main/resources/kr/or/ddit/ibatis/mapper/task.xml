@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="task">
+	<select id="selectTaskList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT PROJECT_FUNCTION_NO,
+		       PROJECT_NO,
+		       FUNCTION_NAME,
+		       FUNCTION_MANAGER,
+		       FUNCTION_PROGRESS,
+		       FUNCTION_STATUS,
+		       TO_CHAR(FUNCTION_REGDATE, 'YYYY-MM-DD') FUNCTION_REGDATE,
+		       TO_CHAR(FUNCTION_ENDDATE, 'YYYY-MM-DD') FUNCTION_ENDDATE,
+		       FUNCTION_PRIORITY,
+		       TO_CHAR(FUNCTION_MODIDATE, 'YYYY-MM-DD') FUNCTION_MODIDATE
+		FROM PROJECT_FUNCTION
+		WHERE PROJECT_NO = #project_no#
+		  AND FUNCTION_MANAGER = #mem_id#
+	</select>
+</sqlMap>
+
+ 
+
+

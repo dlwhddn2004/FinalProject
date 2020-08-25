@@ -5,10 +5,10 @@
 
 <sqlMap namespace="timeline">
 	<select id="selectTimelineList" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
+		SELECT MEM_ID, TIMELINE_TITLE, TO_CHAR(TIMELINE_DATE, 'YYYY-MM-DD') TIMELINE_DATE, PROJECT_NO, TIMELINE_TAG, TIMELINE_CONTENT, TIMELINE_CATEGORY
 		FROM TIMELINE
 		WHERE MEM_ID = #mem_id#
-		AND PROJECT_NO = #project_no#
+		  AND PROJECT_NO = #project_no#
 	</select>
 </sqlMap>
 

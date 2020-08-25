@@ -20,7 +20,7 @@ public class ProjectServiceImpl implements IProjectService {
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public ProjectVO selectProjectInfo(Map<String, String> params)
+	public Map<String, String> selectProjectInfo(Map<String, String> params)
 			throws Exception {
 		return dao.selectProjectInfo(params);
 	}
