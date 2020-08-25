@@ -152,7 +152,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/forms/components.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/reviewboard/reviewboardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 후기 </span>
                       <span class="sidenav-normal"> 이용 후기 </span>
                     </a>
