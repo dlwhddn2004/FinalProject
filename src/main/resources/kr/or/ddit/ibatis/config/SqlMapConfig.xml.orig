@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings cacheModelsEnabled="true" enhancementEnabled="true"
+		lazyLoadingEnabled="true" maxRequests="32" maxSessions="10"
+		maxTransactions="5" useStatementNamespaces="true" />
+
+	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/member.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/member_rate.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/profile_file.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/freeboard.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/fileitem.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/successboard.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/successboard_comment.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/newsboard.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard.xml"/>
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticeboard.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/project.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/noticefile.xml"/>
+    <sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard.xml"/>		
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard_comment.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/timeline.xml"/>	
+<<<<<<< HEAD
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/mypageDeverloper.xml"/>	
+=======
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/reviewboard.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/task.xml"/>	
+>>>>>>> 0a46b734471b75e41640e6be458e99a60192bd19
+</sqlMapConfig>
+
+
+
+
+
+

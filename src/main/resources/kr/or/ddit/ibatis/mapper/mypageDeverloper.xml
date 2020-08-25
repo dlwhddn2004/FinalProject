@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="mypageDeverloper">
+	<select id="projectNum" parameterClass="map" resultClass="integer">
+		select count(PROJECT_PARTICIPANTS.PROJECT_NO)
+    	from PROJECT_PARTICIPANTS ,PROJECT
+		where PROJECT_PARTICIPANTS.PROJECT_NO  = project.PROJECT_NO
+        and  project.PROJECT_ENDSTATUS ='Y' and PROJECT_PARTICIPANTS.DA =#mem_id#
+        or PROJECT_PARTICIPANTS.AA =#mem_id# or PROJECT_PARTICIPANTS.pl =#mem_id# or PROJECT_PARTICIPANTS.TA=#mem_id#
+    or PROJECT_PARTICIPANTS.ua =#mem_id#
+		
+	</select>
+	
+	<select id="portfolioNum" parameterClass="map" resultClass="integer">
+	select count(PORTFOLIO_NO)
+	from PORTFOLIO, MEMBER
+	where PORTFOLIO.MEM_ID =member.MEM_ID and member.MEM_ID= #mem_id#
+	</select>
+</sqlMap>
+
+ 
+
+
