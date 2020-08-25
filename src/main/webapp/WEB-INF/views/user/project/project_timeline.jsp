@@ -256,6 +256,7 @@
     
     // loadTimeline
     function loadTimeline(project_no) {
+    	$('.timeline-list-area').empty();
     	$.ajax({
 			type: 'POST'
 			,url: '${pageContext.request.contextPath}/user/project/selectTimeline.do'
@@ -264,14 +265,20 @@
 				    mem_id: '${MEMBER_LOGININFO.mem_id}'}
 			,success: function(result) {
 				$.each(result.timelineList, function(index, timelineList) {
+					let category = "";
+					if (timelineList.TIMELINE_CATEGORY === "Y") {
+						category = "success";
+					} else {
+						category = "danger";
+					}
 					const tag_arr = timelineList.TIMELINE_TAG.split(',');
 					let tag_str = "";
 					$.each(tag_arr, function(index, tag_arr) {
-						tag_str += '<span class="badge badge-pill badge-success">' + tag_arr + '</span>';
+						tag_str += '<span class="badge badge-pill badge-' + category + '">' + tag_arr + '</span>';
 					});
 					const $timelineItem = $('' +
 				            '<div class="timeline-block">' +
-				            '<span class="timeline-step badge-success">' +
+				            '<span class="timeline-step badge-' + category + '">' +
 				            '<i class="ni ni-bell-55"></i>' +
 				            '</span>' +
 				            '<div class="timeline-content">' +

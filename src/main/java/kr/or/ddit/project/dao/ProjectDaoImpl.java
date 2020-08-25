@@ -18,9 +18,9 @@ public class ProjectDaoImpl implements IProjectDao {
 	private SqlMapClient client;
 
 	@Override
-	public ProjectVO selectProjectInfo(Map<String, String> params)
+	public Map<String, String> selectProjectInfo(Map<String, String> params)
 			throws Exception {
-		return (ProjectVO) client.queryForObject("project.selectProjectInfo", params);
+		return (Map<String, String>) client.queryForObject("project.selectProjectInfo", params);
 	}
 	
 	@Override

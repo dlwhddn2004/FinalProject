@@ -40,12 +40,12 @@ public class IMemberServiceImpl implements IMemberService {
 //			dao.deleteMemberInfo(params);
 //	}
 //	
-//	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
-//	@Override
-//	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
-//
-//			dao.updateMemberInfo(memberInfo);
-//	}
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
+	@Override
+	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
+
+			dao.updateMemberInfo(memberInfo);
+	}
 	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
 	@Override

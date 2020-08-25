@@ -93,7 +93,7 @@ public class SuccessBoardController {
 		ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
 		
 		params.put("project_no", successboardInfo.getProject_no());
-		ProjectVO projectInfo = projectService.selectProjectInfo(params);
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
 		
 		modelAndView.addObject("successboardInfo", successboardInfo);
 		modelAndView.addObject("projectInfo", projectInfo);

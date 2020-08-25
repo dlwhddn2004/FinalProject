@@ -386,7 +386,7 @@
 			                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
 			                    </div>
 			                    <input class="form-control" placeholder="이메일" type="email" name="mem_mail" required pattern="^[a-z0-9]+@[a-z]+(\.[a-z]+){1,2}$">
-			                    <button type="button" class="btn btn-outline-primary">인증</button>
+<!-- 			                    <button type="button" class="btn btn-outline-primary">인증</button> -->
 			                    <div class="valid-feedback">
 			                    	success
 			                    </div>
@@ -395,57 +395,56 @@
 			                    </div>
 			                  </div>
 			                </div>
+<!-- 			                <div class="form-group"> -->
+<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 			                    <div class="input-group-prepend"> -->
+<!-- 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span> -->
+<!-- 			                    </div> -->
+<!--  			                    <input class="form-control" placeholder="이메일 인증번호" type="text" required> -->
+<!-- 			                    <input class="form-control" placeholder="이메일 인증번호" type="text"> -->
+<!--  			                    <div class="valid-feedback"> -->
+<!-- 			                    	success -->
+<!-- 			                    </div> -->
+<!-- 			                    <div class="invalid-feedback"> -->
+<!-- 			                    	이메일 인증번호를 입력해주세요. -->
+<!-- 			                    </div> -->
+<!-- 			                  </div> -->
+<!-- 			                </div> -->
 			                <div class="form-group">
 			                  <div class="input-group input-group-merge input-group-alternative">
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 			                    </div>
-<!-- 			                    <input class="form-control" placeholder="이메일 인증번호" type="text" required> -->
-			                    <input class="form-control" placeholder="이메일 인증번호" type="text">
-<!-- 			                    <div class="valid-feedback">
+			                    <input class="form-control" placeholder="비밀번호" type="password" name="mem_pass" required pattern="^[A-Za-z0-90-9]{4,12}$">
+			              		<div class="valid-feedback">
 			                    	success
-			                    </div>
-			                    <div class="invalid-feedback">
-			                    	이메일 인증번호를 입력해주세요.
-			                    </div> -->
+			                  	</div>
+			                  	<div class="invalid-feedback">
+			                    	비밀번호는 영어 소문자,대문자, 숫자 4~12자리로 입력해주세요
+			                  	</div>
 			                  </div>
 			                </div>
-			                <div class="form-group">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="비밀번호" type="password" name="mem_pass">
-<!-- 			                    <input class="form-control" placeholder="비밀번호" type="password" name="mem_pass" required pattern="^[A-Za-z0-90-9]{4,12}$"> -->
-			                  </div>
-			                  <div class="valid-feedback">
-			                    	success
-			                    </div>
-			                    <div class="invalid-feedback">
-			                    	비밀번호~~~~~
-			                    </div>
-			                </div>
-			                <div class="form-group">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="fas fa-check"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="비밀번호 확인" type="password" required>
-			                  </div>
-			                </div>
-			 <!--               <div id="capcha">
-			                  <img class="capchaImg">
-			                    <i class="fas fa-redo"></i>
-			                  </img>
-			                </div>-->
-			                <div class="form-group">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="fas fa-check"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="자동입력방지 문자" type="text">
-			                  </div>
-			                </div>
+<!-- 			                <div class="form-group"> -->
+<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 			                    <div class="input-group-prepend"> -->
+<!-- 			                      <span class="input-group-text"><i class="fas fa-check"></i></span> -->
+<!-- 			                    </div> -->
+<!-- 			                    <input class="form-control" placeholder="비밀번호 확인" type="password" required> -->
+<!-- 			                  </div> -->
+<!-- 			                </div> -->
+<!-- 			               <div id="capcha"> -->
+<!-- 			                  <img class="capchaImg"> -->
+<!-- 			                    <i class="fas fa-redo"></i> -->
+<!-- 			                  </img> -->
+<!-- 			                </div> -->
+<!-- 			                <div class="form-group"> -->
+<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 			                    <div class="input-group-prepend"> -->
+<!-- 			                      <span class="input-group-text"><i class="fas fa-check"></i></span> -->
+<!-- 			                    </div> -->
+<!-- 			                    <input class="form-control" placeholder="자동입력방지 문자" type="text"> -->
+<!-- 			                  </div> -->
+<!-- 			                </div> -->
 			                <div class="text-center">
 			                  <button type="submit" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button>
 			                </div>

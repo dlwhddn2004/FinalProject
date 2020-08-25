@@ -124,6 +124,15 @@
 			#mem_businessno#,
 			#mem_identityauthentication#)
 	</insert>
+		<update id="updateMember" parameterClass="memberVO">
+		update member
+		set
+		mem_pass = #mem_pass#
+		, mem_addr = #mem_addr#
+		, mem_bir = #mem_bir#
+		, mem_tel = #mem_tel#
+		WHERE mem_id = #mem_id#
+	</update>
 </sqlMap>
 
 

@@ -67,7 +67,7 @@
                           <a href="${pageContext.request.contextPath }/user/project/project_timeline.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">작업 내역</a>
                         </li>
                         <li class="nav-item">
-                          <a href="#!" class="nav-link ">일감</a>
+                          <a href="${pageContext.request.contextPath }/user/task/task.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">일감</a>
                         </li>
                         <li class="nav-item">
                           <a href="#!" class="nav-link ">Gantt 차트</a>
@@ -152,7 +152,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/forms/components.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/reviewboard/reviewboardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 후기 </span>
                       <span class="sidenav-normal"> 이용 후기 </span>
                     </a>
