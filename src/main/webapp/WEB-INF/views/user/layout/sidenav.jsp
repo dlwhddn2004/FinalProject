@@ -70,7 +70,7 @@
                           <a href="${pageContext.request.contextPath }/user/task/task.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">일감</a>
                         </li>
                         <li class="nav-item">
-                          <a href="#!" class="nav-link ">Gantt 차트</a>
+                          <a href="${pageContext.request.contextPath }/user/gantt/ganttChart.do?mem_id=${MEMBER_LOGININFO.mem_id }" class="nav-link ">Gantt 차트</a>
                         </li>
                         <li class="nav-item">
                           <a href="#!" class="nav-link ">달력</a>
