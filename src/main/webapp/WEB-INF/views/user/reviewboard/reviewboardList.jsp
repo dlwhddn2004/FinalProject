@@ -48,6 +48,7 @@
 	cursor: pointer;
 	transition: 0.5s;
 }
+
 </style>
 
 <!-- My JavaScript -->
@@ -96,55 +97,90 @@
 </script>
 </head>
 <body>
-	<!-- Page content -->
-	<!-- Table -->
-	<div class="row">
-		<div class="col">
-			<div class="card">
-				<!-- Card header -->
-				<div class="card-header">
-					<h3 class="mb-0">이용후기 게시판</h3>
-					<p class="text-sm mb-0">커넥터를 이용한 파트너스가 직접남긴 후기입니다</p>
-				</div>
-				<div class="table-responsive py-4">
-					<table class="table table-flush datatable-basic">
-						<thead class="thead-light">
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<th>번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-								<th>조회수</th>
-							</tr>
-						</tfoot>
-						<tbody>
-							<c:forEach items="${reviewboardList }" var="item">
-								<tr class="table-row-data">
-									<td>${item.r }<input type="hidden" name="review_no" value="${item.review_no }"></td>
-									<td>${item.review_title }</td>
-									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
-									<td>${item.review_regdate }</td>
-									<td>${item.review_hit }</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<div align="right" style="padding: 15px 15px 0px 0px;">
+	    <div class="container-fluid mt--6">
+        	<div class="row card-wrapper">
+           	<c:forEach items="${reviewboardList }" var="item">
+            	<div class="col-lg-4">
+                	<!-- Contact card -->
+	                	<div class="card">
+	                    	<!-- Card body -->
+	                    	<div class="card-body">
+	                        	<div class="row">
+	                            	<div class="col-auto">
+	                                	<!-- Avatar -->
+	                                	<a href="#" class="avatar avatar-xl rounded-circle">
+	                                    	<img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-2.jpg">
+	                                	</a>
+	                           		 </div>
+	                            	<div class="col ml--2">
+		                                <h4 class="mb-0">
+		                                    <a href="#!">${item.mem_id }</a>
+		                                </h4>
+		                                <p class="text-sm text-muted mb-0">Working remoteley</p>
+		                                <span class="text-success">●</span>
+		                                <small>Active</small>
+	                            	</div>
+		                            <div class="col-auto">
+		                                <button type="button" class="btn btn-sm btn-primary">Add</button>
+		                            </div>
+	                        	</div>
+	                    	</div>
+	                	</div>
+	            	</div>
+            	</c:forEach>
+            	
+        </div>
+            		<div align="right" style="padding: 15px 15px 0px 0px;">
 						<button type="button" class="btn btn-primary btn-write">등록</button>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    </div>
+<!-- 	<div class="row"> -->
+<!-- 		<div class="col"> -->
+<!-- 			<div class="card"> -->
+<!-- 				Card header -->
+<!-- 				<div class="card-header"> -->
+<!-- 					<h3 class="mb-0">이용후기 게시판</h3> -->
+<!-- 					<p class="text-sm mb-0">커넥터를 이용한 파트너스가 직접남긴 후기입니다</p> -->
+<!-- 				</div> -->
+<!-- 				<div class="table-responsive py-4"> -->
+<!-- 					<table class="table table-flush datatable-basic"> -->
+<!-- 						<thead class="thead-light"> -->
+<!-- 							<tr> -->
+<!-- 								<th>번호</th> -->
+<!-- 								<th>제목</th> -->
+<!-- 								<th>작성자</th> -->
+<!-- 								<th>등록일</th> -->
+<!-- 								<th>조회수</th> -->
+<!-- 							</tr> -->
+<!-- 						</thead> -->
+<!-- 						<tfoot> -->
+<!-- 							<tr> -->
+<!-- 								<th>번호</th> -->
+<!-- 								<th>제목</th> -->
+<!-- 								<th>작성자</th> -->
+<!-- 								<th>등록일</th> -->
+<!-- 								<th>조회수</th> -->
+<!-- 							</tr> -->
+<!-- 						</tfoot> -->
+<!-- 						<tbody> -->
+<%-- 							<c:forEach items="${reviewboardList }" var="item"> --%>
+<!-- 								<tr class="table-row-data"> -->
+<%-- 									<td>${item.r }<input type="hidden" name="review_no" value="${item.review_no }"></td> --%>
+<%-- 									<td>${item.review_title }</td> --%>
+<%-- 									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td> --%>
+<%-- 									<td>${item.review_regdate }</td> --%>
+<%-- 									<td>${item.review_hit }</td> --%>
+<!-- 								</tr> -->
+<%-- 							</c:forEach> --%>
+<!-- 						</tbody> -->
+<!-- 					</table> -->
+<!-- 					<div align="right" style="padding: 15px 15px 0px 0px;"> -->
+<!-- 						<button type="button" class="btn btn-primary btn-write">등록</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<!-- Argon Scripts -->
 	<!-- Core -->

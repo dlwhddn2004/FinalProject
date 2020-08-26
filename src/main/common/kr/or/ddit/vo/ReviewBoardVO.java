@@ -9,6 +9,8 @@ public class ReviewBoardVO {
 	private String review_regdate;
 	private String review_hit;
 	private String project_no;
+	private int review_score;
+	
 	public String getR() {
 		return r;
 	}
@@ -56,6 +58,12 @@ public class ReviewBoardVO {
 	}
 	public void setProject_no(String project_no) {
 		this.project_no = project_no;
+	}
+	public int getReview_score() {
+		return review_score;
+	}
+	public void setReview_score(int review_score) {
+		this.review_score = review_score;
 	}
 	
 	
