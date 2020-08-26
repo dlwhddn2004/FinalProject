@@ -1,6 +1,7 @@
 package kr.or.ddit.reviewboard.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ReviewBoardServiceImpl implements IReviewBoardService {
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<ReviewBoardVO> reviewboardList() throws Exception {
+	public List<Map<String, String>> reviewboardList() throws Exception {
 		return dao.reviewboardList();
 	}
 
@@ -26,6 +27,12 @@ public class ReviewBoardServiceImpl implements IReviewBoardService {
 	public int insertReviewBoard(ReviewBoardVO reviewboardInfo)
 			throws Exception {
 		return dao.insertReviewBoard(reviewboardInfo);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteReviewBoard(Map<String, String> params) throws Exception {
+		return dao.deleteReviewBoard(params);
 	}
 
 }

@@ -197,6 +197,7 @@
 			location.href = '${pageContext.request.contextPath}/user/successboard/successboardList.do'; 
 		});
 		
+		//별점 클릭
 		$('.starRev span').click(function(){
 			  $(this).parent().children('span').removeClass('on');
 			  $(this).addClass('on').prevAll('span').addClass('on');
