@@ -11,6 +11,7 @@ public class IssueboardVO {
 	public String issue_seq;
 	public String issue_depth;
 	public String issue_hit;
+	public String r;
 	
 	public String getIssue_no() {
 		return issue_no;
@@ -71,6 +72,12 @@ public class IssueboardVO {
 	}
 	public void setIssue_hit(String issue_hit) {
 		this.issue_hit = issue_hit;
+	}
+	public String getR() {
+		return r;
+	}
+	public void setR(String r) {
+		this.r = r;
 	}
 	
 	
