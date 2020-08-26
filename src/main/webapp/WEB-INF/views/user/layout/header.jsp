@@ -11,15 +11,15 @@
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-	<meta name="author" content="Creative Tim">
-	<title>CONNECTOR</title>
+<!-- <head> -->
+<!-- 	<meta charset="utf-8"> -->
+<!-- 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+<!-- 	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4."> -->
+<!-- 	<meta name="author" content="Creative Tim"> -->
+<!-- 	<title>CONNECTOR</title> -->
 	<!-- Favicon -->
 	<link rel="icon" href="${pageContext.request.contextPath }/assets/img/brand/favicon.png" type="image/png">
 	<!-- Fonts -->
@@ -32,9 +32,9 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/argon.css?v=1.2.0" type="text/css">
 	<!-- Sweet Alerts -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
-</head>
+<!-- </head> -->
 
-<body>
+<!-- <body> -->
 	<!-- Header -->
     <!-- Header -->
     <div class="header bg-primary pb-6">
@@ -245,5 +245,5 @@
 			});
 		}
 	</script>
-</body>
-</html>
+<!-- </body> -->
+<!-- </html> -->

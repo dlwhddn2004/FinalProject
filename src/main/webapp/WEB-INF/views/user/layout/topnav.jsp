@@ -2,10 +2,9 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<!-- <html> -->
+<!-- <head> -->
+<!--   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
   <!-- Favicon -->
   <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -54,8 +53,8 @@
       width: 150px;
     }
 </style>
-</head>
-<body>
+<!-- </head> -->
+<!-- <body> -->
 
    <!-- Topnav -->
    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
@@ -517,5 +516,5 @@
 	</script>
 
 
-</body>
-</html>
+<!-- </body> -->
+<!-- </html> -->

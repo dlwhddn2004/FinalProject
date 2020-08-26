@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-<meta name="author" content="Creative Tim">
-<title>Argon Dashboard PRO - Premium Bootstrap 4 Admin Template</title>
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+<!-- <meta name="description" content="Start your development with a Dashboard for Bootstrap 4."> -->
+<!-- <title>Argon Dashboard PRO - Premium Bootstrap 4 Admin Template</title> -->
 <!-- Favicon -->
 <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
 <!-- Fonts -->
@@ -21,7 +20,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
-</head>
+<!-- </head> -->
 
 <style>
 	footer {
@@ -29,7 +28,7 @@
 		padding: 10px;
 	}
 </style>
-<body>
+<!-- <body> -->
 	<!-- Footer -->
 	<footer class="footer pt-0">
 	<div class="row align-items-center justify-content-lg-between">
@@ -56,5 +55,5 @@
 		</div>
 	</div>
 	</footer>
-</body>
-</html>
+<!-- </body> -->
+<!-- </html> -->
