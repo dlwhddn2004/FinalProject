@@ -14,13 +14,29 @@
 		       TO_CHAR(FUNCTION_REGDATE, 'YYYY-MM-DD') FUNCTION_REGDATE,
 		       TO_CHAR(FUNCTION_ENDDATE, 'YYYY-MM-DD') FUNCTION_ENDDATE,
 		       FUNCTION_PRIORITY,
-		       TO_CHAR(FUNCTION_MODIDATE, 'YYYY-MM-DD') FUNCTION_MODIDATE
+		       TO_CHAR(FUNCTION_MODIDATE, 'YYYY-MM-DD') FUNCTION_MODIDATE,
+		       FUNCTION_NAME
 		FROM PROJECT_FUNCTION
 		WHERE PROJECT_NO = #project_no#
-		  AND FUNCTION_MANAGER = #mem_id#
+		<dynamic>
+			<isNotEmpty property="mem_id">
+				AND FUNCTION_MANAGER = #mem_id#
+			</isNotEmpty>
+			<isNotEmpty property="function_status">
+				<isNotEqual property="function_status" compareValue="전체">
+					AND FUNCTION_STATUS = #function_status#
+				</isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty property="function_name">
+				<isNotEqual property="function_name" compareValue="없음">
+					AND FUNCTION_NAME LIKE '%'||#function_name#||'%'
+				</isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty property="function_manager">
+				<isNotEqual property="function_manager" compareValue="조건없음">
+					AND FUNCTION_MANAGER = #function_manager#
+				</isNotEqual>
+			</isNotEmpty>
+		</dynamic>
 	</select>
 </sqlMap>
-
- 
-
-
