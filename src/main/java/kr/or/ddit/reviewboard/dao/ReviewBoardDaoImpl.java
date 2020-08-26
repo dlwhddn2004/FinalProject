@@ -1,6 +1,7 @@
 package kr.or.ddit.reviewboard.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,7 +19,7 @@ public class ReviewBoardDaoImpl implements IReviewBoardDao {
 	
 
 	@Override
-	public List<ReviewBoardVO> reviewboardList() throws Exception {
+	public List<Map<String, String>> reviewboardList() throws Exception {
 		
 		return client.queryForList("reviewboard.reviewboardList");
 	}
@@ -34,6 +35,13 @@ public class ReviewBoardDaoImpl implements IReviewBoardDao {
 			chk = 1;
 		}
 		return chk;
+	}
+
+
+	@Override
+	public int deleteReviewBoard(Map<String, String> params) throws Exception {
+		
+		return client.delete("reviewboard.deleteReviewboard", params);
 	}
 
 }

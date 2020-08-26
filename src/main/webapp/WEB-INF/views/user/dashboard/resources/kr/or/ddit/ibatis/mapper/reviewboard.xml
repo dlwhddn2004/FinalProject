@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="reviewboard">
+	<typeAlias alias="ReviewBoardVO" type="kr.or.ddit.vo.ReviewBoardVO" />
+	
+<!-- 	<sql id="selectAll"> -->
+<!-- 		select r, -->
+<!-- 		       REVIEW_NO, -->
+<!-- 		       MEM_ID, -->
+<!-- 		       REVIEW_TITLE, -->
+<!-- 		       REVIEW_CONTENT, -->
+<!-- 		       review_regdate, -->
+<!-- 		       REVIEW_HIT, -->
+<!-- 		       REVIEW_SCORE, -->
+<!-- 		       PROFILE_SEQ, -->
+<!-- 		       PROFILE_SAVENAME, -->
+<!-- 		       PROFILE_REALNAME, -->
+<!-- 		       PROFILE_CONTENTTYPE, -->
+<!-- 		       PROFILE_SIZE, -->
+<!-- 		       PROFILE_REGDATE, -->
+<!-- 		       PROFILE_DOWNHIT -->
+<!-- 		from ( -->
+<!-- 		         select rownum r, -->
+<!-- 		                review_no, -->
+<!-- 		                mem_id, -->
+<!-- 		                review_title, -->
+<!-- 		                review_content, -->
+<!-- 		                TO_CHAR(review_regdate, 'YYYY-MM-DD') review_regdate, -->
+<!-- 		                review_hit, -->
+<!-- 		                review_score -->
+<!-- 		         from ( -->
+<!-- 		                  SELECT * -->
+<!-- 		                  FROM REVIEW_BOARD) a -->
+<!-- 		     ) b -->
+<!-- 		         JOIN PROFILE_FILE ON b.MEM_ID = PROFILE_FILE.MEM_ID; -->
+<!-- 	</sql> -->
+	
+	<select id="reviewboardList" resultClass="java.util.HashMap">
+		SELECT ROWNUM r, a.*
+		FROM (SELECT REVIEW_NO,
+		             REVIEW_BOARD.MEM_ID MEM_ID,
+		             REVIEW_TITLE,
+		             REVIEW_REGDATE,
+		             REVIEW_HIT,
+		             PROJECT_NO,
+		             REVIEW_SCORE,
+		             REVIEW_CONTENT,
+		             PROFILE_SEQ,
+		             PROFILE_SAVENAME,
+		             PROFILE_REALNAME,
+		             PROFILE_CONTENTTYPE,
+		             PROFILE_SIZE,
+		             PROFILE_REGDATE,
+		             PROFILE_DOWNHIT
+		      FROM REVIEW_BOARD
+		               JOIN PROFILE_FILE on REVIEW_BOARD.MEM_ID = PROFILE_FILE.MEM_ID
+		      ORDER BY REVIEW_BOARD.REVIEW_NO DESC) a
+	</select>
+<!-- 		select review_board.*, project.project_no -->
+<!-- 		from review_board -->
+<!-- 		left join project -->
+<!-- 		on review_board.project_no = project.project_no -->
+
+	<insert id="insertReviewboard" parameterClass="ReviewBoardVO">
+		INSERT INTO REVIEW_BOARD (REVIEW_NO,
+									MEM_ID,
+									REVIEW_TITLE,
+									REVIEW_CONTENT,
+									REVIEW_REGDATE,
+									REVIEW_HIT,
+									REVIEW_SCORE)
+		VALUES (REVIEWBOARD_SEQ.nextval,
+				#mem_id#,
+				#review_title#,
+				#review_content#,
+				SYSDATE,
+				#review_hit#,
+				#review_score#)
+	</insert>
+	
+	<delete id="deleteReviewboard" parameterClass="map">
+		DELETE REVIEW_BOARD WHERE REVIEW_NO = #review_no#
+	</delete>
+
+</sqlMap>
+
+ 
+
+
