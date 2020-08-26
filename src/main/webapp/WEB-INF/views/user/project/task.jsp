@@ -44,9 +44,9 @@
 		<div class="col">
 			<div class="card">
 				<!-- Card header -->
-				<div class="card-header border-0" style="margin: 0px 0px 100px 0px;">
+				<div class="card-header border-0" style="margin: 0px 0px 0px 0px;">
 					<h1 class="mb-0">일감</h1>
-					<div style="display: flex; margin: 10px 0px 10px 0px">
+					<div style="display: flex; margin: 0px 0px 0px 0px">
 						<div style="display: flex; width: 500px;">
 							<div style="margin: 10px 10px 10px 0px; width: 300px;">
 								<h5>프로젝트</h5>
