@@ -28,19 +28,25 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/user/gantt/")
 public class GanttController {
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("ganttChart")
 	public ModelAndView ganttChart(ModelAndView modelAndView,
-								   String project_no,
+								   String mem_id,
 								   HttpServletRequest request) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		List<Map<String, String>> projectList = projectService.selectNotProjectListById(params);
 		
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
-		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/gantt/ganttChart.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/gantt/ganttChart.do?mem_id" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "Gantt 차트");
 		
 		modelAndView.setViewName("user/project/gantt_chart");
+		modelAndView.addObject("projectList", projectList);
 		
 		return modelAndView;
 	}

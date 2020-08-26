@@ -23,6 +23,7 @@ import kr.or.ddit.vo.newsboardVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -79,10 +80,18 @@ public class TaskController {
 	
 	@RequestMapping("selectTaskList")
 	public ModelAndView selectTaskList(String project_no,
-									   String mem_id) throws Exception {
+									   String mem_id,
+									   String function_status,
+									   String function_name,
+									   String function_manager,
+									   String chkbox_status) throws Exception {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
 		params.put("mem_id", mem_id);
+		params.put("function_status", function_status);
+		params.put("chkbox_status", chkbox_status);
+		params.put("function_name", function_name);
+		params.put("function_manager", function_manager);
 		List<Map<String, String>> taskList = taskService.selectTaskList(params);
 		
 		ModelAndView modelAndView = new ModelAndView();
