@@ -22,10 +22,6 @@
    .btn-login:hover {
       color: #5e72e4 !important;
    }
-   
-    .card-header{
-      height: 80px;
-    }
 
     .search{
       display: block;
