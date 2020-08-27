@@ -26,19 +26,18 @@ public class IMemberServiceImpl implements IMemberService {
 			return dao.memberInfo(params);
 	}
 	
-//	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
-//	@Override
-//	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
+
+		return	dao.memberList(params);
+	}
 //
-//		return	dao.memberList(params);
-//	}
-//
-//	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
-//	@Override
-//	public void deleteMemberInfo(Map<String, String> params)  throws Exception{
-//
-//			dao.deleteMemberInfo(params);
-//	}
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
+	@Override
+	public void memberDelete(MemberVO vo) throws Exception {
+		dao.memberDelete(vo);
+	}
 //	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
 	@Override
