@@ -1696,6 +1696,9 @@ var Dropzones = (function() {
 					}
 					currentFile = file;
 				})
+			},
+			complete : function(data){
+				console.log("test");
 			}
 		}
 
