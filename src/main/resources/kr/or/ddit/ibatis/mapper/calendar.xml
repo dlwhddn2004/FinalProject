@@ -4,9 +4,16 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="calendar">
+	<typeAlias alias="CalendarVO" type="kr.or.ddit.vo.CalendarVO"/>
 
-	<select id="selectCalendar" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
+	<select id="selectCalendar" parameterClass="map" resultClass="CalendarVO">
+		SELECT ID,
+		       TITLE,
+		       "START",
+		       END,
+		       ALLDAY,
+		       CLASSNAME,
+		       DESCRIPTION
 		FROM CALENDAR_PROJECT
 		WHERE PROJECT_NO = #project_no#
 	</select>

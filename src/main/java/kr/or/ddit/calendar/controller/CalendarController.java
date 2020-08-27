@@ -15,6 +15,7 @@ import kr.or.ddit.calendar.service.ICalendarService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
+import kr.or.ddit.vo.CalendarVO;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
@@ -25,6 +26,7 @@ import kr.or.ddit.vo.newsboardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -50,16 +52,13 @@ public class CalendarController {
 	}
 	
 	@RequestMapping("selectCalendar")
-	public ModelAndView selectCalendar(String project_no) throws Exception {
+	@ResponseBody
+	public List<CalendarVO> selectCalendar(String project_no) throws Exception {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
-		List<Map<String, String>> calendarList = calendarService.selectCalendar(params);
+		List<CalendarVO> calendarList = calendarService.selectCalendar(params);
 		
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("calendarList", calendarList);
-		
-		modelAndView.setViewName("jsonConvertView");
-		return modelAndView;
+		return calendarList;
 	}
 	
 }

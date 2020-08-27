@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.ddit.calendar.dao.ICalendarDao;
 import kr.or.ddit.successboard.dao.ISuccessBoardDao;
+import kr.or.ddit.vo.CalendarVO;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.SuccessBoardCommentVO;
@@ -21,7 +22,7 @@ public class CalendarServiceImpl implements ICalendarService {
 	private ICalendarDao dao;
 
 	@Override
-	public List<Map<String, String>> selectCalendar(Map<String, String> params)
+	public List<CalendarVO> selectCalendar(Map<String, String> params)
 			throws Exception {
 		return dao.selectCalendar(params);
 	}

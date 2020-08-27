@@ -3,6 +3,7 @@ package kr.or.ddit.calendar.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.CalendarVO;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.SuccessBoardCommentVO;
@@ -20,7 +21,7 @@ public class CanlendarDaoImpl implements ICalendarDao {
 	private SqlMapClient client;
 
 	@Override
-	public List<Map<String, String>> selectCalendar(Map<String, String> params)
+	public List<CalendarVO> selectCalendar(Map<String, String> params)
 			throws Exception {
 		return client.queryForList("calendar.selectCalendar", params);
 	}
