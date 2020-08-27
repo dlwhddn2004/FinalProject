@@ -100,6 +100,19 @@ public class MemberController {
 		
 		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 	}
+/*	  // /user/member/deleteMemberInfo.do?user_id=a001
+	  @RequestMapping("myprofiledelete/{user_id}")
+//	  public String deleteMember(@RequestParam(required=false, defaultValue="널 대체값") String mem_id,
+//			  					Map<String, String> params) throws Exception{
+//			/user/member/deleteMemberInfo/a001.do
+		  public String deleteMember(@PathVariable("user_id") String mem_id,
+				  Map<String, String> params) throws Exception{
+		  
+		  params.put("mem_id", mem_id);
+		  this.service.deleteMemberInfo(params);
+		  
+		  return "redirect:/user/myprofile/myprofile.do";
+	  }*/
 }
 
 

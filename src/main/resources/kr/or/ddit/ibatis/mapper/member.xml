@@ -31,6 +31,10 @@
 			</isNotEmpty>		
 		</dynamic>
 	</sql> -->
+	
+	 <select id="memberList" resultClass="memberVO" parameterClass="map">
+		<include refid="selectAll"/>
+	</select>
 
 	<select id="memberInfo" parameterClass="map" resultClass="memberVO">
 		<include refid="selectAll" />
@@ -133,6 +137,13 @@
 		, mem_tel = #mem_tel#
 		WHERE mem_id = #mem_id#
 	</update>
+	
+<!-- 회원탈퇴 -->
+<delete id="memberDelete">
+	DELETE FROM MEMBER
+	WHERE MEM_ID = #mem_id#
+	  AND MEM_PASS = #mem_pass# 
+</delete>
 </sqlMap>
 
 
