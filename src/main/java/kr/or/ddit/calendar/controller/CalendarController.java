@@ -29,6 +29,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user/calendar/")
 public class CalendarController {
 	
-	
+	@RequestMapping("calendar")
+	public ModelAndView calendar(HttpServletRequest request,
+								 ModelAndView modelAndView,
+								 String project_no) throws Exception {
+		
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/calendar/calendar.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "캘린더");
+		
+		modelAndView.setViewName("user/project/calendar");
+		return modelAndView;
+	}
 	
 }
