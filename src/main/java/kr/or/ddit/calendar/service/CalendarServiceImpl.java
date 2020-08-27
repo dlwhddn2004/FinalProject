@@ -19,4 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 public class CalendarServiceImpl implements ICalendarService {
 	@Autowired
 	private ICalendarDao dao;
+
+	@Override
+	public List<Map<String, String>> selectCalendar(Map<String, String> params)
+			throws Exception {
+		return dao.selectCalendar(params);
+	}
 }

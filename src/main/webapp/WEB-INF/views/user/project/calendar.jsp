@@ -64,7 +64,9 @@
 			</div>
 			<!-- Card body -->
 			<div class="card-body p-0">
-				<div class="calendar" data-toggle="calendar" id="calendar"></div>
+				<div class="calendar" data-toggle="calendar" id="calendar">
+				<input type="hidden" name="project_no" value="${project_no }">
+				</div>
 			</div>
 		</div>
 		<!-- Modal - Add new event -->

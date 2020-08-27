@@ -9,5 +9,5 @@ import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface ICalendarService {
-	
+	public List<Map<String, String>> selectCalendar(Map<String, String> params) throws Exception;
 }

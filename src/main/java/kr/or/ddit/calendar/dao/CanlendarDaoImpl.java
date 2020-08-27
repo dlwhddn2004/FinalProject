@@ -18,4 +18,10 @@ import com.lowagie.text.Paragraph;
 public class CanlendarDaoImpl implements ICalendarDao {
 	@Autowired
 	private SqlMapClient client;
+
+	@Override
+	public List<Map<String, String>> selectCalendar(Map<String, String> params)
+			throws Exception {
+		return client.queryForList("calendar.selectCalendar", params);
+	}
 }
