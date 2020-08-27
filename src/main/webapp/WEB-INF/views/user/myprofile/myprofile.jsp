@@ -101,12 +101,30 @@ $(function(){
 .card-profile {
 	width : 100%;
  	height : 100%;
+ 
+}
+ .card-body {
+display: table; margin-left: auto; margin-right: auto; display: inline-block;
+
+
 }
 
 
 </style>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../../assets/img/brand/favicon.png" type="image/png">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+  <!-- Icons -->
+  <link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css" type="text/css">
+  <link rel="stylesheet" href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Argon CSS -->
+  <link rel="stylesheet" href="../../assets/css/argon.css?v=1.2.0" type="text/css">
+</head>
+<link rel="stylesheet" herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -130,12 +148,12 @@ $(function(){
       <div class="row">
         <div class="col-xl-4 order-xl-2">
           <div class="card-profile">
-            <img src="../../assets/img/theme/cha.jpg" alt="Image placeholder" class="card-img-top">
+            <img src="${pageContext.request.contextPath}/assets/img/theme/cha.jpg" alt="Image placeholder" class="card-img-top">
             <div class="row justify-content-center">
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="../../assets/img/theme/deok.jpg" class="rounded-circle">
+                    <img src="${pageContext.request.contextPath}/assets/img/theme/deok.jpg" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -191,20 +209,18 @@ $(function(){
               </div>
             </div>
             <div class="card-body">
-              <form>
+              <form name="pp" id="pp">
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">아이디</label>
-                        
-                        
                         <input type="hidden" name="mem_id" class="form-control" value="${MEMBER_LOGININFO.mem_id}" placeholder="Username"   >
                         <input type="text" name="mem_id" class="form-control" placeholder="Username"  disabled="disabled" value="${MEMBER_LOGININFO.mem_id}" >
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">이메일</label>
                         <input type="email" id="input-email" class="form-control" placeholder="jesse@example.com"  disabled="disabled" value="${MEMBER_LOGININFO.mem_mail}"  name="${MEMBER_LOGININFO.mem_mail}">
@@ -212,13 +228,13 @@ $(function(){
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">비밀번호</label>
                         <input type="password" id="input-first-name" name="mem_pass" class="form-control" placeholder="" value="Lucky">
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-last-name">비밀번호 확인</label>
                         <input type="password" id="input-last-name" name="" class="form-control" placeholder="" value="Jesse">
@@ -226,12 +242,12 @@ $(function(){
                     </div>
                 
                    
-                      <!-- 전화번호  -->
+                      <!-- 주소  -->
                    
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                       <div class="form-group">
-      <label class="form-control-label" for="input-first-name">주소</label><br>
-     <div class="input">
+     						 <label class="form-control-label" for="input-first-name">주소</label><br>
+                              <div class="input">
                         <input type="button" class="btn btn-primary btn-write"
                             onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                     </div>
@@ -239,42 +255,46 @@ $(function(){
                     <div class="input">
                         <input type="text" class="form-control" id="addr1" name="mem_addr1"
                             placeholder="우편번호" required>
-                    </div>
+                   
  
-                    <div class="input">
+                    
                         <input type="text"  class="form-control" name="mem_addr2"
                             id="addr2" placeholder="도로명주소" required>
-                    </div>
-                    <div class="input">
+                    
+                    
                         <input type="text"  class="form-control" name="mem_addr3"
                             id="addr3" placeholder="지번주소" required>
                     
-                    </div>
-                    <div class="input">
+                  
+                  
                         <input type="text"  class="form-control" name="mem_addr4"
                             id="addr4" placeholder="나머지 주소" size="6" required>
+                     </div>
+                     <br><br>
                     
-                    </div>
+                 
+							<td class="fieldName" width="100px" height="25">생년월일</td><br>
+                      <div class="form-group test" style="display: flex; justify-content: space-around;">
+                     
+<tr>
+								<td class="test">
+										<input type="hidden"  class="" name="mem_bir" />
+										<p>년</p>
+										<input type="text"  class="form-control" name="mem_bir1" value="" />
+										<p>월</p>
+										<input type="text"   class="form-control"name="mem_bir2"  value="" />
+										<p>일</p>
+										<input type="text"  class="form-control"name="mem_bir3"  value="" />
+								</td>
+							</tr>
+							</div>
+							
                  
 </div>
 
 </div>
  <br>
-                    <div class="col-lg-3">
-                      <div class="form-group">
-                      <br><br>
-                      
-<tr>
-							<td class="fieldName" width="100px" height="25">생년월일</td>
-								<td>
-										<input type="hidden"  class="form-control" name="mem_bir" />
-										<input type="text"  class="form-control" name="mem_bir1" value="" />년
-										<input type="text"   class="form-control"name="mem_bir2"  value="" />월
-										<input type="text"  class="form-control"name="mem_bir3"  value="" />일
-								</td>
-							</tr>
-							</div>
-							</div> 
+                   
    <br>
    
                      
@@ -295,15 +315,15 @@ $(function(){
                 </div>
              
                 <div class="pl-lg-4">
-                  <div class="row">
+                  
 
                     <br>
                     
-                      <div class="col-md-3 mb-3">
-                      <div class="form-group">
-                        <tr>
       <td class="fieldName" width="100px" height="25">핸드폰</td>
-      <td>
+                      <div class="col-md-3 mb-3">
+                      <div class="fdiv class="form-group test" style="display: flex; justify-content: space-around;rm-group">
+                        <tr>
+      <td class="test">
          <input type="hidden" name="mem_tel" class="form-control"/>
          <select name="mem_tel1" class="form-control">
             <option value="010">010</option>
@@ -318,16 +338,47 @@ $(function(){
                         
                      
                          
-                         <br><br>
+                      
                       </div>
                     </div>
                     <br>
-                    <div class="form-group">
-		<label class="form-control-label" for="input-username">프로필 사진 변경</label>
-		<div class="col-sm-10">
-			 <input type="file" class="filestyle" id="file01" name="files" data-buttonName="btn-primary">
-		</div>
-	</div>
+                     <label class="form-control-label" for="input-email">프로필 사진 첨부</label>
+          <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="http://">
+    <div class="fallback">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="dropzoneMultipleUpload" multiple>
+            <label class="custom-file-label" for="dropzoneMultipleUpload">Choose file</label>
+        </div>
+    </div>
+    <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+        <li class="list-group-item px-0">
+            <div class="row align-items-center">
+                <div class="col-auto">
+                    <div class="avatar">
+                        <img class="avatar-img rounded" src="..." alt="..." data-dz-thumbnail>
+                    </div>
+                </div>
+                <div class="col ml--3">
+                    <h4 class="mb-1" data-dz-name>...</h4>
+                    <p class="small text-muted mb-0" data-dz-size>...</p>
+                </div>
+                <div class="col-auto">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="#" class="dropdown-item" data-dz-remove>
+                                Remove
+                            </a>
+                             <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
 	
                   </div>
                          <div>
@@ -347,15 +398,17 @@ $(function(){
    </form>
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+ 
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
   <!-- Argon JS -->
-  <script src="../../assets/js/argon.js?v=1.2.0"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
   <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/demo.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 </body>
 
 </html>

@@ -10,9 +10,9 @@ public interface IMemberService {
 	
 	public MemberVO memberInfo(Map<String, String> params) throws Exception;
 
-//	public List<MemberVO> memberList(Map<String, String> params) throws Exception;
+	public List<MemberVO> memberList(Map<String, String> params) throws Exception;
 //	
-//	public void deleteMemberInfo(Map<String, String> params) throws Exception;
+	public void memberDelete(MemberVO vo) throws Exception;
 //
 	public void updateMemberInfo(MemberVO memberInfo) throws Exception;
 //

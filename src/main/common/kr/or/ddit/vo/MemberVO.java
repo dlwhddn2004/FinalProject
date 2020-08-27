@@ -13,8 +13,15 @@ public class MemberVO {
 	private String mem_businessno;
 	private String mem_identityauthentication;
 	private String mem_bir;
+	private String mem_bankname;
 	
 	
+	public String getMem_bankname() {
+		return mem_bankname;
+	}
+	public void setMem_bankname(String mem_bankname) {
+		this.mem_bankname = mem_bankname;
+	}
 	public String getMem_bir() {
 		return mem_bir;
 	}
