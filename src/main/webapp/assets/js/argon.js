@@ -1878,7 +1878,7 @@ var Scrollbar = (function() {
 })();
 
 //
-// Fullcalendar
+//Fullcalendar
 //
 
 'use strict';
@@ -1899,97 +1899,106 @@ var Fullcalendar = (function() {
 		// Calendar events
 
 		var events = [
-			
-            {
+
+         {
 				id: 1,
-				title: 'Call with Dave',
-				start: '2018-11-18',
+				title: '캘린더 구현하기',
+				start: '2020-08-27',
 				allDay: true,
 				className: 'bg-red',
-				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+				description: '캘린더를 구현해보자!'
+         },
+
+         {
 				id: 2,
-				title: 'Lunch meeting',
-				start: '2018-11-21',
+				title: '점심 뭐먹지...?',
+				start: '2020-08-28',
 				allDay: true,
 				className: 'bg-orange',
-				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+				description: '오늘 점심 뭐?'
+         },
+
+         {
 				id: 3,
 				title: 'All day conference',
 				start: '2018-11-29',
 				allDay: true,
 				className: 'bg-green',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 4,
 				title: 'Meeting with Mary',
 				start: '2018-12-01',
 				allDay: true,
 				className: 'bg-blue',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 5,
 				title: 'Winter Hackaton',
 				start: '2018-12-03',
 				allDay: true,
 				className: 'bg-red',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 6,
 				title: 'Digital event',
-				start: '2018-12-07',
-				allDay: true,
+				start: '2020-08-23 08:00',
+				allDay: false,
 				className: 'bg-warning',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 7,
 				title: 'Marketing event',
-				start: '2018-12-10',
-				allDay: true,
+				start: '2020-08-23 09:00',
+				allDay: false,
 				className: 'bg-purple',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 8,
 				title: 'Dinner with Family',
-				start: '2018-12-19',
-				allDay: true,
+				start: '2020-08-23 10:00',
+				allDay: false,
 				className: 'bg-red',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 9,
 				title: 'Black Friday',
-				start: '2018-12-23',
-				allDay: true,
+				start: '2020-08-24 16:10',
+				allDay: false,
 				className: 'bg-blue',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
-            {
+         },
+
+         {
 				id: 10,
 				title: 'Cyber Week',
-				start: '2018-12-02',
-				allDay: true,
+				start: '2020-08-24 15:05',
+				allDay: false,
 				className: 'bg-yellow',
 				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-            },
-            
+         },
+
+			{
+				id: 11,
+				title: 'All day conference',
+				start: '2020-08-24 16:35',
+				allDay: false,
+				className: 'bg-green',
+				description: 'Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+			},
+
 		],
 
 
@@ -2011,6 +2020,7 @@ var Fullcalendar = (function() {
 			selectHelper: true,
 			editable: true,
 			events: events,
+			droppable: true,
 
 			dayClick: function(date) {
 				var isoDate = moment(date).toISOString();
@@ -2039,6 +2049,18 @@ var Fullcalendar = (function() {
 				$('.edit-event--id').val(event.id);
 				$('.edit-event--title').val(event.title);
 				$('.edit-event--description').val(event.description);
+			},
+
+			// 이벤트 드래그 앤 드랍
+			eventDrop: function(event) {
+				console.log(event);
+				alert('이벤트 드래그 앤 드랍 시도');
+			},
+
+			// 이벤트 사이즈 변경
+			eventResize: function(event) {
+				console.log(event);
+				alert('사이즈 변경 시도');
 			}
 		};
 
