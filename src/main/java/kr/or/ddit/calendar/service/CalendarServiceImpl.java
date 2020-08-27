@@ -21,9 +21,34 @@ public class CalendarServiceImpl implements ICalendarService {
 	@Autowired
 	private ICalendarDao dao;
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public List<CalendarVO> selectCalendar(Map<String, String> params)
 			throws Exception {
 		return dao.selectCalendar(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public String insertCalendar(Map<String, String> params) throws Exception {
+		return dao.insertCalendar(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateCalendar(Map<String, String> params) throws Exception {
+		return dao.updateCalendar(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteCalendar(Map<String, String> params) throws Exception {
+		return dao.deleteCalendar(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int modifyCalendar(Map<String, String> params) throws Exception {
+		return dao.modifyCalendar(params);
 	}
 }

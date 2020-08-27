@@ -1,12 +1,16 @@
 package kr.or.ddit.vo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class CalendarVO {
 	private String id;
 	private String title;
 	private String start;
 	private String end;
 	private String allday;
-	private String classname;
+	private String className;
 	private String description;
 	
 	public String getId() {
@@ -39,11 +43,11 @@ public class CalendarVO {
 	public void setAllday(String allday) {
 		this.allday = allday;
 	}
-	public String getClassname() {
-		return classname;
+	public String getClassName() {
+		return className;
 	}
-	public void setClassname(String classname) {
-		this.classname = classname;
+	public void setClassName(String className) {
+		this.className = className;
 	}
 	public String getDescription() {
 		return description;

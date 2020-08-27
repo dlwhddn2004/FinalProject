@@ -17,7 +17,46 @@
 		FROM CALENDAR_PROJECT
 		WHERE PROJECT_NO = #project_no#
 	</select>
-
+	
+	<insert id="insertCalendar" parameterClass="map">
+		<selectKey keyProperty="id" resultClass="String">
+			SELECT PROJECT_CALENDAR_SEQ.nextval
+			FROM DUAL
+		</selectKey>
+		INSERT INTO CALENDAR_PROJECT (PROJECT_NO,
+		                              ID,
+		                              TITLE,
+		                              "START",
+		                              END,
+		                              ALLDAY,
+		                              CLASSNAME,
+		                              DESCRIPTION)
+		VALUES (#project_no#,
+		        #id#,
+		        #title#,
+		        #start#,
+		        #end#,
+		        #allday#,
+		        #className#,
+		        #description#)
+	</insert>
+	
+	<update id="updateCalendar" parameterClass="map">
+		UPDATE CALENDAR_PROJECT SET "START" = #start#,
+		                            END = #end#
+		WHERE ID = #id#
+	</update>
+	
+	<delete id="deleteCalendar" parameterClass="map">
+		DELETE CALENDAR_PROJECT WHERE ID = #id#
+	</delete>
+	
+	<update id="modifyCalendar" parameterClass="map">
+		UPDATE CALENDAR_PROJECT SET TITLE = #title#,
+		                            CLASSNAME = #className#,
+		                            DESCRIPTION = #description#
+		WHERE ID = #id#
+	</update>
 </sqlMap>
 
  

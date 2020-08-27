@@ -25,4 +25,24 @@ public class CanlendarDaoImpl implements ICalendarDao {
 			throws Exception {
 		return client.queryForList("calendar.selectCalendar", params);
 	}
+
+	@Override
+	public String insertCalendar(Map<String, String> params) throws Exception {
+		return (String) client.insert("calendar.insertCalendar", params);
+	}
+
+	@Override
+	public int updateCalendar(Map<String, String> params) throws Exception {
+		return client.update("calendar.updateCalendar", params);
+	}
+
+	@Override
+	public int deleteCalendar(Map<String, String> params) throws Exception {
+		return client.delete("calendar.deleteCalendar", params);
+	}
+
+	@Override
+	public int modifyCalendar(Map<String, String> params) throws Exception {
+		return client.update("calendar.modifyCalendar", params);
+	}
 }

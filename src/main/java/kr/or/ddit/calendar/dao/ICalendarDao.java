@@ -11,4 +11,8 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface ICalendarDao {
 	public List<CalendarVO> selectCalendar(Map<String, String> params) throws Exception;
+	public String insertCalendar(Map<String, String> params) throws Exception;
+	public int updateCalendar(Map<String, String> params) throws Exception;
+	public int deleteCalendar(Map<String, String> params) throws Exception;
+	public int modifyCalendar(Map<String, String> params) throws Exception;
 }

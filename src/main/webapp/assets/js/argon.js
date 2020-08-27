@@ -1884,6 +1884,8 @@ var Scrollbar = (function() {
 'use strict';
 
 var Fullcalendar = (function() {
+	
+	var modify_id = null;
 
 	// Variables
 
@@ -1897,10 +1899,25 @@ var Fullcalendar = (function() {
 	function init($this) {
 		// 현재 조회해야 할 프로젝트 번호
 		const project_no = $this.find('input[type=hidden]').val();
+		let obj = null;
+		$.ajax({
+		    url: '/CONNECTOR/user/calendar/selectCalendar.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no
+		    },
+		    success: function (data) {
+		        obj = JSON.stringify(data);
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
 
 		// Calendar events
-		var events = [],
-
+		var events = JSON.parse(obj),
 
 		// Full calendar options
 		// For more options read the official docs: https://fullcalendar.io/docs
@@ -1924,10 +1941,22 @@ var Fullcalendar = (function() {
 
 			dayClick: function(date) {
 				var isoDate = moment(date).toISOString();
-				$('#new-event').modal('show');
-				$('.new-event--title').val('');
-				$('.new-event--start').val(isoDate);
-				$('.new-event--end').val(isoDate);
+				
+				const year = isoDate.substring(0, 4);
+				const month = isoDate.substring(isoDate.indexOf('-') + 1, isoDate.lastIndexOf('-'));
+				const day = isoDate.substring(isoDate.lastIndexOf('-') + 1);
+				
+				$('.calendar .event-start-date').val(month + '/' + day + '/' + year);
+				$('.calendar .event-end-date').val(month + '/' + day + '/' + year);
+				
+				$('.calendar #new-event').modal('show');
+				$('.calendar .new-event--title').val(''); 
+				$('.calendar .allday-toggle').prop('checked', false);
+				
+				$('.calendar .event-start-time').val('00:00:00');
+				$('.calendar .event-end-time').val('00:00:00');
+				
+				$('.calendar .add-event--description').val('');
 			},
 
 			viewRender: function(view) {
@@ -1949,18 +1978,75 @@ var Fullcalendar = (function() {
 				$('.edit-event--id').val(event.id);
 				$('.edit-event--title').val(event.title);
 				$('.edit-event--description').val(event.description);
+				
+				modify_id = event.id;
 			},
 
 			// 이벤트 드래그 앤 드랍
-			eventDrop: function(event) {
-				console.log(event);
-				alert('이벤트 드래그 앤 드랍 시도');
+			eventDrop: function(info) {
+				let temp = '';
+				const id = info.id;
+				
+				temp = info.start.toISOString();
+				let start = temp.replace('T', ' ');
+
+				let end = null;
+				try {
+					temp = info.end.toISOString();
+					end = temp.replace('T', ' ');
+				} catch (e) {
+					
+				}
+				
+				$.ajax({
+					type: 'POST',
+					url: '/CONNECTOR/user/calendar/updateCalendar.do',
+					dataType: 'json',
+					data: {
+						id: id,
+						start: start,
+						end: end
+					},
+					success: function(result) {
+						if (result.result == 'N') {
+							Swal.fire(
+							  'WARNING',
+							  '일정 변경에 실패했습니다.',
+							  'warning'
+							)
+						}
+					}
+				});
 			},
 
 			// 이벤트 사이즈 변경
-			eventResize: function(event) {
-				console.log(event);
-				alert('사이즈 변경 시도');
+			eventResize: function(info) {
+				const id = info.id;
+				const start = info.start.toISOString();
+				const end = info.end.toISOString();
+				
+				$.ajax({
+					type: 'POST',
+					url: '/CONNECTOR/user/calendar/updateCalendar.do',
+					dataType: 'json',
+					data: {
+						id: id,
+						start: start,
+						end: end
+					},
+					success: function(result) {
+						if (result.result == 'N') {
+							Swal.fire(
+							  'WARNING',
+							  '일정 변경에 실패했습니다.',
+							  'warning'
+							)
+						}
+					},
+					error: function(response, status, request) {
+						alert(response.status);
+					}
+				})
 			}
 		};
 
@@ -1976,36 +2062,81 @@ var Fullcalendar = (function() {
 		//Add new Event
 
 		$('body').on('click', '.new-event--add', function() {
-			var eventTitle = $('.new-event--title').val();
-
+			let temp = '';
+			
+			const project_no = $('.calendar input[name=project_no]').val();
+			const title = $('.calendar .new-event--title').val();
+			
+			temp = $('.calendar .event-start-date').val();
+			let start = temp.substring(temp.lastIndexOf('/') + 1) + '-' +  temp.substring(0, temp.indexOf('/')) + '-' +  temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+			temp = $('.calendar .event-end-date').val();
+			let end = temp.substring(temp.lastIndexOf('/') + 1) + '-' +  temp.substring(0, temp.indexOf('/')) + '-' +  temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+			let allday = $('.calendar .allday-toggle:checked').val();
+			const className = $('.event-tag input:checked').val();
+			const description = $('.calendar .add-event--description').val();
+			
+			temp = $('.calendar .event-start-time').val();
+			const start_time = temp.substring(0, 5);
+			temp = $('.calendar .event-end-time').val();
+			const end_time = temp.substring(0, 5);
+			
+			if (allday == 'on') {
+				allday = true;
+			} else {
+				start += ' ' + start_time;
+				end += ' ' + end_time;
+				allday = false;
+			}
+			
+			if (start == end) {
+				end = null;
+			}
+			
+			if (title == '') {
+				Swal.fire(
+				  'WARNING',
+				  '제목을 입력해주세요!',
+				  'warning'
+				)
+				
+				return false;
+			}
+			
 			// Generate ID
-			var GenRandom = {
-				Stored: [],
-				Job: function() {
-					var newId = Date.now().toString().substr(6); // or use any method that you want to achieve this string
+			let GenRandom = null;
+			
+			// ajax로 insert 후 추가할 때 사용된 id 값 리턴
+			$.ajax({
+			    url: '/CONNECTOR/user/calendar/insertCalendar.do',
+			    type: 'POST',
+			    async: false,
+			    data: {
+			    	project_no: project_no,
+			    	title: title,
+			    	start: start,
+			    	end: end,
+			    	allday: allday,
+			    	className: className,
+			    	description: description
+			    },
+			    success: function (data) {
+			    	GenRandom = data.id;
+			    },
+			    error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+			});
 
-					if (!this.Check(newId)) {
-						this.Stored.push(newId);
-						return newId;
-					}
-					return this.Job();
-				},
-				Check: function(id) {
-					for (var i = 0; i < this.Stored.length; i++) {
-						if (this.Stored[i] == id) return true;
-					}
-					return false;
-				}
-			};
-
-			if (eventTitle != '') {
+			if (title != '') {
 				$this.fullCalendar('renderEvent', {
-					id: GenRandom.Job(),
-					title: eventTitle,
-					start: $('.new-event--start').val(),
-					end: $('.new-event--end').val(),
-					allDay: true,
-					className: $('.event-tag input:checked').val()
+					id: GenRandom,
+					title: title,
+					start: start,
+					end: end,
+					allDay: allday,
+					className: className,
+					description: description
 				}, true);
 
 				$('.new-event--form')[0].reset();
@@ -2021,24 +2152,49 @@ var Fullcalendar = (function() {
 		//Update/Delete an Event
 		$('body').on('click', '[data-calendar]', function() {
 			var calendarAction = $(this).data('calendar');
-			var currentId = $('.edit-event--id').val();
-			var currentTitle = $('.edit-event--title').val();
-			var currentDesc = $('.edit-event--description').val();
-			var currentClass = $('#edit-event .event-tag input:checked').val();
+			var currentId = $('.calendar .edit-event--id').val();
+			var currentTitle = $('.calendar .edit-event--title').val();
+			var currentDesc = $('.calendar .edit-event--description').val();
+			var currentClass = $('.calendar #edit-event .event-tag input:checked').val();
 			var currentEvent = $this.fullCalendar('clientEvents', currentId);
-
+			let id = modify_id;
+			
 			//Update
 			if (calendarAction === 'update') {
 				if (currentTitle != '') {
 					currentEvent[0].title = currentTitle;
 					currentEvent[0].description = currentDesc;
 					currentEvent[0].className = [currentClass];
-
-					console.log(currentClass);
-					$this.fullCalendar('updateEvent', currentEvent[0]);
-					$('#edit-event').modal('hide');
+					
+					alert(currentClass);
+					
+					$.ajax({
+						type: 'POST',
+						url: '/CONNECTOR/user/calendar/modifyCalendar.do',
+						dataType: 'json',
+						data: {
+							id: id,
+							title: currentEvent[0].title,
+							className: currentClass,
+							description: currentEvent[0].description
+						},
+						success: function(result) {
+							
+							
+							$this.fullCalendar('updateEvent', currentEvent[0]);
+							$('#edit-event').modal('hide');
+						},
+						error: function(response, status, request) {
+							
+						}
+					});
 				} else {
-					$('.edit-event--title').closest('.form-group').addClass('has-error');
+					Swal.fire(
+					  'WARNING',
+					  '제목을 입력해주세요!',
+					  'warning'
+					)
+					
 					$('.edit-event--title').focus();
 				}
 			}
@@ -2050,31 +2206,61 @@ var Fullcalendar = (function() {
 				// Show confirm dialog
 				setTimeout(function() {
 					swal({
-						title: 'Are you sure?',
-						text: "You won't be able to revert this!",
+						title: '정말 삭제하시겠습니까?',
+						text: "삭제하면 다시 되돌릴 수 없습니다.",
 						type: 'warning',
 						showCancelButton: true,
 						buttonsStyling: false,
 						confirmButtonClass: 'btn btn-danger',
-						confirmButtonText: 'Yes, delete it!',
-						cancelButtonClass: 'btn btn-secondary'
+						confirmButtonText: '삭제',
+						cancelButtonClass: 'btn btn-secondary',
+						cancelButtonText: '취소'
 					}).then((result) => {
 						if (result.value) {
-							// Delete event
-							$this.fullCalendar('removeEvents', currentId);
+							// 실제 DB에서 데이터 삭제
+							$.ajax({
+								type: 'POST',
+								url: '/CONNECTOR/user/calendar/deleteCalendar.do',
+								dataType: 'json',
+								data: {
+									id: id
+								},
+								success: function(result) {
+									if (result.result == 'Y') {
+										// Delete event
+										$this.fullCalendar('removeEvents', currentId);
 
-							// Show confirmation
-							swal({
-								title: 'Deleted!',
-								text: 'The event has been deleted.',
-								type: 'success',
-								buttonsStyling: false,
-								confirmButtonClass: 'btn btn-primary'
+										// Show confirmation
+										swal({
+											title: '삭제!',
+											text: '해당 이벤트가 삭제되었습니다.',
+											type: 'success',
+											buttonsStyling: false,
+											confirmButtonClass: 'btn btn-primary',
+											confirmButtonText: '확인'
+										});
+									} else {
+										// Show failure
+										swal({
+											title: '실패',
+											text: '해당 이벤트 삭제에 실패했습니다.',
+											type: 'warning',
+											buttonsStyling: false,
+											confirmButtonClass: 'btn btn-primary',
+											confirmButtonText: '확인'
+										});
+									}
+								},
+								error: function(response, status, request) {
+									alert(response.status);
+								}
 							});
 						}
 					})
 				}, 200);
 			}
+			
+			modify_id = null;
 		});
 
 

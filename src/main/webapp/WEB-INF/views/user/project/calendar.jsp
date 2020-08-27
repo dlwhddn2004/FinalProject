@@ -31,7 +31,7 @@
   }
 </style>
 
-<div class="row">
+<div class="row calendar">
 	<div class="col">
 		<!-- Fullcalendar -->
 		<div class="card card-calendar">
@@ -83,41 +83,91 @@
 					<div class="modal-body">
 						<form class="new-event--form">
 							<div class="form-group">
-								<label class="form-control-label">Event title</label> <input
-									type="text"
-									class="form-control form-control-alternative new-event--title"
-									placeholder="Event Title">
+								<label class="form-control-label">이벤트 제목</label> 
+								<input type="text" class="form-control form-control-alternative new-event--title" placeholder="제목을 입력해주세요.">
 							</div>
 							<div class="form-group mb-0">
-								<label class="form-control-label d-block mb-3">Status
-									color</label>
+								<label class="form-control-label d-block mb-3">색상</label>
 								<div
 									class="btn-group btn-group-toggle btn-group-colors event-tag"
 									data-toggle="buttons">
-									<label class="btn bg-info active"><input type="radio"
-										name="event-tag" value="bg-info" autocomplete="off" checked></label>
-									<label class="btn bg-warning"><input type="radio"
-										name="event-tag" value="bg-warning" autocomplete="off"></label>
-									<label class="btn bg-danger"><input type="radio"
-										name="event-tag" value="bg-danger" autocomplete="off"></label>
-									<label class="btn bg-success"><input type="radio"
-										name="event-tag" value="bg-success" autocomplete="off"></label>
-									<label class="btn bg-default"><input type="radio"
-										name="event-tag" value="bg-default" autocomplete="off"></label>
-									<label class="btn bg-primary"><input type="radio"
-										name="event-tag" value="bg-primary" autocomplete="off"></label>
+									<label class="btn bg-info active">
+										<input type="radio" name="event-tag" value="bg-info" autocomplete="off" checked>
+									</label>
+									<label class="btn bg-warning">
+										<input type="radio" name="event-tag" value="bg-warning" autocomplete="off"></label>
+									<label class="btn bg-danger">
+										<input type="radio" name="event-tag" value="bg-danger" autocomplete="off"></label>
+									<label class="btn bg-success">
+										<input type="radio" name="event-tag" value="bg-success" autocomplete="off"></label>
+									<label class="btn bg-default">
+										<input type="radio" name="event-tag" value="bg-default" autocomplete="off"></label>
+									<label class="btn bg-primary">
+									<input type="radio" name="event-tag" value="bg-primary" autocomplete="off"></label>
 								</div>
 							</div>
-							<input type="hidden" class="new-event--start" /> <input
-								type="hidden" class="new-event--end" />
-						</form>
+							<div style="margin: 15px 0px 0px 0px;">
+								<div>
+									<label class="form-control-label d-block mb-3">하루 종일</label>
+								</div>
+								<label class="custom-toggle">
+								    <input class="allday-toggle" type="checkbox" value="on">
+								    <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+								</label>
+							</div>
+							<div style="display: flex; justify-content: space-between; margin: 15px 0px 0px 0px;">
+								<div>
+									<label class="form-control-label d-block mb-3">시작일</label>
+									<div class="input-group">
+								        <div class="input-group-prepend">
+								            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+								        </div>
+								        <input class="form-control datepicker event-start-date" placeholder="Select date" type="text" value="01/01/2020">
+								    </div>
+								</div>
+								<div style="width: 200px;">
+									<label class="form-control-label d-block mb-3">시작 시간</label>
+									<div class="input-group">
+								        <div class="input-group-prepend">
+								            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+								        </div>
+								        <input class="form-control event-start-time" type="time" value="09:00" id="example-time-input1">
+								    </div>
+								</div>
+							</div>
+							<div style="display: flex; justify-content: space-between; margin: 15px 0px 0px 0px;">
+								<div>
+									<label class="form-control-label d-block mb-3">종료일</label>
+									<div class="input-group">
+								        <div class="input-group-prepend">
+								            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+								        </div>
+								        <input class="form-control datepicker event-end-date" placeholder="Select date" type="text" value="01/01/2020">
+								    </div>
+								</div>
+								<div style="width: 200px;">
+									<label class="form-control-label d-block mb-3">종료 시간</label>
+									<div class="input-group">
+								        <div class="input-group-prepend">
+								            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+								        </div>
+								        <input class="form-control event-end-time" type="time" id="example-time-input2">
+								    </div>
+								</div>
+							</div>
+							<div class="form-group" style="margin: 10px 0px 0px 0px;">
+								<label class="form-control-label">상세 내용</label>
+								<textarea
+									class="form-control form-control-alternative add-event--description textarea-autosize"
+									placeholder="상세 내용을 입력해주세요."></textarea>
+								<i class="form-group--bar"></i>
+							</div>
+ 						</form>
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-primary new-event--add">Add
-							event</button>
-						<button type="button" class="btn btn-link ml-auto"
-							data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary new-event--add">일정 추가</button>
+						<button type="button" class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -134,15 +184,14 @@
 					<!-- Modal body -->
 					<div class="modal-body">
 						<form class="edit-event--form">
-							<div class="form-group">
-								<label class="form-control-label">Event title</label> <input
+							<div class="form-group edit-event-title-div">
+								<label class="form-control-label">이벤트 제목</label> <input
 									type="text"
 									class="form-control form-control-alternative edit-event--title"
-									placeholder="Event Title">
+									placeholder="제목을 입력해주세요.">
 							</div>
 							<div class="form-group">
-								<label class="form-control-label d-block mb-3">Status
-									color</label>
+								<label class="form-control-label d-block mb-3">색상</label>
 								<div
 									class="btn-group btn-group-toggle btn-group-colors event-tag mb-0"
 									data-toggle="buttons">
@@ -161,10 +210,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="form-control-label">Description</label>
+								<label class="form-control-label">상세 내용</label>
 								<textarea
 									class="form-control form-control-alternative edit-event--description textarea-autosize"
-									placeholder="Event Desctiption"></textarea>
+									placeholder="상세 내용을 입력해주세요."></textarea>
 								<i class="form-group--bar"></i>
 							</div>
 							<input type="hidden" class="edit-event--id">
@@ -172,9 +221,9 @@
 					</div>
 					<!-- Modal footer -->
 					<div class="modal-footer">
-						<button class="btn btn-primary" data-calendar="update">Update</button>
-						<button class="btn btn-danger" data-calendar="delete">Delete</button>
-						<button class="btn btn-link ml-auto" data-dismiss="modal">Close</button>
+						<button class="btn btn-primary" data-calendar="update">수정</button>
+						<button class="btn btn-danger" data-calendar="delete">삭제</button>
+						<button class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -201,6 +250,8 @@
 	src="${pageContext.request.contextPath}/assets/vendor/fullcalendar/dist/fullcalendar.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script 
+	src="${pageContext.request.contextPath }/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Argon JS -->
 <script
 	src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
