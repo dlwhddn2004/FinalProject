@@ -18,6 +18,10 @@ public interface IMemberDAO {
 	public void insertMemberInfo(MemberVO memberInfo) throws Exception;
 //	
 //	public String totalCount(Map<String, String> params) throws Exception;
+
 	
 	
+	
+	// 재석
+	public Map<String, String> selectMemberInfo(Map<String, String> params) throws Exception;
 }

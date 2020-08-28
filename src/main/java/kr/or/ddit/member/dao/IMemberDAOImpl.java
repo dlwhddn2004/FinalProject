@@ -61,4 +61,16 @@ public class IMemberDAOImpl implements IMemberDAO {
 //	public String totalCount(Map<String, String> params) throws Exception {
 //		return (String) client.queryForObject("member.totalCount", params);
 //	}
+
+	
+	
+	
+	
+	// 재석
+	
+	@Override
+	public Map<String, String> selectMemberInfo(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("member.selectMemberInfo", params);
+	}
 }

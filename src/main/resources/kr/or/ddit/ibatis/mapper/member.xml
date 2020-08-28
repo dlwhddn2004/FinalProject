@@ -144,6 +144,16 @@
 	WHERE MEM_ID = #mem_id#
 	  AND MEM_PASS = #mem_pass# 
 </delete>
+
+
+
+
+	<!-- 재석 -->
+	<select id="selectMemberInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_ID = #mem_id#
+	</select>
 </sqlMap>
 
 

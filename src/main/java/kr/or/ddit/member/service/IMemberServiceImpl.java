@@ -60,4 +60,15 @@ public class IMemberServiceImpl implements IMemberService {
 //			return  dao.totalCount(params);
 //	}
 
+	
+	
+	
+	
+	// 재석
+	
+	@Override
+	public Map<String, String> selectMemberInfo(Map<String, String> params)
+			throws Exception {
+		return dao.selectMemberInfo(params);
+	}
 }

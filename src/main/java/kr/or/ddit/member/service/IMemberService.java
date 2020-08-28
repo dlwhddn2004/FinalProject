@@ -20,4 +20,9 @@ public interface IMemberService {
 //	
 //	public String totalCount(Map<String, String> params) throws Exception;
 
+	
+	
+	
+	// 재석
+	public Map<String, String> selectMemberInfo(Map<String, String> params) throws Exception;
 }
