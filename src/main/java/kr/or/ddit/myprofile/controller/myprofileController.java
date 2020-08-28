@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.member.dao.IMemberDAO;
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.vo.MemberVO;
@@ -34,6 +36,12 @@ public class myprofileController {
 	private IMemberService service;
 	@Autowired
 	private IProfileFileService profileService;
+	@Autowired
+	private IMemberDAO dao;
+	
+	  
+
+	
 	
 	 @RequestMapping("myprofile")
 	  public void myprofile(){}
@@ -51,7 +59,7 @@ String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
 return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 }
 @RequestMapping("updateMemberInfo2")	
-public String updateMember2(MemberVO memberInfo, ProfileFileVO profileInfo
+public String updateMember2(MemberVO memberInfo
 		  ) throws Exception{
 this.service.updateMemberInfo(memberInfo);
 
@@ -61,27 +69,23 @@ String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
 
 return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 }
-@RequestMapping(value="/myprofiledelete", method = RequestMethod.GET)
-public String myprofiledelete() throws Exception{
-	return "user/myprofile/myprofiledelete";
-}
 
-@RequestMapping(value = "/memberdelete", method = RequestMethod.POST)
-public String memberDelete(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+@RequestMapping("myprofiledelete")
+public void myprofiledelete(){}
+
+
+	 
+@RequestMapping("deleteMemberInfo")
+public String memberDelete(HttpServletRequest request,
+		HttpServletResponse response) throws Exception {
+
+	String mem_id = request.getParameter("mem_id");
 	
-	// 세션에 있는 member를 가져와 member변수에 넣어줍니다.
-	MemberVO member = (MemberVO) session.getAttribute("mem_id");
-	// 세션에있는 비밀번호
-	String sessionPass = member.getMem_pass();
-	// vo로 들어오는 비밀번호
-	String voPass = vo.getMem_pass();
+	Map<String,String> params = new HashMap<String,String>();
+	params.put("mem_id", mem_id);
 	
-	if(!(sessionPass.equals(voPass))) {
-		rttr.addFlashAttribute("msg", false);
-		return "redirect:/user/myprofile/myprofile.do";
-	}
-	service.memberDelete(vo);
-	session.invalidate();
+	this.service.deleteMemberInfo(params);
+	
 	return "redirect:/user/myprofile/myprofile.do";
 }
 
@@ -93,7 +97,7 @@ ModelAndView modelAndView = new ModelAndView();
 
 params.put("mem_id", mem_id);
 MemberVO memberInfo = this.service.memberInfo(params);
-
+session.invalidate();
 //ModelMap modelMap = new ModelMap();
 modelAndView.addObject("memberInfo", memberInfo);
 
@@ -101,6 +105,9 @@ modelAndView.setViewName("user/myprofile/myprofileidentity");
 return modelAndView;
 
 }
+
+@RequestMapping("myprofilenotice")
+public void myprofilenotice(){}
 }
 
 

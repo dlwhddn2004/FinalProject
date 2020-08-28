@@ -7,25 +7,12 @@
     <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-$(document).ready(function(){
-	// 취소
 
-	$("#submit").on("click", function(){
-		if($("#mem_pass").val()==""){
-			alert("비밀번호를 입력해주세요.");
-			$("#mem_pass").focus();
-			return false;
-		}	
-	});
-	
-		
-	
-})
-/* $(function(){
+ $(function(){
 $('.btn-primary').click(function(){
-	$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/myprofile.do');
+	$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }');
 });
-}); */
+}); 
 </script>
 </head>
 <body>
@@ -65,20 +52,20 @@ $('.btn-primary').click(function(){
               <div class="text-center mb-4">
                 <h3>비밀번호를 입력해주세요.</h3>
               </div>
-              <form action="${pageContext.request.contextPath}/user/myprofile/memberdelete.do" method="post" role="form">
+              <form action="${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do" method="post" role="form">
           <div class="form-group has-feedback">
 					<label class="control-label" for="userId">아이디</label>
 					<input class="form-control" type="text" id="mem_id" name="mem_id" value="${MEMBER_LOGININFO.mem_id}" readonly="readonly"/>
 				</div>
                                 <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative">
+                  <!-- <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
                     <input class="form-control" name="mem_pass" id="mem_pass" placeholder="Password" type="password">
                   </div>
-                </div>
-                  <button type="submit" id="submit" value='탈퇴' class="btn btn-primary mt-2" style="float:right">확인</button>
+                </div> -->
+                  <button type="button" id="btn-primary" value='탈퇴' class="btn btn-primary mt-2" style="float:right">확인</button>
                 <div class="text-center">
                 </div>
                 </div>

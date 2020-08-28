@@ -33,13 +33,11 @@ public class IMemberDAOImpl implements IMemberDAO {
 	}
 //
 	@Override
-	public void memberDelete(MemberVO vo) throws Exception {
-		// MemberVO에 담긴 값들을 보내줍니다.
-		// 그럼 xml에서 memberMapper.memberDelete에 보시면
-		//  #{userId}, #{userPass}에 파라미터값이 매칭이 되겠지요.
-		client.delete("memberMapper.memberDelete", vo);
+	public void deleteMemberInfo(Map<String, String> params) throws Exception {
+		client.update("member.memberDelete",params);
 		
 	}
+
 //
 	@Override
 	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
@@ -56,6 +54,18 @@ public class IMemberDAOImpl implements IMemberDAO {
 	public void insertMemberInfo(MemberVO memberInfo) throws Exception {
 		client.insert("member.insertMember", memberInfo);
 	}
+	
+/*	@Override
+	public String totalCount(Map<String, String> params) throws Exception {
+		return (String) client.queryForObject("member.totalCount", params);
+	}
+	
+	@Override
+	public void memberDeleteSuccess(Map<String, String> params)
+			throws Exception {
+		client.update("member.memberDeleteSuccess", params);
+		
+	}*/
 //
 //	@Override
 //	public String totalCount(Map<String, String> params) throws Exception {

@@ -27,11 +27,11 @@ $(function(){
  display: table; margin-left: auto; margin-right: auto; display: inline-block;
 
 }
- .card-body {
+/*  .card-body {
  display: table; margin-left: auto; margin-right: auto; display: inline-block;   
  
  width : 50%;
- 	height : 50%;
+ 	height : 50%; */
 
 } 
 img{
@@ -131,85 +131,29 @@ img{
             <div class="card-header">
               <div class="align-items-center">
                 <div class="col-8">
-                <h3>계좌관리</h3>
-                  <h3 class="text-muted mb-0">프로젝트 대금을 지급받을 계좌 정보를 등록해주세요.</h3>
+                <h3>알림 설정</h3>
+                  <h3 class="text-muted mb-0">새로운 소식들에 대한 알림을 설정할 수 있습니다.</h3>
+                   <div class="col-lg-3 col-md-6">
+                  
+                    </div>
+                  </button>
                 </div>
              
               </div>
             </div>
             <div class="card-body">
-          <img src="${pageContext.request.contextPath}/assets/img/theme/p2.png" >
-        <!--   <h1>계좌 등록</h1> -->
-              
-                <div class="pl-lg-4">
-                  <div class="cx">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                <h6 class="heading-small text-muted mb-2">계좌 등록</h6>
-                        <label class="form-control-label" for="input-username">은행명</label>
-                         
-                         <select name="mem_bank" class="form-control">
-            <option value="은행선택">은행선택</option>
-            <option value="한국산업은행">한국산업은행</option>                       
-            <option value="기업은행">기업은행</option>                       
-            <option value="국민은행">국민은행</option>                       
-            <option value="우리은행">우리은행</option>                       
-            <option value="신한은행">신한은행</option>                       
-            <option value="하나은행">하나은행</option>                       
-            <option value="농협">농협</option>                       
-            <option value="단위농협">단위농협</option>                       
-            <option value="SC은행">SC은행</option>                       
-            <option value="외환은행">외환은행</option>                       
-            <option value="한국씨티은행">한국씨티은행</option>                       
-            <option value="우체국">우체국</option>                       
-            <option value="경남은행">경남은행</option>                       
-            <option value="광주은행">광주은행</option>                       
-            <option value="대구은행">대구은행</option>                       
-         </select> 
-                      </div>
+        
+       <h3>알림 설정</h3>
+             <button type="button" class="btn-icon-clipboard" data-clipboard-text="mobile-button" title="Copy to clipboard">
+                    <div>
+                      <i class="ni ni-mobile-button"></i>
+                      <span>카카오톡 알림</span> 
+                <button type="button" class="btn-icon-clipboard" data-clipboard-text="email-83" title="Copy to clipboard">
+                    <div>
+                      <i class="ni ni-email-83"></i>
+                      <span>email 알림</span>
                     </div>
-                   
-                  
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-email">예금주</label>
-                        <input type="hidden" name="mem_id" id="">
-                        <input type="text" id="mem_bankname" class="form-control"   value='${memberInfo.mem_bankname }'  name="mem_bankname">
-                      </div>
-                    </div>
-                  <div>
-                  
-                  
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">계좌 번호</label>
-                        <input type="text" id="input-first-name" value="${memberInfo.mem_bankno}" name="mem_bankno" id="mem_bankno2"class="form-control" placeholder="" value="Lucky">
-                      <label class="form-control-label" for="input-username">'-'를 제외하고 입력하시오</label>
-                      </div>
-                    </div>
-                    </form>
-                   
-               
-                
-   
-                    </div>
-                    <br>
-                    </div>
-    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" style="float:right";>등록</button>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-	
-                  </div>
-                         <div>
-						</div>
-                  
-                  
-                 
-                  </div>
-                </div>
+                  </button>
                
               </form>
             </div>
@@ -219,7 +163,8 @@ img{
    </form>
   <!-- Argon Scripts -->
   <!-- Core -->
- 
+  <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
   <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
