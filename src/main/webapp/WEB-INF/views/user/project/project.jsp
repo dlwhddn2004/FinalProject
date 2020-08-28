@@ -64,7 +64,7 @@
 						<c:forEach items="${notProjectList }" var="item">
 							<tr class="table-row-data">
 								<input type="hidden" name="project_no" value="${item.PROJECT_NO }">
-								<th scope="row">
+								<th scope="row" class="click-here-view">
 									<div class="media align-items-center">
 										<a href="#" class="avatar rounded-circle mr-3"> <img
 											alt="Image placeholder" src="/${item.TECH_NAME }.jpg">
@@ -74,11 +74,11 @@
 										</div>
 									</div>
 								</th>
-								<td class="budget">${item.PROJECT_BUDGET } KW</td>
+								<td class="budget click-here-view">${item.PROJECT_BUDGET } KW</td>
 								<td><span class="badge badge-dot mr-4"> <i
 										class="bg-success"></i> <span class="status">진행중</span>
 								</span></td>
-								<td>
+								<td class="click-here-view">
 									<div class="avatar-group">
 										<c:if test="${!empty item.PL }">
 											<a class="avatar avatar-sm rounded-circle"
@@ -146,7 +146,7 @@
 										</c:if>
 									</div>
 								</td>
-								<td>
+								<td class="click-here-view">
 									<div class="d-flex align-items-center">
 										<span class="completion mr-2">${item.AVERAGE }%</span>
 										<div>
@@ -167,7 +167,7 @@
 								</td>
 								<td class="text-right">
 									<div class="dropdown">
-										<button type="button" class="btn btn-sm btn-Secondary"
+										<button type="button" class="btn btn-sm btn-Secondary btn-calendar"
 											data-toggle="tooltip" data-placement="left"
 											title="해당 프로젝트 캘린더로 이동합니다.">
 											<i class="far fa-calendar-alt"></i>
@@ -348,9 +348,15 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
 <script type="text/javascript">
-	$('.project .table-row-data').on('click', function() {
-		const project_no = $(this).find('input[name=project_no]').val();
+	$('.project .click-here-view').on('click', function() {
+		const project_no = $(this).parent().find('input[name=project_no]').val();
 		
 		location.href = '${pageContext.request.contextPath}/user/project/projectView.do?project_no=' + project_no + '&mem_id=${MEMBER_LOGININFO.mem_id }';
+	})
+	
+	$('.project .btn-calendar').on('click', function() {
+		const project_no = $(this).parent().parent().parent().find('input[name=project_no]').val();
+		
+		location.href = '${pageContext.request.contextPath}/user/calendar/calendar.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + project_no;
 	})
 </script>

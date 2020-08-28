@@ -39,11 +39,12 @@ public class CalendarController {
 	@RequestMapping("calendar")
 	public ModelAndView calendar(HttpServletRequest request,
 								 ModelAndView modelAndView,
+								 String mem_id,
 								 String project_no) throws Exception {
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
-		modelAndView.addObject("breadcrumb_first", "프로젝트 관리");
-		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/calendar/calendar.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "캘린더");
 		
 		modelAndView.addObject("project_no", project_no);

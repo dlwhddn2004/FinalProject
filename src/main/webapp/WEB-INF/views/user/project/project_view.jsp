@@ -37,13 +37,13 @@
       <div class="card-body">
         <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
           <li class="nav-item">
-            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;">위험 관리 게시판</button>
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/riskboard/riskboardList.do?project_no=${param.project_no }'">위험 관리 게시판</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;">이슈 게시판</button>
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no=${param.project_no }'">이슈 게시판</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;">보고서 게시판</button>
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/reportboard/reportboardList.do?project_no=${param.project_no }'">보고서 게시판</button>
           </li>
         </ul>
       </div>
