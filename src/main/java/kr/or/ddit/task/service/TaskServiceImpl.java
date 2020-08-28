@@ -27,4 +27,16 @@ public class TaskServiceImpl implements ITaskService {
 			throws Exception {
 		return dao.selectTaskList(params);
 	}
+
+	@Override
+	public Map<String, String> selectAverage(Map<String, String> params)
+			throws Exception {
+		return dao.selectAverage(params);
+	}
+
+	@Override
+	public Map<String, String> selectPersonAverage(Map<String, String> params)
+			throws Exception {
+		return dao.selectPersonAverage(params);
+	}
 }

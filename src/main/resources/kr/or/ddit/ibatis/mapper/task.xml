@@ -39,4 +39,19 @@
 			</isNotEmpty>
 		</dynamic>
 	</select>
+	
+	<select id="selectAverage" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT PROJECT_NO, ROUND((SUM(FUNCTION_PROGRESS) / COUNT(*))) AVERAGE
+		FROM PROJECT_FUNCTION
+		WHERE PROJECT_NO = #project_no#
+		GROUP BY PROJECT_NO
+	</select>
+	
+	<select id="selectPersonAverage" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT PROJECT_NO, ROUND((SUM(FUNCTION_PROGRESS) / COUNT(*))) AVERAGE
+		FROM PROJECT_FUNCTION
+		WHERE PROJECT_NO = #project_no#
+		AND FUNCTION_MANAGER = #mem_id#
+		GROUP BY PROJECT_NO
+	</select>
 </sqlMap>
