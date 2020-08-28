@@ -135,6 +135,9 @@
 		, mem_addr = #mem_addr#
 		, mem_bir = #mem_bir#
 		, mem_tel = #mem_tel#
+		, mem_bank = #mem_bank#
+		, mem_bankno = #mem_bankno#
+		, mem_bankname = #mem_bankname#
 		WHERE mem_id = #mem_id#
 	</update>
 	
@@ -142,7 +145,7 @@
 <delete id="memberDelete">
 	DELETE FROM MEMBER
 	WHERE MEM_ID = #mem_id#
-	  AND MEM_PASS = #mem_pass# 
+	  
 </delete>
 </sqlMap>
 
