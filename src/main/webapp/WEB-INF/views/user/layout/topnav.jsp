@@ -109,7 +109,8 @@
                         <div class="row align-items-center">
                            <div class="col-auto">
                               <!-- Avatar -->
-                              <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                             <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                             
                            </div>
                            <div class="col ml--2">
                               <div class="d-flex justify-content-between align-items-center">
@@ -237,8 +238,9 @@
                role="button" data-toggle="dropdown" aria-haspopup="true"
                aria-expanded="false">
                   <div class="media align-items-center">
-                     <span class="avatar avatar-sm rounded-circle"> <img
-                        alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-4.jpg">
+                     <span class="avatar avatar-sm rounded-circle">
+                   <%--  <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-4.jpg"> --%>
+                              <img id = "ImgHeader" alt="Image placeholder" src="/team-4.jpg" class="avatar rounded-circle">
                      </span>
                      <div class="media-body  ml-2  d-none d-lg-block">
                         <span class="mb-0 text-sm  font-weight-bold">${MEMBER_LOGININFO.mem_name }</span>
@@ -505,8 +507,28 @@
             $('#btnLogout').on('click', function() {
 				$(location).attr('href', '${pageContext.request.contextPath}/user/member/logout.do');
 			});
+           
             
             
+    		const mem_id = "${MEMBER_LOGININFO.mem_id}";
+//    		let time = setInterval(function () {
+    			 	 $.ajax({
+      			    	type:'POST',
+      				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
+      				 dataType:'json',
+      				 data: {mem_id : mem_id},
+      				 success : function(result){
+      					 console.log(result);
+      					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
+      					 console.log(imgHeader);
+      					$('#ImgHeader').attr('src',imgHeader);
+      				 },
+      				 error: function(xhr,status,error){
+      					 alert(error);
+      				 }
+      			 });
+//    	       },3000)
+    		
             
             
 		});

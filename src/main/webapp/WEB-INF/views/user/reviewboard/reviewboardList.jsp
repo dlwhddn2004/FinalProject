@@ -57,6 +57,7 @@
 	text-indent: -9999px;
 }
 .starR.on{background-position:0 0;}
+
 </style>
 
 	<div class="row">
@@ -66,58 +67,58 @@
 					<h3 class="mb-0">이용후기 게시판</h3>
 					<p class="text-sm mb-0">커넥터를 이용한 파트너스가 직접남긴 후기입니다</p>
 				</div>
-	        	<div class="row card-wrapper carousel slide" style="padding: 15px;">
-		           	<c:forEach items="${reviewboardList }" var="item" varStatus="status">
-		            	<div class="col-lg-4">
-		                	<!-- Contact card -->
-			                <div class="card">
-			                    	<!-- Card body -->
-			                    	<div class="card-body">
-			                        	<div class="row">
-			                            	<div class="col-auto">
-			                                	<!-- Avatar -->
-			                                	<a href="#" class="avatar avatar-xl rounded-circle">
-			                                    	<img alt="Image placeholder" src="/${item.PROFILE_SAVENAME }.${item.PROFILE_CONTENTTYPE }">
-			                                	</a>
-				                                <h4 class="mb-0 text-sm text-muted mb-0 text-center my-sm-2">
-														${item.MEM_ID }
-				                                </h4>
-			                           		 </div>
-			                            	<div class="col ml--2">
-				                                <h4 class="mb-0 text-sm mb-0">${item.REVIEW_TITLE }</h4>
-				                                <!-- <span class="text-success">●</span> -->
-												<div class="form-group my-sm-2">
-		                    						<div class="starRev">
-		                   							  	 <c:forEach begin="1" end="${item.REVIEW_SCORE}" step="1" varStatus="status">
-		                    							  	<span class="starR on">별</span>
-		                    							 </c:forEach>
-		                    							 <c:forEach begin="1" end="${5 - item.REVIEW_SCORE }" step="1">
-		                    							    <span class="starR">별</span>
-		                    							 </c:forEach>
-							  						</div>
-												</div>
-				                                <small>${item.REVIEW_CONTENT }</small>
-			                            	</div>
-			                            	<c:if test="${MEMBER_LOGININFO.mem_id == item.MEM_ID }">
-					                            <div class="col-auto">
-					                            	<a class="table-action table-action-delete process-first" data-toggle="tooltip" data-original-title="게시글을 삭제합니다." onclick="deleteReview(this);">
-											      		<input type="hidden" name="review_no" value="${item.REVIEW_NO }">
-											        	<i class="fas fa-trash"></i>
-											      	</a>
-					                            </div>
-				                           </c:if>
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
-		            </c:forEach>
-	        	</div>
+	        	<div class="row card-wrapper" id="slider-example" style="padding: 15px;">
+							<c:forEach items="${reviewboardList }" var="item" varStatus="status">
+			            	<div class="col-lg-4">
+			                	<!-- Contact card -->
+				                <div class="card">
+				                    	<!-- Card body -->
+				                    	<div class="card-body">
+				                        	<div class="row">
+				                            	<div class="col-auto">
+				                                	<!-- Avatar -->
+				                                	<a href="#" class="avatar avatar-xl rounded-circle">
+				                                    	<img alt="Image placeholder" src="/${item.PROFILE_SAVENAME }.${item.PROFILE_CONTENTTYPE }">
+				                                	</a>
+					                                <h4 class="mb-0 text-sm text-muted mb-0 text-center my-sm-2">
+															${item.MEM_ID }
+					                                </h4>
+				                           		 </div>
+				                            	<div class="col ml--2">
+					                                <h4 class="mb-0 text-sm mb-0">${item.REVIEW_TITLE }</h4>
+					                                <!-- <span class="text-success">●</span> -->
+													<div class="form-group my-sm-2">
+			                    						<div class="starRev">
+			                   							  	 <c:forEach begin="1" end="${item.REVIEW_SCORE}" step="1" varStatus="status">
+			                    							  	<span class="starR on">별</span>
+			                    							 </c:forEach>
+			                    							 <c:forEach begin="1" end="${5 - item.REVIEW_SCORE }" step="1">
+			                    							    <span class="starR">별</span>
+			                    							 </c:forEach>
+								  						</div>
+													</div>
+					                                <small>${item.REVIEW_CONTENT }</small>
+				                            	</div>
+				                            	<c:if test="${MEMBER_LOGININFO.mem_id == item.MEM_ID }">
+						                            <div class="col-auto">
+						                            	<a class="table-action table-action-delete process-first" data-toggle="tooltip" data-original-title="게시글을 삭제합니다." onclick="deleteReview(this);">
+												      		<input type="hidden" name="review_no" value="${item.REVIEW_NO }">
+												        	<i class="fas fa-trash"></i>
+												      	</a>
+						                            </div>
+					                           </c:if>
+				                        </div>
+				                    </div>
+				                </div>
+				            </div>
+		            	</c:forEach>                		
+                	</div>
 	        	<div align="right" style="margin: 10px 15px 15px 0px;">
 					<button type="button" class="btn btn-primary btn-write">등록</button>
 				</div>
+	        	</div>
 			</div>
 		</div>
-	</div>
 
 
 	<!-- Argon Scripts -->
@@ -194,4 +195,6 @@
 		  }
 		});
 	}
+	
+});
 </script>

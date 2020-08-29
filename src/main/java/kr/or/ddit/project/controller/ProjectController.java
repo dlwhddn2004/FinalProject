@@ -248,4 +248,17 @@ public class ProjectController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("projectForm")
+	public ModelAndView projectForm(HttpServletRequest request,
+									ModelAndView modelAndView) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+//		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+
+		modelAndView.setViewName("user/project/projectForm");
+		return modelAndView;
+	}
 }
