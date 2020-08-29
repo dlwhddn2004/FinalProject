@@ -230,7 +230,7 @@ public class ProjectController {
 			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("AA", String.valueOf(memberInfo.get("MEM_NAME")));
+			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
 			projectInfo.put("AA_WORKSTATUS", String.valueOf(memberInfo.get("MEM_WORKSTATUS")));
 			if (personAvg != null) {
 				projectInfo.put("AA_AVG", String.valueOf(personAvg.get("AVERAGE")));
