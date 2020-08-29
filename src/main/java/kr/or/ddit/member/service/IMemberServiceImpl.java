@@ -35,8 +35,8 @@ public class IMemberServiceImpl implements IMemberService {
 //
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
 	@Override
-	public void memberDelete(MemberVO vo) throws Exception {
-		dao.memberDelete(vo);
+	public void deleteMemberInfo(Map<String, String> params) throws Exception{
+			dao.deleteMemberInfo(params);
 	}
 //	
 	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
@@ -53,6 +53,24 @@ public class IMemberServiceImpl implements IMemberService {
 			dao.insertMemberInfo(memberInfo);
 
 	}
+	/*@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public String totalCount(Map<String, String> params) throws Exception{
+		
+	
+		return dao.totalCount(params);
+		
+	}
+	
+	
+	@Transactional(propagation=Propagation.REQUIRED,rollbackFor={Exception.class})
+	@Override
+	public void memberDeleteSuccess(Map<String, String> params)throws Exception {
+		
+		
+			dao.memberDeleteSuccess(params);
+	}
+*/
 	
 //	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 //	@Override
@@ -60,4 +78,15 @@ public class IMemberServiceImpl implements IMemberService {
 //			return  dao.totalCount(params);
 //	}
 
+	
+	
+	
+	
+	// 재석
+	
+	@Override
+	public Map<String, String> selectMemberInfo(Map<String, String> params)
+			throws Exception {
+		return dao.selectMemberInfo(params);
+	}
 }

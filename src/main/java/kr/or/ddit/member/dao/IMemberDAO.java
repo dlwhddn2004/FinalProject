@@ -1,4 +1,4 @@
-package kr.or.ddit.member.dao;
+﻿package kr.or.ddit.member.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -11,13 +11,19 @@ public interface IMemberDAO {
 
  public List<MemberVO> memberList(Map<String, String> params) throws Exception;
 //
-	public void memberDelete(MemberVO vo)throws Exception;
+ public void deleteMemberInfo(Map<String, String> params) throws Exception;
 //
 	public void updateMemberInfo(MemberVO memberInfo) throws Exception;
 //
 	public void insertMemberInfo(MemberVO memberInfo) throws Exception;
 //	
 //	public String totalCount(Map<String, String> params) throws Exception;
+
+/*public void memberDeleteSuccess(Map<String, String> params)throws Exception;
+	
+	public String totalCount(Map<String, String> params) throws Exception;*/
 	
 	
+	// 재석
+	public Map<String, String> selectMemberInfo(Map<String, String> params) throws Exception;
 }
