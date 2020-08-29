@@ -13,8 +13,45 @@ public class MemberVO {
 	private String mem_businessno;
 	private String mem_identityauthentication;
 	private String mem_bir;
+	private String mem_bankname;
+	private String mem_bank;
+	
+	private String mem_del;
+	private String mem_auth;
+	private String mem_x;
 	
 	
+
+	public String getMem_del() {
+		return mem_del;
+	}
+	public void setMem_del(String mem_del) {
+		this.mem_del = mem_del;
+	}
+	public String getMem_auth() {
+		return mem_auth;
+	}
+	public void setMem_auth(String mem_auth) {
+		this.mem_auth = mem_auth;
+	}
+	public String getMem_x() {
+		return mem_x;
+	}
+	public void setMem_x(String mem_x) {
+		this.mem_x = mem_x;
+	}
+	public String getMem_bank() {
+		return mem_bank;
+	}
+	public void setMem_bank(String mem_bank) {
+		this.mem_bank = mem_bank;
+	}
+	public String getMem_bankname() {
+		return mem_bankname;
+	}
+	public void setMem_bankname(String mem_bankname) {
+		this.mem_bankname = mem_bankname;
+	}
 	public String getMem_bir() {
 		return mem_bir;
 	}

@@ -1,7 +1,9 @@
 package kr.or.ddit.profile_file.dao;
 
+import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.FileItemVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,16 @@ public class ProfileFileDaoImpl implements IProfileFileDao {
 	public void insertProfileFileInfo(ProfileFileVO profileInfo)
 			throws Exception {
 		client.insert("profile_file.insertProfileFile", profileInfo);
+	}
+
+	@Override
+	public void insertMypageFileInfo(List<ProfileFileVO> fileitemList)
+			throws Exception {
+		
+		for (ProfileFileVO fileitem : fileitemList) {
+			client.update("profile_file.insertMypageFileInfo", fileitem);
+		}
+		
 	}
 	
 }

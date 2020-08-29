@@ -31,6 +31,10 @@
 			</isNotEmpty>		
 		</dynamic>
 	</sql> -->
+	
+	 <select id="memberList" resultClass="memberVO" parameterClass="map">
+		<include refid="selectAll"/>
+	</select>
 
 	<select id="memberInfo" parameterClass="map" resultClass="memberVO">
 		<include refid="selectAll" />
@@ -131,8 +135,28 @@
 		, mem_addr = #mem_addr#
 		, mem_bir = #mem_bir#
 		, mem_tel = #mem_tel#
+		, mem_bank = #mem_bank#
+		, mem_bankno = #mem_bankno#
+		, mem_bankname = #mem_bankname#
 		WHERE mem_id = #mem_id#
 	</update>
+	
+<!-- 회원탈퇴 -->
+<delete id="memberDelete">
+	DELETE FROM MEMBER
+	WHERE MEM_ID = #mem_id#
+	  
+</delete>
+
+
+
+
+	<!-- 재석 -->
+	<select id="selectMemberInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM MEMBER
+		WHERE MEM_ID = #mem_id#
+	</select>
 </sqlMap>
 
 

@@ -26,17 +26,18 @@ public class IMemberDAOImpl implements IMemberDAO {
 		return (MemberVO) client.queryForObject("member.memberInfo", params);
 	}
 
-//	@Override
-//	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
+	@Override
+	public List<MemberVO> memberList(Map<String, String> params) throws Exception {
+
+		return client.queryForList("member.memberList", params);
+	}
 //
-//		return client.queryForList("member.memberList", params);
-//	}
-//
-//	@Override
-//	public void deleteMemberInfo(Map<String, String> params) throws Exception {
-//		
-//		client.update("member.deleteMember", params);
-//	}
+	@Override
+	public void deleteMemberInfo(Map<String, String> params) throws Exception {
+		client.update("member.memberDelete",params);
+		
+	}
+
 //
 	@Override
 	public void updateMemberInfo(MemberVO memberInfo) throws Exception {
@@ -53,9 +54,33 @@ public class IMemberDAOImpl implements IMemberDAO {
 	public void insertMemberInfo(MemberVO memberInfo) throws Exception {
 		client.insert("member.insertMember", memberInfo);
 	}
+	
+/*	@Override
+	public String totalCount(Map<String, String> params) throws Exception {
+		return (String) client.queryForObject("member.totalCount", params);
+	}
+	
+	@Override
+	public void memberDeleteSuccess(Map<String, String> params)
+			throws Exception {
+		client.update("member.memberDeleteSuccess", params);
+		
+	}*/
 //
 //	@Override
 //	public String totalCount(Map<String, String> params) throws Exception {
 //		return (String) client.queryForObject("member.totalCount", params);
 //	}
+
+	
+	
+	
+	
+	// 재석
+	
+	@Override
+	public Map<String, String> selectMemberInfo(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("member.selectMemberInfo", params);
+	}
 }

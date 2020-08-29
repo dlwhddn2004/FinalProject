@@ -10,4 +10,6 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface ITaskDao {
 	public List<Map<String, String>> selectTaskList(Map<String, String> params) throws Exception;
+	public Map<String, String> selectAverage(Map<String, String> params) throws Exception;
+	public Map<String, String> selectPersonAverage(Map<String, String> params) throws Exception;
 }

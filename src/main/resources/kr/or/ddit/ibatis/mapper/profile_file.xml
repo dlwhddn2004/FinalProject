@@ -18,6 +18,17 @@
 		VALUES (PROFILE_FILE_SEQ.nextval,
         		#mem_id#) 
 	</insert>
+	
+	<update id="insertMypageFileInfo" parameterClass="profileFileVO">
+				update PROFILE_FILE set 
+					profile_savename = #profile_savename#,
+					profile_realname= #profile_realname#,
+					profile_contenttype= #profile_contenttype#,
+					profile_size= #profile_size#,
+					profile_regdate= sysdate,
+					profile_downhit= #profile_downhit#
+				where mem_id = #mem_id#
+	</update>
 </sqlMap>
 
  

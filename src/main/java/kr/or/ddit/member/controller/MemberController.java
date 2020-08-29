@@ -100,6 +100,7 @@ public class MemberController {
 		
 		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
 	}
+
 }
 
 

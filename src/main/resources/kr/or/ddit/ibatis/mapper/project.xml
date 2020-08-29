@@ -66,29 +66,117 @@
 	</select>
 	
 	<select id="selectNotProjectListById" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
-		FROM PROJECT, PROJECT_PARTICIPANTS
+		SELECT PROJECT.PROJECT_NO PROJECT_NO,
+		       MEM_ID,
+		       PROJECT_PROCESSSTATUS,
+		       PROJECT_PROCESSCATEGORY,
+		       PROJECT_CONSULLTING,
+		       PROJECT_READYSTATUS,
+		       PROJECT_CURRENTSTATUS,
+		       PROJECT_BUSINESSINFO,
+		       PROJECT_REFERENCE,
+		       PROJECT_NOTE,
+		       PROJECT_TECHNOLOGIES,
+		       PROJECT_BUDGET,
+		       PROJECT_STARTDATE,
+		       PROJECT_DURATION,
+		       PROJECT_ENDSTATUS,
+		       PROJECT_PREMEETING,
+		       PROJECT_PROCEEDINGMEETING,
+		       PROJECT_MEETINGCYCLE,
+		       PROJECT_CLIENTLOCATION,
+		       PROJECT_APPLICATIONDEADLINE,
+		       PROJECT_SUPPORTSTATUS,
+		       PROJECT_ESSENTIALREQUIREMENTS,
+		       PROJECT_MANPOWER,
+		       PROJECT_MANAGEMENTEXPERIENCE,
+		       PROJECT_FUTUREPLANS,
+		       PROJECT_PRIORITY,
+		       PROJECT_ENDDATE,
+		       PROJECT_TITLE,
+		       PROJECT_CLIENTINFORMATION,
+		       PROJECT_CLIENTINTRODUCE,
+		       PL,
+		       DA,
+		       UA,
+		       TA,
+		       AA,
+		       PL_PIC_SAVENAME,
+		       DA_PIC_SAVENAME,
+		       UA_PIC_SAVENAME,
+		       TA_PIC_SAVENAME,
+		       AA_PIC_SAVENAME,
+		       TECH_NO,
+		       TECH_NAME
+		FROM PROJECT,
+		     PROJECT_PARTICIPANTS,
+		     TECHNOLOGIES
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
-		AND PROJECT_ENDSTATUS = 'N'
-		AND (MEM_ID = #mem_id#
-		OR PL = #mem_id#
-		OR DA = #mem_id#
-		OR UA = #mem_id#
-		OR TA = #mem_id#
-		OR AA = #mem_id#)
+		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
+		  AND PROJECT_ENDSTATUS = 'N'
+		  AND (MEM_ID = #mem_id#
+		    OR PL = #mem_id#
+		    OR DA = #mem_id#
+		    OR UA = #mem_id#
+		    OR TA = #mem_id#
+		    OR AA = #mem_id#)
 	</select>
 	
 	<select id="selectFinishProjectListById" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
-		FROM PROJECT, PROJECT_PARTICIPANTS
+		SELECT PROJECT.PROJECT_NO PROJECT_NO,
+		       MEM_ID,
+		       PROJECT_PROCESSSTATUS,
+		       PROJECT_PROCESSCATEGORY,
+		       PROJECT_CONSULLTING,
+		       PROJECT_READYSTATUS,
+		       PROJECT_CURRENTSTATUS,
+		       PROJECT_BUSINESSINFO,
+		       PROJECT_REFERENCE,
+		       PROJECT_NOTE,
+		       PROJECT_TECHNOLOGIES,
+		       PROJECT_BUDGET,
+		       PROJECT_STARTDATE,
+		       PROJECT_DURATION,
+		       PROJECT_ENDSTATUS,
+		       PROJECT_PREMEETING,
+		       PROJECT_PROCEEDINGMEETING,
+		       PROJECT_MEETINGCYCLE,
+		       PROJECT_CLIENTLOCATION,
+		       PROJECT_APPLICATIONDEADLINE,
+		       PROJECT_SUPPORTSTATUS,
+		       PROJECT_ESSENTIALREQUIREMENTS,
+		       PROJECT_MANPOWER,
+		       PROJECT_MANAGEMENTEXPERIENCE,
+		       PROJECT_FUTUREPLANS,
+		       PROJECT_PRIORITY,
+		       PROJECT_ENDDATE,
+		       PROJECT_TITLE,
+		       PROJECT_CLIENTINFORMATION,
+		       PROJECT_CLIENTINTRODUCE,
+		       PL,
+		       DA,
+		       UA,
+		       TA,
+		       AA,
+		       PL_PIC_SAVENAME,
+		       DA_PIC_SAVENAME,
+		       UA_PIC_SAVENAME,
+		       TA_PIC_SAVENAME,
+		       AA_PIC_SAVENAME,
+		       TECH_NO,
+		       TECH_NAME
+		FROM PROJECT,
+		     PROJECT_PARTICIPANTS,
+		     TECHNOLOGIES
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
-		AND PROJECT_ENDSTATUS = 'Y'
-		AND (MEM_ID = #mem_id#
-		OR PL = #mem_id#
-		OR DA = #mem_id#
-		OR UA = #mem_id#
-		OR TA = #mem_id#
-		OR AA = #mem_id#)
+		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
+		  AND PROJECT_ENDSTATUS = 'Y'
+		  AND (MEM_ID = #mem_id#
+		    OR PL = #mem_id#
+		    OR DA = #mem_id#
+		    OR UA = #mem_id#
+		    OR TA = #mem_id#
+		    OR AA = #mem_id#)
 	</select>
 	
 	<select id="selectTodo" parameterClass="map" resultClass="java.util.HashMap">
