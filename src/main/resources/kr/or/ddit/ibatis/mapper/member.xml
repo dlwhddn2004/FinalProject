@@ -153,9 +153,33 @@
 
 	<!-- 재석 -->
 	<select id="selectMemberInfo" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT *
-		FROM MEMBER
-		WHERE MEM_ID = #mem_id#
+		SELECT MEMBER.MEM_ID MEM_ID,
+		       CATEGORY_NO,
+		       NOTIFICATION_NO,
+		       MEM_PASS,
+		       MEM_NAME,
+		       MEM_MAIL,
+		       MEM_ADDR,
+		       MEM_TEL,
+		       MEM_BANKNO,
+		       MEM_BUSINESSNO,
+		       MEM_IDENTITYAUTHENTICATION,
+		       MEM_BIR,
+		       MEM_BANKNAME,
+		       MEM_BANK,
+		       MEM_WORKSTATUS,
+		       MEM_NOTICE,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT
+		FROM MEMBER,
+		     PROFILE_FILE
+		WHERE MEMBER.MEM_ID = PROFILE_FILE.MEM_ID
+		AND MEMBER.MEM_ID = #mem_id#
 	</select>
 </sqlMap>
 

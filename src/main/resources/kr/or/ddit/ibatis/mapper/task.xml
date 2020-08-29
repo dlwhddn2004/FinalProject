@@ -54,4 +54,29 @@
 		AND FUNCTION_MANAGER = #mem_id#
 		GROUP BY PROJECT_NO
 	</select>
+	
+	<insert id="insertTask" parameterClass="map">
+		<selectKey keyProperty="project_function_no" resultClass="String">
+			SELECT PROJECT_FUNCTION_SEQ.nextval
+			FROM DUAL
+		</selectKey>
+		INSERT INTO PROJECT_FUNCTION (PROJECT_FUNCTION_NO,
+		                              PROJECT_NO,
+		                              FUNCTION_NAME,
+		                              FUNCTION_MANAGER,
+		                              FUNCTION_PROGRESS,
+		                              FUNCTION_STATUS,
+		                              FUNCTION_REGDATE,
+		                              FUNCTION_ENDDATE,
+		                              FUNCTION_PRIORITY) 
+		VALUES (#project_function_no#,
+		        #project_no#,
+		        #function_name#,
+		        #function_manager#,
+		        #function_progress#,
+		        #function_status#,
+		        #function_regdate#,
+		        #function_enddate#,
+		        #function_priority#) 
+	</insert>
 </sqlMap>
