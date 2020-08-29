@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-    <meta name="author" content="Creative Tim">
-    <title>view</title>
+
     <!-- Favicon -->
     <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
     <!-- Fonts -->
@@ -36,11 +29,104 @@
             justify-content: center;
             align-items: center;
         }
+		        *,
+		*::after,
+		*::before {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+		}
+		
+		::-webkit-input-placeholder {
+		    opacity: 0.8;
+		    color: white;
+		}
+		
+		::-moz-placeholder {
+		    opacity: 0.8;
+		    color: white;
+		}
+		
+		:-moz-placeholder {
+		    opacity: 0.8;
+		    color: white;
+		}
+		
+		:-ms-input-placeholder {
+		    opacity: 0.8;
+		    color: white;
+		}
+		
+		body {
+				font-size: 20px;
+				line-height: 1.4;
+				color: rgba(255,255,255,0.8);
+				background: #1d1f20;
+		}
+		
+		.preview {
+				display: block;
+				width: 200px;
+				height: 200px;
+				margin: 20px auto;
+				box-shadow: 0px 0px 0px 2px rgba(33, 122, 105, 1);
+				border-radius: 50%;
+				overflow: hidden;
+		}
+		
+		.file-upload-wrapper {
+				position: relative;
+				z-index: 5;
+				display: block;
+				width: 250px;
+				height: 30px;
+				margin: 25px auto;
+				border-radius: 0px;
+				border-bottom: 1px dashed rgba(33, 122, 105, 1);
+		}
+		
+		.file-upload-native,
+		.file-upload-text {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: block;
+				width: 100%;
+				height: 100%;
+				cursor: pointer;
+				color: bule;
+		}
+		
+		input[type="file"]::-webkit-file-upload-button {
+				cursor: pointer;
+		}
+		
+		.file-upload-native:focus,
+		.file-upload-text:focus {
+				outline: none;
+		}
+		
+		.file-upload-text {
+				z-index: 10;
+				padding: 5px 15px 8px;
+				overflow: hidden;
+				font-size: 14px;
+				line-height: 1.4;
+				cursor: pointer;
+				text-align: center;
+				letter-spacing: 1px;
+				text-overflow: ellipsis;
+				border: 0;
+				background-color: transparent;
+		}
+		
+		.file-upload-native {
+				z-index: 15;
+				opacity: 0;
+		}
     </style>
-</head>
 
 
-<body>
     <!-- Page content -->
     <!--왼쪽 사진 넣기-->
 
@@ -51,18 +137,14 @@
         <!--* Card init *-->
         <div class="card chart-info">
             <!-- Card header -->
-            <div class="card-header test1" style="display: flex; justify-content: space-around">
-                <!-- Surtitle -->
-                <h6 class="surtitle">활동 요약 정보</h6>
-                <!-- Title -->
-
-                <div class="card-mypage-info" style="display: flex">
-                    <h1 class="h1 mb-0" style="margin: 10px 10px 10px 10px;">${MEMBER_LOGININFO.mem_id }</h1>
+            <div class="card-header test1">
+            	<h6 class="surtitle">활동 요약정보</h6>
+            	<div style="display: flex; justify-content: space-around">
+                <div class="perfect-center card-mypage-info">
+                    <h1 class="h1 mb-0" style="display: inline-block; margin: 0px 0px 20px 0px;">${MEMBER_LOGININFO.mem_id }</h1>
                     <!--<a class="btn btn-success" style="width: 100px; margin-left: 10px;">활동가능</a>-->
-                    <div style=" margin-top: 25px;">
                         <span class="btn-inner--text btn-comment-cancel"
-                              style="background: #2dce89; color: white; border-radius: 5px 5px 5px 5px; font-weight: bold; width: 200px;">활동가능</span>
-                    </div>
+                              style="background: #2dce89; color: white; border-radius: 5px 5px 5px 5px; font-weight: bold; margin: 0px 0px 0px 15px;">활동가능</span>
                 </div>
 
                 <div class="card-body">
@@ -84,6 +166,7 @@
 
                     </a>
                 </div>
+                </div>
 
 
             </div>
@@ -95,53 +178,147 @@
                     <div class="perfect-center">
                         <h3 class="card-title mb-3 font-test">대표 프로필 사진</h3>
                     </div>
-                    <div class="dropzone dropzone-single" data-toggle="dropzone" data-dropzone-url="http://">
-                        <div class="fallback">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="dropzoneBasicUpload" name="files">
-                                <label class="custom-file-label" for="dropzoneBasicUpload">Choose file</label>
-                            </div>
-                        </div>
-
-                        <div class="dz-preview dz-preview-single">
-                            <div class="dz-preview-cover">
-                                <img class="dz-preview-img" src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg" alt="..."
-                                     data-dz-thumbnail>
-                            </div>
-                        </div>
+                    <div  style="width: 300px; height: 250px; border : 3px dotted aliceblue;">
+                    	<c:if test="${profileFileInfo.profile_savename eq 'basicprofile'}">
+                    		<img class="dz-preview-img" src="/basicprofile.png" alt="...">
+                    	</c:if>
+                    	<c:if test="${profileFileInfo.profile_savename ne 'basicprofile'}">
+                    		<img class="dz-preview-img" src="/${profileFileInfo.profile_savename}" alt="...">
+                    	</c:if>
                     </div>
+                    
                 </div>
 
                 <div class="aboutMe">
                     <div class="aboutMe-info" style="width: 600px;">
                         <div class="perfect-center">
-                            <h3 class="card-title mb-3 font-test" style="position: center;">자기 소개</h3>
+                            <h3 class="card-title mb-3 font-test" style="margin-left: 20%">자기 소개</h3>
                         </div>
-                        <img src="/MYPAGE_ABOUTME.PNG" style="width: 800px;" name="abuutImg">
+                        <!-- 자기소개가 없으면 이미지 보여주기 -->
+                        <c:if test="${empty mypageMemberInfo.mypage_aboutme }">
+                      <img src="/MYPAGE_ABOUTME.PNG" style="width: 800px;" name="abuutImg">
+                        </c:if>
+                        <c:if test="${!empty mypageMemberInfo.mypage_aboutme }">
+                        	<div>
+                        <textarea class="form-control mypage_aboutme" id="mypage_aboutmeInfo" rows="6" name="mypage_aboutme"
+          									 disabled="disabled"></textarea>
+                        	</div>
+                        </c:if>
+<!--                    모달버튼 클릭하면 모달창 나오기-->
+		 <!-- 신규일 경우 -->
+						<c:if test="${empty mypageMemberInfo.mypage_aboutme }">
+					        <div class="perfect-center" style="display: flex; justify-content: flex-end";>
+                            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#modal-form" style="margin : 15px 0px 0px 0px;">
+                                <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+                                <span class="btn-inner--text">업데이트하기</span>
+                            </button>
+                            <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                <div class="modal-dialog modal- modal-dialog-centered modal-sm modal-test" role="document">
+                                    <div class="modal-content">
 
-                        <div class="write-area">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="mypage_aboutme" placeholder="내용을 입력해주세요" style="width: 600px;"></textarea>
-                            <div class="perfect-center">
-                                <button class="btn btn-primary about-insert" style="margin-top: 10px;" onclick="insertAboutMe();">등록</button>
-                                <button class="btn btn-primary about-cansle" style="margin-top: 10px;">취소</button>
+                                        <div class="modal-body p-0">
+                                            <div class="card bg-secondary border-0 mb-0">
+                                                <div class="card-body px-lg-5 py-lg-5">
+                                                    	 <div class="text-center text-muted mb-4">
+                                                            <small>대표 프로필 사진</small>
+                                                        </div>
+                                                    <form role="form" class="my-about-form" action="${pageContext.request.contextPath}/user/mypage/insertMyabout.do" method="post"  enctype="multipart/form-data">
+                                                    	<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }">
+                                                    	<input type="hidden" name="category_no" value="${MEMBER_LOGININFO.category_no }">
+
+                                                        <div class="form-group">
+															<div class="preview img-wrapper"></div>
+															<div class="file-upload-wrapper">
+																	<input type="file" name="files" class="file-upload-native" accept="image/*" />
+																	<input type="text" disabled placeholder="upload image" class="file-upload-text" />
+															</div>                                                          
+                                                        </div>
+                                                       	<div class="text-center text-muted mb-4">
+                                                        <small>자기 소개</small>
+                                                    	</div>
+                                                        <div class="form-group mb-3">
+                                                            <div class="input-group input-group-merge input-group-alternative">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="far fa-file-alt"></i></span>
+                                                                </div>
+                                                                <textarea class="form-control mypage_aboutme" id="exampleFormControlTextarea1" rows="6" name="mypage_aboutme"
+                                                                          placeholder="내용을 작성해주세요" required></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-center">
+                                                        	 <button type="submit" class="btn btn-success my-4 insertAbout" name="insertMypageInfo">저장하기</button>
+                                                            <button type="button" class="btn btn-warning my-4" data-dismiss="modal">취소</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+						</c:if>
+						
+						 <!-- 신규 유저 아닐 경우 -->
+						<c:if test="${!empty mypageMemberInfo.mypage_aboutme }">
+						                        <div class="perfect-center" style="display: flex; justify-content: flex-end";>
+                            <button class="btn btn-icon btn-primary" type="button" data-toggle="modal" data-target="#modal-form2" style="margin : 15px 0px 0px 0px;">
+                                <span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+                                <span class="btn-inner--text">업데이트하기</span>
+                            </button>
+                            <div class="modal fade" id="modal-form2" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                <div class="modal-dialog modal- modal-dialog-centered modal-sm modal-test" role="document">
+                                    <div class="modal-content">
 
+                                        <div class="modal-body p-0">
+                                            <div class="card bg-secondary border-0 mb-0">
+                                                <div class="card-body px-lg-5 py-lg-5">
+                                                    	 <div class="text-center text-muted mb-4">
+                                                            <small>대표 프로필 사진</small>
+                                                        </div>
+                                                    <form role="form" class="my-about-form" action="${pageContext.request.contextPath}/user/mypage/modifyMyabout.do" method="post"  enctype="multipart/form-data">
+                                                    	<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }">
+                                                    	<input type="hidden" name="category_no" value="${MEMBER_LOGININFO.category_no }">
 
-                        <div class="write-area-update">
-                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" name="mypage_aboutme" placeholder="내용을 입력해주세요" style="width: 600px;"></textarea>
-                            <div class="perfect-center">
-                                <button class="btn btn-primary about-update" style="margin-top: 10px;" >수정</button>
-                                <button class="btn btn-primary about-cansle" style="margin-top: 10px;">취소</button>
+                                                        <div class="form-group">
+															<div class="preview img-wrapper"></div>
+															<div class="file-upload-wrapper">
+																	<input type="file" name="files" class="file-upload-native" accept="image/*" />
+																	<input type="text" disabled placeholder="upload image" class="file-upload-text" />
+															</div>                                                          
+                                                        </div>
+                                                       	<div class="text-center text-muted mb-4">
+                                                        <small>자기 소개</small>
+                                                    	</div>
+                                                        <div class="form-group mb-3">
+                                                            <div class="input-group input-group-merge input-group-alternative">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="far fa-file-alt"></i></span>
+                                                                </div>
+                                                                <textarea class="form-control mypage_aboutme" id="exampleFormControlTextarea2" rows="6" name="mypage_aboutme"
+                                                                          placeholder="내용을 작성해주세요" required></textarea>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="text-center">
+                                                             <button type="submit" class="btn btn-info my-3 updateAbout" name="updateMypageInfo">수정하기</button>
+                                                            <button type="button" class="btn btn-warning my-4" data-dismiss="modal">취소</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+						</c:if>
 
-
-                        <div class="perfect-center" style="display: flex; justify-content: flex-end";>
-                            <button class="btn btn-primary mypage-about" style="margin-top: 10px;">업데이트 하기</button>
-                        </div>
+<!--                        모달종료-->
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -198,34 +375,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6">
-                <div class="copyright text-center  text-lg-left  text-muted">
-                    &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative
-                    Tim</a>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
-                            Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </footer>
 </div>
 </div>
 
@@ -241,80 +390,11 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/chart.js/dist/Chart.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/chart.js/dist/Chart.extension.js"></script>
 <!-- Argon JS -->
-<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
+<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.3.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
-<script>
-        /* 자기소개 수정 */
-    $('.write-area-update').hide();
-        /*자기소개 등록*/
-    $('.write-area').hide();
-
-    $(function (){
-        $('.mypage-about').on('click',function (){
-           $('img[name=abuutImg]').hide();
-
-            $('.write-area').show();
-            $('.mypage-about').hide();
-        });
-    });
-
-    /*자기소개 등록 취소*/
-       $('.about-cansle').on('click',function(){
-           $('img[name=abuutImg]').show();
-           $('.mypage-about').show();
-           $('.write-area').hide();
-       });
-
-       /*자기소개등록*/
-       function insertAboutMe(){
-           /*줘야할것들 카테고리 번호 회원아이디 자기소개 ,프로필사진*/
-           const mypage_aboutme = $('#exampleFormControlTextarea1').val();
-           alert(mypage_aboutme);
-       }
-       
-    	/* var ctx = document.getElementById('testradarchart').getContext('2d');
-	var myChart = new Chart(ctx, {
-	    type: 'radar',
-	    data: {
-	        labels: ['전문성', '의사소통', '긍정', '만족도', '협동심'],
-	        datasets: [
-	           {
-	            label: '현재 점수 ',
-	            data: ['${memberRate.professional}', '${memberRate.communication}', '${memberRate.positiveness}', '${memberRate.satisfaction}','${memberRate.compliance}'],
-	            backgroundColor: [
-	                '#ffd600',
-	                 '#fb6340',
-	                '#2dce89',
-	                '11cdef',
-	                '#f5365c' 
-	            ],
-	            borderColor: [
-	                '#ffd600',
-	                '#fb6340',
-	                '#2dce89',
-	                '11cdef', 
-	                '#f5365c'
-	            ]
-	            
-	       	 }
-	       ]
-	        
-	    },
-	    options: {
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: false
-	                }
-	            }]
-	        }
-	    }
-	});  */
-
-	
-
+<script>	
 	var myChart =  new Chart(document.getElementById("chartjs-3"),
             {"type":"radar",
                 "data":
@@ -384,7 +464,84 @@
         }
     });
 	
-</script>
-</body>
+  
+  	/* 업로드 스크립트 */  
+    $(function() {
+    	function maskImgs() {
+    		//$('.img-wrapper img').imagesLoaded({}, function() {
+    		$.each($('.img-wrapper img'), function(index, img) {
+    			var src = $(img).attr('src');
+    			var parent = $(img).parent();
+    			parent
+    				.css('background', 'url(' + src + ') no-repeat center center')
+    				.css('background-size', 'cover');
+    			$(img).remove();
+    		});
+    		//});
+    	}
 
-</html>
+    	var preview = {
+    		init: function() {
+    			preview.setPreviewImg();
+    			preview.listenInput();
+    		},
+    		setPreviewImg: function(fileInput) {
+    			var path = $(fileInput).val();
+    			var uploadText = $(fileInput).siblings('.file-upload-text');
+
+    			if (!path) {
+    				$(uploadText).val('');
+    			} else {
+    				path = path.replace(/^C:\\fakepath\\/, "");
+    				$(uploadText).val(path);
+
+    				preview.showPreview(fileInput, path, uploadText);
+    			}
+    		},
+    		showPreview: function(fileInput, path, uploadText) {
+    			var file = $(fileInput)[0].files;
+
+    			if (file && file[0]) {
+    				var reader = new FileReader();
+
+    				reader.onload = function(e) {
+    					var previewImg = $(fileInput).parents('.file-upload-wrapper').siblings('.preview');
+    					var img = $(previewImg).find('img');
+
+    					if (img.length == 0) {
+    						$(previewImg).html('<img src="' + e.target.result + '" alt=""/>');
+    					} else {
+    						img.attr('src', e.target.result);
+    					}
+
+    					uploadText.val(path);
+    					maskImgs();
+    				}
+
+    				reader.onloadstart = function() {
+    					$(uploadText).val('uploading..');
+    				}
+
+    				reader.readAsDataURL(file[0]);
+    			}
+    		},
+    		listenInput: function() {
+    			$('.file-upload-native').on('change', function() {
+    				preview.setPreviewImg(this);
+    			});
+    		}
+    	};
+    	preview.init();
+    	
+    	/* test area 값 가져옴 */
+    	$('#mypage_aboutmeInfo').val("${mypageMemberInfo.mypage_aboutme}");
+    });
+  	
+  	
+    function modifiyMypageInfo(){
+    	const mypage_aboutme_ipt = $('#mypage_aboutmeInfo').val();
+    	
+    }
+
+</script>
+
