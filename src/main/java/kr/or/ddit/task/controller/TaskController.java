@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
@@ -25,7 +26,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.lowagie.text.pdf.AcroFields.Item;
 
 @Controller
 @RequestMapping("/user/task/")
@@ -35,6 +39,9 @@ public class TaskController {
 	
 	@Autowired
 	private ITaskService taskService;
+	
+	@Autowired
+	private IMemberService memberService;
 	
 	@RequestMapping("task")
 	public ModelAndView taskList(HttpServletRequest request,
@@ -71,6 +78,55 @@ public class TaskController {
 		params.put("project_no", project_no);
 		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
 		
+		
+		// 프로젝트 파트너스 이름
+		if (projectInfo.get("MEM_ID") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			projectInfo.put("PARTNERS_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		// 프로젝트 PL 이름
+		if (projectInfo.get("PL") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("PL")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			Map<String, String> personAvg = taskService.selectPersonAverage(params);
+			projectInfo.put("PL_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		// 프로젝트 TA 이름
+		if (projectInfo.get("TA") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("TA")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			Map<String, String> personAvg = taskService.selectPersonAverage(params);
+			projectInfo.put("TA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		// 프로젝트 DA 이름
+		if (projectInfo.get("DA") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("DA")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			Map<String, String> personAvg = taskService.selectPersonAverage(params);
+			projectInfo.put("DA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		// 프로젝트 UA 이름
+		if (projectInfo.get("UA") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("UA")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			Map<String, String> personAvg = taskService.selectPersonAverage(params);
+			projectInfo.put("UA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		// 프로젝트 AA 이름
+		if (projectInfo.get("AA") != null) {
+			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			Map<String, String> personAvg = taskService.selectPersonAverage(params);
+			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		}
+		
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("projectInfo", projectInfo);
 		
@@ -94,10 +150,33 @@ public class TaskController {
 		params.put("function_manager", function_manager);
 		List<Map<String, String>> taskList = taskService.selectTaskList(params);
 		
+		for (Map<String, String> item : taskList) {
+			params.put("mem_id", String.valueOf(item.get("FUNCTION_MANAGER")));
+			Map<String, String> resultMap = memberService.selectMemberInfo(params);
+			item.put("MEM_NAME", String.valueOf(resultMap.get("MEM_NAME")));
+		}
+		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("taskList", taskList);
 		
 		modelAndView.setViewName("jsonConvertView");
 		return modelAndView;
+	}
+	
+	@RequestMapping("insertTask")
+	@ResponseBody
+	public Map<String, String> insertTask(String project_no,
+										  String function_name,
+										  String function_manager,
+										  String function_progress,
+										  String function_regdate,
+										  String function_enddate,
+									  	  String function_status,
+										  String function_priority) throws Exception {
+		
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		return resultMap;
 	}
 }
