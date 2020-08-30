@@ -79,4 +79,31 @@
 		        #function_enddate#,
 		        #function_priority#) 
 	</insert>
+	
+	<update id="updateTask" parameterClass="map">
+		UPDATE PROJECT_FUNCTION SET FUNCTION_NAME = #function_name#,
+		                            FUNCTION_MANAGER = #function_manager#,
+		                            FUNCTION_PROGRESS = #function_progress#,
+		                            FUNCTION_STATUS = #function_status#,
+		                            FUNCTION_REGDATE = #function_regdate#,
+		                            FUNCTION_ENDDATE = #function_enddate#,
+		                            FUNCTION_PRIORITY = #function_priority#,
+		                            FUNCTION_MODIDATE = sysdate
+		WHERE PROJECT_FUNCTION_NO = #project_function_no#
+	</update>
+	
+	<select id="selectTaskInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT PROJECT_FUNCTION_NO,
+		       PROJECT_NO,
+		       FUNCTION_NAME,
+		       FUNCTION_MANAGER,
+		       FUNCTION_PROGRESS,
+		       FUNCTION_STATUS,
+		       TO_CHAR(FUNCTION_REGDATE, 'MM/DD/YYYY') FUNCTION_REGDATE,
+		       TO_CHAR(FUNCTION_ENDDATE, 'MM/DD/YYYY') FUNCTION_ENDDATE,
+		       FUNCTION_PRIORITY,
+		       FUNCTION_MODIDATE
+		FROM PROJECT_FUNCTION
+		WHERE PROJECT_FUNCTION_NO = #project_function_no#
+	</select>
 </sqlMap>

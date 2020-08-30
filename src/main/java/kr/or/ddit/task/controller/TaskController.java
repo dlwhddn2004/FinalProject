@@ -173,9 +173,62 @@ public class TaskController {
 										  String function_enddate,
 									  	  String function_status,
 										  String function_priority) throws Exception {
-		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("function_name", function_name);
+		params.put("function_manager", function_manager);
+		params.put("function_progress", function_progress);
+		params.put("function_regdate", function_regdate);
+		params.put("function_enddate", function_enddate);
+		params.put("function_status", function_status);
+		params.put("function_priority", function_priority);
+		String project_function_no = taskService.insertTask(params);
 		
 		Map<String, String> resultMap = new HashMap<String, String>();
+		resultMap.put("project_function_no", project_function_no);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("updateTask")
+	@ResponseBody
+	public Map<String, String> updateTask(String project_function_no,
+										  String project_no,
+										  String function_name,
+										  String function_manager,
+										  String function_progress,
+										  String function_regdate,
+										  String function_enddate,
+									  	  String function_status,
+										  String function_priority) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_function_no", project_function_no);
+		params.put("project_no", project_no);
+		params.put("function_name", function_name);
+		params.put("function_manager", function_manager);
+		params.put("function_progress", function_progress);
+		params.put("function_regdate", function_regdate);
+		params.put("function_enddate", function_enddate);
+		params.put("function_status", function_status);
+		params.put("function_priority", function_priority);
+		int chk = taskService.updateTask(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
+		return resultMap;
+	}
+	
+	@RequestMapping("selectTaskInfo")
+	@ResponseBody
+	public Map<String, String> selectTaskInfo(String project_function_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_function_no", project_function_no);
+		
+		Map<String, String> resultMap = taskService.selectTaskInfo(params);
 		
 		return resultMap;
 	}

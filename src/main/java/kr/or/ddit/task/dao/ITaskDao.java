@@ -14,4 +14,6 @@ public interface ITaskDao {
 	public Map<String, String> selectPersonAverage(Map<String, String> params) throws Exception;
 	
 	public String insertTask(Map<String, String> params) throws Exception;
+	public int updateTask(Map<String, String> params) throws Exception;
+	public Map<String, String> selectTaskInfo(Map<String, String> params) throws Exception;
 }

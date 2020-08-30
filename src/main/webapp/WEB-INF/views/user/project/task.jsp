@@ -302,8 +302,8 @@
 		/**
 		 * 페이지 로딩
 		 */
-		let
-		function_manager = '';
+		let function_manager = '';
+		let project_function_no_all = '';
 
 		// 처음 프로젝트에 맞는 데이터 표시
 		loadProject('${MEMBER_LOGININFO.mem_id}');
@@ -499,6 +499,7 @@
 													const
 													taskItem = $(''
 															+ '<tr data-toggle="modal" data-target="#modal-form" style="cursor: pointer;" onclick="beforeLoadModal(this)">'
+															+ '<input type="hidden" name="project_function_no" value="' + item.PROJECT_FUNCTION_NO + '">'
 															+ '<th scope="row">'
 															+ '<div class="media align-items-center">'
 															+ '<div class="media-body">'
@@ -556,8 +557,26 @@
 			const function_manager = $('.task-modal .modal-select-manager').select2('val');
 			let function_progress = $('.task-modal .range-slider-value').text();
 			function_progress = function_progress.substring(0, function_progress.indexOf('.'));
-			const function_regdate = $('.task-modal .modal-start-date').val();
-			const function_enddate = $('.task-modal .modal-end-date').val();
+			
+			let temp = '';
+			let year = '';
+			let month = '';
+			let day = '';
+			
+			let function_regdate = $('.task-modal .modal-start-date').val();
+			temp = function_regdate;
+			year = temp.substring(temp.lastIndexOf('/') + 1);
+			month = temp.substring(0, temp.indexOf('/'));
+			day = temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+			function_regdate = year + '-' + month + '-' + day;
+			
+			let function_enddate = $('.task-modal .modal-end-date').val();
+			temp = function_enddate;
+			year = temp.substring(temp.lastIndexOf('/') + 1);
+			month = temp.substring(0, temp.indexOf('/'));
+			day = temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+			function_enddate = year + '-' + month + '-' + day;
+			
 			const function_status = $('.task-modal .modal-select-status').select2('val');
 			const function_priority = $('.task-modal .modal-select-priority').select2('val');
 			
@@ -579,20 +598,25 @@
 						function_priority: function_priority
 					},
 					success: function(result) {
+						$('#modal-form').modal("hide");
 						
+						const manager = $('.task .select-manager').select2('val');
+						loadTaskList(project_no, manager);
 					},
 					error(response, status, request) {
 						alert(response.status);
 					}
 				});
 				
-			} else if (current_statsu === '일감 수정') {
+			} else if (current_status === '일감 수정') {
+				const project_function_no = $('')
 				
 				$.ajax({
 					type: 'POST',
 					url: '${pageContext.request.contextPath}/user/task/updateTask.do',
 					dataType: 'json',
 					data: {
+						project_function_no: project_function_no_all,
 						project_no: project_no,
 						function_name: function_name,
 						function_manager: function_manager,
@@ -603,7 +627,16 @@
 						function_priority: function_priority
 					},
 					success: function(result) {
-						
+						if (result.result == "Y") {
+							$('#modal-form').modal("hide");
+							
+							const manager = $('.task .select-manager').select2('val');
+							loadTaskList(project_no, manager);
+						} else if (result.result == "N") {
+							Swal.fire('WARNING',
+									  '일감 수정에 실패했습니다.',
+									  'warning');
+						}
 					},
 					error(response, status, request) {
 						alert(response.status);
@@ -615,9 +648,18 @@
 		
 		// 일감 등록 모달창 실행 시 선행되는 이벤트!
 		$('.btn-open-taskadd-modal').on('click', function() {
+			// noUiSlider 초기화
+			let function_progress = $('.task-modal .range-slider-value').text('0.0');
+			$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(0, 1)');
+			$('.noUi-origin').css('transform', 'translate(-100%, 0px)');
+			$('.noUi-origin').css('z-index', '4');
+			
 			const projectData = $('.task .select-project').select2('data');
 			const project_no = projectData[0].id;
 			const project_title = projectData[0].text;
+			
+			$('.task-modal #input-slider-value').attr('data-range-value-low', '0');
+			noUiSlider;
 			
 			$('.task-modal .modal-little-title').text('일감 등록');
 			$('.task-modal .modal-title').text(project_title);
@@ -688,11 +730,61 @@
 			$('.task-modal .modal-select-status').append('<option>신규</option> <option>완료</option>');
 			
 			$('.task-modal .modal-select-priority').empty();
-			$('.task-modal .modal-select-priority').append('<option>낮음</option> <option>보통</option> <option>완료</option>')
+			$('.task-modal .modal-select-priority').append('<option>낮음</option> <option>보통</option> <option>높음</option>')
 		});
 		
 		// 일감 수정 모달창 실행 시 선행되는 이벤트
 		function beforeLoadModal(e) {
+			project_function_no_all = $(e).find('input[name=project_function_no]').val();
+			const currentSelectedManagerName = $('.task .select-manager').select2('data');
+			let temp = currentSelectedManagerName[0].text;
+			let chkPosition = temp.substring(temp.indexOf('(') + 1, temp.indexOf(')'));
+			
+			// 지금 선택한 일감의 상세 정보를 조회해야함!
+			$.ajax({
+				type: 'POST',
+				url: '${pageContext.request.contextPath}/user/task/selectTaskInfo.do',
+				dataType: 'json',
+				data: {
+					project_function_no: project_function_no_all
+				},
+				success: function(result) {
+					// 제목 세팅!
+					$('.task-modal input[name=function_name]').val(result.FUNCTION_NAME);
+					
+					// noUiSlider 선택한 값에 맞춰 세팅!
+					let function_progress = $('.task-modal .range-slider-value').text(result.FUNCTION_PROGRESS + '.0');
+					$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + result.FUNCTION_PROGRESS + ', 1)');
+					$('.noUi-origin').css('transform', 'translate(-' + (100 - Number(result.FUNCTION_PROGRESS)) + '%, 0px)');
+					$('.noUi-origin').css('z-index', '4');
+					
+					// 날짜 세팅! (월/일/년도 -> 이렇게 들어가야함)
+					$('.task-modal .modal-start-date').val(result.FUNCTION_REGDATE);
+					$('.task-modal .modal-end-date').val(result.FUNCTION_ENDDATE);
+					
+					// 상태 세팅!
+					$('.task-modal .modal-select-status').empty();
+					if (result.FUNCTION_STATUS == '신규') {
+						$('.task-modal .modal-select-status').append('<option selected>신규</option> <option>완료</option>');
+					} else if (result.FUNCTION_STATUS == '완료') {
+						$('.task-modal .modal-select-status').append('<option>신규</option> <option selected>완료</option>');
+					}
+					
+					// 우선 순위 세팅!
+					$('.task-modal .modal-select-priority').empty();
+					if (result.FUNCTION_PRIORITY == '낮음') {
+						$('.task-modal .modal-select-priority').append('<option selected>낮음</option> <option>보통</option> <option>높음</option>');
+					} else if (result.FUNCTION_PRIORITY == '보통') {
+						$('.task-modal .modal-select-priority').append('<option>낮음</option> <option selected>보통</option> <option>높음</option>');
+					} else if (result.FUNCTION_PRIORITY == '높음') {
+						$('.task-modal .modal-select-priority').append('<option>낮음</option> <option>보통</option> <option selected>높음</option>');
+					}
+				},
+				error: function(response, status, request) {
+					alert(response.status);
+				}
+			});
+			
 			const projectData = $('.task .select-project').select2('data');
 			const project_no = projectData[0].id;
 			const project_title = projectData[0].text;
@@ -713,16 +805,34 @@
 					if (result.projectInfo == 0) {
 						$('.task-modal .modal-select-manager').append('<option>아직 프로젝트에 참여한 팀원이 없습니다.</option>');
 					} else {
-						const PL = $('<option value="' + result.projectInfo.PL + '">' + result.projectInfo.PL_NAME
+						let PL = $('<option value="' + result.projectInfo.PL + '">' + result.projectInfo.PL_NAME
 								+ ' (PL)</option>');
-						const DA = $('<option value="' + result.projectInfo.DA + '">' + result.projectInfo.DA_NAME
+						let DA = $('<option value="' + result.projectInfo.DA + '">' + result.projectInfo.DA_NAME
 								+ ' (DA)</option>');
-						const UA = $('<option value="' + result.projectInfo.UA + '">' + result.projectInfo.UA_NAME
+						let UA = $('<option value="' + result.projectInfo.UA + '">' + result.projectInfo.UA_NAME
 								+ ' (UA)</option>');
-						const TA = $('<option value="' + result.projectInfo.TA + '">' + result.projectInfo.TA_NAME
+						let TA = $('<option value="' + result.projectInfo.TA + '">' + result.projectInfo.TA_NAME
 								+ ' (TA)</option>');
-						const AA = $('<option value="' + result.projectInfo.AA + '">' + result.projectInfo.AA_NAME
+						let AA = $('<option value="' + result.projectInfo.AA + '">' + result.projectInfo.AA_NAME
 								+ ' (AA)</option>');
+						
+						if (chkPosition === 'PL') {
+							PL = $('<option selected value="' + result.projectInfo.PL + '">' + result.projectInfo.PL_NAME
+									+ ' (PL)</option>');
+						} else if (chkPosition === 'DA') {
+							DA = $('<option selected value="' + result.projectInfo.DA + '">' + result.projectInfo.DA_NAME
+									+ ' (DA)</option>');
+						} else if (chkPosition === 'UA') {
+							PL = $('<option selected value="' + result.projectInfo.UA + '">' + result.projectInfo.UA_NAME
+									+ ' (UA)</option>');
+						} else if (chkPosition === 'TA') {
+							PL = $('<option selected value="' + result.projectInfo.TA + '">' + result.projectInfo.TA_NAME
+									+ ' (TA)</option>');
+						} else if (chkPosition === 'AA') {
+							PL = $('<option selected value="' + result.projectInfo.AA + '">' + result.projectInfo.AA_NAME
+									+ ' (AA)</option>');
+						}
+						
 						
 						if (result.projectInfo.PL != null) {
 							$('.task-modal .modal-select-manager').append(PL);

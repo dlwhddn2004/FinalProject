@@ -28,20 +28,36 @@ public class TaskServiceImpl implements ITaskService {
 		return dao.selectTaskList(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public Map<String, String> selectAverage(Map<String, String> params)
 			throws Exception {
 		return dao.selectAverage(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public Map<String, String> selectPersonAverage(Map<String, String> params)
 			throws Exception {
 		return dao.selectPersonAverage(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public String insertTask(Map<String, String> params) throws Exception {
 		return dao.insertTask(params);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateTask(Map<String, String> params) throws Exception {
+		return dao.updateTask(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectTaskInfo(Map<String, String> params)
+			throws Exception {
+		return dao.selectTaskInfo(params);
 	}
 }
