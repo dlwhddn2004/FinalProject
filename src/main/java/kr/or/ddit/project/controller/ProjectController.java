@@ -230,7 +230,7 @@ public class ProjectController {
 			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("AA", String.valueOf(memberInfo.get("MEM_NAME")));
+			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
 			projectInfo.put("AA_WORKSTATUS", String.valueOf(memberInfo.get("MEM_WORKSTATUS")));
 			if (personAvg != null) {
 				projectInfo.put("AA_AVG", String.valueOf(personAvg.get("AVERAGE")));
@@ -246,6 +246,19 @@ public class ProjectController {
 		modelAndView.addObject("projectInfo", projectInfo);
 		modelAndView.setViewName("user/project/project_view");
 		
+		return modelAndView;
+	}
+	
+	@RequestMapping("projectForm")
+	public ModelAndView projectForm(HttpServletRequest request,
+									ModelAndView modelAndView) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+//		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+
+		modelAndView.setViewName("user/project/projectForm");
 		return modelAndView;
 	}
 }

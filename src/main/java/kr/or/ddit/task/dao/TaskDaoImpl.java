@@ -36,4 +36,9 @@ public class TaskDaoImpl implements ITaskDao {
 			throws Exception {
 		return (Map<String, String>) client.queryForObject("task.selectPersonAverage", params);
 	}
+
+	@Override
+	public String insertTask(Map<String, String> params) throws Exception {
+		return (String) client.insert("task.insertTask", params);
+	}
 }

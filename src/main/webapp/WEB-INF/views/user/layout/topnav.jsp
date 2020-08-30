@@ -109,7 +109,8 @@
                         <div class="row align-items-center">
                            <div class="col-auto">
                               <!-- Avatar -->
-                              <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                             <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                             
                            </div>
                            <div class="col ml--2">
                               <div class="d-flex justify-content-between align-items-center">
@@ -236,10 +237,11 @@
             <li class="nav-item dropdown"><a class="nav-link pr-0" href="#"
                role="button" data-toggle="dropdown" aria-haspopup="true"
                aria-expanded="false">
-                  <div class="media align-items-center">
-                     <span class="avatar avatar-sm rounded-circle"> <img
-                        alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-4.jpg">
-                     </span>
+                  <div class="media align-items-center" id="imgtitle" style="width: 100px; height: 75px;">
+                     <!-- <span class="avatar avatar-sm rounded-circle titleImg"> -->
+                     	
+                              <!-- <img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle"> -->
+                     <!-- </span> -->
                      <div class="media-body  ml-2  d-none d-lg-block">
                         <span class="mb-0 text-sm  font-weight-bold">${MEMBER_LOGININFO.mem_name }</span>
                      </div>
@@ -249,7 +251,7 @@
                   <div class="dropdown-header noti-title">
                      <h6 class="text-overflow m-0">Welcome!</h6>
                   </div>
-                  <a href="" class="dropdown-item"> <i class="ni ni-single-02"></i>
+                  <a href="${pageContext.request.contextPath }/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}" class="dropdown-item"> <i class="ni ni-single-02"></i>
                      <span>My profile</span>
                   </a> <a href="${pageContext.request.contextPath }/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="dropdown-item"> <i
                      class="ni ni-settings-gear-65"></i> <span>Settings</span>
@@ -259,7 +261,7 @@
                      class="ni ni-support-16"></i> <span>Support</span>
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a href=""${pageContext.request.contextPath }/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}" " class="dropdown-item" id="btnLogout"> <i class="ni ni-user-run"></i>
+                   <a href="${pageContext.request.contextPath }/user/member/logout.do" class="dropdown-item" id="btnLogout"> <i class="ni ni-user-run"></i>
                      <span>Logout</span>
                   </a>
                </div>
@@ -505,8 +507,34 @@
             $('#btnLogout').on('click', function() {
 				$(location).attr('href', '${pageContext.request.contextPath}/user/member/logout.do');
 			});
+           
             
             
+    		const mem_id = "${MEMBER_LOGININFO.mem_id}";
+//    		let time = setInterval(function () {
+    			 	 $.ajax({
+      			    	type:'POST',
+      				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
+      				 dataType:'json',
+      				 data: {mem_id : mem_id},
+      				 success : function(result){
+      					 
+      					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
+      					 console.log(imgHeader);
+      					//$('#ImgHeader').attr('src',imgHeader);
+      					//<img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle">
+      					//<span class='avatar avatar-sm rounded-circle titleImg'></span>
+      					const $imgHeader_ipt = $("<span class='avatar avatar-sm rounded-circle'> <img id='ImgHeader' alt='Image placeholder' src='"
+      							+ imgHeader +"' class='avatar rounded-circle'></span>");	
+      					
+      					 $('#imgtitle').prepend($imgHeader_ipt);
+      				 },
+      				 error: function(xhr,status,error){
+      					 alert(error);
+      				 }
+      			 });
+//    	       },3000)
+    		
             
             
 		});
