@@ -93,21 +93,24 @@
 				</div>
 			</div>
 		</div>
-		<div class="card" style="width: 800px;">
-			<!-- Card header -->
-			<div class="card-header"
-				style="display: flex; justify-content: space-between; height: 60px;">
-				<!-- Title -->
-				<h5 class="h3 mb-0" style="display: inline-block">할 일 목록</h5>
-				<a class="btn btn-sm btn-neutral" data-toggle="modal"
-					data-target="#modal-form" style="height: 25px;">등록</a>
-			</div>
-			<!-- Card body -->
-			<div class="card-body p-0" style="overflow: auto; height: 700px">
-				<!-- List group -->
-				<ul class="list-group list-group-flush todo-list-ul"
-					data-toggle="checklist">
-				</ul>
+		<div class="col-lg-6"
+			style="display: flex; justify-content: space-between;">
+			<div class="card" style="width: 800px;">
+				<!-- Card header -->
+				<div class="card-header"
+					style="display: flex; justify-content: space-between; height: 60px;">
+					<!-- Title -->
+					<h5 class="h3 mb-0" style="display: inline-block">할 일 목록</h5>
+					<a class="btn btn-sm btn-neutral" data-toggle="modal"
+						data-target="#modal-form" style="height: 25px;">등록</a>
+				</div>
+				<!-- Card body -->
+				<div class="card-body p-0" style="overflow: auto; height: 700px">
+					<!-- List group -->
+					<ul class="list-group list-group-flush todo-list-ul"
+						data-toggle="checklist">
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

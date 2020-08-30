@@ -92,6 +92,10 @@
 		WHERE PROJECT_FUNCTION_NO = #project_function_no#
 	</update>
 	
+	<delete id="deleteTask" parameterClass="map">
+		DELETE PROJECT_FUNCTION WHERE PROJECT_FUNCTION_NO = #project_function_no#
+	</delete>
+	
 	<select id="selectTaskInfo" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT PROJECT_FUNCTION_NO,
 		       PROJECT_NO,
@@ -105,5 +109,17 @@
 		       FUNCTION_MODIDATE
 		FROM PROJECT_FUNCTION
 		WHERE PROJECT_FUNCTION_NO = #project_function_no#
+	</select>
+	
+	<select id="checkPosition" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT_PARTICIPANTS
+		WHERE PROJECT_NO = #project_no#
+		AND (PL = #mem_id#
+		    OR DA = #mem_id#
+		    OR TA = #mem_id#
+		    OR UA = #mem_id#
+		    OR AA = #mem_id#
+		    )
 	</select>
 </sqlMap>

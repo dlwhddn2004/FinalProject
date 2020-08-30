@@ -139,6 +139,7 @@
 									        <span class="d-block mb-1 modal-profile-name"></span>
 									        <small class="h4 font-weight-light text-muted">Web Developer</small>
 									    </h5>
+									    <a class="btn btn-sm btn-neutral" style="height: 25px;" onclick="deleteTask(this);">삭제</a>
 									</div>
 								</div>
 								<div class="card-body px-lg-5 py-lg-5">
@@ -876,6 +877,32 @@
 					alert(response.status);
 				}
 			});
+		}
+		
+		function deleteTask(e) {
+			const project_no = $('.select-project').select2('val');
+			const mem_id = $('.task .select-manager').select2('val');
+			
+			$.ajax({
+				type: 'POST',
+				url: '${pageContext.request.contextPath}/user/task/deleteTask.do',
+				dataType: 'json',
+				data: {
+					project_function_no: project_function_no_all,
+					mem_id: mem_id,
+					project_no: project_no
+				},
+				success: function(result) {
+					$('#modal-form').modal("hide");
+					
+					const manager = $('.task .select-manager').select2('val');
+					loadTaskList(project_no, manager);
+				},
+				error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+			})
 		}
 	</script>
 </body>
