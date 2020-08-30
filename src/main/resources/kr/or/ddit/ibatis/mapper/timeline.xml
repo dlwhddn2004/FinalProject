@@ -10,6 +10,21 @@
 		WHERE MEM_ID = #mem_id#
 		  AND PROJECT_NO = #project_no#
 	</select>
+	
+	<insert id="insertTimeline" parameterClass="map">
+		INSERT INTO TIMELINE (MEM_ID,
+		                      TIMELINE_TITLE,
+		                      PROJECT_NO,
+		                      TIMELINE_TAG,
+		                      TIMELINE_CONTENT,
+		                      TIMELINE_CATEGORY)
+		VALUES (#mem_id#,
+		        #timeline_title#,
+		        #project_no#,
+		        #timeline_tag#,
+		        #timeline_content#,
+		        #timeline_category#)
+	</insert>
 </sqlMap>
 
  

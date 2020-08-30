@@ -59,8 +59,13 @@ public class ProjectController {
 			sendDataMap.put("project_no", project_no);
 			
 			Map<String, String> resultDataMap = taskService.selectAverage(sendDataMap);
-			String average = String.valueOf(resultDataMap.get("AVERAGE"));
-			item.put("AVERAGE", average);
+			try {
+				String average = String.valueOf(resultDataMap.get("AVERAGE"));
+				item.put("AVERAGE", average);
+			} catch (Exception e) {
+				item.put("AVERAGE", "0");
+			}
+			
 		}
 		
 		List<Map<String, String>> finishProjectList = projectService.selectFinishProjectListById(params);

@@ -25,4 +25,16 @@ public class TimelineDaoImpl implements ITimelineDao {
 			Map<String, String> params) throws Exception {
 		return client.queryForList("timeline.selectTimelineList", params);
 	}
+
+	@Override
+	public int insertTimeline(Map<String, String> params) throws Exception {
+		int chk = 0;
+		
+		Object obj = client.insert("timeline.insertTimeline", params);
+		if (obj == null) {
+			chk = 1;
+		}
+		
+		return chk;
+	}
 }

@@ -27,4 +27,10 @@ public class TimelineServiceImpl implements ITimelineService {
 			Map<String, String> params) throws Exception {
 		return dao.selectTimelineList(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertTimeline(Map<String, String> params) throws Exception {
+		return dao.insertTimeline(params);
+	}
 }
