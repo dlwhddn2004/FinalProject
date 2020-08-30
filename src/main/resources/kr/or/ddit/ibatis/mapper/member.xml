@@ -130,17 +130,37 @@
 	</insert>
 		<update id="updateMember" parameterClass="memberVO">
 		update member
-		set
-		mem_pass = #mem_pass#
-		, mem_addr = #mem_addr#
-		, mem_bir = #mem_bir#
-		, mem_tel = #mem_tel#
-		, mem_bank = #mem_bank#
-		, mem_bankno = #mem_bankno#
-		, mem_bankname = #mem_bankname#
+			<dynamic prepend="SET">
+			<isNotEmpty prepend="," property="mem_pass"> 
+			mem_pass = #mem_pass#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_notice"> 
+			mem_notice = #mem_notice#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_addr"> 
+			mem_addr = #mem_addr#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_bir"> 
+			mem_bir = #mem_bir#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_tel"> 
+			mem_tel = #mem_tel#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_bankname"> 
+			mem_bankname = #mem_bankname#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_bank"> 
+			mem_bank = #mem_bank#
+			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_bankno"> 
+			mem_bankno = #mem_bankno#
+			</isNotEmpty>
+	
+</dynamic>
 		WHERE mem_id = #mem_id#
 	</update>
 	
+		
 <!-- 회원탈퇴 -->
 <delete id="memberDelete">
 	DELETE FROM MEMBER
