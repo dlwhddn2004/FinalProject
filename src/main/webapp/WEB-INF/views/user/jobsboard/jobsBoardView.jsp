@@ -56,13 +56,13 @@
 					    <div class="col">
 					        <div class="form-group">
 					            <label class="form-control-label">모집 시작일</label>
-					            <input class="form-control" placeholder="Start date" type="text" name="jobs_startdate" id="jobs_startdate" >
+					            <input required class="form-control" placeholder="Start date" type="text" name="jobs_startdate" id="jobs_startdate" >
 					        </div>
 					    </div>
 					    <div class="col">
 					        <div class="form-group">	
 					            <label class="form-control-label">모집 종료일</label>
-					            <input class="form-control" placeholder="End date" type="text" name="jobs_enddate" id="jobs_enddate" >
+					            <input required class="form-control" placeholder="End date" type="text" name="jobs_enddate" id="jobs_enddate" >
 					        </div>
 					    </div>
 					</div>  

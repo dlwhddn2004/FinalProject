@@ -92,7 +92,7 @@
 								<th scope="col" class="sort" data-sort="status">우선순위</th>
 								<th scope="col">제목</th>
 								<th scope="col">담당자</th>
-								<th scope="col">변경</th>
+								<th scope="col">마지막 수정 날짜</th>
 							</tr>
 						</thead>
 						<tbody class="list tasklist-area">
