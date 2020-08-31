@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="issueboard_comment">
+	<typeAlias alias="issueboardVO" type="kr.or.ddit.vo.IssueboardVO"/>
+	<typeAlias alias="issueboardCommentVO" type="kr.or.ddit.vo.IssueboardCommentVO"/>
+	<typeAlias alias="issueJoinVO" type="kr.or.ddit.vo.IssueJoinVO"/>
+	
+	<sql id="selectAll">
+		SELECT issue_no, mem_id, comment_content, TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') COMMENT_REGDATE
+		FROM ISSUE_BOARD_COMMENT
+	</sql>
+	
+	<select id="issuecommentList" parameterClass="map" resultClass="issueJoinVO">
+		SELECT ISSUE_NO,
+			   PROFILE_FILE.MEM_ID mem_id,
+			   COMMENT_CONTENT,
+			   TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') COMMENT_REGDATE,
+			   COMMENT_SEQ,
+			   PROFILE_SEQ,
+			   PROFILE_SAVENAME,
+			   PROFILE_REALNAME,
+			   PROFILE_CONTENTTYPE,
+			   PROFILE_SIZE,
+			   PROFILE_REGDATE,
+			   PROFILE_DOWNHIT
+		FROM ISSUE_BOARD_COMMENT,
+			 PROFILE_FILE
+		WHERE (ISSUE_BOARD_COMMENT.MEM_ID = PROFILE_FILE.MEM_ID)
+		AND ISSUE_NO = #issue_no#
+	</select>
+	
+	<insert id="insertissueComment" parameterClass="issueboardCommentVO">
+		INSERT INTO ISSUE_BOARD_COMMENT (ISSUE_NO,
+										 MEM_ID,
+										 COMMENT_CONTENT,
+										 COMMENT_REGDATE,
+										 COMMENT_SEQ)
+		VALUES(#issue_no#,
+			   #mem_id#,
+			   #comment_content#,
+			   SYSDATE,
+			   ISSUE_BOARD_COMMENT_SEQ.nextval)	
+	</insert>
+</sqlMap>
