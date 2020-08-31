@@ -206,6 +206,8 @@
 	<delete id="deleteTodo" parameterClass="map">
 		DELETE TODO_LIST WHERE TODO_SEQ = #todo_seq#
 	</delete>
+	
+
 </sqlMap>
 
  
