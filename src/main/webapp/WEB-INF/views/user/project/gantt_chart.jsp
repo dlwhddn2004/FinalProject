@@ -697,7 +697,7 @@
 			dataType: 'json',
 			data: {
 				project_function_no: var_project_function_no,
-				mem_id: mem_id,
+				mem_id: var_mem_id,
 				project_no: project_no
 			},
 			success: function(result) {
