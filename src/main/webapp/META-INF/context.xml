@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
-<<<<<<< HEAD
-	<!-- 	<Resource name="jdbc/ddit" 
-=======
+
 <!-- 		<Resource name="jdbc/ddit"  -->
 <!-- 				  auth="CONNECTOR"  -->
 <!-- 				  type="javax.sql.DataSource"  -->
@@ -20,38 +18,13 @@
 <!-- 				  maxWait="-1" -->
 <!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
 <!-- 		</Resource> -->
-		
-		<Resource name="jdbc/ddit" 
->>>>>>> dd88c3ff858546a75431347b927c5e2e55f3a9fe
-				  auth="CONNECTOR" 
-				  type="javax.sql.DataSource" 
-				  driverClassName="oracle.jdbc.driver.OracleDriver" 
-<<<<<<< HEAD
-				  url="jdbc:oracle:thin:@localhost:1521:XE"
-				  username="FinalProjectLocal" 
-				  password="java" 
-=======
-				  url="jdbc:oracle:thin:@localhost:1521:oracle"
-				  username="FinalProject" 
-				  password="oracle" 
->>>>>>> dd88c3ff858546a75431347b927c5e2e55f3a9fe
-				  initialSize="10"
-				  maxActive="7" 
-				  maxIdle="6" 
-				  minIdle="3"
-				  removeAbandoned="true"
-				  removeAbandonedTimeout="60"
-				  maxWait="-1"
-				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
-		</Resource> -->
-		
-		
+
 			<Resource name="jdbc/ddit" 
-				  auth="deoks" 
+				  auth="local" 
 				  type="javax.sql.DataSource" 
 				  driverClassName="oracle.jdbc.driver.OracleDriver" 
 				  url="jdbc:oracle:thin:@localhost:1521:XE"
-				  username="deoks" 
+				  username="local" 
 				  password="java" 
 				  initialSize="10"
 				  maxActive="7" 
