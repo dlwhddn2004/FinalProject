@@ -56,13 +56,13 @@
 					    <div class="col">
 					        <div class="form-group">
 					            <label class="form-control-label">모집 시작일</label>
-					            <input class="form-control" placeholder="Start date" type="text" name="jobs_startdate" id="jobs_startdate" >
+					            <input required class="form-control" placeholder="Start date" type="text" name="jobs_startdate" id="jobs_startdate" >
 					        </div>
 					    </div>
 					    <div class="col">
 					        <div class="form-group">	
 					            <label class="form-control-label">모집 종료일</label>
-					            <input class="form-control" placeholder="End date" type="text" name="jobs_enddate" id="jobs_enddate" >
+					            <input required class="form-control" placeholder="End date" type="text" name="jobs_enddate" id="jobs_enddate" >
 					        </div>
 					    </div>
 					</div>  
@@ -110,7 +110,7 @@
 		            	<c:forEach items="${commentList }" var="item">
 							<tr>
 							    <td class="table-user">
-							      <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3">
+							      <img src="/${item.profile_savename }" class="avatar rounded-circle mr-3">
 							      <b>${item.mem_id }</b>
 							    </td>
 							    <td class="td-comment_content">
@@ -147,7 +147,7 @@
 		            <tfoot class="comment-write-area">
 		            	<tr>
 		            		<td>
-		            			<img src="/${profileInfo.profile_savename }.${profileInfo.profile_contenttype }" class="avatar rounded-circle mr-3">
+		            			<img src="/${profileInfo.profile_savename }" class="avatar rounded-circle mr-3">
 							    <b>${MEMBER_LOGININFO.mem_id }</b>
 		            		</td>
 		            		<td>

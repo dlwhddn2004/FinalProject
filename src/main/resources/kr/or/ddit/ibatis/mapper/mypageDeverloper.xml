@@ -4,6 +4,12 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="mypageDeverloper">
+		<typeAlias alias="mypageVO" type="kr.or.ddit.vo.Mypage_memberVO" />
+		
+		<sql id="selectMypage">
+			SELECT * FROM MYPAGE_DEVELOPER
+		</sql>
+		
 	<select id="projectNum" parameterClass="map" resultClass="integer">
 		select count(PROJECT_PARTICIPANTS.PROJECT_NO)
     	from PROJECT_PARTICIPANTS ,PROJECT
@@ -19,6 +25,46 @@
 	from PORTFOLIO, MEMBER
 	where PORTFOLIO.MEM_ID =member.MEM_ID and member.MEM_ID= #mem_id#
 	</select>
+	
+	
+	<insert id="insertMyabout" parameterClass="mypageVO">
+		<selectKey keyProperty="mypage_no">
+			SELECT MYPAGE_MEMBER_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO MYPAGE_DEVELOPER 
+					(mypage_no,
+					mem_id,
+					category_no,
+					mypage_favaoritejob,
+					mypage_interests,
+					mypage_avaliabledate,
+					mypage_activitypossibility,
+					mypage_aboutme,
+					mypage_technologies,
+					mypage_techworkmanship,
+					mypage_techexperience) VALUES
+					(#mypage_no#,
+						#mem_id#,
+						#category_no#,
+						#mypage_favaoritejob#,
+						#mypage_interests#,
+						#mypage_avaliabledate#,
+						#mypage_activitypossibility#,
+						#mypage_aboutme#,
+						#mypage_technologies#,
+						#mypage_techworkmanship#,
+						#mypage_techexperience#)
+	</insert>
+	
+	
+	<select id="selectMypageInfo" parameterClass="map" resultClass="mypageVO">
+		<include refid="selectMypage"/>
+		WHERE MEM_ID =#mem_id#
+	</select>
+	
+	<update id="modifyMyabout" parameterClass="mypageVO">
+		update MYPAGE_DEVELOPER SET mypage_aboutme = #mypage_aboutme# WHERE MEM_ID = #mem_id#
+	</update>
 </sqlMap>
 
  

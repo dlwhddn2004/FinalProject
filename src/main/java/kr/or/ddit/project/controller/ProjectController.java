@@ -59,8 +59,13 @@ public class ProjectController {
 			sendDataMap.put("project_no", project_no);
 			
 			Map<String, String> resultDataMap = taskService.selectAverage(sendDataMap);
-			String average = String.valueOf(resultDataMap.get("AVERAGE"));
-			item.put("AVERAGE", average);
+			try {
+				String average = String.valueOf(resultDataMap.get("AVERAGE"));
+				item.put("AVERAGE", average);
+			} catch (Exception e) {
+				item.put("AVERAGE", "0");
+			}
+			
 		}
 		
 		List<Map<String, String>> finishProjectList = projectService.selectFinishProjectListById(params);
@@ -230,7 +235,7 @@ public class ProjectController {
 			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("AA", String.valueOf(memberInfo.get("MEM_NAME")));
+			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
 			projectInfo.put("AA_WORKSTATUS", String.valueOf(memberInfo.get("MEM_WORKSTATUS")));
 			if (personAvg != null) {
 				projectInfo.put("AA_AVG", String.valueOf(personAvg.get("AVERAGE")));
@@ -248,4 +253,40 @@ public class ProjectController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("projectForm")
+	public ModelAndView projectForm(HttpServletRequest request,
+									ModelAndView modelAndView) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+//		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+
+		modelAndView.setViewName("user/project/projectForm");
+		return modelAndView;
+	}
+	
+	@RequestMapping("/projectReady")
+	public ModelAndView projectReady(HttpServletRequest request,
+									ModelAndView modelAndView,
+									String project_clientinformation,
+									String project_clientintroduce,
+									String project_processstatus,
+									String project_processcategory,
+									String project_title
+									) throws Exception{
+		ProjectVO projectInfo = new ProjectVO();
+		projectInfo.setProject_clientinformation(project_clientinformation);
+		projectInfo.setProject_clientintroduce(project_clientintroduce);
+		projectInfo.setProject_processstatus(project_processstatus);
+		projectInfo.setProject_processcategory(project_processcategory);
+		projectInfo.setProject_title(project_title);
+		
+		modelAndView.addObject(projectInfo);
+		modelAndView.setViewName("user/");
+		return modelAndView;
+	}
+	
+	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 import com.lowagie.text.Paragraph;
+import com.sun.swing.internal.plaf.metal.resources.metal;
 
 @Repository
 public class TaskDaoImpl implements ITaskDao {
@@ -35,5 +36,32 @@ public class TaskDaoImpl implements ITaskDao {
 	public Map<String, String> selectPersonAverage(Map<String, String> params)
 			throws Exception {
 		return (Map<String, String>) client.queryForObject("task.selectPersonAverage", params);
+	}
+
+	@Override
+	public String insertTask(Map<String, String> params) throws Exception {
+		return (String) client.insert("task.insertTask", params);
+	}
+	
+	@Override
+	public int updateTask(Map<String, String> params) throws Exception {
+		return client.update("task.updateTask", params);
+	}
+	
+	@Override
+	public int deleteTask(Map<String, String> params) throws Exception {
+		return client.delete("task.deleteTask", params);
+	}
+
+	@Override
+	public Map<String, String> selectTaskInfo(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("task.selectTaskInfo", params);
+	}
+
+	@Override
+	public Map<String, String> checkPosition(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("task.checkPosition", params);
 	}
 }

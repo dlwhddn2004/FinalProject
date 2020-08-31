@@ -14,6 +14,7 @@ import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.ProfileFileVO;
+import kr.or.ddit.vo.newsboardVO;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +100,23 @@ public class MemberController {
 		String message = URLEncoder.encode("회원가입이 완료되었습니다.","UTF-8");
 		
 		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 재석
+	 */
+	@RequestMapping("selectMemberInfoJSON")
+	@ResponseBody
+	public Map<String, String> selectMemberInfoJSON(String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		Map<String, String> memberInfo = service.selectMemberInfo(params);
+		
+		return memberInfo; 
 	}
 
 }

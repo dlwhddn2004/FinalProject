@@ -99,7 +99,7 @@
 		            	<c:forEach items="${commentList }" var="item">
 							<tr>
 							    <td class="table-user">
-							      <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3">
+							      <img src="/${item.profile_savename }" class="avatar rounded-circle mr-3">
 							      <b>${item.mem_id }</b>
 							    </td>
 							    <td class="td-comment_content">
@@ -136,7 +136,7 @@
 		            <tfoot class="comment-write-area">
 		            	<tr>
 		            		<td>
-		            			<img src="/${profileInfo.profile_savename }.${profileInfo.profile_contenttype }" class="avatar rounded-circle mr-3">
+		            			<img src="/${profileInfo.profile_savename }" class="avatar rounded-circle mr-3">
 							    <b>${MEMBER_LOGININFO.mem_id }</b>
 		            		</td>
 		            		<td>

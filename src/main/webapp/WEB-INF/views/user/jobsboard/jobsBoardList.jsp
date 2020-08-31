@@ -96,15 +96,6 @@
             <th>조회 수</th>
           </tr>
           </thead>
-          <tfoot>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>작성날짜</th>
-            <th>모집기간</th>
-          </tr>
-          </tfoot>
           <tbody>
           <c:forEach items="${jobsBoardList }" var="jobsBoardList">
              <tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
@@ -115,12 +106,18 @@
                <td>${jobsBoardList.jobs_startdate }~${jobsBoardList.jobs_enddate }</td>
                <td>${jobsBoardList.jobs_hit }</td>
              </tr>
-             
           </c:forEach>
-
-
-
           </tbody>
+          <tfoot>
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성날짜</th>
+            <th>모집기간</th>
+            <th>조회 수</th>
+          </tr>
+          </tfoot>
         </table>
            <div align="right" style="padding: 15px 15px 0px 0px;">
            <button type="button" class="btn btn-outline-success" id="btn-write">등록</button>

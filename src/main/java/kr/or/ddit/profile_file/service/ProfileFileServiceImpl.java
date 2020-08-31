@@ -1,5 +1,6 @@
 package kr.or.ddit.profile_file.service;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.profile_file.dao.IProfileFileDao;
@@ -29,6 +30,14 @@ public class ProfileFileServiceImpl implements IProfileFileService {
 	public void insertProfileFileInfo(ProfileFileVO profileInfo)
 			throws Exception {
 		profileFileDao.insertProfileFileInfo(profileInfo);
+		
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertMypageFileInfo(List<ProfileFileVO> fileitemList)
+			throws Exception {
+		profileFileDao.insertMypageFileInfo(fileitemList);
 		
 	}
 
