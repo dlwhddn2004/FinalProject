@@ -7,10 +7,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ddit.member.service.IMemberService;
+import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.task.service.ITaskService;
 import kr.or.ddit.timeline.service.ITimelineService;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 import kr.or.ddit.vo.newsboardVO;
@@ -39,6 +41,9 @@ public class ProjectController {
 	@Autowired
 	private IMemberService memberService;
 	
+	@Autowired
+	private IProfileFileService profileFileService;
+	
 	@RequestMapping("project")
 	public ModelAndView project(ModelAndView modelAndView,
 								String mem_id,
@@ -52,6 +57,7 @@ public class ProjectController {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
 		List<Map<String, String>> notProjectList = projectService.selectNotProjectListById(params);
+		
 		for (Map<String, String> item : notProjectList) {
 			String project_no = String.valueOf(item.get("PROJECT_NO"));
 			
@@ -59,16 +65,94 @@ public class ProjectController {
 			sendDataMap.put("project_no", project_no);
 			
 			Map<String, String> resultDataMap = taskService.selectAverage(sendDataMap);
+			
+			if (item.get("PL") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("PL")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("PL_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("TA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("TA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("TA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("DA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("DA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("DA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("UA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("UA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("UA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("AA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("AA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("AA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			
 			try {
 				String average = String.valueOf(resultDataMap.get("AVERAGE"));
 				item.put("AVERAGE", average);
 			} catch (Exception e) {
 				item.put("AVERAGE", "0");
 			}
-			
 		}
 		
 		List<Map<String, String>> finishProjectList = projectService.selectFinishProjectListById(params);
+		
+		for (Map<String, String> item : finishProjectList) {
+			String project_no = String.valueOf(item.get("PROJECT_NO"));
+			
+			Map<String, String> sendDataMap = new HashMap<String, String>();
+			sendDataMap.put("project_no", project_no);
+			
+			Map<String, String> resultDataMap = taskService.selectAverage(sendDataMap);
+			
+			if (item.get("PL") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("PL")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("PL_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("TA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("TA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("TA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("DA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("DA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("DA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("UA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("UA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("UA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			if (item.get("AA") != null) {
+				sendDataMap.put("mem_id", String.valueOf(item.get("AA")));
+				
+				ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(sendDataMap);
+				item.put("AA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			}
+			
+			try {
+				String average = String.valueOf(resultDataMap.get("AVERAGE"));
+				item.put("AVERAGE", average);
+			} catch (Exception e) {
+				item.put("AVERAGE", "0");
+			}
+		}
 		
 		modelAndView.addObject("notProjectList", notProjectList);
 		modelAndView.addObject("finishProjectList", finishProjectList);
@@ -185,6 +269,10 @@ public class ProjectController {
 		// 프로젝트 PL 이름
 		if (projectInfo.get("PL") != null) {
 			params.put("mem_id", String.valueOf(projectInfo.get("PL")));
+			
+			ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
+			projectInfo.put("PL_PIC_SAVENAME", profileInfo.getProfile_savename());
+			
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("PL_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
@@ -197,6 +285,10 @@ public class ProjectController {
 		// 프로젝트 TA 이름
 		if (projectInfo.get("TA") != null) {
 			params.put("mem_id", String.valueOf(projectInfo.get("TA")));
+			
+			ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
+			projectInfo.put("TA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("TA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
@@ -209,6 +301,10 @@ public class ProjectController {
 		// 프로젝트 DA 이름
 		if (projectInfo.get("DA") != null) {
 			params.put("mem_id", String.valueOf(projectInfo.get("DA")));
+			
+			ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
+			projectInfo.put("DA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("DA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
@@ -221,6 +317,10 @@ public class ProjectController {
 		// 프로젝트 UA 이름
 		if (projectInfo.get("UA") != null) {
 			params.put("mem_id", String.valueOf(projectInfo.get("UA")));
+			
+			ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
+			projectInfo.put("UA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("UA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
@@ -233,6 +333,10 @@ public class ProjectController {
 		// 프로젝트 AA 이름
 		if (projectInfo.get("AA") != null) {
 			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
+			
+			ProfileFileVO profileInfo = profileFileService.selectProfileFileInfo(params);
+			projectInfo.put("AA_PIC_SAVENAME", profileInfo.getProfile_savename());
+			
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));

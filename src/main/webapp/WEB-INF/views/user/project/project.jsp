@@ -288,18 +288,20 @@
 								</td>
 								<td>
 									<div class="d-flex align-items-center">
-										<span class="completion mr-2">30%</span>
+										<span class="completion mr-2">${item.AVERAGE }%</span>
 										<div>
-											<c:if test="${item.AVERAGE != '100' }">
-												<div class="progress-bar bg-danger" role="progressbar"
-													aria-valuenow="${item.AVERAGE }" aria-valuemin="0"
-													aria-valuemax="100" style="width: ${item.AVERAGE }%;"></div>
-											</c:if>
-											<c:if test="${item.AVERAGE == '100' }">
-												<div class="progress-bar bg-success" role="progressbar"
-													aria-valuenow="${item.AVERAGE }" aria-valuemin="0"
-													aria-valuemax="100" style="width: ${item.AVERAGE }%;"></div>
-											</c:if>
+											<div class="progress">
+												<c:if test="${item.AVERAGE != '100' }">
+													<div class="progress-bar bg-danger" role="progressbar"
+														aria-valuenow="${item.AVERAGE }" aria-valuemin="0"
+														aria-valuemax="100" style="width: ${item.AVERAGE }%;"></div>
+												</c:if>
+												<c:if test="${item.AVERAGE == '100' }">
+													<div class="progress-bar bg-success" role="progressbar"
+														aria-valuenow="${item.AVERAGE }" aria-valuemin="0"
+														aria-valuemax="100" style="width: ${item.AVERAGE }%;"></div>
+												</c:if>
+											</div>
 										</div>
 									</div>
 								</td>
