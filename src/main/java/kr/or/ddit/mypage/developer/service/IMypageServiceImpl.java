@@ -1,10 +1,12 @@
 package kr.or.ddit.mypage.developer.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.mypage.developer.dao.IMypageDao;
 import kr.or.ddit.profile_file.dao.IProfileFileDao;
+import kr.or.ddit.project.dao.IProjectDao;
 import kr.or.ddit.utiles.AttachFileMapper;
 import kr.or.ddit.utiles.AttachFileMapperMember;
 import kr.or.ddit.vo.FileItemVO;
@@ -26,6 +28,9 @@ public class IMypageServiceImpl implements IMypageService{
 	@Autowired
 	private IProfileFileDao fileDao;
 	
+	@Autowired
+	private IProjectDao projectProfileDao;
+	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public int projectFinishNumber(Map<String, String> params) throws Exception {
@@ -46,10 +51,7 @@ public class IMypageServiceImpl implements IMypageService{
 		String mypage_no = dao.insertMyabout(vo);
 		String mem_id = vo.getMem_id();
 		List<ProfileFileVO> fileItemList = AttachFileMapperMember.mapper(items, mypage_no,mem_id);
-		
 		fileDao.insertMypageFileInfo(fileItemList);
-	
-		
 		
 		return mypage_no;
 	}
@@ -68,9 +70,12 @@ public class IMypageServiceImpl implements IMypageService{
 		String mypasge_no = dao.modifyMyabout(vo);
 		String mem_id =vo.getMem_id();
 		List<ProfileFileVO> fileItemList = AttachFileMapperMember.mapper(items, mypasge_no, mem_id);
-		
 		fileDao.insertMypageFileInfo(fileItemList);
+		
 		return mypasge_no;
+		
+		
+		
 	}
 
 }

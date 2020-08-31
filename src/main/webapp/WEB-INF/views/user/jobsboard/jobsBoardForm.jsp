@@ -149,6 +149,22 @@
 				return;
 			}
 			
+			if (jobs_startdate == "" || jobs_enddate == "" ) {
+				$.notify({
+					// options
+					message: '모집기간을 입력해주세요!' 
+				},{
+					// settings
+					placement: {
+						from: "top",
+						align: "center"
+					},
+					type: 'info'
+				});
+				
+				return;
+			}
+			
 			
 			// 데이터 넘겨서 Insert 작업하기
 			location.href = '${pageContext.request.contextPath}/user/jobsboard/insertJobsBoard.do?jobs_title=' + jobs_title + "&jobs_content=" + jobs_content + "&jobs_startdate=" + jobs_startdate +"&jobs_enddate=" + jobs_enddate+ "&mem_id=${MEMBER_LOGININFO.mem_id}";

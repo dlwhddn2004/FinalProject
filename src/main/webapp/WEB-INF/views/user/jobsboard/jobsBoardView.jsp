@@ -29,7 +29,7 @@
 
     <!-- My CSS -->
     <style>
-        .jobsBoard-form {
+        .cardview {
             padding: 30px;
         }
         .form-button-area {
@@ -40,7 +40,7 @@
 <body>
 	<div class="row">
         <div class="col">
-            <div class="card">
+            <div class="card cardview">
 <%--                 <form class="jobsBoard-form" action="${pageContext.request.contextPath }/user/jobsboard/updateJobsBoard.do" method="POST"> --%>
 				<div class="jobsBoard-form">
                     <div class="form-group">
@@ -78,9 +78,11 @@
                             <button type="button" class="btn btn-primary" id="btn-back">뒤로가기</button>
                     </div>                 
 <!--                 </form> --></div>
-
-          <!-- 댓글 -->
-            <div class="card">
+		      
+        </div>
+        
+                  <!-- 댓글 -->
+            <div class="card cardview" style="margin: 15px 0px 0px 0px;">
 		        <!-- Card header -->
 		        <div class="card-header border-0">
 		          <div class="row">
@@ -168,12 +170,11 @@
 		          </table>
 		        </div>
 		      </div>
-
-
-		      
-        </div>
     </div>
 </div>
+
+
+
 
 
 

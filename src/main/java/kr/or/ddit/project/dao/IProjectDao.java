@@ -3,6 +3,7 @@ package kr.or.ddit.project.dao;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 
@@ -19,4 +20,7 @@ public interface IProjectDao {
 	public List<Map<String, String>> selectTodo(Map<String, String> params) throws Exception;
 	public String insertTODO(Map<String, String> params) throws Exception;
 	public int deleteTodo(Map<String, String> params) throws Exception;
+	
+
+	
 }
