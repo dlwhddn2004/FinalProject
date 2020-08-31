@@ -15,30 +15,14 @@ public class MemberVO {
 	private String mem_bir;
 	private String mem_bankname;
 	private String mem_bank;
-	
-	private String mem_del;
-	private String mem_auth;
-	private String mem_x;
-	
-	
+	private String mem_notice;
 
-	public String getMem_del() {
-		return mem_del;
+
+	public String getMem_notice() {
+		return mem_notice;
 	}
-	public void setMem_del(String mem_del) {
-		this.mem_del = mem_del;
-	}
-	public String getMem_auth() {
-		return mem_auth;
-	}
-	public void setMem_auth(String mem_auth) {
-		this.mem_auth = mem_auth;
-	}
-	public String getMem_x() {
-		return mem_x;
-	}
-	public void setMem_x(String mem_x) {
-		this.mem_x = mem_x;
+	public void setMem_notice(String mem_notice) {
+		this.mem_notice = mem_notice;
 	}
 	public String getMem_bank() {
 		return mem_bank;

@@ -342,7 +342,20 @@ display: table; margin-left: auto; margin-right: auto; display: inline-block;
                       </div>
                     </div>
                     <br>
-                     <label class="form-control-label" for="input-email">프로필 사진 첨부</label>
+                     <h3>알림 설정</h3>
+                    <div>
+                     <label><input type="checkbox" name="mem_notice" value="문자메시지"> 문자메시지</label>&nbsp;&nbsp;&nbsp;
+                     <label><input type="checkbox" name="mem_notice" value="이메일"> 이메일</label>
+                 <!--      <i class="ni ni-mobile-button"></i>
+                      <span>카카오톡 알림</span> 
+                <button type="" class="btn-icon-clipboard" data-clipboard-text="email-83" title="Copy to clipboard">
+                    <div>
+                      <label><input type="checkbox" name="color" value="red"></label>
+                      <i class="ni ni-email-83"></i>
+                      <span>email 알림</span> -->
+                    </div>
+                  </button>
+                  <%--    <label class="form-control-label" for="input-email">프로필 사진 첨부</label>
           <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="http://">
     <div class="fallback">
         <div class="custom-file">
@@ -371,7 +384,8 @@ display: table; margin-left: auto; margin-right: auto; display: inline-block;
                             <a href="#" class="dropdown-item" data-dz-remove>
                                 Remove
                             </a>
-                             <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3">
+                             <img src="/${item.profile_savename }.${item.profile_contenttype }" class="avatar rounded-circle mr-3"> --%>
+    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" style="float:right";>등록</button>
                         </div>
                     </div>
                 </div>
@@ -382,7 +396,6 @@ display: table; margin-left: auto; margin-right: auto; display: inline-block;
 	
                   </div>
                          <div>
-    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" style="float:right";>등록</button>
 						</div>
                   
                   

@@ -10,7 +10,7 @@ $(function(){
 	   
 	   
 	   $('form[name=memberForm]').submit(function(){
-	      $(this).attr('action', '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo2.do');
+	      $(this).attr('action', '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
 	     
 	     
 	   }); 
@@ -18,15 +18,15 @@ $(function(){
 </script>
 <html>
 <style>
-h8 {
-
-  
-
-  font-size: .8em;
-
-
-
+.btn-primary {
+      
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:40%;
 }
+
 .card-profile {
 	width : 100%;
  	height : 100%;
@@ -39,15 +39,14 @@ h8 {
  .card-body {
  display: table; margin-left: auto; margin-right: auto; display: inline-block;   
  
- width : 50%;
- 	height : 50%;
+ width : 40%;
+ 	height : 30%;
 
 } 
 img{
 
   float : left;
 }
-
 
 </style>
 <head>
@@ -141,55 +140,62 @@ img{
             <div class="card-header">
               <div class="align-items-center">
                 <div class="col-8">
-                <h3>신원 인증</h3>
-                  <h3 class="text-muted mb-0">안전한 프로젝트 계약을 위해 신분증(사업자등록증)을 통한 신원 확인이 필요합니다.</h3>
+                <h3>계좌관리</h3>
+                  <h3 class="text-muted mb-0">프로젝트 대금을 지급받을 계좌 정보를 등록해주세요.</h3>
                 </div>
              
               </div>
             </div>
             <div class="card-body">
-            <table style="border-style:solid; border-width=1; margin:3px;">
-          <img src="${pageContext.request.contextPath}/assets/img/theme/p3.png" >
-        </table>
-            
-        
+          <img src="${pageContext.request.contextPath}/assets/img/theme/p2.png" >
         <!--   <h1>계좌 등록</h1> -->
-                
+              
                 <div class="pl-lg-4">
                   <div class="cx">
                     <div class="col-lg-6">
                       <div class="form-group">
-                <h6 class="heading-small text-muted mb-2">신원</h6>
-                        <label class="form-control-label" for="input-username">파트너 형태</label>
-                        <input type="hidden" name="mem_id" id="">
-                        <input type="text" id="mem_bankname" class="form-control"   value='${memberInfo.mem_bankname }'  name="mem_bankname">
-                         <label class="form-control-label" for="input-username"><h8 >[기본 정보 수정]에서 수정 가능합니다.</h8></label>
+                <h6 class="heading-small text-muted mb-2">계좌 등록</h6>
+                        <label class="form-control-label" for="input-username">은행명</label>
                          
-                        
+                         <select name="mem_bank" class="form-control">
+            <option value="은행선택">은행선택</option>
+            <option value="한국산업은행">한국산업은행</option>                       
+            <option value="기업은행">기업은행</option>                       
+            <option value="국민은행">국민은행</option>                       
+            <option value="우리은행">우리은행</option>                       
+            <option value="신한은행">신한은행</option>                       
+            <option value="하나은행">하나은행</option>                       
+            <option value="농협">농협</option>                       
+            <option value="단위농협">단위농협</option>                       
+            <option value="SC은행">SC은행</option>                       
+            <option value="외환은행">외환은행</option>                       
+            <option value="한국씨티은행">한국씨티은행</option>                       
+            <option value="우체국">우체국</option>                       
+            <option value="경남은행">경남은행</option>                       
+            <option value="광주은행">광주은행</option>                       
+            <option value="대구은행">대구은행</option>                       
+         </select> 
                       </div>
                     </div>
-                   <hr>
+                   
                   
                     <div class="col-lg-6">
                       <div class="form-group">
-                       <h6 class="heading-small text-muted mb-2">세부 정보</h6>
-                        <label class="form-control-label" for="input-email">성명</label>
-                        <input type="hidden" name="mem_id" id="">
-                        <input type="text" id="mem_bankname" class="form-control"   value='${memberInfo.mem_bankname }'  name="mem_bankname"><br>
-                         <label class="form-control-label" for="input-email">주소지</label>
-                        <input type="hidden" name="mem_id" id="">
+                        <label class="form-control-label" for="input-email">예금주</label>
+                   <input type="hidden" name="mem_id" class="form-control" value="${MEMBER_LOGININFO.mem_id}" placeholder="Username"> 
+                   <input type="hidden" name="mem_pass" class="form-control" value="${MEMBER_LOGININFO.mem_pass}" placeholder="Username"> 
+                       
                         <input type="text" id="mem_bankname" class="form-control"   value='${memberInfo.mem_bankname }'  name="mem_bankname">
                       </div>
                     </div>
                   <div>
                   
-                  <hr>
                   
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-first-name">*신원 인증 서류 이미지</label>
-                       
-                      <label class="form-control-label" for="input-username"><h8 >주민등록증 또는 운전면허증을 등록해주세요.<br>이미지 파일(.jpg .jpeg, png,.gif 등)만 등록할 수 있습니다.</h8></label>
+                        <label class="form-control-label" for="input-first-name">계좌 번호</label>
+                        <input type="text" id="input-first-name" value="${memberInfo.mem_bankno}" name="mem_bankno" id="mem_bankno2"class="form-control" placeholder="" value="Lucky">
+                      <label class="form-control-label" for="input-username">'-'를 제외하고 입력하시오</label>
                       </div>
                     </div>
                     </form>
@@ -200,9 +206,7 @@ img{
                     </div>
                     <br>
                     </div>
-                    <div>
-    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" style="float:right";>등록</button>
-               <div>
+    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" >등록</button>
                 </div>
             </div>
         </li>

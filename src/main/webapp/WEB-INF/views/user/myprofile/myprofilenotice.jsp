@@ -144,11 +144,11 @@ img{
             <div class="card-body">
         
        <h3>알림 설정</h3>
-             <button type="button" class="btn-icon-clipboard" data-clipboard-text="mobile-button" title="Copy to clipboard">
+             <button type="checkbox" class="btn-icon-clipboard" data-clipboard-text="mobile-button" title="Copy to clipboard">
                     <div>
                       <i class="ni ni-mobile-button"></i>
                       <span>카카오톡 알림</span> 
-                <button type="button" class="btn-icon-clipboard" data-clipboard-text="email-83" title="Copy to clipboard">
+                <button type="checkbox" class="btn-icon-clipboard" data-clipboard-text="email-83" title="Copy to clipboard">
                     <div>
                       <i class="ni ni-email-83"></i>
                       <span>email 알림</span>

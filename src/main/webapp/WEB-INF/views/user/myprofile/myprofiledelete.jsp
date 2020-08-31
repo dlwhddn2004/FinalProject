@@ -14,6 +14,18 @@ $('.btn-primary').click(function(){
 });
 }); 
 </script>
+<style>
+.btn-primary {
+      
+    width:100px; 
+    margin: -20px -50px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
+
+
+</style>
 </head>
 <body>
 <!-- Main content -->
@@ -50,7 +62,7 @@ $('.btn-primary').click(function(){
             </div>
             <div class="card-body pt-7 px-5">
               <div class="text-center mb-4">
-                <h3>비밀번호를 입력해주세요.</h3>
+                <h3>회원을 탈퇴하시겠습니까?</h3>
               </div>
               <form action="${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do" method="post" role="form">
           <div class="form-group has-feedback">
@@ -65,7 +77,7 @@ $('.btn-primary').click(function(){
                     <input class="form-control" name="mem_pass" id="mem_pass" placeholder="Password" type="password">
                   </div>
                 </div> -->
-                  <button type="button" id="btn-primary" value='탈퇴' class="btn btn-primary mt-2" style="float:right">확인</button>
+                  <button type="button" id="btn-primary" value='탈퇴' class="btn btn-primary mt-2" >탈퇴</button>
                 <div class="text-center">
                 </div>
                 </div>
