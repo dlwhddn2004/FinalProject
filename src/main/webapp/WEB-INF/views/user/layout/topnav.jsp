@@ -237,7 +237,7 @@
             <li class="nav-item dropdown"><a class="nav-link pr-0" href="#"
                role="button" data-toggle="dropdown" aria-haspopup="true"
                aria-expanded="false">
-                  <div class="media align-items-center" id="imgtitle" style="width: 100px; height: 75px;">
+                  <div class="media align-items-center" id="imgtitle">
                      <!-- <span class="avatar avatar-sm rounded-circle titleImg"> -->
                      	
                               <!-- <img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle"> -->

@@ -2,6 +2,7 @@ package kr.or.ddit.mypage.developer.controller;
 
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,8 @@ import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.member_rate.service.MemberRateServiceImpl;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.project.service.IProjectService;
+import kr.or.ddit.utiles.AttachFileMapperMember;
 import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
@@ -35,6 +38,9 @@ public class MypageDeveloperController {
 	
 	@Autowired
 	private IProfileFileService profileService; 
+	
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("myPageView")
 	public ModelAndView mainpage(String mem_id, ModelAndView modelAndView,String category_no,HttpServletRequest request) throws Exception{
@@ -84,7 +90,7 @@ public class MypageDeveloperController {
 		mypageInfo.setCategory_no(category_no);
 		mypageInfo.setMypage_aboutme(mypage_aboutme);
 
-		
+
 		 String test= null;
 		 
 		 test = this.mypageService.insertMyabout(mypageInfo, files);
@@ -108,6 +114,7 @@ public class MypageDeveloperController {
 		mypageInfo.setMypage_aboutme(mypage_aboutme);
 		
 		this.mypageService.modifyMyabout(mypageInfo, files);
+		
 		 String taskResult = null;
 		 String message = null;
 	
@@ -117,6 +124,10 @@ public class MypageDeveloperController {
 		
 		return "redirect:/user/mypage/myPageView.do?mem_id=" +mem_id +"&category_no"+ category_no +"&taskResult=" + taskResult + "&message=" + message;
 	}
+	
+
+	
+	
 	
 	@RequestMapping("headerImgChange")
 	public ModelAndView headerImgChange(ModelAndView modelAndView,String mem_id) throws Exception {

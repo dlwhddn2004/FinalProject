@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.project.dao.IProjectDao;
+import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 
@@ -71,4 +72,5 @@ public class ProjectServiceImpl implements IProjectService {
 	public int deleteTodo(Map<String, String> params) throws Exception {
 		return dao.deleteTodo(params);
 	}
+
 }
