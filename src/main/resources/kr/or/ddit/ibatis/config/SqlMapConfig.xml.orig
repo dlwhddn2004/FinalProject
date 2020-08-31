@@ -23,12 +23,15 @@
     <sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard.xml"/>		
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/jobsBoard_comment.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/timeline.xml"/>	
-<<<<<<< HEAD
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/mypageDeverloper.xml"/>	
-=======
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/reviewboard.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/task.xml"/>	
->>>>>>> 0a46b734471b75e41640e6be458e99a60192bd19
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/calendar.xml"/>	
+<<<<<<< HEAD
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/issueboard_comment.xml"/>	
+=======
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/inteview.xml"/>	
+>>>>>>> 8ef41ac6f8a439ccf06b75bf78bdeda689fc2000
 </sqlMapConfig>
 
 
