@@ -195,9 +195,16 @@
     <!-- Members list group card -->
     <div class="card" style="height: 520px;">
       <!-- Card header -->
-      <div class="card-header">
+      <div class="card-header" style="display: flex; justify-content: space-between;">
         <!-- Title -->
-        <h5 class="h3 mb-0">팀원</h5>
+        <div>
+        	<h5 class="h3 mb-0">팀원</h5>
+        </div>
+        <div>
+        	<c:if test="${MEMBER_LOGININFO.mem_id == projectInfo.MEM_ID}">
+        		<a href="${pageContext.request.contextPath }/user/interview/interviewMain.do" class="btn btn-sm btn-neutral" style="height: 25px;">채용 관리</a>
+        	</c:if>
+        </div>
       </div>
       <!-- Card body -->
       <div class="card-body">
