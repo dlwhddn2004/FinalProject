@@ -1,7 +1,9 @@
 package kr.or.ddit.task.controller;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +17,7 @@ import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
 import kr.or.ddit.task.service.ITaskService;
+import kr.or.ddit.timeline.service.ITimelineService;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
@@ -42,6 +45,9 @@ public class TaskController {
 	
 	@Autowired
 	private IMemberService memberService;
+	
+	@Autowired
+	private ITimelineService timelineService;
 	
 	@RequestMapping("task")
 	public ModelAndView taskList(HttpServletRequest request,
@@ -184,6 +190,17 @@ public class TaskController {
 		params.put("function_priority", function_priority);
 		String project_function_no = taskService.insertTask(params);
 		
+		// 타임라인에 등록!
+		Date nowDate = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		
+		params.put("mem_id", function_manager);
+		params.put("timeline_title", "새로운 기능 배정");
+		params.put("timeline_tag", "NEW,FUNCTION");
+		params.put("timeline_content",  format.format(nowDate) + "에 " + function_manager + "에게 새로운 기능이 배정되었습니다.");
+		params.put("timeline_category",  "Y");
+		timelineService.insertTimeline(params);
+		
 		Map<String, String> resultMap = new HashMap<String, String>();
 		resultMap.put("project_function_no", project_function_no);
 		
@@ -213,6 +230,27 @@ public class TaskController {
 		params.put("function_priority", function_priority);
 		int chk = taskService.updateTask(params);
 		
+		// 타임라인에 등록!
+		Date nowDate = new Date();
+		System.out.println("가공 전 날짜 : " + nowDate);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("가공 후 날짜 : " + format.format(nowDate));
+		
+		if (function_progress.equals("100") && function_status.equals("완료")) {
+			params.put("mem_id", function_manager);
+			params.put("timeline_title", "기능 구현 완료");
+			params.put("timeline_tag", "SUCCESS,FUNCTION");
+			params.put("timeline_content",  format.format(nowDate) + "에  " + function_manager + "에게 배정된 기능이 완료되었습니다.");
+			params.put("timeline_category",  "Y");
+		} else {
+			params.put("mem_id", function_manager);
+			params.put("timeline_title", "기능 수정");
+			params.put("timeline_tag", "UPDATE,FUNCTION");
+			params.put("timeline_content",  format.format(nowDate) + "에 기능이 수정되었습니다.");
+			params.put("timeline_category",  "Y");
+		}
+		timelineService.insertTimeline(params);
+		
 		Map<String, String> resultMap = new HashMap<String, String>();
 		if (chk > 0) {
 			resultMap.put("result", "Y");
@@ -229,6 +267,62 @@ public class TaskController {
 		params.put("project_function_no", project_function_no);
 		
 		Map<String, String> resultMap = taskService.selectTaskInfo(params);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("checkPosition")
+	@ResponseBody
+	public Map<String, String> checkPosition(String project_no,
+											 String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id", mem_id);
+		Map<String, String> participantsInfo = taskService.checkPosition(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (String.valueOf(participantsInfo.get("PL")).equals(mem_id)) {
+			resultMap.put("result", "PL");
+		} else if (String.valueOf(participantsInfo.get("TA")).equals(mem_id)) {
+			resultMap.put("result", "TA");
+		} else if (String.valueOf(participantsInfo.get("DA")).equals(mem_id)) {
+			resultMap.put("result", "DA");
+		} else if (String.valueOf(participantsInfo.get("UA")).equals(mem_id)) {
+			resultMap.put("result", "UA");
+		} else if (String.valueOf(participantsInfo.get("AA")).equals(mem_id)) {
+			resultMap.put("result", "AA");
+		}
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("deleteTask")
+	@ResponseBody
+	public Map<String, String> deleteTask(String project_function_no,
+										  String mem_id,
+										  String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_function_no", project_function_no);
+		int chk = taskService.deleteTask(params);
+		
+		// 타임라인에 등록!
+		Date nowDate = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		
+		params.put("mem_id", mem_id);
+		params.put("timeline_title", "기능 삭제");
+		params.put("timeline_tag", "DELETE,FUNCTION");
+		params.put("timeline_content",  format.format(nowDate) + "에 " + mem_id + "의 기능이 삭제되었습니다.");
+		params.put("timeline_category",  "N");
+		params.put("project_no", project_no);
+		timelineService.insertTimeline(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
 		
 		return resultMap;
 	}

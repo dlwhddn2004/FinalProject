@@ -13,6 +13,19 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
+<!-- DROPDOWN -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
+	
+<style>
+	.task-modal .modal-dialog {
+		transform: translate(-162px, 0px) !important;
+	}
+	
+	.task-modal .icon-area .fas:hover {
+		cursor: pointer;
+	} 
+</style>
     
 <div class="row gantt">
   <div class="col">
@@ -23,7 +36,7 @@
         <div style="display: flex; width: 400px; margin: 10px 0px 10px 0px;">
           <select class="form-control select-project" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="프로젝트 선택">
           	<c:forEach items="${projectList }" var="item">
-          		<option>번호 : ${item.PROJECT_NO } 이름 : ${item.PROJECT_TITLE }</option>
+          		<option value="${item.PROJECT_NO }">${item.PROJECT_TITLE }</option>
           	</c:forEach>
           </select>
           <div style="margin: 0px 0px 0px 10px;">
@@ -97,6 +110,161 @@
   </div>
 </div>
 
+
+
+<!-- 일감 등록 모달 -->
+<div class="row task-modal">
+	<div class="col-md-4">
+		<div class="modal fade" id="modal-form" tabindex="-1" role="dialog"
+			aria-labelledby="modal-form" aria-hidden="true">
+			<div class="modal-dialog modal- modal-dialog-centered modal-sm"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-body p-0" style="width: 650px;">
+						<div class="card bg-secondary border-0 mb-0">
+							<div class="card-header bg-transparent pb-5">
+							
+								<div class="icon-area" style="display: flex; justify-content: space-between;">
+									<div>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true"><i class="fas fa-times fa-2x modal-event-cancel" style="color: red;"></i></span>
+						                </button>
+									</div>
+								
+									<div class="text-muted text-center mt-2 mb-3">
+										<small class="modal-little-title"></small>
+										<h2 class="display-4 font-weight-bold modal-title"></h2>
+									</div>
+									
+									<div>
+										<i class="fas fa-check fa-2x modal-event-add" style="color: #5e72e4;"></i>
+									</div>
+								</div>
+								
+							    <img src="" class="rounded-circle img-center img-fluid shadow shadow-lg--hover modal-profile-img" style="width: 140px;">
+								<div class="pt-4 text-center">
+								    <h5 class="h3 title">
+								        <span class="d-block mb-1 modal-profile-name"></span>
+								        <small class="h4 font-weight-light text-muted">Web Developer</small>
+								    </h5>
+								    <a class="btn btn-sm btn-neutral" style="height: 25px;" onclick="deleteTask(this);">삭제</a>
+								</div>
+							</div>
+							<div class="card-body px-lg-5 py-lg-5">
+								<form role="form">
+									<div class="text-left text-muted mb-1">
+										<small>제목</small>
+									</div>
+									<div class="form-group mb-3">
+										<div
+											class="input-group input-group-merge input-group-alternative">
+											<div class="input-group-prepend">
+												<span class="input-group-text"><i class="fas fa-heading"></i></span>
+											</div>
+											<input class="form-control" name="function_name" placeholder="제목" type="text">
+										</div>
+									</div>
+									
+									<div style="display: flex; justify-content: space-between;">
+										<div style="width: 45%;">
+											<div class="text-left text-muted mb-1">
+												<small>담당자</small>
+											</div>
+											<div class="form-group">
+												<div
+													class="input-group input-group-merge input-group-alternative">
+													<select class="form-control modal-select-manager" data-toggle="select" title="Simple select1" data-live-search="true" data-live-search-placeholder="Search ...">
+												    </select>
+												</div>
+											</div>
+										</div>
+										
+										<div style="width: 45%; margin: 10px 0px 0px 0px;">
+											<div class="text-left text-muted mb-1">
+												<small>진척도</small>
+											</div>
+											<div class="input-slider-container">
+											  <div id="input-slider" class="input-slider" data-range-value-min="0" data-range-value-max="100"></div>
+											  <div class="row mt-3 d-none">
+											    <div class="col-6">
+											      <span id="input-slider-value" class="range-slider-value" data-range-value-low="0"></span>
+											    </div>
+											  </div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="text-left text-muted mb-1">
+										<small>일정</small>
+									</div>
+									<div class="input-daterange datepicker row align-items-center">
+									    <div class="col">
+									        <div class="form-group">
+									            <div class="input-group">
+									                <div class="input-group-prepend">
+									                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+									                </div>
+									                <input class="form-control modal-start-date" placeholder="Start date" type="text" value="06/18/2020">
+									            </div>
+									        </div>
+									    </div>
+									    <div class="col">
+									        <div class="form-group">
+									            <div class="input-group">
+									                <div class="input-group-prepend">
+									                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+									                </div>
+									                <input class="form-control modal-end-date" placeholder="End date" type="text" value="06/22/2020">
+									            </div>
+									        </div>
+									    </div>
+									</div>
+									
+
+									<div style="display: flex; justify-content: space-between;">
+										<div style="width: 45%;">
+											<div class="text-left text-muted mb-1">
+												<small>상태</small>
+											</div>
+											<div class="form-group">
+												<div
+													class="input-group input-group-merge input-group-alternative">
+													<select class="form-control modal-select-status" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ...">
+												        <option>신규</option>
+												        <option>완료</option>
+												    </select>
+												</div>
+											</div>
+										</div>
+										
+										<div style="width: 45%;">
+											<div class="text-left text-muted mb-1">
+												<small>우선 순위</small>
+											</div>
+											<div class="form-group">
+												<div
+													class="input-group input-group-merge input-group-alternative">
+													<select class="form-control modal-select-priority" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ...">
+												        <option>낮음</option>
+												        <option>보통</option>
+												        <option>높음</option>
+												    </select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
 <!-- Argon Scripts -->
 <!-- Core -->
 <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -107,20 +275,25 @@
 <!-- Optional JS -->
 <script src="${pageContext.request.contextPath}/assets/vendor/list.js/dist/list.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
+<script 
+	src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script 
+	src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
   <script>
+  	let var_project_function_no = '';
+  	let var_mem_id = '';
+  
     let project_no = $('.select-project').select2('val');
-    project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
     loadManager(project_no);
   
     // VIEW 버튼 이벤트
     $('.gantt .btn-view').on('click', function () {
       let project_no = $('.select-project').select2('val');
-      project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
 
       // location.href = '';
     });
@@ -137,14 +310,12 @@
   	  $('.gantt .ipt-function-name').val('');
   	  
   	  let project_no_re = $('.select-project').select2('val');
-      project_no_re = project_no_re.substring(project_no_re.indexOf(':') + 2, project_no_re.indexOf('이') - 1);
 	  loadManager(project_no_re);
   	});
         
     // 기능들 조회해서 페이지에 표시
     function loadTaskList() {
     	let project_no = $('.gantt .select-project').select2('val');
-    	project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
     	
     	let mem_id = $('.gantt .select-manager').select2('val');
     	mem_id = mem_id.substring(0, mem_id.indexOf(' '));
@@ -191,7 +362,8 @@
 					} else {
 						function_status = '<span class="name mb-0 text-sm text-primary">완료</span>';
 					}
-        			const listItem = ('<tr>\n' +
+        			const listItem = ('<tr  data-toggle="modal" data-target="#modal-form" style="cursor: pointer;" onclick="beforeModal(this)">\n' +
+        					  '\t            <input type="hidden" name="project_function_no" value="' + item.PROJECT_FUNCTION_NO + '">' +
         		              '\t            <th scope="row">\n' +
         		              '\t              <div class="media align-items-center">\n' +
         		              '\t                <div class="media-body">\n' +
@@ -207,7 +379,7 @@
         		              '\t            </td>\n' +
         		              '\t            <td>\n' +
         		              '\t              <div class="avatar-group">\n' +
-        		              '\t                  <span class="title mb-0 text-sm">' + item.FUNCTION_MANAGER + '</span>\n' +
+        		              '\t                  <span class="title mb-0 text-sm function_manager">' + item.FUNCTION_MANAGER + '</span>\n' +
         		              '\t              </div>\n' +
         		              '\t            </td>\n' +
         		              '\t            <td>\n' +
@@ -283,5 +455,260 @@
 				alert(request.status);
 			}
 		});
+	}
+    
+    // 기능 선택했을 때 모달창이 켜지는데 켜지기 전 콜백 함수!
+    function beforeModal(e) {
+    	const project_no = $('.gantt .select-project').select2('val');
+    	let project_function_no_all = $(e).find('input[name=project_function_no]').val();
+    	var_project_function_no = project_function_no_all;
+		
+    	const mem_id = $(e).find('.function_manager').text();
+    	var_mem_id = $(e).find('.function_manager').text();
+    	
+    	// 현재 선택한 기능의 PK 값을 이용해 기능의 정보를 조회해온다.
+    	$.ajax({
+    		type: 'POST',
+    		url: '${pageContext.request.contextPath}/user/task/selectTaskInfo.do',
+    		dataType: 'json',
+    		data: {
+    			project_function_no: project_function_no_all
+    		},
+    		async: true,
+    		success: function(result) {
+    			// 제목 세팅!
+				$('.task-modal input[name=function_name]').val(result.FUNCTION_NAME);
+				
+				// noUiSlider 선택한 값에 맞춰 세팅!
+				let function_progress = $('.task-modal .range-slider-value').text(result.FUNCTION_PROGRESS + '.0');
+				$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + result.FUNCTION_PROGRESS + ', 1)');
+				$('.noUi-origin').css('transform', 'translate(-' + (100 - Number(result.FUNCTION_PROGRESS)) + '%, 0px)');
+				$('.noUi-origin').css('z-index', '4');
+				
+				// 날짜 세팅! (월/일/년도 -> 이렇게 들어가야함)
+				$('.task-modal .modal-start-date').val(result.FUNCTION_REGDATE);
+				$('.task-modal .modal-end-date').val(result.FUNCTION_ENDDATE);
+				
+				// 상태 세팅!
+				$('.task-modal .modal-select-status').empty();
+				if (result.FUNCTION_STATUS == '신규') {
+					$('.task-modal .modal-select-status').append('<option selected>신규</option> <option>완료</option>');
+				} else if (result.FUNCTION_STATUS == '완료') {
+					$('.task-modal .modal-select-status').append('<option>신규</option> <option selected>완료</option>');
+				}
+				
+				// 우선 순위 세팅!
+				$('.task-modal .modal-select-priority').empty();
+				if (result.FUNCTION_PRIORITY == '낮음') {
+					$('.task-modal .modal-select-priority').append('<option selected>낮음</option> <option>보통</option> <option>높음</option>');
+				} else if (result.FUNCTION_PRIORITY == '보통') {
+					$('.task-modal .modal-select-priority').append('<option>낮음</option> <option selected>보통</option> <option>높음</option>');
+				} else if (result.FUNCTION_PRIORITY == '높음') {
+					$('.task-modal .modal-select-priority').append('<option>낮음</option> <option>보통</option> <option selected>높음</option>');
+				}
+    		},
+    		error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+    	});
+    	
+    	let chkPosition = '';
+    	$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/user/task/checkPosition.do',
+			dataType : 'json',
+			data : {
+				project_no : project_no,
+				mem_id: mem_id
+			},
+			success : function(result) {
+				chkPosition = result.result;
+			},
+			error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+    	
+    	// 현재 선택한 기능이 속한 프로젝트에 참여하는 팀원들을 조회해서 select2를 구성한다.
+    	$.ajax({
+			type : 'POST',
+			url : '${pageContext.request.contextPath}/user/task/selectProjectInfo.do',
+			dataType : 'json',
+			data : {
+				project_no : project_no
+			},
+			success : function(result) {
+				$('.task-modal .modal-select-manager').empty();
+				if (result.projectInfo == 0) {
+					$('.task-modal .modal-select-manager').append('<option>아직 프로젝트에 참여한 팀원이 없습니다.</option>');
+				} else {
+					let PL = $('<option value="' + result.projectInfo.PL + '">' + result.projectInfo.PL_NAME
+							+ ' (PL)</option>');
+					let DA = $('<option value="' + result.projectInfo.DA + '">' + result.projectInfo.DA_NAME
+							+ ' (DA)</option>');
+					let UA = $('<option value="' + result.projectInfo.UA + '">' + result.projectInfo.UA_NAME
+							+ ' (UA)</option>');
+					let TA = $('<option value="' + result.projectInfo.TA + '">' + result.projectInfo.TA_NAME
+							+ ' (TA)</option>');
+					let AA = $('<option value="' + result.projectInfo.AA + '">' + result.projectInfo.AA_NAME
+							+ ' (AA)</option>');
+					
+					if (chkPosition === 'PL') {
+						PL = $('<option selected value="' + result.projectInfo.PL + '">' + result.projectInfo.PL_NAME
+								+ ' (PL)</option>');
+					} else if (chkPosition === 'DA') {
+						DA = $('<option selected value="' + result.projectInfo.DA + '">' + result.projectInfo.DA_NAME
+								+ ' (DA)</option>');
+					} else if (chkPosition === 'UA') {
+						PL = $('<option selected value="' + result.projectInfo.UA + '">' + result.projectInfo.UA_NAME
+								+ ' (UA)</option>');
+					} else if (chkPosition === 'TA') {
+						PL = $('<option selected value="' + result.projectInfo.TA + '">' + result.projectInfo.TA_NAME
+								+ ' (TA)</option>');
+					} else if (chkPosition === 'AA') {
+						PL = $('<option selected value="' + result.projectInfo.AA + '">' + result.projectInfo.AA_NAME
+								+ ' (AA)</option>');
+					}
+					
+					
+					if (result.projectInfo.PL != null) {
+						$('.task-modal .modal-select-manager').append(PL);
+					}
+					if (result.projectInfo.DA != null) {
+						$('.task-modal .modal-select-manager').append(DA);
+					}
+					if (result.projectInfo.UA != null) {
+						$('.task-modal .modal-select-manager').append(UA);
+					}
+					if (result.projectInfo.TA != null) {
+						$('.task-modal .modal-select-manager').append(TA);
+					}
+					if (result.projectInfo.AA != null) {
+						$('.task-modal .modal-select-manager').append(AA);
+					}
+					
+					const mem_id = $('.task-modal .modal-select-manager').select2('val');
+					changeManager(mem_id);
+				}
+			},
+			error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+    }
+    
+    function changeManager(mem_id) {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/user/member/selectMemberInfoJSON.do',
+			dataType: 'json',
+			data: {
+				mem_id: mem_id
+			},
+			success: function(result) {
+				$('.task-modal .modal-profile-img').attr('src', '/' + result.PROFILE_SAVENAME)
+				$('.task-modal .modal-profile-name').text(result.MEM_NAME);
+			},
+			error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+	}
+    
+ 	// 일감 모달창 매니저 변경 시 사진이랑 정보들 변경
+	$(document.body).on("change", ".task-modal .modal-select-manager", function() {
+		const mem_id = $('.task-modal .modal-select-manager').select2('val');
+		
+		changeManager(mem_id);
+	});
+ 	
+	// 일감 모달창 확인 버튼
+	$('.task-modal .modal-event-add').on('click', function() {
+		const project_no = $('.gantt .select-project').select2('val');
+		const function_name = $('.task-modal input[name=function_name]').val();
+		const function_manager = $('.task-modal .modal-select-manager').select2('val');
+		let function_progress = $('.task-modal .range-slider-value').text();
+		function_progress = function_progress.substring(0, function_progress.indexOf('.'));
+		
+		let temp = '';
+		let year = '';
+		let month = '';
+		let day = '';
+		
+		let function_regdate = $('.task-modal .modal-start-date').val();
+		temp = function_regdate;
+		year = temp.substring(temp.lastIndexOf('/') + 1);
+		month = temp.substring(0, temp.indexOf('/'));
+		day = temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+		function_regdate = year + '-' + month + '-' + day;
+		
+		let function_enddate = $('.task-modal .modal-end-date').val();
+		temp = function_enddate;
+		year = temp.substring(temp.lastIndexOf('/') + 1);
+		month = temp.substring(0, temp.indexOf('/'));
+		day = temp.substring(temp.indexOf('/') + 1, temp.lastIndexOf('/'));
+		function_enddate = year + '-' + month + '-' + day;
+		
+		const function_status = $('.task-modal .modal-select-status').select2('val');
+		const function_priority = $('.task-modal .modal-select-priority').select2('val');
+		
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/user/task/updateTask.do',
+			dataType: 'json',
+			data: {
+				project_function_no: var_project_function_no,
+				project_no: project_no,
+				function_name: function_name,
+				function_manager: function_manager,
+				function_progress: function_progress,
+				function_regdate: function_regdate,
+				function_enddate: function_enddate,
+				function_status: function_status,
+				function_priority: function_priority
+			},
+			success: function(result) {
+				if (result.result == "Y") {
+					$('#modal-form').modal("hide");
+					
+					loadManager(project_no);
+				} else if (result.result == "N") {
+					Swal.fire('WARNING',
+							  '일감 수정에 실패했습니다.',
+							  'warning');
+				}
+			},
+			error(response, status, request) {
+				alert(response.status);
+			}
+		});
+	});
+	
+	function deleteTask(e) {
+		const project_no = $('.gantt .select-project').select2('val');
+		
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/user/task/deleteTask.do',
+			dataType: 'json',
+			data: {
+				project_function_no: var_project_function_no,
+				mem_id: mem_id,
+				project_no: project_no
+			},
+			success: function(result) {
+				$('#modal-form').modal("hide");
+				
+				loadManager(project_no);
+			},
+			error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		})
 	}
   </script>

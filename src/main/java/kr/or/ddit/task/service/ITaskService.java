@@ -18,5 +18,8 @@ public interface ITaskService {
 	
 	public String insertTask(Map<String, String> params) throws Exception;
 	public int updateTask(Map<String, String> params) throws Exception;
+	public int deleteTask(Map<String, String> params) throws Exception;
 	public Map<String, String> selectTaskInfo(Map<String, String> params) throws Exception;
+	
+	public Map<String, String> checkPosition(Map<String, String> params) throws Exception;
 }

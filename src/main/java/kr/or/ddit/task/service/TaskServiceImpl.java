@@ -53,11 +53,24 @@ public class TaskServiceImpl implements ITaskService {
 	public int updateTask(Map<String, String> params) throws Exception {
 		return dao.updateTask(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteTask(Map<String, String> params) throws Exception {
+		return dao.deleteTask(params);
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public Map<String, String> selectTaskInfo(Map<String, String> params)
 			throws Exception {
 		return dao.selectTaskInfo(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> checkPosition(Map<String, String> params)
+			throws Exception {
+		return dao.checkPosition(params);
 	}
 }
