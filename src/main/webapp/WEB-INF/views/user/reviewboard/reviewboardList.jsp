@@ -175,7 +175,7 @@
 			location.href = "${pageContext.request.contextPath}/user/reviewboard/reviewboardForm.do?mem_id=${MEMBER_LOGININFO.mem_id}";
 		});
 		
-	})
+	});
 	
 	function deleteReview(e) {
 		const review_no = $(e).find('input[name=review_no]').val();
@@ -196,5 +196,4 @@
 		});
 	}
 	
-});
 </script>

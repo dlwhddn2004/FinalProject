@@ -23,180 +23,217 @@
 	type="text/css">
 
 
-<style>
-.projectForm .btn-processStatus {
-	font-family: inherit;
-	font-size: 1rem;
-	font-weight: 400;
-	line-height: 1.25;
-	display: inline-block;
-	width: 100%;
-	margin: 0;
-	margin: .5rem 0;
-	padding: 1.5rem;
-	cursor: pointer;
-	text-align: left;
-	vertical-align: middle;
-	text-decoration: none;
-	color: #32325d;
-	border-radius: .375rem;
-	border-color: #5e72e4;
-	background-color: #fff;
-	-moz-appearance: none;
-}
-
-.projectForm .btn-processStatus:hover {
-	background-color: #fff;
-	box-shadow: rgba(0, 0, 0, .1) 0 0 0 1px, rgba(0, 0, 0, .1) 0 4px 16px;
-}
-
-.projectForm .btn-processStatus>div {
-	display: flex;
-	align-items: center;
-}
-
-.projectForm .btn-processStatus i {
-	font-size: 1.5rem;
-	box-sizing: content-box;
-	vertical-align: middle;
-	color: #5e72e4;
-}
-
-.projectForm .btn-processStatus span {
-	font-size: .875rem;
-	line-height: 1.5;
-	display: inline-block;
-	overflow: hidden;
-	margin-left: 16px;
-	vertical-align: middle;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-</style>
-
 <div class="projectForm">
-	<div class="row">
-		<div class="col">
-			<div class="card">
-				<div class="card-header">
-					<h3 class="mb-0">프로젝트 등록</h3>
-					<p class="text-sm mb-0">100만여 명의 디벨로퍼를 대상으로 프로젝트를 등록하고, 견적과
-						지원서를 무료로 받아보세요.</p>
-				</div>
-				<div class="card-body"></div>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-4">
-			<div class="card">
-				<!-- Card image -->
-				<img class="card-img-top" src="${pageContext.request.contextPath}/assets/img/theme/projectForm.jpg"
-					alt="Image placeholder">
-				<!-- List group -->
-				<ul class="list-group list-group-flush">
-					<li class="list-group-item">프로젝트 정보 등록</li>
-					<li class="list-group-item">프로젝트 등록 완료</li>
-					<!--              <li class="list-group-item">Vestibulum at eros</li>-->
-				</ul>
-				<!-- Card body -->
-				<!--            <div class="card-body">
-              <h3 class="card-title mb-3">Card title</h3>
-              <p class="card-text mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis non dolore est fuga nobis ipsum illum eligendi nemo iure repellat, soluta, optio minus ut reiciendis voluptates enim impedit veritatis officiis.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>-->
-			</div>
-		</div>
-		<div class="col-lg-8">
-			<div class="card">
-				<!-- Card header -->
-				<div class="card-header">
-					<h3 class="mb-0">프로젝트 정보 등록</h3>
-				</div>
-				<!-- Card body -->
-				<div class="card-body">
-					<form>
-						<div class="form-group flex-column">
-							<label class="col-form-label form-control-label">프로젝트 진행
-								방식</label> <label style="color: tomato">*</label>
-							<p class="text-muted" style="font-size: small">프로젝트에 적합한 작업자를
-								모집하기 위해 프로젝트 진행 방식을 선택해주세요</p>
-							<div class="row">
-								<!--                    <input class="form-control" type="text" value="John Snow" id="example-text-input">-->
-								<div class="col-lg-3 col-md-6">
-									<button name="processStatus" type="button"
-										class="btn-processStatus" value="외주">
-										<div>
-											<i class="ni ni-chart-pie-35"></i> <span>외주</span>
-										</div>
-									</button>
-								</div>
-								<div class="col-lg-3 col-md-6">
-									<button name="processStatus" type="button"
-										class="btn-processStatus" value="상주">
-										<div>
-											<i class="ni ni-chart-pie-35"></i> <span>상주</span>
-										</div>
-									</button>
-								</div>
-							</div>
-						</div>
-						<div class="form-group flex-column">
-							<label class="col-form-label form-control-label">프로젝트 진행
-								분류</label> <label style="color: tomato">*</label>
-							<div class="custom-control custom-radio mb-3">
-								<input type="radio" id="customRadio1" name="customRadio"
-									class="custom-control-input" value="신규"> <label
-									class="custom-control-label" for="customRadio1">신규 프로젝트</label>
-							</div>
-							<div class="custom-control custom-radio">
-								<input type="radio" id="customRadio2" name="customRadio"
-									class="custom-control-input" value="유지보수"> <label
-									class="custom-control-label" for="customRadio2">운영 중인
-									서비스의 리뉴얼 or 유지보수</label>
-							</div>
-						</div>
-						<div align="right" style="padding: 15px 15px 0px 0px;">
-							<button type="button" class="btn btn-primary btn-write">등록</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+	      <div class="row">
+        <div class="col">
+          <div class="card">
+            <!--                   카드헤더                     -->
+            <div class="card-header">
+              <h3 class="mb-0">프로젝트 등록</h3>
+              <p class="text-sm mb-0">100만여 명의 디벨로퍼를 대상으로 프로젝트를 등록하고, 견적과 지원서를 무료로 받아보세요.</p>
+            </div>
+            <div class="card-body"></div>
+          </div>
+        </div>
+      </div>
+      <!--                  카드 메뉴랑 폼 묶는 곳                -->
+      <div class="row">
+      <!--소메뉴 -->
+        <div class="col-lg-4">
+          <div class="card">
+            <!-- Card image -->
+            <img class="card-img-top" src="${pageContext.request.contextPath }/assets/img/theme/projectForm.jpg" alt="Image placeholder">
+            <!-- List group -->
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item bg-gradient-primary text-white">프로젝트 정보 등록</li>
+              <li class="list-group-item ml-2">
+                <p class="font-weight-bold text-primary" style="font-size: small">1. 프로젝트 기본 정보</p>
+                <p class="text-muted" style="font-size: small">2. 프로젝트 준비 상태</p>
+                <p class="text-muted" style="font-size: small">3. 프로젝트 상세</p>
+                <p class="text-muted" style="font-size: small">4. 예산 및 일정</p>
+                <p class="text-muted" style="font-size: small">5. 미팅</p>
+                <p class="text-muted" style="font-size: small">6. 모집 요건</p>
+                <p class="text-muted" style="font-size: small">7. 추가 정보</p>
+              </li>
+              <li class="list-group-item">프로젝트 등록 완료</li>
+            </ul>
+          </div>
+        </div>
+<!-- form -->
+        <div class="col-lg-8">
+          <div class="card">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">프로젝트 기본 정보 등록</h3>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <form name="projectInfo" method="post">
+                <div class="form-group">
+                  <label class="col-form-label form-control-label">파트너스 정보</label>
+                  <label style="color: tomato">*</label>
+                  <p class="text-muted" style="font-size: small">파트너스 정보를 선택해 주세요</p>
+                  <div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="project_clientinformation1" name="project_clientinformation" class="custom-control-input" value="개인">
+                      <label class="custom-control-label" for="project_clientinformation1">개인</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="project_clientinformation2" name="project_clientinformation" class="custom-control-input" value="팀">
+                      <label class="custom-control-label" for="project_clientinformation2">팀</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label form-control-label">파트너스 소개</label>
+                  <p class="text-muted" style="font-size: small">소개를 간략히 입력해주세요.</p>
+                  <div class="">
+                    <input class="form-control" type="search" name="project_clientintroduce">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label form-control-label">프로젝트 진행 방식</label>
+                  <label style="color: tomato">*</label>
+                  <p class="text-muted" style="font-size: small">프로젝트에 적합한 작업자를 모집하기 위해 프로젝트 진행 방식을 선택해주세요</p>
+                  <div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="project_processstatus1" name="project_processstatus" class="custom-control-input" value="외주">
+                      <label class="custom-control-label" for="project_processstatus1">외주</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="project_processstatus2" name="project_processstatus" class="custom-control-input" value="상주">
+                      <label class="custom-control-label" for="project_processstatus2">상주</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group flex-column">
+                  <label class="col-form-label form-control-label">프로젝트 진행 분류</label>
+                  <label style="color: tomato">*</label>
+                  <div class="custom-control custom-radio mb-3">
+                    <input type="radio" id="project_processcategory1" name="project_processcategory" class="custom-control-input" value="신규">
+                    <label class="custom-control-label" for="project_processcategory1">신규 프로젝트</label>
+                  </div>
+                  <div class="custom-control custom-radio">
+                    <input type="radio" id="project_processcategory2" name="project_processcategory" class="custom-control-input" value="유지보수">
+                    <label class="custom-control-label" for="project_processcategory2">운영 중인 서비스의 리뉴얼 or 유지보수</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label form-control-label">프로젝트 제목</label>
+                  <label style="color: tomato">*</label>
+                  <p class="text-muted" style="font-size: small">프로젝트 제목을 30자 이내로 적어주세요.</p>
+                  <div class="">
+                    <input class="form-control" type="search" name="project_title" placeholder="ex) 솔루션 기반 자동차 경매 웹 사이트 구축">
+                  </div>
+                </div>
+
+                <div align="right" style="padding: 15px 15px 0px 0px;">
+                  <button id="btnRegist" type="button" class="btn btn-primary btn-write">등록</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
 
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Argon Scripts -->
+<!-- Core -->
+<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
 <!-- Optional JS -->
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Argon JS -->
-<script
-	src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
+<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
-<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
+
+<script type="text/javascript">
+	
+	<!-- 등록 버튼 -->
+	$(".projectForm #btnRegist").on("click", function() {
+		//파트너스 정보
+		const project_clientinformation = $('input[name=project_clientinformation]').is(':checked');
+		
+		if (project_clientinformation == false) {
+			$.notify({
+				// options
+				message: '파트너스 정보를 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
+		const project_processstatus = $('input[name=project_processstatus]').is(':checked');
+		
+		if (project_processstatus == false) {
+			$.notify({
+				// options
+				message: '프로젝트 진행 방식을 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
+/* 		const project_processcategory = $('input[name=project_processcategory]').is('checked');
+		
+		if (project_processcategory == false) {
+			$.notify({
+				// options
+				message: '프로젝트 진행 분류를 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		 */
+		// 제목을 입력하지 않았을 때!
+		const project_title = $('input[name=project_title]').val();
+		
+		if (project_title == "") {
+			$.notify({
+				// options
+				message: '제목을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
+		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/projectReady.do');
+		$('form[name=projectInfo]').submit();
+		
+	});
+	
+</script>

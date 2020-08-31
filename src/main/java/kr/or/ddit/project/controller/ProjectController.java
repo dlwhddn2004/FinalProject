@@ -373,22 +373,14 @@ public class ProjectController {
 	
 	@RequestMapping("/projectReady")
 	public ModelAndView projectReady(HttpServletRequest request,
-									ModelAndView modelAndView,
-									String project_clientinformation,
-									String project_clientintroduce,
-									String project_processstatus,
-									String project_processcategory,
-									String project_title
+									ModelAndView modelAndView
 									) throws Exception{
-		ProjectVO projectInfo = new ProjectVO();
-		projectInfo.setProject_clientinformation(project_clientinformation);
-		projectInfo.setProject_clientintroduce(project_clientintroduce);
-		projectInfo.setProject_processstatus(project_processstatus);
-		projectInfo.setProject_processcategory(project_processcategory);
-		projectInfo.setProject_title(project_title);
 		
-		modelAndView.addObject(projectInfo);
-		modelAndView.setViewName("user/");
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/projectReady");
 		return modelAndView;
 	}
 	
