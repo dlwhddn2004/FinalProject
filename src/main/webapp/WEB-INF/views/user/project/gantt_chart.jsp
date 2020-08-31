@@ -147,7 +147,7 @@
 								        <span class="d-block mb-1 modal-profile-name"></span>
 								        <small class="h4 font-weight-light text-muted">Web Developer</small>
 								    </h5>
-								    <a class="btn btn-sm btn-neutral" style="height: 25px;" onclick="deleteTask(this);">삭제</a>
+								    <a class="btn btn-sm btn-neutral btn-delete-here" style="height: 25px;" onclick="deleteTask(this);">삭제</a>
 								</div>
 							</div>
 							<div class="card-body px-lg-5 py-lg-5">

@@ -54,12 +54,7 @@
 		       DA,
 		       UA,
 		       TA,
-		       AA,
-		       PL_PIC_SAVENAME,
-		       DA_PIC_SAVENAME,
-		       UA_PIC_SAVENAME,
-		       TA_PIC_SAVENAME,
-		       AA_PIC_SAVENAME
+		       AA
 		FROM PROJECT
 		         JOIN PROJECT_PARTICIPANTS ON PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		WHERE PROJECT.PROJECT_NO = #project_no#
@@ -101,11 +96,6 @@
 		       UA,
 		       TA,
 		       AA,
-		       PL_PIC_SAVENAME,
-		       DA_PIC_SAVENAME,
-		       UA_PIC_SAVENAME,
-		       TA_PIC_SAVENAME,
-		       AA_PIC_SAVENAME,
 		       TECH_NO,
 		       TECH_NAME
 		FROM PROJECT,
@@ -158,11 +148,6 @@
 		       UA,
 		       TA,
 		       AA,
-		       PL_PIC_SAVENAME,
-		       DA_PIC_SAVENAME,
-		       UA_PIC_SAVENAME,
-		       TA_PIC_SAVENAME,
-		       AA_PIC_SAVENAME,
 		       TECH_NO,
 		       TECH_NAME
 		FROM PROJECT,
