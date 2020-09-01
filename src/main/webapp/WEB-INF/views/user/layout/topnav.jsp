@@ -511,29 +511,32 @@
             
             
     		const mem_id = "${MEMBER_LOGININFO.mem_id}";
-//    		let time = setInterval(function () {
-    			 	 $.ajax({
-      			    	type:'POST',
-      				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
-      				 dataType:'json',
-      				 data: {mem_id : mem_id},
-      				 success : function(result){
-      					 
-      					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
-      					 console.log(imgHeader);
-      					//$('#ImgHeader').attr('src',imgHeader);
-      					//<img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle">
-      					//<span class='avatar avatar-sm rounded-circle titleImg'></span>
-      					const $imgHeader_ipt = $("<span class='avatar avatar-sm rounded-circle'> <img id='ImgHeader' alt='Image placeholder' src='"
-      							+ imgHeader +"' class='avatar rounded-circle'></span>");	
-      					
-      					 $('#imgtitle').prepend($imgHeader_ipt);
-      				 },
-      				 error: function(xhr,status,error){
-      					 alert(error);
-      				 }
-      			 });
-//    	       },3000)
+			if(mem_id== ""){
+				return false;
+			}else{
+			 	 $.ajax({
+   			    	type:'POST',
+   				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
+   				 dataType:'json',
+   				 data: {mem_id : mem_id},
+   				 success : function(result){
+
+   					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
+   					 console.log(imgHeader);
+   					//$('#ImgHeader').attr('src',imgHeader);
+   					//<img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle">
+   					//<span class='avatar avatar-sm rounded-circle titleImg'></span>
+   					const $imgHeader_ipt = $("<span class='avatar avatar-sm rounded-circle'> <img id='ImgHeader' alt='Image placeholder' src='"
+   							+ imgHeader +"' class='avatar rounded-circle'></span>");	
+   					
+   					 $('#imgtitle').prepend($imgHeader_ipt);
+   				 },
+   				 error: function(xhr,status,error){
+   					 alert(error);
+   				 }
+   			 });	
+			}
+
     		
             
             
