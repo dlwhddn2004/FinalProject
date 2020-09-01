@@ -417,7 +417,7 @@
 			},
 			success : function(result) {
 				$('.gantt .select-manager').empty();
-				if (result.projectInfo == 0) {
+				if (result.projectInfo == null) {
 					$('.gantt .select-manager').append('<option>아직 프로젝트에 참여한 팀원이 없습니다.</option>')
 				} else {
 					const PL = $('<option>' + result.projectInfo.PL + ' (PL)</option>');

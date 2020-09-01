@@ -35,8 +35,7 @@
 	<div class="col">
 		<!-- Fullcalendar -->
 		<div class="card card-calendar">
-			<div
-				class="header header-dark bg-default pb-6 content__title content__title--calendar">
+			<div class="header header-dark bg-default pb-6 content__title content__title--calendar">
 				<div class="container-fluid">
 					<div class="row align-items-center py-4">
 						<div class="col-lg-6">
