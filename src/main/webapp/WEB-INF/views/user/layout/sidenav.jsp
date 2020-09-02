@@ -7,12 +7,24 @@
   <script>
   	$(function() {
   		$('.link-project-regist---').on('click', function() {
-//   	  		alert('HI!');
+  	  		if(${empty MEMBER_LOGININFO }){
+  	  			Swal.fire(
+	                  'Warning',
+	                  '로그인 후 이용할 수 있습니다.',
+	                  'warning'
+	                )
+	           	return;	
+  	  		}
   	  		
-//   	  		return;
-  	  		if(${empty MEMBER_LOGININFO } || ${MEMBER_LOGININFO.mem_category } != 1){
-  	  			alert('HI!');
-  	  			return;
+  	  		if (${MEMBER_LOGININFO.category_no != '1' }) {
+  	  			Swal.fire(
+	                  'Warning',
+	                  '파트너스 회원만 사용할 수 있습니다.',
+	                  'warning'
+	                )
+	           	return;
+  	  		} else {
+  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/project/project_1.do');
   	  		}
   	  	});
   	});

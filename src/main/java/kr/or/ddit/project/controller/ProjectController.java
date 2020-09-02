@@ -367,28 +367,15 @@ public class ProjectController {
 	
 	@RequestMapping("project_1")
 	public ModelAndView projectForm(HttpServletRequest request,
-									ModelAndView modelAndView,
-									String mem_id,
-									int mem_category) throws Exception{
+									ModelAndView modelAndView) throws Exception{
 		
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트");
 //		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+
+		modelAndView.setViewName("user/project/project_1");
 		
-
-
-		if(mem_id == null || mem_category != 1){
-			String taskResult = "warning";
-			String message = URLEncoder.encode("프로젝트 등록은 파트너스 회원만 가능합니다.", "UTF-8");
-			modelAndView.addObject("taskResult", taskResult);
-			modelAndView.addObject("message", message);
-			modelAndView.setViewName("user/reviewboard/reviewboardList");
-			
-		}else{
-			modelAndView.setViewName("user/project/project_1");
-		}
-				
 		return modelAndView;
 	}
 	
