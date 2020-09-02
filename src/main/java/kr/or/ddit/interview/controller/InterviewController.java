@@ -28,4 +28,22 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/user/interview/")
 public class InterviewController {
+	
+	@RequestMapping("partnersMain")
+	public ModelAndView successList(HttpServletRequest request,
+									ModelAndView modelAndView,
+									String mem_id,
+									String project_no) throws Exception {
+	
+	// breadcrumb
+	modelAndView.addObject("breadcrumb_title", "프로젝트");
+	modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+	modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?mem_id=" + mem_id + "&project_no=" + project_no);
+	modelAndView.addObject("breadcrumb_second", "면접");
+	
+	modelAndView.setViewName("user/interview/interview-partners");
+	
+	return modelAndView;
+	}
+	
 }
