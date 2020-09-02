@@ -128,7 +128,7 @@
                   <label class="col-form-label form-control-label">프로젝트 관련 자료</label>
                   <p class="text-muted" style="font-size: small">프로젝트 관련 자료를 간략하게 적어주세요.</p>
                   <div class="">
-                    <input class="form-control" type="search" name="project_clientintroduce">
+                    <input class="form-control" type="search" name="reference">
                   </div>
                 </div>
                 <div align="right" style="padding: 15px 15px 0px 0px;">
@@ -156,22 +156,6 @@
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
-/* $('button[type=button]').on('click', function () {
-	  var confirm = "";
-	  $('input[type=checkbox]:checked').each(function () {
-	    confirm += ($(this).val()) + " , ";
-	  });
-	  alert(confirm);
-	}) */
-
-
-
-// 	$('button[type=button]').on('click', function () {
-// 	  readyStatus =  $('a[aria-selected=true]').attr('name');
-// 	  alert(readyStatus);
-// 	})
-
-
       $('#tabs-icons-text-1-tab').on('click', function () {
 
 	      $('.checkDiv input[type=checkbox]').prop('checked', false);
@@ -181,13 +165,18 @@
 	  <!-- 등록 버튼 -->
 		$("#btnRegist").on("click", function() {
 			readyStatus =  $('a[aria-selected=true]').attr('name');
-			confirm = "";
+			redayDetail = "";
 		  	$('input[type=checkbox]:checked').each(function () {
-			    confirm += ($(this).val()) + ",";
+		  		redayDetail += ($(this).val()) + ",";
 			});
-		  	confirm = confirm.substr(0, confirm.length-1);
+		  	redayDetail = redayDetail.substr(0, confirm.length-1);
 			
-		  	alert(confirm);
+			reference = $('input[name=reference]').val();
+			
+			const readyStatus_ipt = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }" >');
+			const redayDetail_ipt = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }" >');
+			
+			$('form[name=projectReady]').append()
 		  	
 // 			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
 // 			$('form[name=projectReady]').submit();

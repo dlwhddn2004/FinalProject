@@ -23,7 +23,7 @@ public interface IProjectService {
 	
 
 	//PROJECT INSERT
-	public int insertProjectInfo(Map<String, String> params) throws Exception;
+	public String insertProjectInfo(Map<String, String> params) throws Exception;
 	// 덕년 리스트 조회
 		public List<ProjectVO> projectList() throws Exception;
 

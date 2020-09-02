@@ -402,9 +402,9 @@ public class ProjectController {
 		params.put("project_processcategory", project_processcategory);
 		params.put("project_title", project_title);
 		
-		int chk = projectService.insertProjectInfo(params);
+		String project_no = projectService.insertProjectInfo(params);
 		
-		modelAndView.addObject("result", chk);
+		modelAndView.addObject("project_no", project_no);
 		
 		modelAndView.setViewName("user/project/project_2");
 		

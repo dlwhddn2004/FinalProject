@@ -75,16 +75,8 @@ public class ProjectDaoImpl implements IProjectDao {
 
 	//project insert
 	@Override
-	public int insertProjectInfo(Map<String, String> params) throws Exception {
-		int chk = 0;
-		
-		Object obj = client.insert("projectRegist.insertProjectInfo", params);
-		
-		if(obj == null){
-			chk = 1;
-		}
-		
-		return chk;
+	public String insertProjectInfo(Map<String, String> params) throws Exception {
+		return (String) client.insert("projectRegist.insertProjectInfo", params);
 	}
 
 

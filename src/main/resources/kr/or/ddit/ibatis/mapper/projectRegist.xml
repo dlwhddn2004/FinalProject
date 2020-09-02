@@ -8,6 +8,10 @@
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
 	<insert id="insertProjectInfo" parameterClass="map" >
+		<selectKey keyProperty="project_no" resultClass="String">
+			SELECT PROJECT_SEQ.nextval
+			FROM DUAL
+		</selectKey>
 	INSERT INTO PROJECT
 		(
 			PROJECT_NO,
@@ -21,7 +25,7 @@
 		)
 	VALUES
 		(
-			PROJECT_SEQ.nextval,
+			#project_no#,
 			#mem_id#,
 			#project_clientinformation#,
 			#project_clientintroduce#,
@@ -38,8 +42,6 @@
 			PROJECT_REFERENCE = #project_reference#
 		WHERE 
 			PROJECT_NO = #project_no#
-		AND
-			MEM_ID = #mem_id#
 	</update>
 	
 </sqlMap>

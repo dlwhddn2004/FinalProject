@@ -83,7 +83,7 @@ public class ProjectServiceImpl implements IProjectService {
 	//insert project
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
-	public int insertProjectInfo(Map<String, String> params) throws Exception {
+	public String insertProjectInfo(Map<String, String> params) throws Exception {
 		return dao.insertProjectInfo(params);
 	}
 
