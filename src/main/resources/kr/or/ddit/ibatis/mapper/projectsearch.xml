@@ -3,12 +3,12 @@
     PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="project">
+<sqlMap namespace="projectsearch">
 	<typeAlias alias="ProjectVO" type="kr.or.ddit.vo.ProjectVO" />
 	<typeAlias alias="JoinVO" type="kr.or.ddit.vo.JoinVO" />
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
-	<select id="selectProjectList" parameterClass="map" resultClass="java.util.HashMap">
+	<!-- <select id="selectProjectList" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT *
 		FROM PROJECT JOIN PROJECT_PARTICIPANTS on PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		WHERE MEM_ID = #mem_id#
@@ -190,7 +190,7 @@
 	
 	<delete id="deleteTodo" parameterClass="map">
 		DELETE TODO_LIST WHERE TODO_SEQ = #todo_seq#
-	</delete>
+	</delete> -->
 
 <!-- 덕년  -->
 <select id="projectList" resultClass="ProjectVO">
@@ -234,16 +234,27 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		FROM PROJECT,
 		     PROJECT_PARTICIPANTS,
 		     TECHNOLOGIES
+		     
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
 		  AND PROJECT_ENDSTATUS = 'N'
-		  AND (MEM_ID = #mem_id#
-		    OR PL = #mem_id#
-		    OR DA = #mem_id#
-		    OR UA = #mem_id#
-		    OR TA = #mem_id#
-		    OR AA = #mem_id#)	
+<dynamic>
+			
+			<isNotEmpty property="search_keyworde">
+				<isNotEqual property="search_keyworde" compareValue="외주">
+					AND PROJECT_PROCESSSTATUS = #project_processstatus#
+				</isNotEqual>
+			</isNotEmpty>
+			<isNotEmpty property="search_keywordd">
+				<isNotEqual property="search_keywordd" compareValue="상주">
+					AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+				</isNotEqual>
+			</isNotEmpty>
+			
+		</dynamic>
 </select>
+
+
 
 </sqlMap>
 

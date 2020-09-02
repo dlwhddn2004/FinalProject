@@ -1,4 +1,4 @@
-package kr.or.ddit.project.service;
+﻿package kr.or.ddit.project.service;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +21,10 @@ public interface IProjectService {
 	public String insertTODO(Map<String, String> params) throws Exception;
 	public int deleteTodo(Map<String, String> params) throws Exception;
 	
+
 	//PROJECT INSERT
 	public int insertProjectInfo(Map<String, String> params) throws Exception;
+	// 덕년 리스트 조회
+		public List<ProjectVO> projectList() throws Exception;
+
 }
