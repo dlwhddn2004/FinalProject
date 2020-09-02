@@ -38,33 +38,16 @@
 	animation-direction: alternate;
 }
 
-@
-keyframes img-hover { 0% {
-	transform: scale(1.0);
-	opacity: 1.0;
-}
-
-100%
-{
-transform
-:
- 
-scale
-(1
-.05
-);
-
-        
-opacity
-:
- 
-0
-.8
-;
-
-      
-}
-}
+    @keyframes img-hover {
+      0% {
+        transform: scale(1.0);
+        opacity: 1.0;
+      }
+      100% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
 .pie-chartTest {
 	position: relative;
 	width: 90px;
