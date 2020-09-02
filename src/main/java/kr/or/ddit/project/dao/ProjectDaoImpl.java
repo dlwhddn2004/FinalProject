@@ -64,5 +64,19 @@ public class ProjectDaoImpl implements IProjectDao {
 		return client.delete("project.deleteTodo", params);
 	}
 
+	//project insert
+	@Override
+	public int insertProjectInfo(Map<String, String> params) throws Exception {
+		int chk = 0;
+		
+		Object obj = client.insert("projectRegist.insertProjectInfo", params);
+		
+		if(obj == null){
+			chk = 1;
+		}
+		
+		return chk;
+	}
+
 
 }

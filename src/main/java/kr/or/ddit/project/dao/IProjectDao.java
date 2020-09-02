@@ -21,6 +21,7 @@ public interface IProjectDao {
 	public String insertTODO(Map<String, String> params) throws Exception;
 	public int deleteTodo(Map<String, String> params) throws Exception;
 	
-
+	//PROJECT INSERT
+	public int insertProjectInfo(Map<String, String> params) throws Exception;
 	
 }
