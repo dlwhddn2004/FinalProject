@@ -2,12 +2,21 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<!-- <html> -->
-<!-- <head> -->
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> -->
-<!-- <title>Insert title here</title> -->
-<!-- </head> -->
-<!-- <body> -->
+
+  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script>
+  	$(function() {
+  		$('.link-project-regist---').on('click', function() {
+//   	  		alert('HI!');
+  	  		
+//   	  		return;
+  	  		if(${empty MEMBER_LOGININFO } || ${MEMBER_LOGININFO.mem_category } != 1){
+  	  			alert('HI!');
+  	  			return;
+  	  		}
+  	  	});
+  	});
+  </script>
 
 <!-- Sidenav -->
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
@@ -41,7 +50,7 @@
               <div class="collapse show" id="navbar-dashboards">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="${pageContext.request.contextPath }/user/project/project_1.do" class="nav-link">
+                    <a class="nav-link link-project-regist---" style="cursor: pointer;">
                       <span class="sidenav-mini-icon"> 등록 </span>
                       <span class="sidenav-normal"> 프로젝트 등록 </span>
                     </a>
@@ -179,6 +188,3 @@
       </div>
     </div>
   </nav>
-
-<!-- </body> -->
-<!-- </html> -->
