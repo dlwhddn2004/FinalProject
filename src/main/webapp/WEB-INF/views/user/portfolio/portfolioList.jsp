@@ -113,8 +113,7 @@
 						<div class="pie-chartTest pie-chart1" style="margin: 15px;">
 							<span class="centerTest">
 								<div style="margin: 16px 0px 0px 0px;">
-									<span class="h1 text-white">7.</span> <small class="text-white">34</small>
-
+									<span class="h1 text-white designSpan"></span> <small class="text-white designSmall"></small>
 									
 								</div>
 							</span>
@@ -128,7 +127,7 @@
 						<div class="pie-chartTest pie-chart2" style="margin: 15px;">
 							<span class="centerTest">
 								<div style="margin: 16px 0px 0px 0px;">
-									<span class="h1 text-white">5.</span> <small class="text-white">55</small>
+									<span class="h1 text-white useabilitySpan"></span> <small class="text-white useabilitySmall"></small>
 								</div>
 							</span>
 						</div>
@@ -141,7 +140,7 @@
 						<div class="pie-chartTest pie-chart3" style="margin: 15px;">
 							<span class="centerTest">
 								<div style="margin: 16px 0px 0px 0px;">
-									<span class="h1 text-white">8.</span> <small class="text-white">15</small>
+									<span class="h1 text-white creativitySpan"></span> <small class="text-white creativitySmall"></small>
 								</div>
 							</span>
 						</div>
@@ -154,7 +153,7 @@
 						<div class="pie-chartTest pie-chart4" style="margin: 15px;">
 							<span class="centerTest">
 								<div style="margin: 16px 0px 0px 0px;">
-									<span class="h1 text-white">3.</span> <small class="text-white">55</small>
+									<span class="h1 text-white contentSpan"></span> <small class="text-white contentSmall"></small>
 								</div>
 							</span>
 						</div>
@@ -167,7 +166,7 @@
 						<div class="pie-chartTest pie-chart5" style="margin: 15px;">
 							<span class="centerTest">
 								<div style="margin: 16px 0px 0px 0px;">
-									<span class="h1 text-white">9.</span> <small class="text-white">99</small>
+									<span class="h1 text-white developSpan"></span> <small class="text-white developSmall"></small>
 								</div>
 							</span>
 						</div>
@@ -462,6 +461,38 @@
 	      });
 	    }
 
+	    const designScore =  '${mainScoreChart.PORTFOLIO_DESIGN}';
+	    const useabilityScore= '${mainScoreChart.PORTFOLIO_USEABILITY}';
+	    const creativityScore = '${mainScoreChart.PORTFOLIO_CREATIVITY}';
+	    const contentScore = '${mainScoreChart.PORTFOLIO_CONTENTSCORE}';
+	    const developScore = '${mainScoreChart.PORTFOLIO_DEVELOP}';
+	    
+	      const designSpan = designScore.charAt(0)+'.';	
+	      const designSmall = designScore.charAt(1);
+ 	      
+	      const useabilitySpan =  useabilityScore.charAt(0)+'.';
+	      const useabilitySmall = useabilityScore.charAt(1);
+	      
+	      const creativitySpan =creativityScore.charAt(0)+'.';
+	      const creativitySmall = creativityScore.charAt(1);
+	      
+	      const contentSpan = contentScore.charAt(0)+'.';
+	      const contentSmall = contentScore.charAt(0);
+	      
+	      const developSpan = developScore.charAt(0)+'.';
+	      const developSmall = developScore.charAt(1);
+	      
+	    $('.designSpan').text(designSpan);
+	    $('.designSmall').text(designSmall);
+	    $('.useabilitySpan').text(useabilitySpan);
+	    $('.useabilitySmall').text(useabilitySmall);
+	    $('.creativitySpan').text(creativitySpan);
+	    $('.creativitySmall').text(creativitySmall);
+	    $('.contentSpan').text(contentSpan);
+	    $('.contentSmall').text(contentSmall);
+	    $('.developSpan').text(developSpan);
+	    $('.developSmall').text(developSmall);
+	    
 	  });
 
   </script>
