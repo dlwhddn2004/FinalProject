@@ -53,4 +53,11 @@ public class IMypageDaoImpl implements IMypageDao {
 		return String.valueOf(client.update("mypageDeverloper.modifyMyabout",vo));
 	}
 
+	@Override
+	public void insertMypageDeveloper(Mypage_memberVO mypageInfo)
+			throws Exception {
+		client.insert("mypageDeverloper.insertAll", mypageInfo);
+		
+	}
+
 }

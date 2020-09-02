@@ -77,5 +77,13 @@ public class IMypageServiceImpl implements IMypageService{
 		
 		
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertMypageDeveloper(Mypage_memberVO mypageInfo)
+			throws Exception {
+		dao.insertMypageDeveloper(mypageInfo);
+		
+	}
 
 }

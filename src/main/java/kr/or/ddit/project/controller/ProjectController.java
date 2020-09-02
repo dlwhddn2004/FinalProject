@@ -381,14 +381,33 @@ public class ProjectController {
 	
 	@RequestMapping("project_2")
 	public ModelAndView projectReady(HttpServletRequest request,
-									ModelAndView modelAndView
-									) throws Exception{
+									ModelAndView modelAndView,
+									String mem_id,
+									String project_clientinformation,
+									String project_clientintroduce,
+									String project_processstatus,
+									String project_processcategory,
+									String project_title) throws Exception{
 		
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트");
 		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
 		
+		Map<String, String> params = new HashMap<String, String>();
+		
+		params.put("mem_id", mem_id);
+		params.put("project_clientinformation", project_clientinformation);
+		params.put("project_clientintroduce", project_clientintroduce);
+		params.put("project_processstatus", project_processstatus);
+		params.put("project_processcategory", project_processcategory);
+		params.put("project_title", project_title);
+		
+		int chk = projectService.insertProjectInfo(params);
+		
+		modelAndView.addObject("result", chk);
+		
 		modelAndView.setViewName("user/project/project_2");
+		
 		return modelAndView;
 	}
 	

@@ -75,11 +75,11 @@
                   <p class="text-muted" style="font-size: small">파트너스 정보를 선택해 주세요</p>
                   <div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_clientinformation1" name="project_clientinformation" class="custom-control-input" value="개인">
+                      <input type="radio" id="project_clientinformation1" name="partnerInfo" class="custom-control-input" value="개인">
                       <label class="custom-control-label" for="project_clientinformation1">개인</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_clientinformation2" name="project_clientinformation" class="custom-control-input" value="팀">
+                      <input type="radio" id="project_clientinformation2" name="partnerInfo" class="custom-control-input" value="팀">
                       <label class="custom-control-label" for="project_clientinformation2">팀</label>
                     </div>
                   </div>
@@ -88,7 +88,7 @@
                   <label class="col-form-label form-control-label">파트너스 소개</label>
                   <p class="text-muted" style="font-size: small">소개를 간략히 입력해주세요.</p>
                   <div class="">
-                    <input class="form-control" type="search" name="project_clientintroduce">
+                    <input class="form-control" type="search" name="partnerIntro">
                   </div>
                 </div>
                 <div class="form-group">
@@ -97,11 +97,11 @@
                   <p class="text-muted" style="font-size: small">프로젝트에 적합한 작업자를 모집하기 위해 프로젝트 진행 방식을 선택해주세요</p>
                   <div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_processstatus1" name="project_processstatus" class="custom-control-input" value="외주">
+                      <input type="radio" id="project_processstatus1" name="processWay" class="custom-control-input" value="외주">
                       <label class="custom-control-label" for="project_processstatus1">외주</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_processstatus2" name="project_processstatus" class="custom-control-input" value="상주">
+                      <input type="radio" id="project_processstatus2" name="processWay" class="custom-control-input" value="상주">
                       <label class="custom-control-label" for="project_processstatus2">상주</label>
                     </div>
                   </div>
@@ -110,11 +110,11 @@
                   <label class="col-form-label form-control-label">프로젝트 진행 분류</label>
                   <label style="color: tomato">*</label>
                   <div class="custom-control custom-radio mb-3">
-                    <input type="radio" id="project_processcategory1" name="project_processcategory" class="custom-control-input" value="신규">
+                    <input type="radio" id="project_processcategory1" name="processCategory" class="custom-control-input" value="신규 프로젝트">
                     <label class="custom-control-label" for="project_processcategory1">신규 프로젝트</label>
                   </div>
                   <div class="custom-control custom-radio">
-                    <input type="radio" id="project_processcategory2" name="project_processcategory" class="custom-control-input" value="유지보수">
+                    <input type="radio" id="project_processcategory2" name="processCategory" class="custom-control-input" value="운영 중인 서비스 리뉴얼/유지보수">
                     <label class="custom-control-label" for="project_processcategory2">운영 중인 서비스의 리뉴얼 or 유지보수</label>
                   </div>
                 </div>
@@ -123,7 +123,7 @@
                   <label style="color: tomato">*</label>
                   <p class="text-muted" style="font-size: small">프로젝트 제목을 30자 이내로 적어주세요.</p>
                   <div class="">
-                    <input class="form-control" type="search" name="project_title" placeholder="ex) 솔루션 기반 자동차 경매 웹 사이트 구축">
+                    <input class="form-control" type="search" name="projectTitle" placeholder="ex) 솔루션 기반 자동차 경매 웹 사이트 구축">
                   </div>
                 </div>
 
@@ -154,86 +154,34 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
 <script type="text/javascript">
+
+
 	
 	<!-- 등록 버튼 -->
-	$(".projectForm #btnRegist").on("click", function() {
-		//파트너스 정보
-		const project_clientinformation = $('input[name=project_clientinformation]').is(':checked');
+	$("#btnRegist").on("click", function() {
+		partnerInfo = $('input[name=partnerInfo]:checked').val();
+		partnerIntro = $('input[name=partnerIntro]').val();
+		processWay = $('input[name=processWay]:checked').val();
+		processCategory = $('input[name=processCategory]:checked').val();
+		projectTitle = $('input[name=projectTitle]').val();
 		
-		if (project_clientinformation == false) {
-			$.notify({
-				// options
-				message: '파트너스 정보를 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
+		const $member_ipt = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }" >');
+		const $partnerInfo_ipt = $('<input type="hidden" name="project_clientinformation" value= "' + partnerInfo +  '" >');
+		const $partnerIntro_ipt = $('<input type="hidden" name="project_clientintroduce" value= "' + partnerIntro +  '" >');
+		const $processWay_ipt = $('<input type="hidden" name="project_processstatus" value= "' + processWay +  '" >');
+		const $processCategory_ipt = $('<input type="hidden" name="project_processcategory" value= "' + processCategory +  '" >');
+		const $projectTitle_ipt = $('<input type="hidden" name="project_title" value= "' + projectTitle +  '" >');
 		
-		const project_processstatus = $('input[name=project_processstatus]').is(':checked');
 		
-		if (project_processstatus == false) {
-			$.notify({
-				// options
-				message: '프로젝트 진행 방식을 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
-		
-/* 		const project_processcategory = $('input[name=project_processcategory]').is('checked');
-		
-		if (project_processcategory == false) {
-			$.notify({
-				// options
-				message: '프로젝트 진행 분류를 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
-		 */
-		// 제목을 입력하지 않았을 때!
-		const project_title = $('input[name=project_title]').val();
-		
-		if (project_title == "") {
-			$.notify({
-				// options
-				message: '제목을 입력해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
+		$('form[name=projectInfo]').append($member_ipt);
+		$('form[name=projectInfo]').append($partnerInfo_ipt);
+		$('form[name=projectInfo]').append($partnerIntro_ipt);
+		$('form[name=projectInfo]').append($processWay_ipt);
+		$('form[name=projectInfo]').append($processCategory_ipt);
+		$('form[name=projectInfo]').append($projectTitle_ipt);
 		
 		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/project_2.do');
 		$('form[name=projectInfo]').submit();
-		
 	});
 	
 </script>

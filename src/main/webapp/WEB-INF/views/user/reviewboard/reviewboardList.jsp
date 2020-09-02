@@ -78,7 +78,7 @@
 				                            	<div class="col-auto">
 				                                	<!-- Avatar -->
 				                                	<a href="#" class="avatar avatar-xl rounded-circle">
-				                                    	<img alt="Image placeholder" src="/${item.PROFILE_SAVENAME }.${item.PROFILE_CONTENTTYPE }">
+				                                    	<img alt="Image placeholder" src="/${item.PROFILE_SAVENAME }">
 				                                	</a>
 					                                <h4 class="mb-0 text-sm text-muted mb-0 text-center my-sm-2">
 															${item.MEM_ID }

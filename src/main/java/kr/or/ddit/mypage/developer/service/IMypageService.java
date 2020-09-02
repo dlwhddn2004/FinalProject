@@ -15,4 +15,6 @@ public interface IMypageService {
 	public String insertMyabout(Mypage_memberVO vo, MultipartFile[] items)throws Exception;
 	public Mypage_memberVO selectMypageInfo(Map<String,String> params) throws Exception;
 	public String modifyMyabout(Mypage_memberVO vo, MultipartFile[] items ) throws Exception; 
+	
+	public void insertMypageDeveloper(Mypage_memberVO mypageInfo) throws Exception;
 }

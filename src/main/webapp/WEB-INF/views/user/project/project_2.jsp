@@ -166,23 +166,31 @@
 
 
 
-	// $('button[type=button]').on('click', function () {
-	//   readyStatus =  $('a[aria-selected=true]').attr('name');
-	//   alert(readyStatus);
-	// })
+// 	$('button[type=button]').on('click', function () {
+// 	  readyStatus =  $('a[aria-selected=true]').attr('name');
+// 	  alert(readyStatus);
+// 	})
 
 
-/* 	  $('#tabs-icons-text-1-tab').on('click', function () {
+      $('#tabs-icons-text-1-tab').on('click', function () {
 
 	      $('.checkDiv input[type=checkbox]').prop('checked', false);
 
-	  }); */
+	  });
+	  
 	  <!-- 등록 버튼 -->
-		$(".projectForm2 #btnRegist").on("click", function() {
+		$("#btnRegist").on("click", function() {
+			readyStatus =  $('a[aria-selected=true]').attr('name');
+			confirm = "";
+		  	$('input[type=checkbox]:checked').each(function () {
+			    confirm += ($(this).val()) + ",";
+			});
+		  	confirm = confirm.substr(0, confirm.length-1);
 			
-			
-			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
-			$('form[name=projectReady]').submit();
+		  	alert(confirm);
+		  	
+// 			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
+// 			$('form[name=projectReady]').submit();
 			
 		});
 </script>
