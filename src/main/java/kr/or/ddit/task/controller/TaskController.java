@@ -82,56 +82,57 @@ public class TaskController {
 	public ModelAndView selectProjectInfo(String project_no) throws Exception {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
+		
 		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
 		
-		
-		// 프로젝트 파트너스 이름
-		if (projectInfo.get("MEM_ID") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			projectInfo.put("PARTNERS_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+		if (projectInfo != null) {
+			// 프로젝트 파트너스 이름
+			if (projectInfo.get("MEM_ID") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				projectInfo.put("PARTNERS_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
+			
+			// 프로젝트 PL 이름
+			if (projectInfo.get("PL") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("PL")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				Map<String, String> personAvg = taskService.selectPersonAverage(params);
+				projectInfo.put("PL_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
+			
+			// 프로젝트 TA 이름
+			if (projectInfo.get("TA") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("TA")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				Map<String, String> personAvg = taskService.selectPersonAverage(params);
+				projectInfo.put("TA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
+			
+			// 프로젝트 DA 이름
+			if (projectInfo.get("DA") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("DA")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				Map<String, String> personAvg = taskService.selectPersonAverage(params);
+				projectInfo.put("DA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
+			
+			// 프로젝트 UA 이름
+			if (projectInfo.get("UA") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("UA")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				Map<String, String> personAvg = taskService.selectPersonAverage(params);
+				projectInfo.put("UA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
+			
+			// 프로젝트 AA 이름
+			if (projectInfo.get("AA") != null) {
+				params.put("mem_id", String.valueOf(projectInfo.get("AA")));
+				Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+				Map<String, String> personAvg = taskService.selectPersonAverage(params);
+				projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			}
 		}
-		
-		// 프로젝트 PL 이름
-		if (projectInfo.get("PL") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("PL")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("PL_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
-		}
-		
-		// 프로젝트 TA 이름
-		if (projectInfo.get("TA") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("TA")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("TA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
-		}
-		
-		// 프로젝트 DA 이름
-		if (projectInfo.get("DA") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("DA")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("DA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
-		}
-		
-		// 프로젝트 UA 이름
-		if (projectInfo.get("UA") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("UA")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("UA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
-		}
-		
-		// 프로젝트 AA 이름
-		if (projectInfo.get("AA") != null) {
-			params.put("mem_id", String.valueOf(projectInfo.get("AA")));
-			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
-			Map<String, String> personAvg = taskService.selectPersonAverage(params);
-			projectInfo.put("AA_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
-		}
-		
 		
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("projectInfo", projectInfo);

@@ -66,7 +66,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form>
+              <form class="projectForm2" name="projectReady">
                 <div class="form-group">
                   <label class="col-form-label form-control-label">기획상태</label>
                   <label style="color: tomato">*</label>
@@ -132,14 +132,13 @@
                   </div>
                 </div>
                 <div align="right" style="padding: 15px 15px 0px 0px;">
-                  <button type="button" class="btn btn-primary btn-write">등록</button>
+                  <button id="btnRegist" type="button" class="btn btn-primary btn-write">등록</button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
     
 <!-- Argon Scripts -->
 <!-- Core -->
@@ -157,13 +156,13 @@
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
-$('button[type=button]').on('click', function () {
+/* $('button[type=button]').on('click', function () {
 	  var confirm = "";
 	  $('input[type=checkbox]:checked').each(function () {
 	    confirm += ($(this).val()) + " , ";
 	  });
 	  alert(confirm);
-	})
+	}) */
 
 
 
@@ -173,10 +172,18 @@ $('button[type=button]').on('click', function () {
 	// })
 
 
-	  $('#tabs-icons-text-1-tab').on('click', function () {
+/* 	  $('#tabs-icons-text-1-tab').on('click', function () {
 
 	      $('.checkDiv input[type=checkbox]').prop('checked', false);
 
-	  });
+	  }); */
+	  <!-- 등록 버튼 -->
+		$(".projectForm2 #btnRegist").on("click", function() {
+			
+			
+			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
+			$('form[name=projectReady]').submit();
+			
+		});
 </script>
 	

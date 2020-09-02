@@ -41,7 +41,7 @@
               <div class="collapse show" id="navbar-dashboards">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../../pages/dashboards/dashboard.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/project/project_1.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 등록 </span>
                       <span class="sidenav-normal"> 프로젝트 등록 </span>
                     </a>

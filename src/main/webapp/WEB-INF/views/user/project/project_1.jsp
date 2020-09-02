@@ -231,7 +231,7 @@
 			return;
 		}
 		
-		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/projectReady.do');
+		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/project_2.do');
 		$('form[name=projectInfo]').submit();
 		
 	});

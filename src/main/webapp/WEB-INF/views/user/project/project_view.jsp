@@ -202,7 +202,7 @@
         </div>
         <div>
         	<c:if test="${MEMBER_LOGININFO.mem_id == projectInfo.MEM_ID}">
-        		<a href="${pageContext.request.contextPath }/user/interview/interviewMain.do" class="btn btn-sm btn-neutral" style="height: 25px;">채용 관리</a>
+        		<a href="${pageContext.request.contextPath }/user/interview/partnersMain.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${projectInfo.PROJECT_NO}" class="btn btn-sm btn-neutral" style="height: 25px;">채용 관리</a>
         	</c:if>
         </div>
       </div>

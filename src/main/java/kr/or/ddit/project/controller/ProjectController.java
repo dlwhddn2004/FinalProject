@@ -1,5 +1,6 @@
 package kr.or.ddit.project.controller;
 
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -254,6 +255,12 @@ public class ProjectController {
 								    String mem_id,
 								    String project_no,
 								    HttpServletRequest request) throws Exception {
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
+		modelAndView.addObject("breadcrumb_second", "프로젝트 상세");
+		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
 		
@@ -358,20 +365,34 @@ public class ProjectController {
 		return modelAndView;
 	}
 	
-	@RequestMapping("projectForm")
+	@RequestMapping("project_1")
 	public ModelAndView projectForm(HttpServletRequest request,
-									ModelAndView modelAndView) throws Exception{
+									ModelAndView modelAndView,
+									String mem_id,
+									int mem_category) throws Exception{
 		
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트");
 //		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
 
-		modelAndView.setViewName("user/project/projectForm");
+
+		if(mem_id == null || mem_category != 1){
+			String taskResult = "warning";
+			String message = URLEncoder.encode("프로젝트 등록은 파트너스 회원만 가능합니다.", "UTF-8");
+			modelAndView.addObject("taskResult", taskResult);
+			modelAndView.addObject("message", message);
+			modelAndView.setViewName("user/reviewboard/reviewboardList");
+			
+		}else{
+			modelAndView.setViewName("user/project/project_1");
+		}
+				
 		return modelAndView;
 	}
 	
-	@RequestMapping("/projectReady")
+	@RequestMapping("project_2")
 	public ModelAndView projectReady(HttpServletRequest request,
 									ModelAndView modelAndView
 									) throws Exception{
@@ -380,7 +401,72 @@ public class ProjectController {
 		modelAndView.addObject("breadcrumb_first", "프로젝트");
 		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
 		
-		modelAndView.setViewName("user/project/projectReady");
+		modelAndView.setViewName("user/project/project_2");
+		return modelAndView;
+	}
+	
+	@RequestMapping("project_3")
+	public ModelAndView project3(HttpServletRequest request,
+									ModelAndView modelAndView
+									) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/project_3");
+		return modelAndView;
+	}
+	
+	@RequestMapping("project_4")
+	public ModelAndView project4(HttpServletRequest request,
+									ModelAndView modelAndView
+									) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/project_4");
+		return modelAndView;
+	}
+	
+	@RequestMapping("project_5")
+	public ModelAndView project5(HttpServletRequest request,
+									ModelAndView modelAndView
+									) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/project_5");
+		return modelAndView;
+	}
+
+	@RequestMapping("project_6")
+	public ModelAndView project6(HttpServletRequest request,
+									ModelAndView modelAndView
+									) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/project_6");
+		return modelAndView;
+	}
+	
+	@RequestMapping("project_7")
+	public ModelAndView project7(HttpServletRequest request,
+									ModelAndView modelAndView
+									) throws Exception{
+		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
+		
+		modelAndView.setViewName("user/project/project_7");
 		return modelAndView;
 	}
 	

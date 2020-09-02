@@ -417,7 +417,7 @@
 			},
 			success : function(result) {
 				$('.gantt .select-manager').empty();
-				if (result.projectInfo == 0) {
+				if (result.projectInfo == null) {
 					$('.gantt .select-manager').append('<option>아직 프로젝트에 참여한 팀원이 없습니다.</option>')
 				} else {
 					const PL = $('<option>' + result.projectInfo.PL + ' (PL)</option>');
@@ -481,7 +481,13 @@
 				
 				// noUiSlider 선택한 값에 맞춰 세팅!
 				let function_progress = $('.task-modal .range-slider-value').text(result.FUNCTION_PROGRESS + '.0');
-				$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + result.FUNCTION_PROGRESS + ', 1)');
+				
+				if (result.FUNCTION_PROGRESS == '100') {
+					$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(' + result.FUNCTION_PROGRESS + ', 1)');
+				} else {
+					$('.noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + result.FUNCTION_PROGRESS + ', 1)');
+				}
+				
 				$('.noUi-origin').css('transform', 'translate(-' + (100 - Number(result.FUNCTION_PROGRESS)) + '%, 0px)');
 				$('.noUi-origin').css('z-index', '4');
 				
