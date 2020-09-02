@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="portfolio">
+		<typeAlias alias="portfolioVO" type="kr.or.ddit.vo.PortFolioVO" />
+		
+	<sql id="selectAll">
+	SELECT
+	PORTFOLIO_NO,
+	MEM_ID,
+	PORTFOLIO_CATEGORIES,
+	PORTFOLIO_TAGS,
+	PORTFOLIO_TECHNOLOGIES,
+	PORTFOLIO_NAME,
+	TO_CHAR(PORTFOLIO_REGDATE, 'MM/DD/YYYY') PORTFOLIO_REGDATE,
+	PORTFOLIO_URL,
+	PORTFOLIO_DESCRIPTION,
+	TO_CHAR(PORTFOLIO_STARTDATE, 'MM/DD/YYYY') PORTFOLIO_STARTDATE,
+	TO_CHAR(PORTFOLIO_ENDDATE, 'MM/DD/YYYY') PORTFOLIO_ENDDATE,
+	PORTFOLIO_PARTICIPATIONRATE,
+	PORTFOLIO_THUMBNAILIMG FROM PORTFOLIO
+	</sql>
+	
+<!-- <select id="selectPortFolioList" parameterClass="map" resultClass="java.util.HashMap">
+	<include refid="selectAll"/>
+	WHERE PORT PORTFOLIO_TECHNOLOGIES =#portfolio_technologies#
+</select> -->
+
+<select id="selectPortFolioList"  resultClass="java.util.HashMap">
+	<include refid="selectAll" />
+</select>
+
+<!-- 특정 포트폴리오 번호에 따른 차트 뛰우기 -->
+<select id="mainScoreChart" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT AVG(NVL(portfolio_design, 0)) portfolio_design,
+		       AVG(NVL(portfolio_useability, 0)) portfolio_useability,
+		       AVG(NVL(portfolio_creativity, 0)) portfolio_creativity,
+		       AVG(NVL(portfolio_contentscore, 0)) portfolio_contentscore,
+		       AVG(NVL(portfolio_develop, 0)) portfolio_develop
+				FROM PORTFOLIO_BOARD
+				WHERE PORTFOLIO_NO= #PORTFOLIO_NO#
+</select>
+	
+<!--  특정 포트폴리오 번호에 따른 차트 평균 점수 구하기 -->
+<select id="totalAVG" parameterClass="map" resultClass="java.util.HashMap">
+SELECT AVG(NVL(portfolio_design, 0)) portfolio_design,
+		       AVG(NVL(portfolio_useability, 0)) portfolio_useability,
+		       AVG(NVL(portfolio_creativity, 0)) portfolio_creativity,
+		       AVG(NVL(portfolio_contentscore, 0)) portfolio_contentscore,
+		       AVG(NVL(portfolio_develop, 0)) portfolio_develop ,PORTFOLIO_NO
+				FROM PORTFOLIO_BOARD
+				WHERE PORTFOLIO_NO=#PORTFOLIO_NO#
+				group by PORTFOLIO_NO
+</select>
+
+<!--전체 베스트 평균의 포트폴리오 뽑기 -->
+<select id="MaxPortfolioNo" resultClass="java.util.HashMap">
+
+select b.PORTFOLIO_NO PORTFOLIO_NO, b.TOTALAVG TOTALAVG
+from(
+select ROWNUM r,a.*
+    from
+(SELECT PORTFOLIO.PORTFOLIO_NO PORTFOLIO_NO  , (AVG(NVL(PORTFOLIO_DESIGN, 0)) +
+       AVG(NVL(PORTFOLIO_USEABILITY, 0))+
+       AVG(NVL(PORTFOLIO_CREATIVITY, 0))+
+       AVG(NVL(PORTFOLIO_CONTENTSCORE, 0))+
+       AVG(NVL(PORTFOLIO_DEVELOP, 0))) / 5 TOTALAVG
+FROM PORTFOLIO_BOARD ,PORTFOLIO
+where PORTFOLIO.PORTFOLIO_NO = PORTFOLIO_BOARD.PORTFOLIO_NO
+group by PORTFOLIO.PORTFOLIO_NO
+order by TOTALAVG desc ) a) b
+where b.r = 1
+</select>
+
+<select id="portfolioInfo" parameterClass="map" resultClass="java.util.HashMap">
+	SELECT * 
+	FROM PORTFOLIO
+	WHERE PORTFOLIO_NO = #PORTFOLIO_NO#
+</select>
+
+</sqlMap>
+
+ 
+
+

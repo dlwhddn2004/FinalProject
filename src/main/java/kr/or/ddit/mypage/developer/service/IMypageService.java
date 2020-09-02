@@ -5,8 +5,9 @@ import java.util.Map;
 import kr.or.ddit.vo.FreeboardVO;
 import kr.or.ddit.vo.Mypage_memberVO;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+@Service
 public interface IMypageService {
 
 	public int projectFinishNumber(Map<String,String> params) throws Exception;
