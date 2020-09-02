@@ -87,7 +87,7 @@
               <div class="collapse" id="navbar-examples">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../../pages/examples/pricing.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/portfolio/portfolioList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 찾기 </span>
                       <span class="sidenav-normal"> 포트폴리오 찾기 </span>
                     </a>
