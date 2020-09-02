@@ -48,4 +48,9 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 		return client.update("noticeboard.deleteNoticeboard", params);
 	}
 
+	@Override
+	public int updatehit(Map<String, String> params) throws Exception {
+		return client.update("noticeboard.updatehit");
+	}
+
 }

@@ -17,4 +17,6 @@ public interface INoticeboardDAO {
 	public int updateNoticeboard(NoticeboardVO noticeboardInfo) throws Exception;
 	// 공지사항 삭제
 	public int deleteNoticeboard(Map<String, String> params) throws Exception;
+	// 조회수
+	public int updatehit(Map<String, String> params) throws Exception;
 }

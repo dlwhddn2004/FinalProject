@@ -8,7 +8,6 @@ public class IssueboardCommentVO {
 	public String comment_regdate;
 	public String comment_seq;
 	
-	
 	public String getIssue_no() {
 		return issue_no;
 	}
@@ -40,6 +39,6 @@ public class IssueboardCommentVO {
 		this.comment_seq = comment_seq;
 	}
 	
-	
+
 
 }
