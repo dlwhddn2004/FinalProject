@@ -66,7 +66,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form class="projectForm2" name="projectReady">
+              <form class="projectForm2" name="projectReady" method="post">
                 <div class="form-group">
                   <label class="col-form-label form-control-label">기획상태</label>
                   <label style="color: tomato">*</label>
@@ -164,22 +164,25 @@
 	  
 	  <!-- 등록 버튼 -->
 		$("#btnRegist").on("click", function() {
-			readyStatus =  $('a[aria-selected=true]').attr('name');
+			readyStatus =  $('a[aria-selected=true]').attr('name') + ": ";
+			
 			redayDetail = "";
 		  	$('input[type=checkbox]:checked').each(function () {
-		  		redayDetail += ($(this).val()) + ",";
+		  		redayDetail += ($(this).val()) + ", ";
 			});
-		  	redayDetail = redayDetail.substr(0, confirm.length-1);
+		  	redayDetail = redayDetail.substr(0, redayDetail.length-2);
 			
 			reference = $('input[name=reference]').val();
 			
-			const readyStatus_ipt = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }" >');
-			const redayDetail_ipt = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }" >');
+			const $readyStatus_ipt = $('<input type="hidden" name="project_readystatus" value= "' + readyStatus + redayDetail +'" >');
+			const $reference_ipt = $('<input type="hidden" name="project_reference" value= "' + reference + '" >');
 			
-			$('form[name=projectReady]').append()
+			$('form[name=projectReady]').append($readyStatus_ipt);
+			$('form[name=projectReady]').append($reference_ipt);
 		  	
-// 			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
-// 			$('form[name=projectReady]').submit();
+			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do?project_no=${project_no}');
+			$('form[name=projectReady]').submit();
+
 			
 		});
 </script>

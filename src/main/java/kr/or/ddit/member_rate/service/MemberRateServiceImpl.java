@@ -21,4 +21,9 @@ public class MemberRateServiceImpl implements IMemberRateService {
 			throws Exception {
 		return memberRateDao.selectMemberRateInfo(params);
 	}
+
+	@Override
+	public void insertMemberRate(MemberRateVO rateVO) throws Exception {
+		memberRateDao.insertMemberRate(rateVO);
+	}
 }

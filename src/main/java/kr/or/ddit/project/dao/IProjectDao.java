@@ -23,6 +23,9 @@ public interface IProjectDao {
 	
 	//PROJECT INSERT
 	public String insertProjectInfo(Map<String, String> params) throws Exception;
+	public int insertProjectReady(Map<String, String> params) throws Exception;
+	
+	
 	// 덕년 리스트 조회
 	public List<ProjectVO> projectList() throws Exception;
 }

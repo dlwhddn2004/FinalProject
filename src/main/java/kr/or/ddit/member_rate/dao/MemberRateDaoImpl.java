@@ -19,4 +19,9 @@ public class MemberRateDaoImpl implements IMemberRateDao {
 			throws Exception {
 		return (MemberRateVO) client.queryForObject("member_rate.selectMemberRateInfo", params);
 	}
+
+	@Override
+	public void insertMemberRate(MemberRateVO rateVO) throws Exception {
+		client.insert("member_rate.insertRate", rateVO);
+	}
 }

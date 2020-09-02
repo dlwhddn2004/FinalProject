@@ -7,6 +7,7 @@
 	<typeAlias alias="ProjectVO" type="kr.or.ddit.vo.ProjectVO" />
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
+<!-- 	project_1 -->
 	<insert id="insertProjectInfo" parameterClass="map" >
 		<selectKey keyProperty="project_no" resultClass="String">
 			SELECT PROJECT_SEQ.nextval
@@ -36,7 +37,8 @@
 		)
 	</insert>
 	
-	<update id="projectReady" parameterClass="map">
+<!-- 	project_2 -->
+	<update id="insertProjectReady" parameterClass="map">
 		UPDATE PROJECT SET 
 			PROJECT_READYSTATUS = #project_readystatus#,
 			PROJECT_REFERENCE = #project_reference#

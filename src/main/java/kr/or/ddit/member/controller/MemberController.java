@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.member.service.IMemberService;
+import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
@@ -53,6 +55,8 @@ public class MemberController {
 	private IProfileFileService profileService;
 	@Autowired
 	private IMypageService mypageService;
+	@Autowired
+	private IMemberRateService rateService;
 	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(String mem_id, 
@@ -95,11 +99,13 @@ public class MemberController {
 	@RequestMapping("insertMember")
 	public String insertMember(MemberVO memberInfo, 
 							   ProfileFileVO profileInfo,
-							   Mypage_memberVO mypageInfo) throws Exception{
+							   Mypage_memberVO mypageInfo,
+							   MemberRateVO rateInfo) throws Exception{
 		
 		this.service.insertMemberInfo(memberInfo);		
 		this.profileService.insertProfileFileInfo(profileInfo);
 		this.mypageService.insertMypageDeveloper(mypageInfo);
+		this.rateService.insertMemberRate(rateInfo);
 		
 		
 		String taskResult = "success";
