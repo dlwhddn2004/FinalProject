@@ -72,5 +72,12 @@ public class ProjectServiceImpl implements IProjectService {
 	public int deleteTodo(Map<String, String> params) throws Exception {
 		return dao.deleteTodo(params);
 	}
+	//덕년 리스트 조회
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<ProjectVO> projectList() throws Exception {
+		
+		return dao.projectList();
+	}
 
 }

@@ -63,6 +63,15 @@ public class ProjectDaoImpl implements IProjectDao {
 	public int deleteTodo(Map<String, String> params) throws Exception {
 		return client.delete("project.deleteTodo", params);
 	}
+// 덕년 리스트 구현
+	@Override
+	public List<ProjectVO> projectList() throws Exception {
+		List<ProjectVO> list = null;
+		
+		list = client.queryForList("projectsearch.projectList");
+		
+		return list;
+	}
 
 
 }

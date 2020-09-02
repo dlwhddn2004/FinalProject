@@ -21,5 +21,7 @@ public interface IProjectService {
 	public String insertTODO(Map<String, String> params) throws Exception;
 	public int deleteTodo(Map<String, String> params) throws Exception;
 	
+	// 덕년 리스트 조회
+		public List<ProjectVO> projectList() throws Exception;
 
 }
