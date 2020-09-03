@@ -25,13 +25,6 @@
 
 <!--  my style -->
 <style>
-.img-hover-css {
-	width: 510px;
-	height: 364px;
-	overflow: hidden;
-	cursor: pointer;
-}
-
 .img-hover-css img:hover {
 	animation-name: img-hover;
 	animation-duration: 0.25s;
@@ -39,16 +32,17 @@
 	animation-direction: alternate;
 }
 
-    @keyframes img-hover {
-      0% {
-        transform: scale(1.0);
-        opacity: 1.0;
-      }
-      100% {
-        transform: scale(1.05);
-        opacity: 0.8;
-      }
-    }
+@keyframes img-hover {
+  0% {
+    transform: scale(1.0);
+    opacity: 1.0;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
 .pie-chartTest {
 	position: relative;
 	width: 90px;
@@ -73,43 +67,26 @@
 	color: bisque;
 	transform: translate(-50%, -50%);
 }
-
-.perpectCenter {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.green-fill {
-	border-color: #49c5b6;
-	color: #fff;
-	background-color: #49c5b6;
-	font-weight: 500;
-	border-radius: 20%;
-	margin: 10px 10px 10px 10px;
-}
 </style>
 </head>
 <body>
 	<div class="row">
-		<div class="col-lg-12">
+		<div class="col-md-12">
 			<!-- Image-Text card -->
-			<div class="card mainDiv"
-				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
+			<div class="card mainDiv" style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
 				<!-- Card image -->
 				<!--              <img class="card-img-top" src="https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg" alt="Image placeholder" style="height: 500px;">-->
 				<!-- Chart wrapper -->
 				<div style="margin: 100px 0px 0px 0px;">
-					<div class="perpectCenter">
+					<div style="display: flex; justify-content: center; align-items: center;">
 						<span class="h1 font-weight-bold text-white"
 							style="font-size: 30px;">${MainportfolioInfo.PORTFOLIO_NAME }</span>
 					</div>
-					<div class="perpectCenter">
+					<div style="display: flex; justify-content: center; align-items: center;">
 						<span class="h3 font-weight-light text-cyan"> by ${MainportfolioInfo.MEM_ID } FROM TotalScore ${maxportfolioAvg.TOTALAVG}</span>
 					</div>
 				</div>
-				<div
-					style="display: flex; justify-content: center; align-items: center; margin: 0px 0px 0px 0px;">
+				<div style="display: flex; justify-content: center; align-items: center;">
 					<div>
 						<div class="pie-chartTest pie-chart1" style="margin: 15px;">
 							<span class="centerTest">
@@ -177,84 +154,85 @@
 					</div>
 
 				</div>
-				<div>
-					<a href="https://twks.ch/" data-identifier="twks"
-						class="bt-default green-fill" target="_blank"
-						rel="noopener nofollow">Visit Site</a>
+				<div style="display: flex; align-items: flex-end; width: 100%; height: 100%;">
+					<div style="margin: 0px 0px 20px 20px;">
+						<button type="button" class="btn btn-outline-success" style="border-radius: 25px; color: white;">Visit Site</button>
+<!-- 						<a href="https://twks.ch/" data-identifier="twks" -->
+<!-- 							class="bt-default green-fill" target="_blank" -->
+<!-- 							rel="noopener nofollow">Visit Site</a> -->
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="bg-secondary row">
-		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
-			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">angular</span>
+	
+	<div class="bg-secondary">
+		<div style="display: block; width: 100%; margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span>
+			<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">angular</span>
 		</div>
 
 		<div class="row">
-		<!--여기서 for문 시작  -->
-		<c:forEach items="${portfolioList }" var="portfolioList">
-		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 1 }">
-						<div class="col-lg-4">
-				<!-- 작업중 -->
-				<!-- Image-Text card -->
-				<div class="card">
-					<!-- Card image -->
-					<div class="img-hover-css" onclick="goPortfolioView(this);">
-						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
-						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
-						<img class="card-img-top img-center img-fluid"
-							src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
-							alt="Image placeholder">
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
-						<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
-					</div>
-					<div class="card-footer"
-						style="display: flex; justify-content: space-between; align-items: center;">
-						<div style="display: flex;">
+			<!--여기서 for문 시작  -->
+			<c:forEach items="${portfolioList }" var="portfolioList">
+			<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 1 }">
+				<div class="col-md-4">
+					<div class="card">
+						<!-- Card image -->
+						<div class="card-header img-hover-css" style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;" onclick="goPortfolioView(this);">
+							<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
+							<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
+							<img class="card-img-top img-center img-fluid"
+								src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
+								alt="Image placeholder">
+						</div>
+						<!-- Card body -->
+						<div class="card-body">
+							<small class="text-muted">TITLE</small>
+							<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
+							<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
+						</div>
+						<div class="card-footer"
+							style="display: flex; justify-content: space-between; align-items: center;">
+							<div style="display: flex;">
+								<div>
+									<img alt="Image placeholder"
+										src="/${portfolioList.PROFILE_SAVENAME }"
+										class="avatar rounded-circle">
+								</div>
+								<div style="margin: 0px 0px 0px 10px;">
+									<h5 style="margin: 10px 0px 0px 0px;"
+										class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
+								</div>
+							</div>
 							<div>
-								<img alt="Image placeholder"
-									src="/${portfolioList.PROFILE_SAVENAME }"
-									class="avatar rounded-circle">
+								<span class="badge badge-pill badge-success">angular</span>
 							</div>
-							<div style="margin: 0px 0px 0px 10px;">
-								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
-							</div>
-						</div>
-						<div>
-							<span class="badge badge-pill badge-success">angular</span>
 						</div>
 					</div>
-				</div>
-			</div>		
-		</c:if>
-
-		</c:forEach>
+				</div>		
+			</c:if>
+			</c:forEach>
 		</div>
 	</div>
 
 
-	<div class="bg-secondary row">
-		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
-			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">bootstrap</span>
+	<div class="bg-secondary">
+		<div style="display: block; width: 100%; margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span> 
+			<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">bootstrap</span>
 		</div>
 
 		<div class="row">
 		<!--여기서 for문 시작  -->
 		<c:forEach items="${portfolioList }" var="portfolioList">
 		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 2 }">
-						<div class="col-lg-4">
+			<div class="col-md-4">
 				<!-- 작업중 -->
 				<!-- Image-Text card -->
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css" onclick="goPortfolioView(this);">
+					<div class="card-header img-hover-css" style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;" onclick="goPortfolioView(this);">
 						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
 						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
 						<img class="card-img-top img-center img-fluid"
@@ -293,23 +271,20 @@
 	</div>
 
 
-	<div class="bg-secondary row">
-		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
-			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">react</span>
+	<div class="bg-secondary">
+		<div style="display: block; width: 100%; margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span>
+			<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">react</span>
 		</div>
 
 		<div class="row">
 		<!--여기서 for문 시작  -->
 		<c:forEach items="${portfolioList }" var="portfolioList">
 		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 3 }">
-						<div class="col-lg-4">
-						
-				<!-- 작업중 -->
-				<!-- Image-Text card -->
+			<div class="col-md-4">
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css" onclick="goPortfolioView(this);">
+					<div class="card-header img-hover-css" style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;" onclick="goPortfolioView(this);">
 						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
 						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
 						<img class="card-img-top img-center img-fluid"
@@ -347,22 +322,20 @@
 		</div>
 	</div>
 
-	<div class="bg-secondary row">
-		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
-			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">vue</span>
+	<div class="bg-secondary">
+		<div style="display: block; width: 100%; margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span>
+			<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">vue</span>
 		</div>
 
 		<div class="row">
 		<!--여기서 for문 시작  -->
 		<c:forEach items="${portfolioList }" var="portfolioList">
 		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 4 }">
-						<div class="col-lg-4">
-				<!-- 작업중 -->
-				<!-- Image-Text card -->
+			<div class="col-md-4">
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css" onclick="goPortfolioView(this);">
+					<div class="card-header img-hover-css" style="margin: 0px 0px 0px 0px; padding: 0px 0px 0px 0px;" onclick="goPortfolioView(this);">
 						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
 						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
 						<img class="card-img-top img-center img-fluid"
@@ -385,7 +358,7 @@
 							</div>
 							<div style="margin: 0px 0px 0px 10px;">
 								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">${portfolioList.mem_id }</h5>
+									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
 							</div>
 						</div>
 						<div>
@@ -486,8 +459,7 @@
   	 function goPortfolioView(e) {
   		  const portfolio_no = $(e).find('input[name=portfolio_no]').val();
   		  const mem_id = $(e).find('input[name=mem_id]').val();
-  		  alert(portfolio_no);
-  		  alert(mem_id);
+
   		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
   	  }
 
