@@ -95,7 +95,7 @@
 		<div class="col-lg-12">
 			<!-- Image-Text card -->
 			<div class="card mainDiv"
-				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 500px;">
+				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
 				<!-- Card image -->
 				<!--              <img class="card-img-top" src="https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg" alt="Image placeholder" style="height: 500px;">-->
 				<!-- Chart wrapper -->
@@ -385,7 +385,7 @@
 							</div>
 							<div style="margin: 0px 0px 0px 10px;">
 								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
+									class="text-lg text-lg-center">${portfolioList.mem_id }</h5>
 							</div>
 						</div>
 						<div>
@@ -486,7 +486,8 @@
   	 function goPortfolioView(e) {
   		  const portfolio_no = $(e).find('input[name=portfolio_no]').val();
   		  const mem_id = $(e).find('input[name=mem_id]').val();
-
+  		  alert(portfolio_no);
+  		  alert(mem_id);
   		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
   	  }
 
