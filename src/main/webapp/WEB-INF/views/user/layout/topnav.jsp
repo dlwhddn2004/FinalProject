@@ -456,8 +456,6 @@
    <!-- Argon Scripts -->
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath}/assets/js/validation.js"></script>
-	
 		
 	<script type="text/javascript">
 /* 		function change(){

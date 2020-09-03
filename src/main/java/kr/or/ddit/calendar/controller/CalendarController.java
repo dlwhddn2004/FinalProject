@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.calendar.service.ICalendarService;
+import kr.or.ddit.interview.service.IInterviewService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
@@ -35,6 +36,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class CalendarController {
 	@Autowired
 	private ICalendarService calendarService;
+	@Autowired
+	private IInterviewService interviewService;
 	
 	@RequestMapping("calendar")
 	public ModelAndView calendar(HttpServletRequest request,
@@ -148,5 +151,4 @@ public class CalendarController {
 		}
 		return jsonMap;
 	}
-	
 }

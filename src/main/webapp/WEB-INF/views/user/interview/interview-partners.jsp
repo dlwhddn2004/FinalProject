@@ -23,8 +23,13 @@
     .modal-position-center {
         transform: translate(-300px, 0px) !important;
     }
+    
+    .fc-time {
+	    color: white;
+	}
 </style>
 
+<input type="hidden" name="check-currentPage-forCalendar" value="interviewCalendar">
 <div class="row interview">
   <div class="col">
     <!-- 탭 -->
@@ -440,93 +445,40 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                      <b>Alex Smith</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">24세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-3.jpg" class="avatar rounded-circle mr-3">
-                      <b>Samantha Ivy</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">34세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-primary">React</span>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
-                      <b>John Michael</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">30세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-primary">React</span>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                      <b>John Michael</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">26세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  <c:forEach items="${notApplyMemList }" var="tech">
+	                  <tr>
+	                    <td class="table-user">
+	                      <img src="/${tech.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
+	                      <b>${tech.MEM_NAME }</b>
+	                    </td>
+	                    <td>
+	                      <span class="text-muted">${tech.MEM_AGE }세</span>
+	                    </td>
+	                    <td>
+	                      	<c:if test="${!empty tech.ANGULAR }">
+	                      		<span class="badge badge-pill badge-default">${tech.ANGULAR }</span>
+	                      	</c:if>
+	                      	<c:if test="${!empty tech.BOOTSTRAP }">
+	                      		<span class="badge badge-pill badge-primary">${tech.BOOTSTRAP }</span>
+	                      	</c:if>
+	                      	<c:if test="${!empty tech.REACT }">
+	                      		<span class="badge badge-pill badge-secondary">${tech.REACT }</span>
+	                      	</c:if>
+	                      	<c:if test="${!empty tech.VUE }">
+	                      		<span class="badge badge-pill badge-info">${tech.VUE }</span>
+	                      	</c:if>
+	                    </td>
+	                    <td class="table-actions">
+	                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
+	                      	<input type="hidden" name="mem_id" value="${tech.MEM_ID }">
+	                        <i class="fas fa-user-edit"></i>
+	                      </a>
+	                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
+	                        <i class="fas fa-trash"></i>
+	                      </a>
+	                    </td>
+	                  </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -541,14 +493,14 @@
 
 
 <!-- 모달 캘린더 등록 -->
-<div class="modal fade" id="new-event" tabindex="-1" role="dialog"
-     aria-labelledby="new-event-label" aria-hidden="true">
+<div class="modal fade modal-interview-add" id="new-event" tabindex="-1" role="dialog"
+     aria-labelledby="edit-event-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-secondary"
        role="document">
     <div class="modal-content">
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="new-event--form">
+        <form class="edit-event--form">
             <div class="form-group">
                 <label class="form-control-label d-block mb-3">면접 구분명</label>
                 <input type="text" class="form-control form-control-alternative new-event--title" placeholder="면접 구분명을 입력해주세요.">
@@ -606,12 +558,8 @@
             </div>
             <div class="form-group" style="margin: 10px 0px 0px 0px;">
                 <label class="form-control-label">면접자</label>
-                <select class="form-control" data-toggle="select" multiple data-placeholder="Select multiple options">
-                    <option>김재석</option>
-                    <option>이종우</option>
-                    <option>김덕년</option>
-                    <option>김태진</option>
-                    <option>신나라</option>
+                <select class="form-control pass-apply-member-list" data-toggle="select" multiple data-placeholder="Select multiple options">
+                
                 </select>
             </div>
         </form>
@@ -626,55 +574,70 @@
 </div>
 
 <!-- 모달 캘린더 수정 -->
-<div class="modal fade" id="edit-event" tabindex="-1" role="dialog"
+<div class="modal fade modal-interview-modify" id="edit-event" tabindex="-1" role="dialog"
      aria-labelledby="edit-event-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-secondary"
        role="document">
     <div class="modal-content">
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="edit-event--form">
-          <div class="form-group edit-event-title-div">
-            <label class="form-control-label">이벤트 제목</label> <input
-                  type="text"
-                  class="form-control form-control-alternative edit-event--title"
-                  placeholder="제목을 입력해주세요.">
-          </div>
-          <div class="form-group">
-            <label class="form-control-label d-block mb-3">색상</label>
-            <div
-                    class="btn-group btn-group-toggle btn-group-colors event-tag mb-0"
-                    data-toggle="buttons">
-              <label class="btn bg-info active"><input type="radio"
-                                                       name="event-tag" value="bg-info" autocomplete="off" checked></label>
-              <label class="btn bg-warning"><input type="radio"
-                                                   name="event-tag" value="bg-warning" autocomplete="off"></label>
-              <label class="btn bg-danger"><input type="radio"
-                                                  name="event-tag" value="bg-danger" autocomplete="off"></label>
-              <label class="btn bg-success"><input type="radio"
-                                                   name="event-tag" value="bg-success" autocomplete="off"></label>
-              <label class="btn bg-default"><input type="radio"
-                                                   name="event-tag" value="bg-default" autocomplete="off"></label>
-              <label class="btn bg-primary"><input type="radio"
-                                                   name="event-tag" value="bg-primary" autocomplete="off"></label>
+        <form class="new-event--form">
+            <div class="form-group">
+                <label class="form-control-label d-block mb-3">면접 구분명</label>
+                <input type="text" class="form-control form-control-alternative new-event--title" placeholder="면접 구분명을 입력해주세요.">
             </div>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label">상세 내용</label>
-            <textarea
-                    class="form-control form-control-alternative edit-event--description textarea-autosize"
-                    placeholder="상세 내용을 입력해주세요."></textarea>
-            <i class="form-group--bar"></i>
-          </div>
-          <input type="hidden" class="edit-event--id">
+            <div class="form-group mb-0">
+                <label class="form-control-label d-block mb-3">색상</label>
+                <div class="btn-group btn-group-toggle btn-group-colors event-tag" data-toggle="buttons">
+                    <label class="btn bg-info active">
+                        <input type="radio" name="event-tag" value="bg-info" autocomplete="off" checked>
+                    </label>
+                    <label class="btn bg-warning">
+                        <input type="radio" name="event-tag" value="bg-warning" autocomplete="off"></label>
+                    <label class="btn bg-danger">
+                        <input type="radio" name="event-tag" value="bg-danger" autocomplete="off"></label>
+                    <label class="btn bg-success">
+                        <input type="radio" name="event-tag" value="bg-success" autocomplete="off"></label>
+                    <label class="btn bg-default">
+                        <input type="radio" name="event-tag" value="bg-default" autocomplete="off"></label>
+                    <label class="btn bg-primary">
+                        <input type="radio" name="event-tag" value="bg-primary" autocomplete="off"></label>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 15px 0px 0px 0px;">
+                <div style="width: 200px;">
+                    <label class="form-control-label d-block mb-3">시작 시간</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control event-start-time" type="time" value="09:00"
+                               id="example-time-input1">
+                    </div>
+                </div>
+                <div style="width: 200px;">
+                    <label class="form-control-label d-block mb-3">종료 시간</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control event-end-time" type="time" value="09:00" id="example-time-input2">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin: 10px 0px 0px 0px;">
+                <label class="form-control-label">면접자</label>
+                <select class="form-control pass-apply-member-list" data-toggle="select" multiple data-placeholder="Select multiple options">
+                </select>
+            </div>
         </form>
       </div>
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-calendar="update">수정</button>
-        <button class="btn btn-danger" data-calendar="delete">삭제</button>
-        <button class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-calendar="update">수정</button>
+            <button class="btn btn-danger" data-calendar="delete" data-calendar="delete">삭제</button>
+            <button type="button" class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
+        </div>
     </div>
   </div>
 </div>
@@ -724,11 +687,10 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h5 class="h3">
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
+                                <h5 class="h3"><span class="font-weight-light font-weight-bold mem-name"></span>
                                 </h5>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                                    <i class="ni location_pin mr-2"></i><span class="font-weight-bold mem-addr"></span>
                                 </div>
                             </div>
                         </div>
@@ -742,8 +704,8 @@
                         <!-- Card body -->
                         <div class="card-body">
                             <!-- List group -->
-                            <ul class="list-group list-group-flush list my--3">
-                                <li class="list-group-item px-0">
+                            <ul class="list-group list-group-flush list my--3 tech-experience">
+                                <li class="list-group-item px-0 angular">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -759,7 +721,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 bootstrap">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -775,7 +737,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 react">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -791,7 +753,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 vue">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -1211,6 +1173,47 @@
   // <신청자 명단>
   // 1. 인포그래픽 표시
   function loadInfographicModal(e) {
+	  // 로딩
+	  // 1. 지금 선택한 사람의 정보로 교체!
+	  const mem_id = $(e).find('input[name=mem_id]').val();
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/infographic.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: mem_id
+		    },
+		    success: function (data) {
+		    	$('#infographic .rounded-circle').attr('src', '/' + data.PROFILE_SAVENAME);
+		    	$('#infographic .mem-name').text(data.MEM_NAME + ', ' + data.MEM_AGE);
+		    	$('#infographic .mem-addr').text(data.MEM_ADDR);
+		    	
+// 		    	<div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+		    	const techExperience = (data.MYPAGE_TECHEXPERIENCE).split(',');
+		    	
+		    	// ANGULAR
+		    	$('#infographic .tech-experience .angular .progress-bar').attr('aria-valuenow', techExperience[0]);
+		    	$('#infographic .tech-experience .angular .progress-bar').css('width', techExperience[0] + '%');
+		    	
+		    	// BOOTSTRAP
+		    	$('#infographic .tech-experience .bootstrap .progress-bar').attr('aria-valuenow', techExperience[1]);
+		    	$('#infographic .tech-experience .bootstrap .progress-bar').css('width', techExperience[1] + '%');
+		    	
+		    	// REACT
+		    	$('#infographic .tech-experience .react .progress-bar').attr('aria-valuenow', techExperience[2]);
+		    	$('#infographic .tech-experience .react .progress-bar').css('width', techExperience[2] + '%');
+		    	
+		    	// VUE
+		    	$('#infographic .tech-experience .vue .progress-bar').attr('aria-valuenow', techExperience[3]);
+		    	$('#infographic .tech-experience .vue .progress-bar').css('width', techExperience[3] + '%');
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
       $('#infographic').modal('show');
   }
 
