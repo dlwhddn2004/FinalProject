@@ -39,19 +39,48 @@ public class projectsearchcontroller {
 	private IProfileFileService profileservice;
 	 
 	 @RequestMapping("projectsearch")
-	 public ModelAndView projectList(HttpServletRequest request,
+	 public ModelAndView projectList(HttpServletRequest request,String project_no,
 				ModelAndView modelAndView) throws Exception{
-		 
+		 Map<String, String> params = new HashMap<String, String>();
+		 params.put("project_no", project_no);
 		 List<ProjectVO> projectList = null;
+		 
 		 	try{
-		 		projectList = service.projectList();
+		 		projectList = service.projectList(params);
 		 		
 		 	} catch (Exception e){
 		 		e.printStackTrace();
 		 	}
-		 	 
-			
+		 	
+		   
+		 	ProjectVO projectInfo6 = service.projectInfo6(params);
+		 	int projectInfo5 = this.service.projectInfo5(params);
+		 	modelAndView.addObject("breadcrumb_title", "프로젝트");
+			modelAndView.addObject("breadcrumb_first", "프로젝트 찾기");
+			modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectsearch.do");
+		
+		
+		
+			modelAndView.addObject("projectInfo6", projectInfo6);
+		 	modelAndView.addObject("projectInfo5", projectInfo5);
 		 	modelAndView.addObject("projectList", projectList);
+		 	
+		 	for (ProjectVO item : projectList) {
+		 		Map<String, String> map = new HashMap<String, String>();
+		 		map.put("project_no", item.getProject_no());
+		 		int cnt = service.projectInfo5(map);		 		 				 		
+		 		item.setProject_applyCnt(String.valueOf(cnt));
+		 		
+		 	}
+		 	
+		 	for (ProjectVO item : projectList) {
+		 		Map<String, String> map1 = new HashMap<String, String>();
+		 		map1.put("project_no", item.getProject_no());
+		 		ProjectVO map2 = service.projectInfo6(map1);
+		 		 item.setProject_time(String.valueOf(map2));
+		 		
+		 	}
+	 	
 		 	modelAndView.setViewName("user/projectsearch/projectsearch");
 					 	
 			return modelAndView;
@@ -60,7 +89,7 @@ public class projectsearchcontroller {
 	 
 	 @RequestMapping("projectview")
 	 public ModelAndView projectview(ModelAndView modelAndView, String mem_id,
-			 										String project_no) throws Exception{
+			 										String project_no,HttpServletRequest request) throws Exception{
 		 Map<String, String> params = new HashMap<String, String>();
 		
 		 params.put("project_no", project_no);
@@ -74,7 +103,9 @@ public class projectsearchcontroller {
 		int projectInfo3 = this.service.projectInfo3(params);
 		int projectInfo4 = this.service.projectInfo4(params);
 	
-		
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세보기");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectview.do");
 		 modelAndView.addObject("profileInfo", profileInfo);
 		 modelAndView.addObject("projectInfo", projectInfo);
 		 modelAndView.addObject("projectInfo1", projectInfo1);

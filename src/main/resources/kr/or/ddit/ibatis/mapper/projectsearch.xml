@@ -193,7 +193,7 @@
 	</delete> -->
 
 <!-- 덕년  -->
-<select id="projectList" resultClass="ProjectVO">
+<select id="projectList" parameterClass="map" resultClass="ProjectVO">
 SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       MEM_ID,
 		       PROJECT_PROCESSSTATUS,
@@ -315,6 +315,16 @@ select count(PROJECT_NO)
 from PROJECT_APPLY
 where project_no = #project_no# 
 </select>
+<select id="projectInfo5" resultClass="integer" parameterClass="map">
+select count(PROJECT_NO)
+from PROJECT_APPLY
+where project_no = #project_no# 
+</select>
+<select id="projectInfo6" resultClass="ProjectVO"  parameterClass="map">
+select PROJECT_APPLICATIONDEADLINE - PROJECT_STARTDATE
+from PROJECT
+    where PROJECT_NO = #project_no#
+</select> 
 </sqlMap>
 
  
