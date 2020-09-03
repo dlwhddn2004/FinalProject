@@ -65,14 +65,13 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 // 덕년 리스트 구현
 	@Override
-	public List<ProjectVO> projectList() throws Exception {
+	public List<ProjectVO> projectList(Map<String,String>params) throws Exception {
 		List<ProjectVO> list = null;
 		
 		list = client.queryForList("projectsearch.projectList");
 		
 		return list;
 	}
-
 	//project insert
 	@Override
 	public String insertProjectInfo(Map<String, String> params) throws Exception {
@@ -94,6 +93,11 @@ public class ProjectDaoImpl implements IProjectDao {
 	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
 		
 		return (ProjectVO) client.queryForObject("projectsearch.projectInfo",params);
+	}
+	@Override
+	public ProjectVO projectInfo6(Map<String, String> params) throws Exception {
+		
+		return (ProjectVO) client.queryForObject("projectsearch.projectInfo6",params);
 	}
 
 	@Override
@@ -123,6 +127,12 @@ public class ProjectDaoImpl implements IProjectDao {
 		cnt = (int) client.queryForObject("projectsearch.projectInfo4",params);
 		return cnt;
 	}
-
+	@Override
+	public int projectInfo5(Map<String, String> params) throws Exception {
+		int cnt =0;
+		cnt = (int) client.queryForObject("projectsearch.projectInfo5",params);
+		return cnt;
+	}
+	
 
 }
