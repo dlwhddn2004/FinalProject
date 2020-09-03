@@ -44,4 +44,13 @@
 			   SYSDATE,
 			   ISSUE_BOARD_COMMENT_SEQ.nextval)	
 	</insert>
+	
+	<delete id="deleteissueComment" parameterClass="map">
+		DELETE ISSUE_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
+	</delete>
+	
+	<update id="updateissueComment" parameterClass="map">
+		UPDATE ISSUE_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content#
+		WHERE COMMENT_SEQ = #comment_seq#
+	</update>
 </sqlMap>
