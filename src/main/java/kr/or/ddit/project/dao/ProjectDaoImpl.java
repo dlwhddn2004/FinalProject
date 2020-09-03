@@ -89,6 +89,27 @@ public class ProjectDaoImpl implements IProjectDao {
 	public int insertProjectDetail(Map<String, String> params) throws Exception {
 		return client.update("projectRegist.insertProjectDetail", params);
 	}
+	
+	@Override
+	public int insertProjectBudget(Map<String, String> params) throws Exception {
+		return client.update("projectRegist.insertProjectBudget", params);
+	}
+	
+	@Override
+	public int insertProjectMeeting(Map<String, String> params)
+			throws Exception {
+		return client.update("projectRegist.insertProjectMeeting", params);
+	}
+	
+	@Override
+	public int insertProjectMozip(Map<String, String> params) throws Exception {
+		return client.update("projectRegist.insertProjectMozip", params);
+	}
+
+	@Override
+	public int insertProjectAdd(Map<String, String> params) throws Exception {
+		return client.update("projectRegist.insertProjectAdd", params);
+	}
 
 	@Override
 	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
@@ -117,6 +138,11 @@ public class ProjectDaoImpl implements IProjectDao {
 		cnt = (int) client.queryForObject("projectsearch.projectInfo3",params);
 		return cnt;
 	}
+
+
+
+
+
 
 
 }

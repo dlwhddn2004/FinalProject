@@ -80,12 +80,7 @@ public class ProjectServiceImpl implements IProjectService {
 		return dao.projectList();
 	}
 
-	//insert project
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
-	@Override
-	public String insertProjectInfo(Map<String, String> params) throws Exception {
-		return dao.insertProjectInfo(params);
-	}
+
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
@@ -110,7 +105,14 @@ public class ProjectServiceImpl implements IProjectService {
 		// TODO Auto-generated method stub
 		return dao.projectInfo3(params);
 	}
-
+	
+	//insert project
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public String insertProjectInfo(Map<String, String> params) throws Exception {
+		return dao.insertProjectInfo(params);
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public int insertProjectReady(Map<String, String> params) throws Exception {
@@ -121,6 +123,31 @@ public class ProjectServiceImpl implements IProjectService {
 	@Override
 	public int insertProjectDetail(Map<String, String> params) throws Exception {
 		return dao.insertProjectDetail(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectBudget(Map<String, String> params) throws Exception {
+		return dao.insertProjectBudget(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectMeeting(Map<String, String> params)
+			throws Exception {
+		return dao.insertProjectMeeting(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectMozip(Map<String, String> params) throws Exception {
+		return dao.insertProjectMozip(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectAdd(Map<String, String> params) throws Exception {
+		return dao.insertProjectAdd(params);
 	}
 
 }

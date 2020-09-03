@@ -26,6 +26,10 @@ public interface IProjectService {
 	public String insertProjectInfo(Map<String, String> params) throws Exception;
 	public int insertProjectReady(Map<String, String> params) throws Exception;
 	public int insertProjectDetail(Map<String, String> params) throws Exception;
+	public int insertProjectBudget(Map<String, String> params) throws Exception;
+	public int insertProjectMeeting(Map<String, String> params) throws Exception;
+	public int insertProjectMozip(Map<String, String> params) throws Exception;
+	public int insertProjectAdd(Map<String, String> params) throws Exception;
 	
 	// 덕년 리스트 조회
 		public List<ProjectVO> projectList() throws Exception;
