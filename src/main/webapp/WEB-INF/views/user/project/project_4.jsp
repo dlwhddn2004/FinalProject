@@ -68,7 +68,7 @@
           </div>
           <!-- Card body -->
           <div class="card-body">
-            <form class="projectForm4" name="projectBudget">
+            <form class="projectForm4" name="projectBudget" method="post">
               <div class="form-group">
                 <label class="col-form-label form-control-label">지출 가능 예산</label>
                 <label style="color: tomato">*</label>
@@ -155,7 +155,7 @@
 		$('form[name=projectBudget]').append($term_ipt);
 		
 
-		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/project/project_5.do');
+		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/project/project_5.do?project_no=${project_no}');
 		$('form[name=projectBudget]').submit(); 
 		
 	});
