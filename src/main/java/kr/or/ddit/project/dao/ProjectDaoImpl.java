@@ -85,5 +85,10 @@ public class ProjectDaoImpl implements IProjectDao {
 		return client.update("projectRegist.insertProjectReady", params);
 	}
 
+	@Override
+	public int insertProjectDetail(Map<String, String> params) throws Exception {
+		return client.update("projectRegist.insertProjectDetail", params);
+	}
+
 
 }

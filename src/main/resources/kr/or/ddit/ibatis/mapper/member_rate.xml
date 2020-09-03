@@ -19,31 +19,11 @@
 	<insert id="insertRate" parameterClass="MemberRateVO">
 		INSERT INTO MEMBER_RATE
 		(
-			MEM_ID,
-			PROFESSIONAL,
-			COMMUNICATION,
-			POSITIVENESS,
-			SATISFACTION,
-			COMPLIANCE,
-			PROFESSIONAL_BEF,
-			COMMUNICATION_BEF,
-			POSITIVENESS_BEF,
-			SATISFACTION_BEF,
-			COMPLIANCE_BEF
+			MEM_ID
 		)
 		VALUES
 		(
-			#mem_id#,
-			#professional#,
-			#communication#,
-			#positiveness#,
-			#satisfaction#,
-			#compliance#,
-			#professional_bef#,
-			#communication_bef#,
-			#positiveness_bef#,
-			#satisfaction_bef#,
-			#compliance_bef#
+			#mem_id#
 		)
 	</insert>
 </sqlMap>

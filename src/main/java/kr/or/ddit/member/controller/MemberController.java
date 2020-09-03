@@ -104,8 +104,12 @@ public class MemberController {
 		
 		this.service.insertMemberInfo(memberInfo);		
 		this.profileService.insertProfileFileInfo(profileInfo);
-		this.mypageService.insertMypageDeveloper(mypageInfo);
 		this.rateService.insertMemberRate(rateInfo);
+		
+		if(mypageInfo.getCategory_no().equals("2")){
+			this.mypageService.insertMypageDeveloper(mypageInfo);			
+		}
+		
 		
 		
 		String taskResult = "success";

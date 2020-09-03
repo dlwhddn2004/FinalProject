@@ -68,7 +68,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form  class="projectForm3" name="projectDetail">
+              <form  class="projectForm3" name="projectDetail" method="post">
                 <div class="form-group">
                   <label class="col-form-label form-control-label">상세 업무 내용</label>
                   <label style="color: tomato">*</label>
@@ -147,9 +147,17 @@
 	});
 	
 	$(".projectForm3 #btnRegist").on("click", function() {
+		content = quill.root.innerHTML;
+		tech = $('a[aria-selected=true]').find('input').val();
+		techInt = parseInt(tech);
 		
+		const $content_ipt = $('<input type="hidden" name="project_currentstatus" value= "' + content + '" >');
+		const $tech_ipt = $('<input type="hidden" name="project_technologies" value= "' + techInt + '" >');
 		
-		$('form[name=projectDetail]').attr('action', '${pageContext.request.contextPath}/user/project/project_4.do');
+		$('form[name=projectDetail]').append($content_ipt);
+		$('form[name=projectDetail]').append($tech_ipt);
+		
+		$('form[name=projectDetail]').attr('action', '${pageContext.request.contextPath}/user/project/project_4.do?project_no=${project_no}');
 		$('form[name=projectDetail]').submit();
 		
 	});

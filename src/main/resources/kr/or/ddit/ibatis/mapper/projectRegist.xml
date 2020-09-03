@@ -46,6 +46,16 @@
 			PROJECT_NO = #project_no#
 	</update>
 	
+	<update id="insertProjectDetail" parameterClass="map">
+		UPDATE PROJECT SET 
+			PROJECT_CURRENTSTATUS = #project_currentstatus#,
+			PROJECT_TECHNOLOGIES = #project_technologies#
+		WHERE 
+			PROJECT_NO = #project_no#
+	</update>
+	
+	
+	
 </sqlMap>
 
  
