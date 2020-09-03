@@ -86,5 +86,29 @@ public class ProjectServiceImpl implements IProjectService {
 	public int insertProjectInfo(Map<String, String> params) throws Exception {
 		return dao.insertProjectInfo(params);
 	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int projectInfo1(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo1(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int projectInfo2(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo2(params);
+	}
+
+	@Override
+	public int projectInfo3(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo3(params);
+	}
 
 }

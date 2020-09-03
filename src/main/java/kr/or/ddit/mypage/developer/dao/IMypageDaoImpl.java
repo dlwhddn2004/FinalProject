@@ -53,4 +53,6 @@ public class IMypageDaoImpl implements IMypageDao {
 		return String.valueOf(client.update("mypageDeverloper.modifyMyabout",vo));
 	}
 
+	
+
 }

@@ -15,4 +15,5 @@ public interface IMypageDao {
 	public Mypage_memberVO selectMypageInfo(Map<String,String> params) throws Exception;
 	
 	public String modifyMyabout(Mypage_memberVO vo ) throws Exception; 
+
 }

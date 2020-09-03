@@ -87,5 +87,33 @@ public class ProjectDaoImpl implements IProjectDao {
 		return chk;
 	}
 
+	@Override
+	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
+		
+		return (ProjectVO) client.queryForObject("projectsearch.projectInfo",params);
+	}
+
+	@Override
+	public int projectInfo1(Map<String, String> params) throws Exception {
+		int cnt =0;
+		cnt = (int) client.queryForObject("projectsearch.projectInfo1",params);
+		return cnt;
+	}
+	
+
+	@Override
+	public int projectInfo2(Map<String, String> params) throws Exception {
+		int cnt =0;
+		cnt = (int) client.queryForObject("projectsearch.projectInfo2",params);
+		return cnt;
+	}
+
+	@Override
+	public int projectInfo3(Map<String, String> params) throws Exception {
+		int cnt =0;
+		cnt = (int) client.queryForObject("projectsearch.projectInfo3",params);
+		return cnt;
+	}
+
 
 }
