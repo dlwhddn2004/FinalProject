@@ -68,7 +68,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/dashboards/alternative.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/projectsearch/projectsearch.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">
                       <span class="sidenav-mini-icon"> 찾기 </span>
                       <span class="sidenav-normal"> 프로젝트 찾기 </span>
                     </a>

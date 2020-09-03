@@ -72,6 +72,7 @@ public class projectsearchcontroller {
 		 int projectInfo1 = this.service.projectInfo1(params);
 		int projectInfo2 = this.service.projectInfo2(params);
 		int projectInfo3 = this.service.projectInfo3(params);
+		int projectInfo4 = this.service.projectInfo4(params);
 	
 		
 		 modelAndView.addObject("profileInfo", profileInfo);
@@ -79,6 +80,7 @@ public class projectsearchcontroller {
 		 modelAndView.addObject("projectInfo1", projectInfo1);
 		 modelAndView.addObject("projectInfo2", projectInfo2);
 		 modelAndView.addObject("projectInfo3", projectInfo3);
+		 modelAndView.addObject("projectInfo4", projectInfo4);
 		
 		 modelAndView.setViewName("user/projectsearch/projectview");
 		 

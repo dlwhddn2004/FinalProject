@@ -1,4 +1,4 @@
-package kr.or.ddit.project.service;
+﻿package kr.or.ddit.project.service;
 
 import java.util.List;
 import java.util.Map;
@@ -75,22 +75,22 @@ public class ProjectServiceImpl implements IProjectService {
 	//덕년 리스트 조회
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<ProjectVO> projectList() throws Exception {
+	public List<ProjectVO>projectList(Map<String,String>params) throws Exception {
 		
-		return dao.projectList();
+		return dao.projectList(params);
 	}
 
-	//insert project
-	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
-	@Override
-	public String insertProjectInfo(Map<String, String> params) throws Exception {
-		return dao.insertProjectInfo(params);
-	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.projectInfo(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public ProjectVO projectInfo6(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo6(params);
 	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
@@ -110,7 +110,24 @@ public class ProjectServiceImpl implements IProjectService {
 		// TODO Auto-generated method stub
 		return dao.projectInfo3(params);
 	}
+	@Override
+	public int projectInfo4(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo4(params);
+	}
+	@Override
+	public int projectInfo5(Map<String, String> params) throws Exception {
+		return dao.projectInfo5(params);
+	}
 
+	
+	//insert project
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public String insertProjectInfo(Map<String, String> params) throws Exception {
+		return dao.insertProjectInfo(params);
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public int insertProjectReady(Map<String, String> params) throws Exception {
@@ -121,6 +138,31 @@ public class ProjectServiceImpl implements IProjectService {
 	@Override
 	public int insertProjectDetail(Map<String, String> params) throws Exception {
 		return dao.insertProjectDetail(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectBudget(Map<String, String> params) throws Exception {
+		return dao.insertProjectBudget(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectMeeting(Map<String, String> params)
+			throws Exception {
+		return dao.insertProjectMeeting(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectMozip(Map<String, String> params) throws Exception {
+		return dao.insertProjectMozip(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectAdd(Map<String, String> params) throws Exception {
+		return dao.insertProjectAdd(params);
 	}
 
 }

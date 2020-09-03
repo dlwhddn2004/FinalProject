@@ -46,6 +46,7 @@
 			PROJECT_NO = #project_no#
 	</update>
 	
+<!-- 	project3 -->
 	<update id="insertProjectDetail" parameterClass="map">
 		UPDATE PROJECT SET 
 			PROJECT_CURRENTSTATUS = #project_currentstatus#,
@@ -54,7 +55,49 @@
 			PROJECT_NO = #project_no#
 	</update>
 	
+<!-- 	project4 -->
+	<update id="insertProjectBudget" parameterClass="map">
+		UPDATE PROJECT SET
+			PROJECT_BUDGET = #project_budget#,
+			PROJECT_STARTDATE = TO_DATE(#project_startdate#, 'yyyy-mm-dd'),
+			PROJECT_DURATION = #project_duration#,
+			PROJECT_ENDDATE = TO_DATE(#project_startdate#, 'yyyy-mm-dd') + #project_duration# 
+		WHERE
+			PROJECT_NO = #project_no#
+	</update>
 	
+<!-- 	project5 -->
+	<update id="insertProjectMeeting" parameterClass="map">
+		UPDATE PROJECT SET
+			PROJECT_PREMEETING = #project_premeeting#,
+			PROJECT_PROCEEDINGMEETING = #project_proceedingmeeting#,
+			PROJECT_MEETINGCYCLE = #project_meetingcycle#,
+			PROJECT_CLIENTLOCATION = #project_clientlocation#
+		WHERE
+			PROJECT_NO = #project_no#
+	</update>
+	
+<!-- 	project6 -->
+	<update id="insertProjectMozip" parameterClass="map">
+		UPDATE PROJECT SET
+			PROJECT_APPLICATIONDEADLINE = TO_DATE(#project_applicationdeadline#, 'yyyy-mm-dd'),
+			PROJECT_SUPPORTSTATUS = #project_supportstatus#,
+			PROJECT_ESSENTIALREQUIREMENTS = #project_essentialrequirements#
+		WHERE
+			PROJECT_NO = #project_no#	
+	</update>
+	
+<!-- 	project7 -->
+	<update id="insertProjectAdd" parameterClass="map">
+		UPDATE PROJECT SET
+			PROJECT_MANPOWER = #project_manpower#,
+			PROJECT_MANAGEMENTEXPERIENCE = #project_managementexperience#,
+			PROJECT_FUTUREPLANS = #project_futureplans#,
+			PROJECT_PRIORITY = #project_priority#,
+			PROJECT_INPUTSTATUS = 'Y'
+		WHERE
+			PROJECT_NO = #project_no#	
+	</update>
 	
 </sqlMap>
 

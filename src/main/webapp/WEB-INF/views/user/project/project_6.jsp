@@ -67,27 +67,27 @@
           </div>
           <!-- Card body -->
           <div class="card-body">
-            <form class="projectForm4" name="projectMozip">
+            <form name="projectMozip" method="post">
               <div class="form-group">
-                <label class="col-form-label form-control-label">모집요건</label>
+                <label class="col-form-label form-control-label">모집 마감일</label>
                 <label style="color: tomato">*</label>
                 <p class="text-muted" style="font-size: small">지원자 모집 마감일을 선택해 주세요.</p>
                 <div class="input-group col-xl-3 px-0">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                   </div>
-                  <input class="form-control datepicker" placeholder="Select date" type="text" id="today" name="project_startdate">
+                  <input class="form-control datepicker" placeholder="Select date" type="text" id="today" name="deadline">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-form-label form-control-label">지원 사업 여부</label>
                 <label style="color: tomato">*</label>
                 <div class="custom-control custom-radio mb-3">
-                  <input type="radio" id="project_supportstatus1" name="project_supportstatus" class="custom-control-input" value="정부지원사업">
-                  <label class="custom-control-label" for="project_supportstatus1">정부지원사업입니다.</label>
+                  <input type="radio" id="project_supportstatus1" name="supportstatus" class="custom-control-input" value="정부지원 사업입니다.">
+                  <label class="custom-control-label" for="project_supportstatus1">정부지원 사업입니다.</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_supportstatus2" name="project_supportstatus" class="custom-control-input" value="아님">
+                  <input type="radio" id="project_supportstatus2" name="supportstatus" class="custom-control-input" value="정부지원 사입이 아닙니다.">
                   <label class="custom-control-label" for="project_supportstatus2">아닙니다.</label>
                 </div>
               </div>
@@ -97,31 +97,31 @@
                 <p class="text-muted" style="font-size: small">조건에 맞는 디벨로퍼를 지원자로 받습니다</p>
                 <div class="col-md-3">
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                    <input class="custom-control-input" id="customCheck1" type="checkbox" value="개인 또는 팀 가능">
                     <label class="custom-control-label" for="customCheck1">개인 또는 팀 가능</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck2" type="checkbox">
+                    <input class="custom-control-input" id="customCheck2" type="checkbox" value="개인사업자">
                     <label class="custom-control-label" for="customCheck2">개인사업자</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck3" type="checkbox">
+                    <input class="custom-control-input" id="customCheck3" type="checkbox" value="법인사업자">
                     <label class="custom-control-label" for="customCheck3">법인사업자</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck4" type="checkbox">
+                    <input class="custom-control-input" id="customCheck4" type="checkbox" value="업력 1년 이상">
                     <label class="custom-control-label" for="customCheck4">업력 1년 이상</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck5" type="checkbox">
+                    <input class="custom-control-input" id="customCheck5" type="checkbox" value="자사 협력업체 등록 가능">
                     <label class="custom-control-label" for="customCheck5">자사 협력업체 등록 가능</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck6" type="checkbox">
+                    <input class="custom-control-input" id="customCheck6" type="checkbox" value="보증보험 발급 가능">
                     <label class="custom-control-label" for="customCheck6">보증보험 발급 가능</label>
                   </div>
                   <div class="custom-control custom-checkbox mb-3">
-                    <input class="custom-control-input" id="customCheck7" type="checkbox">
+                    <input class="custom-control-input" id="customCheck7" type="checkbox" value="프로젝트 제안 발표 가능">
                     <label class="custom-control-label" for="customCheck7">프로젝트 제안 발표 가능</label>
                   </div>
                 </div>
@@ -151,9 +151,31 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
 
-$(".projectForm4 #btnRegist").on("click", function() {
+$("#btnRegist").on("click", function() {
+	datePick = $('input[name=deadline]').val();
+    dateSplit = datePick.split("/");
+    dateYear = dateSplit[2];
+    dateMonth = dateSplit[0];
+    dateDate = dateSplit[1];
+    deadline = dateYear+"-"+dateMonth+"-"+dateDate;
+    
+    supportstatus = $('input[name=supportstatus]:checked').val();
+    
+    requirements = "";
+  	$('input[type=checkbox]:checked').each(function () {
+  		requirements += ($(this).val()) + ", ";
+	});
+  	requirements = requirements.substr(0, requirements.length-2);
+  	
+  	const $deadline_ipt = $('<input type="hidden" name="project_applicationdeadline" value= "' + deadline + '" >');
+  	const $supportstatus_ipt = $('<input type="hidden" name="project_supportstatus" value= "' + supportstatus + '" >');
+  	const $requirements_ipt = $('<input type="hidden" name="project_essentialrequirements" value= "' + requirements + '" >');
+  	
+  	$('form[name=projectMozip]').append($deadline_ipt);
+  	$('form[name=projectMozip]').append($supportstatus_ipt);
+  	$('form[name=projectMozip]').append($requirements_ipt);
 
-	$('form[name=projectMozip]').attr('action', '${pageContext.request.contextPath}/user/project/project_7.do');
+	$('form[name=projectMozip]').attr('action', '${pageContext.request.contextPath}/user/project/project_7.do?project_no=${project_no}');
 	$('form[name=projectMozip]').submit(); 
 	
 });
