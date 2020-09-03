@@ -145,6 +145,12 @@ public class ProjectDaoImpl implements IProjectDao {
 		return cnt;
 	}
 
+	@Override
+	public void insertProjectParticipants(Map<String, String> params)
+			throws Exception {
+		client.insert("project.insertParticipant", params);
+	}
+
 
 
 

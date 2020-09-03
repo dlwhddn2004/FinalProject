@@ -31,6 +31,8 @@ public interface IProjectService {
 	public int insertProjectMozip(Map<String, String> params) throws Exception;
 	public int insertProjectAdd(Map<String, String> params) throws Exception;
 	
+	public void insertProjectParticipants(Map<String, String> params) throws Exception;
+	
 	// 덕년 리스트 조회
 		public List<ProjectVO> projectList() throws Exception;
 	// 상세보기 조회

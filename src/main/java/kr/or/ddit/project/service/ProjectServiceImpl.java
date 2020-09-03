@@ -154,4 +154,11 @@ public class ProjectServiceImpl implements IProjectService {
 		return dao.insertProjectAdd(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertProjectParticipants(Map<String, String> params)
+			throws Exception {
+		dao.insertProjectParticipants(params);
+	}
+
 }
