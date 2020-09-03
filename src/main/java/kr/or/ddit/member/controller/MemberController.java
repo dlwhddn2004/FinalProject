@@ -83,7 +83,7 @@ public class MemberController {
 	         taskResult = "success";
 		  	 message = URLEncoder.encode("로그인에 성공하였습니다!", "UTF-8");
 	      }
-	      return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	      return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 
 	@RequestMapping("logout")
@@ -93,7 +93,7 @@ public class MemberController {
 		String taskResult = "info";
 	  	String message = URLEncoder.encode("로그아웃 되었습니다.", "UTF-8");
 		
-		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 	
 	@RequestMapping("insertMember")
@@ -115,7 +115,7 @@ public class MemberController {
 		String taskResult = "success";
 		String message = URLEncoder.encode("회원가입이 완료되었습니다.","UTF-8");
 		
-		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 	
 	
