@@ -310,6 +310,11 @@ select count(PROJECT_ENDSTATUS)
 from PROJECT
 where MEM_ID =#mem_id# 
 </select>
+<select id="projectInfo4" resultClass="integer" parameterClass="map">
+select count(PROJECT_NO)
+from PROJECT_APPLY
+where project_no = #project_no# 
+</select>
 </sqlMap>
 
  

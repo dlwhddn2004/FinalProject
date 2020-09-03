@@ -110,6 +110,11 @@ public class ProjectServiceImpl implements IProjectService {
 		// TODO Auto-generated method stub
 		return dao.projectInfo3(params);
 	}
+	@Override
+	public int projectInfo4(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo4(params);
+	}
 
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override

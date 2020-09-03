@@ -34,4 +34,5 @@ public interface IProjectDao {
 	public int projectInfo1(Map<String,String>params) throws Exception;
 	public int projectInfo2(Map<String,String>params) throws Exception;
 	public int projectInfo3(Map<String,String>params) throws Exception;
+	public int projectInfo4(Map<String,String>params) throws Exception;
 }
