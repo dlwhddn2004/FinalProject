@@ -96,7 +96,6 @@
               </div>
               <div class="form-group">
                 <label class="col-form-label form-control-label">향후 계획</label>
-                <label style="color: tomato">*</label>
                 <div class="col-md-10">
                   <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" id="customCheck1" type="checkbox" value="향후 유지보수를 위한 아웃소싱 계획이 있습니다.">
@@ -150,6 +149,52 @@
 <script>
 
 $("#btnRegist").on("click", function() {
+	if ($('input[name=manpower]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '프로젝트 인력 상황을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=managementexperience]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '매니징 경험을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=priority]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '프로젝트 우선순위를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
 	manpower = $('input[name=manpower]:checked').val();
 	managementexperience = $('input[name=managementexperience]:checked').val();
 	

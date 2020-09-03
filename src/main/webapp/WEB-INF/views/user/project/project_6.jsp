@@ -151,7 +151,40 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
 
+$(".datepicker").datepicker().datepicker("setDate", new Date());
+
 $("#btnRegist").on("click", function() {
+	if ($('input[name=supportstatus]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '지원사업 여부를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[type=checkbox]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '지원자 필수 요건을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
 	datePick = $('input[name=deadline]').val();
     dateSplit = datePick.split("/");
     dateYear = dateSplit[2];

@@ -403,6 +403,7 @@ public class ProjectController {
 		params.put("project_title", project_title);
 		
 		String project_no = projectService.insertProjectInfo(params);
+		this.projectService.insertProjectParticipants(params);
 		
 		modelAndView.addObject("project_no", project_no);
 		

@@ -136,6 +136,37 @@
 	$(".datepicker").datepicker().datepicker("setDate", new Date());
 	
 	$(".projectForm4 #btnRegist").on("click", function() {
+		if ($('input[name=budget]').val() == "") {
+			$.notify({
+				// options
+				message: '지출 가능 예산을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		if ($('input[name=term]').val() == "") {
+			$.notify({
+				// options
+				message: '지출 가능 예산을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
 		budget = $('input[name=budget]').val();
 		datePick = $('input[name=startDate]').val();
 	    dateSplit = datePick.split("/");

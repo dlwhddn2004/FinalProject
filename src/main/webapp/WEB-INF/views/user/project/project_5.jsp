@@ -166,6 +166,68 @@
 <script>
 
 $("#btnRegist").on("click", function() {
+	if ($('input[name=premeeting]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '사전 미팅 방식을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=porceedmeeting]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '진행중 미팅 방식을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=meeting_cycle]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '미팅 주기를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
+	if ($("#clientLocation option:selected").val() == "시/도") {
+		$.notify({
+			// options
+			message: '클라이언트 위치를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
 	premeeting = $('input[name=premeeting]:checked').val();
 	proceedmeeting = $('input[name=porceedmeeting]:checked').val();
 	meeting_cycle = $('input[name=meeting_cycle]:checked').val();
