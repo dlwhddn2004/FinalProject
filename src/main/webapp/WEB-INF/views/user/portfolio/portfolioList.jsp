@@ -29,6 +29,7 @@
 	width: 510px;
 	height: 364px;
 	overflow: hidden;
+	cursor: pointer;
 }
 
 .img-hover-css img:hover {
@@ -94,7 +95,7 @@
 		<div class="col-lg-12">
 			<!-- Image-Text card -->
 			<div class="card mainDiv"
-				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 500px;">
+				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
 				<!-- Card image -->
 				<!--              <img class="card-img-top" src="https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg" alt="Image placeholder" style="height: 500px;">-->
 				<!-- Chart wrapper -->
@@ -187,231 +188,215 @@
 	<div class="bg-secondary row">
 		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
 			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">Bootstrap</span>
+				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">angular</span>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-4">
+		<!--여기서 for문 시작  -->
+		<c:forEach items="${portfolioList }" var="portfolioList">
+		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 1 }">
+						<div class="col-lg-4">
 				<!-- 작업중 -->
 				<!-- Image-Text card -->
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
+					<div class="img-hover-css" onclick="goPortfolioView(this);">
+						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
+						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
+						<img class="card-img-top img-center img-fluid"
+							src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
 							alt="Image placeholder">
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
 						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<small class="text-muted">2020-08-30</small>
+						<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
+						<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
 					</div>
 					<div class="card-footer"
 						style="display: flex; justify-content: space-between; align-items: center;">
 						<div style="display: flex;">
 							<div>
 								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
+									src="/${portfolioList.PROFILE_SAVENAME }"
 									class="avatar rounded-circle">
 							</div>
 							<div style="margin: 0px 0px 0px 10px;">
 								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
+									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
 							</div>
 						</div>
 						<div>
-							<span class="badge badge-primary">angular</span>
+							<span class="badge badge-pill badge-success">angular</span>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>		
+		</c:if>
 
-			<div class="col-lg-4">
-				<!-- Image-Text card -->
-				<div class="card">
-					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
-							alt="Image placeholder">
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<small class="text-muted">2020-08-30</small>
-					</div>
-					<div class="card-footer"
-						style="display: flex; justify-content: space-between; align-items: center;">
-						<div style="display: flex;">
-							<div>
-								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
-									class="avatar rounded-circle">
-							</div>
-							<div style="margin: 0px 0px 0px 10px;">
-								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
-							</div>
-						</div>
-						<div>
-							<span class="badge badge-primary">angular</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4">
-				<!-- Image-Text card -->
-				<div class="card">
-					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
-							alt="Image placeholder">
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<small class="text-muted">2020-08-30</small>
-					</div>
-					<div class="card-footer"
-						style="display: flex; justify-content: space-between; align-items: center;">
-						<div style="display: flex;">
-							<div>
-								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
-									class="avatar rounded-circle">
-							</div>
-							<div style="margin: 0px 0px 0px 10px;">
-								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
-							</div>
-						</div>
-						<div>
-							<span class="badge badge-primary">angular</span>
-						</div>
-					</div>
-				</div>
-			</div>
+		</c:forEach>
 		</div>
 	</div>
+
+
 	<div class="bg-secondary row">
-				<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
+		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
 			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
-				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">angular</span>
+				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">bootstrap</span>
 		</div>
+
 		<div class="row">
-			<div class="col-lg-4">
+		<!--여기서 for문 시작  -->
+		<c:forEach items="${portfolioList }" var="portfolioList">
+		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 2 }">
+						<div class="col-lg-4">
+				<!-- 작업중 -->
 				<!-- Image-Text card -->
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
+					<div class="img-hover-css" onclick="goPortfolioView(this);">
+						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
+						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
+						<img class="card-img-top img-center img-fluid"
+							src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
 							alt="Image placeholder">
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
 						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<small class="text-muted">2020-08-30</small>
+						<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
+						<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
 					</div>
 					<div class="card-footer"
 						style="display: flex; justify-content: space-between; align-items: center;">
 						<div style="display: flex;">
 							<div>
 								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
+									src="/${portfolioList.PROFILE_SAVENAME }"
 									class="avatar rounded-circle">
 							</div>
 							<div style="margin: 0px 0px 0px 10px;">
 								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
+									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
 							</div>
 						</div>
 						<div>
-							<span class="badge badge-primary">angular</span>
+							<span class="badge badge-pill badge-info">bootstrap</span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg-4">
-				<!-- Image-Text card -->
-				<div class="card">
-					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
-							alt="Image placeholder">
-					</div>
-					<!-- Card body -->
-					<div class="card-body">
-						<small class="text-muted">TITLE</small>
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<small class="text-muted">2020-08-30</small>
-					</div>
-					<div class="card-footer"
-						style="display: flex; justify-content: space-between; align-items: center;">
-						<div style="display: flex;">
-							<div>
-								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
-									class="avatar rounded-circle">
-							</div>
-							<div style="margin: 0px 0px 0px 10px;">
-								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
-							</div>
-						</div>
-						<div>
-							<span class="badge badge-primary">angular</span>
-						</div>
-					</div>
-				</div>
-			</div>
+			</div>		
+		</c:if>
 
-			<div class="col-lg-4">
+		</c:forEach>
+		</div>
+	</div>
+
+
+	<div class="bg-secondary row">
+		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
+				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">react</span>
+		</div>
+
+		<div class="row">
+		<!--여기서 for문 시작  -->
+		<c:forEach items="${portfolioList }" var="portfolioList">
+		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 3 }">
+						<div class="col-lg-4">
+						
+				<!-- 작업중 -->
 				<!-- Image-Text card -->
 				<div class="card">
 					<!-- Card image -->
-					<div class="img-hover-css">
-						<img class="card-img-top"
-							src="https://assets.awwwards.com/awards/media/cache/thumb_417_299/submissions/2020/07/5f1f21298046d903081377.jpg"
+					<div class="img-hover-css" onclick="goPortfolioView(this);">
+						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
+						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
+						<img class="card-img-top img-center img-fluid"
+							src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
 							alt="Image placeholder">
 					</div>
 					<!-- Card body -->
 					<div class="card-body">
 						<small class="text-muted">TITLE</small>
-						<!-- 제목 -->
-						<h5 class="h2 card-title mb-0">MILL3 STUDIO</h5>
-						<!-- 등록날짜 -->
-						<small class="text-muted">2020-08-30</small>
+						<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
+						<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
 					</div>
 					<div class="card-footer"
 						style="display: flex; justify-content: space-between; align-items: center;">
 						<div style="display: flex;">
 							<div>
 								<img alt="Image placeholder"
-									src="${pageContext.request.contextPath}/assets/img/theme/team-1.jpg"
+									src="/${portfolioList.PROFILE_SAVENAME }"
 									class="avatar rounded-circle">
 							</div>
 							<div style="margin: 0px 0px 0px 10px;">
-								<!--유저 아이디 -->
 								<h5 style="margin: 10px 0px 0px 0px;"
-									class="text-lg text-lg-center">iai6203</h5>
+									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
 							</div>
 						</div>
 						<div>
-							<!--관련기술 넣기-->
-							<span class="badge badge-primary">angular</span>
+							<span class="badge badge-pill badge-danger">react</span>
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>		
+		</c:if>
 
+		</c:forEach>
+		</div>
+	</div>
+
+	<div class="bg-secondary row">
+		<div class="perpectCenter" style="margin: 10px 10px 20px 10px;">
+			<span class="h1 text-black">Category</span>&nbsp;&nbsp;&nbsp; <span
+				class="h2 text-black-50" style="margin: 1px 0px 0px 0px;">vue</span>
+		</div>
+
+		<div class="row">
+		<!--여기서 for문 시작  -->
+		<c:forEach items="${portfolioList }" var="portfolioList">
+		<c:if test="${portfolioList.PORTFOLIO_TECHNOLOGIES == 4 }">
+						<div class="col-lg-4">
+				<!-- 작업중 -->
+				<!-- Image-Text card -->
+				<div class="card">
+					<!-- Card image -->
+					<div class="img-hover-css" onclick="goPortfolioView(this);">
+						<input type="hidden" name="portfolio_no" value="${portfolioList.PORTFOLIO_NO }">
+						<input type="hidden" name="mem_id" value="${portfolioList.MEM_ID }">
+						<img class="card-img-top img-center img-fluid"
+							src="/${portfolioList.PORTFOLIO_THUMBNAILIMG }"
+							alt="Image placeholder">
+					</div>
+					<!-- Card body -->
+					<div class="card-body">
+						<small class="text-muted">TITLE</small>
+						<h5 class="h2 card-title mb-0">${portfolioList.PORTFOLIO_NAME }</h5>
+						<small class="text-muted">${portfolioList.PORTFOLIO_REGDATE }</small>
+					</div>
+					<div class="card-footer"
+						style="display: flex; justify-content: space-between; align-items: center;">
+						<div style="display: flex;">
+							<div>
+								<img alt="Image placeholder"
+									src="/${portfolioList.PROFILE_SAVENAME }"
+									class="avatar rounded-circle">
+							</div>
+							<div style="margin: 0px 0px 0px 10px;">
+								<h5 style="margin: 10px 0px 0px 0px;"
+									class="text-lg text-lg-center">${portfolioList.MEM_ID }</h5>
+							</div>
+						</div>
+						<div>
+							<span class="badge badge-pill badge-primary">vue</span>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</c:if>
+
+		</c:forEach>
 		</div>
 	</div>
   <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -493,7 +478,17 @@
 	    $('.developSpan').text(developSpan);
 	    $('.developSmall').text(developSmall);
 	    
+	    
+
 	  });
+  
+  	  // 사진 눌렀을 때 View 페이지로 이동
+  	 function goPortfolioView(e) {
+  		  const portfolio_no = $(e).find('input[name=portfolio_no]').val();
+  		  const mem_id = $(e).find('input[name=mem_id]').val();
+
+  		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
+  	  }
 
   </script>
 
