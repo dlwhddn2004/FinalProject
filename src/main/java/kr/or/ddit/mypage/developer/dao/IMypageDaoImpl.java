@@ -1,4 +1,4 @@
-package kr.or.ddit.mypage.developer.dao;
+﻿package kr.or.ddit.mypage.developer.dao;
 
 import java.sql.SQLException;
 import java.util.Map;
@@ -54,5 +54,10 @@ public class IMypageDaoImpl implements IMypageDao {
 	}
 
 	
-
+	@Override
+	public void insertMypageDeveloper(Mypage_memberVO mypageInfo)
+			throws Exception {
+		client.insert("mypageDeverloper.insertAll", mypageInfo);
+		
+	}
 }

@@ -78,7 +78,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1"><i class="fas fa-won-sign"></i></span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                    <input name="budget" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
                   </div>
                 </div>
 
@@ -93,7 +93,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                     </div>
-                    <input class="form-control datepicker" placeholder="Select date" type="text" id="today" name="project_startdate">
+                    <input class="form-control datepicker" placeholder="Select date" type="text" id="today" name="startDate">
                   </div>
                 </div>
               </div>
@@ -102,7 +102,7 @@
                 <label style="color: tomato">*</label>
                 <p class="text-muted" style="font-size: small">프로젝트 진행 기간을 입력해 주세요.</p>
 			    <div class="input-group input-group-merge col-xl-3 px-0">
-			      <input type="text" class="form-control" placeholder="50" aria-label="Recipient's username" aria-describedby="basic-addon2">
+			      <input name="term" type="text" class="form-control" placeholder="50" aria-label="Recipient's username" aria-describedby="basic-addon2">
 			      <div class="input-group-append">
 			        <span class="input-group-text" id="basic-addon2">일</span>
 			      </div>
@@ -136,6 +136,24 @@
 	$(".datepicker").datepicker().datepicker("setDate", new Date());
 	
 	$(".projectForm4 #btnRegist").on("click", function() {
+		budget = $('input[name=budget]').val();
+		datePick = $('input[name=startDate]').val();
+	    dateSplit = datePick.split("/");
+	    dateYear = dateSplit[2];
+	    dateMonth = dateSplit[0];
+	    dateDate = dateSplit[1];
+	    startDate = dateYear+"-"+dateMonth+"-"+dateDate;
+	    term = $('input[name=term]').val();
+	    
+	    const $budget_ipt = $('<input type="hidden" name="project_budget" value= "' + budget + '" >');
+		const $startDate_ipt = $('<input type="hidden" name="project_startdate" value= "' + startDate + '" >');
+		const $term_ipt = $('<input type="hidden" name="project_duration" value= "' + term + '" >');
+		//enddate도 계산해서 넣기
+		
+		$('form[name=projectBudget]').append($budget_ipt);
+		$('form[name=projectBudget]').append($startDate_ipt);
+		$('form[name=projectBudget]').append($term_ipt);
+		
 
 		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/project/project_5.do');
 		$('form[name=projectBudget]').submit(); 

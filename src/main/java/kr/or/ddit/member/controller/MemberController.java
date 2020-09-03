@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.member.service.IMemberService;
+import kr.or.ddit.member_rate.service.IMemberRateService;
+import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
+import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.newsboardVO;
 
@@ -49,6 +53,10 @@ public class MemberController {
 	private IMemberService service;
 	@Autowired
 	private IProfileFileService profileService;
+	@Autowired
+	private IMypageService mypageService;
+	@Autowired
+	private IMemberRateService rateService;
 	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public String loginCheck(String mem_id, 
@@ -75,7 +83,7 @@ public class MemberController {
 	         taskResult = "success";
 		  	 message = URLEncoder.encode("로그인에 성공하였습니다!", "UTF-8");
 	      }
-	      return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+	      return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 
 	@RequestMapping("logout")
@@ -85,21 +93,29 @@ public class MemberController {
 		String taskResult = "info";
 	  	String message = URLEncoder.encode("로그아웃 되었습니다.", "UTF-8");
 		
-		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 	
 	@RequestMapping("insertMember")
 	public String insertMember(MemberVO memberInfo, 
-							   ProfileFileVO profileInfo) throws Exception{
-		this.service.insertMemberInfo(memberInfo);
+							   ProfileFileVO profileInfo,
+							   Mypage_memberVO mypageInfo,
+							   MemberRateVO rateInfo) throws Exception{
 		
+		this.service.insertMemberInfo(memberInfo);		
 		this.profileService.insertProfileFileInfo(profileInfo);
+		this.rateService.insertMemberRate(rateInfo);
+		
+		if(mypageInfo.getCategory_no().equals("2")){
+			this.mypageService.insertMypageDeveloper(mypageInfo);			
+		}
+		
 		
 		
 		String taskResult = "success";
 		String message = URLEncoder.encode("회원가입이 완료되었습니다.","UTF-8");
 		
-		return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	}
 	
 	

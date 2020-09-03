@@ -22,7 +22,11 @@ public interface IProjectDao {
 	public int deleteTodo(Map<String, String> params) throws Exception;
 	
 	//PROJECT INSERT
-	public int insertProjectInfo(Map<String, String> params) throws Exception;
+	public String insertProjectInfo(Map<String, String> params) throws Exception;
+	public int insertProjectReady(Map<String, String> params) throws Exception;
+	public int insertProjectDetail(Map<String, String> params) throws Exception;
+	
+	
 	// 덕년 리스트 조회
 	public List<ProjectVO> projectList() throws Exception;
 	// 상세보기 조회

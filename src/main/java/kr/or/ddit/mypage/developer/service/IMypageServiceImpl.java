@@ -1,4 +1,4 @@
-package kr.or.ddit.mypage.developer.service;
+﻿package kr.or.ddit.mypage.developer.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -78,5 +78,12 @@ public class IMypageServiceImpl implements IMypageService{
 		
 	}
 	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertMypageDeveloper(Mypage_memberVO mypageInfo)
+			throws Exception {
+		dao.insertMypageDeveloper(mypageInfo);
+		
+	}
 
 }

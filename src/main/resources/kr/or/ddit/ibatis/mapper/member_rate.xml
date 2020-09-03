@@ -15,6 +15,17 @@
 		<include refid="selectAll"/>
 		WHERE MEM_ID = #mem_id#
 	</select>
+	
+	<insert id="insertRate" parameterClass="MemberRateVO">
+		INSERT INTO MEMBER_RATE
+		(
+			MEM_ID
+		)
+		VALUES
+		(
+			#mem_id#
+		)
+	</insert>
 </sqlMap>
 
  

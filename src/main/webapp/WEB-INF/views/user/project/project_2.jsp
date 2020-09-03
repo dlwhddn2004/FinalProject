@@ -66,7 +66,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form class="projectForm2" name="projectReady">
+              <form class="projectForm2" name="projectReady" method="post">
                 <div class="form-group">
                   <label class="col-form-label form-control-label">기획상태</label>
                   <label style="color: tomato">*</label>
@@ -128,7 +128,7 @@
                   <label class="col-form-label form-control-label">프로젝트 관련 자료</label>
                   <p class="text-muted" style="font-size: small">프로젝트 관련 자료를 간략하게 적어주세요.</p>
                   <div class="">
-                    <input class="form-control" type="search" name="project_clientintroduce">
+                    <input class="form-control" type="search" name="reference">
                   </div>
                 </div>
                 <div align="right" style="padding: 15px 15px 0px 0px;">
@@ -156,33 +156,33 @@
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
-/* $('button[type=button]').on('click', function () {
-	  var confirm = "";
-	  $('input[type=checkbox]:checked').each(function () {
-	    confirm += ($(this).val()) + " , ";
-	  });
-	  alert(confirm);
-	}) */
-
-
-
-	// $('button[type=button]').on('click', function () {
-	//   readyStatus =  $('a[aria-selected=true]').attr('name');
-	//   alert(readyStatus);
-	// })
-
-
-/* 	  $('#tabs-icons-text-1-tab').on('click', function () {
+      $('#tabs-icons-text-1-tab').on('click', function () {
 
 	      $('.checkDiv input[type=checkbox]').prop('checked', false);
 
-	  }); */
+	  });
+	  
 	  <!-- 등록 버튼 -->
-		$(".projectForm2 #btnRegist").on("click", function() {
+		$("#btnRegist").on("click", function() {
+			readyStatus =  $('a[aria-selected=true]').attr('name') + ": ";
 			
+			redayDetail = "";
+		  	$('input[type=checkbox]:checked').each(function () {
+		  		redayDetail += ($(this).val()) + ", ";
+			});
+		  	redayDetail = redayDetail.substr(0, redayDetail.length-2);
 			
-			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do');
+			reference = $('input[name=reference]').val();
+			
+			const $readyStatus_ipt = $('<input type="hidden" name="project_readystatus" value= "' + readyStatus + redayDetail +'" >');
+			const $reference_ipt = $('<input type="hidden" name="project_reference" value= "' + reference + '" >');
+			
+			$('form[name=projectReady]').append($readyStatus_ipt);
+			$('form[name=projectReady]').append($reference_ipt);
+		  	
+			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do?project_no=${project_no}');
 			$('form[name=projectReady]').submit();
+
 			
 		});
 </script>

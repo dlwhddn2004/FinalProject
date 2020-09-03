@@ -83,7 +83,7 @@ public class ProjectServiceImpl implements IProjectService {
 	//insert project
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
-	public int insertProjectInfo(Map<String, String> params) throws Exception {
+	public String insertProjectInfo(Map<String, String> params) throws Exception {
 		return dao.insertProjectInfo(params);
 	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
@@ -109,6 +109,18 @@ public class ProjectServiceImpl implements IProjectService {
 	public int projectInfo3(Map<String, String> params) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.projectInfo3(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectReady(Map<String, String> params) throws Exception {
+		return dao.insertProjectReady(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectDetail(Map<String, String> params) throws Exception {
+		return dao.insertProjectDetail(params);
 	}
 
 }

@@ -7,78 +7,53 @@
 	<typeAlias alias="ProjectVO" type="kr.or.ddit.vo.ProjectVO" />
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
-	<insert id="insertProjectInfo" parameterClass="java.util.HashMap">
+<!-- 	project_1 -->
+	<insert id="insertProjectInfo" parameterClass="map" >
+		<selectKey keyProperty="project_no" resultClass="String">
+			SELECT PROJECT_SEQ.nextval
+			FROM DUAL
+		</selectKey>
 	INSERT INTO PROJECT
 		(
 			PROJECT_NO,
 			MEM_ID,
-			PROJECT_PROCESSSTATUS,
-			PROJECT_PROCESSCATEGORY,
-			PROJECT_CONSULLTING,
-			PROJECT_READYSTATUS,
-			PROJECT_CURRENTSTATUS,
-			PROJECT_BUSINESSINFO,
-			PROJECT_REFERENCE,
-			PROJECT_NOTE,
-			PROJECT_TECHNOLOGIES,
-			PROJECT_BUDGET,
-			PROJECT_STARTDATE,
-			PROJECT_DURATION,
-			PROJECT_ENDSTATUS,
-			PROJECT_PREMEETING,
-			PROJECT_PROCEEDINGMEETING,
-			PROJECT_MEETINGCYCLE,
-			PROJECT_CLIENTLOCATION,
-			PROJECT_APPLICATIONDEADLINE,
-			PROJECT_SUPPORTSTATUS,
-			PROJECT_ESSENTIALREQUIREMENTS,
-			PROJECT_MANPOWER,
-			PROJECT_MANAGEMENTEXPERIENCE,
-			PROJECT_FUTUREPLANS,
-			PROJECT_PRIORITY,
-			PROJECT_ENDDATE,
-			PROJECT_TITLE,
 			PROJECT_CLIENTINFORMATION,
 			PROJECT_CLIENTINTRODUCE,
-			PROJECT_INPUTSTATUS,
-			PROJECT_REGISTDATE
+			PROJECT_PROCESSSTATUS,
+			PROJECT_PROCESSCATEGORY,
+			PROJECT_TITLE,
+			PROJECT_REGISTDATE		
 		)
 	VALUES
 		(
-			PROJECT_SEQ.nextval,
+			#project_no#,
 			#mem_id#,
-			#project_processstatus#,
-			#project_processcategory#,
-			#project_consullting#,
-			#project_readystatus#,
-			#project_currentstatus#,
-			#project_businessinfo#,
-			#project_reference#,
-			#project_note#,
-			#project_technologies#,
-			#project_budget#,
-			#project_startdate#,
-			#project_duration#,
-			#project_endstatus#,
-			#project_premeeting#,
-			#project_proceedingmeeting#,
-			#project_meetingcycle#,
-			#project_clientlocation#,
-			#project_applicationdeadline#,
-			#project_supportstatus#,
-			#project_essentialrequirements#,
-			#project_manpower#,
-			#project_managementexperience#,
-			#project_futureplans#,
-			#project_priority#,
-			#project_enddate#,
-			#project_title#,
 			#project_clientinformation#,
 			#project_clientintroduce#,
-			#project_inputstatus#,
-			SYSDATE		
+			#project_processstatus#,
+			#project_processcategory#,
+			#project_title#,
+			SYSDATE					
 		)
 	</insert>
+	
+<!-- 	project_2 -->
+	<update id="insertProjectReady" parameterClass="map">
+		UPDATE PROJECT SET 
+			PROJECT_READYSTATUS = #project_readystatus#,
+			PROJECT_REFERENCE = #project_reference#
+		WHERE 
+			PROJECT_NO = #project_no#
+	</update>
+	
+	<update id="insertProjectDetail" parameterClass="map">
+		UPDATE PROJECT SET 
+			PROJECT_CURRENTSTATUS = #project_currentstatus#,
+			PROJECT_TECHNOLOGIES = #project_technologies#
+		WHERE 
+			PROJECT_NO = #project_no#
+	</update>
+	
 	
 	
 </sqlMap>

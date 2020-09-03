@@ -65,6 +65,39 @@
 	<update id="modifyMyabout" parameterClass="mypageVO">
 		update MYPAGE_DEVELOPER SET mypage_aboutme = #mypage_aboutme# WHERE MEM_ID = #mem_id#
 	</update>
+	
+	
+	<!-- insert -->
+	<insert id="insertAll" parameterClass="mypageVO">
+		INSERT INTO MYPAGE_DEVELOPER 
+			(
+				MYPAGE_NO,
+				MEM_ID,
+				CATEGORY_NO,
+				MYPAGE_FAVAORITEJOB,
+				MYPAGE_INTERESTS,
+				MYPAGE_AVALIABLEDATE,
+				MYPAGE_ACTIVITYPOSSIBILITY,
+				MYPAGE_ABOUTME,
+				MYPAGE_TECHNOLOGIES,
+				MYPAGE_TECHWORKMANSHIP,
+				MYPAGE_TECHEXPERIENCE				
+			)
+		VALUES
+			(
+			MYPAGE_MEMBER_SEQ.nextval,
+			#mem_id#,
+			#category_no#,
+			#mypage_favaoritejob#,
+			#mypage_interests#,
+			#mypage_avaliabledate#,
+			#mypage_activitypossibility#,
+			#mypage_aboutme#,
+			#mypage_technologies#,
+			#mypage_techworkmanship#,
+			#mypage_techexperience#
+			)
+	</insert>
 </sqlMap>
 
  
