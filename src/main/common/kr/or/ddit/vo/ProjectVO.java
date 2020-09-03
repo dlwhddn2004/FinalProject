@@ -30,7 +30,14 @@ public class ProjectVO {
 	private String project_futureplans;
 	private String project_priority;
 	private String project_title;
+	private String project_enddate;
 	
+	public String getProject_enddate() {
+		return project_enddate;
+	}
+	public void setProject_enddate(String project_enddate) {
+		this.project_enddate = project_enddate;
+	}
 	public String getProject_no() {
 		return project_no;
 	}

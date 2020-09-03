@@ -206,7 +206,7 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       PROJECT_NOTE,
 		       PROJECT_TECHNOLOGIES,
 		       PROJECT_BUDGET,
-		       PROJECT_STARTDATE,
+		        TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,
 		       PROJECT_DURATION,
 		       PROJECT_ENDSTATUS,
 		       PROJECT_PREMEETING,
@@ -253,9 +253,63 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 			
 		</dynamic>
 </select>
+<select id="projectInfo" resultClass="ProjectVO">
+		SELECT PROJECT.PROJECT_NO PROJECT_NO,
+		       MEM_ID,
+		       PROJECT_CLIENTINFORMATION,
+		       PROJECT_CLIENTINTRODUCE,
+		       PROJECT_PROCESSSTATUS,
+		       PROJECT_PROCESSCATEGORY,
+		       PROJECT_CONSULLTING,
+		       PROJECT_READYSTATUS,
+		       PROJECT_CURRENTSTATUS,
+		       PROJECT_BUSINESSINFO,
+		       PROJECT_REFERENCE,
+		       PROJECT_NOTE,
+		       PROJECT_TECHNOLOGIES,
+		       PROJECT_BUDGET,
+		       TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,	
+		       PROJECT_DURATION,
+		       PROJECT_ENDSTATUS,
+		       PROJECT_PREMEETING,
+		       PROJECT_PROCEEDINGMEETING,
+		       PROJECT_MEETINGCYCLE,
+		       PROJECT_CLIENTLOCATION,
+		       PROJECT_APPLICATIONDEADLINE,
+		       PROJECT_SUPPORTSTATUS,
+		       PROJECT_ESSENTIALREQUIREMENTS,
+		       PROJECT_MANPOWER,
+		       PROJECT_MANAGEMENTEXPERIENCE,
+		       PROJECT_FUTUREPLANS,
+		       PROJECT_PRIORITY,
+		        TO_CHAR(project_enddate, 'YYYY-MM-DD') project_enddate,		   
+		       PROJECT_TITLE,
+		       PL,
+		       DA,
+		       UA,
+		       TA,
+		       AA
+		FROM PROJECT
+		         JOIN PROJECT_PARTICIPANTS ON PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		WHERE PROJECT.PROJECT_NO = #project_no#
+	</select>
 
+<select id="projectInfo1" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# and PROJECT_ENDSTATUS ='N'
+</select>
 
-
+<select id="projectInfo2" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# and PROJECT_ENDSTATUS ='Y'
+</select>
+<select id="projectInfo3" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# 
+</select>
 </sqlMap>
 
  

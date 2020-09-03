@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -94,6 +95,13 @@ perpectCenter
 
 <!-- My JavaScript -->
 <script type="text/javascript">
+
+function viewBoardInfo(e) {
+	const project_no = $(e).find('input[name=project_no]').val();
+	const mem_id = $(e).find('input[name=mem_id]').val();
+	
+	location.href = "${pageContext.request.contextPath}/user/projectsearch/projectview.do?project_no=" + project_no + "&mem_id=" + mem_id ;
+}
 
 </script>
 </head>
@@ -270,6 +278,8 @@ perpectCenter
 									                    <span class="badge badge-success">진행중</span> <span
 										                   class="badge badge-default">new</span>
 											<h3 class="mb-0">${item.project_title }</h3>
+											<input type="hidden" name="project_no" value="${item.project_no }">
+											<input type="hidden" name="mem_id" value="${item.mem_id }">
 											<br>
 														<i class="fas fa-won-sign"></i> <span>예상 금액</span> <span
 															class="mb-0">${item.project_budget }원</span>
