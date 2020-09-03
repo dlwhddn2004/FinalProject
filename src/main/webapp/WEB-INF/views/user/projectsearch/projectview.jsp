@@ -32,22 +32,22 @@
 						<div class="form-row" style="display: flex; justify-content: space-around;">
 							<div class="col-md-5 mb-2" align="center"
 								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
-								<i class="fas fa-won-sign"></i> <span>예상 금액</span><span
+								<i class="fas fa-won-sign"></i> <span style="margin: 0px 40px 0px 0px;">예상 금액</span><span
 									class="mb-0"
-									style="font-weight: bolder; font-size: 1.2em;">${projectInfo.project_budget }원</span>
+									style="font-weight: bolder; font-size: 1.2em; ">${projectInfo.project_budget }원</span>
 							</div>
 							<div class="col-md-3 mb-2" align="center"
 								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
-								<i class="far fa-clock"></i> <span>예상 기간</span> <span
+								<i class="far fa-clock"></i> <span style="margin: 0px 40px 0px 0px;">예상 기간</span> <span
 									class="mb-0"
 									style="font-weight: bolder; font-size: 1.2em;">${projectInfo.project_duration }일
 								</span>
 							</div>
 							<div class="col-md-3 mb-2" align="center"
 								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
-								<i class="fas fa-user"></i> <span>지원자 수</span> <span
+								<i class="fas fa-user"></i> <span style="margin: 0px 40px 0px 0px;">지원자 수</span> <span
 									class="mb-0"
-									style="font-weight: bolder; font-size: 1.2em;">${projectInfo.project_manpower }명
+									style="font-weight: bolder; font-size: 1.2em;">${projectInfo4 }명
 								</span>
 							</div>
 							<span class="col-md-11 mb-6"
@@ -55,11 +55,10 @@
 								<i class="fas fa-exclamation-circle">&nbsp;&nbsp;</i>금액 및 기간 조율이
 								가능한 프로젝트입니다.
 							</span>
-						</div>
-						
+						</div>					
 						<div>
 							<div class="row">
-								<div class="col-md-12" style="display:flex;">
+								<div class="col-md-12"  style="display:flex; font-size : 1.2em;">
 									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
 										<i class="far fa-clock"></i>
 									</div>
@@ -67,12 +66,12 @@
 										<span>모집 마감일</span> 
 									</div>
 									<div>
-										<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_enddate }일</span>
+										<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_enddate }일</span>
 									</div>
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-md-12" style="display:flex;">
+								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
 									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
 										<i class="far fa-calendar"></i>
 									</div>
@@ -83,12 +82,9 @@
 										<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_startdate }일</span>
 									</div>
 								</div>
-							</div>
-							
-							
-							
+							</div>							
 							<div class="row">
-								<div class="col-md-12" style="display:flex;">
+								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
 									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
 									<i class="fas fa-backspace"></i>
 									</div>
@@ -99,30 +95,45 @@
 									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_processcategory }</span>
 								</div>
 							</div>
-							</div>
+							</div>							
 							<div class="row">
-								<div class="col-md-12" style="display:flex;">
-									<i class="far fa-clipboard"></i><span>기획 상태</span> 
+								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
+									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
+									<i class="far fa-file"></i>
+									</div>
+									<div style="margin: 0px 34px 0px 0px;">
+									<span>기획 상태</span>  
 								</div>
 								<div>
 									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_readystatus }</span>
 								</div>
 							</div>
+							</div>							
 							<div class="row">
-								<div class="col-md-2">
-									<i class="fas fa-cog"></i><span>매니징 경험</span> 
+								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
+									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
+									<i class="fas fa-cog"></i>
+									</div>
+									<div style="margin: 0px 16px 0px 0px;">
+									<span>매니징 경험</span>  
 								</div>
 								<div>
-									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_managementexperience }</span>
+									<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_managementexperience }</span>
 								</div>
 							</div>
+							</div>
 							<div class="row">
-								<div class="col-md-2">
-									<i class="far fa-building"></i><span>인력 상황</span> 
+								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
+									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
+									<i class="far fa-building"></i>
+									</div>
+									<div style="margin: 0px 34px 0px 0px;">
+									<span>인력 상황</span>  
 								</div>
 								<div>
 									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_manpower }</span>
 								</div>
+							</div>
 							</div>
 						</div>
 						<hr />
@@ -145,19 +156,25 @@
 							<span class="badge badge-primary">
 								${projectInfo.project_technologies }</span><br>
 						</div>
-						<hr />
+						<hr/>
+						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>
+						<br>
+						<lable>지원자 필수 조건</lable>
+						<span style="font-weight: bolder; margin-left: 30px;">
+						${projectInfo.project_essentialrequirements }</span><br>
+						<hr>			
 						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>
 						<br>
 						<lable>사전 미팅 방식</lable>
-						<span style="font-weight: bolder; margin-left: 50px;">
+						<span style="font-weight: bolder; margin-left: 47px;">
 							${projectInfo.project_premeeting }</span><br>
 						<br>
 						<lable>진행 중 미팅</lable>
-						<span style="font-weight: bolder; margin-left: 60px;">
+						<span style="font-weight: bolder; margin-left: 63px;">
 							${projectInfo.project_proceedingmeeting }</span><br>
 						<br>
 						<lable>클라이언트 위치</lable>
-						<span style="font-weight: bolder; margin-left: 30px;">
+						<span style="font-weight: bolder; margin-left: 35px;">
 							${projectInfo.project_clientlocation }</span><br>
 						<br>
 				</div>

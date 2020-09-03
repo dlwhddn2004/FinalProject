@@ -1,4 +1,4 @@
-package kr.or.ddit.project.service;
+﻿package kr.or.ddit.project.service;
 
 import java.util.List;
 import java.util.Map;
@@ -80,7 +80,6 @@ public class ProjectServiceImpl implements IProjectService {
 		return dao.projectList();
 	}
 
-
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public ProjectVO projectInfo(Map<String, String> params) throws Exception {
@@ -104,6 +103,11 @@ public class ProjectServiceImpl implements IProjectService {
 	public int projectInfo3(Map<String, String> params) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.projectInfo3(params);
+	}
+	@Override
+	public int projectInfo4(Map<String, String> params) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.projectInfo4(params);
 	}
 	
 	//insert project

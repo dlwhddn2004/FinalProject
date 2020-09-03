@@ -138,6 +138,12 @@ public class ProjectDaoImpl implements IProjectDao {
 		cnt = (int) client.queryForObject("projectsearch.projectInfo3",params);
 		return cnt;
 	}
+	@Override
+	public int projectInfo4(Map<String, String> params) throws Exception {
+		int cnt =0;
+		cnt = (int) client.queryForObject("projectsearch.projectInfo4",params);
+		return cnt;
+	}
 
 
 
