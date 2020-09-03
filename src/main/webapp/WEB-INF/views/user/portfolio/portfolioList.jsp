@@ -95,7 +95,7 @@
 		<div class="col-lg-12">
 			<!-- Image-Text card -->
 			<div class="card mainDiv"
-				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
+				style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 500px;">
 				<!-- Card image -->
 				<!--              <img class="card-img-top" src="https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg" alt="Image placeholder" style="height: 500px;">-->
 				<!-- Chart wrapper -->

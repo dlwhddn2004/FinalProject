@@ -29,10 +29,30 @@
 </select> -->
 
 <select id="selectPortFolioList"  resultClass="java.util.HashMap">
-	<include refid="selectAll" />
+	<!-- <include refid="selectAll" /> -->
+select
+       PORTFOLIO_NO,
+       PORTFOLIO.MEM_ID MEM_ID,
+       PORTFOLIO.PORTFOLIO_CATEGORIES PORTFOLIO_CATEGORIES,
+       PORTFOLIO.PORTFOLIO_TAGS PORTFOLIO_TAGS,
+       PORTFOLIO.PORTFOLIO_TECHNOLOGIES PORTFOLIO_TECHNOLOGIES,
+       PORTFOLIO.PORTFOLIO_NAME PORTFOLIO_NAME,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_REGDATE, 'YYYY-MM-dd') PORTFOLIO_REGDATE,
+       PORTFOLIO.PORTFOLIO_URL,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_STARTDATE, 'YYYY-MM-dd') PORTFOLIO_STARTDATE,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_ENDDATE, 'YYYY-MM-dd') PORTFOLIO_ENDDATE,
+       PORTFOLIO.PORTFOLIO_PARTICIPATIONRATE PORTFOLIO_PARTICIPATIONRATE,
+       PORTFOLIO.PORTFOLIO_THUMBNAILIMG PORTFOLIO_THUMBNAILIMG,
+       PROFILE_SAVENAME
+from PORTFOLIO, PROFILE_FILE
+where PORTFOLIO.MEM_ID = PROFILE_FILE.MEM_ID
+order by PORTFOLIO.PORTFOLIO_NO desc
+	
+	
+	
 </select>
 
-<!-- 특정 포트폴리오 번호에 따른 차트 뛰우기 -->
+<!-- 특정 포트폴리오 번호에 따른 각각의 차트 뛰우기 -->
 <select id="mainScoreChart" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT AVG(NVL(portfolio_design, 0)) portfolio_design,
 		       AVG(NVL(portfolio_useability, 0)) portfolio_useability,
@@ -43,16 +63,21 @@
 				WHERE PORTFOLIO_NO= #PORTFOLIO_NO#
 </select>
 	
-<!--  특정 포트폴리오 번호에 따른 차트 평균 점수 구하기 -->
+<!--  특정 포트폴리오 번호에 따른 차트 종합 평균 점수 구하기 -->
 <select id="totalAVG" parameterClass="map" resultClass="java.util.HashMap">
-SELECT AVG(NVL(portfolio_design, 0)) portfolio_design,
-		       AVG(NVL(portfolio_useability, 0)) portfolio_useability,
-		       AVG(NVL(portfolio_creativity, 0)) portfolio_creativity,
-		       AVG(NVL(portfolio_contentscore, 0)) portfolio_contentscore,
-		       AVG(NVL(portfolio_develop, 0)) portfolio_develop ,PORTFOLIO_NO
-				FROM PORTFOLIO_BOARD
-				WHERE PORTFOLIO_NO=#PORTFOLIO_NO#
-				group by PORTFOLIO_NO
+	SELECT PORTFOLIO.PORTFOLIO_NO PORTFOLIO_NO  , (AVG(NVL(PORTFOLIO_DESIGN, 0)) +
+	       AVG(NVL(PORTFOLIO_USEABILITY, 0))+
+	       AVG(NVL(PORTFOLIO_CREATIVITY, 0))+
+	       AVG(NVL(PORTFOLIO_CONTENTSCORE, 0))+
+	       AVG(NVL(PORTFOLIO_DEVELOP, 0))) / 5 TOTALAVG,
+	               AVG(NVL(portfolio_design, 0)) portfolio_design,
+			       AVG(NVL(portfolio_useability, 0)) portfolio_useability,
+			       AVG(NVL(portfolio_creativity, 0)) portfolio_creativity,
+			       AVG(NVL(portfolio_contentscore, 0)) portfolio_contentscore,
+			       AVG(NVL(portfolio_develop, 0)) portfolio_develop
+	FROM PORTFOLIO_BOARD ,PORTFOLIO
+	where PORTFOLIO.PORTFOLIO_NO = PORTFOLIO_BOARD.PORTFOLIO_NO and PORTFOLIO.PORTFOLIO_NO= #PORTFOLIO_NO#
+	group by PORTFOLIO.PORTFOLIO_NO
 </select>
 
 <!--전체 베스트 평균의 포트폴리오 뽑기 -->
@@ -75,9 +100,26 @@ where b.r = 1
 </select>
 
 <select id="portfolioInfo" parameterClass="map" resultClass="java.util.HashMap">
-	SELECT * 
-	FROM PORTFOLIO
-	WHERE PORTFOLIO_NO = #PORTFOLIO_NO#
+	   select
+       PORTFOLIO_NO,
+       PORTFOLIO.MEM_ID MEM_ID,
+       PORTFOLIO.PORTFOLIO_CATEGORIES PORTFOLIO_CATEGORIES,
+       PORTFOLIO.PORTFOLIO_TAGS PORTFOLIO_TAGS,
+       PORTFOLIO.PORTFOLIO_TECHNOLOGIES PORTFOLIO_TECHNOLOGIES,
+       PORTFOLIO.PORTFOLIO_NAME PORTFOLIO_NAME,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_REGDATE, 'YYYY-MM-dd') PORTFOLIO_REGDATE,
+       PORTFOLIO.PORTFOLIO_URL,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_STARTDATE, 'YYYY-MM-dd') PORTFOLIO_STARTDATE,
+       TO_CHAR(PORTFOLIO.PORTFOLIO_ENDDATE, 'YYYY-MM-dd') PORTFOLIO_ENDDATE,
+       PORTFOLIO.PORTFOLIO_PARTICIPATIONRATE PORTFOLIO_PARTICIPATIONRATE,
+       PORTFOLIO.PORTFOLIO_THUMBNAILIMG PORTFOLIO_THUMBNAILIMG,
+       PROFILE_SAVENAME,
+       PORTFOLIO.PORTFOLIO_IMGS PORTFOLIO_IMGS,
+       PORTFOLIO_LIKE,
+	   PORTFOLIO_DESCRIPTION
+from PORTFOLIO, PROFILE_FILE
+where PORTFOLIO.MEM_ID = PROFILE_FILE.MEM_ID
+AND PORTFOLIO_NO = #PORTFOLIO_NO#
 </select>
 
 </sqlMap>

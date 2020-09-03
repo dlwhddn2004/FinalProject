@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.member_rate.service.MemberRateServiceImpl;
@@ -33,6 +34,12 @@ public class PortfolioController {
 
 	@Autowired
 	private IPortfolioService portfolioService;
+	@Autowired
+	private IProfileFileService profileSevice;
+	@Autowired
+	private IMypageService mypageService;
+	
+	
 	
 	@RequestMapping("portfolioList")
 	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request) throws Exception{
@@ -55,7 +62,7 @@ public class PortfolioController {
 		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
         modelAndView.addObject("breadcrumb_first", "포트 폴리오 리스트");
         modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/portfolio/portfolioList.do");
-
+        
 		modelAndView.addObject("portfolioList",portfolioList );
 		modelAndView.addObject("maxportfolioAvg",maxportfolioAvg);
 		modelAndView.addObject("mainScoreChart",mainScoreChart);
@@ -64,7 +71,42 @@ public class PortfolioController {
 		return modelAndView;
 	}
 
-							
+						
+/*	@RequestMapping("portfolioView")
+	public ModelAndView  portfolioView (String mem_id , String portfolio_no, HttpSession session, ModelAndView modelAndView) throws Exception{
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("MEM_ID", mem_id);
+		params.put("PORTFOLIO_NO", portfolio_no);
+
+		// 포트폴리오 번호에 따른 포트폴리오 정보 및 개인 사진
+		 Map<String,String> portfolioInfo = this.portfolioService.portfolioInfo(params);
+		 // 포트폴리오 번호에 따른 차트 총 평균 점수 및 각 차트 별 평균 점수
+		 Map<String,String> chartInfo = this.portfolioService.totalAVG(params);
+		
+		 String portfolio_imgs_str = String.valueOf(portfolioInfo.get("PORTFOLIO_IMGS"));
+		 
+		 
+		 Map<String,String> projectAndportfolioNum = new HashMap<String, String>();
+		 String portfolio =  String.valueOf(mypageService.portfolioFinishNumber(params));
+		 String proejct =String.valueOf(mypageService.projectFinishNumber(params));
+		 
+		 projectAndportfolioNum.put("PROJECTNUM", proejct);
+		 projectAndportfolioNum.put("PORTFOLINUM", portfolio);
+		 
+		 
+		 // 이미지로 등록한 사진들
+		 String[] portfolio_imgs = portfolio_imgs_str.split(",");
+		 
+		 modelAndView.addObject("projectAndportfolioNum",projectAndportfolioNum);
+		 modelAndView.addObject("portfolioInfo",portfolioInfo);
+		 modelAndView.addObject("chartInfo", chartInfo);
+		 modelAndView.addObject("portfolio_imgs", portfolio_imgs);
+		 
+		 modelAndView.setViewName("user/portfolio/portfolioView");
+		
+		
+		return modelAndView;
+	}*/
 }
 
 
