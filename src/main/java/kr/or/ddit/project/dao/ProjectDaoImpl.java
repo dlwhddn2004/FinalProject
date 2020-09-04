@@ -116,9 +116,9 @@ public class ProjectDaoImpl implements IProjectDao {
 		return (ProjectVO) client.queryForObject("projectsearch.projectInfo",params);
 	}
 	@Override
-	public ProjectVO projectInfo6(Map<String, String> params) throws Exception {
+	public String projectInfo6(Map<String, String> params) throws Exception {
 		
-		return (ProjectVO) client.queryForObject("projectsearch.projectInfo6",params);
+		return (String) client.queryForObject("projectsearch.projectInfo6",params);
 	}
 
 	@Override

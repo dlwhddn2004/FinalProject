@@ -88,7 +88,7 @@ public class ProjectServiceImpl implements IProjectService {
 	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public ProjectVO projectInfo6(Map<String, String> params) throws Exception {
+	public String projectInfo6(Map<String, String> params) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.projectInfo6(params);
 	}

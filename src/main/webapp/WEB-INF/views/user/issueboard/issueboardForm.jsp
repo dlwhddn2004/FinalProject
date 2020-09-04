@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
     <!-- Notify -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
-    <!-- DropZone -->
-    <link rel="stylesheet" herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
-
     <!-- My CSS -->
     <style>
         .issueboard-form {
@@ -43,9 +40,11 @@
 	<div class="row">
         <div class="col">
             <div class="card">
-                <form class="issueboard-form" action="${pageContext.request.contextPath }/user/issueboard/insertIssueboardInfo.do" method="POST">
+                <form class="issueboard-form" action="${pageContext.request.contextPath}/user/issueboard/insertIssueboard.do" method="POST">
+                    <input type="hidden" name="project_no" value="${param.project_no}"> 
+                    <input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id}">
                     <div class="form-group">
-                    
+                   
                         <label for="example-text-input" class="form-control-label">제목</label>
                         <input class="form-control" type="text" name="issue_title" id="example-text-input">
                     </div>
@@ -55,7 +54,7 @@
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
                         <label for="example-search-input" class="form-control-label">내용</label>
-                        <div id="editor"></div> 
+                     <div id="editor" ></div> 
                     </div>
                     <!-- 파일 등록  -->
 					
@@ -65,11 +64,10 @@
 								type="button">등록</button>
 							<button class="btn btn-primary btn-back" type="button">뒤로가기</button>
 						</div>
-				</form>
+				</form> 
             </div>
         </div>
     </div>
-</div>
        
 	<!-- Argon Scripts -->
 	<!-- Core -->
@@ -93,14 +91,17 @@
 	<!-- My JavaScript -->
 	<script type="text/javascript">
 		$('input[name=mem_id]').val('${MEMBER_LOGININFO.mem_id}');
-	
-		<!-- Quill Text Editor Initialize -->
+		
+		
+ 		// Quill Text Editor Initialize
 		const quill = new Quill('#editor', {
 			theme: 'snow'
 		});
 		
-		<!-- 등록 버튼 -->
-		$("#btn1").on("click", function() {
+		// 등록 버튼
+		$("#btn1").on("click", function(){ 
+			const project_no = $('input[name=project_no]').val();
+			
 			// 제목을 입력하지 않았을 때!
 			const issue_title = $('input[name=issue_title]').val();
 			
@@ -120,7 +121,7 @@
 				return;
 			}
 			
-			// 내용을 입력하지 않았을 때!
+			// 내용을 입력하지 않았을 때!  
 			const issue_content = quill.root.innerHTML;
 			const text = quill.getText();
 			
@@ -140,13 +141,28 @@
 				return;
 			}
 			
-			// 데이터 넘겨서 Insert 작업하기
-			location.href = '${pageContext.request.contextPath}/user/issueboard/insertIssueboardInfo.do?issue_title=' + issue_title + "&issue_content=" + issue_content + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+			const $frm = $('<form action="${pageContext.request.contextPath}/user/issueboard/insertIssueboard.do" method="POST"></form>');
+			const $ipt_issue_title = $('<input type="hidden" name="issue_title" value="' + issue_title + '">');
+			const $ipt_issue_content = $('<input type="hidden" name="issue_content" value="' + issue_content + '">');
+			const $ipt_mem_id = $('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id}">');
+			const $ipt_project_no = $('<input type="hidden" name="project_no" value="' + project_no + '">');
+			
+			$('body').append($frm);
+			$frm.append($ipt_issue_title);
+			$frm.append($ipt_issue_content);
+			$frm.append($ipt_mem_id);
+			$frm.append($ipt_project_no);
+			
+			$frm.submit();
+			
+			
+			//데이터 넘겨서 Insert 작업하기
+// 			location.href = '${pageContext.request.contextPath}/user/issueboard/insertIssueboard.do?issue_title=' + issue_title + '&issue_content=' + issue_content + '&mem_id=${MEMBER_LOGININFO.mem_id}' + '&project_no=' + project_no;
 		});
 		
-		<!-- 뒤로 가기 버튼 -->
+		// 뒤로 가기 버튼  
 		$('.btn-back').on('click', function() {
-			location.href = '${pageContext.request.contextPath}/user/issueboard/issueboardList.do'; 
+			location.href = '${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no' + project_no; 
 		});
 	</script>
 </body>

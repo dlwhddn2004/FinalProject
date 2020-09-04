@@ -67,27 +67,73 @@
 			}
 			
 			// 로그인 한 상태!
-			location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardForm.do?mem_id=${MEMBER_LOGININFO.mem_id}";
+			location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardForm.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${param.project_no}";
 		});
 	});
 	
 	function viewBoardInfo(e) {
 		const issue_no = $(e).find('input[name=issue_no]').val();
 		const mem_id = $(e).find('input[name=mem_id]').val();
+		const project_no = $(e).find('input[name=project_no]').val();
 		
-		location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardView.do?issue_no=" + issue_no + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+		
+		location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardView.do?issue_no=" + issue_no + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=" + project_no;
+		
+		
 	}
 </script>
 </head>
 <body>
 	<!-- Page content -->
+	
+	
+	
+	<div class="row">
+	<div class="col-xl-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <div class="justify-content-between" style="display: flex;">
+              <div>
+                <h6 class="text-uppercase text-muted ls-1 mb-1">프로젝트명</h6>
+              </div>
+              <div>
+                <a href="${pageContext.request.contextPath }/user/project/projectView.do?project_no=${param.project_no}&mem_id=${MEMBER_LOGININFO.mem_id}" class="btn btn-sm btn-primary btn-round btn-icon" data-toggle="tooltip" data-original-title="Edit product">
+                  <span class="btn-inner--icon"><i class="fas fa-home"></i></span>
+                  <span class="btn-inner--text">HOME</span>
+                </a>
+              </div>
+            </div>
+            <h2 class="h2 mb-0">${projectInfo.PROJECT_TITLE }</h2>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="nav nav-pills nav-fill flex-column flex-sm-row" id="tabs-text" role="tablist">
+          <li class="nav-item">
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/riskboard/riskboardList.do?project_no=${param.project_no }'">위험 관리 게시판</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-primary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no=${param.project_no }'">이슈 게시판</button>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/reportboard/reportboardList.do?project_no=${param.project_no }'">보고서 게시판</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+	
+	
 	<!-- Table -->
 	<div class="row">
 		<div class="col">
 			<div class="card">
 				<!-- Card header -->
 				<div class="card-header">
-					<h3 class="mb-0">성공 사례 게시판</h3>
+					<h3 class="mb-0">이슈 게시판</h3>
 					<p class="text-sm mb-0">우수한 프로젝트 사례 게시판입니다.</p>
 				</div>
 				<div class="table-responsive py-4">
@@ -118,6 +164,7 @@
 									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
 									<td>${item.issue_regdate }</td>
 									<td>${item.issue_hit }</td>
+									<input type="hidden" name="project_no" value="${item.project_no }">
 								</tr>
 							</c:forEach>
 						</tbody>

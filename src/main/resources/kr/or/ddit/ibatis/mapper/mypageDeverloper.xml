@@ -16,7 +16,7 @@
 		where PROJECT_PARTICIPANTS.PROJECT_NO  = project.PROJECT_NO
         and  project.PROJECT_ENDSTATUS ='Y' and PROJECT_PARTICIPANTS.DA =#mem_id#
         or PROJECT_PARTICIPANTS.AA =#mem_id# or PROJECT_PARTICIPANTS.pl =#mem_id# or PROJECT_PARTICIPANTS.TA=#mem_id#
-    or PROJECT_PARTICIPANTS.ua =#mem_id#
+        or PROJECT_PARTICIPANTS.ua =#mem_id#
 		
 	</select>
 	

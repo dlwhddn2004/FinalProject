@@ -14,12 +14,8 @@
 				<!-- Card body -->
 				<div class="card-body">
 					<div class="row">
-						<div>
-							<div style="margin: 0px 20px 10px 0px;">
-								<span class="badge badge-lg badge-success">모집 중</span> 
-								<span class="badge badge-lg badge-default">NEW</span>
-							</div>
-							<div style="margin: 0px 20px 10px 0px;">
+						<div>	
+							<div style="margin: 0px 0px 10px 0px;">
 								<h3 class="mb-0" style="font-size: 2em;">${projectInfo.project_title}</h3>
 							</div>
 							<div>
@@ -30,31 +26,22 @@
 					<hr />
 					<form class="needs-validation" novalidate>
 						<div class="form-row" style="display: flex; justify-content: space-around;">
-							<div class="col-md-5 mb-2" align="center"
+							<div class="col-md-10 mb-2" align="center"
 								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
-								<i class="fas fa-won-sign"></i> <span style="margin: 0px 40px 0px 0px;">예상 금액</span><span
+								<i class="fas fa-won-sign"></i> <span style="margin: 0px 40px 0px 0px;">예상 금액</span>
+								
+								<span 
 									class="mb-0"
-									style="font-weight: bolder; font-size: 1.2em; ">${projectInfo.project_budget }원</span>
-							</div>
-							<div class="col-md-3 mb-2" align="center"
-								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
+									style="margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em; ">${projectInfo.project_budget }원</span>
 								<i class="far fa-clock"></i> <span style="margin: 0px 40px 0px 0px;">예상 기간</span> <span
 									class="mb-0"
-									style="font-weight: bolder; font-size: 1.2em;">${projectInfo.project_duration }일
-								</span>
-							</div>
-							<div class="col-md-3 mb-2" align="center"
-								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
+									style=" margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em;">${projectInfo.project_duration }일
+								</span>							
 								<i class="fas fa-user"></i> <span style="margin: 0px 40px 0px 0px;">지원자 수</span> <span
 									class="mb-0"
-									style="font-weight: bolder; font-size: 1.2em;">${projectInfo4 }명
-								</span>
-							</div>
-							<span class="col-md-11 mb-6"
-								style="text-align: center; background-color: #EFF5FB; border: 1.5px solid #EFF5FB;">
-								<i class="fas fa-exclamation-circle">&nbsp;&nbsp;</i>금액 및 기간 조율이
-								가능한 프로젝트입니다.
-							</span>
+									style=" margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em;">${projectInfo4 }명
+								</span>							
+							</div>					
 						</div>					
 						<div>
 							<div class="row">
@@ -154,7 +141,7 @@
 							<br>
 							<lable>관련 기술:</lable>
 							<span class="badge badge-primary">
-								${projectInfo.tech_name }</span><br>
+								${projectInfo.project_technologies }</span><br>
 						</div>
 						<hr/>
 						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>
@@ -188,7 +175,7 @@
 	</div>
 	<div class="col-md-4">
 		<div class="card card-profile">
-			<img src="../../assets/img/theme/jj.jpg"
+			<img src="../../assets/img/theme/img-1-1000x600.jpg"
 				alt="Image placeholder" class="card-img-top">
 			<div class="row justify-content-center">
 				<div class="col-lg-3 order-lg-2">

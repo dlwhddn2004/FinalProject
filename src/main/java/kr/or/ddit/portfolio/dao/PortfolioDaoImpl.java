@@ -50,6 +50,12 @@ public class PortfolioDaoImpl implements IPortfolioDao {
 		return (Map<String, String>) client.queryForObject("portfolio.mainScoreChart",params);
 	}
 
+	@Override
+	public void updatePortFolioLike(Map<String, String> params)
+			throws Exception {
+		 client.update("portfolio.updatePortFolioLike",params);
+	}
+
 	
 
 }
