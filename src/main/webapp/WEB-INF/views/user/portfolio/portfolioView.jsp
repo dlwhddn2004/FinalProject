@@ -438,20 +438,16 @@
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 	<script>
+
+	let designScore;
+	let useabilityScore;
+	let creativityScore;
+	let contentScore;
+	let developScore;
+	
 		$(function() {
 
-			let
-			designScore;
-			let
-			useabilityScore;
-			let
-			creativityScore;
-			let
-			contentScore;
-			let
-			developScore;
-
-			if ('${empty chartInfo}') {
+			if (${empty chartInfo}) {
 				designScore = '00';
 				useabilityScore = '00';
 				creativityScore = '00';
@@ -468,6 +464,23 @@
 
 			$(window).ready(function() {
 
+				if (${empty chartInfo}) {
+					designScore = '00';
+					useabilityScore = '00';
+					creativityScore = '00';
+					contentScore = '00';
+					developScore = '00';
+
+				} else {
+					designScore = '${chartInfo.PORTFOLIO_DESIGN}';
+					useabilityScore = '${chartInfo.PORTFOLIO_USEABILITY}';
+					creativityScore = '${chartInfo.PORTFOLIO_CREATIVITY}';
+					contentScore = '${chartInfo.PORTFOLIO_CONTENTSCORE}';
+					developScore = '${chartInfo.PORTFOLIO_DEVELOP}';
+				}
+
+				
+				
 				draw(designScore, '.pie-chart1', '#11cdef');
 				draw(useabilityScore, '.pie-chart2', '#fb6340');
 				draw(creativityScore, '.pie-chart3', '#f5365c');
