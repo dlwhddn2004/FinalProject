@@ -14,4 +14,6 @@ public interface IPortfolioDao {
 	public Map<String,String> MaxPortfolioNo() throws Exception;
 	public Map<String,String> totalAVG(Map<String,String> params) throws Exception;
 	public Map<String,String> mainScoreChart(Map<String,String> params) throws Exception;
+	
+	public void updatePortFolioLike(Map<String,String> params) throws Exception;
 }

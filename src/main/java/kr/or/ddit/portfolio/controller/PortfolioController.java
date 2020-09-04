@@ -1,6 +1,8 @@
 package kr.or.ddit.portfolio.controller;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.member_rate.service.MemberRateServiceImpl;
 import kr.or.ddit.mypage.developer.service.IMypageService;
@@ -16,6 +19,7 @@ import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.utiles.AttachFileMapperMember;
 import kr.or.ddit.vo.MemberRateVO;
+import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
@@ -38,7 +42,8 @@ public class PortfolioController {
 	private IProfileFileService profileSevice;
 	@Autowired
 	private IMypageService mypageService;
-	
+	@Autowired
+	private IMemberService memberService;
 	
 	
 	@RequestMapping("portfolioList")
@@ -72,10 +77,11 @@ public class PortfolioController {
 	}
 
 						
-/*	@RequestMapping("portfolioView")
+	@RequestMapping("portfolioView")
 	public ModelAndView  portfolioView (String mem_id , String portfolio_no, HttpSession session, ModelAndView modelAndView) throws Exception{
 		Map<String,String> params = new HashMap<String, String>();
 		params.put("MEM_ID", mem_id);
+		params.put("mem_id", mem_id);
 		params.put("PORTFOLIO_NO", portfolio_no);
 
 		// 포트폴리오 번호에 따른 포트폴리오 정보 및 개인 사진
@@ -94,6 +100,21 @@ public class PortfolioController {
 		 projectAndportfolioNum.put("PORTFOLINUM", portfolio);
 		 
 		 
+		 // 생일
+		 MemberVO memberInfo = memberService.memberInfo(params);
+		 String mem_age = memberInfo.getMem_bir();
+		 
+		 Date nowDate = new Date();
+		 SimpleDateFormat format = new SimpleDateFormat("yyyy");
+		 
+		 int currentYear = Integer.parseInt(format.format(nowDate));
+		 int memYear = Integer.parseInt(mem_age.substring(0, 4));
+		 
+		 mem_age = String.valueOf((currentYear - memYear) + 1);
+		 
+		 portfolioInfo.put("MEM_AGE", mem_age);
+		 
+		 
 		 // 이미지로 등록한 사진들
 		 String[] portfolio_imgs = portfolio_imgs_str.split(",");
 		 
@@ -106,7 +127,18 @@ public class PortfolioController {
 		
 		
 		return modelAndView;
-	}*/
+	}
+	
+	@RequestMapping("portfolioLike")
+	public ModelAndView portfolioLike(String portfolio_no) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("portfolio_no", portfolio_no);
+		this.portfolioService.updatePortFolioLike(params);
+		modelAndView.setViewName("jsonConvertView");
+		
+		return modelAndView;
+	}
 }
 
 

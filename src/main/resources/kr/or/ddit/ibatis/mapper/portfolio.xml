@@ -122,6 +122,10 @@ where PORTFOLIO.MEM_ID = PROFILE_FILE.MEM_ID
 AND PORTFOLIO_NO = #PORTFOLIO_NO#
 </select>
 
+	<update id="updatePortFolioLike" parameterClass="map">
+		UPDATE PORTFOLIO SET PORTFOLIO_LIKE = PORTFOLIO_LIKE +1
+		WHERE PORTFOLIO_NO = #portfolio_no#
+	</update>
 </sqlMap>
 
  
