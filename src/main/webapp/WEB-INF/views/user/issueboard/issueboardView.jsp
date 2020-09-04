@@ -217,7 +217,7 @@
 				const $ipt_issue_title = $("<input type='hidden' name='issue_title' value='" + issue_title + "'>");
 				const $ipt_issue_content = $("<input type='hidden' name='issue_content' value='" + issue_content + "'>");
 				
-				const $frm = $("<form action='${pageContext.request.contextPath}/user/issueboard/updateIssueboard.do' method='POST'> ");
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/issueboard/updateIssueboard.do?project_no=${param.project_no}' method='POST'> ");
 				
 				$('body').append($frm);
 				$frm.append($ipt_issue_no);
