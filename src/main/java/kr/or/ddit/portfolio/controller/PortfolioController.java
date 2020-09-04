@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -78,7 +79,7 @@ public class PortfolioController {
 
 						
 	@RequestMapping("portfolioView")
-	public ModelAndView  portfolioView (String mem_id , String portfolio_no, HttpSession session, ModelAndView modelAndView) throws Exception{
+	public ModelAndView  portfolioView (String mem_id , String portfolio_no, HttpSession session, ModelAndView modelAndView,HttpServletRequest request) throws Exception{
 		Map<String,String> params = new HashMap<String, String>();
 		params.put("MEM_ID", mem_id);
 		params.put("mem_id", mem_id);
@@ -122,6 +123,14 @@ public class PortfolioController {
 		 modelAndView.addObject("portfolioInfo",portfolioInfo);
 		 modelAndView.addObject("chartInfo", chartInfo);
 		 modelAndView.addObject("portfolio_imgs", portfolio_imgs);
+		 
+		 
+		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
+	    modelAndView.addObject("breadcrumb_first", "포트 폴리오 리스트");
+	    modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/portfolio/portfolioList.do");
+			
+	    modelAndView.addObject("breadcrumb_second", "포트 폴리오 상세보기");
+		 
 		 
 		 modelAndView.setViewName("user/portfolio/portfolioView");
 		
