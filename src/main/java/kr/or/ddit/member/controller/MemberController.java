@@ -77,11 +77,11 @@ public class MemberController {
 	  	  String message = null;
 	      if(memberInfo == null){
 	  		taskResult = "warning";
-	  		message = URLEncoder.encode("로그인에 실패하였습니다!", "UTF-8");
+	  		message = "로그인에 실패하였습니다!";
 	      }else{
 	         session.setAttribute("MEMBER_LOGININFO", memberInfo);
 	         taskResult = "success";
-		  	 message = URLEncoder.encode("로그인에 성공하였습니다!", "UTF-8");
+		  	 message = "로그인에 성공하였습니다!";
 	      }
 //	      return "redirect:/?taskResult=" + taskResult + "&message=" + message;
 	      
