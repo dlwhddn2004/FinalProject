@@ -53,33 +53,38 @@ public class projectsearchcontroller {
 		 	}
 		 	
 		   
-		 	ProjectVO projectInfo6 = service.projectInfo6(params);
+		 	String projectInfo6 = service.projectInfo6(params);
 		 	int projectInfo5 = this.service.projectInfo5(params);
 		 	modelAndView.addObject("breadcrumb_title", "프로젝트");
 			modelAndView.addObject("breadcrumb_first", "프로젝트 찾기");
 			modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectsearch.do");
 		
 		
-		
+			for (ProjectVO item : projectList) {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("project_no", item.getProject_no());
+				
+				int cnt = service.projectInfo5(map);		 		 				 		
+				item.setProject_applyCnt(String.valueOf(cnt));
+				
+				String remainDate = service.projectInfo6(map);
+				item.setProject_time(String.valueOf(remainDate));
+				
+				if (item.getProject_technologies().equals("1")) {
+					item.setTech_name("ANGULAR");
+				} else if (item.getProject_technologies().equals("2")) {
+					item.setTech_name("BOOTSTRAP");
+				} else if (item.getProject_technologies().equals("3")) {
+					item.setTech_name("REACT");
+				} else if (item.getProject_technologies().equals("4")) {
+					item.setTech_name("VUE");
+				}
+			}
+				
 			modelAndView.addObject("projectInfo6", projectInfo6);
 		 	modelAndView.addObject("projectInfo5", projectInfo5);
 		 	modelAndView.addObject("projectList", projectList);
 		 	
-		 	for (ProjectVO item : projectList) {
-		 		Map<String, String> map = new HashMap<String, String>();
-		 		map.put("project_no", item.getProject_no());
-		 		int cnt = service.projectInfo5(map);		 		 				 		
-		 		item.setProject_applyCnt(String.valueOf(cnt));
-		 		
-		 	}
-		 	
-		 	for (ProjectVO item : projectList) {
-		 		Map<String, String> map1 = new HashMap<String, String>();
-		 		map1.put("project_no", item.getProject_no());
-		 		ProjectVO map2 = service.projectInfo6(map1);
-		 		 item.setProject_time(String.valueOf(map2));
-		 		
-		 	}
 	 	
 		 	modelAndView.setViewName("user/projectsearch/projectsearch");
 					 	
@@ -102,10 +107,20 @@ public class projectsearchcontroller {
 		int projectInfo2 = this.service.projectInfo2(params);
 		int projectInfo3 = this.service.projectInfo3(params);
 		int projectInfo4 = this.service.projectInfo4(params);
+		
+		if (projectInfo.getProject_technologies().equals("1")) {
+			projectInfo.setTech_name("ANGULAR");
+		} else if (projectInfo.getProject_technologies().equals("2")) {
+			projectInfo.setTech_name("BOOTSTRAP");
+		} else if (projectInfo.getProject_technologies().equals("3")) {
+			projectInfo.setTech_name("REACT");
+		} else if (projectInfo.getProject_technologies().equals("4")) {
+			projectInfo.setTech_name("VUE");
+		}
 	
-		modelAndView.addObject("breadcrumb_title", "프로젝트");
-		modelAndView.addObject("breadcrumb_first", "프로젝트 상세보기");
-		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectview.do");
+		 modelAndView.addObject("breadcrumb_title", "프로젝트");
+		 modelAndView.addObject("breadcrumb_first", "프로젝트 상세보기");
+	 	 modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectview.do");
 		 modelAndView.addObject("profileInfo", profileInfo);
 		 modelAndView.addObject("projectInfo", projectInfo);
 		 modelAndView.addObject("projectInfo1", projectInfo1);

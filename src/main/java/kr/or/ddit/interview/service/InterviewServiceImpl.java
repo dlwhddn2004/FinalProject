@@ -48,6 +48,12 @@ public class InterviewServiceImpl implements IInterviewService {
 			throws Exception {
 		return dao.infographic(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int hireMember(Map<String, String> params) throws Exception {
+		return dao.hireMember(params);
+	}
 
 	// 면접 캘린더
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)

@@ -320,7 +320,7 @@ select count(PROJECT_NO)
 from PROJECT_APPLY
 where project_no = #project_no# 
 </select>
-<select id="projectInfo6" resultClass="ProjectVO"  parameterClass="map">
+<select id="projectInfo6" resultClass="String"  parameterClass="map">
 select PROJECT_APPLICATIONDEADLINE - PROJECT_STARTDATE
 from PROJECT
     where PROJECT_NO = #project_no#

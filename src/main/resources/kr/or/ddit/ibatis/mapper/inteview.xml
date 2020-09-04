@@ -95,6 +95,12 @@
 		  AND (MEMBER.MEM_ID = #mem_id#)
 	</select>
 	
+	<update id="hireMember" parameterClass="map">
+		UPDATE PROJECT_APPLY SET APPLY_STATUS = #apply_status#
+		WHERE MEM_ID = #mem_id#
+		AND PROJECT_NO = #project_no#
+	</update>
+	
 	<select id="selectConfirmApplyList" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT MEMBER.MEM_ID MEM_ID,
 		       CATEGORY_NO,

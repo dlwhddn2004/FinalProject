@@ -38,7 +38,7 @@ public interface IProjectService {
 		
 	// 상세보기 조회
 		public ProjectVO projectInfo(Map<String,String>params) throws Exception;
-		public ProjectVO projectInfo6(Map<String,String>params) throws Exception;
+		public String projectInfo6(Map<String,String>params) throws Exception;
 		public int projectInfo1(Map<String,String>params) throws Exception;
 		public int projectInfo2(Map<String,String>params) throws Exception;
 		public int projectInfo3(Map<String,String>params) throws Exception;

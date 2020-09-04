@@ -18,6 +18,7 @@ public interface IInterviewDao {
 	// 신청자 명단
 	public List<Map<String, String>> selectConfirmApplyList(Map<String, String> params) throws Exception;
 	public Map<String, String> infographic(Map<String, String> params) throws Exception;
+	public int hireMember(Map<String, String> params) throws Exception;
 	
 	// 면접 캘린더
 	public List<CalendarVO> selectInterviewCalendar(Map<String, String> params) throws Exception;
