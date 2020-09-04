@@ -44,5 +44,7 @@ public interface IProjectService {
 		public int projectInfo3(Map<String,String>params) throws Exception;
 		public int projectInfo4(Map<String,String>params) throws Exception;
 		public int projectInfo5(Map<String,String>params) throws Exception;
+		// 지원자 신청
+		public void insertprojectsupport(ProjectVO projectInfo) throws Exception;
 		
 }

@@ -159,6 +159,13 @@ public class ProjectDaoImpl implements IProjectDao {
 		cnt = (int) client.queryForObject("projectsearch.projectInfo5",params);
 		return cnt;
 	}
+
+	@Override
+	public void insertprojectsupport(ProjectVO projectInfo) throws Exception {
+		
+		client.insert("projectsearch.insertproject",projectInfo);
+		
+	}
 	
 
 

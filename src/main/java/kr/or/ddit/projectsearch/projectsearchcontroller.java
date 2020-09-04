@@ -1,15 +1,18 @@
 package kr.or.ddit.projectsearch;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
+import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
@@ -20,7 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import sun.print.resources.serviceui;
+
 
 @Controller
 @RequestMapping("/user/projectsearch/")
@@ -37,6 +40,9 @@ public class projectsearchcontroller {
 	
 	@Autowired
 	private IProfileFileService profileservice;
+	
+	@Autowired
+	private IMemberService memberservice;
 	 
 	 @RequestMapping("projectsearch")
 	 public ModelAndView projectList(HttpServletRequest request,String project_no,
@@ -99,7 +105,8 @@ public class projectsearchcontroller {
 		
 		 params.put("project_no", project_no);
 		 params.put("mem_id", mem_id);
-		 
+		
+		  
 		 
 		 ProfileFileVO profileInfo = profileservice.selectProfileFileInfo(params);
 		 ProjectVO projectInfo = service.projectInfo(params);
@@ -119,14 +126,20 @@ public class projectsearchcontroller {
 		}
 	
 		 modelAndView.addObject("breadcrumb_title", "프로젝트");
-		 modelAndView.addObject("breadcrumb_first", "프로젝트 상세보기");
-	 	 modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectview.do");
+		 modelAndView.addObject("breadcrumb_first", "프로젝트 찾기");
+		 modelAndView.addObject("breadcrumb_second", "프로젝트 상세보기");
+	 	 modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectsearch.do");
+	 	
+	 
 		 modelAndView.addObject("profileInfo", profileInfo);
 		 modelAndView.addObject("projectInfo", projectInfo);
 		 modelAndView.addObject("projectInfo1", projectInfo1);
 		 modelAndView.addObject("projectInfo2", projectInfo2);
 		 modelAndView.addObject("projectInfo3", projectInfo3);
 		 modelAndView.addObject("projectInfo4", projectInfo4);
+		 
+		 
+		 
 		
 		 modelAndView.setViewName("user/projectsearch/projectview");
 		 
@@ -137,6 +150,37 @@ public class projectsearchcontroller {
 		 
 		 
 	 }
-		 
 	 
-}
+	 @RequestMapping("projectInsert")
+	 public ModelAndView projectInsert (ProjectVO projectInfo, String project_no ,String mem_id) throws Exception{
+		
+		 ModelAndView modelAndView = new ModelAndView();
+		 projectInfo.setProject_no(project_no);
+		 projectInfo.setMem_id(mem_id);
+		 
+		
+		 service.insertprojectsupport(projectInfo);
+		 
+		 
+		 
+			modelAndView.setViewName("jsonConvertView");
+			return modelAndView;
+			
+	 }
+		 
+
+	 }
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 

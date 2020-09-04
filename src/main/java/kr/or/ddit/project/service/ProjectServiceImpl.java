@@ -171,5 +171,12 @@ public class ProjectServiceImpl implements IProjectService {
 			throws Exception {
 		dao.insertProjectParticipants(params);
 	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertprojectsupport(ProjectVO projectInfo) throws Exception {
+		
+		dao.insertprojectsupport(projectInfo);
+		
+	}
 
 }
