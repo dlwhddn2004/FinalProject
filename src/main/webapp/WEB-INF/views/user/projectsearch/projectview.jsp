@@ -154,7 +154,7 @@
 							<br>
 							<lable>관련 기술:</lable>
 							<span class="badge badge-primary">
-								${projectInfo.project_technologies }</span><br>
+								${projectInfo.tech_name }</span><br>
 						</div>
 						<hr/>
 						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>

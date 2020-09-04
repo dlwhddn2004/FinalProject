@@ -292,7 +292,7 @@ function viewBoardInfo(e) {
 													 <label class="form-control-label"
 														for="input-username">${item.project_note } </label><br>
 													<span class="badge badge-info">${item.project_processstatus } </span> | <span
-														class="badge badge-primary">${item.project_technologies }</span> | <i
+														class="badge badge-primary">${item.tech_name }</span> | <i
 														class="fas fa-map-marker-alt"></i><span class="mb-0"
 														style="font-size: 0.8em;"> ${item.project_clientlocation }</span> | <span
 														class="mb-0" style="font-size: 0.8em;">${item.project_startdate }</span>

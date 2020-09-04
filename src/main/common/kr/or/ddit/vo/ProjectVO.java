@@ -33,6 +33,7 @@ public class ProjectVO {
 	private String project_enddate;
 	private String project_applyCnt;
 	private String project_time;
+	private String tech_name;
 	
 	public String getProject_enddate() {
 		return project_enddate;
@@ -226,5 +227,11 @@ public class ProjectVO {
 	}
 	public void setProject_time(String project_time) {
 		this.project_time = project_time;
+	}
+	public String getTech_name() {
+		return tech_name;
+	}
+	public void setTech_name(String tech_name) {
+		this.tech_name = tech_name;
 	}
 }
