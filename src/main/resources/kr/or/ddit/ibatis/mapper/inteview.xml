@@ -33,24 +33,13 @@
 		       PROFILE_CONTENTTYPE,
 		       PROFILE_SIZE,
 		       PROFILE_REGDATE,
-		       PROFILE_DOWNHIT,
-		       MYPAGE_NO,
-		       MYPAGE_FAVAORITEJOB,
-		       MYPAGE_INTERESTS,
-		       MYPAGE_AVALIABLEDATE,
-		       MYPAGE_ACTIVITYPOSSIBILITY,
-		       MYPAGE_ABOUTME,
-		       MYPAGE_TECHNOLOGIES,
-		       MYPAGE_TECHWORKMANSHIP,
-		       MYPAGE_TECHEXPERIENCE
+		       PROFILE_DOWNHIT
 		FROM MEMBER,
 		     PROJECT_APPLY,
-		     PROFILE_FILE,
-		     MYPAGE_DEVELOPER
+		     PROFILE_FILE
 		WHERE MEMBER.MEM_ID = PROJECT_APPLY.MEM_ID
 		  AND MEMBER.MEM_ID = PROFILE_FILE.MEM_ID
-		  AND MEMBER.MEM_ID = MYPAGE_DEVELOPER.MEM_ID
-		  AND (PROJECT_NO = 1
+		  AND (PROJECT_NO = #project_no#
 		    AND APPLY_STATUS = 'N')
 	</select>
 	
@@ -101,9 +90,15 @@
 		AND PROJECT_NO = #project_no#
 	</update>
 	
+	<select id="selectMypageDeveloper" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM MYPAGE_DEVELOPER
+		WHERE MEM_ID = #mem_id#
+	</select>
+	
 	<select id="selectConfirmApplyList" parameterClass="map" resultClass="java.util.HashMap">
 		SELECT MEMBER.MEM_ID MEM_ID,
-		       CATEGORY_NO,
+		       MEMBER.CATEGORY_NO CATEGORY_NO,
 		       NOTIFICATION_NO,
 		       MEM_PASS,
 		       MEM_NAME,
@@ -120,12 +115,21 @@
 		       MEM_NOTICE,
 		       PROJECT_NO,
 		       APPLY_DATE,
-		       APPLY_STATUS
+		       APPLY_STATUS,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT
 		FROM MEMBER,
-		     PROJECT_APPLY
+		     PROJECT_APPLY,
+		     PROFILE_FILE
 		WHERE MEMBER.MEM_ID = PROJECT_APPLY.MEM_ID
-		AND (PROJECT_NO = #project_no#
-		AND APPLY_STATUS = 'Y')
+		  AND MEMBER.MEM_ID = PROFILE_FILE.MEM_ID
+		  AND (PROJECT_NO = #project_no#
+		    AND APPLY_STATUS = 'Y')
 	</select>
 
 	<!-- 면접 캘린더 -->
@@ -177,6 +181,37 @@
 		DELETE CALENDAR_INTERVIEW WHERE ID = #id#
 	</delete>
 
+	<!-- 공통 -->
+	<select id="selectProjectApply" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT_APPLY
+		WHERE MEM_ID = #mem_id#
+	</select>
+	
+	<insert id="insertInterview" parameterClass="map">
+		<selectKey keyProperty="interview_no" resultClass="String">
+			SELECT INTERVIEW_SEQ.nextval
+			FROM DUAL
+		</selectKey>
+		INSERT INTO INTERVIEW (INTERVIEW_NO,
+		                       PROJECT_NO,
+		                       INTERVIEW_TITLE,
+		                       INTERVIEW_HIRE_SHAPE,
+		                       INTERVIEW_DIVISION,
+		                       INTERVIEW_TECH,
+		                       INTERVIEW_PEOPLENUM,
+		                       INTERVIEW_METHOD,
+		                       INTERVIEW_AUTHENTICATION) 
+		VALUES (#interview_no#,
+		        #project_no#,
+		        #interview_title#,
+		        #interview_hire_shape#,
+		        #interview_division#,
+		        #interview_tech#,
+		        #interview_peoplenum#,
+		        #interview_method#,
+		        #interview_authentication#) 
+	</insert>
 </sqlMap>
 
  

@@ -1,5 +1,6 @@
 package kr.or.ddit.interview.controller;
 
+import java.io.Reader;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -91,9 +92,39 @@ public class InterviewController {
 	
 	
 	/** --------------------------------------------- 면접 --------------------------------------------- */
+	
 	/**
-	 * 신청자 명단
+	 * 면접 설정
 	 */
+	
+	// 기본 정보 설정
+	@RequestMapping("insertInterview")
+	@ResponseBody
+	public Map<String, String> insertInterview(String interview_title,
+											   String interview_hire_shape,
+											   String interview_division,
+											   String interview_tech,
+											   String interview_peoplenum,
+											   String interview_method,
+											   String interview_authentication,
+											   String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("interview_title", interview_title);
+		params.put("interview_hire_shape", interview_hire_shape);
+		params.put("interview_division", interview_division);
+		params.put("interview_tech", interview_tech);
+		params.put("interview_peoplenum", interview_peoplenum);
+		params.put("interview_method", interview_method);
+		params.put("interview_authentication", interview_authentication);
+		params.put("project_no", project_no);
+		
+		String interview_no = interviewService.insertInterview(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		resultMap.put("interview_no", interview_no);
+		
+		return resultMap;
+	}
 	
 	
 	/**
@@ -128,8 +159,6 @@ public class InterviewController {
 	}
 	
 	
-	// ********************************************* JSON ********************************************* //
-	
 	/**
 	 * 신청자 명단
 	 */
@@ -142,6 +171,38 @@ public class InterviewController {
 		params.put("project_no", project_no);
 		
 		List<Map<String, String>> applyMemList = interviewService.selectConfirmApplyList(params);
+		
+		
+		for (Map<String, String> item : applyMemList) {
+			params.put("mem_id", String.valueOf(item.get("MEM_ID")));
+			Map<String, String> mypageDeveloperInfo = interviewService.selectMypageDeveloper(params);
+			
+			String DBTechData = String.valueOf(mypageDeveloperInfo.get("MYPAGE_TECHNOLOGIES"));
+			
+			String[] arr = DBTechData.split(",");
+			for (int i = 0; i < arr.length; i++) {
+				if (arr[i].equals("1")) {
+					item.put("ANGULAR", "ANGULAR");
+				} else if (arr[i].equals("2")) {
+					item.put("BOOTSTRAP", "BOOTSTRAP");
+				} else if (arr[i].equals("3")) {
+					item.put("REACT", "REACT");
+				} else if (arr[i].equals("4")) {
+					item.put("VUE", "VUE");
+				}
+			}
+			
+			String mem_bir = String.valueOf(item.get("MEM_BIR"));
+			
+			Date nowDate = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("YYYY");
+			int currentYear = Integer.parseInt(format.format(nowDate));
+			int memYear = Integer.parseInt(mem_bir.substring(0, 4));
+			
+			String mem_age = String.valueOf((currentYear - memYear) + 1);
+			item.put("MEM_AGE", mem_age);
+		}
+		
 		
 		return applyMemList;
 	}
@@ -191,6 +252,48 @@ public class InterviewController {
 		}
 		
 		return resultMap;
+	}
+	
+	// 신청자 명단 리스트 조회
+	@RequestMapping("selectApplyList")
+	@ResponseBody
+	public List<Map<String, String>> selectApplyList(String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		List<Map<String, String>> notApplyMemList = interviewService.selectNotConfirmApplyList(params);
+		
+		for (Map<String, String> item : notApplyMemList) {
+			params.put("mem_id", String.valueOf(item.get("MEM_ID")));
+			Map<String, String> mypageDeveloperInfo = interviewService.selectMypageDeveloper(params);
+			
+			String DBTechData = String.valueOf(mypageDeveloperInfo.get("MYPAGE_TECHNOLOGIES"));
+			
+			String[] arr = DBTechData.split(",");
+			for (int i = 0; i < arr.length; i++) {
+				if (arr[i].equals("1")) {
+					item.put("ANGULAR", "ANGULAR");
+				} else if (arr[i].equals("2")) {
+					item.put("BOOTSTRAP", "BOOTSTRAP");
+				} else if (arr[i].equals("3")) {
+					item.put("REACT", "REACT");
+				} else if (arr[i].equals("4")) {
+					item.put("VUE", "VUE");
+				}
+			}
+			
+			String mem_bir = String.valueOf(item.get("MEM_BIR"));
+			
+			Date nowDate = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("YYYY");
+			int currentYear = Integer.parseInt(format.format(nowDate));
+			int memYear = Integer.parseInt(mem_bir.substring(0, 4));
+			
+			String mem_age = String.valueOf((currentYear - memYear) + 1);
+			item.put("MEM_AGE", mem_age);
+		}
+		
+		return notApplyMemList;
 	}
 	
 	
@@ -269,6 +372,20 @@ public class InterviewController {
 		}
 		
 		return resultMap;
+	}
+	
+	/**
+	 * 공통
+	 */
+	
+	// project_apply 테이블에서 mem_id로 조회
+	@RequestMapping("selectProjectApply")
+	@ResponseBody
+	public Map<String, String> selectProjectApply(String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		return interviewService.selectProjectApply(params);
 	}
 	
 }

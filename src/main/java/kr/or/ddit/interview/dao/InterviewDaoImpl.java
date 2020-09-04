@@ -47,6 +47,12 @@ public class InterviewDaoImpl implements IInterviewDao {
 	public int hireMember(Map<String, String> params) throws Exception {
 		return client.update("interview.hireMember", params);
 	}
+
+	@Override
+	public Map<String, String> selectMypageDeveloper(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("interview.selectMypageDeveloper", params);
+	}
 	
 	// 면접 캘린더
 	@Override
@@ -77,5 +83,16 @@ public class InterviewDaoImpl implements IInterviewDao {
 	public int deleteInterviewCalendar(Map<String, String> params)
 			throws Exception {
 		return client.delete("interview.deleteInterviewCalendar", params);
+	}
+
+	@Override
+	public Map<String, String> selectProjectApply(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("interview.selectProjectApply", params);
+	}
+
+	@Override
+	public String insertInterview(Map<String, String> params) throws Exception {
+		return (String) client.insert("interview.insertInterview", params);
 	}
 }

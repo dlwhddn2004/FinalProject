@@ -192,6 +192,13 @@
 			  '${param.taskResult}'
 			)
 		}
+		if (${!empty message}) {
+			Swal.fire(
+			  '${taskResult}',
+			  '${message}',
+			  '${taskResult}'
+			)
+		}
 		
 		loadRate();
 		

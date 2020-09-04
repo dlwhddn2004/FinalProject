@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
 
@@ -106,7 +107,7 @@
                 <div class="tab-content" id="myinterviewSetContent">
                   <div class="tab-pane fade show active" id="tabs-interviewSet-text-1" role="tabpanel" aria-labelledby="tabs-interviewSet-text-1-tab">
                     <!-- Input groups -->
-                    <div class="card">
+                    <div class="card interview-basic-setting-area">
                       <!-- Card header -->
                       <div class="card-header">
                         <small class="text-muted">면접의 기본 내용들을 설정해주세요.</small>
@@ -123,7 +124,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-heading"></i></span>
                                   </div>
-                                  <input class="form-control" placeholder="공고명" type="text">
+                                  <input class="form-control interview-title" placeholder="공고명" type="text">
                                 </div>
                               </div>
                             </div>
@@ -132,21 +133,21 @@
                             <div class="col-md-6">
                               <small>채용 형태</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-hire-shape">
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm1" name="interviewForm" class="custom-control-input" checked>
+                                    <input type="radio" id="interviewForm1" name="interviewForm" class="custom-control-input" value="일반 채용" checked>
                                     <label class="custom-control-label" for="interviewForm1">일반 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm2" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm2" name="interviewForm" class="custom-control-input" value="상시 채용">
                                     <label class="custom-control-label" for="interviewForm2">상시 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm3" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm3" name="interviewForm" class="custom-control-input" value="추천 채용">
                                     <label class="custom-control-label" for="interviewForm3">추천 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm4" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm4" name="interviewForm" class="custom-control-input" value="비공개 채용">
                                     <label class="custom-control-label" for="interviewForm4">비공개 채용</label>
                                   </div>
                                 </div>
@@ -155,25 +156,25 @@
                             <div class="col-md-6">
                               <small>채용 구분</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-division">
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision1" name="interviewDivision" class="custom-control-input" checked>
+                                    <input type="radio" id="interviewDivision1" name="interviewDivision" class="custom-control-input" value="공채" checked>
                                     <label class="custom-control-label" for="interviewDivision1">공채</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision2" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision2" name="interviewDivision" class="custom-control-input" value="수시">
                                     <label class="custom-control-label" for="interviewDivision2">수시</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision3" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision3" name="interviewDivision" class="custom-control-input" value="상시">
                                     <label class="custom-control-label" for="interviewDivision3">상시</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision4" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision4" name="interviewDivision" class="custom-control-input" value="특별 채용">
                                     <label class="custom-control-label" for="interviewDivision4">특별 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision5" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision5" name="interviewDivision" class="custom-control-input" value="추천 채용">
                                     <label class="custom-control-label" for="interviewDivision5">추천 채용</label>
                                   </div>
                                 </div>
@@ -185,7 +186,7 @@
                               <small class="text-muted">채용 기술 분야</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <select class="form-control" data-toggle="select" multiple data-placeholder="기술 선택">
+                                  <select class="form-control interview-tech" data-toggle="select" multiple data-placeholder="기술 선택">
                                     <option value="1">ANGULAR</option>
                                     <option value="2">BOOTSTRAP</option>
                                     <option value="3">REACT</option>
@@ -198,7 +199,7 @@
                               <small class="text-muted">채용 인원</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <input class="form-control" type="number" value="1" id="example-number-input">
+                                  <input class="form-control interview-peoplenum" type="number" value="1" id="example-number-input">
                                 </div>
                               </div>
                             </div>
@@ -209,9 +210,9 @@
                               <small class="text-muted">면접 방식</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="면접 방식">
-                                    <option>온라인</option>
-                                    <option>오프라인</option>
+                                  <select class="form-control interview-method" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="면접 방식">
+                                    <option value="온라인">온라인</option>
+                                    <option value="오프라인">오프라인</option>
                                   </select>
                                 </div>
                               </div>
@@ -221,17 +222,17 @@
                             <div class="col-md-6">
                               <small class="text-muted">본인 인증</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-authentication">
                                   <label class="custom-toggle authToggleBtn">
-                                    <input type="checkbox">
+                                    <input type="checkbox" value="on">
                                     <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
                                   </label>
                                   <div class="custom-control custom-checkbox" style="margin: 0px 2px 0px 4px;">
-                                    <input type="checkbox" class="custom-control-input" id="authMethod1" disabled>
+                                    <input type="checkbox" class="custom-control-input" id="authMethod1" value="이메일 인증" disabled>
                                     <label class="custom-control-label" for="authMethod1">이메일 인증</label>
                                   </div>
                                   <div class="custom-control custom-checkbox" style="margin: 0px 2px 0px 4px;">
-                                    <input type="checkbox" class="custom-control-input" id="authMethod2" disabled>
+                                    <input type="checkbox" class="custom-control-input" id="authMethod2" value="SMS 인증" disabled>
                                     <label class="custom-control-label" for="authMethod2">SMS 인증</label>
                                   </div>
                                 </div>
@@ -240,7 +241,7 @@
                           </div>
                           <div class="row">
                             <div class="col-md-12" style="display: flex; justify-content: flex-end;">
-                              <button class="btn btn-primary" type="button">저장</button>
+                              <button class="btn btn-primary btn-save" type="button">저장</button>
                             </div>
                           </div>
                         </form>
@@ -424,14 +425,18 @@
           </div>
           <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
             <!-- 지원자 목록 -->
-            <div class="card">
+            <div class="card div-apply-table-list">
               <!-- Card header -->
               <div class="card-header border-0">
-                <div class="row">
+                <div class="row" style="display: flex; justify-content: space-between;">
                   <div class="col-6">
-                    <h3 class="mb-0">명단 조회</h3>
+                    <h3 class="mb-0 main-title">명단 조회</h3>
+                  </div>
+                  <div>
+                  	<button type="button" class="btn btn-outline-primary btn-sm btn-view-category">면접자</button>
                   </div>
                 </div>
+                <small class="text-muted sub-title">지원자 조회</small>
               </div>
               <!-- Light table -->
               <div class="table-responsive">
@@ -444,41 +449,8 @@
                     <th></th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <c:forEach items="${notApplyMemList }" var="tech">
-	                  <tr>
-	                    <td class="table-user">
-	                      <img src="/${tech.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
-	                      <b>${tech.MEM_NAME }</b>
-	                    </td>
-	                    <td>
-	                      <span class="text-muted">${tech.MEM_AGE }세</span>
-	                    </td>
-	                    <td>
-	                      	<c:if test="${!empty tech.ANGULAR }"> 
-	                      		<span class="badge badge-pill badge-default">${tech.ANGULAR }</span>
-	                      	</c:if>
-	                      	<c:if test="${!empty tech.BOOTSTRAP }">
-	                      		<span class="badge badge-pill badge-primary">${tech.BOOTSTRAP }</span>
-	                      	</c:if>
-	                      	<c:if test="${!empty tech.REACT }">
-	                      		<span class="badge badge-pill badge-secondary">${tech.REACT }</span>
-	                      	</c:if>
-	                      	<c:if test="${!empty tech.VUE }">
-	                      		<span class="badge badge-pill badge-info">${tech.VUE }</span>
-	                      	</c:if>
-	                    </td>
-	                    <td class="table-actions">
-	                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-	                      	<input type="hidden" name="mem_id" value="${tech.MEM_ID }">
-	                        <i class="fas fa-user-edit"></i>
-	                      </a>
-	                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-	                        <i class="fas fa-trash"></i>
-	                      </a>
-	                    </td>
-	                  </tr>
-                  </c:forEach>
+                  <tbody class="apply-list_data_input-area">
+<!--                     LIST DATA -->
                   </tbody>
                 </table>
               </div>
@@ -1108,7 +1080,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <td colspan="3">다음 카카오 입사</td>
+                                        <td colspan="3">다음 카카오</td>
                                         <td>2000-09-10</td>
                                         <td>2018-10-01</td>
                                     </tr>
@@ -1142,6 +1114,7 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
@@ -1152,7 +1125,12 @@
   const quill = new Quill('#editor', {
     theme: 'snow'
   });
-
+  
+  /**
+      초기 설정 Init
+  */
+  loadApplyList();
+  
   // < 면접 설정 >
   // 1. 기본 설정
 
@@ -1168,6 +1146,109 @@
       $('#authMethod1').attr('disabled', 'disabled');
       $('#authMethod2').attr('disabled', 'disabled');
     }
+  });
+  
+  // 2. 기본 설정 저장
+  $('.interview-basic-setting-area .btn-save').on('click', function() {
+	 const interview_title = $('.interview-basic-setting-area .interview-title').val();
+	 const interview_hire_shape = $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:checked').val();
+	 const interview_division = $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:checked').val();
+	 const interview_tech = $('.interview-basic-setting-area .interview-tech').select2('val');
+	 const interview_peoplenum = $('.interview-basic-setting-area .interview-peoplenum').val();
+	 const interview_method = $('.interview-basic-setting-area .interview-method').select2('val');
+	 const status_auth = $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]:checked').val();
+	 const email_auth = $('#authMethod1:checked').val();
+	 const SMS_auth = $('#authMethod2:checked').val();
+	 
+// 	 alert('interview_title : ' + interview_title);
+// 	 alert('interview_hire_shape : ' + interview_hire_shape);
+// 	 alert('interview_division : ' + interview_division);
+// 	 alert('interview_tech : ' + interview_tech);
+// 	 alert('interview_peoplenum : ' + interview_peoplenum);
+// 	 alert('interview_method : ' + interview_method);
+	 alert('status_auth : ' + status_auth);
+	 alert('email_auth : ' + email_auth);
+	 alert('SMS_auth : ' + SMS_auth);
+	 
+	 if (interview_title == '') {
+		 $.notify({
+				// options
+				message: '공고명을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 if (interview_tech == '') {
+		 $.notify({
+				// options
+				message: '채용 기술 분야를 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 if (status_auth == 'on' && email_auth == undefined && SMS_auth == undefined) {
+		 $.notify({
+				// options
+				message: '본인 인증 방식을 선택해주세요.' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 
+	 let interview_authentication = '';
+	 if (status_auth == undefined) {
+		 interview_authentication == '없음';
+	 } else {
+		 interview_authentication = email_auth + ',' + SMS_auth;
+		 interview_authentication = interview_authentication.substr(0, interview_authentication.length - 1);
+	 }
+	 
+	 const project_no = '${param.project_no}';
+	 
+	 // DB
+	 $.ajax({
+		 url: '/CONNECTOR/user/interview/insertInterview.do',
+	     type: 'POST',
+	     async: false,
+	     data: {
+	    	 interview_title: interview_title,
+	    	 interview_hire_shape: interview_hire_shape,
+	    	 interview_division: interview_division,
+	    	 interview_tech: interview_tech,
+	    	 interview_peoplenum: interview_peoplenum,
+	    	 interview_method: interview_method,
+	    	 interview_authentication: interview_authentication,
+	    	 project_no: proeject_no
+	     },
+	     success: function (data) {
+	    	 // 작업 중!
+	     },
+	     error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	     }
+	 });
   });
 
   // <신청자 명단>
@@ -1192,7 +1273,6 @@
 		    	$('#infographic .mem-name').text(data.MEM_NAME + ', ' + data.MEM_AGE);
 		    	$('#infographic .mem-addr').text(data.MEM_ADDR);
 		    	
-// 		    	<div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
 		    	const techExperience = (data.MYPAGE_TECHEXPERIENCE).split(',');
 		    	
 		    	// ANGULAR
@@ -1210,6 +1290,32 @@
 		    	// VUE
 		    	$('#infographic .tech-experience .vue .progress-bar').attr('aria-valuenow', techExperience[3]);
 		    	$('#infographic .tech-experience .vue .progress-bar').css('width', techExperience[3] + '%');
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectProjectApply.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	if (data != null) {
+		    		if (data.APPLY_STATUS == 'Y') {
+			    		$('#infographic .btn-hire').text('FIRE');
+			    		$('#infographic .btn-hire').removeClass('btn-info');
+			    		$('#infographic .btn-hire').addClass('btn-warning');
+			    	} else if (data.APPLY_STATUS == 'N') {
+			    		$('#infographic .btn-hire').text('HIRE');
+			    		$('#infographic .btn-hire').removeClass('btn-warning');
+			    		$('#infographic .btn-hire').addClass('btn-info');
+			    	}
+		    	}
 		    },
 		    error: function (xhr, err) {
 		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
@@ -1244,25 +1350,200 @@
   $('#infographic .btn-hire').on('click', function() {
 	  // id = var_mem_id
 	  
+	  const current_status = $(this).text();
 	  const project_no = '${param.project_no}';
-	  const apply_status = "Y";
+	  
+	  if (current_status == 'HIRE') {
+		  const apply_status = "Y";
+		  
+		  $.ajax({
+			  url: '/CONNECTOR/user/interview/hireMember.do',
+			    type: 'POST',
+			    async: false,
+			    data: {
+			    	mem_id: var_mem_id,
+			    	project_no: project_no,
+			    	apply_status: apply_status
+			    },
+			    success: function (data) {
+			    	$('#infographic').modal('hide');
+			    	
+			    	loadApplyList();
+			    },
+			    error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+		  });
+	  } else if (current_status == 'FIRE') {
+		  const apply_status = "N";
+		  
+		  $.ajax({
+			  url: '/CONNECTOR/user/interview/hireMember.do',
+			    type: 'POST',
+			    async: false,
+			    data: {
+			    	mem_id: var_mem_id,
+			    	project_no: project_no,
+			    	apply_status: apply_status
+			    },
+			    success: function (data) {
+			    	$('#infographic').modal('hide');
+			    	
+			    	loadConfirmApplyList();
+			    },
+			    error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+		  });
+	  }
+  });
+  
+  // 지원자, 면접자 리스트 변경 카테고리
+  $('.div-apply-table-list .btn-view-category').on('click', function() {
+	  const current_main_title = $('.div-apply-table-list .main-title');
+	  const current_sub_title = $('.div-apply-table-list .sub-title');
+	  const current_btn_view_category = $('.div-apply-table-list .btn-view-category');
+	  
+	  if (current_btn_view_category.text() == '면접자') {
+		  // 지원자 리스트로 변경해야함
+		  current_sub_title.text('면접자 조회');
+		  current_btn_view_category.text('지원자');
+		  
+		  loadConfirmApplyList();
+	  } else if (current_btn_view_category.text() == '지원자') {
+		  // 면접자 리스트로 변경해야함
+		  current_sub_title.text('지원자 조회');
+		  current_btn_view_category.text('면접자');
+		  
+		  loadApplyList();
+	  }
+  });
+  
+  // 지원자 리스트 로딩
+  function loadApplyList() {
+	  const project_no = '${param.project_no}';
 	  
 	  $.ajax({
-		  url: '/CONNECTOR/user/interview/hireMember.do',
+		  url: '/CONNECTOR/user/interview/selectApplyList.do',
 		    type: 'POST',
 		    async: false,
 		    data: {
-		    	mem_id: var_mem_id,
 		    	project_no: project_no,
-		    	apply_status: apply_status
 		    },
 		    success: function (data) {
-		    	
+		    	$('.apply-list_data_input-area').empty();
+		    	$.each(data, function(index, item) {
+		    		let techHTML = '';
+		    		if (item.ANGULAR != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-default" style="margin: 0px 3px 0px 0px;">' + item.ANGULAR + '</span>';
+		    		}
+		    		if (item.BOOTSTRAP != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-primary" style="margin: 0px 3px 0px 0px;">' + item.BOOTSTRAP + '</span>';
+		    		}
+		    		if (item.REACT != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-secondary" style="margin: 0px 3px 0px 0px;">' + item.REACT + '</span>';
+		    		}
+		    		if (item.VUE != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-info" style="margin: 0px 3px 0px 0px;">' + item.VUE + '</span>';
+		    		}
+		    		if (item.ANGULAR == undefined && item.BOOTSTRAP == undefined && item.REACT == undefined && item.VUE == undefined) {
+		    			techHTML = '<span class="badge badge-pill badge-default">보유 기술 없음</span>';
+		    		}
+		    		
+		    		textHTML = '<tr>\n' +
+		            '                <td class="table-user">\n' +
+		            '                  <img src="/' + item.PROFILE_SAVENAME + '" class="avatar rounded-circle mr-3">\n' +
+		            '                  <b>' + item.MEM_NAME + '</b>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  <span class="text-muted">' + item.MEM_AGE + '세</span>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  ' + techHTML +
+		            '                </td>\n' +
+		            '                <td class="table-actions">\n' +
+		            '                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">\n' +
+		            '                  \t<input type="hidden" name="mem_id" value="' + item.MEM_ID + '">\n' +
+		            '                    <i class="fas fa-user-edit"></i>\n' +
+		            '                  </a>\n' +
+		            '                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">\n' +
+		            '                    <i class="fas fa-trash"></i>\n' +
+		            '                  </a>\n' +
+		            '                </td>\n' +
+		            '              </tr>';
+		    		$('.apply-list_data_input-area').append(textHTML);
+		    	});
 		    },
 		    error: function (xhr, err) {
 		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
 		        alert("responseText: " + xhr.responseText);
 		    }
 	  });
-  });
+  }
+  
+  // 면접자 리스트 로딩
+  function loadConfirmApplyList() {
+	  const project_no = '${param.project_no}';
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectConfirmApplyList.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    },
+		    success: function (data) {
+		    	$('.apply-list_data_input-area').empty();
+		    	$.each(data, function(index, item) {
+		    		let techHTML = '';
+		    		if (item.ANGULAR != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-default" style="margin: 0px 3px 0px 0px;">' + item.ANGULAR + '</span>';
+		    		}
+		    		if (item.BOOTSTRAP != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-primary" style="margin: 0px 3px 0px 0px;">' + item.BOOTSTRAP + '</span>';
+		    		}
+		    		if (item.REACT != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-secondary" style="margin: 0px 3px 0px 0px;">' + item.REACT + '</span>';
+		    		}
+		    		if (item.VUE != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-info" style="margin: 0px 3px 0px 0px;">' + item.VUE + '</span>';
+		    		}
+		    		if (item.ANGULAR == undefined && item.BOOTSTRAP == undefined && item.REACT == undefined && item.VUE == undefined) {
+		    			techHTML = '<span class="badge badge-pill badge-default">보유 기술 없음</span>';
+		    		}
+		    		
+		    		textHTML = '<tr>\n' +
+		            '                <td class="table-user">\n' +
+		            '                  <img src="/' + item.PROFILE_SAVENAME + '" class="avatar rounded-circle mr-3">\n' +
+		            '                  <b>' + item.MEM_NAME + '</b>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  <span class="text-muted">' + item.MEM_AGE + '세</span>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  ' + techHTML +
+		            '                </td>\n' +
+		            '                <td class="table-actions">\n' +
+		            '                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">\n' +
+		            '                  \t<input type="hidden" name="mem_id" value="' + item.MEM_ID + '">\n' +
+		            '                    <i class="fas fa-user-edit"></i>\n' +
+		            '                  </a>\n' +
+		            '                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">\n' +
+		            '                    <i class="fas fa-trash"></i>\n' +
+		            '                  </a>\n' +
+		            '                </td>\n' +
+		            '              </tr>';
+		    		$('.apply-list_data_input-area').append(textHTML);
+		    	});
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+  }
+  
+  // 
 </script>

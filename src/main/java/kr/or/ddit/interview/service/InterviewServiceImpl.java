@@ -54,6 +54,13 @@ public class InterviewServiceImpl implements IInterviewService {
 	public int hireMember(Map<String, String> params) throws Exception {
 		return dao.hireMember(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectMypageDeveloper(Map<String, String> params)
+			throws Exception {
+		return dao.selectMypageDeveloper(params);
+	}
 
 	// 면접 캘린더
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
@@ -89,5 +96,16 @@ public class InterviewServiceImpl implements IInterviewService {
 	public int deleteInterviewCalendar(Map<String, String> params)
 			throws Exception {
 		return dao.deleteInterviewCalendar(params);
+	}
+
+	@Override
+	public Map<String, String> selectProjectApply(Map<String, String> params)
+			throws Exception {
+		return dao.selectProjectApply(params);
+	}
+
+	@Override
+	public String insertInterview(Map<String, String> params) throws Exception {
+		return dao.insertInterview(params);
 	}
 }

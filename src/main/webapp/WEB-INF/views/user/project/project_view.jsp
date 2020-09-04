@@ -232,9 +232,11 @@
 	                	<small>퇴근</small>
 	                </c:if>
 	              </div>
+	              <div class="col-auto">
 	              	<c:if test="${projectInfo.PL_WORKSTATUS == 'Y' }">
 	                	<button type="button" class="btn btn-sm btn-primary">CHAT</button>
 	                </c:if>
+	              </div>
 	            </div>
 	          </li>
           </c:if>
