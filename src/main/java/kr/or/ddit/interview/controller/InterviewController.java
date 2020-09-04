@@ -170,6 +170,29 @@ public class InterviewController {
 		return infographicData;
 	}
 	
+	// 인포 그래픽 HIRE
+	@RequestMapping("hireMember")
+	@ResponseBody
+	public Map<String, String> hireMember(String mem_id,
+										  String project_no,
+										  String apply_status) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		params.put("project_no", project_no);
+		params.put("apply_status", apply_status);
+		
+		int chk = interviewService.hireMember(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
+		
+		return resultMap;
+	}
+	
 	
 	
 	/**

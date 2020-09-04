@@ -455,7 +455,7 @@
 	                      <span class="text-muted">${tech.MEM_AGE }세</span>
 	                    </td>
 	                    <td>
-	                      	<c:if test="${!empty tech.ANGULAR }">
+	                      	<c:if test="${!empty tech.ANGULAR }"> 
 	                      		<span class="badge badge-pill badge-default">${tech.ANGULAR }</span>
 	                      	</c:if>
 	                      	<c:if test="${!empty tech.BOOTSTRAP }">
@@ -663,8 +663,8 @@
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                             <div class="d-flex justify-content-between">
-                                <a href="#" class="btn btn-sm btn-info  mr-4 ">HIRE</a>
-                                <a href="#" class="btn btn-sm btn-default float-right">CANCEL</a>
+                                <a href="#" class="btn btn-sm btn-info mr-4 btn-hire">HIRE</a>
+                                <a href="#" class="btn btn-sm btn-default float-right btn-cancel" data-dismiss="modal">CANCEL</a>
                             </div>
                         </div>
                         <div class="card-body pt-0">
@@ -716,7 +716,7 @@
                                         <div class="col">
                                             <h5>ANGULAR</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -732,7 +732,7 @@
                                         <div class="col">
                                             <h5>BOOTSTRAP</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -748,7 +748,7 @@
                                         <div class="col">
                                             <h5>REACT</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -764,7 +764,7 @@
                                         <div class="col">
                                             <h5>VUE</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1171,18 +1171,21 @@
   });
 
   // <신청자 명단>
+  
+  let var_mem_id = '';
+  
   // 1. 인포그래픽 표시
   function loadInfographicModal(e) {
 	  // 로딩
 	  // 1. 지금 선택한 사람의 정보로 교체!
-	  const mem_id = $(e).find('input[name=mem_id]').val();
+	  var_mem_id = $(e).find('input[name=mem_id]').val();
 	  
 	  $.ajax({
 		  url: '/CONNECTOR/user/interview/infographic.do',
 		    type: 'POST',
 		    async: false,
 		    data: {
-		    	mem_id: mem_id
+		    	mem_id: var_mem_id
 		    },
 		    success: function (data) {
 		    	$('#infographic .rounded-circle').attr('src', '/' + data.PROFILE_SAVENAME);
@@ -1235,5 +1238,31 @@
       $('.schoolStatus2-input').removeAttr('disabled');
       $('.schoolStatus3-input').removeAttr('disabled');
     }
+  });
+  
+  // 인포그래픽 HIRE 버튼
+  $('#infographic .btn-hire').on('click', function() {
+	  // id = var_mem_id
+	  
+	  const project_no = '${param.project_no}';
+	  const apply_status = "Y";
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/hireMember.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id,
+		    	project_no: project_no,
+		    	apply_status: apply_status
+		    },
+		    success: function (data) {
+		    	
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
   });
 </script>

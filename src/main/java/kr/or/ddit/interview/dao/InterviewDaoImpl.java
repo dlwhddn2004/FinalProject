@@ -43,6 +43,11 @@ public class InterviewDaoImpl implements IInterviewDao {
 		return (Map<String, String>) client.queryForObject("interview.infographic", params);
 	}
 
+	@Override
+	public int hireMember(Map<String, String> params) throws Exception {
+		return client.update("interview.hireMember", params);
+	}
+	
 	// 면접 캘린더
 	@Override
 	public List<CalendarVO> selectInterviewCalendar(
