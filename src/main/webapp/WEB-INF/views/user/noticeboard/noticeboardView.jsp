@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,7 +29,7 @@
 
     <!-- My CSS -->
     <style>
-        .noticeboard-form {
+        .here {
             padding: 30px;
         }
         .form-button-area {
@@ -39,36 +40,30 @@
 <body>
 	<div class="row">
         <div class="col">
-            <div class="card">
-                <form class="noticeboard-form" action="${pageContext.request.contextPath }/user/noticeboard/insertNoticeboardInfo.do" method="POST">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">제목</label>
-                        <input class="form-control" type="text" name="notice_title" id="example-text-input">
-                    </div>
-                    <div class="form-group">
-                        <label for="example-search-input" class="form-control-label">작성자</label>
-                        <input class="form-control" type="text" name="mem_id" disabled id="example-search-input">
-                    </div>
-                    <div class="form-group">
-                        <label for="example-search-input" class="form-control-label">내용</label>
-                        <!--  <input class="form-control" type="text" name="notice_content" disabled id="example-search-input">-->
-                        <div id="editor"></div>
-                    </div>
+            <div class="card here">
+                <div class="form-group">
+                
+                    <label for="example-text-input" class="form-control-label">제목</label>
+                    <input class="form-control" type="text" name="notice_title" id="example-text-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="example-search-input" class="form-control-label">작성자</label>
+                    <input class="form-control" type="text" name="mem_id" disabled id="example-search-input" readonly>
+                </div>
+                <div style="margin: 0px 0px 25px 0px">
+                    <label for="example-search-input" class="form-control-label">내용</label>
+                 	<div id="editor"></div>
+                </div>
                    
-                   
-                    
-<!--                     <div class="quill" data-toggle="quill" data-quill-placeholder="내용을 입력해주세요."></div> -->
-
-					<!-- Create the editor container -->
-					
-                    <div class="form-button-area" align="right">
-                    		<%--                     	<c:if test="${MEMBER_LOGININFO == noticeboardInfo.mem_id }"> --%>
-                        	<button class="btn btn-primary btn-submit" type="button">수정</button>
-                        	<button class="btn btn-danger btn-delete" type="button">삭제</button>
-<%--                         </c:if> --%>
-                        <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
-                    </div>
-                </form>
+				<!-- Create the editor container -->
+				
+				<div class="form-button-area" align="right">
+                	<c:if test="${MEMBER_LOGININFO.mem_id == noticeboardInfo.mem_id }">
+                    	<button class="btn btn-primary btn-submit" type="submit">수정</button>
+                    	<button class="btn btn-danger btn-delete" type="button">삭제</button>
+                    </c:if>
+                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
+                </div>
             </div>
         </div>
     </div>
@@ -85,6 +80,7 @@
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- Argon JS -->
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
@@ -92,97 +88,97 @@
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
-	$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
-	$('input[name=mem_id]').val('${noticeboardInfo.mem_id}');
-	//$('input[name=notice_content]').val('${noticeboardInfo.notice_content}');
+	$('.process-second').hide();
 	
-	const quill = new Quill('#editor',{
-		theme: 'snow'
-	});
-	quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
-	quill.enable(false);
+	$('.comment-write-area').hide();
 	
-	$(".form-button-area .btn-submit").on("click", function() {
-		const button_status = $('.btn-submit').text();
+		$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
+		$('input[name=mem_id]').val('${noticeboardInfo.mem_id}');
 		
-		if (button_status === "수정") {
-			$('input[name=notice_title]').removeAttr('readonly');
-			quill.enable(true);
-			
-			$('.btn-delete').hide();
-			
-			$('.btn-submit').text('완료');
-			$('.btn-submit').removeClass('btn-primary');
-			$('.btn-submit').addClass('btn-success');
-			$('.btn-back').text('취소');
-			$('.btn-back').removeClass('btn-primary');
-			$('.btn-back').addClass('btn-warning');
-		} else if (button_status === "완료") {
-			// 수정 기능 실행
-			const notice_title = $('input[name=notice_title]').val();
-			const notice_content = quill.root.innerHTML;
-			
-			const $ipt_notice_no = $("<input type='hidden' name='notice_no' value='${param.notice_no}'>");
-			const $ipt_notice_title = $("<input type='hidden' name='notice_title' value='" + notice_title + "'>");
-			const $ipt_notice_content = $("<input type='hidden' name='notice_content' value='" + notice_content + "'>");
-			
-			const $frm = $("<form action='${pageContext.request.contextPath}/user/noticeboard/updateNoticeboardInfo.do' method='POST'> ");
-			
-			$('body').append($frm);
-			$frm.append($ipt_notice_no);
-			$frm.append($ipt_notice_title);
-			$frm.append($ipt_notice_content);
-			
-			$frm.submit();
-		}
-	});
-	
-	<!-- 뒤로 가기 버튼 -->
-	$('.btn-back').on('click', function() {
-		const button_status = $('.btn-back').text();
-		
-		if (button_status === "뒤로가기") {
-			location.href = '${pageContext.request.contextPath}/user/noticeboard/noticeboardList.do';
-		} else if (button_status === "취소") {
-			$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
-			quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
-			
-			$('.btn-delete').show();
-			
-			$('input[name=notice_title]').attr('readonly', 'readonly');
-			quill.enable(false);
-			
-			$('.btn-submit').text('수정');
-			$('.btn-submit').removeClass('btn-success');
-			$('.btn-submit').addClass('btn-primary');
-			$('.btn-back').text('뒤로가기');
-			$('.btn-back').removeClass('btn-warning');
-			$('.btn-back').addClass('btn-primary');
-		}
-	});
-	
-	<!-- 삭제 버튼 -->
-	$('.btn-delete').on('click', function() {
-		Swal.fire({
-		  title: '정말 삭제하시겠습니까?',
-		  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
-		  icon: 'warning',
-		  showCancelButton: true,
-		  confirmButtonColor: '#3085d6',
-		  cancelButtonColor: '#d33',
-		  confirmButtonText: '삭제',
-		  cancelButtonText: '취소'
-		}).then((result) => {
-		  if (result.value) {
-			  location.href = '${pageContext.request.contextPath}/user/noticeboard/deleteNoticeboardInfo.do?notice_no=${param.notice_no}';
-		  }
+		<!-- Quill Text Editor Initialize -->
+		const quill = new Quill('#editor', {
+			theme: 'snow'
 		});
-	});
-		 
+		quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
+		quill.enable(false);
 		
+		<!-- 수정 버튼 -->
+		$(".form-button-area .btn-submit").on("click", function() {
+			const button_status = $('.btn-submit').text();
+			
+			if (button_status === "수정") {
+				$('input[name=notice_title]').removeAttr('readonly');
+				quill.enable(true);
+				
+				$('.btn-delete').hide();
+				
+				$('.btn-submit').text('완료');
+				$('.btn-submit').removeClass('btn-primary');
+				$('.btn-submit').addClass('btn-notice');
+				$('.btn-back').text('취소');
+				$('.btn-back').removeClass('btn-primary');
+				$('.btn-back').addClass('btn-warning');
+			} else if (button_status === "완료") {
+				// 수정 기능 실행
+				const notice_title = $('input[name=notice_title]').val();
+				const notice_content = quill.root.innerHTML;
+				
+				const $ipt_notice_no = $("<input type='hidden' name='notice_no' value='${param.notice_no}'>");
+				const $ipt_notice_title = $("<input type='hidden' name='notice_title' value='" + notice_title + "'>");
+				const $ipt_notice_content = $("<input type='hidden' name='notice_content' value='" + notice_content + "'>");
+				
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/noticeboard/updateNoticeboard.do' method='POST'> ");
+				
+				$('body').append($frm);
+				$frm.append($ipt_notice_no);
+				$frm.append($ipt_notice_title);
+				$frm.append($ipt_notice_content);
+				
+				$frm.submit();
+			}
+		});
 		
-	
-	
+		<!-- 뒤로 가기 버튼 -->
+		$('.btn-back').on('click', function() {
+			const button_status = $('.btn-back').text();
+			
+			if (button_status === "뒤로가기") {
+				location.href = '${pageContext.request.contextPath}/user/noticeboard/noticeboardList.do';
+			} else if (button_status === "취소") {
+				$('input[name=notice_title]').val('${noticeboardInfo.notice_title}');
+				quill.clipboard.dangerouslyPasteHTML('${noticeboardInfo.notice_content}');
+				
+				$('.btn-delete').show();
+				
+				$('input[name=notice_title]').attr('readonly', 'readonly');
+				quill.enable(false);
+				
+				$('.btn-submit').text('수정');
+				$('.btn-submit').removeClass('btn-notice');
+				$('.btn-submit').addClass('btn-primary');
+				$('.btn-back').text('뒤로가기');
+				$('.btn-back').removeClass('btn-warning');
+				$('.btn-back').addClass('btn-primary');
+			}
+		});
+		
+		<!-- 삭제 버튼 -->
+		$('.btn-delete').on('click', function() {
+			Swal.fire({
+			  title: '정말 삭제하시겠습니까?',
+			  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  location.href = '${pageContext.request.contextPath}/user/noticeboard/deleteNoticeboard.do?notice_no=${param.notice_no}';
+			  }
+			});
+		});
 	</script>
 </body>
 </html>

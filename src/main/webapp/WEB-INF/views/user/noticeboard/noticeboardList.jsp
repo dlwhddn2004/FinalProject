@@ -49,22 +49,35 @@
 	transition: 0.5s;
 }
 </style>
+
+<!-- My JavaScript -->
 <script type="text/javascript">
-	$(function(){
-		$('#noticeboardTBY tr').click(function(){
-			const notice_no = $(this).find('td:eq(0) input').val();
-			const r = $(this).find('td:eq(0)').text();
-			$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardView.do?notice_no=' + notice_no + '&rnum=' + r);
+	$(function() {
+		// 등록 버튼(게시글 작성)
+		$('.btn-write').on('click', function() {
+			// 로그인 하지 않았다면 경고창으로 알리고 페이지 이동 막기
+			if (${empty MEMBER_LOGININFO}) {
+				Swal.fire(
+				  'Warning',
+				  '게시글 작성은 로그인 후 이용하실 수 있습니다.',
+				  'warning'
+				)
+				
+				return;
+			}
+			
+			// 로그인 한 상태!
+			location.href = "${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do?mem_id=${MEMBER_LOGININFO.mem_id}";
 		});
-		
-		$('.btn-write').click(function(){
-			//$(location).attr('href','${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do');
-			location.href = "${pageContext.request.contextPath}/user/noticeboard/noticeboardForm.do";
-		}); 
-	
 	});
 	
-</script> 
+	function viewBoardInfo(e) {
+		const notice_no = $(e).find('input[name=notice_no]').val();
+		const mem_id = $(e).find('input[name=mem_id]').val();
+		
+		location.href = "${pageContext.request.contextPath}/user/noticeboard/noticeboardView.do?notice_no=" + notice_no + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+	}
+</script>
 </head>
 <body>
 	<!-- Page content -->
@@ -75,10 +88,10 @@
 				<!-- Card header -->
 				<div class="card-header">
 					<h3 class="mb-0">공지사항 게시판</h3>
-					<p class="text-sm mb-0">공지사항 게시판 입니다.</p>
+					<p class="text-sm mb-0">공지를 볼수 있는 게시판입니다.</p>
 				</div>
 				<div class="table-responsive py-4">
-					<table class="table table-flush" id="datatable-buttons">
+					<table class="table table-flush datatable-basic">
 						<thead class="thead-light">
 							<tr>
 								<th>번호</th>
@@ -97,12 +110,12 @@
 								<th>조회수</th>
 							</tr>
 						</tfoot>
-						<tbody id="noticeboardTBY">
+						<tbody>
 							<c:forEach items="${noticeboardList }" var="item">
-								<tr class="table-row-data">
-									<td><input type="hidden" value="${item.notice_no}"/>${item.r }</td>
+								<tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
+									<td>${item.r }<input type="hidden" name="notice_no" value="${item.notice_no }"></td>
 									<td>${item.notice_title }</td>
-									<td>${item.mem_id }</td>
+									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
 									<td>${item.notice_regdate }</td>
 									<td>${item.notice_hit }</td>
 								</tr>
@@ -152,8 +165,5 @@
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
-	
-	<!-- My JavaScript -->
- 	
 </body>
 </html>
