@@ -58,13 +58,14 @@ public class MemberController {
 	@Autowired
 	private IMemberRateService rateService;
 	
-	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
-	public String loginCheck(String mem_id, 
+	@RequestMapping("loginCheck")
+	public ModelAndView loginCheck(String mem_id, 
 	                       String mem_pass,
 	                       HttpServletRequest request,
 	                       HttpSession session,
 	                       HttpServletResponse response,
-	                       Map<String, String> params)
+	                       Map<String, String> params,
+	                       ModelAndView modelAndView)
 	                      throws Exception{
 
 		  params.put("mem_id", mem_id);
@@ -75,7 +76,6 @@ public class MemberController {
 	      String taskResult = null;
 	  	  String message = null;
 	      if(memberInfo == null){
-	         // 리다이렉트(컨텍스트 루트 | 패스 생략)
 	  		taskResult = "warning";
 	  		message = URLEncoder.encode("로그인에 실패하였습니다!", "UTF-8");
 	      }else{
@@ -83,7 +83,14 @@ public class MemberController {
 	         taskResult = "success";
 		  	 message = URLEncoder.encode("로그인에 성공하였습니다!", "UTF-8");
 	      }
-	      return "redirect:/?taskResult=" + taskResult + "&message=" + message;
+//	      return "redirect:/?taskResult=" + taskResult + "&message=" + message;
+	      
+	      modelAndView.addObject("memberInfo", memberInfo);
+	      modelAndView.addObject("taskResult", taskResult);
+	      modelAndView.addObject("message", message);
+	      modelAndView.setViewName("user/welcome");
+	      
+	      return modelAndView;
 	}
 
 	@RequestMapping("logout")
