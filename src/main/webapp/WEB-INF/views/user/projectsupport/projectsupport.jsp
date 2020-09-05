@@ -173,7 +173,42 @@
 			</div>
 		</div>
 	</div>
+	
 	<div class="col-md-4">
+		<div class="card card-profile">
+			
+			<div class="row justify-content-center">
+				<div class="col-lg-3 order-lg-2">
+					<div class="card-profile-image">
+					
+					</div>
+				</div>
+			</div>
+			<div
+				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+				<div class="d-flex justify-content-between"></div>
+			</div>
+			<div class="card-body pt-0">
+				<div class="row">
+					<div class="col">
+						<div class="text-center">
+							<br>
+							<br>
+							<h5 class="h3">
+								
+							</h5>
+						</div>
+						<div class="card-profile-stats d-flex justify-content-center">
+
+						
+						</div>
+					</div>
+				</div>
+
+			</div>		
+		</div>
+		
+		<div class="col-md-14">
 		<div class="card card-profile">
 			<img src="../../assets/img/theme/img-1-1000x600.jpg"
 				alt="Image placeholder" class="card-img-top">
@@ -223,8 +258,15 @@
 				</div>
 
 			</div>
+
+			
 		</div>
 	</div>
+	</div>
+	
+	
+	
+	
 </div>
 </div>
 </div>

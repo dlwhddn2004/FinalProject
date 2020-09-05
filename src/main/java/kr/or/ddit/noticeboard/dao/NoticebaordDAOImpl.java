@@ -17,10 +17,10 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 	private SqlMapClient client;
 
 	@Override
-	public List<NoticeboardVO> noticeboardList(Map<String, String> params)
+	public List<NoticeboardVO> noticeboardList()
 			throws Exception {
 		
-		return client.queryForList("noticeboard.noticeboardList", params);
+		return client.queryForList("noticeboard.noticeboardList");
 	}
 
 	@Override
@@ -31,9 +31,15 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 	}
 
 	@Override
-	public String insertNoticeboard(NoticeboardVO noticeboardInfo)
+	public int insertNoticeboard(NoticeboardVO noticeboardInfo)
 			throws Exception {
-		return (String) client.insert("noticeboard.insertNoticeboard", noticeboardInfo);
+		int chk = 0;
+		
+		Object obj = client.insert("noticeboard.insertNoticeboard", noticeboardInfo);
+		if (obj == null){
+			chk = 1;
+		}
+		return chk;
 	}
 
 	@Override
@@ -50,7 +56,7 @@ public class NoticebaordDAOImpl implements INoticeboardDAO {
 
 	@Override
 	public int updatehit(Map<String, String> params) throws Exception {
-		return client.update("noticeboard.updatehit");
+		return client.update("noticeboard.updatehit", params);
 	}
 
 }

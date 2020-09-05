@@ -161,9 +161,15 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 
 	@Override
-	public Map<String, String> readNotProject(Map<String, String> params)
+	public Map<String, String> readNotProject(Map<String, String> params){
 			throws Exception {
 		return (Map<String, String>) client.queryForObject("projectRegist.readNotProject", params);
+	}
+	@Override
+	public void insertprojectsupport(ProjectVO projectInfo) throws Exception {
+		
+		client.insert("projectsearch.insertproject",projectInfo);
+		
 	}
 	
 

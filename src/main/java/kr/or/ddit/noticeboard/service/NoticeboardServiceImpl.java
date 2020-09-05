@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("noticeboardService")
+@Service
 public class NoticeboardServiceImpl implements INoticeboardService{
 	
 	@Autowired
@@ -19,10 +19,10 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
-	public List<NoticeboardVO> noticeboardList(Map<String, String> parmas)
+	public List<NoticeboardVO> noticeboardList()
 			throws Exception {
 
-		return noticebaordDAO.noticeboardList(parmas);
+		return noticebaordDAO.noticeboardList();
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
@@ -35,7 +35,7 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
-	public String insertNoticeboard(NoticeboardVO noticeboardInfo)
+	public int insertNoticeboard(NoticeboardVO noticeboardInfo)
 			throws Exception {
 		return noticebaordDAO.insertNoticeboard(noticeboardInfo);
 	}
@@ -52,8 +52,13 @@ public class NoticeboardServiceImpl implements INoticeboardService{
 	@Override
 	public int deleteNoticeboard(Map<String, String> params)
 			throws Exception {
-		// TODO Auto-generated method stub
 		return noticebaordDAO.deleteNoticeboard(params);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updatehit(Map<String, String> params) throws Exception {
+		return noticebaordDAO.updatehit(params);
 	}
 	
 	

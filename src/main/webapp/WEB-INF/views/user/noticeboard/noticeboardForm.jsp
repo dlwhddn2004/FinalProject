@@ -26,8 +26,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
     <!-- Notify -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
-    <!-- DropZone -->
-    <link rel="stylesheet" herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
 
     <!-- My CSS -->
     <style>
@@ -35,7 +33,7 @@
             padding: 30px;
         }
         .form-button-area {
-            padding: 40px 0px 20px 20px;
+            padding: 30px 0px 10px 10px;
         }
     </style>
 </head>
@@ -43,7 +41,7 @@
 	<div class="row">
         <div class="col">
             <div class="card">
-                <form class="noticeboard-form" action="${pageContext.request.contextPath }/user/noticeboard/insertNoticeboardInfo.do" method="POST">
+                <form class="noticeboard-form" action="${pageContext.request.contextPath }/user/noticeboard/insertNoticeboard.do" method="POST">
                     <div class="form-group">
                     
                         <label for="example-text-input" class="form-control-label">제목</label>
@@ -54,54 +52,15 @@
                         <input class="form-control" name="mem_id" type="text" disabled id="example-search-input">
                     </div>
                     <div style="margin: 25px 0px 25px 0px">
-                        <label for="example-search-input" class="form-control-label">내용</label>
-                        <div id="editor"></div> 
+                        <label for="example-search-input" class="form-control-label">프로젝트</label>
+                        <div id="editor"></div>
                     </div>
-                    <!-- 파일 등록  -->
-					<div class="dropzone dropzone-multiple" data-toggle="dropzone"
-						data-dropzone-multiple data-dropzone-url="http://">
-						<div class="fallback">
-							<div class="custom-file">
-								<input type="file" class="custom-file-input"
-									id="dropzoneMultipleUpload" multiple> <label
-									class="custom-file-label" for="dropzoneMultipleUpload">Choose
-									file</label>
-							</div>
-						</div>
-						<ul
-							class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
-							<li class="list-group-item px-0">
-								<div class="row align-items-center">
-									<div class="col-auto">
-										<div class="avatar">
-											<img class="avatar-img rounded" src="..." alt="..."
-												data-dz-thumbnail>
-										</div>
-									</div>
-									<div class="col ml--3">
-										<h4 class="mb-1" data-dz-name>...</h4>
-										<p class="small text-muted mb-0" data-dz-size>...</p>
-									</div>
-									<div class="col-auto">
-										<div class="dropdown">
-											<a href="#" class="dropdown-ellipses dropdown-toggle"
-												role="button" data-toggle="dropdown" aria-haspopup="true"
-												aria-expanded="false"> <i class="fe fe-more-vertical"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right">
-												<a href="#" class="dropdown-item" data-dz-remove> 파일삭제
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-
+                    
 					<!-- Create the editor container -->
+					
+
                     <div class="form-button-area" align="right">
-                        <button class="btn btn-primary btn-submit" id="btn1" type="button">등록</button>
+                        <button class="btn btn-primary btn-submit" type="button">등록</button>
                         <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
                     </div>
                 </form>
@@ -117,8 +76,6 @@
 	<script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-	<!-- DropZone JS -->
-	<script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
 	<!-- Optional JS -->
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
@@ -127,7 +84,6 @@
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
-	
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
@@ -139,7 +95,7 @@
 		});
 		
 		<!-- 등록 버튼 -->
-		$("#btn1").on("click", function() {
+		$(".form-button-area .btn-submit").on("click", function() {
 			// 제목을 입력하지 않았을 때!
 			const notice_title = $('input[name=notice_title]').val();
 			
@@ -180,7 +136,7 @@
 			}
 			
 			// 데이터 넘겨서 Insert 작업하기
-			location.href = '${pageContext.request.contextPath}/user/noticeboard/insertNoticeboardInfo.do?notice_title=' + notice_title + "&notice_content=" + notice_content + "&mem_id=${MEMBER_LOGININFO.mem_id}";
+			location.href = '${pageContext.request.contextPath}/user/noticeboard/insertNoticeboard.do?notice_title=' + notice_title + "&notice_content=" + notice_content + "&mem_id=${MEMBER_LOGININFO.mem_id}";
 		});
 		
 		<!-- 뒤로 가기 버튼 -->
