@@ -240,7 +240,7 @@
 		$('form[name=projectInfo]').append($processCategory_ipt);
 		$('form[name=projectInfo]').append($projectTitle_ipt);
 		
-		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/project_2.do');
+		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_2.do');
 		$('form[name=projectInfo]').submit();
 	});
 	

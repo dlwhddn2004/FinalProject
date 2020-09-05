@@ -208,7 +208,7 @@ $("#btnRegist").on("click", function() {
   	$('form[name=projectMozip]').append($supportstatus_ipt);
   	$('form[name=projectMozip]').append($requirements_ipt);
 
-	$('form[name=projectMozip]').attr('action', '${pageContext.request.contextPath}/user/project/project_7.do?project_no=${project_no}');
+	$('form[name=projectMozip]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_7.do?project_no=${project_no}');
 	$('form[name=projectMozip]').submit(); 
 	
 });

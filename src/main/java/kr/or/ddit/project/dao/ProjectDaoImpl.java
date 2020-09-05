@@ -154,6 +154,7 @@ public class ProjectDaoImpl implements IProjectDao {
 		client.insert("project.insertParticipant", params);
 	}
 
+	@Override
 	public int projectInfo5(Map<String, String> params) throws Exception {
 		int cnt =0;
 		cnt = (int) client.queryForObject("projectsearch.projectInfo5",params);
@@ -161,7 +162,7 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 
 	@Override
-	public Map<String, String> readNotProject(Map<String, String> params){
+	public Map<String, String> readNotProject(Map<String, String> params)
 			throws Exception {
 		return (Map<String, String>) client.queryForObject("projectRegist.readNotProject", params);
 	}

@@ -24,7 +24,7 @@
 	                )
 	           	return;
   	  		} else {
-  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/project/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}');
+  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/projectRegist/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}');
   	  		}
   	  	});
   	});

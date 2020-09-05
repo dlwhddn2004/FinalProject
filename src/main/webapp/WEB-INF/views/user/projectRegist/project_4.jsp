@@ -186,7 +186,7 @@
 		$('form[name=projectBudget]').append($term_ipt);
 		
 
-		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/project/project_5.do?project_no=${project_no}');
+		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_5.do?project_no=${project_no}');
 		$('form[name=projectBudget]').submit(); 
 		
 	});

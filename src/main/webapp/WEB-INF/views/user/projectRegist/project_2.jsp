@@ -180,7 +180,7 @@
 			$('form[name=projectReady]').append($readyStatus_ipt);
 			$('form[name=projectReady]').append($reference_ipt);
 		  	
-			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do?project_no=${project_no}');
+			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_3.do?project_no=${project_no}');
 			$('form[name=projectReady]').submit();
 
 			

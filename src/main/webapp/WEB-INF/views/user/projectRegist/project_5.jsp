@@ -243,7 +243,7 @@ $("#btnRegist").on("click", function() {
 	$('form[name=projectMeeting]').append($meeting_cycle_ipt);
 	$('form[name=projectMeeting]').append($location_ipt);
 
-	$('form[name=projectMeeting]').attr('action', '${pageContext.request.contextPath}/user/project/project_6.do?project_no=${project_no}');
+	$('form[name=projectMeeting]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_6.do?project_no=${project_no}');
 	$('form[name=projectMeeting]').submit(); 
 	
 });

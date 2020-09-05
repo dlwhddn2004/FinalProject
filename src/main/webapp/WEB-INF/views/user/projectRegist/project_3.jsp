@@ -157,7 +157,7 @@
 		$('form[name=projectDetail]').append($content_ipt);
 		$('form[name=projectDetail]').append($tech_ipt);
 		
-		$('form[name=projectDetail]').attr('action', '${pageContext.request.contextPath}/user/project/project_4.do?project_no=${project_no}');
+		$('form[name=projectDetail]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_4.do?project_no=${project_no}');
 		$('form[name=projectDetail]').submit();
 		
 	});
