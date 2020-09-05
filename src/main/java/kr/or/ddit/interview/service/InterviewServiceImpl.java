@@ -98,14 +98,28 @@ public class InterviewServiceImpl implements IInterviewService {
 		return dao.deleteInterviewCalendar(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public Map<String, String> selectProjectApply(Map<String, String> params)
 			throws Exception {
 		return dao.selectProjectApply(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public String insertInterview(Map<String, String> params) throws Exception {
 		return dao.insertInterview(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectInterview(Map<String, String> params)
+			throws Exception {
+		return dao.selectInterview(params);
+	}
+
+	@Override
+	public int updateInterview(Map<String, String> params) throws Exception {
+		return dao.updateInterview(params);
 	}
 }

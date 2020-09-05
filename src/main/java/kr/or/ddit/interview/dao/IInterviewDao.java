@@ -37,4 +37,8 @@ public interface IInterviewDao {
 	
 	// 공통
 	public Map<String, String> selectProjectApply(Map<String, String> params) throws Exception;
+	
+	public Map<String, String> selectInterview(Map<String, String> params) throws Exception;
+	
+	public int updateInterview(Map<String, String> params) throws Exception;
 }

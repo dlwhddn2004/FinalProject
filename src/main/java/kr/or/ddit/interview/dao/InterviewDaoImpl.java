@@ -95,4 +95,15 @@ public class InterviewDaoImpl implements IInterviewDao {
 	public String insertInterview(Map<String, String> params) throws Exception {
 		return (String) client.insert("interview.insertInterview", params);
 	}
+
+	@Override
+	public Map<String, String> selectInterview(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("interview.selectInterview", params);
+	}
+
+	@Override
+	public int updateInterview(Map<String, String> params) throws Exception {
+		return client.update("interview.updateInterview", params);
+	}
 }

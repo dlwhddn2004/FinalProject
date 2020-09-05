@@ -212,6 +212,17 @@
 		        #interview_method#,
 		        #interview_authentication#) 
 	</insert>
+	
+	<select id="selectInterview" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM INTERVIEW
+		WHERE PROJECT_NO = #project_no#
+	</select>
+	
+	<update id="updateInterview" parameterClass="map">
+		UPDATE INTERVIEW SET INTERVIEW_CUSTOMIZING = #interview_customizing#
+		WHERE PROJECT_NO = #project_no#
+	</update>
 </sqlMap>
 
  
