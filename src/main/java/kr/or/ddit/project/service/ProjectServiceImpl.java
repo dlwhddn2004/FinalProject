@@ -172,4 +172,11 @@ public class ProjectServiceImpl implements IProjectService {
 		dao.insertProjectParticipants(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> readNotProject(Map<String, String> params)
+			throws Exception {
+		return dao.readNotProject(params);
+	}
+
 }

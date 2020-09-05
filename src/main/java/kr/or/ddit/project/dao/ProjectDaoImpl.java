@@ -159,6 +159,12 @@ public class ProjectDaoImpl implements IProjectDao {
 		cnt = (int) client.queryForObject("projectsearch.projectInfo5",params);
 		return cnt;
 	}
+
+	@Override
+	public Map<String, String> readNotProject(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("projectRegist.readNotProject", params);
+	}
 	
 
 

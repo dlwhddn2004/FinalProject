@@ -33,6 +33,8 @@ public interface IProjectService {
 	
 	public void insertProjectParticipants(Map<String, String> params) throws Exception;
 	
+	public Map<String, String> readNotProject(Map<String, String> params) throws Exception;
+	
 	// 덕년 리스트 조회
 		public List<ProjectVO> projectList(Map<String,String>params) throws Exception;
 		
