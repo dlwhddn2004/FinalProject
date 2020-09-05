@@ -53,6 +53,7 @@
                 <p class="text-muted" style="font-size: small">6. 모집 요건</p>
                 <p class="text-muted" style="font-size: small">7. 추가 정보</p>
               </li>
+              <li class="list-group-item">면접 정보 설정</li>
               <li class="list-group-item">프로젝트 등록 완료</li>
             </ul>
           </div>

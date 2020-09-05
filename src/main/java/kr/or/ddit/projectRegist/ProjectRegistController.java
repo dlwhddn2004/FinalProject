@@ -239,4 +239,19 @@ public class ProjectRegistController {
 		
 		return modelAndView;
 	}
+	
+	@RequestMapping("project_interview_1")
+	public void project_interview_1(){
+		
+	}
+	
+	@RequestMapping("project_interview_2")
+	public void project_interview_2(){
+		
+	}
+	
+	@RequestMapping("project_interview_3")
+	public void project_interview_3(){
+		
+	}
 }
