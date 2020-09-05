@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="riskboard">
+	<typeAlias alias="RiskjoinVO" type="kr.or.ddit.vo.RiskJoinVO" />
+	<typeAlias alias="RiskboardVO" type="kr.or.ddit.vo.RiskboardVO"/>
+	
+	<sql  id="selectAll">
+		<!--   SELECT b.*
+		FROM (
+		         SELECT ROWNUM r,
+		                ISSUE_NO,
+		                PROJECT_NO,
+		                MEM_ID,
+		                ISSUE_TITLE,
+		                ISSUE_CONTENT,
+		                TO_CHAR(issue_regdate, 'YYYY-MM-DD') ISSUE_REGDATE,
+		                ISSUE_HIT
+		         FROM (
+		                  SELECT *
+		                  FROM ISSUE_BOARD) a
+		     ) b    -->
+	  <!--  select ROWNUM r,
+       ISSUE_NO,
+       P.PROJECT_NO,
+       P.MEM_ID,
+       ISSUE_TITLE,
+       ISSUE_CONTENT,
+       ISSUE_REGDATE,
+       ISSUE_GROUP,
+       ISSUE_SEQ,
+       ISSUE_DEPTH,
+       ISSUE_HIT,
+       PROJECT_PROCESSSTATUS,
+       PROJECT_PROCESSCATEGORY,
+       PROJECT_CONSULLTING,
+       PROJECT_READYSTATUS,
+       PROJECT_CURRENTSTATUS,
+       PROJECT_BUSINESSINFO,
+       PROJECT_REFERENCE,
+       PROJECT_NOTE,
+       PROJECT_TECHNOLOGIES,
+       PROJECT_BUDGET,
+       PROJECT_STARTDATE,
+       PROJECT_DURATION,
+       PROJECT_ENDSTATUS,
+       PROJECT_PREMEETING,
+       PROJECT_PROCEEDINGMEETING,
+       PROJECT_MEETINGCYCLE,
+       PROJECT_CLIENTLOCATION,
+       PROJECT_APPLICATIONDEADLINE,
+       PROJECT_SUPPORTSTATUS,
+       PROJECT_ESSENTIALREQUIREMENTS,
+       PROJECT_MANPOWER,
+       PROJECT_MANAGEMENTEXPERIENCE,
+       PROJECT_FUTUREPLANS,
+       PROJECT_PRIORITY,
+       PROJECT_ENDDATE,
+       PROJECT_TITLE,
+       PROJECT_CLIENTINFORMATION,
+       PROJECT_CLIENTINTRODUCE
+	   from ISSUE_BOARD I
+       join PROJECT P on I.PROJECT_NO = P.PROJECT_NO
+	   WHERE P.PROJECT_NO = #project_no#   -->
+	   
+	    SELECT ROWNUM r, A.*, B.*
+		FROM RISKMANAGEMENT_BOARD A, PROJECT B
+		WHERE A.PROJECT_NO = B.PROJECT_NO
+		AND B.PROJECT_NO = #project_no#
+		
+		<!-- select ISSUE_BOARD.*, PROJECT.*
+		from ISSUE_BOARD
+    	join PROJECT on ISSUE_BOARD.PROJECT_NO = PROJECT.PROJECT_NO
+		where  PROJECT.PROJECT_NO = #project_no# -->	
+	</sql>
+	
+	<select id="issueboardList" resultClass="RiskjoinVO" parameterClass="map">
+		<include refid="selectAll"/>
+	</select>
+	
+	<!-- <select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map">
+		SELECT ROWNUM r, A.*, B.*
+		FROM ISSUE_BOARD A, PROJECT B
+		WHERE A.PROJECT_NO = B.PROJECT_NO
+		AND B.PROJECT_NO = #project_no# 
+		AND ISSUE_NO = #issue_no# 
+	
+	</select>
+	
+	<insert id="insertIssueboard" parameterClass="IssueboardVO">
+		<selectKey keyProperty="issue_no" resultClass="string">
+		SELECT ISSUE_BOARD_SEQ.nextval FROM DUAL
+		</selectKey>
+		INSERT INTO ISSUE_BOARD(ISSUE_NO,
+							    PROJECT_NO,
+								MEM_ID,
+								ISSUE_TITLE,
+								ISSUE_CONTENT,
+								ISSUE_REGDATE)
+						 VALUES(#issue_no#,
+						 		#project_no#,
+						 		#mem_id#,
+						 		#issue_title#,
+						 		#issue_content#,
+						 		SYSDATE)						
+	</insert>
+	
+	<update id="updateIssueboard" parameterClass="IssueJoinVO">
+		UPDATE ISSUE_BOARD SET  ISSUE_TITLE = #issue_title#,
+                         		ISSUE_CONTENT = #issue_content#
+		WHERE ISSUE_NO = #issue_no#
+	</update>
+	
+	<delete id="deleteIssueboard" parameterClass="map">
+		DELETE ISSUE_BOARD WHERE ISSUE_NO = #issue_no#
+	</delete>
+	
+	<update id="updatehit" parameterClass="map">
+		UPDATE ISSUE_BOARD SET ISSUE_HIT = ISSUE_HIT + 1
+		WHERE ISSUE_NO = #issue_no#
+	</update> -->
+	
+</sqlMap>
+
+ 
+
+
