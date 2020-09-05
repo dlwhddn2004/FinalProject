@@ -261,7 +261,7 @@
                         </div>
                       </div>
                       <!-- Card body -->
-                      <div class="card-body">
+                      <div class="card-body div-customizing-area">
                         <form>
                           <div class="row">
                             <div class="col-md-12">
@@ -345,7 +345,7 @@
                             </div>
                           </div>
                           <div class="row" style="display: flex; justify-content: flex-end;">
-                            <button type="button" class="btn btn-primary">저장</button>
+                            <button type="button" class="btn btn-primary btn-save">저장</button>
                           </div>
                         </form>
                       </div>
@@ -1130,6 +1130,99 @@
       초기 설정 Init
   */
   loadApplyList();
+  let chkValue = checkInputBasicInformation();
+  if (chkValue == 'true') {
+	  const project_no = '${param.project_no }';
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/selectInterview.do',
+		     type: 'POST',
+		     async: false,
+		     data: {
+		    	 project_no: project_no
+		     },
+		     success: function (data) {
+		    	 const interview_title = $('.interview-basic-setting-area .interview-title').val(data.INTERVIEW_TITLE);
+		    	 
+		    	 if (data.INTERVIEW_HIRE_SHAPE == '일반 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(0)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '상시 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(1)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '추천 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(2)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '비공개 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(3)').prop('checked', true);
+		    	 }
+		    	 
+		    	 if (data.INTERVIEW_DIVISION == '공채') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(0)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '수시') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(1)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '상시') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(2)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '특별 채용') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(3)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '추천 채용') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(4)').prop('checked', true);
+		    	 }
+		    	 
+		    	 let interview_tech = data.INTERVIEW_TECH;
+		    	 let interview_tech_arr = interview_tech.split(',');
+		    	 $('.interview-basic-setting-area .interview-tech').empty();
+		    	 $.each(interview_tech_arr, function(index, item) {
+		    		 if (item == '1') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>ANGULAR</option>');
+		    		 } else if (item == '2') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>BOOTSTRAP</option>');
+		    		 } else if (item == '3') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>REACT</option>');
+		    		 } else if (item == '4') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>VUE</option>');
+		    		 }
+		    	 });
+		    	 
+		    	 $('.interview-basic-setting-area .interview-peoplenum').val(data.INTERVIEW_PEOPLENUM);
+		    	 
+		    	 $('.interview-basic-setting-area .interview-method').empty();
+		    	 if (data.INTERVIEW_METHOD == '온라인') {
+		    		 $('.interview-basic-setting-area .interview-method').append('<option selected value="온라인">온라인</option>');
+		    		 $('.interview-basic-setting-area .interview-method').append('<option value="오프라인">오프라인</option>');
+		    	 } else {
+		    		 $('.interview-basic-setting-area .interview-method').append('<option value="온라인">온라인</option>');
+		    		 $('.interview-basic-setting-area .interview-method').append('<option selected value="오프라인">오프라인</option>');
+		    	 }
+		    	 
+		    	 if (data.INTERVIEW_AUTHENTICATION != null) {
+		    		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('checked', 'checked');
+		    		 
+		    		 let interview_authentication = data.INTERVIEW_AUTHENTICATION;
+		    		 let interview_authentication_arr = interview_authentication.split(',');
+		    		 
+		    		 $.each(interview_authentication_arr, function(index, item) {
+		    			if (item == '이메일 인증') {
+		    				$('#authMethod1').prop('checked', true);
+		    			} else if (item == 'SMS 인증') {
+		    				$('#authMethod2').prop('checked', true);
+		    			}
+		    		 });
+		    	 }
+		     },
+		     error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		     }
+	  });
+	  
+		 $('.interview-basic-setting-area .interview-title').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-tech').prop('disabled', true);
+		 $('.interview-basic-setting-area .interview-peoplenum').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-method').prop('disabled', true);
+		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('disabled', 'disabled');
+		 $('#authMethod1').attr('disabled', 'disabled');
+		 $('#authMethod2').attr('disabled', 'disabled');
+  }
   
   // < 면접 설정 >
   // 1. 기본 설정
@@ -1150,10 +1243,11 @@
   
   // 2. 기본 설정 저장
   $('.interview-basic-setting-area .btn-save').on('click', function() {
+	 const project_no = '${param.project_no}';
 	 const interview_title = $('.interview-basic-setting-area .interview-title').val();
 	 const interview_hire_shape = $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:checked').val();
 	 const interview_division = $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:checked').val();
-	 const interview_tech = $('.interview-basic-setting-area .interview-tech').select2('val');
+	 let interview_tech = $('.interview-basic-setting-area .interview-tech').select2('val');
 	 const interview_peoplenum = $('.interview-basic-setting-area .interview-peoplenum').val();
 	 const interview_method = $('.interview-basic-setting-area .interview-method').select2('val');
 	 const status_auth = $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]:checked').val();
@@ -1166,9 +1260,9 @@
 // 	 alert('interview_tech : ' + interview_tech);
 // 	 alert('interview_peoplenum : ' + interview_peoplenum);
 // 	 alert('interview_method : ' + interview_method);
-	 alert('status_auth : ' + status_auth);
-	 alert('email_auth : ' + email_auth);
-	 alert('SMS_auth : ' + SMS_auth);
+// 	 alert('status_auth : ' + status_auth);
+// 	 alert('email_auth : ' + email_auth);
+// 	 alert('SMS_auth : ' + SMS_auth);
 	 
 	 if (interview_title == '') {
 		 $.notify({
@@ -1220,11 +1314,20 @@
 	 if (status_auth == undefined) {
 		 interview_authentication == '없음';
 	 } else {
-		 interview_authentication = email_auth + ',' + SMS_auth;
-		 interview_authentication = interview_authentication.substr(0, interview_authentication.length - 1);
+		 if (email_auth != undefined && SMS_auth == undefined) {
+			 interview_authentication = email_auth;
+		 } else if (email_auth == undefined && SMS_auth != undefined) {
+			 interview_authentication = SMS_auth;
+		 } else if (email_auth != undefined && SMS_auth != undefined) {
+			 interview_authentication = email_auth + ',' + SMS_auth;
+		 }
 	 }
 	 
-	 const project_no = '${param.project_no}';
+	 let interview_tech_txt = '';
+	 $.each(interview_tech, function(index, item) {
+		 interview_tech_txt += item + ',';
+	 });
+	 interview_tech_txt = interview_tech_txt.substr(0, interview_tech_txt.length - 1);
 	 
 	 // DB
 	 $.ajax({
@@ -1235,20 +1338,61 @@
 	    	 interview_title: interview_title,
 	    	 interview_hire_shape: interview_hire_shape,
 	    	 interview_division: interview_division,
-	    	 interview_tech: interview_tech,
+	    	 interview_tech: interview_tech_txt,
 	    	 interview_peoplenum: interview_peoplenum,
 	    	 interview_method: interview_method,
 	    	 interview_authentication: interview_authentication,
-	    	 project_no: proeject_no
+	    	 project_no: project_no
 	     },
 	     success: function (data) {
-	    	 // 작업 중!
+	    	 if (data.INTERVIEW_NO != null) {
+	    		 $('.interview-basic-setting-area .interview-title').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-tech').prop('disabled', true);
+	    		 $('.interview-basic-setting-area .interview-peoplenum').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-method').prop('disabled', true);
+	    		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('disabled', 'disabled');
+	    		 $('#authMethod1').attr('disabled', 'disabled');
+	    		 $('#authMethod2').attr('disabled', 'disabled');
+	    	 }
 	     },
 	     error: function (xhr, err) {
 	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
 	        alert("responseText: " + xhr.responseText);
 	     }
 	 });
+  });
+  
+  // 3. 지원서 설정
+  $('.div-customizing-area .btn-save').on('click', function() {
+	  const project_no = '${param.project_no }';
+	  const btn_selected = $('.div-customizing-area button[data-toggle=button]');
+	  
+	  let interview_customizing = '이름,국적,기술,연락처,고등학교,';
+	  $.each(btn_selected, function(index, item) {
+		  if ($(item).hasClass('active')) {
+			  interview_customizing += $(item).text() + ',';
+		  }
+	  });
+	  interview_customizing = interview_customizing.substr(0, interview_customizing.length - 1);
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/updateInterview.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    	interview_customizing: interview_customizing
+		    },
+		    success: function (data) {
+		    	
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
   });
 
   // <신청자 명단>
@@ -1545,5 +1689,32 @@
 	  });
   }
   
-  // 
+  // 기본 정보를 입력했는지 확인
+  function checkInputBasicInformation() {
+	  const project_no = '${param.project_no}';
+	  
+	  let returnValue = '';
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectInterview.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    },
+		    async: false,
+		    success: function (data) {
+		    	if (data.PROJECT_NO != null) {
+		    		returnValue = 'true';
+		    	} else {
+		    		returnValue = 'false';
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  return returnValue;
+  }
 </script>

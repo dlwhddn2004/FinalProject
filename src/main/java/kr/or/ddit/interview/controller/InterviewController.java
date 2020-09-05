@@ -25,6 +25,7 @@ import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 import kr.or.ddit.vo.newsboardVO;
 
+import org.openxmlformats.schemas.spreadsheetml.x2006.main.STRef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -121,7 +122,7 @@ public class InterviewController {
 		String interview_no = interviewService.insertInterview(params);
 		
 		Map<String, String> resultMap = new HashMap<String, String>();
-		resultMap.put("interview_no", interview_no);
+		resultMap.put("INTERVIEW_NO", interview_no);
 		
 		return resultMap;
 	}
@@ -386,6 +387,35 @@ public class InterviewController {
 		params.put("mem_id", mem_id);
 		
 		return interviewService.selectProjectApply(params);
+	}
+	
+	@RequestMapping("selectInterview")
+	@ResponseBody
+	public Map<String, String> selectInterview(String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		return interviewService.selectInterview(params);
+	}
+	
+	@RequestMapping("updateInterview")
+	@ResponseBody
+	public Map<String, String> updateInterview(String project_no,
+											   String interview_customizing) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("interview_customizing", interview_customizing);
+		
+		int chk = interviewService.updateInterview(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
+		
+		return resultMap;
 	}
 	
 }
