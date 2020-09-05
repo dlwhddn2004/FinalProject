@@ -24,7 +24,7 @@
 	                )
 	           	return;
   	  		} else {
-  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/project/project_1.do');
+  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/project/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}');
   	  		}
   	  	});
   	});
@@ -148,7 +148,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/components/notifications.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/guide/faq.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 질문 </span>
                       <span class="sidenav-normal"> 자주 묻는 질문 </span>
                     </a>

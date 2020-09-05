@@ -393,6 +393,21 @@
 			                    </div>
 			                  </div>
 			                </div>
+			                <div class="form-group mb-3">
+			                  <div class="input-group input-group-merge input-group-alternative">
+			                    <div class="input-group-prepend">
+			                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+			                    </div>
+			                    <input class="form-control" placeholder="이름" type="text" name="mem_name" required>
+<!-- 			                    <button type="button" class="btn btn-outline-primary">인증</button> -->
+			                    <div class="valid-feedback">
+			                    	success
+			                    </div>
+			                    <div class="invalid-feedback">
+			                    	이름을 입력해 주세요.
+			                    </div>
+			                  </div>
+			                </div>
 <!-- 			                <div class="form-group"> -->
 <!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
 <!-- 			                    <div class="input-group-prepend"> -->

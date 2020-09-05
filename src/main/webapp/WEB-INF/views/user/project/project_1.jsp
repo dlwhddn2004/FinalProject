@@ -155,8 +155,6 @@
 
 <script type="text/javascript">
 
-
-	
 	<!-- 등록 버튼 -->
 	$("#btnRegist").on("click", function() {
 		if ($('input[name=partnerInfo]').is(':checked') == false) {

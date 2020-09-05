@@ -62,9 +62,9 @@
           <div class="card-body">
             <form>
               <div class="form-group">
-                <h3>프로젝트</h3>
+                <h3>${projectInfo.project_title}</h3>
                 <h2>프로젝트를 등록해주셔서 감사합니다.</h2>
-                <button type="button" class="btn btn-outline-default">마이페이지</button>
+                <button id="btnInterview" type="button" class="btn btn-outline-default">면접 설정하러 가기</button>
                 <button type="button" class="btn btn-default">다른 프로젝트 등록</button>
               </div>
             </form>
@@ -88,6 +88,8 @@
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
-
+	$('#btnInterview').on('click', function() {
+		location.href = '${pageContext.request.contextPath}/user/interview/partnersMain.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${projectInfo.project_no}';
+	});
 </script>
 	

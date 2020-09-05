@@ -367,13 +367,20 @@ public class ProjectController {
 	
 	@RequestMapping("project_1")
 	public ModelAndView projectForm(HttpServletRequest request,
-									ModelAndView modelAndView) throws Exception{
+									ModelAndView modelAndView,
+									String mem_id) throws Exception{
 		
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트");
 //		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/project.do?mem_id=" + mem_id);
 		modelAndView.addObject("breadcrumb_second", "프로젝트 등록");
-
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		Map<String, String> readNotProject = projectService.readNotProject(params);
+		
+		modelAndView.addObject("readNotProject", readNotProject);
 		modelAndView.setViewName("user/project/project_1");
 		
 		return modelAndView;
@@ -567,8 +574,11 @@ public class ProjectController {
 		params.put("project_priority", project_priority);
 		
 		int chk = projectService.insertProjectAdd(params);
+		ProjectVO projectInfo = new ProjectVO();
+		projectInfo	= projectService.projectInfo(params);
 		
 		modelAndView.addObject("project_no", project_no);
+		modelAndView.addObject("projectInfo", projectInfo);
 		
 		modelAndView.setViewName("user/project/project_regist");
 		
