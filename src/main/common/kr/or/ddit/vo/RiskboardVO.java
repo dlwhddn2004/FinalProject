@@ -1,6 +1,6 @@
 package kr.or.ddit.vo;
 
-public class RiskmanagementboardVO {
+public class RiskboardVO {
 	
 	private String r;
 	private String risk_no;
