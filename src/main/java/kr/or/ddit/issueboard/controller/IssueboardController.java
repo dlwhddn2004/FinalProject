@@ -94,7 +94,7 @@ public class IssueboardController {
 		issueboardInfo.setIssue_title(issue_title);
 		issueboardInfo.setIssue_content(issue_content);
 		
-		issueboardService.insertIssueboardInfo(issueboardInfo);
+		issueboardService.insertIssueboard(issueboardInfo);
 		
 		String taskResult = null;
 		String message = null;
