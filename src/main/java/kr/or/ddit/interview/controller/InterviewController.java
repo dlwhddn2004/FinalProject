@@ -32,6 +32,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lowagie.text.pdf.AcroFields.Item;
+
 @Controller
 @RequestMapping("/user/interview/")
 public class InterviewController {
@@ -359,11 +361,45 @@ public class InterviewController {
 	// 캘린더 이벤트 삭제
 	@RequestMapping("deleteInterviewCalendar")
 	@ResponseBody
-	public Map<String, String> deleteInterviewCalendar(String id) throws Exception {
+	public Map<String, String> deleteInterviewCalendar(String id,
+													   String var_first_description,
+													   String project_no) throws Exception {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("id", id);
+		params.put("project_no", project_no);
 		
 		int chk = interviewService.deleteInterviewCalendar(params);
+		
+		String[] description_arr = var_first_description.split(",");
+		for (int i = 0; i < description_arr.length; i++) {
+			params.put("mem_id", description_arr[i]);
+			params.put("apply_status", "Y");
+			interviewService.deleteInterviewee(params);
+			interviewService.insertProjectApply(params);
+		}
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
+		
+		return resultMap;
+	}
+	
+	// 캘린더 드래그 앤 드롭
+	@RequestMapping("updateInterviewCalendar")
+	@ResponseBody
+	public Map<String, String> updateInterviewCalendar(String id,
+													   String start,
+													   String end) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("id", id);
+		params.put("start", start);
+		params.put("end", end);
+		
+		int chk = interviewService.updateInterviewCalendar(params);
 		
 		Map<String, String> resultMap = new HashMap<String, String>();
 		if (chk > 0) {
@@ -414,6 +450,115 @@ public class InterviewController {
 		} else {
 			resultMap.put("result", "N");
 		}
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("assignInterviewSchedule")
+	@ResponseBody
+	public Map<String, String> assignInterviewSchedule(String project_no,
+													   String all_mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		String[] mem_id_arr = all_mem_id.split(",");
+		
+		boolean result = true;
+		for (int i = 0; i < mem_id_arr.length; i++) {
+			params.put("mem_id", mem_id_arr[i]);
+			int chk = interviewService.insertInterviewee(params);
+			
+			if (!(chk > 0)) {
+				result = false;
+			}
+			
+			chk = interviewService.deleteProjectApply(params);
+			
+			if (!(chk > 0)) {
+				result = false;
+			}
+		}
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (result) {
+			resultMap.put("result", "Y");
+		} else if (!result) {
+			resultMap.put("result", "N");
+		}
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("modifyIntervieweeMember")
+	@ResponseBody
+	public Map<String, String> modifyIntervieweeMember(String project_no,
+													   String var_first_description,
+													   String description) throws Exception {
+		// 중복 제거
+		String[] first_status = var_first_description.split(",");
+		String[] last_status = description.split(",");
+		
+		ArrayList<String> firstList = new ArrayList<String>();
+		ArrayList<String> lastList = new ArrayList<String>();
+		
+		for (int i = 0; i < first_status.length; i++) {
+			firstList.add(first_status[i]);
+		}
+		for (int i = 0; i < last_status.length; i++) {
+			lastList.add(last_status[i]);
+		}
+		
+		for (int i = 0; i < firstList.size(); i++) {
+			for (int j = 0; j < lastList.size(); j++) {
+				if (firstList.get(i).equals(lastList.get(j))) {
+					firstList.remove(i);
+					lastList.remove(j);
+				}
+			}
+		}
+		
+		// --> firstList, lastList에서 중복이 제거되었음.
+		
+		// interviewee 테이블에서 먼저 조회
+		//   -> 1. 값이 존재함
+		//           - interviewee 테이블에서 데이터 삭제
+		//           - project_apply 테이블에 데이터 생성
+		//   -> 2. 값이 존재하지 않음
+		//           - interviewee 테이블에 데이터 생성
+		//           - project_apply 테이블에서 데이터 삭제
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		for (String firstListItem : firstList) {
+			params.put("mem_id", firstListItem);
+			Map<String, String> intervieweeInfo = interviewService.selectIntervieweeInfo(params);
+			
+			if (intervieweeInfo != null) {
+				params.put("apply_status", "Y");
+				interviewService.deleteInterviewee(params);
+				interviewService.insertProjectApply(params);
+			} else {
+				interviewService.insertInterviewee(params);
+				interviewService.deleteProjectApply(params);
+			}
+		}
+		
+		for (String lastListItem : lastList) {
+			params.put("mem_id", lastListItem);
+			Map<String, String> intervieweeInfo = interviewService.selectIntervieweeInfo(params);
+			
+			if (intervieweeInfo != null) {
+				params.put("apply_status", "Y");
+				interviewService.deleteInterviewee(params);
+				interviewService.insertProjectApply(params);
+			} else {
+				interviewService.insertInterviewee(params);
+				interviewService.deleteProjectApply(params);
+			}
+		}
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		resultMap.put("result", "Y");
 		
 		return resultMap;
 	}

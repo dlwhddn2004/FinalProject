@@ -35,10 +35,22 @@ public interface IInterviewDao {
 	
 	public int deleteInterviewCalendar(Map<String, String> params) throws Exception;
 	
+	public int updateInterviewCalendar(Map<String, String> params) throws Exception;
+	
 	// 공통
 	public Map<String, String> selectProjectApply(Map<String, String> params) throws Exception;
+	
+	public int insertProjectApply(Map<String, String> params) throws Exception;
+	
+	public int deleteProjectApply(Map<String, String> params) throws Exception;
 	
 	public Map<String, String> selectInterview(Map<String, String> params) throws Exception;
 	
 	public int updateInterview(Map<String, String> params) throws Exception;
+	
+	public Map<String, String> selectIntervieweeInfo(Map<String, String> params) throws Exception;
+	
+	public int insertInterviewee(Map<String, String> params) throws Exception;
+	
+	public int deleteInterviewee(Map<String, String> params) throws Exception;
 }

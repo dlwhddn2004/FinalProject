@@ -8,6 +8,7 @@ import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
+import oracle.net.aso.p;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -105,5 +106,53 @@ public class InterviewDaoImpl implements IInterviewDao {
 	@Override
 	public int updateInterview(Map<String, String> params) throws Exception {
 		return client.update("interview.updateInterview", params);
+	}
+
+	@Override
+	public int updateInterviewCalendar(Map<String, String> params)
+			throws Exception {
+		return client.update("interview.updateInterviewCalendar", params);
+	}
+
+	@Override
+	public int insertInterviewee(Map<String, String> params) throws Exception {
+		int chk = 0;
+		
+		Object obj = client.insert("interview.insertInterviewee", params);
+		
+		if (obj == null) {
+			chk = 1;
+		}
+		
+		return chk;
+	}
+
+	@Override
+	public int deleteProjectApply(Map<String, String> params) throws Exception {
+		return client.delete("interview.deleteProjectApply", params);
+	}
+
+	@Override
+	public Map<String, String> selectIntervieweeInfo(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("interview.selectIntervieweeInfo", params);
+	}
+
+	@Override
+	public int deleteInterviewee(Map<String, String> params) throws Exception {
+		return client.delete("interview.deleteInterviewee", params);
+	}
+
+	@Override
+	public int insertProjectApply(Map<String, String> params) throws Exception {
+		int chk = 0;
+		
+		Object obj = client.insert("interview.insertProjectApply", params);
+		
+		if (obj == null) {
+			chk = 1;
+		}
+		
+		return chk;
 	}
 }

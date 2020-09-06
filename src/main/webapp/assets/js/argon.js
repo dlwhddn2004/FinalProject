@@ -1885,8 +1885,10 @@ var Scrollbar = (function() {
 
 var Fullcalendar = (function() {
 	
+	// 작업 중!
 	var modify_id = null;
 	var modify_date = null;
+	let var_first_description = null;
 
 	// Variables
 
@@ -2072,7 +2074,19 @@ var Fullcalendar = (function() {
 					$('.modal-interview-modify .event-end-time').val(time);
 					modify_date = year + '-' + month + '-' + day;
 					
+					var_first_description = '';
+					
 					// 면접자 선택
+					try {
+						$.each(event.description, function(index, item) {
+							var_first_description += item + ','; 
+						});
+						
+						var_first_description = var_first_description.substr(0, var_first_description.length - 1);
+					} catch (e) {
+						var_first_description = event.description;
+					}
+					
 					let description = event.description;
 					
 					let selectedValues = description;
@@ -2131,6 +2145,7 @@ var Fullcalendar = (function() {
 					    } 
 					});
 					
+					$('.modal-interview-modify .edit-event--id').val(event.id);
 					$('.modal-interview-modify').modal('show');
 				} else if(check_currentPage_forCalendar === 'projectCalendar') {
 					$('.calendar #edit-event input[value=' + event.className + ']').prop('checked', true);
@@ -2148,7 +2163,46 @@ var Fullcalendar = (function() {
 				const check_currentPage_forCalendar = $('input[name=check-currentPage-forCalendar]').val();
 				
 				if (check_currentPage_forCalendar === 'interviewCalendar') {
+					let temp = '';
+					const id = info.id;
 					
+					temp = info.start.toISOString();
+					let start = temp.replace('T', ' ');
+
+					let end = null;
+					try {
+						temp = info.end.toISOString();
+						end = temp.replace('T', ' ');
+					} catch (e) {
+						
+					}
+					
+					start = start.substr(0, start.length - 3);
+					end = end.substr(0, end.length - 3);
+					
+					$.ajax({
+						type: 'POST',
+						url: '/CONNECTOR/user/interview/updateInterviewCalendar.do',
+						dataType: 'json',
+						data: {
+							id: id,
+							start: start,
+							end: end
+						},
+						success: function(result) {
+							if (result.result == 'N') {
+								Swal.fire(
+								  'WARNING',
+								  '일정 변경에 실패했습니다.',
+								  'warning'
+								)
+							}
+						},
+						error: function (xhr, err) {
+					        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+					        alert("responseText: " + xhr.responseText);
+					    }
+					});
 				} else if(check_currentPage_forCalendar === 'projectCalendar') {
 					let temp = '';
 					const id = info.id;
@@ -2309,6 +2363,23 @@ var Fullcalendar = (function() {
 				        alert("responseText: " + xhr.responseText);
 				    }
 				});
+				
+				// project_apply 테이블에서 정보를 삭제하고 interviewee 테이블로 정보를 이동시킨다.
+				$.ajax({
+				    url: '/CONNECTOR/user/interview/assignInterviewSchedule.do',
+				    type: 'POST',
+				    async: false,
+				    data: {
+				    	project_no: project_no,
+				    	all_mem_id: interviewee
+				    },
+				    success: function (data) {
+				    },
+				    error: function (xhr, err) {
+				        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+				        alert("responseText: " + xhr.responseText);
+				    }
+				});
 
 				if (title != '') {
 					$this.fullCalendar('renderEvent', {
@@ -2420,7 +2491,7 @@ var Fullcalendar = (function() {
 		//Update/Delete an Event
 		$('body').on('click', '[data-calendar]', function() {
 			var calendarAction = $(this).data('calendar');
-			var currentId = $('.calendar .edit-event--id').val();
+			var currentId = $('.edit-event--id').val();
 			var currentTitle = $('.calendar .edit-event--title').val();
 			var currentDesc = $('.calendar .edit-event--description').val();
 			var currentClass = $('.calendar #edit-event .event-tag input:checked').val();
@@ -2429,6 +2500,9 @@ var Fullcalendar = (function() {
 			let date = modify_date;
 			
 			const check_currentPage_forCalendar = $('input[name=check-currentPage-forCalendar]').val();
+			
+			console.log(var_first_description);
+			alert(var_first_description);
 			
 			if (check_currentPage_forCalendar === 'interviewCalendar') {
 				if (calendarAction === 'update') {
@@ -2457,6 +2531,7 @@ var Fullcalendar = (function() {
 						description = description.substr(0, description.length - 1);
 						
 						currentEvent[0].title = title;
+						currentEvent[0].id = currentId;
 						currentEvent[0].className = [className];
 						currentEvent[0].start = start;
 						currentEvent[0].end = end;
@@ -2483,6 +2558,25 @@ var Fullcalendar = (function() {
 						        alert("responseText: " + xhr.responseText);
 						    }
 						});
+						
+						const project_no = $('.calendar input[name=project_no]').val();
+						$.ajax({
+							type: 'POST',
+							url: '/CONNECTOR/user/interview/modifyIntervieweeMember.do',
+							dataType: 'json',
+							data: {
+								project_no: project_no,
+								var_first_description: var_first_description,
+								description: description,
+							},
+							success: function(result) {
+								
+							},
+							error: function (xhr, err) {
+								alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+						        alert("responseText: " + xhr.responseText);
+						    }
+						});
 					} else {
 						Swal.fire(
 						  'WARNING',
@@ -2496,6 +2590,8 @@ var Fullcalendar = (function() {
 				
 				if (calendarAction === 'delete') {
 					$('#edit-event').modal('hide');
+					
+					const project_no = $('.calendar input[name=project_no]').val();
 
 					// Show confirm dialog
 					setTimeout(function() {
@@ -2517,7 +2613,9 @@ var Fullcalendar = (function() {
 									url: '/CONNECTOR/user/interview/deleteInterviewCalendar.do',
 									dataType: 'json',
 									data: {
-										id: id
+										id: id,
+										project_no: project_no,
+										var_first_description: var_first_description
 									},
 									success: function(result) {
 										if (result.result == 'Y') {

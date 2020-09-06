@@ -188,6 +188,15 @@
 		WHERE MEM_ID = #mem_id#
 	</select>
 	
+	<insert id="insertProjectApply" parameterClass="map">
+		INSERT INTO PROJECT_APPLY (PROJECT_NO,
+		                           MEM_ID,
+		                           APPLY_STATUS)
+		VALUES (#project_no#,
+		        #mem_id#,
+		        #apply_status#)
+	</insert>
+	
 	<insert id="insertInterview" parameterClass="map">
 		<selectKey keyProperty="interview_no" resultClass="String">
 			SELECT INTERVIEW_SEQ.nextval
@@ -223,6 +232,39 @@
 		UPDATE INTERVIEW SET INTERVIEW_CUSTOMIZING = #interview_customizing#
 		WHERE PROJECT_NO = #project_no#
 	</update>
+	
+	<update id="updateInterviewCalendar" parameterClass="map">
+		UPDATE CALENDAR_INTERVIEW SET "START" = #start#,
+		                              END = #end#
+		WHERE ID = #id#
+	</update>
+	
+	<select id="selectIntervieweeInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM INTERVIEWEE
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</select>
+	
+	<insert id="insertInterviewee" parameterClass="map">
+		INSERT INTO INTERVIEWEE (INTERVIEWEE_SEQ,
+		                         PROJECT_NO,
+		                         MEM_ID)
+		VALUES (INTERVIEWEE_SEQ.nextval,
+		        #project_no#,
+		        #mem_id#)
+	</insert>
+	
+	<delete id="deleteInterviewee" parameterClass="map">
+		DELETE INTERVIEWEE
+		WHERE PROJECT_NO = #project_no#
+		  AND MEM_ID = #mem_id#
+	</delete>
+	
+	<delete id="deleteProjectApply" parameterClass="map">
+		DELETE PROJECT_APPLY WHERE MEM_ID = #mem_id#
+		AND PROJECT_NO = #project_no#
+	</delete>
 </sqlMap>
 
  

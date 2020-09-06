@@ -123,4 +123,42 @@ public class InterviewServiceImpl implements IInterviewService {
 	public int updateInterview(Map<String, String> params) throws Exception {
 		return dao.updateInterview(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateInterviewCalendar(Map<String, String> params)
+			throws Exception {
+		return dao.updateInterviewCalendar(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertInterviewee(Map<String, String> params) throws Exception {
+		return dao.insertInterviewee(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteProjectApply(Map<String, String> params) throws Exception {
+		return dao.deleteProjectApply(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectIntervieweeInfo(Map<String, String> params)
+			throws Exception {
+		return dao.selectIntervieweeInfo(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteInterviewee(Map<String, String> params) throws Exception {
+		return dao.deleteInterviewee(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int insertProjectApply(Map<String, String> params) throws Exception {
+		return dao.insertProjectApply(params);
+	}
 }
