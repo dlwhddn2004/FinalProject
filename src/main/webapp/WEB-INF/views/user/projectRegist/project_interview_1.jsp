@@ -23,6 +23,7 @@
 	type="text/css">
  <!-- Quill -->
  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
 
 
     <!--                  카드 메뉴랑 폼 묶는 곳                -->
@@ -67,7 +68,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form>
+              <form name="interviewForm_1" method="post">
                 <!-- Input groups with icon -->
                 <div class="form-group">
                   <label class="col-form-label form-control-label">공고명</label>
@@ -132,36 +133,18 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group interview_tech">
+                <div class="form-group">
                   <label class="col-form-label form-control-label">채용 기술 분야</label>
                   <label style="color: tomato">*</label>
                   <p class="text-muted" style="font-size: small">채용 기술 분야를 선택해 주세요.</p>
-                  <ul class="nav nav-pills nav-pills-circle" id="tabs_2" role="tablist">
-                    <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Angular">
-                      <a class="nav-link rounded-circle active" id="angular" data-toggle="tab" href="#tabs_2_1" role="tab" aria-controls="home" aria-selected="true">
-                        <span class="nav-link-icon"><i class="fab fa-angular fa-3x"></i></span>
-                        <input type="hidden" value="1">
-                      </a>
-                    </li>
-                    <li class="nav-item"  data-toggle="tooltip" data-placement="bottom" title="Bootstrap">
-                      <a class="nav-link" id="bootstrap" data-toggle="tab" href="#tabs_2_2" role="tab" aria-controls="profile" aria-selected="false">
-                        <span class="nav-link-icon d-block"><i class="fab fa-bootstrap"></i></span>
-                        <input type="hidden" value="2">
-                      </a>
-                    </li>
-                    <li class="nav-item"  data-toggle="tooltip" data-placement="bottom" title="React">
-                      <a class="nav-link" id="react" data-toggle="tab" href="#tabs_2_3" role="tab" aria-controls="contact" aria-selected="false">
-                        <span class="nav-link-icon d-block"><i class="fab fa-react fa-3x"></i></span>
-                        <input type="hidden" value="3">
-                      </a>
-                    </li>
-                    <li class="nav-item"  data-toggle="tooltip" data-placement="bottom" title="Vue.js">
-                      <a class="nav-link" id="vue" data-toggle="tab" href="#tabs_2_3" role="tab" aria-controls="contact" aria-selected="false">
-                        <span class="nav-link-icon d-block"><i class="fab fa-vuejs fa-3x"></i></span>
-                        <input type="hidden" value="4">
-                      </a>
-                    </li>
-                  </ul>
+                  <div class="input-group input-group-merge">
+                    <select class="form-control interview-tech" data-toggle="select" multiple data-placeholder="기술 선택">
+                      <option value="1">ANGULAR</option>
+                      <option value="2">BOOTSTRAP</option>
+                      <option value="3">REACT</option>
+                      <option value="4">VUE</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label class="col-form-label form-control-label">채용 인원</label>
@@ -223,7 +206,8 @@
 <!-- Optional JS -->
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="assets/vendor/select2/dist/js/select2.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
@@ -243,14 +227,12 @@
 	});
 
 
-
-
 	$('#btnRegist').on('click', function() {
 		 const project_no = '${project_no}';
 		 const interview_title = $('.interview-title').val();
 		 const interview_hire_shape = $('input[name=interviewForm]:checked').val();
 		 const interview_division = $('input[name=interviewDivision]:checked').val();
-		 let interview_tech = $('.interview_tech a[aria-selected=true]').find('input').val();
+		 let interview_tech = $('.interview-tech').select2('val');
 		 const interview_peoplenum = $('.interview-peoplenum').val();
 		 const interview_method = $('input[name=interview-method]:checked').val();
 		 const status_auth = $('.interview-authentication .authToggleBtn input[type=checkbox]:checked').val();
@@ -302,6 +284,31 @@
 			 }
 		 }
 		 
+		 let interview_tech_txt = '';
+		 $.each(interview_tech, function(index, item) {
+			 interview_tech_txt += item + ',';
+		 });
+		 interview_tech_txt = interview_tech_txt.substr(0, interview_tech_txt.length - 1);
+		 
+	 	const $interview_title_ipt = $('<input type="hidden" name="interview_title" value= "' + interview_title + '" >');
+		const $interview_hire_shape_ipt = $('<input type="hidden" name="interview_hire_shape" value= "' + interview_hire_shape + '" >');
+		const $interview_division_ipt = $('<input type="hidden" name="interview_division" value= "' + interview_division + '" >');
+		const $interview_tech_txt_ipt = $('<input type="hidden" name="interview_tech" value= "' + interview_tech_txt + '" >');
+		const $interview_peoplenum_ipt = $('<input type="hidden" name="interview_peoplenum" value= "' + interview_peoplenum + '" >');
+		const $interview_method_ipt = $('<input type="hidden" name="interview_method" value= "' + interview_method + '" >');
+		const $interview_authentication_ipt = $('<input type="hidden" name="interview_authentication" value= "' + interview_authentication + '" >');
+	  	
+	  	$('form[name=interviewForm_1]').append($interview_title_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_hire_shape_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_division_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_tech_txt_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_peoplenum_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_method_ipt);
+	  	$('form[name=interviewForm_1]').append($interview_authentication_ipt);
+	  	
+		
+		$('form[name=interviewForm_1]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_interview_2.do?project_no=${project_no}');
+		$('form[name=interviewForm_1]').submit(); 
 	
 	})
 </script>

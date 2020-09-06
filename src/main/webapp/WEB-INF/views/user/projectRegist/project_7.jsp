@@ -216,7 +216,7 @@ $("#btnRegist").on("click", function() {
   	$('form[name=projectAdd]').append($plan_ipt);
   	$('form[name=projectAdd]').append($priority_ipt);
 	
-	$('form[name=projectAdd]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_regist.do?project_no=${project_no}');
+	$('form[name=projectAdd]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_interview_1.do?project_no=${project_no}');
 	$('form[name=projectAdd]').submit(); 
 	
 });

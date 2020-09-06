@@ -65,7 +65,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-              <form>
+              <form name="interviewForm_2" method="post">
                 <!-- Input groups with icon -->
                 <div class="form-group">
                   <label class="col-form-label form-control-label">기본정보</label>
@@ -169,7 +169,6 @@
 <script>
 
 $('#btnRegist').on('click', function() {
-	const project_no = '${project_no}';
 	const btn_selected = $('button[data-toggle=button]');
 	
 	let interview_customizing = '이름,국적,기술,연락처,고등학교,';
@@ -180,7 +179,12 @@ $('#btnRegist').on('click', function() {
 	});
 	interview_customizing = interview_customizing.substr(0, interview_customizing.length - 1); 
 	
-	alert(interview_customizing);
+	const $interview_customizing_ipt = $('<input type="hidden" name="interview_customizing" value= "' + interview_customizing + '" >');
+  	
+  	$('form[name=interviewForm_2]').append($interview_customizing_ipt);
+	
+	$('form[name=interviewForm_2]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_regist.do?project_no=${project_no}&interview_no=${interview_no}');
+	$('form[name=interviewForm_2]').submit(); 
 
 })
 </script>
