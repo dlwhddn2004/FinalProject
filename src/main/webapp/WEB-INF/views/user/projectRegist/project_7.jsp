@@ -56,6 +56,7 @@
               <p class="text-muted" style="font-size: small">6. 모집 요건</p>
               <p class="font-weight-bold text-primary" style="font-size: small">7. 추가 정보</p>
             </li>
+            <li class="list-group-item">면접 정보 설정</li>
             <li class="list-group-item">프로젝트 등록 완료</li>
           </ul>
         </div>
@@ -69,42 +70,40 @@
           </div>
           <!-- Card body -->
           <div class="card-body">
-            <form>
+            <form name="projectAdd" method="post">
               <div class="form-group">
                 <label class="col-form-label form-control-label">프로젝트 인력 상황</label>
                 <label style="color: tomato">*</label>
                 <div class="custom-control custom-radio mb-3">
-                  <input type="radio" id="project_manpower1" name="project_manpower" class="custom-control-input" value="정부지원사업">
+                  <input type="radio" id="project_manpower1" name="manpower" class="custom-control-input" value="IT 프로젝트 경험이 있는 인력이 있습니다.">
                   <label class="custom-control-label" for="project_manpower1">IT 프로젝트 경험이 있는 인력이 있습니다.</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_manpower2" name="project_manpower" class="custom-control-input" value="아님">
+                  <input type="radio" id="project_manpower2" name="manpower" class="custom-control-input" value="IT 프로젝트 경험이 있는 인력이 없습니다.">
                   <label class="custom-control-label" for="project_manpower2">IT프로젝트 경험이 있는 인력이 없습니다.</label>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-form-label form-control-label">프로젝트 인력 상황</label>
+                <label class="col-form-label form-control-label">매니징 경험</label>
                 <label style="color: tomato">*</label>
                 <div class="custom-control custom-radio mb-3">
-                  <input type="radio" id="project_managementexperience1" name="project_managementexperience" class="custom-control-input" value="정부지원사업">
+                  <input type="radio" id="project_managementexperience1" name="managementexperience" class="custom-control-input" value="프로젝트 매니징 경험이 있습니다.">
                   <label class="custom-control-label" for="project_managementexperience1">프로젝트 매니징 경험이 있습니다.</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_managementexperience2" name="project_managementexperience" class="custom-control-input" value="아님">
+                  <input type="radio" id="project_managementexperience2" name="managementexperience" class="custom-control-input" value="프로젝트 매니징 경험이 없습니다.">
                   <label class="custom-control-label" for="project_managementexperience2">없습니다.</label>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-form-label form-control-label">향후 계획</label>
-                <label style="color: tomato">*</label>
-                <p class="text-muted" style="font-size: small">조건에 맞는 디벨로퍼를 지원자로 받습니다</p>
                 <div class="col-md-10">
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck1" type="checkbox">
+                    <input class="custom-control-input" id="customCheck1" type="checkbox" value="향후 유지보수를 위한 아웃소싱 계획이 있습니다.">
                     <label class="custom-control-label" for="customCheck1">향후 유지보수를 위한 아웃소싱 계획이 있습니다.</label>
                   </div>
                   <div class="custom-control custom-checkbox">
-                    <input class="custom-control-input" id="customCheck2" type="checkbox">
+                    <input class="custom-control-input" id="customCheck2" type="checkbox" value="향후 고도화를 위한 아웃소싱 계획이 있습니다.">
                     <label class="custom-control-label" for="customCheck2">향후 고도화를 위한 아웃소싱 계획이 있습니다.</label>
                   </div>
                 </div>
@@ -113,20 +112,20 @@
                 <label class="col-form-label form-control-label">프로젝트 우선순위</label>
                 <label style="color: tomato">*</label>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_supportstatus1" name="project_supportstatus" class="custom-control-input" value="정부지원사업">
+                  <input type="radio" id="project_supportstatus1" name="priority" class="custom-control-input" value="완성도 높은 산출물을 받아 보는 것이 중요">
                   <label class="custom-control-label" for="project_supportstatus1">완성도 높은 산출물을 받아 보는 것이 중요</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_supportstatus2" name="project_supportstatus" class="custom-control-input" value="아님">
+                  <input type="radio" id="project_supportstatus2" name="priority" class="custom-control-input" value="최대한 낮은 금액으로 제안받는 것이 중요">
                   <label class="custom-control-label" for="project_supportstatus2">최대한 낮은 금액으로 제안받는 것이 중요</label>
                 </div>
                 <div class="custom-control custom-radio">
-                  <input type="radio" id="project_supportstatus3" name="project_supportstatus" class="custom-control-input" value="아님">
-                  <label class="custom-control-label" for="project_supportstatus3">프로젝트 기간 준수가 가장 중요, 가능하다면 기간 단축</label>
+                  <input type="radio" id="project_supportstatus3" name="priority" class="custom-control-input" value="프로젝트 기간 준수가 가장 중요">
+                  <label class="custom-control-label" for="project_supportstatus3">프로젝트 기간 준수가 가장 중요</label>
                 </div>
               </div>
               <div align="right" style="padding: 15px 15px 0px 0px;">
-                <button type="button" class="btn btn-primary btn-write">등록</button>
+                <button id="btnRegist" type="button" class="btn btn-primary btn-write">등록</button>
               </div>
             </form>
           </div>
@@ -150,10 +149,75 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script>
 
-$(".projectForm4 #btnRegist").on("click", function() {
-
-	$('form[name=projectMeeting]').attr('action', '${pageContext.request.contextPath}/user/project/project_6.do');
-	$('form[name=projectMeeting]').submit(); 
+$("#btnRegist").on("click", function() {
+	if ($('input[name=manpower]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '프로젝트 인력 상황을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=managementexperience]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '매니징 경험을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=priority]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '프로젝트 우선순위를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
+	manpower = $('input[name=manpower]:checked').val();
+	managementexperience = $('input[name=managementexperience]:checked').val();
+	
+    plan = "";
+  	$('input[type=checkbox]:checked').each(function () {
+  		plan += ($(this).val()) + "<br>";
+	});
+  	
+  	priority = $('input[name=priority]:checked').val();
+  	
+	const $manpower_ipt = $('<input type="hidden" name="project_manpower" value= "' + manpower + '" >');
+	const $managementexperience = $('<input type="hidden" name="project_managementexperience" value= "' + managementexperience + '" >');
+	const $plan_ipt = $('<input type="hidden" name="project_futureplans" value= "' + plan + '" >');
+	const $priority_ipt = $('<input type="hidden" name="project_priority" value= "' + priority + '" >');
+  	
+  	$('form[name=projectAdd]').append($manpower_ipt);
+  	$('form[name=projectAdd]').append($managementexperience);
+  	$('form[name=projectAdd]').append($plan_ipt);
+  	$('form[name=projectAdd]').append($priority_ipt);
+	
+	$('form[name=projectAdd]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_regist.do?project_no=${project_no}');
+	$('form[name=projectAdd]').submit(); 
 	
 });
 </script>

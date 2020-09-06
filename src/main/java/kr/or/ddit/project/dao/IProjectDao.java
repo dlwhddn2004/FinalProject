@@ -25,8 +25,26 @@ public interface IProjectDao {
 	public String insertProjectInfo(Map<String, String> params) throws Exception;
 	public int insertProjectReady(Map<String, String> params) throws Exception;
 	public int insertProjectDetail(Map<String, String> params) throws Exception;
+	public int insertProjectBudget(Map<String, String> params) throws Exception;
+	public int insertProjectMeeting(Map<String, String> params) throws Exception;
+	public int insertProjectMozip(Map<String, String> params) throws Exception;
+	public int insertProjectAdd(Map<String, String> params) throws Exception;
+		
+	public void insertProjectParticipants(Map<String, String> params) throws Exception;
 	
+	public Map<String, String> readNotProject(Map<String, String> params) throws Exception;
 	
 	// 덕년 리스트 조회
-	public List<ProjectVO> projectList() throws Exception;
+	public List<ProjectVO> projectList(Map<String,String>params) throws Exception;
+	// 상세보기 조회
+	public ProjectVO projectInfo(Map<String,String>params) throws Exception;
+	public String projectInfo6(Map<String,String>params) throws Exception;
+	public int projectInfo1(Map<String,String>params) throws Exception;
+	public int projectInfo2(Map<String,String>params) throws Exception;
+	public int projectInfo3(Map<String,String>params) throws Exception;
+	public int projectInfo4(Map<String,String>params) throws Exception;
+	public int projectInfo5(Map<String,String>params) throws Exception;
+	// 지원자 신청
+	public void insertprojectsupport(ProjectVO projectInfo) throws Exception;
+
 }

@@ -1,4 +1,4 @@
-package kr.or.ddit.mypage.developer.service;
+﻿package kr.or.ddit.mypage.developer.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,7 +34,7 @@ public class IMypageServiceImpl implements IMypageService{
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public int projectFinishNumber(Map<String, String> params) throws Exception {
-		return dao.portfolioFinishNumber(params);
+		return dao.projectFinishNumber(params);
 	}
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override

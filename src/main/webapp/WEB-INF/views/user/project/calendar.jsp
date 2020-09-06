@@ -31,6 +31,7 @@
   }
 </style>
 
+<input type="hidden" name="check-currentPage-forCalendar" value="projectCalendar">
 <div class="row calendar">
 	<div class="col">
 		<!-- Fullcalendar -->

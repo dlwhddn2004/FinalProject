@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
 
@@ -23,8 +24,13 @@
     .modal-position-center {
         transform: translate(-300px, 0px) !important;
     }
+    
+    .fc-time {
+	    color: white;
+	}
 </style>
 
+<input type="hidden" name="check-currentPage-forCalendar" value="interviewCalendar">
 <div class="row interview">
   <div class="col">
     <!-- 탭 -->
@@ -101,7 +107,7 @@
                 <div class="tab-content" id="myinterviewSetContent">
                   <div class="tab-pane fade show active" id="tabs-interviewSet-text-1" role="tabpanel" aria-labelledby="tabs-interviewSet-text-1-tab">
                     <!-- Input groups -->
-                    <div class="card">
+                    <div class="card interview-basic-setting-area">
                       <!-- Card header -->
                       <div class="card-header">
                         <small class="text-muted">면접의 기본 내용들을 설정해주세요.</small>
@@ -118,7 +124,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-heading"></i></span>
                                   </div>
-                                  <input class="form-control" placeholder="공고명" type="text">
+                                  <input class="form-control interview-title" placeholder="공고명" type="text">
                                 </div>
                               </div>
                             </div>
@@ -127,21 +133,21 @@
                             <div class="col-md-6">
                               <small>채용 형태</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-hire-shape">
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm1" name="interviewForm" class="custom-control-input" checked>
+                                    <input type="radio" id="interviewForm1" name="interviewForm" class="custom-control-input" value="일반 채용" checked>
                                     <label class="custom-control-label" for="interviewForm1">일반 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm2" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm2" name="interviewForm" class="custom-control-input" value="상시 채용">
                                     <label class="custom-control-label" for="interviewForm2">상시 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm3" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm3" name="interviewForm" class="custom-control-input" value="추천 채용">
                                     <label class="custom-control-label" for="interviewForm3">추천 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewForm4" name="interviewForm" class="custom-control-input">
+                                    <input type="radio" id="interviewForm4" name="interviewForm" class="custom-control-input" value="비공개 채용">
                                     <label class="custom-control-label" for="interviewForm4">비공개 채용</label>
                                   </div>
                                 </div>
@@ -150,25 +156,25 @@
                             <div class="col-md-6">
                               <small>채용 구분</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-division">
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision1" name="interviewDivision" class="custom-control-input" checked>
+                                    <input type="radio" id="interviewDivision1" name="interviewDivision" class="custom-control-input" value="공채" checked>
                                     <label class="custom-control-label" for="interviewDivision1">공채</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision2" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision2" name="interviewDivision" class="custom-control-input" value="수시">
                                     <label class="custom-control-label" for="interviewDivision2">수시</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision3" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision3" name="interviewDivision" class="custom-control-input" value="상시">
                                     <label class="custom-control-label" for="interviewDivision3">상시</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision4" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision4" name="interviewDivision" class="custom-control-input" value="특별 채용">
                                     <label class="custom-control-label" for="interviewDivision4">특별 채용</label>
                                   </div>
                                   <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="interviewDivision5" name="interviewDivision" class="custom-control-input">
+                                    <input type="radio" id="interviewDivision5" name="interviewDivision" class="custom-control-input" value="추천 채용">
                                     <label class="custom-control-label" for="interviewDivision5">추천 채용</label>
                                   </div>
                                 </div>
@@ -180,7 +186,7 @@
                               <small class="text-muted">채용 기술 분야</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <select class="form-control" data-toggle="select" multiple data-placeholder="기술 선택">
+                                  <select class="form-control interview-tech" data-toggle="select" multiple data-placeholder="기술 선택">
                                     <option value="1">ANGULAR</option>
                                     <option value="2">BOOTSTRAP</option>
                                     <option value="3">REACT</option>
@@ -193,7 +199,7 @@
                               <small class="text-muted">채용 인원</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <input class="form-control" type="number" value="1" id="example-number-input">
+                                  <input class="form-control interview-peoplenum" type="number" value="1" id="example-number-input">
                                 </div>
                               </div>
                             </div>
@@ -204,9 +210,9 @@
                               <small class="text-muted">면접 방식</small>
                               <div class="form-group">
                                 <div class="input-group input-group-merge">
-                                  <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="면접 방식">
-                                    <option>온라인</option>
-                                    <option>오프라인</option>
+                                  <select class="form-control interview-method" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="면접 방식">
+                                    <option value="온라인">온라인</option>
+                                    <option value="오프라인">오프라인</option>
                                   </select>
                                 </div>
                               </div>
@@ -216,17 +222,17 @@
                             <div class="col-md-6">
                               <small class="text-muted">본인 인증</small>
                               <div class="form-group">
-                                <div class="input-group input-group-merge">
+                                <div class="input-group input-group-merge interview-authentication">
                                   <label class="custom-toggle authToggleBtn">
-                                    <input type="checkbox">
+                                    <input type="checkbox" value="on">
                                     <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
                                   </label>
                                   <div class="custom-control custom-checkbox" style="margin: 0px 2px 0px 4px;">
-                                    <input type="checkbox" class="custom-control-input" id="authMethod1" disabled>
+                                    <input type="checkbox" class="custom-control-input" id="authMethod1" value="이메일 인증" disabled>
                                     <label class="custom-control-label" for="authMethod1">이메일 인증</label>
                                   </div>
                                   <div class="custom-control custom-checkbox" style="margin: 0px 2px 0px 4px;">
-                                    <input type="checkbox" class="custom-control-input" id="authMethod2" disabled>
+                                    <input type="checkbox" class="custom-control-input" id="authMethod2" value="SMS 인증" disabled>
                                     <label class="custom-control-label" for="authMethod2">SMS 인증</label>
                                   </div>
                                 </div>
@@ -235,7 +241,7 @@
                           </div>
                           <div class="row">
                             <div class="col-md-12" style="display: flex; justify-content: flex-end;">
-                              <button class="btn btn-primary" type="button">저장</button>
+                              <button class="btn btn-primary btn-save" type="button">저장</button>
                             </div>
                           </div>
                         </form>
@@ -255,7 +261,7 @@
                         </div>
                       </div>
                       <!-- Card body -->
-                      <div class="card-body">
+                      <div class="card-body div-customizing-area">
                         <form>
                           <div class="row">
                             <div class="col-md-12">
@@ -339,7 +345,7 @@
                             </div>
                           </div>
                           <div class="row" style="display: flex; justify-content: flex-end;">
-                            <button type="button" class="btn btn-primary">저장</button>
+                            <button type="button" class="btn btn-primary btn-save">저장</button>
                           </div>
                         </form>
                       </div>
@@ -419,14 +425,18 @@
           </div>
           <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
             <!-- 지원자 목록 -->
-            <div class="card">
+            <div class="card div-apply-table-list">
               <!-- Card header -->
               <div class="card-header border-0">
-                <div class="row">
+                <div class="row" style="display: flex; justify-content: space-between;">
                   <div class="col-6">
-                    <h3 class="mb-0">명단 조회</h3>
+                    <h3 class="mb-0 main-title">명단 조회</h3>
+                  </div>
+                  <div>
+                  	<button type="button" class="btn btn-outline-primary btn-sm btn-view-category">면접자</button>
                   </div>
                 </div>
+                <small class="text-muted sub-title">지원자 조회</small>
               </div>
               <!-- Light table -->
               <div class="table-responsive">
@@ -439,94 +449,8 @@
                     <th></th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                      <b>Alex Smith</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">24세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-3.jpg" class="avatar rounded-circle mr-3">
-                      <b>Samantha Ivy</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">34세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-primary">React</span>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
-                      <b>John Michael</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">30세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-default">Angular</span>
-                      <span class="badge badge-pill badge-primary">React</span>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="table-user">
-                      <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                      <b>John Michael</b>
-                    </td>
-                    <td>
-                      <span class="text-muted">26세</span>
-                    </td>
-                    <td>
-                      <span class="badge badge-pill badge-secondary">Vue</span>
-                      <span class="badge badge-pill badge-info">Bootstrap</span>
-                    </td>
-                    <td class="table-actions">
-                      <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">
-                        <i class="fas fa-user-edit"></i>
-                      </a>
-                      <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">
-                        <i class="fas fa-trash"></i>
-                      </a>
-                    </td>
-                  </tr>
+                  <tbody class="apply-list_data_input-area">
+<!--                     LIST DATA -->
                   </tbody>
                 </table>
               </div>
@@ -541,14 +465,14 @@
 
 
 <!-- 모달 캘린더 등록 -->
-<div class="modal fade" id="new-event" tabindex="-1" role="dialog"
-     aria-labelledby="new-event-label" aria-hidden="true">
+<div class="modal fade modal-interview-add" id="new-event" tabindex="-1" role="dialog"
+     aria-labelledby="edit-event-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-secondary"
        role="document">
     <div class="modal-content">
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="new-event--form">
+        <form class="edit-event--form">
             <div class="form-group">
                 <label class="form-control-label d-block mb-3">면접 구분명</label>
                 <input type="text" class="form-control form-control-alternative new-event--title" placeholder="면접 구분명을 입력해주세요.">
@@ -606,12 +530,8 @@
             </div>
             <div class="form-group" style="margin: 10px 0px 0px 0px;">
                 <label class="form-control-label">면접자</label>
-                <select class="form-control" data-toggle="select" multiple data-placeholder="Select multiple options">
-                    <option>김재석</option>
-                    <option>이종우</option>
-                    <option>김덕년</option>
-                    <option>김태진</option>
-                    <option>신나라</option>
+                <select class="form-control pass-apply-member-list" data-toggle="select" multiple data-placeholder="Select multiple options">
+                
                 </select>
             </div>
         </form>
@@ -626,55 +546,70 @@
 </div>
 
 <!-- 모달 캘린더 수정 -->
-<div class="modal fade" id="edit-event" tabindex="-1" role="dialog"
+<div class="modal fade modal-interview-modify" id="edit-event" tabindex="-1" role="dialog"
      aria-labelledby="edit-event-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-secondary"
        role="document">
     <div class="modal-content">
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="edit-event--form">
-          <div class="form-group edit-event-title-div">
-            <label class="form-control-label">이벤트 제목</label> <input
-                  type="text"
-                  class="form-control form-control-alternative edit-event--title"
-                  placeholder="제목을 입력해주세요.">
-          </div>
-          <div class="form-group">
-            <label class="form-control-label d-block mb-3">색상</label>
-            <div
-                    class="btn-group btn-group-toggle btn-group-colors event-tag mb-0"
-                    data-toggle="buttons">
-              <label class="btn bg-info active"><input type="radio"
-                                                       name="event-tag" value="bg-info" autocomplete="off" checked></label>
-              <label class="btn bg-warning"><input type="radio"
-                                                   name="event-tag" value="bg-warning" autocomplete="off"></label>
-              <label class="btn bg-danger"><input type="radio"
-                                                  name="event-tag" value="bg-danger" autocomplete="off"></label>
-              <label class="btn bg-success"><input type="radio"
-                                                   name="event-tag" value="bg-success" autocomplete="off"></label>
-              <label class="btn bg-default"><input type="radio"
-                                                   name="event-tag" value="bg-default" autocomplete="off"></label>
-              <label class="btn bg-primary"><input type="radio"
-                                                   name="event-tag" value="bg-primary" autocomplete="off"></label>
+        <form class="new-event--form">
+            <div class="form-group">
+                <label class="form-control-label d-block mb-3">면접 구분명</label>
+                <input type="text" class="form-control form-control-alternative new-event--title" placeholder="면접 구분명을 입력해주세요.">
             </div>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label">상세 내용</label>
-            <textarea
-                    class="form-control form-control-alternative edit-event--description textarea-autosize"
-                    placeholder="상세 내용을 입력해주세요."></textarea>
-            <i class="form-group--bar"></i>
-          </div>
-          <input type="hidden" class="edit-event--id">
+            <div class="form-group mb-0">
+                <label class="form-control-label d-block mb-3">색상</label>
+                <div class="btn-group btn-group-toggle btn-group-colors event-tag" data-toggle="buttons">
+                    <label class="btn bg-info active">
+                        <input type="radio" name="event-tag" value="bg-info" autocomplete="off" checked>
+                    </label>
+                    <label class="btn bg-warning">
+                        <input type="radio" name="event-tag" value="bg-warning" autocomplete="off"></label>
+                    <label class="btn bg-danger">
+                        <input type="radio" name="event-tag" value="bg-danger" autocomplete="off"></label>
+                    <label class="btn bg-success">
+                        <input type="radio" name="event-tag" value="bg-success" autocomplete="off"></label>
+                    <label class="btn bg-default">
+                        <input type="radio" name="event-tag" value="bg-default" autocomplete="off"></label>
+                    <label class="btn bg-primary">
+                        <input type="radio" name="event-tag" value="bg-primary" autocomplete="off"></label>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin: 15px 0px 0px 0px;">
+                <div style="width: 200px;">
+                    <label class="form-control-label d-block mb-3">시작 시간</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control event-start-time" type="time" value="09:00"
+                               id="example-time-input1">
+                    </div>
+                </div>
+                <div style="width: 200px;">
+                    <label class="form-control-label d-block mb-3">종료 시간</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control event-end-time" type="time" value="09:00" id="example-time-input2">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" style="margin: 10px 0px 0px 0px;">
+                <label class="form-control-label">면접자</label>
+                <select class="form-control pass-apply-member-list" data-toggle="select" multiple data-placeholder="Select multiple options">
+                </select>
+            </div>
         </form>
       </div>
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button class="btn btn-primary" data-calendar="update">수정</button>
-        <button class="btn btn-danger" data-calendar="delete">삭제</button>
-        <button class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
-      </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" data-calendar="update">수정</button>
+            <button class="btn btn-danger" data-calendar="delete" data-calendar="delete">삭제</button>
+            <button type="button" class="btn btn-link ml-auto" data-dismiss="modal">닫기</button>
+        </div>
     </div>
   </div>
 </div>
@@ -700,8 +635,8 @@
                         </div>
                         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                             <div class="d-flex justify-content-between">
-                                <a href="#" class="btn btn-sm btn-info  mr-4 ">HIRE</a>
-                                <a href="#" class="btn btn-sm btn-default float-right">CANCEL</a>
+                                <a href="#" class="btn btn-sm btn-info mr-4 btn-hire">HIRE</a>
+                                <a href="#" class="btn btn-sm btn-default float-right btn-cancel" data-dismiss="modal">CANCEL</a>
                             </div>
                         </div>
                         <div class="card-body pt-0">
@@ -724,11 +659,10 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <h5 class="h3">
-                                    Jessica Jones<span class="font-weight-light">, 27</span>
+                                <h5 class="h3"><span class="font-weight-light font-weight-bold mem-name"></span>
                                 </h5>
                                 <div class="h5 font-weight-300">
-                                    <i class="ni location_pin mr-2"></i>Bucharest, Romania
+                                    <i class="ni location_pin mr-2"></i><span class="font-weight-bold mem-addr"></span>
                                 </div>
                             </div>
                         </div>
@@ -742,8 +676,8 @@
                         <!-- Card body -->
                         <div class="card-body">
                             <!-- List group -->
-                            <ul class="list-group list-group-flush list my--3">
-                                <li class="list-group-item px-0">
+                            <ul class="list-group list-group-flush list my--3 tech-experience">
+                                <li class="list-group-item px-0 angular">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -754,12 +688,12 @@
                                         <div class="col">
                                             <h5>ANGULAR</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                                <div class="progress-bar bg-orange" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 bootstrap">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -770,12 +704,12 @@
                                         <div class="col">
                                             <h5>BOOTSTRAP</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 react">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -786,12 +720,12 @@
                                         <div class="col">
                                             <h5>REACT</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                                                <div class="progress-bar bg-red" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 vue">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <!-- Avatar -->
@@ -802,7 +736,7 @@
                                         <div class="col">
                                             <h5>VUE</h5>
                                             <div class="progress progress-xs mb-0">
-                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                                                <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1146,7 +1080,7 @@
                                                 </div>
                                             </div>
                                         </th>
-                                        <td colspan="3">다음 카카오 입사</td>
+                                        <td colspan="3">다음 카카오</td>
                                         <td>2000-09-10</td>
                                         <td>2018-10-01</td>
                                     </tr>
@@ -1180,6 +1114,7 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
@@ -1190,7 +1125,105 @@
   const quill = new Quill('#editor', {
     theme: 'snow'
   });
-
+  
+  /**
+      초기 설정 Init
+  */
+  loadApplyList();
+  let chkValue = checkInputBasicInformation();
+  if (chkValue == 'true') {
+	  const project_no = '${param.project_no }';
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/selectInterview.do',
+		     type: 'POST',
+		     async: false,
+		     data: {
+		    	 project_no: project_no
+		     },
+		     success: function (data) {
+		    	 const interview_title = $('.interview-basic-setting-area .interview-title').val(data.INTERVIEW_TITLE);
+		    	 
+		    	 if (data.INTERVIEW_HIRE_SHAPE == '일반 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(0)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '상시 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(1)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '추천 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(2)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_HIRE_SHAPE == '비공개 채용') {
+		    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:eq(3)').prop('checked', true);
+		    	 }
+		    	 
+		    	 if (data.INTERVIEW_DIVISION == '공채') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(0)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '수시') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(1)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '상시') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(2)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '특별 채용') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(3)').prop('checked', true);
+		    	 } else if (data.INTERVIEW_DIVISION == '추천 채용') {
+		    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:eq(4)').prop('checked', true);
+		    	 }
+		    	 
+		    	 let interview_tech = data.INTERVIEW_TECH;
+		    	 let interview_tech_arr = interview_tech.split(',');
+		    	 $('.interview-basic-setting-area .interview-tech').empty();
+		    	 $.each(interview_tech_arr, function(index, item) {
+		    		 if (item == '1') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>ANGULAR</option>');
+		    		 } else if (item == '2') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>BOOTSTRAP</option>');
+		    		 } else if (item == '3') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>REACT</option>');
+		    		 } else if (item == '4') {
+		    			 $('.interview-basic-setting-area .interview-tech').append('<option value="' + item + '" selected>VUE</option>');
+		    		 }
+		    	 });
+		    	 
+		    	 $('.interview-basic-setting-area .interview-peoplenum').val(data.INTERVIEW_PEOPLENUM);
+		    	 
+		    	 $('.interview-basic-setting-area .interview-method').empty();
+		    	 if (data.INTERVIEW_METHOD == '온라인') {
+		    		 $('.interview-basic-setting-area .interview-method').append('<option selected value="온라인">온라인</option>');
+		    		 $('.interview-basic-setting-area .interview-method').append('<option value="오프라인">오프라인</option>');
+		    	 } else {
+		    		 $('.interview-basic-setting-area .interview-method').append('<option value="온라인">온라인</option>');
+		    		 $('.interview-basic-setting-area .interview-method').append('<option selected value="오프라인">오프라인</option>');
+		    	 }
+		    	 
+		    	 if (data.INTERVIEW_AUTHENTICATION != null) {
+		    		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('checked', 'checked');
+		    		 
+		    		 let interview_authentication = data.INTERVIEW_AUTHENTICATION;
+		    		 let interview_authentication_arr = interview_authentication.split(',');
+		    		 
+		    		 $.each(interview_authentication_arr, function(index, item) {
+		    			if (item == '이메일 인증') {
+		    				$('#authMethod1').prop('checked', true);
+		    			} else if (item == 'SMS 인증') {
+		    				$('#authMethod2').prop('checked', true);
+		    			}
+		    		 });
+		    	 }
+		     },
+		     error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		     }
+	  });
+	  
+		 $('.interview-basic-setting-area .interview-title').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-tech').prop('disabled', true);
+		 $('.interview-basic-setting-area .interview-peoplenum').attr('disabled', 'disabled');
+		 $('.interview-basic-setting-area .interview-method').prop('disabled', true);
+		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('disabled', 'disabled');
+		 $('#authMethod1').attr('disabled', 'disabled');
+		 $('#authMethod2').attr('disabled', 'disabled');
+  }
+  
   // < 면접 설정 >
   // 1. 기본 설정
 
@@ -1207,10 +1240,233 @@
       $('#authMethod2').attr('disabled', 'disabled');
     }
   });
+  
+  // 2. 기본 설정 저장
+  $('.interview-basic-setting-area .btn-save').on('click', function() {
+	 const project_no = '${param.project_no}';
+	 const interview_title = $('.interview-basic-setting-area .interview-title').val();
+	 const interview_hire_shape = $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]:checked').val();
+	 const interview_division = $('.interview-basic-setting-area .interview-division input[name=interviewDivision]:checked').val();
+	 let interview_tech = $('.interview-basic-setting-area .interview-tech').select2('val');
+	 const interview_peoplenum = $('.interview-basic-setting-area .interview-peoplenum').val();
+	 const interview_method = $('.interview-basic-setting-area .interview-method').select2('val');
+	 const status_auth = $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]:checked').val();
+	 const email_auth = $('#authMethod1:checked').val();
+	 const SMS_auth = $('#authMethod2:checked').val();
+	 
+// 	 alert('interview_title : ' + interview_title);
+// 	 alert('interview_hire_shape : ' + interview_hire_shape);
+// 	 alert('interview_division : ' + interview_division);
+// 	 alert('interview_tech : ' + interview_tech);
+// 	 alert('interview_peoplenum : ' + interview_peoplenum);
+// 	 alert('interview_method : ' + interview_method);
+// 	 alert('status_auth : ' + status_auth);
+// 	 alert('email_auth : ' + email_auth);
+// 	 alert('SMS_auth : ' + SMS_auth);
+	 
+	 if (interview_title == '') {
+		 $.notify({
+				// options
+				message: '공고명을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 if (interview_tech == '') {
+		 $.notify({
+				// options
+				message: '채용 기술 분야를 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 if (status_auth == 'on' && email_auth == undefined && SMS_auth == undefined) {
+		 $.notify({
+				// options
+				message: '본인 인증 방식을 선택해주세요.' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+	 }
+	 
+	 let interview_authentication = '';
+	 if (status_auth == undefined) {
+		 interview_authentication == '없음';
+	 } else {
+		 if (email_auth != undefined && SMS_auth == undefined) {
+			 interview_authentication = email_auth;
+		 } else if (email_auth == undefined && SMS_auth != undefined) {
+			 interview_authentication = SMS_auth;
+		 } else if (email_auth != undefined && SMS_auth != undefined) {
+			 interview_authentication = email_auth + ',' + SMS_auth;
+		 }
+	 }
+	 
+	 let interview_tech_txt = '';
+	 $.each(interview_tech, function(index, item) {
+		 interview_tech_txt += item + ',';
+	 });
+	 interview_tech_txt = interview_tech_txt.substr(0, interview_tech_txt.length - 1);
+	 
+	 // DB
+	 $.ajax({
+		 url: '/CONNECTOR/user/interview/insertInterview.do',
+	     type: 'POST',
+	     async: false,
+	     data: {
+	    	 interview_title: interview_title,
+	    	 interview_hire_shape: interview_hire_shape,
+	    	 interview_division: interview_division,
+	    	 interview_tech: interview_tech_txt,
+	    	 interview_peoplenum: interview_peoplenum,
+	    	 interview_method: interview_method,
+	    	 interview_authentication: interview_authentication,
+	    	 project_no: project_no
+	     },
+	     success: function (data) {
+	    	 if (data.INTERVIEW_NO != null) {
+	    		 $('.interview-basic-setting-area .interview-title').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-hire-shape input[name=interviewForm]').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-division input[name=interviewDivision]').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-tech').prop('disabled', true);
+	    		 $('.interview-basic-setting-area .interview-peoplenum').attr('disabled', 'disabled');
+	    		 $('.interview-basic-setting-area .interview-method').prop('disabled', true);
+	    		 $('.interview-basic-setting-area .interview-authentication .authToggleBtn input[type=checkbox]').attr('disabled', 'disabled');
+	    		 $('#authMethod1').attr('disabled', 'disabled');
+	    		 $('#authMethod2').attr('disabled', 'disabled');
+	    	 }
+	     },
+	     error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	     }
+	 });
+  });
+  
+  // 3. 지원서 설정
+  $('.div-customizing-area .btn-save').on('click', function() {
+	  const project_no = '${param.project_no }';
+	  const btn_selected = $('.div-customizing-area button[data-toggle=button]');
+	  
+	  let interview_customizing = '이름,국적,기술,연락처,고등학교,';
+	  $.each(btn_selected, function(index, item) {
+		  if ($(item).hasClass('active')) {
+			  interview_customizing += $(item).text() + ',';
+		  }
+	  });
+	  interview_customizing = interview_customizing.substr(0, interview_customizing.length - 1);
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/updateInterview.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    	interview_customizing: interview_customizing
+		    },
+		    success: function (data) {
+		    	
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+  });
 
   // <신청자 명단>
+  
+  let var_mem_id = '';
+  
   // 1. 인포그래픽 표시
   function loadInfographicModal(e) {
+	  // 로딩
+	  // 1. 지금 선택한 사람의 정보로 교체!
+	  var_mem_id = $(e).find('input[name=mem_id]').val();
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/infographic.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	$('#infographic .rounded-circle').attr('src', '/' + data.PROFILE_SAVENAME);
+		    	$('#infographic .mem-name').text(data.MEM_NAME + ', ' + data.MEM_AGE);
+		    	$('#infographic .mem-addr').text(data.MEM_ADDR);
+		    	
+		    	const techExperience = (data.MYPAGE_TECHEXPERIENCE).split(',');
+		    	
+		    	// ANGULAR
+		    	$('#infographic .tech-experience .angular .progress-bar').attr('aria-valuenow', techExperience[0]);
+		    	$('#infographic .tech-experience .angular .progress-bar').css('width', techExperience[0] + '%');
+		    	
+		    	// BOOTSTRAP
+		    	$('#infographic .tech-experience .bootstrap .progress-bar').attr('aria-valuenow', techExperience[1]);
+		    	$('#infographic .tech-experience .bootstrap .progress-bar').css('width', techExperience[1] + '%');
+		    	
+		    	// REACT
+		    	$('#infographic .tech-experience .react .progress-bar').attr('aria-valuenow', techExperience[2]);
+		    	$('#infographic .tech-experience .react .progress-bar').css('width', techExperience[2] + '%');
+		    	
+		    	// VUE
+		    	$('#infographic .tech-experience .vue .progress-bar').attr('aria-valuenow', techExperience[3]);
+		    	$('#infographic .tech-experience .vue .progress-bar').css('width', techExperience[3] + '%');
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectProjectApply.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	if (data != null) {
+		    		if (data.APPLY_STATUS == 'Y') {
+			    		$('#infographic .btn-hire').text('FIRE');
+			    		$('#infographic .btn-hire').removeClass('btn-info');
+			    		$('#infographic .btn-hire').addClass('btn-warning');
+			    	} else if (data.APPLY_STATUS == 'N') {
+			    		$('#infographic .btn-hire').text('HIRE');
+			    		$('#infographic .btn-hire').removeClass('btn-warning');
+			    		$('#infographic .btn-hire').addClass('btn-info');
+			    	}
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
       $('#infographic').modal('show');
   }
 
@@ -1233,4 +1489,232 @@
       $('.schoolStatus3-input').removeAttr('disabled');
     }
   });
+  
+  // 인포그래픽 HIRE 버튼
+  $('#infographic .btn-hire').on('click', function() {
+	  // id = var_mem_id
+	  
+	  const current_status = $(this).text();
+	  const project_no = '${param.project_no}';
+	  
+	  if (current_status == 'HIRE') {
+		  const apply_status = "Y";
+		  
+		  $.ajax({
+			  url: '/CONNECTOR/user/interview/hireMember.do',
+			    type: 'POST',
+			    async: false,
+			    data: {
+			    	mem_id: var_mem_id,
+			    	project_no: project_no,
+			    	apply_status: apply_status
+			    },
+			    success: function (data) {
+			    	$('#infographic').modal('hide');
+			    	
+			    	loadApplyList();
+			    },
+			    error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+		  });
+	  } else if (current_status == 'FIRE') {
+		  const apply_status = "N";
+		  
+		  $.ajax({
+			  url: '/CONNECTOR/user/interview/hireMember.do',
+			    type: 'POST',
+			    async: false,
+			    data: {
+			    	mem_id: var_mem_id,
+			    	project_no: project_no,
+			    	apply_status: apply_status
+			    },
+			    success: function (data) {
+			    	$('#infographic').modal('hide');
+			    	
+			    	loadConfirmApplyList();
+			    },
+			    error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+		  });
+	  }
+  });
+  
+  // 지원자, 면접자 리스트 변경 카테고리
+  $('.div-apply-table-list .btn-view-category').on('click', function() {
+	  const current_main_title = $('.div-apply-table-list .main-title');
+	  const current_sub_title = $('.div-apply-table-list .sub-title');
+	  const current_btn_view_category = $('.div-apply-table-list .btn-view-category');
+	  
+	  if (current_btn_view_category.text() == '면접자') {
+		  // 지원자 리스트로 변경해야함
+		  current_sub_title.text('면접자 조회');
+		  current_btn_view_category.text('지원자');
+		  
+		  loadConfirmApplyList();
+	  } else if (current_btn_view_category.text() == '지원자') {
+		  // 면접자 리스트로 변경해야함
+		  current_sub_title.text('지원자 조회');
+		  current_btn_view_category.text('면접자');
+		  
+		  loadApplyList();
+	  }
+  });
+  
+  // 지원자 리스트 로딩
+  function loadApplyList() {
+	  const project_no = '${param.project_no}';
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/selectApplyList.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    },
+		    success: function (data) {
+		    	$('.apply-list_data_input-area').empty();
+		    	$.each(data, function(index, item) {
+		    		let techHTML = '';
+		    		if (item.ANGULAR != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-default" style="margin: 0px 3px 0px 0px;">' + item.ANGULAR + '</span>';
+		    		}
+		    		if (item.BOOTSTRAP != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-primary" style="margin: 0px 3px 0px 0px;">' + item.BOOTSTRAP + '</span>';
+		    		}
+		    		if (item.REACT != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-secondary" style="margin: 0px 3px 0px 0px;">' + item.REACT + '</span>';
+		    		}
+		    		if (item.VUE != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-info" style="margin: 0px 3px 0px 0px;">' + item.VUE + '</span>';
+		    		}
+		    		if (item.ANGULAR == undefined && item.BOOTSTRAP == undefined && item.REACT == undefined && item.VUE == undefined) {
+		    			techHTML = '<span class="badge badge-pill badge-default">보유 기술 없음</span>';
+		    		}
+		    		
+		    		textHTML = '<tr>\n' +
+		            '                <td class="table-user">\n' +
+		            '                  <img src="/' + item.PROFILE_SAVENAME + '" class="avatar rounded-circle mr-3">\n' +
+		            '                  <b>' + item.MEM_NAME + '</b>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  <span class="text-muted">' + item.MEM_AGE + '세</span>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  ' + techHTML +
+		            '                </td>\n' +
+		            '                <td class="table-actions">\n' +
+		            '                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">\n' +
+		            '                  \t<input type="hidden" name="mem_id" value="' + item.MEM_ID + '">\n' +
+		            '                    <i class="fas fa-user-edit"></i>\n' +
+		            '                  </a>\n' +
+		            '                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">\n' +
+		            '                    <i class="fas fa-trash"></i>\n' +
+		            '                  </a>\n' +
+		            '                </td>\n' +
+		            '              </tr>';
+		    		$('.apply-list_data_input-area').append(textHTML);
+		    	});
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+  }
+  
+  // 면접자 리스트 로딩
+  function loadConfirmApplyList() {
+	  const project_no = '${param.project_no}';
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectConfirmApplyList.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    },
+		    success: function (data) {
+		    	$('.apply-list_data_input-area').empty();
+		    	$.each(data, function(index, item) {
+		    		let techHTML = '';
+		    		if (item.ANGULAR != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-default" style="margin: 0px 3px 0px 0px;">' + item.ANGULAR + '</span>';
+		    		}
+		    		if (item.BOOTSTRAP != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-primary" style="margin: 0px 3px 0px 0px;">' + item.BOOTSTRAP + '</span>';
+		    		}
+		    		if (item.REACT != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-secondary" style="margin: 0px 3px 0px 0px;">' + item.REACT + '</span>';
+		    		}
+		    		if (item.VUE != undefined) {
+		    			techHTML += '<span class="badge badge-pill badge-info" style="margin: 0px 3px 0px 0px;">' + item.VUE + '</span>';
+		    		}
+		    		if (item.ANGULAR == undefined && item.BOOTSTRAP == undefined && item.REACT == undefined && item.VUE == undefined) {
+		    			techHTML = '<span class="badge badge-pill badge-default">보유 기술 없음</span>';
+		    		}
+		    		
+		    		textHTML = '<tr>\n' +
+		            '                <td class="table-user">\n' +
+		            '                  <img src="/' + item.PROFILE_SAVENAME + '" class="avatar rounded-circle mr-3">\n' +
+		            '                  <b>' + item.MEM_NAME + '</b>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  <span class="text-muted">' + item.MEM_AGE + '세</span>\n' +
+		            '                </td>\n' +
+		            '                <td>\n' +
+		            '                  ' + techHTML +
+		            '                </td>\n' +
+		            '                <td class="table-actions">\n' +
+		            '                  <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="인포그래픽 이력서" onclick="loadInfographicModal(this);">\n' +
+		            '                  \t<input type="hidden" name="mem_id" value="' + item.MEM_ID + '">\n' +
+		            '                    <i class="fas fa-user-edit"></i>\n' +
+		            '                  </a>\n' +
+		            '                  <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="제외">\n' +
+		            '                    <i class="fas fa-trash"></i>\n' +
+		            '                  </a>\n' +
+		            '                </td>\n' +
+		            '              </tr>';
+		    		$('.apply-list_data_input-area').append(textHTML);
+		    	});
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+  }
+  
+  // 기본 정보를 입력했는지 확인
+  function checkInputBasicInformation() {
+	  const project_no = '${param.project_no}';
+	  
+	  let returnValue = '';
+	  $.ajax({
+		    url: '/CONNECTOR/user/interview/selectInterview.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    },
+		    async: false,
+		    success: function (data) {
+		    	if (data.PROJECT_NO != null) {
+		    		returnValue = 'true';
+		    	} else {
+		    		returnValue = 'false';
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  return returnValue;
+  }
 </script>

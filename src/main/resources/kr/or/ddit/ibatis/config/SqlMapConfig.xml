@@ -32,6 +32,7 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/portfolio.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/projectsearch.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/projectRegist.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/riskboard.xml"/>	
 </sqlMapConfig>
 
 

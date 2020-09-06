@@ -55,7 +55,7 @@
                         <label for="example-search-input" class="form-control-label">프로젝트</label>
                         <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다.">
                         	<c:forEach items="${attendProjectList }" var="item" varStatus="status">
-								<option>번호 : ${item.PROJECT_NO } 이름 : ${item.PROJECT_TITLE }</option>
+								<option value="${item.PROJECT_NO }">${item.PROJECT_TITLE }</option>
 							</c:forEach>
                         </select>
                     </div>
@@ -120,8 +120,8 @@
 			}
 			
 			// 프로젝트를 고르지 않았을 때!
-			const project_select_txt = $('.project-selector').select2('val');
-			if (project_select_txt == null) {
+			const project_no = $('.project-selector').select2('val');
+			if (project_no == null) {
 				$.notify({
 					// options
 					message: '프로젝트를 선택해주세요.' 
@@ -136,8 +136,6 @@
 				
 				return;
 			}
-			
-			const project_no = project_select_txt.substring(project_select_txt.indexOf(" ") + 3, project_select_txt.indexOf("이") - 1);
 			
 			// 내용을 입력하지 않았을 때!
 			const success_content = quill.root.innerHTML;

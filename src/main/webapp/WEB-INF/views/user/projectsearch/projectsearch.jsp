@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -94,6 +95,13 @@ perpectCenter
 
 <!-- My JavaScript -->
 <script type="text/javascript">
+
+function viewBoardInfo(e) {
+	const project_no = $(e).find('input[name=project_no]').val();
+	const mem_id = $(e).find('input[name=mem_id]').val();
+	
+	location.href = "${pageContext.request.contextPath}/user/projectsearch/projectview.do?project_no=" + project_no + "&mem_id=" + mem_id ;
+}
 
 </script>
 </head>
@@ -270,18 +278,21 @@ perpectCenter
 									                    <span class="badge badge-success">진행중</span> <span
 										                   class="badge badge-default">new</span>
 											<h3 class="mb-0">${item.project_title }</h3>
+											
+											<input type="hidden" name="project_no" value="${item.project_no }">
+											<input type="hidden" name="mem_id" value="${item.mem_id }">
 											<br>
-														<i class="fas fa-won-sign"></i> <span>예상 금액</span> <span
-															class="mb-0">${item.project_budget }원</span>
+														<i class="fas fa-won-sign"></i> <span style = "font-size : 1.3em;">예상 금액</span> <span
+															class="mb-0" style = "font-size : 1.3em;">${item.project_budget }원</span>
 													</p>
 													<p class="mb-0">
 														<i class="far fa-clock"></i> <span>예상 기간</span> <span
 															class="mb-0">${item.project_duration }일 </span> <br>
 											
-													<br> <label class="form-control-label"
+													 <label class="form-control-label"
 														for="input-username">${item.project_note } </label><br>
 													<span class="badge badge-info">${item.project_processstatus } </span> | <span
-														class="badge badge-primary">${item.project_technologies }</span> | <i
+														class="badge badge-primary">${item.tech_name }</span> | <i
 														class="fas fa-map-marker-alt"></i><span class="mb-0"
 														style="font-size: 0.8em;"> ${item.project_clientlocation }</span> | <span
 														class="mb-0" style="font-size: 0.8em;">${item.project_startdate }</span>
@@ -296,16 +307,17 @@ perpectCenter
 													<div class="pp">
 
 														<div class="application-status">
-															<i class="fas fa-user"></i> <span
-																class="body-2 text600 applicant-status">총 <strong>${item.project_manpower }명</strong>
+															<i class="fas fa-user"></i>
+																		
+															 <span
+																class="body-2 text600 applicant-status" >총 <strong>${item.project_applyCnt }명</strong>
 																지원
 															</span>
 														</div>
 														<br>
 														 <div class="bb">
 												 
-														<span class="deadline-date body-2 text600">마감 <strong>2주
-																전</strong>
+														<span class="deadline-date body-2 text600">마감 <strong>${item.project_time }일전</strong>
 														
 														</span>
 													</div>

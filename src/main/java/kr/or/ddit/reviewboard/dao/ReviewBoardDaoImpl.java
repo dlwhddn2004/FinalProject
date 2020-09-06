@@ -37,7 +37,7 @@ public class ReviewBoardDaoImpl implements IReviewBoardDao {
 		return chk;
 	}
 
-
+	
 	@Override
 	public int deleteReviewBoard(Map<String, String> params) throws Exception {
 		

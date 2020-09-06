@@ -5,6 +5,7 @@
 
 <sqlMap namespace="issueboard">
 	<typeAlias alias="IssuejoinVO" type="kr.or.ddit.vo.IssueJoinVO" />
+	<typeAlias alias="IssueboardVO" type="kr.or.ddit.vo.IssueboardVO"/>
 	
 	<sql  id="selectAll">
 		<!--   SELECT b.*
@@ -21,7 +22,7 @@
 		                  SELECT *
 		                  FROM ISSUE_BOARD) a
 		     ) b    -->
-	  select ROWNUM r,
+	  <!--  select ROWNUM r,
        ISSUE_NO,
        P.PROJECT_NO,
        P.MEM_ID,
@@ -62,12 +63,17 @@
        PROJECT_CLIENTINTRODUCE
 	   from ISSUE_BOARD I
        join PROJECT P on I.PROJECT_NO = P.PROJECT_NO
-	   WHERE P.PROJECT_NO = #project_no# 
+	   WHERE P.PROJECT_NO = #project_no#   -->
+	   
+	    SELECT ROWNUM r, A.*, B.*
+		FROM ISSUE_BOARD A, PROJECT B
+		WHERE A.PROJECT_NO = B.PROJECT_NO
+		AND B.PROJECT_NO = #project_no#
 		
-	<!-- 	select ISSUE_BOARD.*, PROJECT.*
+		<!-- select ISSUE_BOARD.*, PROJECT.*
 		from ISSUE_BOARD
     	join PROJECT on ISSUE_BOARD.PROJECT_NO = PROJECT.PROJECT_NO
-		where  PROJECT.PROJECT_NO = #project_no#	 -->
+		where  PROJECT.PROJECT_NO = #project_no# -->	
 	</sql>
 	
 	<select id="issueboardList" resultClass="IssuejoinVO" parameterClass="map">
@@ -75,18 +81,25 @@
 	</select>
 	
 	<select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map">
-		<include refid="selectAll"/>
-		AND ISSUE_NO = #issue_no#
+		SELECT ROWNUM r, A.*, B.*
+		FROM ISSUE_BOARD A, PROJECT B
+		WHERE A.PROJECT_NO = B.PROJECT_NO
+		AND B.PROJECT_NO = #project_no# 
+		AND ISSUE_NO = #issue_no# 
+	
 	</select>
 	
-	<insert id="insertIssueboardInfo" parameterClass="IssuejoinVO">
+	<insert id="insertIssueboard" parameterClass="IssueboardVO">
+		<selectKey keyProperty="issue_no" resultClass="string">
+		SELECT ISSUE_BOARD_SEQ.nextval FROM DUAL
+		</selectKey>
 		INSERT INTO ISSUE_BOARD(ISSUE_NO,
 							    PROJECT_NO,
 								MEM_ID,
 								ISSUE_TITLE,
 								ISSUE_CONTENT,
 								ISSUE_REGDATE)
-						 VALEUS(ISSUE_BOARD_SEQ.nextval,
+						 VALUES(#issue_no#,
 						 		#project_no#,
 						 		#mem_id#,
 						 		#issue_title#,
@@ -94,6 +107,20 @@
 						 		SYSDATE)						
 	</insert>
 	
+	<update id="updateIssueboard" parameterClass="IssueJoinVO">
+		UPDATE ISSUE_BOARD SET  ISSUE_TITLE = #issue_title#,
+                         		ISSUE_CONTENT = #issue_content#
+		WHERE ISSUE_NO = #issue_no#
+	</update>
+	
+	<delete id="deleteIssueboard" parameterClass="map">
+		DELETE ISSUE_BOARD WHERE ISSUE_NO = #issue_no#
+	</delete>
+	
+	<update id="updatehit" parameterClass="map">
+		UPDATE ISSUE_BOARD SET ISSUE_HIT = ISSUE_HIT + 1
+		WHERE ISSUE_NO = #issue_no#
+	</update>
 	
 </sqlMap>
 

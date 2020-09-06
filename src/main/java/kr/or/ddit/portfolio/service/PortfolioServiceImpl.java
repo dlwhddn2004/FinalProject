@@ -62,6 +62,13 @@ public class PortfolioServiceImpl implements IPortfolioService{
 		return portfolioDao.mainScoreChart(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void updatePortFolioLike(Map<String, String> params)
+			throws Exception {
+		 portfolioDao.updatePortFolioLike(params);
+	}
+
 	
 		
 

@@ -245,6 +245,27 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		    OR AA = #mem_id#)	
 </select>
 
+<insert id="insertParticipant" parameterClass="map">
+	INSERT INTO PROJECT_PARTICIPANTS
+		(
+			PROJECT_NO,
+			PL,
+			DA,
+			UA,
+			TA,
+			AA
+		)
+	VALUES
+		(
+			#project_no#,
+			#pl#,
+			#da#,
+			#ua#,
+			#ta#,
+			#aa#
+		)
+</insert>
+
 </sqlMap>
 
  

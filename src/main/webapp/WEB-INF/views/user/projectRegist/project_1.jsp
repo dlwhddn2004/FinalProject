@@ -55,6 +55,7 @@
                 <p class="text-muted" style="font-size: small">6. 모집 요건</p>
                 <p class="text-muted" style="font-size: small">7. 추가 정보</p>
               </li>
+              <li class="list-group-item">면접 정보 설정</li>
               <li class="list-group-item">프로젝트 등록 완료</li>
             </ul>
           </div>
@@ -155,10 +156,70 @@
 
 <script type="text/javascript">
 
-
-	
 	<!-- 등록 버튼 -->
 	$("#btnRegist").on("click", function() {
+		if ($('input[name=partnerInfo]').is(':checked') == false) {
+			$.notify({
+				// options
+				message: '파트너스 정보를 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		if ($('input[name=processWay]').is(':checked') == false) {
+			$.notify({
+				// options
+				message: '프로젝트 진행 방식을 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		if ($('input[name=processCategory]').is(':checked') == false) {
+			$.notify({
+				// options
+				message: '프로젝트 진행 분류를 선택해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
+		if ($('input[name=projectTitle]').val() == "") {
+			$.notify({
+				// options
+				message: '제목을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
 		partnerInfo = $('input[name=partnerInfo]:checked').val();
 		partnerIntro = $('input[name=partnerIntro]').val();
 		processWay = $('input[name=processWay]:checked').val();
@@ -180,7 +241,7 @@
 		$('form[name=projectInfo]').append($processCategory_ipt);
 		$('form[name=projectInfo]').append($projectTitle_ipt);
 		
-		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/project/project_2.do');
+		$('form[name=projectInfo]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_2.do');
 		$('form[name=projectInfo]').submit();
 	});
 	

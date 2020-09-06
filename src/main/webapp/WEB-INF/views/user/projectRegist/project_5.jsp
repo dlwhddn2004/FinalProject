@@ -54,6 +54,7 @@
               <p class="text-muted" style="font-size: small">6. 모집 요건</p>
               <p class="text-muted" style="font-size: small">7. 추가 정보</p>
             </li>
+            <li class="list-group-item">면접 정보 설정</li>
             <li class="list-group-item">프로젝트 등록 완료</li>
           </ul>
         </div>
@@ -67,18 +68,18 @@
           </div>
           <!-- Card body -->
           <div class="card-body">
-            <form class="projectForm4" name="projectMeeting">
+            <form class="projectForm4" name="projectMeeting" method="post">
               <div class="form-group">
                 <label class="col-form-label form-control-label">사전 미팅 방식</label>
                 <label style="color: tomato">*</label>
                 <p class="text-muted" style="font-size: small">사전 미팅 방식을 선택해 주세요</p>
                 <div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_premeeting1" name="premeeting" class="custom-control-input">
+                    <input type="radio" id="project_premeeting1" name="premeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)">
                     <label class="custom-control-label" for="project_premeeting1">온라인(카카오톡, 화상미팅 등)</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_premeeting2" name="premeeting" class="custom-control-input">
+                    <input type="radio" id="project_premeeting2" name="premeeting" class="custom-control-input" value="오프라인">
                     <label class="custom-control-label" for="project_premeeting2">오프라인</label>
                   </div>
                 </div>
@@ -88,26 +89,26 @@
                 <span style="font-size: small">미팅 방식</span><label style="color: tomato">*</label>
                 <div class="pt-3 pb-3">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_porceedmeeting1" name="porceedmeeting" class="custom-control-input">
+                    <input type="radio" id="project_porceedmeeting1" name="porceedmeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)">
                     <label class="custom-control-label" for="project_porceedmeeting1">온라인(카카오톡, 화상미팅 등)</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_porceedmeeting2" name="porceedmeeting" class="custom-control-input">
+                    <input type="radio" id="project_porceedmeeting2" name="porceedmeeting" class="custom-control-input" value="오프라인">
                     <label class="custom-control-label" for="project_porceedmeeting2">오프라인</label>
                   </div>
                 </div>
                 <span style="font-size: small">미팅 주기</span><label style="color: tomato">*</label>
                 <div class="pt-3 pb-3">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="meeting_cycle1" name="meeting_cycle" class="custom-control-input">
+                    <input type="radio" id="meeting_cycle1" name="meeting_cycle" class="custom-control-input" value="2">
                     <label class="custom-control-label" for="meeting_cycle1">주 2회</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="meeting_cycle2" name="meeting_cycle" class="custom-control-input">
+                    <input type="radio" id="meeting_cycle2" name="meeting_cycle" class="custom-control-input" value="1">
                     <label class="custom-control-label" for="meeting_cycle2">주 1회</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="meeting_cycle3" name="meeting_cycle" class="custom-control-input">
+                    <input type="radio" id="meeting_cycle3" name="meeting_cycle" class="custom-control-input" value="0">
                     <label class="custom-control-label" for="meeting_cycle3">필요시 요청</label>
                   </div>
                 </div>
@@ -117,7 +118,7 @@
                 <label style="color: tomato">*</label>
                 <p class="text-muted" style="font-size: small">디벨로퍼가 미팅 위치 선정시 파트너스의 위치를 참고합니다.</p>
                 <div class="row px-3">
-                  <select class="form-control col-xl-3 location">
+                  <select class="form-control col-xl-3" id="clientLocation">
                     <option>시/도</option>
                     <option>서울특별시</option>
                     <option>부산광역시</option>
@@ -166,22 +167,84 @@
 <script>
 
 $("#btnRegist").on("click", function() {
+	if ($('input[name=premeeting]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '사전 미팅 방식을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=porceedmeeting]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '진행중 미팅 방식을 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	if ($('input[name=meeting_cycle]').is(':checked') == false) {
+		$.notify({
+			// options
+			message: '미팅 주기를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
+	if ($("#clientLocation option:selected").val() == "시/도") {
+		$.notify({
+			// options
+			message: '클라이언트 위치를 선택해주세요!' 
+		},{
+			// settings
+			placement: {
+				from: "top",
+				align: "center"
+			},
+			type: 'info'
+		});
+		
+		return;
+	}
+	
 	premeeting = $('input[name=premeeting]:checked').val();
 	proceedmeeting = $('input[name=porceedmeeting]:checked').val();
 	meeting_cycle = $('input[name=meeting_cycle]:checked').val();
-	location = $(".location option:selected").val();
+	clientLocation = $("#clientLocation option:selected").val();
 	
 	const $premeeting_ipt = $('<input type="hidden" name="project_premeeting" value= "' + premeeting + '" >');
 	const $proceedmeeting_ipt = $('<input type="hidden" name="project_proceedingmeeting" value= "' + proceedmeeting + '" >');
 	const $meeting_cycle_ipt = $('<input type="hidden" name="project_meetingcycle" value= "' + meeting_cycle + '" >');
-	const $location_ipt = $('<input type="hidden" name="project_clientlocation" value= "' + location + '" >');
+	const $location_ipt = $('<input type="hidden" name="project_clientlocation" value= "' + clientLocation + '" >');
 	
 	$('form[name=projectMeeting]').append($premeeting_ipt);
 	$('form[name=projectMeeting]').append($proceedmeeting_ipt);
 	$('form[name=projectMeeting]').append($meeting_cycle_ipt);
 	$('form[name=projectMeeting]').append($location_ipt);
 
-	$('form[name=projectMeeting]').attr('action', '${pageContext.request.contextPath}/user/project/project_6.do?project_no=${project_no}');
+	$('form[name=projectMeeting]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_6.do?project_no=${project_no}');
 	$('form[name=projectMeeting]').submit(); 
 	
 });

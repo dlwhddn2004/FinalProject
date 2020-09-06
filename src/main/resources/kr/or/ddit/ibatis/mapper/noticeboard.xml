@@ -37,13 +37,15 @@
                           MEM_ID,
                           NOTICE_TITLE,
                           NOTICE_CONTENT,
-                          NOTICE_REGDATE
+                          NOTICE_REGDATE,
+                          NOTICE_HIT
                           )
 		VALUES (NOTICE_BOARD_SEQ.nextval,
         				#mem_id#,
                         #notice_title#,
                         #notice_content#,
-                        SYSDATE)
+                        SYSDATE,
+                        0)
 	</insert>
 	
 	<update id="updateNoticeboard" parameterClass="NoticeboardVO">
@@ -55,6 +57,11 @@
 	<delete id="deleteNoticeboard" parameterClass="map">
 		DELETE NOTICE_BOARD WHERE NOTICE_NO = #notice_no#
 	</delete>
+	
+	<update id="updatehit" parameterClass="map">
+		UPDATE NOTICE_BOARD SET NOTICE_HIT = NOTICE_HIT + 1
+		WHERE NOTICE_NO = #notice_no#
+	</update>
 </sqlMap>
 
  

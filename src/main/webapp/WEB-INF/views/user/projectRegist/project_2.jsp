@@ -53,6 +53,7 @@
                 <p class="text-muted" style="font-size: small">6. 모집 요건</p>
                 <p class="text-muted" style="font-size: small">7. 추가 정보</p>
               </li>
+              <li class="list-group-item">면접 정보 설정</li>
               <li class="list-group-item">프로젝트 등록 완료</li>
             </ul>
           </div>
@@ -180,7 +181,7 @@
 			$('form[name=projectReady]').append($readyStatus_ipt);
 			$('form[name=projectReady]').append($reference_ipt);
 		  	
-			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/project/project_3.do?project_no=${project_no}');
+			$('form[name=projectReady]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_3.do?project_no=${project_no}');
 			$('form[name=projectReady]').submit();
 
 			

@@ -55,6 +55,7 @@
               <p class="text-muted" style="font-size: small">6. 모집 요건</p>
               <p class="text-muted" style="font-size: small">7. 추가 정보</p>
             </li>
+            <li class="list-group-item">면접 정보 설정</li>
             <li class="list-group-item">프로젝트 등록 완료</li>
           </ul>
         </div>
@@ -68,7 +69,7 @@
           </div>
           <!-- Card body -->
           <div class="card-body">
-            <form class="projectForm4" name="projectBudget">
+            <form class="projectForm4" name="projectBudget" method="post">
               <div class="form-group">
                 <label class="col-form-label form-control-label">지출 가능 예산</label>
                 <label style="color: tomato">*</label>
@@ -136,6 +137,37 @@
 	$(".datepicker").datepicker().datepicker("setDate", new Date());
 	
 	$(".projectForm4 #btnRegist").on("click", function() {
+		if ($('input[name=budget]').val() == "") {
+			$.notify({
+				// options
+				message: '지출 가능 예산을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		if ($('input[name=term]').val() == "") {
+			$.notify({
+				// options
+				message: '지출 가능 예산을 입력해주세요!' 
+			},{
+				// settings
+				placement: {
+					from: "top",
+					align: "center"
+				},
+				type: 'info'
+			});
+			
+			return;
+		}
+		
 		budget = $('input[name=budget]').val();
 		datePick = $('input[name=startDate]').val();
 	    dateSplit = datePick.split("/");
@@ -155,7 +187,7 @@
 		$('form[name=projectBudget]').append($term_ipt);
 		
 
-		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/project/project_5.do');
+		$('form[name=projectBudget]').attr('action', '${pageContext.request.contextPath}/user/projectRegist/project_5.do?project_no=${project_no}');
 		$('form[name=projectBudget]').submit(); 
 		
 	});

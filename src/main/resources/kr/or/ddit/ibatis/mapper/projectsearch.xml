@@ -193,7 +193,7 @@
 	</delete> -->
 
 <!-- 덕년  -->
-<select id="projectList" resultClass="ProjectVO">
+<select id="projectList" parameterClass="map" resultClass="ProjectVO">
 SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       MEM_ID,
 		       PROJECT_PROCESSSTATUS,
@@ -206,7 +206,7 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       PROJECT_NOTE,
 		       PROJECT_TECHNOLOGIES,
 		       PROJECT_BUDGET,
-		       PROJECT_STARTDATE,
+		        TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,
 		       PROJECT_DURATION,
 		       PROJECT_ENDSTATUS,
 		       PROJECT_PREMEETING,
@@ -230,14 +230,26 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       TA,
 		       AA,
 		       TECH_NO,
-		       TECH_NAME
+		       TECH_NAME,
+		       INTERVIEW_NO,
+		       INTERVIEW_TITLE,
+		       INTERVIEW_HIRE_SHAPE,
+		       INTERVIEW_DIVISION,
+		       INTERVIEW_TECH,
+		       INTERVIEW_PEOPLENUM,
+		       INTERVIEW_METHOD,
+		       INTERVIEW_AUTHENTICATION,
+		       INTERVIEW_CUSTOMIZING
+
 		FROM PROJECT,
 		     PROJECT_PARTICIPANTS,
-		     TECHNOLOGIES
-		     
+		     TECHNOLOGIES,
+		     INTERVIEW
+
 		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
 		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
 		  AND PROJECT_ENDSTATUS = 'N'
+          AND PROJECT.PROJECT_NO =  INTERVIEW.INTERVIEW_NO
 <dynamic>
 			
 			<isNotEmpty property="search_keyworde">
@@ -253,9 +265,92 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 			
 		</dynamic>
 </select>
+<select id="projectInfo" resultClass="ProjectVO">
+		SELECT PROJECT.PROJECT_NO PROJECT_NO,
+		       MEM_ID,
+		       PROJECT_CLIENTINFORMATION,
+		       PROJECT_CLIENTINTRODUCE,
+		       PROJECT_PROCESSSTATUS,
+		       PROJECT_PROCESSCATEGORY,
+		       PROJECT_CONSULLTING,
+		       PROJECT_READYSTATUS,
+		       PROJECT_CURRENTSTATUS,
+		       PROJECT_BUSINESSINFO,
+		       PROJECT_REFERENCE,
+		       PROJECT_NOTE,
+		       PROJECT_TECHNOLOGIES,
+		       PROJECT_BUDGET,
+		       TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,	
+		       PROJECT_DURATION,
+		       PROJECT_ENDSTATUS,
+		       PROJECT_PREMEETING,
+		       PROJECT_PROCEEDINGMEETING,
+		       PROJECT_MEETINGCYCLE,
+		       PROJECT_CLIENTLOCATION,
+		       PROJECT_APPLICATIONDEADLINE,
+		       PROJECT_SUPPORTSTATUS,
+		       PROJECT_ESSENTIALREQUIREMENTS,
+		       PROJECT_MANPOWER,
+		       PROJECT_MANAGEMENTEXPERIENCE,
+		       PROJECT_FUTUREPLANS,
+		       PROJECT_PRIORITY,
+		        TO_CHAR(project_enddate, 'YYYY-MM-DD') project_enddate,		   
+		       PROJECT_TITLE,
+		       PL,
+		       DA,
+		       UA,
+		       TA,
+		       AA
+		FROM PROJECT
+		         JOIN PROJECT_PARTICIPANTS ON PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		WHERE PROJECT.PROJECT_NO = #project_no#
+	</select>
 
+<select id="projectInfo1" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# and PROJECT_ENDSTATUS ='N'
+</select>
 
+<select id="projectInfo2" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# and PROJECT_ENDSTATUS ='Y'
+</select>
+<select id="projectInfo3" resultClass="integer" parameterClass="map">
+select count(PROJECT_ENDSTATUS)
+from PROJECT
+where MEM_ID =#mem_id# 
+</select>
+<select id="projectInfo4" resultClass="integer" parameterClass="map">
+select count(PROJECT_NO)
+from PROJECT_APPLY
+where project_no = #project_no# 
+</select>
+<select id="projectInfo5" resultClass="integer" parameterClass="map">
+select count(PROJECT_NO)
+from PROJECT_APPLY
+where project_no = #project_no# 
+</select>
+<select id="projectInfo6" resultClass="String"  parameterClass="map">
+select PROJECT_APPLICATIONDEADLINE - PROJECT_STARTDATE
+from PROJECT
+    where PROJECT_NO = #project_no#
+</select> 
 
+ <insert id="insertproject" parameterClass="ProjectVO">
+
+insert into project_apply
+(mem_id,
+ project_no
+ )
+ values
+ (
+ #mem_id#,
+ #project_no#
+ )
+
+</insert> 
 </sqlMap>
 
  

@@ -53,7 +53,7 @@
                 <div style="margin: 0px 0px 25px 0px">
                     <label for="example-search-input" class="form-control-label">프로젝트</label>
                     <select class="form-control project-selector" data-toggle="select" title="Simple select" data-placeholder="완료한 프로젝트가 없습니다." disabled>
-                    	<option>번호 : ${projectInfo.PROJECT_NO } 이름 : ${projectInfo.PROJECT_TITLE }</option>
+                    	<option value="${projectInfo.PROJECT_NO }">${projectInfo.PROJECT_TITLE }</option>
                     </select>
                 </div>
                    

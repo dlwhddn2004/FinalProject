@@ -24,7 +24,7 @@
 	                )
 	           	return;
   	  		} else {
-  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/project/project_1.do');
+  	  			$(location).attr('href', '${pageContext.request.contextPath }/user/projectRegist/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}');
   	  		}
   	  	});
   	});
@@ -35,7 +35,7 @@
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  d-flex  align-items-center">
-        <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+        <a class="navbar-brand" href="${pageContext.request.contextPath }">
           <img src="${pageContext.request.contextPath }/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
         </a>
         <div class=" ml-auto ">
@@ -68,7 +68,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/dashboards/alternative.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/projectsearch/projectsearch.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link ">
                       <span class="sidenav-mini-icon"> 찾기 </span>
                       <span class="sidenav-normal"> 프로젝트 찾기 </span>
                     </a>
@@ -148,7 +148,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/components/notifications.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/guide/faq.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 질문 </span>
                       <span class="sidenav-normal"> 자주 묻는 질문 </span>
                     </a>

@@ -30,7 +30,17 @@ public class ProjectVO {
 	private String project_futureplans;
 	private String project_priority;
 	private String project_title;
+	private String project_enddate;
+	private String project_applyCnt;
+	private String project_time;
+	private String tech_name;
 	
+	public String getProject_enddate() {
+		return project_enddate;
+	}
+	public void setProject_enddate(String project_enddate) {
+		this.project_enddate = project_enddate;
+	}
 	public String getProject_no() {
 		return project_no;
 	}
@@ -205,5 +215,23 @@ public class ProjectVO {
 	}
 	public void setProject_title(String project_title) {
 		this.project_title = project_title;
+	}
+	public String getProject_applyCnt() {
+		return project_applyCnt;
+	}
+	public void setProject_applyCnt(String project_applyCnt) {
+		this.project_applyCnt = project_applyCnt;
+	}
+	public String getProject_time() {
+		return project_time;
+	}
+	public void setProject_time(String project_time) {
+		this.project_time = project_time;
+	}
+	public String getTech_name() {
+		return tech_name;
+	}
+	public void setTech_name(String tech_name) {
+		this.tech_name = tech_name;
 	}
 }

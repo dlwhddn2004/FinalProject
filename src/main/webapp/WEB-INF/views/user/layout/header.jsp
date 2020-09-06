@@ -192,12 +192,19 @@
 			  '${param.taskResult}'
 			)
 		}
+		if (${!empty message}) {
+			Swal.fire(
+			  '${taskResult}',
+			  '${message}',
+			  '${taskResult}'
+			)
+		}
 		
 		loadRate();
 		
 		playAlert = setInterval(function() {
 			loadRate();
-		}, 10000000000);
+		}, 30000);
 		
 		function loadRate() {
 			$.ajax({
@@ -216,25 +223,50 @@
 						let professional_rate = ((result.memberRateInfo.professional - result.memberRateInfo.professional_bef) / result.memberRateInfo.professional_bef) * 100;
 						professional_rate = professional_rate.toFixed(2);
 						$('.card-professional').find('span:eq(0)').text(result.memberRateInfo.professional + ' POINT');
+						
+						if (professional_rate == "NaN") {
+							professional_rate = 0;
+						}
+						
 						$('.card-professional').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + professional_rate + '%');
 						
 						let communication_rate = ((result.memberRateInfo.communication - result.memberRateInfo.communication_bef) / result.memberRateInfo.communication_bef) * 100;
 						communication_rate = communication_rate.toFixed(2);
+						
+						if (communication_rate == "NaN") {
+							communication_rate = 0;
+						}
+						
 						$('.card-communication').find('span:eq(0)').text(result.memberRateInfo.communication + ' POINT');
 						$('.card-communication').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + communication_rate + '%');
 						
 						let positiveness_rate = ((result.memberRateInfo.positiveness - result.memberRateInfo.positiveness_bef) / result.memberRateInfo.positiveness_bef) * 100;
 						positiveness_rate = positiveness_rate.toFixed(2);
+						
+						if (positiveness_rate == "NaN") {
+							positiveness_rate = 0;
+						}
+						
 						$('.card-positiveness').find('span:eq(0)').text(result.memberRateInfo.positiveness + ' POINT');
 						$('.card-positiveness').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + positiveness_rate + '%');
 						
 						let satisfaction_rate = ((result.memberRateInfo.satisfaction - result.memberRateInfo.satisfaction_bef) / result.memberRateInfo.satisfaction_bef) * 100;
 						satisfaction_rate = satisfaction_rate.toFixed(2);
+						
+						if (satisfaction_rate == "NaN") {
+							satisfaction_rate = 0;
+						}
+						
 						$('.card-satisfaction').find('span:eq(0)').text(result.memberRateInfo.satisfaction + ' POINT');
 						$('.card-satisfaction').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + satisfaction_rate + '%');
 						
 						let compliance_rate = ((result.memberRateInfo.compliance - result.memberRateInfo.compliance_bef) / result.memberRateInfo.compliance_bef) * 100;
 						compliance_rate = compliance_rate.toFixed(2);
+						
+						if (compliance_rate == "NaN") {
+							compliance_rate = 0;
+						}
+						
 						$('.card-compliance').find('span:eq(0)').text(result.memberRateInfo.compliance + ' POINT');
 						$('.card-compliance').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + compliance_rate + '%');
 					}

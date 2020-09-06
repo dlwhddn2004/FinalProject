@@ -58,7 +58,7 @@
 								data-toggle="select" title="Simple select"
 								data-placeholder="카테고리">
 								<c:forEach items="${projectList }" var="item">
-									<option>번호 : ${item.PROJECT_NO } 이름 : ${item.PROJECT_TITLE }</option>
+									<option value="${item.PROJECT_NO }">${item.PROJECT_TITLE }</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -305,7 +305,6 @@
     // Project List 선택 시!
     $(document.body).on("change",".project-category", function(){
 	  let project_no = $('.project-category').select2('val');
-	  project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
 	  
 	  loadTimeline(project_no);
 	  loadTodoList(project_no);
@@ -313,7 +312,6 @@
     
     
     let first_project_no = $('.project-category').select2('val');
-    first_project_no = first_project_no.substring(first_project_no.indexOf(':') + 2, first_project_no.indexOf('이') - 1);
     // TIMELINE List 로딩!
     loadTimeline(first_project_no);
     
@@ -324,7 +322,6 @@
     function insertTodoList() {
       const todo_title = $('.ipt-todo-title').val();
       let project_no = $('.project-category').select2('val');
-	  project_no = project_no.substring(project_no.indexOf(':') + 2, project_no.indexOf('이') - 1);
       let todo_category = $('.todo-category').select2('val');
       if (todo_category === "SUCCESS") {
         todo_category = "success";

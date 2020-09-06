@@ -1,4 +1,4 @@
-package kr.or.ddit.mypage.developer.service;
+﻿package kr.or.ddit.mypage.developer.service;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ public interface IMypageService {
 	public int portfolioFinishNumber(Map<String,String> params) throws Exception;
 	public String insertMyabout(Mypage_memberVO vo, MultipartFile[] items)throws Exception;
 	public Mypage_memberVO selectMypageInfo(Map<String,String> params) throws Exception;
-	public String modifyMyabout(Mypage_memberVO vo, MultipartFile[] items ) throws Exception; 
+	public String modifyMyabout(Mypage_memberVO vo, MultipartFile[] items ) throws Exception;
 	
 	public void insertMypageDeveloper(Mypage_memberVO mypageInfo) throws Exception;
 }
