@@ -118,6 +118,7 @@ public class InterviewServiceImpl implements IInterviewService {
 		return dao.selectInterview(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public int updateInterview(Map<String, String> params) throws Exception {
 		return dao.updateInterview(params);
