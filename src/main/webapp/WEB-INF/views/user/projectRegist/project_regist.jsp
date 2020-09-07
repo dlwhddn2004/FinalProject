@@ -47,6 +47,7 @@
           <!-- List group -->
           <ul class="list-group list-group-flush">
             <li class="list-group-item">프로젝트 정보 등록</li>
+            <li class="list-group-item">면접 정보 설정</li>
             <li class="list-group-item bg-gradient-primary text-white">프로젝트 등록 완료</li>
           </ul>
         </div>

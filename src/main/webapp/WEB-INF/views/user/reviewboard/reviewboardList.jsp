@@ -29,6 +29,8 @@
 	type="text/css">
 <!-- Sweet Alerts -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+<!-- Notify -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
 
 <!-- My CSS -->
 <style type="text/css">
@@ -151,6 +153,8 @@
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<!-- Argon JS -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
