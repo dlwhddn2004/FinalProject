@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
+import kr.or.ddit.vo.projectapplyVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -170,6 +171,24 @@ public class ProjectDaoImpl implements IProjectDao {
 	public void insertprojectsupport(ProjectVO projectInfo) throws Exception {
 		
 		client.insert("projectsearch.insertproject",projectInfo);
+		
+	}
+
+	@Override
+	public List<projectapplyVO> applyList(Map<String, String> params)
+			throws Exception {
+		List<projectapplyVO> list = null;
+		
+		list = client.queryForList("projectsearch.applyList", params);
+		
+		return list;
+		
+	}
+
+	@Override
+	public void updateapplyInfo(projectapplyVO applyInfo) throws Exception {
+		
+		client.update("projectsearch.updateapplyInfo",applyInfo);
 		
 	}
 	

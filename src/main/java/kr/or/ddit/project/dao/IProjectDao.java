@@ -6,6 +6,7 @@ import java.util.Map;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
+import kr.or.ddit.vo.projectapplyVO;
 
 public interface IProjectDao {
 	public Map<String, String> selectProjectInfo(Map<String, String> params) throws Exception;
@@ -46,5 +47,8 @@ public interface IProjectDao {
 	public int projectInfo5(Map<String,String>params) throws Exception;
 	// 지원자 신청
 	public void insertprojectsupport(ProjectVO projectInfo) throws Exception;
+	public List<projectapplyVO> applyList(Map<String,String>params) throws Exception;
+	// 지원자 신청 업데이트
+	public void updateapplyInfo (projectapplyVO applyInfo) throws Exception;
 
 }
