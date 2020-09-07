@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="reportboard">
+	<typeAlias alias="ReportboardVO" type="kr.or.ddit.vo.ReportboardVO"/>
+	
+	<select id="reportboardList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT ROWNUM r, a.*
+		FROM (SELECT REPORT_NO,
+					PROJECT_NO,
+					MEM_ID,
+					REPORT_TITLE,
+					REPORT_CONTENT,
+					TO_CHAR(REPORT_REGDATE, 'YYYY-MM-DD') REPORT_REGDATE,
+					REPORT_HIT,
+					REPORT_STATUS
+		      FROM REPORT_BOARD
+		      WHERE PROJECT_NO = #project_no#
+		ORDER BY REPORT_BOARD.REPORT_NO DESC) a
+	</select>
+	
+	<select id="selectReportboard" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT REPORT_NO,
+				PROJECT_NO,
+				MEM_ID,
+				REPORT_TITLE,
+				REPORT_CONTENT,
+				REPORT_REGDATE,
+				REPORT_HIT,
+				REPORT_STATUS
+		FROM REPORT_BOARD
+		WHERE REPORT_NO = #report_no#
+			
+	</select>
+	
+	<insert id="insertReportboard" parameterClass="map">
+		<selectKey keyProperty="report_no" resultClass="String">
+			SELECT REPORT_BOARD_SEQ.nextval
+			FROM DUAL
+		</selectKey>
+		INSERT INTO REPORT_BOARD
+			(
+				REPORT_NO,
+				PROJECT_NO,
+				MEM_ID,
+				REPORT_TITLE,
+				REPORT_REGDATE,
+				REPORT_HIT,
+				REPORT_STATUS,
+				REPORT_CONTENT
+			)
+		VALUES
+			(
+				#report_no#,
+				#project_no#,
+				#mem_id#,
+				#report_title#,
+				SYSDATE,
+				#report_hit#,
+				#report_status#,
+				#report_content#
+			)
+			
+	</insert>
+	
+<!-- 	<select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map"> -->
+<!-- 		SELECT ROWNUM r, A.*, B.* -->
+<!-- 		FROM ISSUE_BOARD A, PROJECT B -->
+<!-- 		WHERE A.PROJECT_NO = B.PROJECT_NO -->
+<!-- 		AND B.PROJECT_NO = #project_no#  -->
+<!-- 		AND ISSUE_NO = #issue_no#  -->
+	
+<!-- 	</select> -->
+	
+<!-- 	<insert id="insertIssueboard" parameterClass="IssueboardVO"> -->
+<!-- 		<selectKey keyProperty="issue_no" resultClass="string"> -->
+<!-- 		SELECT ISSUE_BOARD_SEQ.nextval FROM DUAL -->
+<!-- 		</selectKey> -->
+<!-- 		INSERT INTO ISSUE_BOARD(ISSUE_NO, -->
+<!-- 							    PROJECT_NO, -->
+<!-- 								MEM_ID, -->
+<!-- 								ISSUE_TITLE, -->
+<!-- 								ISSUE_CONTENT, -->
+<!-- 								ISSUE_REGDATE) -->
+<!-- 						 VALUES(#issue_no#, -->
+<!-- 						 		#project_no#, -->
+<!-- 						 		#mem_id#, -->
+<!-- 						 		#issue_title#, -->
+<!-- 						 		#issue_content#, -->
+<!-- 						 		SYSDATE)						 -->
+<!-- 	</insert> -->
+	
+<!-- 	<update id="updateIssueboard" parameterClass="IssueJoinVO"> -->
+<!-- 		UPDATE ISSUE_BOARD SET  ISSUE_TITLE = #issue_title#, -->
+<!--                          		ISSUE_CONTENT = #issue_content# -->
+<!-- 		WHERE ISSUE_NO = #issue_no# -->
+<!-- 	</update> -->
+	
+<!-- 	<delete id="deleteIssueboard" parameterClass="map"> -->
+<!-- 		DELETE ISSUE_BOARD WHERE ISSUE_NO = #issue_no# -->
+<!-- 	</delete> -->
+	
+<!-- 	<update id="updatehit" parameterClass="map"> -->
+<!-- 		UPDATE ISSUE_BOARD SET ISSUE_HIT = ISSUE_HIT + 1 -->
+<!-- 		WHERE ISSUE_NO = #issue_no# -->
+<!-- 	</update> -->
+	
+</sqlMap>
+
+ 
+
+
