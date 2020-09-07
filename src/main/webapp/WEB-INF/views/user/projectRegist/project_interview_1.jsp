@@ -160,11 +160,11 @@
                   <p class="text-muted" style="font-size: small">면접 방식을 선택해 주세요.</p>
                   <div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="interview-method1" name="interview-method" class="custom-control-input" checked>
+                      <input type="radio" id="interview-method1" name="interview-method" class="custom-control-input" checked value="온라인">
                       <label class="custom-control-label" for="interview-method1">온라인</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="interview-method2" name="interview-method" class="custom-control-input">
+                      <input type="radio" id="interview-method2" name="interview-method" class="custom-control-input" value="오프라인">
                       <label class="custom-control-label" for="interview-method2">오프라인</label>
                     </div>
                   </div>
