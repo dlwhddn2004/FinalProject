@@ -5,6 +5,7 @@
 
 <sqlMap namespace="projectsearch">
 	<typeAlias alias="ProjectVO" type="kr.or.ddit.vo.ProjectVO" />
+	<typeAlias alias="projectapplyVO" type="kr.or.ddit.vo.projectapplyVO" />
 	<typeAlias alias="JoinVO" type="kr.or.ddit.vo.JoinVO" />
 	<typeAlias alias="Project_ProjectParticipantsVO" type="kr.or.ddit.vo.Project_ProjectParticipantsVO" />
 	
@@ -240,7 +241,19 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       INTERVIEW_METHOD,
 		       INTERVIEW_AUTHENTICATION,
 		       INTERVIEW_CUSTOMIZING
-
+<dynamic prepend="AND">
+			<isNotEmpty property="search_keyword">
+				<isEqual property="search_keyworde" compareValue="외주">
+				AND	 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="search_keyword">
+				<isEqual property="search_keyword" compareValue="상주">
+					 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+				</isEqual>
+			</isNotEmpty>
+			
+		</dynamic>
 		FROM PROJECT,
 		     PROJECT_PARTICIPANTS,
 		     TECHNOLOGIES,
@@ -250,20 +263,7 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
 		  AND PROJECT_ENDSTATUS = 'N'
           AND PROJECT.PROJECT_NO =  INTERVIEW.INTERVIEW_NO
-<dynamic>
-			
-			<isNotEmpty property="search_keyworde">
-				<isNotEqual property="search_keyworde" compareValue="외주">
-					AND PROJECT_PROCESSSTATUS = #project_processstatus#
-				</isNotEqual>
-			</isNotEmpty>
-			<isNotEmpty property="search_keywordd">
-				<isNotEqual property="search_keywordd" compareValue="상주">
-					AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
-				</isNotEqual>
-			</isNotEmpty>
-			
-		</dynamic>
+
 </select>
 <select id="projectInfo" resultClass="ProjectVO">
 		SELECT PROJECT.PROJECT_NO PROJECT_NO,
@@ -351,6 +351,21 @@ insert into project_apply
  )
 
 </insert> 
+<select id="applyList" parameterClass="map" resultClass="projectapplyVO">
+select * 
+from project_apply
+where project_no = #project_no#
+
+</select>
+
+<update id="updateapplyInfo" parameterClass="projectapplyVO">
+		update PROJECT_APPLY set
+ apply_status = 'y'
+where PROJECT_NO = #project_no#
+  and
+ mem_id = #mem_id#
+	</update>
+
 </sqlMap>
 
  

@@ -1,4 +1,5 @@
-﻿package kr.or.ddit.project.service;
+﻿
+package kr.or.ddit.project.service;
 
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import kr.or.ddit.project.dao.IProjectDao;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.Project_ProjectParticipantsVO;
+import kr.or.ddit.vo.projectapplyVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -184,6 +186,18 @@ public class ProjectServiceImpl implements IProjectService {
 	public Map<String, String> readNotProject(Map<String, String> params)
 			throws Exception {
 		return dao.readNotProject(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<projectapplyVO> applyList(Map<String, String> params)
+			throws Exception {
+		return dao.applyList(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void updateapplyInfo(projectapplyVO applyInfo) throws Exception {
+		
+			 dao.updateapplyInfo(applyInfo);
 	}
 
 }

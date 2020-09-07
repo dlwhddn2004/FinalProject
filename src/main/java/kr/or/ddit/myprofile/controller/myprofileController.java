@@ -3,10 +3,12 @@ package kr.or.ddit.myprofile.controller;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import kr.or.ddit.member.dao.IMemberDAO;
 import kr.or.ddit.member.service.IMemberService;
@@ -18,12 +20,9 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/user/myprofile/")
@@ -44,8 +43,22 @@ public class myprofileController {
 	
 	
 	 @RequestMapping("myprofile")
-	  public void myprofile(){}
+	  public ModelAndView myprofile(ModelAndView modelAndView, String mem_id) throws Exception{
+		 Map<String, String> params = new HashMap<String, String>();
+		 params.put("mem_id", mem_id);
+		 
+		 ProfileFileVO profileInfo = profileService.selectProfileFileInfo(params);
+		 MemberVO memberInfo = service.memberInfo(params);
+		 
+		 modelAndView.addObject("profileInfo",profileInfo);
+		 modelAndView.addObject("memberInfo", memberInfo);
+		 
+		 modelAndView.setViewName("user/myprofile/myprofile");
+		 
+		 return modelAndView;
+	 }
 	
+	 
 	
 @RequestMapping("updateMemberInfo")	
 		public String updateMember(MemberVO memberInfo, ProfileFileVO profileInfo
@@ -86,6 +99,8 @@ public String memberDelete(HttpServletRequest request,
 	session.invalidate();
 	this.service.deleteMemberInfo(params);
 	
+	
+	
 	return "redirect:/user/myprofile/myprofile.do";
 }
 
@@ -99,8 +114,7 @@ public void myprofilenotice(){}
 @RequestMapping("myprofileidentity")
 public void myprofileidentity(){}
 
-@RequestMapping("projectsms")
-public void projectsms(){}
+
 
 
 }

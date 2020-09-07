@@ -1,315 +1,150 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description"
+	content="Start your development with a Dashboard for Bootstrap 4.">
+<meta name="author" content="CONNECTOR">
+<title>Insert title here</title>
 
-<div class="row">
-	<div class="col-md-8">
-		<div class="card-wrapper">
-			<!-- Custom form validation -->
+<!-- Favicon -->
+<link rel="icon"
+	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png"
+	type="image/png">
+<!-- Fonts -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<!-- Icons -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css"
+	type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
+	type="text/css">
+<!-- Page plugins -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+<!-- Argon CSS -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
+	type="text/css">
+<!-- Sweet Alerts -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+
+<!-- My CSS -->
+<style type="text/css">
+.table-row-data:hover {
+	background-color: #5e72e4;
+	color: white;
+	cursor: pointer;
+	transition: 0.5s;
+}
+</style>
+
+<!-- My JavaScript -->
+<script type="text/javascript">
+$(function(){
+/* $('#updateapply').click(function(){
+	// /ddit/13/freeboard/freeboardform.jsp
+	$(location).attr('href', '${pagecontext.request.contextpath}/user/projectsupport/applyupdate.do?project_no=" + project_no + "&mem_id=" + mem_id');
+}); */
+
+});
+
+
+
+
+	 function viewBoardInfo(e) {
+		const project_no = $(e).find('input[name=project_no]').val();
+		const mem_id = $(e).find('input[name=mem_id]').val();
+		
+		location.href = "${pageContext.request.contextPath}/user/projectsupport/applyupdate.do?project_no=" + project_no + "&mem_id=" + mem_id ;
+	}  
+	
+</script>
+</head>
+<body>
+	<!-- Page content -->
+	<!-- Table -->
+	<form action=""></form>
+	<div class="row">
+		<div class="col">
 			<div class="card">
 				<!-- Card header -->
 				<div class="card-header">
-					<h3 class="mb-0">프로젝트 상세보기</h3>
+					<h3 class="mb-0">지원자 목록 조회</h3>
+					<p class="text-sm mb-0">해당 프로젝트 지원한 지원자들 목록입니다.</p>
 				</div>
-				<!-- Card body -->
-				<div class="card-body">
-					<div class="row">
-						<div>	
-							<div style="margin: 0px 0px 10px 0px;">
-								<h3 class="mb-0" style="font-size: 2em;">${projectInfo.project_title}</h3>
-							</div>
-							<div>
-								<span class="badge badge-md badge-info">${projectInfo.project_processstatus }</span>
-							</div>
-						</div>
-					</div>
-					<hr />
-					<form class="needs-validation" novalidate>
-						<div class="form-row" style="display: flex; justify-content: space-around;">
-							<div class="col-md-10 mb-2" align="center"
-								style="margin: 15px 25px 15px 0px; padding: 20px; border: 1.5px solid #CEE3F6; border-radius: 1em;">
-								<i class="fas fa-won-sign"></i> <span style="margin: 0px 40px 0px 0px;">예상 금액</span>
-								
-								<span 
-									class="mb-0"
-									style="margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em; ">${projectInfo.project_budget }원</span>
-								<i class="far fa-clock"></i> <span style="margin: 0px 40px 0px 0px;">예상 기간</span> <span
-									class="mb-0"
-									style=" margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em;">${projectInfo.project_duration }일
-								</span>							
-								<i class="fas fa-user"></i> <span style="margin: 0px 40px 0px 0px;">지원자 수</span> <span
-									class="mb-0"
-									style=" margin: 0px 60px 0px 0px; font-weight: bolder; font-size: 1.2em;">${projectInfo4 }명
-								</span>							
-							</div>					
-						</div>					
-						<div>
-							<div class="row">
-								<div class="col-md-12"  style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-										<i class="far fa-clock"></i>
-									</div>
-									<div style="margin: 0px 20px 0px 0px;">
-										<span>모집 마감일</span> 
-									</div>
-									<div>
-										<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_enddate }일</span>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-										<i class="far fa-calendar"></i>
-									</div>
-									<div style="margin: 0px 20px 0px 0px;">
-										<span>예상 시작일</span> 
-									</div>
-									<div>
-										<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_startdate }일</span>
-									</div>
-								</div>
-							</div>							
-							<div class="row">
-								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-									<i class="fas fa-backspace"></i>
-									</div>
-									<div style="margin: 0px 34px 0px 0px;">
-									<span>진행 분류</span>  
-								</div>
-								<div>
-									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_processcategory }</span>
-								</div>
-							</div>
-							</div>							
-							<div class="row">
-								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-									<i class="far fa-file"></i>
-									</div>
-									<div style="margin: 0px 34px 0px 0px;">
-									<span>기획 상태</span>  
-								</div>
-								<div>
-									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_readystatus }</span>
-								</div>
-							</div>
-							</div>							
-							<div class="row">
-								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-									<i class="fas fa-cog"></i>
-									</div>
-									<div style="margin: 0px 16px 0px 0px;">
-									<span>매니징 경험</span>  
-								</div>
-								<div>
-									<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_managementexperience }</span>
-								</div>
-							</div>
-							</div>
-							<div class="row">
-								<div class="col-md-12" style="display:flex; font-size : 1.2em;">
-									<div style="width: 18px; height: 18px; margin: 0px 10px 0px 0px;">
-									<i class="far fa-building"></i>
-									</div>
-									<div style="margin: 0px 34px 0px 0px;">
-									<span>인력 상황</span>  
-								</div>
-								<div>
-									<span class="mb-0" style="font-weight: bolder;">${projectInfo.project_manpower }</span>
-								</div>
-							</div>
-							</div>
-						</div>
-						<hr />
-						<div>
-							<h3 class="mb-0" style="font-size: 1.2em;">업무 내용</h3>
-							<br>
-							<lable>프로젝트 우선순위:</lable>
-							<br> <span>- ${projectInfo.project_priority }</span><br>
-							<br>
-							<br>
-							<lable>현재 준비 상황:</lable>
-							<br> <span>- ${projectInfo.project_currentstatus }</span><br>
-							<br>
-							<br>
-							<lable>기타 참고 사항 /유의 사항:</lable>
-							<br> <span>- ${projectInfo.project_reference }</span><br>
-							<br>
-							<br>
-							<lable>관련 기술:</lable>
-							<span class="badge badge-primary">
-								${projectInfo.project_technologies }</span><br>
-						</div>
-						<hr/>
-						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>
-						<br>
-						<lable>지원자 필수 조건</lable>
-						<span style="font-weight: bolder; margin-left: 30px;">
-						${projectInfo.project_essentialrequirements }</span><br>
-						<hr>			
-						<h3 class="mb-0" style="font-size: 1.2em;">미팅</h3>
-						<br>
-						<lable>사전 미팅 방식</lable>
-						<span style="font-weight: bolder; margin-left: 47px;">
-							${projectInfo.project_premeeting }</span><br>
-						<br>
-						<lable>진행 중 미팅</lable>
-						<span style="font-weight: bolder; margin-left: 63px;">
-							${projectInfo.project_proceedingmeeting }</span><br>
-						<br>
-						<lable>클라이언트 위치</lable>
-						<span style="font-weight: bolder; margin-left: 35px;">
-							${projectInfo.project_clientlocation }</span><br>
-						<br>
-				</div>
-				<div class="form-row">
-					<div class="col-md-6 mb-3"></div>
-					<div class="col-md-3 mb-3"></div>
-					<div class="col-md-3 mb-3"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="col-md-4">
-		<div class="card card-profile">
-			
-			<div class="row justify-content-center">
-				<div class="col-lg-3 order-lg-2">
-					<div class="card-profile-image">
-					
-					</div>
-				</div>
-			</div>
-			<div
-				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-				<div class="d-flex justify-content-between"></div>
-			</div>
-			<div class="card-body pt-0">
-				<div class="row">
-					<div class="col">
-						<div class="text-center">
-							<br>
-							<br>
-							<h5 class="h3">
-								
-							</h5>
-						</div>
-						<div class="card-profile-stats d-flex justify-content-center">
-
+				<div class="table-responsive py-4">
+					<table class="table table-flush datatable-basic">
+						<thead class="thead-light">
+							<tr>														
+								<th>지원자</th>
+								<th>지원 날짜</th>
+								<th>합격여부</th>
+								<th></th>
+							</tr>
+						</thead>
 						
-						</div>
-					</div>
-				</div>
-
-			</div>		
-		</div>
-		
-		<div class="col-md-14">
-		<div class="card card-profile">
-			<img src="../../assets/img/theme/img-1-1000x600.jpg"
-				alt="Image placeholder" class="card-img-top">
-			<div class="row justify-content-center">
-				<div class="col-lg-3 order-lg-2">
-					<div class="card-profile-image">
-						<a href="#"> <img class="rounded-circle"
-							src="/${profileInfo.profile_savename}">
-
-						</a>
-					</div>
+						<tbody>
+							<c:forEach items="${applyList }" var="item">
+								<tr class="table-row-data" onclick="javascript:viewBoardInfo(this)">
+									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
+									<td>${item.apply_date }<input type="hidden" name="project_no" value="${item.project_no }"></td>
+									<td>${item.apply_status }</td>
+									<td><button type="button" class="btn btn-primary btn-write" >지원 합격</button></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
-			<div
-				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-				<div class="d-flex justify-content-between"></div>
-			</div>
-			<div class="card-body pt-0">
-				<div class="row">
-					<div class="col">
-						<div class="text-center">
-							<br>
-							<br>
-							<h5 class="h3">
-								<span class="font-weight-light"> <span
-									class="badge-md badge-pill badge-primary">파트너스</span></span><br>
-								<br> ${projectInfo.mem_id }
-							</h5>
-						</div>
-						<div class="card-profile-stats d-flex justify-content-center">
-
-							<div>
-								<span class="heading">${projectInfo3}</span> <span
-									class="description">프로젝트 등록</span>
-							</div>
-							<div>
-
-								<span class="heading">${projectInfo1}</span> <span
-									class="description">진행 중인 프로젝트</span>
-							</div>
-							<div>
-								<span class="heading">${projectInfo2}</span> <span
-									class="description">완료한 프로젝트</span>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-
-			
 		</div>
 	</div>
-	</div>
-	
-	
-	
-	
-</div>
-</div>
-</div>
-<!-- Argon Scripts -->
-<!-- Core -->
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-<script
-	src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-<!-- Optional JS -->
-<script>
-	/*    // Example starter JavaScript for disabling form submissions if there are invalid fields
-	   (function() {
-	     'use strict';
-	     window.addEventListener('load', function() {
-	       // Fetch all the forms we want to apply custom Bootstrap validation styles to
-	       var forms = document.getElementsByClassName('needs-validation');
-	       // Loop over them and prevent submission
-	       var validation = Array.prototype.filter.call(forms, function(form) {
-	         form.addEventListener('submit', function(event) {
-	           if (form.checkValidity() === false) {
-	             event.preventDefault();
-	             event.stopPropagation();
-	           }
-	           form.classList.add('was-validated');
-	         }, false);
-	       });
-	     }, false);
-	   })(); */
-</script>
-<!-- Argon JS -->
-<script
-	src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
-<!-- Demo JS - remove this in your project -->
-<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
-</body>
 
-</html>
+	<!-- Argon Scripts -->
+	<!-- Core -->
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	<!-- Optional JS -->
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	<!-- Argon JS -->
+	<script
+		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
+	<!-- Demo JS - remove this in your project -->
+	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
 </body>
 </html>

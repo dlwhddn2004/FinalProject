@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-latest.js"></script>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script>
 	$(function() {
 		$('form[name=memberForm]')
@@ -102,239 +102,290 @@
 			}
 		}
 	});
+	
 </script>
+<head>
+</head>
 <html>
 <style>
-.card-profile {
-	width: 100%;
-	height: 100%;
+
+ul {
+    list-style-type: none;
+  
+    background-color: white;
 }
-/* .card-body {
-display: table; margin-left: auto; margin-right: auto; display: inline-block;
+li a {
+list-style-type: none;
+    display: block;
+    color: #000;
+    padding: 20px 16px;
+  
+}
+li a.active {
+    background-color: #819FF7;
+    color: white;
+}
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+.ui{
+	
+	width:110%;
+	height: 110%
+}
+.rr{
 
-
-} */
+}
 </style>
-<head>
-<head>
-
-<!-- Favicon -->
-<link rel="icon" href="../../assets/img/brand/favicon.png"
-	type="image/png">
-<!-- Fonts -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-<!-- Icons -->
-<link rel="stylesheet" href="../../assets/vendor/nucleo/css/nucleo.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="../../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	type="text/css">
-<!-- Argon CSS -->
-<link rel="stylesheet" href="../../assets/css/argon.css?v=1.2.0"
-	type="text/css">
-</head>
-<link rel="stylesheet"
-	herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
-<title>Insert title here</title>
 </head>
 <body>
-	<form name="memberForm" method="post">
+
 		<!-- Main content -->
-		<div class="main-content" id="panel">
-			<!-- Topnav -->
+		<div class="row">
+			<div class="col-md-9">
+				<div class="card">
 
-			<div class="container-fluid">
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<!-- Search form -->
-					<form class="navbar-search navbar-search-light form-inline mr-sm-3"
-						id="navbar-search-main">
+					<div class="card-header">
+						<div class="row align-items-center">
 
-
-						</nav>
-						<!-- Header -->
-						<!-- Header -->
-
-						<!-- Page content -->
+							<h3 class="mb-0">회원 수정</h3>
 
 
-						<!-- Card body -->
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="card">
-						<div class="card-header">
-							<div class="row align-items-center">
-
-								<h3 class="mb-0">회원 수정</h3>
-
-
-							</div>
 						</div>
-						<div class="card-body">
-							<h6 class="heading-small text-muted mb-4">* 아래 회원 수정을 작성
-								변경해주세요.</h6>
-							<div class="pl-lg-4">
-								<div class="row">
-									<div class="col-lg-3">
-										<div class="form-group flex-column">
-											<label class="col-form-label form-control-label">아이디</label>
-											<label style="color: tomato">*</label> <input type="hidden"
-												name="mem_id" class="form-control"
-												value="${MEMBER_LOGININFO.mem_id}" placeholder="Username">
-											<input type="text" name="mem_id" class="form-control"
-												placeholder="Username" disabled="disabled"
-												value="${MEMBER_LOGININFO.mem_id}">
-										</div>
-										<div class="form-group flex-column">
-											<label class="col-form-label form-control-label">이메일</label>
-											<label style="color: tomato">*</label> <input type="hidden"
-												name="mem_mail" class="form-control"
-												value="${MEMBER_LOGININFO.mem_mail}" placeholder="Username">
-											<input type="text" name="mem_mail" class="form-control"
-												placeholder="Username" disabled="disabled"
-												value="${MEMBER_LOGININFO.mem_mail}">
-										</div>
+					</div>
+					<div class="card-body" >
+						<h6 class="heading-small text-muted mb-4">* 아래 회원 수정을 작성
+							변경해주세요.</h6>
+						<div class="pl-lg-4">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="form-group flex-column">
+										<label class="col-form-label form-control-label">아이디</label> <label
+											style="color: tomato">*</label> <input type="hidden"
+											name="mem_id" class="form-control"
+											value="${MEMBER_LOGININFO.mem_id}" placeholder="Username">
+										<input type="text" name="mem_id" class="form-control"
+											placeholder="Username" disabled="disabled"
+											value="${MEMBER_LOGININFO.mem_id}">
 									</div>
-								</div>
-							</div>
-							<div class="pl-lg-4">
-								<div class="row">
-									<div class="col-lg-3">
-										<div class="form-group flex-column">
-											<label class="col-form-label form-control-label">비밀번호</label>
-											<label style="color: tomato">*</label> <input type="hidden"
-												name="mem_id" class="form-control" value=""> <input
-												type="password" name="mem_pass" class="form-control"
-												value="1234">
-										</div>
-										<div class="form-group flex-column">
-											<label class="col-form-label form-control-label">비밀번호
-												확인</label> <label style="color: tomato">*</label> <input
-												type="hidden" name="mem_mail" class="form-control" value="">
-											<input type="password" name="mem_pass1" class="form-control"
-												value="1234">
-										</div>
+									<div class="form-group flex-column">
+										<label class="col-form-label form-control-label">이메일</label> <label
+											style="color: tomato">*</label> <input type="hidden"
+											name="mem_mail" class="form-control"
+											value="${MEMBER_LOGININFO.mem_mail}" placeholder="Username">
+										<input type="text" name="mem_mail" class="form-control"
+											placeholder="Username" disabled="disabled"
+											value="${MEMBER_LOGININFO.mem_mail}">
 									</div>
-
+									
 								</div>
 
+
+							<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
+								<div class="col">
+									<label class="col-form-label form-control-label">이름</label> <label
+										style="color: tomato">*</label>
+								</div>
+								<div class="row">
+									<div class="col" style="margin: 0px 40px 0px 0px;">
+										<input type="hidden" class="form-control" name="mem_bir" /> <input
+											style="" "type="text" class="form-control" id="mem_bir1"
+											name="mem_bir1" placeholder="">
+									</div>
+									
+								</div>
+								
+								
+									<div class="col">	
+									<label class="col-form-label form-control-label">휴대전화</label>
+										<label style="color: tomato">*</label></div>
+								<div class="row">
+									<div class="col">
+									<input type="hidden" name="mem_tel" class="form-control" />
+									<select name="mem_tel1" class="form-control">
+									<option value="010">010</option>
+														<option value="016">016</option>
+														<option value="017">017</option>
+														<option value="019">019</option>
+												</select>
+									</div>
+									<div class="col">	
+									<input type="text" name="mem_tel2" size="4" value=""class="form-control" />
+									</div>
+									 <div class="col">
+									 		  <input type="text"name="mem_tel3" size="4" value="" class="form-control" />
+									 </div>
+								</div>
+
+							
 							</div>
 
+						</div>							
+						</div>
+						
+						<div class="pl-lg-4">
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="form-group flex-column">
+										<label class="col-form-label form-control-label">비밀번호</label>
+										<label style="color: tomato">*</label> <input type="hidden"
+											name="mem_id" class="form-control" value=""> <input
+											type="password" name="mem_pass" class="form-control"
+											value="1234">
+									</div>
+									<div class="form-group flex-column">
+										<label class="col-form-label form-control-label">비밀번호
+											확인</label> <label style="color: tomato">*</label> <input
+											type="hidden" name="mem_mail" class="form-control" value="">
+										<input type="password" name="mem_pass1" class="form-control"
+											value="1234">
+									</div>
+								</div>
+									<div class="col-lg-6" style="margin : 0px 0px 0px 80px;">
+									<div class="col">	
+									<label class="col-form-label form-control-label">생년월일</label>
+										<label style="color: tomato">*</label></div>
+								<div class="row">
+									<div class="col"><input
+											type="hidden" class="form-control" name="mem_bir" />
+												<input style="" "type="text" class="form-control"
+												id="mem_bir1" name="mem_bir1" placeholder="생년월일"> 
+									</div>
+									<div class="col">	<input
+												type="text" class="form-control" id="mem_bir2"
+												name="mem_bir2" placeholder="생년월일"></div>
+									 <div class="col">
+									 		<input
+												type="text" class="form-control" id="mem_bir3"
+												name="mem_bir3" placeholder="생년월일">
+									 </div>
+								   </div>
+								  
+								</div>		
+							</div>
 
-							<!-- 주소  -->
+						</div>
+
+
+						<!-- 주소  -->
 
 						<div class="pl-lg-4">
-								<div class="row">
-									<div class="col-lg-3">
-										<div class="form-group flex-column">
-									<label class="col-form-label form-control-label">주소</label>
-											<label style="color: tomato">*</label><br>
-										<input type="button" class="btn btn-primary btn-write"
+							<div class="row">
+								<div class="col-lg-4">
+									<div class="form-group flex-column" style="margin:0px 20px 0px 0px;">
+										<label class="col-form-label form-control-label">주소</label> <label
+											style="color: tomato">*</label><br> <input type="button"
+											class="btn btn-primary btn-write"
 											onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-									<input type="hidden" class="form-control" name="mem_addr" />
-									<div class="input flex-column" style="display:">
-										<input type="text" class="form-control" id="addr1"
-											name="mem_addr1" placeholder="우편번호" required> 
-											<input type="text" class="form-control" name="mem_addr2" id="addr2" placeholder="도로명주소" required> 
-											<input type="text" class="form-control" name="mem_addr3" id="addr3" placeholder="지번주소" required>
-											 <input type="text" class="form-control" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required>
+										<input type="hidden" class="form-control" name="mem_addr" />
+										<div class="input flex-column" style="display:">
+											<input type="text" class="form-control" id="addr1"
+												name="mem_addr1" placeholder="우편번호" required> 
+												<input type="text" class="form-control" name="mem_addr2" id="addr2"
+												placeholder="도로명주소" required> 
+												<input type="text" class="form-control" name="mem_addr3" id="addr3" placeholder="지번주소" required> 
+												<input type="text" class="form-control" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required>
+										</div>
 									</div>
 								</div>
+								<div class="col-lg-3" style="margin : 0px 0px 0px 80px;">
+									<div class="col">	
+									<label class="col-form-label form-control-label">알림 방식</label>
+										<label style="color: tomato">*</label></div>
+								<div class="row">
+									<div class="col"><button type="button" class="btn btn-outline-primary" data-toggle="button"><i class="ni ni-email-83"></i> 이메일</button></div>
+									<div class="col"><button type="button" class="btn btn-outline-primary" data-toggle="button" ><i class="ni ni-email-83"></i>문자메시지</button>
+									 </div>
+									 
+								   </div>
+								  
+								</div>		
+															
 							</div>
-							<td class="fieldName" width="100px" height="25">생년월일</td> <br>
-							<div class="form-group test"
-								style="display: flex; justify-content: space-around;">
-
-								<tr>
-									<td class="test"><input type="hidden" class=""
-										name="mem_bir" />
-										<p>년</p> <input type="text" class="form-control"
-										name="mem_bir1" value="" />
-										<p>월</p> <input type="text" class="form-control"
-										name="mem_bir2" value="" />
-										<p>일</p> <input type="text" class="form-control"
-										name="mem_bir3" value="" /></td>
-								</tr>
-							</div>
-							<div class="pl-lg-4">
-								<td class="fieldName" width="100px" height="25">핸드폰</td>
-								<div class="col-md-3 mb-3">
-									<div class="fdiv class=" form-group
-										test" style="display: flex; justify-content: space-around;">
-										<tr>
-											<td class="test"><input type="hidden" name="mem_tel"
-												class="form-control" /> <select name="mem_tel1"
-												class="form-control">
-													<option value="010">010</option>
-													<option value="016">016</option>
-													<option value="017">017</option>
-													<option value="019">019</option>
-											</select> - <input type="text" name="mem_tel2" size="4" value=""
-												class="form-control" /> - <input type="text"
-												name="mem_tel3" size="4" value="" class="form-control" /></td>
-										</tr>
-									</div>
-								</div>
-								<h3>알림 설정</h3>
-								<div>
-									<label><input type="checkbox" name="mem_notice"
-										value="문자메시지"> 문자메시지</label>&nbsp;&nbsp;&nbsp; <label><input
-										type="checkbox" name="mem_notice" value="이메일"> 이메일</label>
-									<!--      <i class="ni ni-mobile-button"></i>
-                      <span>카카오톡 알림</span> 
-                <button type="" class="btn-icon-clipboard" data-clipboard-text="email-83" title="Copy to clipboard">
-                    <div>
-                      <label><input type="checkbox" name="color" value="red"></label>
-                      <i class="ni ni-email-83"></i>
-                      <span>email 알림</span> -->
-								</div>
-
-								<button type="submit" class="btn btn-primary btn-write"
-									id="btn3" style="float: right";>등록</button>
-							</div>
-
+							<button type="submit" class="btn btn-primary btn-write"
+										id="btn3" style="float: right";>변경</button>
+						</div>	
+						<div class="form-row">
+							<div class="col-md-6 mb-3"></div>
+							<div class="col-md-3 mb-3"></div>
+							<div class="col-md-3 mb-3"></div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="col-md-3">
+				<div class="card card-profile">					
+					<br>
+					<h3 style="margin : 0px 0px 0px 20px;">파트너스</h3>
+						<hr/>
+						<div class="card-profile-image">
+						<a href="#"> 
+						<input type="hidden" value="${MEMBER_LOGININFO.mem_id}" name="${MEMBER_LOGININFO.mem_id}">
+						<img class="rounded-circle" src="/${profileInfo.profile_savename}">
+						</a>						
+					</div>
+					<div class="card-body pt-0">
+						<div class="row">
+							<div class="col">
+								<div class="text-center">
+									<br> <br>
+									<h5 class="h3"></h5>
+								</div>
+								<div class="card-profile-stats d-flex justify-content-center">
+
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-13">
+					<div class="card card-profile">											
+						<div class="card-body pt-0">
+								<div style="margin : 10px 0px 10px 0px;">
+										
+											<li style="list-style-type: none;" ><a class="active" href="#home">기본정보수정</a></li>
+											<li style="list-style-type: none;"> <a href="#news">신원 인증</a></li>
+											<li style="list-style-type: none;"><a href="#contact">날인 방법 관리</a></li>
+											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do">계좌 관리</a></li>
+											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
+								
+									</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
 		</div>
 
+<!-- Argon Scripts -->
+<!-- Core -->
+<script
+	src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+<!-- Optional JS -->
 
+<!-- Argon JS -->
+<script
+	src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
+<!-- Demo JS - remove this in your project -->
+<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
 
-
-
-
-		<!-- Argon Scripts -->
-		<!-- Core -->
-
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
-		<!-- Argon JS -->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
-		<!-- Demo JS - remove this in your project -->
-		<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 </body>
 
 </html>
 </body>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-	
-</script>
-
-
 </html>
