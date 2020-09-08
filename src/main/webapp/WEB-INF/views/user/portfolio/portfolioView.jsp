@@ -444,7 +444,7 @@
                                     <div style="height: auto;">
                                         <a href="#" class="btn btn-sm btn-neutral btn-round btn-icon" data-toggle="tooltip" data-original-title="Edit product">
                                             <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
-                                            <span class="btn-inner--text">Review Insert</span>
+                                            <span class="btn-inner--text">Review 등록</span>
                                         </a>
                                     </div>
                                 </div>
@@ -741,10 +741,10 @@
 					<div class="col-md-12">
 						<div class="card" style="height: 435px;">
 							<div class="card-header">
-								<h2 class="mb-0">1. 대표 포트폴리오 사진 등록</h2>
-								<label class="col-form-label form-control-label">대표
+								<h2 class="mb-0">1. 썸네일 포트폴리오 사진 등록</h2>
+								<label class="col-form-label form-control-label">썸네일
 									포트폴리오 등록</label> <label style="color: tomato">*</label>
-								<p class="text-muted" style="font-size: small">대표 포트폴리오는 반드시
+								<p class="text-muted" style="font-size: small">썸네일 포트폴리오는 반드시
 									첫번째로 등록해주세요</p>
 							</div>
 							
@@ -1236,6 +1236,7 @@
 							reader.onload = function(e) {
 
 								$('#image-image-Form .sub-profile1').attr('src',e.target.result);
+								$('.testtesttesttest').attr('src',e.target.result);
 							}
 
 							reader.readAsDataURL(input.files[0]);
@@ -1249,6 +1250,7 @@
 							reader.onload = function(e) {
 
 								$('#image-image-Form .sub-profile2').attr('src',e.target.result);
+								$('.testtesttesttest').attr('src',e.target.result);
 							}
 
 							reader.readAsDataURL(input.files[0]);
