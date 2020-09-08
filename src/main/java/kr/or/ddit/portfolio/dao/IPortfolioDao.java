@@ -16,4 +16,7 @@ public interface IPortfolioDao {
 	public Map<String,String> mainScoreChart(Map<String,String> params) throws Exception;
 	
 	public void updatePortFolioLike(Map<String,String> params) throws Exception;
+	public int InsertPortflio(PortFolioVO portfolioInfo) throws Exception;
+	public int updatePortfolio(PortFolioVO portfolioInfo) throws Exception;
+	public int deleteportfolio(Map<String,String> params) throws Exception;
 }

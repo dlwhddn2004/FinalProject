@@ -69,6 +69,24 @@ public class PortfolioServiceImpl implements IPortfolioService{
 		 portfolioDao.updatePortFolioLike(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int InsertPortflio(PortFolioVO portfolioInfo) throws Exception {
+		return portfolioDao.InsertPortflio(portfolioInfo);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updatePortfolio(PortFolioVO portfolioInfo) throws Exception {
+		return portfolioDao.updatePortfolio(portfolioInfo);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteportfolio(Map<String, String> params) throws Exception {
+		return portfolioDao.deleteportfolio(params);
+	}
+
 	
 		
 

@@ -1,6 +1,6 @@
 package kr.or.ddit.vo;
 
-public class PortFolioVO {
+public class PortflioVO {
 
 	private String portfolio_no;
 	private String mem_id;
@@ -9,32 +9,15 @@ public class PortFolioVO {
 	private String portfolio_technologies;
 	private String portfolio_name;
 	private String portfolio_regdate;
-	private String portfolio_design;
-	private String portfolio_useability;
-	private String portfolio_creativity;
-	private String portfolio_content;
-	private String portfolio_develop;
 	private String portfolio_url;
-	private String portfolio_description;
 	private String portfolio_startdate;
 	private String portfolio_enddate;
 	private String portfolio_participationrate;
 	private String portfolio_thumbnailimg;
 	private String portfolio_imgs;
 	private String portfolio_like;
+	private String portfolio_description;
 	
-	public String getPortfolio_like() {
-		return portfolio_like;
-	}
-	public void setPortfolio_like(String portfolio_like) {
-		this.portfolio_like = portfolio_like;
-	}
-	public String getPortfolio_imgs() {
-		return portfolio_imgs;
-	}
-	public void setPortfolio_imgs(String portfolio_imgs) {
-		this.portfolio_imgs = portfolio_imgs;
-	}
 	public String getPortfolio_no() {
 		return portfolio_no;
 	}
@@ -56,26 +39,8 @@ public class PortFolioVO {
 	public String getPortfolio_regdate() {
 		return portfolio_regdate;
 	}
-	public String getPortfolio_design() {
-		return portfolio_design;
-	}
-	public String getPortfolio_useability() {
-		return portfolio_useability;
-	}
-	public String getPortfolio_creativity() {
-		return portfolio_creativity;
-	}
-	public String getPortfolio_content() {
-		return portfolio_content;
-	}
-	public String getPortfolio_develop() {
-		return portfolio_develop;
-	}
 	public String getPortfolio_url() {
 		return portfolio_url;
-	}
-	public String getPortfolio_description() {
-		return portfolio_description;
 	}
 	public String getPortfolio_startdate() {
 		return portfolio_startdate;
@@ -88,6 +53,15 @@ public class PortFolioVO {
 	}
 	public String getPortfolio_thumbnailimg() {
 		return portfolio_thumbnailimg;
+	}
+	public String getPortfolio_imgs() {
+		return portfolio_imgs;
+	}
+	public String getPortfolio_like() {
+		return portfolio_like;
+	}
+	public String getPortfolio_description() {
+		return portfolio_description;
 	}
 	public void setPortfolio_no(String portfolio_no) {
 		this.portfolio_no = portfolio_no;
@@ -110,26 +84,8 @@ public class PortFolioVO {
 	public void setPortfolio_regdate(String portfolio_regdate) {
 		this.portfolio_regdate = portfolio_regdate;
 	}
-	public void setPortfolio_design(String portfolio_design) {
-		this.portfolio_design = portfolio_design;
-	}
-	public void setPortfolio_useability(String portfolio_useability) {
-		this.portfolio_useability = portfolio_useability;
-	}
-	public void setPortfolio_creativity(String portfolio_creativity) {
-		this.portfolio_creativity = portfolio_creativity;
-	}
-	public void setPortfolio_content(String portfolio_content) {
-		this.portfolio_content = portfolio_content;
-	}
-	public void setPortfolio_develop(String portfolio_develop) {
-		this.portfolio_develop = portfolio_develop;
-	}
 	public void setPortfolio_url(String portfolio_url) {
 		this.portfolio_url = portfolio_url;
-	}
-	public void setPortfolio_description(String portfolio_description) {
-		this.portfolio_description = portfolio_description;
 	}
 	public void setPortfolio_startdate(String portfolio_startdate) {
 		this.portfolio_startdate = portfolio_startdate;
@@ -142,5 +98,14 @@ public class PortFolioVO {
 	}
 	public void setPortfolio_thumbnailimg(String portfolio_thumbnailimg) {
 		this.portfolio_thumbnailimg = portfolio_thumbnailimg;
+	}
+	public void setPortfolio_imgs(String portfolio_imgs) {
+		this.portfolio_imgs = portfolio_imgs;
+	}
+	public void setPortfolio_like(String portfolio_like) {
+		this.portfolio_like = portfolio_like;
+	}
+	public void setPortfolio_description(String portfolio_description) {
+		this.portfolio_description = portfolio_description;
 	}
 }

@@ -56,6 +56,31 @@ public class PortfolioDaoImpl implements IPortfolioDao {
 		 client.update("portfolio.updatePortFolioLike",params);
 	}
 
+	@Override
+	public int InsertPortflio(PortFolioVO portfolioInfo) throws Exception {
+		int cnt=0; 
+		
+		Object obj = client.insert("portfolio.InsertPortflio",portfolioInfo);
+		if(obj == null){
+			cnt = 1;
+		}
+		return cnt; 
+	}
+
+	@Override
+	public int updatePortfolio(PortFolioVO portfolioInfo) throws Exception {
+		int cnt;
+		cnt = client.update("portfolio.updatePortfolio",portfolioInfo);
+		return cnt;
+	}
+
+	@Override
+	public int deleteportfolio(Map<String, String> params) throws Exception {
+		int cnt= 0;
+		cnt = client.delete("portfolio.deleteportfolio",params);
+		return cnt;
+	}
+
 	
 
 }

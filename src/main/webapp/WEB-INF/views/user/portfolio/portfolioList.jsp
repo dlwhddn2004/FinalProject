@@ -167,9 +167,17 @@
 	</div>
 	
 	<div class="bg-secondary">
-		<div style="display: block; width: 100%; margin: 10px 10px 20px 10px;">
-			<span class="h1 text-black">Category</span>
-			<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">angular</span>
+		<div style="display: flex; justify-content: space-between; margin: 10px 10px 20px 10px;">
+			<div>
+				<span class="h1 text-black">Category</span>
+				<span class="h2 text-black-50" style="margin: 1px 0px 0px 10px;">angular</span>
+			</div>
+			<div>
+				<button class="btn btn-icon btn-primary inserBtn" type="button">
+					<span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+				    <span class="btn-inner--text">포트폴리오 등록</span>
+				</button>
+			</div>
 		</div>
 
 		<div class="row">
@@ -371,6 +379,7 @@
 
 		</c:forEach>
 		</div>
+		
 	</div>
   <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -452,7 +461,21 @@
 	    $('.developSmall').text(developSmall);
 	    
 	    
-
+		$('.inserBtn').on('click',function(){
+			
+			if(${empty MEMBER_LOGININFO}){
+				Swal.fire(
+						  'Warning',
+						  '포트폴리오 작성은 로그인 후 이용하실 수 있습니다.',
+						  'warning'
+						)
+						
+						return;
+			}
+			
+			location.href ="${pageContext.request.contextPath}/user/portfolio/portfolioForm.do";
+		});  
+	
 	  });
   
   	  // 사진 눌렀을 때 View 페이지로 이동

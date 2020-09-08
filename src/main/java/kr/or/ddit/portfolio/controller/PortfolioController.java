@@ -19,9 +19,12 @@ import kr.or.ddit.portfolio.service.IPortfolioService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.utiles.AttachFileMapperMember;
+import kr.or.ddit.utiles.attachFileMapperTest;
+import kr.or.ddit.vo.FileItemVO;
 import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
+import kr.or.ddit.vo.PortFolioVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -33,7 +36,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
+@Controller	
 @RequestMapping("/user/portfolio/")
 public class PortfolioController {
 
@@ -45,7 +48,7 @@ public class PortfolioController {
 	private IMypageService mypageService;
 	@Autowired
 	private IMemberService memberService;
-	
+
 	
 	@RequestMapping("portfolioList")
 	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request) throws Exception{
@@ -147,6 +150,112 @@ public class PortfolioController {
 		modelAndView.setViewName("jsonConvertView");
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping("portfolioForm")
+	public ModelAndView portfolioForm(HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView();
+		
+		
+		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
+	    modelAndView.addObject("breadcrumb_first", "포트 폴리오 리스트");
+	    modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/portfolio/portfolioList.do");
+			
+	    modelAndView.addObject("breadcrumb_second", "포트 폴리오 등록");
+		 
+		 
+		modelAndView.setViewName("user/portfolio/portfolioForm");
+		
+		return modelAndView;
+	}
+	
+	//user/portfolio/insertportfolio.do
+	@RequestMapping("insertportfolio")
+	public String insertportflio(PortFolioVO portfolioInfo, @RequestParam("files") MultipartFile[] items) throws Exception{
+		
+		//대표 사진 , 서브 사진들 분리
+		List<FileItemVO> list =  attachFileMapperTest.mapper(items);
+		portfolioInfo.setPortfolio_thumbnailimg(list.get(0).getFile_save_name());
+		
+		String portfolioImg ="";
+		for(int i=1; i<list.size(); i++){
+			if( i == (list.size()-1) ){
+				portfolioImg += list.get(i).getFile_save_name();
+				
+			}else{
+				//portfolioInfo.setPortfolio_imgs(list.get(i).getFile_save_name() + ",");
+				portfolioImg += list.get(i).getFile_save_name()+ ",";
+			}
+		}
+		// 마무리~!
+		portfolioInfo.setPortfolio_imgs(portfolioImg);
+		
+		 int cnt = 0;
+		 
+		 cnt = this.portfolioService.InsertPortflio(portfolioInfo);
+			String taskResult = null;
+			String message = null;
+				taskResult = "success";
+				message = URLEncoder.encode("포트폴리오가 정상적으로 등록되었습니다.", "UTF-8");
+			
+			
+			return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+	
+	
+	@RequestMapping("updateportfolio")
+	public String updatePortfolio(PortFolioVO portfolioInfo ,@RequestParam("files") MultipartFile[] items) throws Exception{
+		
+		List<FileItemVO> list =  attachFileMapperTest.mapper(items);
+		portfolioInfo.setPortfolio_thumbnailimg(list.get(0).getFile_save_name());
+		
+		String portfolioImg ="";
+		for(int i=1; i<list.size(); i++){
+			if( i == (list.size()-1) ){
+				portfolioImg += list.get(i).getFile_save_name();
+				
+			}else{
+				//portfolioInfo.setPortfolio_imgs(list.get(i).getFile_save_name() + ",");
+				portfolioImg += list.get(i).getFile_save_name()+ ",";
+			}
+		}
+		// 마무리~!
+		portfolioInfo.setPortfolio_imgs(portfolioImg);
+		
+		int cnt= 0;
+		cnt = this.portfolioService.updatePortfolio(portfolioInfo);
+		
+		String taskResult = null;
+		String message = null;
+		
+		if(cnt> 0){
+			taskResult = "success";
+			message = URLEncoder.encode("포트폴리오가 정상적으로 수정되었습니다.", "UTF-8");
+		}
+		
+		return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
+	}
+
+	@RequestMapping("deleteportfolio")
+	public String deleteportfolio(String mem_id, String portfolio_no) throws Exception{
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		params.put("portfolio_no", portfolio_no);
+		
+		String taskResult = null;
+		String message = null;
+		
+		
+		int cnt= 0;
+		cnt = this.portfolioService.deleteportfolio(params);
+		
+		if(cnt> 0){
+			taskResult = "success";
+			message = URLEncoder.encode("포트폴리오가 정상적으로 삭제되었습니다.", "UTF-8");
+		}
+		
+		
+		return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	}
 }
 

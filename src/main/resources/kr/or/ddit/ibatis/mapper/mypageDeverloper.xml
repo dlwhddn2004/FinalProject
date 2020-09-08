@@ -59,7 +59,7 @@
 	
 	<select id="selectMypageInfo" parameterClass="map" resultClass="mypageVO">
 		<include refid="selectMypage"/>
-		WHERE MEM_ID =#mem_id#
+		WHERE MEM_ID =#mem_id# and mypage_no= #mypage_no#
 	</select>
 	
 	<update id="modifyMyabout" parameterClass="mypageVO">

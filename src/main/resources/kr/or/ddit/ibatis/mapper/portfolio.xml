@@ -126,8 +126,65 @@ AND PORTFOLIO_NO = #PORTFOLIO_NO#
 		UPDATE PORTFOLIO SET PORTFOLIO_LIKE = PORTFOLIO_LIKE +1
 		WHERE PORTFOLIO_NO = #portfolio_no#
 	</update>
+	
+	<insert id="InsertPortflio" parameterClass="portfolioVO">
+		<selectKey keyProperty="portfolio_no" resultClass="string">
+			SELECT
+			PORTFOLIO_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PORTFOLIO
+			( portfolio_no,
+			mem_id,
+			portfolio_categories,
+			portfolio_tags,
+			portfolio_technologies,
+			portfolio_name,
+			portfolio_regdate,
+			portfolio_url,
+			portfolio_startdate,
+			portfolio_enddate,
+			portfolio_participationrate,
+			portfolio_thumbnailimg,
+			portfolio_imgs,
+			portfolio_description)
+			 VALUES 
+			 ( #portfolio_no#,
+				#mem_id#,
+				#portfolio_categories#,
+				#portfolio_tags#,
+				#portfolio_technologies#,
+				#portfolio_name#,
+				sysdate,
+				#portfolio_url#,
+				to_date(#portfolio_startdate#, 'MM/dd/YYYY'),
+				to_date(#portfolio_enddate#, 'MM/dd/YYYY'),
+				#portfolio_participationrate#,
+				#portfolio_thumbnailimg#,
+				#portfolio_imgs#,
+				#portfolio_description#)
+	</insert>
+	
+	<update id="updatePortfolio" parameterClass="portfolioVO">
+		update PORTFOLIO SET
+		PORTFOLIO_TECHNOLOGIES = #portfolio_technologies#,
+		PORTFOLIO_NAME = #portfolio_name#,
+		PORTFOLIO_URL = #portfolio_url#,
+		PORTFOLIO_STARTDATE = to_date(#portfolio_startdate#, 'MM/dd/YYYY'),
+		PORTFOLIO_ENDDATE = to_date(#portfolio_enddate#, 'MM/dd/YYYY'),
+		PORTFOLIO_PARTICIPATIONRATE = #portfolio_participationrate#,
+		PORTFOLIO_THUMBNAILIMG = #portfolio_thumbnailimg#,
+		PORTFOLIO_IMGS = #portfolio_imgs#,
+		PORTFOLIO_DESCRIPTION = #portfolio_description#
+		WHERE 
+		PORTFOLIO_NO = #portfolio_no# AND 
+		MEM_ID = #mem_id#
+		
+	</update>
+	
+	<delete id="deleteportfolio" parameterClass="map">
+		DELETE PORTFOLIO WHERE MEM_ID = #mem_id# AND portfolio_no = #portfolio_no#
+	</delete>
 </sqlMap>
 
- 
 
 

@@ -196,11 +196,11 @@
                         </div>
                         <!-- 자기소개가 없으면 이미지 보여주기 -->
                         <c:if test="${empty mypageMemberInfo.mypage_aboutme }">
-                      <img src="/MYPAGE_ABOUTME.PNG" style="width: 800px;" name="abuutImg">
+                      			<img src="/MYPAGE_PORTFOLIO.PNG" style="width: 700px; height: 300px;" name="abuutImg">
                         </c:if>
                         <c:if test="${!empty mypageMemberInfo.mypage_aboutme }">
                         	<div>
-                        <textarea class="form-control mypage_aboutme" id="mypage_aboutmeInfo" rows="6" name="mypage_aboutme"
+                        		<textarea class="form-control mypage_aboutme" id="mypage_aboutmeInfo" rows="6" name="mypage_aboutme"
           									 disabled="disabled"></textarea>
                         	</div>
                         </c:if>

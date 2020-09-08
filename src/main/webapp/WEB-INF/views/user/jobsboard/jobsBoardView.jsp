@@ -26,7 +26,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
     <!-- Notify -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
-
     <!-- My CSS -->
     <style>
         .cardview {
@@ -194,6 +193,7 @@
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	<!-- Argon JS -->
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
