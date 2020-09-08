@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="projectApplyInfo">
+	<insert id="insertProjectApplyInformation" parameterClass="map">
+		INSERT INTO PROJECT_APPLY_INFORMATION (APPLY_INFO_SEQ,
+		                                       PROJECT_NO,
+		                                       MEM_ID,
+		                                       APPLY_INFO_GENDER,
+		                                       APPLY_INFO_ENGNAME,
+		                                       APPLY_INFO_HOPESAL,
+		                                       APPLY_INFO_PRESAL,
+		                                       APPLY_INFO_HOPEROLE,
+		                                       APPLY_INFO_COUNTRY,
+		                                       APPLY_INFO_REGION,
+		                                       APPLY_INFO_BLOODTYPE,
+		                                       APPLY_INFO_HOBBY,
+		                                       APPLY_INFO_HEIGHT,
+		                                       APPLY_INFO_BODYSHAPE,
+		                                       APPLY_INFO_VISION,
+		                                       APPLY_INFO_SPECIALBODYPROBLEM,
+		                                       APPLY_INFO_HIGHSCHOOL,
+		                                       APPLY_INFO_UNIVERSITY,
+		                                       APPLY_INFO_GRADUATEUNIVERSITY,
+		                                       APPLY_INFO_FOREIGNEXPERIENCE,
+		                                       APPLY_INFO_PRICERECORD,
+		                                       APPLY_INFO_EDUCATIONRECORD,
+		                                       APPLY_INFO_SCHOOLRECORD,
+		                                       APPLY_INFO_VOLUNTEER)
+		VALUES (APPLY_INFORMATION_SEQ.nextval,
+		        #project_no#,
+		        #mem_id#,
+		        #apply_info_gender#,
+		        #apply_info_engname#,
+		        #apply_info_hopesal#,
+		        #apply_info_presal#,
+		        #apply_info_hoperole#,
+		        #apply_info_country#,
+		        #apply_info_region#,
+		        #apply_info_bloodtype#,
+		        #apply_info_hobby#,
+		        #apply_info_height#,
+		        #apply_info_bodyshape#,
+		        #apply_info_vision#,
+		        #apply_info_specialbodyproblem#,
+		        #apply_info_highschool#,
+		        #apply_info_university#,
+		        #apply_info_graduateuniversity#,
+		        #apply_info_foreignexperience#,
+		        #apply_info_pricerecord#,
+		        #apply_info_educationrecord#,
+		        #apply_info_schoolrecord#,
+		        #apply_info_volunteer#)
+	</insert>
+	
+	<insert id="insertProjectApply" parameterClass="map">
+		INSERT INTO PROJECT_APPLY (PROJECT_NO,
+		                           MEM_ID)
+		VALUES (#project_no#,
+		        #mem_id#)
+	</insert>
+	
+	<select id="selectProjectApplyInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT_APPLY_INFORMATION
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</select>
+</sqlMap>

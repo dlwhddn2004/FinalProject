@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="career">
+	<select id="selectCareer" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT MEMBER.MEM_ID                           MEM_ID,
+		       MEMBER.CATEGORY_NO                      CATEGORY_NO,
+		       NOTIFICATION_NO,
+		       MEM_PASS,
+		       MEM_NAME,
+		       MEM_MAIL,
+		       MEM_ADDR,
+		       MEM_TEL,
+		       MEM_BANKNO,
+		       MEM_BUSINESSNO,
+		       MEM_IDENTITYAUTHENTICATION,
+		       MEM_BIR,
+		       MEM_BANKNAME,
+		       MEM_BANK,
+		       MEM_WORKSTATUS,
+		       MEM_NOTICE,
+		       MYPAGE_DEVELOPER.MYPAGE_NO              MYPAGE_NO,
+		       MYPAGE_FAVAORITEJOB,
+		       MYPAGE_INTERESTS,
+		       MYPAGE_AVALIABLEDATE,
+		       MYPAGE_ACTIVITYPOSSIBILITY,
+		       MYPAGE_ABOUTME,
+		       MYPAGE_TECHNOLOGIES,
+		       MYPAGE_TECHWORKMANSHIP,
+		       MYPAGE_TECHEXPERIENCE,
+		       CAREER_COMPANYNAME,
+		       CAREER_DEPARTMENT,
+		       CAREER_CLASS,
+		       TO_CHAR(CARRER_STARTDATE, 'YYYY-MM-dd') CARRER_STARTDATE,
+		       TO_CHAR(CARRER_ENDDATE, 'YYYY-MM-dd')   CARRER_ENDDATE,
+		       CARRER_DESCRIPTION,
+		       CAREER_SEQ
+		FROM MEMBER,
+		     MYPAGE_DEVELOPER,
+		     CAREER
+		WHERE MEMBER.MEM_ID = MYPAGE_DEVELOPER.MEM_ID
+		  AND MYPAGE_DEVELOPER.MYPAGE_NO = CAREER.MYPAGE_NO
+		  AND (MEMBER.MEM_ID = #mem_id#)
+	</select>
+	
+	<insert id="insertCareer" parameterClass="map">
+		INSERT INTO CAREER (MYPAGE_NO,
+		                    CAREER_COMPANYNAME,
+		                    CAREER_DEPARTMENT,
+		                    CAREER_CLASS,
+		                    CARRER_STARTDATE,
+		                    CARRER_ENDDATE,
+		                    CAREER_SEQ) 
+		VALUES (#mypage_no#,
+		        #career_companyname#,
+		        #career_department#,
+		        #career_class#,
+		        #career_startdate#,
+		        #career_enddate#,
+		        CAREER_SEQ.nextval) 
+	</insert>
+	
+	<delete id="deleteCareer" parameterClass="map">
+		DELETE CAREER WHERE CAREER_SEQ = #career_seq#
+	</delete>
+</sqlMap>
