@@ -80,8 +80,7 @@
 				MYPAGE_ACTIVITYPOSSIBILITY,
 				MYPAGE_ABOUTME,
 				MYPAGE_TECHNOLOGIES,
-				MYPAGE_TECHWORKMANSHIP,
-				MYPAGE_TECHEXPERIENCE				
+				MYPAGE_TECHWORKMANSHIP			
 			)
 		VALUES
 			(
@@ -94,8 +93,7 @@
 			#mypage_activitypossibility#,
 			#mypage_aboutme#,
 			#mypage_technologies#,
-			#mypage_techworkmanship#,
-			#mypage_techexperience#
+			#mypage_techworkmanship#
 			)
 	</insert>
 </sqlMap>
