@@ -13,6 +13,7 @@ public class RiskJoinVO {
 	private String risk_seq;
 	private String risk_depth;
 	private String risk_hit;
+	private String risk_errorstatus;
 	private String project_processstatus;
 	private String project_processcategory;
 	private String project_consullting;
@@ -347,6 +348,12 @@ public class RiskJoinVO {
 	}
 	public void setComment_seq(String comment_seq) {
 		this.comment_seq = comment_seq;
+	}
+	public String getRisk_errorstatus() {
+		return risk_errorstatus;
+	}
+	public void setRisk_errorstatus(String risk_errorstatus) {
+		this.risk_errorstatus = risk_errorstatus;
 	}
 	
 	

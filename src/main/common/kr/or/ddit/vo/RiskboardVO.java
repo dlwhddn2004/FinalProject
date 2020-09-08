@@ -13,6 +13,7 @@ public class RiskboardVO {
 	private String risk_seq;
 	private String risk_depth;
 	private String risk_hit;
+	private String risk_errorstatus;
 	
 	
 	public String getR() {
@@ -80,6 +81,12 @@ public class RiskboardVO {
 	}
 	public void setRisk_hit(String risk_hit) {
 		this.risk_hit = risk_hit;
+	}
+	public String getRisk_errorstatus() {
+		return risk_errorstatus;
+	}
+	public void setRisk_errorstatus(String risk_errorstatus) {
+		this.risk_errorstatus = risk_errorstatus;
 	}
 	
 	
