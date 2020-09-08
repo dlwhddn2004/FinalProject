@@ -161,4 +161,24 @@ public class InterviewServiceImpl implements IInterviewService {
 	public int insertProjectApply(Map<String, String> params) throws Exception {
 		return dao.insertProjectApply(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int selectSuccessProjectCnt(Map<String, String> params)
+			throws Exception {
+		return dao.selectSuccessProjectCnt(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int selectInsertPortfolioCnt(Map<String, String> params)
+			throws Exception {
+		return dao.selectInsertPortfolioCnt(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int selectCareerCnt(Map<String, String> params) throws Exception {
+		return dao.selectCareerCnt(params);
+	}
 }

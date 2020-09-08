@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <link rel="stylesheet" href="../assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div>
+        <div id="content">
+            <div>
+                <div>
+                    <div>
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <main>
+                                    <div>
+                                        <video id="remoteVideo" class="remote-video" autoplay playsinline
+                                               style="z-index:1;background: rgba(0, 0, 0, 0.5); width: 100%; height: 800px;"></video>
+                                        <video id="localVideo"
+                                               style="z-index:2;position:absolute; bottom: 75px;right:27px;width:30%;border-radius: 50px;transform: rotateY(180deg);"
+                                               autoplay muted></video>
+                                    </div>
+                                    <a id="channelBtn" href="#" class="btn btn-outline-primary btn-user btn-block text-center">
+                                        면접 시작
+                                    </a>
+                                </main>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+
+            <!-- Argon Scripts -->
+            <!-- Argon Scripts -->
+            <!-- Core -->
+            <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
+            <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
+            <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+            <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+            <!-- Optional JS -->
+            <script src="../assets/vendor/list.js/dist/list.min.js"></script>
+            <script src="../assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+            <!-- Argon JS -->
+            <script src="../assets/js/argon.js?v=1.2.0"></script>
+            <!-- Demo JS - remove this in your project -->
+            <script src="../assets/js/demo.min.js"></script>
+            <!-- The webrtc adapter is required for browser compatibility -->
+            <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@remotemonster/sdk"></script>
+
+            <script>
+                const channelBtnEl = document.querySelector('#channelBtn');
+                let isConnected = false;
+                let remon;
+                // please register your own service key from remotemonster site.
+                const config = {
+                    credential: {
+                        key: '1234567890',
+                        serviceId: 'SERVICEID1'
+                    },
+                    view: {
+                        remote: '#remoteVideo',
+                        local: '#localVideo'
+                    }
+                };
+
+                const listener = {
+                    onConnect(chid) {
+                        console.log(`EVENT FIRED: onConnect: ${chid}`);
+                    },
+                    onComplete() {
+                        console.log('EVENT FIRED: onComplete');
+                        channelBtnEl.innerHTML = '면접 종료';
+                    },
+                    onDisconnectChannel() {
+                        // is called when other peer hang up.
+                        remon.close();
+                        isConnected = false;
+                        channelBtnEl.innerHTML = '면접 시작';
+                    },
+                    onClose() {
+                        // is called when remon.close() method is called.
+                        console.log('EVENT FIRED: onClose');
+                        remon.close();
+                        isConnected = false;
+                        channelBtnEl.innerHTML = '면접 시작';
+                    },
+                    onError(error) {
+                        console.log(`EVENT FIRED: onError: ${error}`);
+                    },
+                    onStat(result) {
+                        console.log(`EVENT FIRED: onStat: ${result}`);
+                    }
+                };
+
+                function start(roomName) {
+                    if (isConnected) {
+                        isConnected = false;
+                        channelBtnEl.innerHTML = '면접 시작';
+                        remon.close();
+                    } else {
+                        isConnected = true;
+                        channelBtnEl.innerHTML = '면접자를 기다리는 중...';
+                        remon = new Remon({config, listener});
+                        remon.connectCall(roomName);
+                    }
+                }
+
+                channelBtnEl.addEventListener('click', (evt) => {
+                    Swal.mixin({
+                        input: 'text',
+                        confirmButtonText: '다음',
+                        confirmButtonColor: '#5e72e4',
+                        showCancelButton: true,
+                        cancelButtonText: '취소',
+                        cancelButtonColor: '#f5365c',
+                        progressSteps: ['1', '2']
+                    }).queue([
+                        {
+                            title: '면접 구분명'
+                        },
+                        {
+                            title: '면접관 이름'
+                        }
+                    ]).then((result) => {
+                        if (result.value) {
+                            const answers = result.value;
+                            console.log(answers);
+                            Swal.fire({
+                                title: '화상 면접이 시작되었습니다.',
+                                confirmButtonText: '확인',
+                                confirmButtonColor: '#5e72e4'
+                            })
+                            start(answers[0]);
+                        }
+                    })
+                }, false);
+            </script>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="modal fade" id="modal-default" tabindex="-1" role="dialog" aria-labelledby="modal-default" aria-hidden="true">
+            <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-84812645-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-84812645-1');
+</script>
+
+</body>
+
+</html>

@@ -155,4 +155,48 @@ public class InterviewDaoImpl implements IInterviewDao {
 		
 		return chk;
 	}
+
+	@Override
+	public int selectSuccessProjectCnt(Map<String, String> params)
+			throws Exception {
+		int result = 0;
+		
+		Object obj = client.queryForObject("interview.selectSuccessProjectCnt", params);
+		if (obj == null) {
+			result = 0;
+		} else {
+			result = (int) obj;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int selectInsertPortfolioCnt(Map<String, String> params)
+			throws Exception {
+		int result = 0;
+		
+		Object obj = client.queryForObject("interview.selectInsertPortfolioCnt", params);
+		if (obj == null) {
+			result = 0;
+		} else {
+			result = (int) obj;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public int selectCareerCnt(Map<String, String> params) throws Exception {
+		int result = 0;
+		
+		Object obj = client.queryForObject("interview.selectCareerCnt", params);
+		if (obj == null) {
+			result = 0;
+		} else {
+			result = (int) obj;
+		}
+		
+		return result;
+	}
 }

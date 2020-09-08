@@ -53,4 +53,14 @@ public interface IInterviewDao {
 	public int insertInterviewee(Map<String, String> params) throws Exception;
 	
 	public int deleteInterviewee(Map<String, String> params) throws Exception;
+	
+	// 사용자 정보
+	// - 진행한 프로젝트 수
+	public int selectSuccessProjectCnt(Map<String, String> params) throws Exception;
+	
+	// - 등록한 포트폴리오 수
+	public int selectInsertPortfolioCnt(Map<String, String> params) throws Exception;
+	
+	// - 경력 수
+	public int selectCareerCnt(Map<String, String> params) throws Exception;
 }

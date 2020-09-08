@@ -265,6 +265,36 @@
 		DELETE PROJECT_APPLY WHERE MEM_ID = #mem_id#
 		AND PROJECT_NO = #project_no#
 	</delete>
+	
+	
+	
+<!-- 	정보 조회 -->
+	<select id="selectSuccessProjectCnt" parameterClass="map" resultClass="Integer">
+		SELECT COUNT(*)
+		FROM PROJECT, PROJECT_PARTICIPANTS
+		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+		AND (PL = #mem_id#
+		OR TA = #mem_id#
+		OR DA = #mem_id#
+		OR UA = #mem_id#
+		OR AA = #mem_id#)
+		GROUP BY PROJECT.PROJECT_NO
+	</select>
+	
+	<select id="selectInsertPortfolioCnt" parameterClass="map" resultClass="Integer">
+		SELECT COUNT(*)
+		FROM PORTFOLIO
+		WHERE MEM_ID = #mem_id#
+		GROUP BY MEM_ID
+	</select>
+	
+	<select id="selectCareerCnt" parameterClass="map" resultClass="Integer">
+		SELECT COUNT(MEM_ID)
+		FROM MYPAGE_DEVELOPER, CAREER
+		WHERE MYPAGE_DEVELOPER.MYPAGE_NO = CAREER.MYPAGE_NO
+		AND (MEM_ID = #mem_id#)
+		GROUP BY MEM_ID
+	</select>
 </sqlMap>
 
  

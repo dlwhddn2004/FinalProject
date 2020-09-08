@@ -563,4 +563,72 @@ public class InterviewController {
 		return resultMap;
 	}
 	
+	@RequestMapping("projectApplyForm")
+	public ModelAndView projectApplyForm(ModelAndView modelAndView,
+									 HttpServletRequest request,
+									 String mem_id,
+									 String project_no) throws Exception {
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 찾기");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/projectsearch/projectsearch.do");
+		modelAndView.addObject("breadcrumb_second", "프로젝트 신청");
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id", mem_id);
+		
+		Map<String, String> interviewInfo = interviewService.selectInterview(params);
+		modelAndView.addObject("interviewInfo", interviewInfo);
+		
+		int successProjectCnt = interviewService.selectSuccessProjectCnt(params);
+		int insertPortfolioCnt = interviewService.selectInsertPortfolioCnt(params);
+		int CareerCnt = interviewService.selectCareerCnt(params);
+		
+		modelAndView.addObject("successProjectCnt", successProjectCnt);
+		modelAndView.addObject("insertPortfolioCnt", insertPortfolioCnt);
+		modelAndView.addObject("CareerCnt", CareerCnt);
+		
+		Map<String, String> myPageDeveloperInfo = interviewService.selectMypageDeveloper(params);
+		String[] techExperienceArr = (String.valueOf(myPageDeveloperInfo.get("MYPAGE_TECHEXPERIENCE"))).split(",");
+		
+		modelAndView.addObject("techExperienceArr", techExperienceArr);
+		
+		modelAndView.setViewName("user/interview/projectApplyForm");
+		
+		return modelAndView;
+	}
+	
+	
+	@RequestMapping("interviewRTC")
+	public ModelAndView interviewRTC(ModelAndView modelAndView,
+									 HttpServletRequest request,
+									 String mem_id,
+									 String project_no) {
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?mem_id=" + mem_id + "&project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "면접");
+		
+		modelAndView.setViewName("user/interview/interviewRTC");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping("interviewRTCRoom")
+	public ModelAndView interviewRTCRoom(ModelAndView modelAndView,
+									 HttpServletRequest request,
+									 String mem_id,
+									 String project_no) {
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?mem_id=" + mem_id + "&project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "면접");
+		
+		modelAndView.setViewName("user/interview/interviewRTCRoom");
+		
+		return modelAndView;
+	}
 }
