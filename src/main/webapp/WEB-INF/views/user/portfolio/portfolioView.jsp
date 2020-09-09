@@ -19,7 +19,8 @@
 	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
 	type="text/css">
 
-<link rel="stylesheet"
+<link rel="stylesheet"\
+
 	href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet"
