@@ -244,7 +244,7 @@ $(function(){
 	</div>
 	<div class="col-md-4">
 		<div class="card card-profile">
-			<img src="../../assets/img/theme/jj.jpg"
+			<img src="../../assets/img/theme/img-1-1000x600.jpg"
 				alt="Image placeholder" class="card-img-top">
 			<div class="row justify-content-center">
 				<div class="col-lg-3 order-lg-2">
