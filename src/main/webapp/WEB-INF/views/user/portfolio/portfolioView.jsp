@@ -5,29 +5,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon"
-	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png"
-	type="image/png">
+<link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
 <!-- Fonts -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 <!-- Icons -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	type="text/css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+  <!-- Page plugins -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <!-- Argon CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
-	type="text/css">
-	<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <style>
+    .modal-position-center {
+        transform: translate(0px, 0px) !important;
+    }
+
 
 .pie-chartTest {
 	position: relative;
@@ -128,7 +125,7 @@
 </style>
 </head>
 <body>
-<!-- 작업중 -->
+
 	<div class="viewPage">
 		<div class="row">
 			<div class="col-md-12">
@@ -343,7 +340,6 @@
 						<div class="row"
 							style="display: flex; justify-content: flex-end; margin: 10px 0px 0px 0px;">
 							<c:if test="${portfolioInfo.MEM_ID == MEMBER_LOGININFO.mem_id  }">
-							<!-- 작업중 -->
 								<button class="btn btn-icon btn-success updateBtn" type="button">
 									<span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
 									<span class="btn-inner--text">수정</span>
@@ -379,7 +375,7 @@
 				<div
 					class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 					<div class="d-flex justify-content-between">
-						<a href="#" class="btn btn-sm btn-info  mr-4 ">Contact</a> <a
+						<a href="${pageContext.request.contextPath}/user/projectsupport/mailForm.do" class="btn btn-sm btn-info  mr-4 ">Contact</a> <a
 							href="#" class="btn btn-sm btn-default float-right">Message</a>
 					</div>
 				</div>
@@ -430,7 +426,7 @@
 
 <!--  댓글 작업 -->
 
-<div class="row">
+		<div class="row">
             <div class="col-md-12">
                 <div class="accordion" id="accordionExample">
                     <div class="card">
@@ -442,47 +438,170 @@
                                 <!-- Card header -->
                                 <div class="border-0" style="display: flex; justify-content: flex-end; align-items: center; height: 50px; margin-right: 20px;">
                                     <div style="height: auto;">
-                                        <a href="#" class="btn btn-sm btn-neutral btn-round btn-icon" data-toggle="tooltip" data-original-title="Edit product">
+                                        <a  class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
+                                         data-toggle="modal" data-target="#ReviewModal" >
                                             <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
                                             <span class="btn-inner--text">Review 등록</span>
                                         </a>
                                     </div>
-                                </div>
+                                    
+                                    <!-- 모달 -->
+									<div class="modal fade" id="ReviewModal" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered"
+											role="document">
+											<div class="modal-content modal-position-center"
+												style="width: 400px; height: 690px;">
+												<div class="modal-header"
+													style="width: 400px; height: 25px; margin-bottom: 15px;">
+													<h5 class="text-dark modal-title" id="exampleModalLabel">Review</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body bg-gradient-info"
+													style="width: 400px; height: 500px;">
+													<div class="card">
+														<div class="card-body">
+															<div class="row" style="margin-bottom: 20px;">
+																<input type="text" class="form-control border-primary"
+																	id="example2cols1Input" placeholder="한줄코멘트를 입력해주세요.">
+															</div>
+															<!-- Slider -->
+															<div class="row"
+																style="display: flex; justify-content: center; align-items: center;">
+																<h5 class="mb-0 bg-gradient-neutral">디자인</h5>
+															</div>
+															<div class="input-slider-container">
+																<div id="design-slider" class="input-slider"
+																	data-range-value-min="0" data-range-value-max="100"></div>
+																<div class="row mt-3">
+																	<div class="col-6">
+																		<span id="design-slider-value"
+																			class="range-slider-value" data-range-value-low="50"></span>
+																	</div>
+																</div>
+															</div>
+															<!-- Slider -->
+															<div class="row"
+																style="display: flex; justify-content: center; align-items: center;">
+																<h5 class="mb-0">사용성</h5>
+															</div>
+															<div class="input-slider-container">
+																<div id="useability-slider" class="input-slider"
+																	data-range-value-min="0" data-range-value-max="100"></div>
+																<div class="row mt-3">
+																	<div class="col-6">
+																		<span id="useability-slider-value"
+																			class="range-slider-value" data-range-value-low="50"></span>
+																	</div>
+																</div>
+															</div>
+															<!-- Slider -->
+															<div class="row"
+																style="display: flex; justify-content: center; align-items: center;">
+																<h5 class="mb-0">창의성</h5>
+															</div>
+															<div class="input-slider-container">
+																<div id="creativity-slider" class="input-slider"
+																	data-range-value-min="0" data-range-value-max="100"></div>
+																<div class="row mt-3">
+																	<div class="col-6">
+																		<span id="creativity-slider-value"
+																			class="range-slider-value" data-range-value-low="50"></span>
+																	</div>
+																</div>
+															</div>
+															<!-- Slider -->
+															<div class="row"
+																style="display: flex; justify-content: center; align-items: center;">
+																<h5 class="mb-0">컨텐츠</h5>
+															</div>
+															<div class="input-slider-container">
+																<div id="contentscore-slider" class="input-slider"
+																	data-range-value-min="0" data-range-value-max="100"></div>
+																<div class="row mt-3">
+																	<div class="col-6">
+																		<span id="contentscore-slider-value"
+																			class="range-slider-value" data-range-value-low="50"></span>
+																	</div>
+																</div>
+															</div>
+															<!-- Slider -->
+															<div class="row"
+																style="display: flex; justify-content: center; align-items: center;">
+																<h5 class="mb-0">완성도</h5>
+															</div>
+															<div class="input-slider-container">
+																<div id="develop-slider" class="input-slider"
+																	data-range-value-min="0" data-range-value-max="100"></div>
+																<div class="row mt-3">
+																	<div class="col-6">
+																		<span id="develop-slider-value"
+																			class="range-slider-value" data-range-value-low="50"></span>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-white">Insert</button>
+															<button type="button"
+																class="btn btn-link text-danger ml-auto"
+																data-dismiss="modal">Close</button>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+								</div>
                                 <!-- Light table -->
-                                <div class="table-responsive">
-                                    <table class="table align-items-center table-flush">
+                                <div class="table-responsive py-4">
+                                    <table class="table align-items-center table-flush datatable-basic">
                                         <thead class="thead-light">
                                         <tr>
-                                            <th>Author</th>
-                                            <th>Created at</th>
-                                            <th>Product</th>
-                                            <th></th>
+                                            <th>작 성 자</th>
+                                            <th>리뷰 댓글</th>
+                                            <th>점 수</th>
+                                            <th>작성날짜</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
                                             <td class="table-user">
-                                                <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
+                                                <img src="${pageContext.request.contextPath}/assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
                                                 <b>John Michael</b>
                                             </td>
+                                            
                                             <td>
-                                                <span class="text-muted">10/09/2018</span>
+                                                <span class="text-muted">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
                                             </td>
+                                            
                                             <td>
-                                                <a href="#!" class="font-weight-bold">Argon Dashboard PRO</a>
+                                               	점수 넣을거
                                             </td>
-                                            <td class="table-actions">
-                                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-                                                    <i class="fas fa-user-edit"></i>
-                                                </a>
-                                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+
+											<td class="table-actions">
+											<span>2020 09 15</span> &nbsp;&nbsp;&nbsp;
+											<a href="#!"
+													class="table-action" data-toggle="tooltip"
+													data-original-title="Edit product"> <i
+														class="fas fa-user-edit"></i>
+												</a> <a href="#!" class="table-action table-action-delete"
+													data-toggle="tooltip" data-original-title="Delete product">
+														<i class="fas fa-trash"></i>
+												</a>
+											</td>
+
+
+											</tr>
                                         <tr>
                                             <td class="table-user">
-                                                <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
+                                                <img src="${pageContext.request.contextPath}/assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
                                                 <b>Alex Smith</b>
                                             </td>
                                             <td>
@@ -490,66 +609,6 @@
                                             </td>
                                             <td>
                                                 <a href="#!" class="font-weight-bold">Argon Design System</a>
-                                            </td>
-                                            <td class="table-actions">
-                                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-                                                    <i class="fas fa-user-edit"></i>
-                                                </a>
-                                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-user">
-                                                <img src="../../assets/img/theme/team-3.jpg" class="avatar rounded-circle mr-3">
-                                                <b>Samantha Ivy</b>
-                                            </td>
-                                            <td>
-                                                <span class="text-muted">30/08/2018</span>
-                                            </td>
-                                            <td>
-                                                <a href="#!" class="font-weight-bold">Black Dashboard</a>
-                                            </td>
-                                            <td class="table-actions">
-                                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-                                                    <i class="fas fa-user-edit"></i>
-                                                </a>
-                                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-user">
-                                                <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3">
-                                                <b>John Michael</b>
-                                            </td>
-                                            <td>
-                                                <span class="text-muted">10/09/2018</span>
-                                            </td>
-                                            <td>
-                                                <a href="#!" class="font-weight-bold">Argon Dashboard PRO</a>
-                                            </td>
-                                            <td class="table-actions">
-                                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-                                                    <i class="fas fa-user-edit"></i>
-                                                </a>
-                                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="table-user">
-                                                <img src="../../assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                                                <b>John Michael</b>
-                                            </td>
-                                            <td>
-                                                <span class="text-muted">10/09/2018</span>
-                                            </td>
-                                            <td>
-                                                <a href="#!" class="font-weight-bold">Argon Dashboard PRO</a>
                                             </td>
                                             <td class="table-actions">
                                                 <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
@@ -572,7 +631,6 @@
 </div>	
 	
 	
-	<!-- 작업중!! -->
 	<div class="updateDiv">
 		   <div class="row">
             <div class="col-md-12">
@@ -814,35 +872,51 @@
 	
 	
 	
-
-
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-	<!-- Optional JS -->
-	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datetimepicker.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-		<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+	
+	
+	
+<!-- Core -->
+<script
+	src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	
+   <!-- Optional JS -->
+   
+      <!-- 디비 -->   
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+  
+  <script src="${pageContext.request.contextPath}/assets/test/quill.js"></script>
+  <script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datetimepicker.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+  
+
+	<!-- Argon JS -->
+	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
+	<!-- Demo JS - remove this in your project -->
+	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>	
+		
+		
 		
 	<script type="text/javascript">
 		$(function() {
@@ -863,11 +937,7 @@
 	</script>
 
 
-	<!-- Argon JS -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
-	<!-- Demo JS - remove this in your project -->
-	<script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
+
 	<script>
 	
 	let designScore;
@@ -886,7 +956,7 @@
 			
 			
 			
-			
+			<!--메인 portfolio 부분 점수 -->
 			if (${empty chartInfo}) {
 				designScore = '00';
 				useabilityScore = '00';
@@ -999,11 +1069,6 @@
                $('.noUi-origin').css('transform', 'translate(-' + (100 - ${portfolioInfo.PORTFOLIO_PARTICIPATIONRATE}) + '%, 0px)');
                $('.noUi-origin').css('z-index', '4');
                
-				
-
-				
-				
-				
 				quill.clipboard.dangerouslyPasteHTML('${portfolioInfo.PORTFOLIO_DESCRIPTION}');
 				
 				//포트폴리오 이름
@@ -1123,7 +1188,6 @@
 					return;
 				}
 				
-				//작업중
 				// 포트폴리오 내용
 				const $portfolio_description = '<input type="hidden" name="portfolio_description" value="' +portfolio_description_ipt +'">';
 				// 포트폴리오 참여율
@@ -1287,7 +1351,9 @@
 				});
 		
 		
-		
+		function insertReview(){
+			
+		}
 		
 		
 	</script>
