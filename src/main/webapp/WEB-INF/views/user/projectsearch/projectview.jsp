@@ -2,61 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-$(function(){
-
-	 $('#support').click(function(){
-		 
-		 if(${MEMBER_LOGININFO.category_no == '1' }){
-			 alert('파트너스는 이용할수 없습니다.');
-			 return false;
-			 
-		 }
-		 
-		 
-	
-			Swal.fire({
-				  title: '정말 등록하시겠습니까?',
-				  text: "등록를 클릭하면 되돌릴 수 없습니다.",
-				  icon: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  cancelButtonColor: '#d33',
-				  confirmButtonText: '신청',
-				  cancelButtonText: '취소'
-				}).then((result) => {
-				  if (result.value) {
-					  const mem_id = '${MEMBER_LOGININFO.mem_id}';
-					  const project_no ='${projectInfo.project_no}';
-					  
-					  
-					  $.ajax({
-							type : 'POST',
-							url : '${pageContext.request.contextPath}/user/projectsearch/projectInsert.do',
-							dataType : 'json',
-							data : {
-								mem_id : mem_id ,project_no : project_no
-							},
-							success : function(result) {
-								Swal.fire(
-										  'Success',
-										  '등록이 완료되었습니다..',
-										  'Success'
-										)
-										location.href='${pageContext.request.contextPath}/user/projectsearch/projectsearch.do';
-							},
-							error : function(xhr, status, error) {
-								alert(error);
-							}
-						});
-				  }
-				});
-			
-					 
-	    });
-});
-</script>
-
 <div class="row">
 	<div class="col-md-8">
 		<div class="card-wrapper">
@@ -316,8 +261,29 @@ $(function(){
 	src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
-</body>
 
-</html>
-</body>
-</html>
+<script>
+	$('#support').on('click', function() {
+		if (${empty MEMBER_LOGININFO}) {
+			Swal.fire(
+			  'WARNING',
+			  '해당 기능은 로그인 후 이용할 수 있습니다.',
+			  'warning'
+			)
+			
+			return;
+		}
+		
+		if (${MEMBER_LOGININFO.category_no != '2'}) {
+			Swal.fire(
+			  'WARNING',
+			  '해당 기능은 디벨로퍼만 이용 가능합니다.',
+			  'warning'
+			)
+			
+			return;
+		}
+		
+		location.href='${pageContext.request.contextPath}/user/interview/projectApplyForm.do?project_no=${param.project_no}&mem_id=${MEMBER_LOGININFO.mem_id}';
+	});
+</script>

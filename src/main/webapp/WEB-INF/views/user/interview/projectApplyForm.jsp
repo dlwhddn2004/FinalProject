@@ -47,7 +47,7 @@
                 <div class="col-lg-3 order-lg-2">
                   <div class="card-profile-image">
                     <a href="#">
-                      <img src="../../assets/img/theme/team-4.jpg" class="rounded-circle">
+                      <img src="/${memberInfo.PROFILE_SAVENAME }" class="rounded-circle">
                     </a>
                   </div>
                 </div>
@@ -74,10 +74,11 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <h5 class="h3"><span class="font-weight-light font-weight-bold mem-name"></span>
+                  <h5 class="h3">
+                  	<span class="font-weight-light font-weight-bold mem-name">${memberInfo.MEM_NAME }</span>
                   </h5>
                   <div class="h5 font-weight-300">
-                    <i class="ni location_pin mr-2"></i><span class="font-weight-bold mem-addr"></span>
+                    <i class="ni location_pin mr-2"></i><span class="font-weight-bold mem-addr">WEB DEVELOPER</span>
                   </div>
                 </div>
               </div>
@@ -179,7 +180,7 @@
                             <div class="col-md-6">
                               <small class="text-muted">이름</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="이름을 입력하세요.">
+                                <input type="text" class="form-control" value="${memberInfo.MEM_NAME }" disabled placeholder="이름을 입력하세요.">
                               </div>
                             </div>
                           </div>
@@ -188,11 +189,11 @@
                               <small class="text-muted">성별</small>
                               <div class="form-group">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="modalGender1" name="customRadioInline1" class="custom-control-input" checked>
+                                  <input type="radio" id="modalGender1" name="customRadioInline1" class="custom-control-input" value="남" checked>
                                   <label class="custom-control-label" for="modalGender1">남</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="modalGender2" name="customRadioInline1" class="custom-control-input">
+                                  <input type="radio" id="modalGender2" name="customRadioInline1" class="custom-control-input" value="여">
                                   <label class="custom-control-label" for="modalGender2">여</label>
                                 </div>
                               </div>
@@ -206,7 +207,7 @@
                                   <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                   </div>
-                                  <input class="form-control datepicker" placeholder="Select date" type="text" value="09/01/2020">
+                                  <input class="form-control datepicker datepicker-membirth" placeholder="Select date" type="text" disabled>
                                 </div>
                               </div>
                             </div>
@@ -225,7 +226,7 @@
                             <div class="col-md-6">
                               <small class="text-muted">영문 이름</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="영문 이름을 입력하세요.">
+                                <input type="text" class="form-control engname" placeholder="영문 이름을 입력하세요.">
                               </div>
                             </div>
                           </div>
@@ -233,13 +234,13 @@
                             <div class="col-md-6 row-hopesal">
                               <small class="text-muted">희망 연봉</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="희망 연봉을 입력하세요.">
+                                <input type="text" class="form-control hopesal" placeholder="희망 연봉을 입력하세요.">
                               </div>
                             </div>
                             <div class="col-md-6 row-presal">
                               <small class="text-muted">직전 연봉</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="직전 연봉을 입력하세요.">
+                                <input type="text" class="form-control presal" placeholder="직전 연봉을 입력하세요.">
                               </div>
                             </div>
                           </div>
@@ -247,7 +248,7 @@
                             <div class="col-md-6">
                               <small class="text-muted">희망 역할</small>
                               <div class="form-group">
-                                <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="희망 역할">
+                                <select class="form-control hoperole" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="희망 역할">
                                   <option>PL</option>
                                   <option>TA</option>
                                   <option>DA</option>
@@ -271,17 +272,13 @@
                             <div class="col-md-6">
                               <small class="text-muted">국적</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="국적">
+                                <input type="text" class="form-control country" placeholder="국적">
                               </div>
                             </div>
                             <div class="col-md-6 row-">
                               <small class="text-muted">기술</small>
                               <div class="form-group">
-                                <select class="form-control" data-toggle="select" multiple data-placeholder="Select multiple options">
-                                  <option>ANGULAR</option>
-                                  <option>BOOTSTRAP</option>
-                                  <option>REACT</option>
-                                  <option>VUE</option>
+                                <select class="form-control technologies" data-toggle="select" multiple data-placeholder="Select multiple options">
                                 </select>
                               </div>
                             </div>
@@ -290,13 +287,13 @@
                             <div class="col-md-6">
                               <small class="text-muted">연락처</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="연락처">
+                                <input type="text" class="form-control tel" placeholder="연락처" value="${memberInfo.MEM_TEL }" disabled>
                               </div>
                             </div>
                             <div class="col-md-6 row-addr">
                               <small class="text-muted">주소</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="주소">
+                                <input type="text" class="form-control addr" placeholder="주소" disabled value="${memberInfo.MEM_ADDR }">
                               </div>
                             </div>
                           </div>
@@ -304,7 +301,7 @@
                             <div class="col-md-6">
                               <small class="text-muted">종교</small>
                               <div class="form-group">
-                                <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ...">
+                                <select class="form-control region" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ...">
                                   <option>기독교</option>
                                   <option>천주교</option>
                                   <option>불교</option>
@@ -317,19 +314,19 @@
                               <small class="text-muted">혈액형</small>
                               <div class="form-group">
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="bloodtype1" name="bloodtype" class="custom-control-input" checked>
+                                  <input type="radio" id="bloodtype1" name="bloodtype" class="custom-control-input" value="A" checked>
                                   <label class="custom-control-label" for="bloodtype1">A</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="bloodtype2" name="bloodtype" class="custom-control-input">
+                                  <input type="radio" id="bloodtype2" name="bloodtype" class="custom-control-input" value="AB">
                                   <label class="custom-control-label" for="bloodtype2">AB</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="bloodtype3" name="bloodtype" class="custom-control-input">
+                                  <input type="radio" id="bloodtype3" name="bloodtype" class="custom-control-input" value="B">
                                   <label class="custom-control-label" for="bloodtype3">B</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                  <input type="radio" id="bloodtype4" name="bloodtype" class="custom-control-input">
+                                  <input type="radio" id="bloodtype4" name="bloodtype" class="custom-control-input" value="O">
                                   <label class="custom-control-label" for="bloodtype4">O</label>
                                 </div>
                               </div>
@@ -339,13 +336,13 @@
                             <div class="col-md-6">
                               <small class="text-muted">취미</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="취미">
+                                <input type="text" class="form-control hobby" placeholder="취미">
                               </div>
                             </div>
                             <div class="col-md-6 row-height">
                               <small class="text-muted">신장</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="신장">
+                                <input type="text" class="form-control height" placeholder="신장">
                               </div>
                             </div>
                           </div>
@@ -353,13 +350,13 @@
                             <div class="col-md-6">
                               <small class="text-muted">체형</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="체형">
+                                <input type="text" class="form-control bodyshape" placeholder="체형">
                               </div>
                             </div>
                             <div class="col-md-6 row-vision">
                               <small class="text-muted">시력</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="시력">
+                                <input type="text" class="form-control vision" placeholder="시력">
                               </div>
                             </div>
                           </div>
@@ -367,7 +364,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">신체 특이사항</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="신체 특이사항">
+                                <input type="text" class="form-control specialbodyproblem" placeholder="신체 특이사항">
                               </div>
                             </div>
                           </div>
@@ -426,7 +423,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">해외 경험</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="해외 경험">
+                                <input type="text" class="form-control foreignexperience" placeholder="해외 경험">
                               </div>
                             </div>
                           </div>
@@ -434,7 +431,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">수상 경험</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="수상 경험">
+                                <input type="text" class="form-control pricerecord" placeholder="수상 경험">
                               </div>
                             </div>
                           </div>
@@ -442,7 +439,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">교육 이수 사항</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="교육 이수 사항">
+                                <input type="text" class="form-control educationrecord" placeholder="교육 이수 사항">
                               </div>
                             </div>
                           </div>
@@ -450,7 +447,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">학내외활동</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="학내외활동">
+                                <input type="text" class="form-control schoolrecord" placeholder="학내외활동">
                               </div>
                             </div>
                           </div>
@@ -458,7 +455,7 @@
                             <div class="col-md-12">
                               <small class="text-muted">봉사활동</small>
                               <div class="form-group">
-                                <input type="text" class="form-control" placeholder="봉사활동">
+                                <input type="text" class="form-control volunteer" placeholder="봉사활동">
                               </div>
                             </div>
                           </div>
@@ -505,7 +502,10 @@
         </div>
       </div>
       <div class="card-footer">
-
+      	<div style="display: flex; justify-content: flex-end;">
+	      	<button type="button" class="btn btn-outline-primary btn-submit">신청</button>
+			<button type="button" class="btn btn-outline-danger btn-cancel">취소</button>
+      	</div>
       </div>
     </div>
   </div>
@@ -610,6 +610,13 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
 <script>
+  const mem_birth = '${memberInfo.MEM_BIR}';
+  const year = mem_birth.substring(0, 4);
+  const month = mem_birth.substring(mem_birth.indexOf('-') + 1, mem_birth.lastIndexOf('-'));
+  const day = mem_birth.substring(mem_birth.lastIndexOf('-') + 1);
+  
+  $('.datepicker-membirth').val(month + '/' + day + '/' + year);
+
   $('input[name=schoolStatus]').on('change', function () {
     const currentSelected = $('input[name=schoolStatus]:checked').val();
 
@@ -749,8 +756,164 @@
       $('#schoolStatus3').attr('disabled', false);
     }
   }
+  
+  const myTechnologies = '${myPageDeveloperInfo.MYPAGE_TECHNOLOGIES}';
+  if (myTechnologies.indexOf('1') != -1) {
+	  $('.technologies').append('<option selected value="1">ANGULAR</option>');
+  } else {
+	  $('.technologies').append('<option value="1">ANGULAR</option>');
+  }
+  if (myTechnologies.indexOf('2') != -1) {
+	  $('.technologies').append('<option selected value="2">BOOTSTRAP</option>');
+  } else {
+	  $('.technologies').append('<option value="2">BOOTSTRAP</option>');
+  }
+  if (myTechnologies.indexOf('3') != -1) {
+	  $('.technologies').append('<option selected value="3">REACT</option>');
+  } else {
+	  $('.technologies').append('<option value="3">REACT</option>');
+  }
+  if (myTechnologies.indexOf('4') != -1) {
+	  $('.technologies').append('<option selected value="4">VUE</option>');
+  } else {
+	  $('.technologies').append('<option value="4">VUE</option>');
+  }
+  
+  $('.card-footer .btn-submit').on('click', function() {
+	  alert('실행!');
+	  
+	  const interview_customizing = '${interviewInfo.INTERVIEW_CUSTOMIZING }';
 
-
+	  const customizing_arr = interview_customizing.split(',');
+	  
+	  const $frm = $('<form action="${pageContext.request.contextPath}/user/projectApply/insertProjectApplyInformation.do" method="POST"></form>');
+	  $frm.append('<input type="hidden" name="project_no" value="${param.project_no }">');
+	  $frm.append('<input type="hidden" name="mem_id" value="${MEMBER_LOGININFO.mem_id }">');
+	  const countryValue = $('.information-card3 .region').val();
+	  $frm.append('<input type="hidden" name="interviewee_country" value="' + countryValue + '">');
+	  
+	  $.each(customizing_arr, function(index, item) {
+		  let selectedValue = null;
+		  let $ipt = null;
+		  
+		  // 1번째
+	      if (item === '성별') {
+	    	  selectedValue = $('.information-card1 input[name=customRadioInline1]:checked').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_gender" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '생년월일') {
+	      }
+	
+	      // 2번째
+	      if (item === '영문이름') {
+	    	  selectedValue = $('.information-card2 .engname').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_engname" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '희망연봉') {
+	    	  selectedValue = $('.information-card2 .hopesal').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_hopesal" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '직전연봉') {
+	    	  selectedValue = $('.information-card2 .presal').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_presal" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '희망역할') {
+	    	  selectedValue = $('.information-card2 .hoperole').select2('val');
+	    	  $ipt = $('<input type="hidden" name="interviewee_hoperole" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	
+	      // 3번째
+	      if (item === '주소') {
+	      }
+	      if (item === '종교') {
+	    	  selectedValue = $('.information-card3 .region').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_region" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '혈액형') {
+	    	  selectedValue = $('.information-card3 input[name=bloodtype]:checked').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_bloodtype" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '취미') {
+	    	  selectedValue = $('.information-card3 .hobby').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_hobby" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '신장') {
+	    	  selectedValue = $('.information-card3 .height').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_height" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '체형') {
+	    	  selectedValue = $('.information-card3 .bodyshape').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_bodyshape" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '시력') {
+	    	  selectedValue = $('.information-card3 .vision').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_vision" value="' + selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	      if (item === '신체 특이사항') {
+	    	  selectedValue = $('.information-card3 .specialbodyproblem').val();
+	    	  $ipt = $('<input type="hidden" name="interviewee_specialbodyproblem" value="' +  selectedValue + '">');
+	    	  $frm.append($ipt);
+	      }
+	
+	      // 4번째
+	      if (item === '고등학교') {
+	    	selectedValue = $('.information-card4 .schoolStatus1-input').val();
+	    	$ipt = $('<input type="hidden" name="interviewee_highschool" value="' +  selectedValue + '">');
+	    	$frm.append($ipt);
+	      }
+	      if (item === '대학교') {
+			selectedValue = $('.information-card4 .schoolStatus2-input').val();
+			$ipt = $('<input type="hidden" name="interviewee_university" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	      if (item === '대학원') {
+			selectedValue = $('.information-card4 .schoolStatus3-input').val();
+			$ipt = $('<input type="hidden" name="interviewee_graduateuniversity" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	
+	      // 5번째
+	      if (item === '해외경험') {
+			selectedValue = $('.information-card5 .foreignexperience').val();
+			$ipt = $('<input type="hidden" name="interviewee_foreignexperience" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	      if (item === '수상경력') {
+	        selectedValue = $('.information-card5 .pricerecord').val();
+			$ipt = $('<input type="hidden" name="interviewee_pricerecord" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	      if (item === '교육이수사항') {
+	        selectedValue = $('.information-card5 .educationrecord').val();
+			$ipt = $('<input type="hidden" name="interviewee_educationrecord" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	      if (item === '학내외활동') {
+	        selectedValue = $('.information-card5 .schoolrecord').val();
+			$ipt = $('<input type="hidden" name="interviewee_schoolrecord" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	      if (item === '봉사활동') {
+	        selectedValue = $('.information-card5 .volunteer').val();
+			$ipt = $('<input type="hidden" name="interviewee_volunteer" value="' +  selectedValue + '">');
+			$frm.append($ipt);
+	      }
+	  });
+	  
+	  $('body').append($frm);
+	  $frm.submit();
+  });
 
   // 이력서 모달 초기화 및 띄우기
   $('.project-apply-big-div .career-table .btn-insert-modal-show').on('click', function () {
@@ -765,7 +928,6 @@
   });
 
   // 이력서 내용 등록
-  let tableNO = 1;
   $('#modal-insert-form .btn-insert').on('click', function () {
     // 모달창에서 입력값 추출
     const career_companyname = $('#modal-insert-form .companyname').val();
@@ -773,31 +935,109 @@
     const career_class = $('#modal-insert-form .class').val();
     const career_startdate = $('#modal-insert-form .startdate').val();
     const career_enddate = $('#modal-insert-form .enddate').val();
+    
+    $.ajax({
+	    type: 'POST',
+  		url: '${pageContext.request.contextPath}/user/career/insertCareer.do',
+  		dataType: 'json',
+  		data: {
+  			mypage_no: '${myPageDeveloperInfo.MYPAGE_NO}',
+  			career_companyname: career_companyname,
+  			career_department: career_department,
+  			career_class: career_class,
+  			career_startdate: career_startdate,
+  			career_enddate: career_enddate
+  		},
+  		async: false,
+  		success: function(data) {
+  			if (data.result == 'Y') {
+  				loadCareer();
+  			} else {
+				Swal.fire(
+				  'DANGER',
+				  '이력을 등록하는 과정에서 오류가 발생했습니다.',
+				  'danger'
+				)
+  			}
+  		},
+  		error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
 
-    // career-table tbody에 append
-    const trHTML = '<tr class="checklist-entry">\n' +
-            '                              <th scope="row">\n' +
-            '                                <div class="media align-items-center">\n' +
-            '                                  <div class="media-body">\n' +
-            '                                    <span class="name mb-0 text-sm">' + tableNO + '</span>\n' +
-            '                                  </div>\n' +
-            '                                </div>\n' +
-            '                              </th>\n' +
-            '                              <td>' + career_companyname + '</td>\n' +
-            '                              <td>' + career_department + '</td>\n' +
-            '                              <td>' + career_class + '</td>\n' +
-            '                              <td>' + career_startdate + '</td>\n' +
-            '                              <td>' + career_enddate + '</td>\n' +
-            '                              <td><a class="trashcan-icon-area"></a></td>' +
-            '                            </tr>';
-
-    $('.career-table tbody').append(trHTML);
-    tableNO++;
     $('#modal-insert-form').modal('hide');
   });
 
   // 이력서 내용 삭제
   $(document).on('click', '.career-table tbody .trashcan-icon-area', function () {
-
+	const career_seq = $(this).closest('tr').find('input[name=career_seq]').val();
+	
+	$.ajax({
+	    type: 'POST',
+  		url: '${pageContext.request.contextPath}/user/career/deleteCareer.do',
+  		dataType: 'json',
+  		data: {
+  			career_seq: career_seq
+  		},
+  		async: false,
+  		success: function(data) {
+  			if (data.result == 'Y') {
+  				loadCareer();
+  			} else {
+				Swal.fire(
+				  'DANGER',
+				  '이력을 삭제하는 과정에서 오류가 발생했습니다.',
+				  'danger'
+				)
+  			}
+  		},
+  		error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
   });
+  
+  loadCareer();
+  function loadCareer() {
+	  $.ajax({
+	    type: 'POST',
+  		url: '${pageContext.request.contextPath}/user/career/selectCareer.do',
+  		dataType: 'json',
+  		data: {
+  			mem_id: '${memberInfo.MEM_ID}'
+  		},
+  		async: false,
+  		success: function(data) {
+  			$('.career-table tbody').empty();
+  			let tableNO = 1;
+  			$.each(data, function(index, item) {
+  				const trHTML = '<tr class="checklist-entry">\n' +
+  	            '                              <input type="hidden" name="career_seq" value="' + item.CAREER_SEQ + '">\n' +
+  	            '                              <th scope="row">\n' +
+  	            '                                <div class="media align-items-center">\n' +
+  	            '                                  <div class="media-body">\n' +
+  	            '                                    <span class="name mb-0 text-sm">' + tableNO + '</span>\n' +
+  	            '                                  </div>\n' +
+  	            '                                </div>\n' +
+  	            '                              </th>\n' +
+  	            '                              <td>' + item.CAREER_COMPANYNAME + '</td>\n' +
+  	            '                              <td>' + item.CAREER_DEPARTMENT + '</td>\n' +
+  	            '                              <td>' + item.CAREER_CLASS + '</td>\n' +
+  	            '                              <td>' + item.CARRER_STARTDATE + '</td>\n' +
+  	            '                              <td>' + item.CARRER_ENDDATE + '</td>\n' +
+  	            '                              <td><a class="trashcan-icon-area"></a></td>' +
+  	            '                            </tr>';
+  	            
+  			    $('.career-table tbody').append(trHTML);
+  			    tableNO++;
+  			});
+  		},
+  		error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+  }
 </script>

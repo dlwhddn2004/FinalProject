@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.interview.service.IInterviewService;
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.successboard.service.ISuccessBoardService;
@@ -40,6 +41,8 @@ public class InterviewController {
 	
 	@Autowired
 	private IInterviewService interviewService;
+	@Autowired
+	private IMemberService memberService;
 	
 	@RequestMapping("partnersMain")
 	public ModelAndView successList(HttpServletRequest request,
@@ -56,7 +59,9 @@ public class InterviewController {
 	Map<String, String> params = new HashMap<String, String>();
 	params.put("project_no", project_no);
 	
+	Map<String, String> interviewInfo = interviewService.selectInterview(params);
 	List<Map<String, String>> notApplyMemList = interviewService.selectNotConfirmApplyList(params);
+	Map<String, String> mypageDeveloperInfo = interviewService.selectMypageDeveloper(params);
 	
 	for (Map<String, String> item : notApplyMemList) {
 		String DBTechData = String.valueOf(item.get("MYPAGE_TECHNOLOGIES"));
@@ -87,6 +92,8 @@ public class InterviewController {
 	
 	modelAndView.addObject("project_no", project_no);
 	modelAndView.addObject("notApplyMemList", notApplyMemList);
+	modelAndView.addObject("interviewInfo", interviewInfo);
+	modelAndView.addObject("mypageDeveloperInfo", mypageDeveloperInfo);
 	
 	modelAndView.setViewName("user/interview/interview-partners");
 	
@@ -218,6 +225,14 @@ public class InterviewController {
 		params.put("mem_id", mem_id);
 		
 		Map<String, String> infographicData = interviewService.infographic(params);
+		
+		// 프로젝트, 포트폴리오, 커리어 개수
+		int successProjectCnt = interviewService.selectSuccessProjectCnt(params);
+		int insertPortfolioCnt = interviewService.selectInsertPortfolioCnt(params);
+		int CareerCnt = interviewService.selectCareerCnt(params);
+		infographicData.put("successProjectCnt", String.valueOf(successProjectCnt));
+		infographicData.put("insertPortfolioCnt", String.valueOf(insertPortfolioCnt));
+		infographicData.put("CareerCnt", String.valueOf(CareerCnt));
 		
 		String mem_bir = String.valueOf(infographicData.get("MEM_BIR"));
 		
@@ -592,7 +607,12 @@ public class InterviewController {
 		Map<String, String> myPageDeveloperInfo = interviewService.selectMypageDeveloper(params);
 		String[] techExperienceArr = (String.valueOf(myPageDeveloperInfo.get("MYPAGE_TECHEXPERIENCE"))).split(",");
 		
+		modelAndView.addObject("myPageDeveloperInfo", myPageDeveloperInfo);
 		modelAndView.addObject("techExperienceArr", techExperienceArr);
+		
+		Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+		
+		modelAndView.addObject("memberInfo", memberInfo);
 		
 		modelAndView.setViewName("user/interview/projectApplyForm");
 		
@@ -630,5 +650,14 @@ public class InterviewController {
 		modelAndView.setViewName("user/interview/interviewRTCRoom");
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping("mypageDeveloperInfoJSON")
+	@ResponseBody
+	public Map<String, String> mypageDeveloperInfoJSON(String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		return interviewService.selectMypageDeveloper(params);
 	}
 }
