@@ -305,15 +305,15 @@
                                 <div class="col">
                                     <div class="card-profile-stats d-flex justify-content-center">
                                         <div>
-                                            <span class="heading">22</span>
+                                            <span class="heading projectCnt"></span>
                                             <span class="description">Project</span>
                                         </div>
                                         <div>
-                                            <span class="heading">10</span>
+                                            <span class="heading portfolioCnt"></span>
                                             <span class="description">Portfolio</span>
                                         </div>
                                         <div>
-                                            <span class="heading">10</span>
+                                            <span class="heading careerCnt"></span>
                                             <span class="description">Career</span>
                                         </div>
                                     </div>
@@ -414,31 +414,32 @@
                       </div>
                       <div class="card-body">
                         <div class="accordion" id="accordionExample">
+<!--                           작업 중 -->
                           <div class="card">
                             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                               <h5 class="mb-0">기본 정보</h5>
                             </div>
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                               <!-- 기본 정보 -->
-                              <div class="card-body">
-                                <div class="row">
+                              <div class="card-body information-card1">
+                                <div class="row row-name">
                                   <div class="col-md-6">
                                     <small class="text-muted">이름</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="이름을 입력하세요.">
+                                      <input type="text" class="form-control" placeholder="이름을 입력하세요." disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-gender">
                                   <div class="col-md-6">
                                     <small class="text-muted">성별</small>
                                     <div class="form-group">
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="modalGender1" name="customRadioInline1" class="custom-control-input" checked>
+                                        <input type="radio" id="modalGender1" name="customRadioInline1" class="custom-control-input" checked disabled>
                                         <label class="custom-control-label" for="modalGender1">남</label>
                                       </div>
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="modalGender2" name="customRadioInline1" class="custom-control-input">
+                                        <input type="radio" id="modalGender2" name="customRadioInline1" class="custom-control-input" disabled>
                                         <label class="custom-control-label" for="modalGender2">여</label>
                                       </div>
                                     </div>
@@ -452,7 +453,7 @@
                                         <div class="input-group-prepend">
                                           <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
                                         </div>
-                                        <input class="form-control datepicker" placeholder="Select date" type="text" value="09/01/2020">
+                                        <input class="form-control datepicker" placeholder="Select date" type="text" disabled>
                                       </div>
                                     </div>
                                   </div>
@@ -466,34 +467,34 @@
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                               <!-- 부가 정보 -->
-                              <div class="card-body">
-                                <div class="row">
+                              <div class="card-body information-card2">
+                                <div class="row row-engname">
                                   <div class="col-md-6">
                                     <small class="text-muted">영문 이름</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="영문 이름을 입력하세요.">
+                                      <input type="text" class="form-control" placeholder="영문 이름을 입력하세요." disabled>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-hopesal">
                                     <small class="text-muted">희망 연봉</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="희망 연봉을 입력하세요.">
+                                      <input type="text" class="form-control" placeholder="희망 연봉을 입력하세요." disabled>
                                     </div>
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-presal">
                                     <small class="text-muted">직전 연봉</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="직전 연봉을 입력하세요.">
+                                      <input type="text" class="form-control" placeholder="직전 연봉을 입력하세요." disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-hoperole">
                                   <div class="col-md-6">
                                     <small class="text-muted">희망 역할</small>
                                     <div class="form-group">
-                                      <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="희망 역할">
+                                      <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="희망 역할" disabled>
                                         <option>PL</option>
                                         <option>TA</option>
                                         <option>DA</option>
@@ -512,22 +513,18 @@
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                               <!-- 인적 사항 -->
-                              <div class="card-body">
+                              <div class="card-body information-card3">
                                 <div class="row">
                                   <div class="col-md-6">
                                     <small class="text-muted">국적</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="국적">
+                                      <input type="text" class="form-control country" placeholder="국적" disabled>
                                     </div>
                                   </div>
                                   <div class="col-md-6">
                                     <small class="text-muted">기술</small>
                                     <div class="form-group">
-                                      <select class="form-control" data-toggle="select" multiple data-placeholder="Select multiple options">
-                                        <option>ANGULAR</option>
-                                        <option>BOOTSTRAP</option>
-                                        <option>REACT</option>
-                                        <option>VUE</option>
+                                      <select class="form-control technologies" data-toggle="select" multiple data-placeholder="Select multiple options" disabled>
                                       </select>
                                     </div>
                                   </div>
@@ -536,21 +533,21 @@
                                   <div class="col-md-6">
                                     <small class="text-muted">연락처</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="연락처">
+                                      <input type="text" class="form-control tel" placeholder="연락처" disabled>
                                     </div>
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-addr">
                                     <small class="text-muted">주소</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="주소">
+                                      <input type="text" class="form-control addr" placeholder="주소" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-region">
                                   <div class="col-md-6">
                                     <small class="text-muted">종교</small>
                                     <div class="form-group">
-                                      <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ...">
+                                      <select class="form-control" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="Search ..." disabled>
                                         <option>기독교</option>
                                         <option>천주교</option>
                                         <option>불교</option>
@@ -558,62 +555,62 @@
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-bloodtype">
                                   <div class="col-md-6">
                                     <small class="text-muted">혈액형</small>
                                     <div class="form-group">
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="bloodtype1" name="bloodtype" class="custom-control-input" checked>
+                                        <input type="radio" id="bloodtype1" name="bloodtype" class="custom-control-input" disabled checked>
                                         <label class="custom-control-label" for="bloodtype1">A</label>
                                       </div>
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="bloodtype2" name="bloodtype" class="custom-control-input">
+                                        <input type="radio" id="bloodtype2" name="bloodtype" class="custom-control-input" disabled>
                                         <label class="custom-control-label" for="bloodtype2">AB</label>
                                       </div>
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="bloodtype3" name="bloodtype" class="custom-control-input">
+                                        <input type="radio" id="bloodtype3" name="bloodtype" class="custom-control-input" disabled>
                                         <label class="custom-control-label" for="bloodtype3">B</label>
                                       </div>
                                       <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="bloodtype4" name="bloodtype" class="custom-control-input">
+                                        <input type="radio" id="bloodtype4" name="bloodtype" class="custom-control-input" disabled>
                                         <label class="custom-control-label" for="bloodtype4">O</label>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-hobby">
                                     <small class="text-muted">취미</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="취미">
+                                      <input type="text" class="form-control" placeholder="취미" disabled>
                                     </div>
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-height">
                                     <small class="text-muted">신장</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="신장">
+                                      <input type="text" class="form-control" placeholder="신장" disabled>
                                     </div>
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-bodyshape">
                                     <small class="text-muted">체형</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="체형">
+                                      <input type="text" class="form-control" placeholder="체형" disabled>
                                     </div>
                                   </div>
-                                  <div class="col-md-6">
+                                  <div class="col-md-6 row-vision">
                                     <small class="text-muted">시력</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="시력">
+                                      <input type="text" class="form-control" placeholder="시력" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-specialbodyproblem">
                                   <div class="col-md-12">
                                     <small class="text-muted">신체 특이사항</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="신체 특이사항">
+                                      <input type="text" class="form-control" placeholder="신체 특이사항" disabled>
                                     </div>
                                   </div>
                                 </div>
@@ -625,31 +622,12 @@
                               <h5 class="mb-0">학력 사항</h5>
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <small class="text-muted">상태</small>
-                                    <div class="form-group">
-                                      <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="schoolStatus1" name="schoolStatus" class="custom-control-input school-graduate-status" value="19" checked>
-                                        <label class="custom-control-label" for="schoolStatus1">고졸</label>
-                                      </div>
-                                      <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="schoolStatus2" name="schoolStatus" class="custom-control-input school-graduate-status" value="20">
-                                        <label class="custom-control-label" for="schoolStatus2">대졸</label>
-                                      </div>
-                                      <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="schoolStatus3" name="schoolStatus" class="custom-control-input school-graduate-status" value="21">
-                                        <label class="custom-control-label" for="schoolStatus3">대학원졸</label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                              <div class="card-body information-card4">
                                 <div class="row">
                                   <div class="col-md-6">
                                     <small class="text-muted">학교명</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control schoolStatus1-input" placeholder="고등학교">
+                                      <input type="text" class="form-control schoolStatus1-input" placeholder="고등학교" disabled>
                                     </div>
                                     <div class="form-group">
                                       <input type="text" class="form-control schoolStatus2-input" placeholder="대학교" disabled>
@@ -667,44 +645,44 @@
                               <h5 class="mb-0">어학/자격/기타</h5>
                             </div>
                             <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-                              <div class="card-body">
-                                <div class="row">
+                              <div class="card-body information-card5">
+                                <div class="row row-foreignexperience">
                                   <div class="col-md-12">
                                     <small class="text-muted">해외 경험</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="해외 경험">
+                                      <input type="text" class="form-control" placeholder="해외 경험" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-pricerecord">
                                   <div class="col-md-12">
                                     <small class="text-muted">수상 경험</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="수상 경험">
+                                      <input type="text" class="form-control" placeholder="수상 경험" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-educationrecord">
                                   <div class="col-md-12">
                                     <small class="text-muted">교육 이수 사항</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="교육 이수 사항">
+                                      <input type="text" class="form-control" placeholder="교육 이수 사항" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-schoolrecord">
                                   <div class="col-md-12">
                                     <small class="text-muted">학내외활동</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="학내외활동">
+                                      <input type="text" class="form-control" placeholder="학내외활동" disabled>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="row">
+                                <div class="row row-volunteer">
                                   <div class="col-md-12">
                                     <small class="text-muted">봉사활동</small>
                                     <div class="form-group">
-                                      <input type="text" class="form-control" placeholder="봉사활동">
+                                      <input type="text" class="form-control" placeholder="봉사활동" disabled>
                                     </div>
                                   </div>
                                 </div>
@@ -726,25 +704,17 @@
                                 <table class="table align-items-center table-dark table-flush">
                                     <thead class="thead-dark">
                                     <tr>
-                                        <th scope="col">번호</th>
-                                        <th scope="col" colspan="3">이력 사항</th>
-                                        <th scope="col">입사일</th>
-                                        <th scope="col">퇴사일</th>
+				                        <th scope="col">번호</th>
+				                        <th scope="col">회사명</th>
+				                        <th scope="col">부서명</th>
+				                        <th scope="col">직책</th>
+				                        <th scope="col">입사일</th>
+				                        <th scope="col">퇴사일</th>
+				                        <th scope="col"></th>
                                     </tr>
                                     </thead>
-                                    <tbody class="list">
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="media align-items-center">
-                                                <div class="media-body">
-                                                    <span class="name mb-0 text-sm">1</span>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <td colspan="3">다음 카카오</td>
-                                        <td>2000-09-10</td>
-                                        <td>2018-10-01</td>
-                                    </tr>
+                                    <tbody class="list career-list">
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -785,6 +755,128 @@
       초기 설정 Init
   */
   loadApplyList();
+  
+  $('.information-card1 .row-gender').hide();
+  $('.information-card1 .row-birth').hide();
+  $('.information-card2 .row-engname').hide();
+  $('.information-card2 .row-hopesal').hide();
+  $('.information-card2 .row-presal').hide();
+  $('.information-card2 .row-hoperole').hide();
+  $('.information-card3 .row-addr').hide();
+  $('.information-card3 .row-region').hide();
+  $('.information-card3 .row-bloodtype').hide();
+  $('.information-card3 .row-hobby').hide();
+  $('.information-card3 .row-height').hide();
+  $('.information-card3 .row-bodyshape').hide();
+  $('.information-card3 .row-vision').hide();
+  $('.information-card3 .row-specialbodyproblem').hide();
+  $('.information-card5 .row-foreignexperience').hide();
+  $('.information-card5 .row-pricerecord').hide();
+  $('.information-card5 .row-educationrecord').hide();
+  $('.information-card5 .row-schoolrecord').hide();
+  $('.information-card5 .row-volunteer').hide();
+  
+  loadApplyForm();
+  
+  function loadApplyForm() {
+    // DB에서 Interview 정보를 조회해야함.
+    const interview_customizing = '${interviewInfo.INTERVIEW_CUSTOMIZING }';
+
+    const customizing_arr = interview_customizing.split(',');
+
+    let educationStatusChk = 0;
+    $.each(customizing_arr, function (index, item) {
+      // 1번째
+      if (item === '성별') {
+        $('.information-card1 .row-gender').show();
+      }
+      if (item === '생년월일') {
+        $('.information-card1 .row-birth').show();
+      }
+
+      // 2번째
+      if (item === '영문이름') {
+        $('.information-card2 .row-engname').show();
+      }
+      if (item === '희망연봉') {
+        $('.information-card2 .row-hopesal').show();
+      }
+      if (item === '직전연봉') {
+        $('.information-card2 .row-presal').show();
+      }
+      if (item === '희망역할') {
+        $('.information-card2 .row-hoperole').show();
+      }
+
+      // 3번째
+      if (item === '주소') {
+        $('.information-card3 .row-addr').show();
+      }
+      if (item === '종교') {
+        $('.information-card3 .row-region').show();
+      }
+      if (item === '혈액형') {
+        $('.information-card3 .row-bloodtype').show();
+      }
+      if (item === '취미') {
+        $('.information-card3 .row-hobby').show();
+      }
+      if (item === '신장') {
+        $('.information-card3 .row-height').show();
+      }
+      if (item === '체형') {
+        $('.information-card3 .row-bodyshape').show();
+      }
+      if (item === '시력') {
+        $('.information-card3 .row-vision').show();
+      }
+      if (item === '신체 특이사항') {
+        $('.information-card3 .row-specialbodyproblem').show();
+      }
+
+      // 4번째
+      if (item === '고등학교') {
+        educationStatusChk++;
+      }
+      if (item === '대학교') {
+        educationStatusChk++;
+      }
+      if (item === '대학원') {
+        educationStatusChk++;
+      }
+
+      // 5번째
+      if (item === '해외경험') {
+        $('.information-card5 .row-foreignexperience').show();
+      }
+      if (item === '수상경력') {
+        $('.information-card5 .row-pricerecord').show();
+      }
+      if (item === '교육이수사항') {
+        $('.information-card5 .row-educationrecord').show();
+      }
+      if (item === '학내외활동') {
+        $('.information-card5 .row-schoolrecord').show();
+      }
+      if (item === '봉사활동') {
+        $('.information-card5 .row-volunteer').show();
+      }
+    });
+
+    if (educationStatusChk == 1) {
+      $('#schoolStatus1').attr('disabled', false);
+      $('#schoolStatus2').attr('disabled', true);
+      $('#schoolStatus3').attr('disabled', true);
+    } else if (educationStatusChk == 2) {
+      $('#schoolStatus1').attr('disabled', false);
+      $('#schoolStatus2').attr('disabled', false);
+      $('#schoolStatus3').attr('disabled', true);
+    } else if (educationStatusChk == 3) {
+      $('#schoolStatus1').attr('disabled', false);
+      $('#schoolStatus2').attr('disabled', false);
+      $('#schoolStatus3').attr('disabled', false);
+    }
+  }
 
   // <신청자 명단>
   
@@ -804,6 +896,10 @@
 		    	mem_id: var_mem_id
 		    },
 		    success: function (data) {
+		    	$('#infographic .projectCnt').text(data.successProjectCnt);
+		    	$('#infographic .portfolioCnt').text(data.insertPortfolioCnt);
+		    	$('#infographic .careerCnt').text(data.CareerCnt);
+		    	
 		    	$('#infographic .rounded-circle').attr('src', '/' + data.PROFILE_SAVENAME);
 		    	$('#infographic .mem-name').text(data.MEM_NAME + ', ' + data.MEM_AGE);
 		    	$('#infographic .mem-addr').text(data.MEM_ADDR);
@@ -833,6 +929,171 @@
 	  });
 	  
 	  $.ajax({
+		  url: '/CONNECTOR/user/member/selectMemberInfoJSON.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	$('.information-card1 .row-name input').val(data.MEM_NAME);
+		    	$('.information-card1 .datepicker').val(data.MEM_BIR);
+		    	$('.information-card3 .tel').val(data.MEM_TEL);
+		    	$('.information-card3 .addr').val(data.MEM_ADDR);
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interview/mypageDeveloperInfoJSON.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	let tempHTML = '';
+		    	if (data.MYPAGE_TECHNOLOGIES != null) {
+		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('1') != -1) {
+			    	      tempHTML += '<option value="1" selected>ANGULAR</option>';
+			    	}
+		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('2') != -1) {
+			    	      tempHTML += '<option value="2" selected>BOOTSTRAP</option>';
+			    	}
+		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('3') != -1) {
+			    	      tempHTML += '<option value="3" selected>REACT</option>';
+			    	}
+		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('4') != -1) {
+			    	      tempHTML += '<option value="4" selected>VUE</option>';
+			    	}
+		    	}
+		    	
+		    	$('.information-card3 .technologies').append(tempHTML);
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/projectApply/selectProjectApplyInfo.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id,
+		    	project_no: '${param.project_no}'
+		    },
+		    success: function (data) {
+		    	if (data.APPLY_INFO_GENDER == '남') {
+		    		$('.information-card1 #modalGender1').prop('checked', true);
+		    	} else {
+		    		$('.information-card1 #modalGender2').prop('checked', true);
+		    	}
+		    	
+		    	$('.information-card2 .row-engname input').val(data.APPLY_INFO_ENGNAME);
+		    	$('.information-card2 .row-hopesal input').val(data.APPLY_INFO_HOPESAL);
+		    	$('.information-card2 .row-presal input').val(data.APPLY_INFO_PRESAL);
+
+		    	// select2 (PL, TA, DA, UA, AA)
+		    	let tempHTML = '';
+		    	if (data.APPLY_INFO_HOPEROLE == 'PL') {
+		    	      tempHTML = '' +
+		              '<option selected>PL</option>' +
+		              '<option>TA</option>' +
+		              '<option>DA</option>' +
+		              '<option>UA</option>' +
+		              '<option>AA</option>';
+		    	} else if (data.APPLY_INFO_HOPEROLE == 'TA') {
+		    	      tempHTML = '' +
+		              '<option>PL</option>' +
+		              '<option selected>TA</option>' +
+		              '<option>DA</option>' +
+		              '<option>UA</option>' +
+		              '<option>AA</option>';
+		    	} else if (data.APPLY_INFO_HOPEROLE == 'DA') {
+		    	      tempHTML = '' +
+		              '<option>PL</option>' +
+		              '<option>TA</option>' +
+		              '<option selected>DA</option>' +
+		              '<option>UA</option>' +
+		              '<option>AA</option>';
+		    	} else if (data.APPLY_INFO_HOPEROLE == 'UA') {
+		    	      tempHTML = '' +
+		              '<option>PL</option>' +
+		              '<option>TA</option>' +
+		              '<option>DA</option>' +
+		              '<option selected>UA</option>' +
+		              '<option>AA</option>';
+		    	} else if (data.APPLY_INFO_HOPEROLE == 'AA') {
+		    	      tempHTML = '' +
+		              '<option>PL</option>' +
+		              '<option>TA</option>' +
+		              '<option>DA</option>' +
+		              '<option>UA</option>' +
+		              '<option selected>AA</option>';
+		    	}
+		    	$('.information-card2 .row-hoperole select').append(tempHTML);
+		    	
+		    	
+		    	
+		    	$('.information-card3 .country').val(data.APPLY_INFO_COUNTRY);
+
+		    	// 종교 (기독교, 천주교, 불교)
+		    	if (data.APPLY_INFO_REGION == '기독교') {
+		    	      tempHTML = '' +
+		              '<option selected>기독교</option>' +
+		              '<option>천주교</option>' +
+		              '<option>불교</option>';
+		    	} else if (data.APPLY_INFO_REGION == '천주교') {
+		    	      tempHTML = '' +
+		              '<option>기독교</option>' +
+		              '<option selected>천주교</option>' +
+		              '<option>불교</option>';
+		    	} else if (data.APPLY_INFO_REGION == '불교') {
+		    	      tempHTML = '' +
+		              '<option>기독교</option>' +
+		              '<option>천주교</option>' +
+		              '<option selected>불교</option>';
+		    	}
+		    	$('.information-card3 .row-region select').append(tempHTML);
+
+		    	if (data.APPLY_INFO_BLOODTYPE == 'A') {
+		    		$('.information-card3 .row-bloodtype #bloodtype1').prop('checked', true);
+		    	} else if (data.APPLY_INFO_BLOODTYPE == 'AB') {
+		    		$('.information-card3 .row-bloodtype #bloodtype2').prop('checked', true);
+		    	} else if (data.APPLY_INFO_BLOODTYPE == 'B') {
+		    		$('.information-card3 .row-bloodtype #bloodtype3').prop('checked', true);
+		    	} else if (data.APPLY_INFO_BLOODTYPE == 'O') {
+		    		$('.information-card3 .row-bloodtype #bloodtype4').prop('checked', true);
+		    	}
+
+		    	$('.information-card3 .row-hobby input').val(data.APPLY_INFO_HOBBY);
+		    	$('.information-card3 .row-height input').val(data.APPLY_INFO_HEIGHT);
+		    	$('.information-card3 .row-bodyshape input').val(data.APPLY_INFO_BODYSHAPE);
+		    	$('.information-card3 .row-vision input').val(data.APPLY_INFO_VISION);
+		    	$('.information-card3 .row-specialbodyproblem input').val(data.APPLY_INFO_SPECIALBODYPROBLEM);
+		    	
+		    	$('.information-card4 .schoolStatus1-input').val(data.APPLY_INFO_HIGHSCHOOL);
+		    	$('.information-card4 .schoolStatus2-input').val(data.APPLY_INFO_UNIVERSITY);
+		    	$('.information-card4 .schoolStatus3-input').val(data.APPLY_INFO_GRADUATEUNIVERSITY);
+		    	
+		    	$('.information-card5 .row-foreignexperience input').val(data.APPLY_INFO_FOREIGNEXPERIENCE);
+		    	$('.information-card5 .row-pricerecord input').val(data.APPLY_INFO_PRICERECORD);
+		    	$('.information-card5 .row-educationrecord input').val(data.APPLY_INFO_EDUCATIONRECORD);
+		    	$('.information-card5 .row-schoolrecord input').val(data.APPLY_INFO_SCHOOLRECORD);
+		    	$('.information-card5 .row-volunteer input').val(data.APPLY_INFO_VOLUNTEER);
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
 		    url: '/CONNECTOR/user/interview/selectProjectApply.do',
 		    type: 'POST',
 		    async: false,
@@ -851,6 +1112,44 @@
 			    		$('#infographic .btn-hire').addClass('btn-info');
 			    	}
 		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $.ajax({
+		    url: '/CONNECTOR/user/career/selectCareer.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: var_mem_id
+		    },
+		    success: function (data) {
+		    	// 작업 중!
+		    	let tableNO = 1;
+		    	$('.career-list').empty();
+		    	$.each(data, function(index, item) {
+	  				const trHTML = '<tr class="checklist-entry">\n' +
+	  	            '                              <input type="hidden" name="career_seq" value="' + item.CAREER_SEQ + '">\n' +
+	  	            '                              <th scope="row">\n' +
+	  	            '                                <div class="media align-items-center">\n' +
+	  	            '                                  <div class="media-body">\n' +
+	  	            '                                    <span class="name mb-0 text-sm">' + tableNO + '</span>\n' +
+	  	            '                                  </div>\n' +
+	  	            '                                </div>\n' +
+	  	            '                              </th>\n' +
+	  	            '                              <td>' + item.CAREER_COMPANYNAME + '</td>\n' +
+	  	            '                              <td>' + item.CAREER_DEPARTMENT + '</td>\n' +
+	  	            '                              <td>' + item.CAREER_CLASS + '</td>\n' +
+	  	            '                              <td>' + item.CARRER_STARTDATE + '</td>\n' +
+	  	            '                              <td>' + item.CARRER_ENDDATE + '</td>\n' +
+	  	            '                              <td><a class="trashcan-icon-area"></a></td>' +
+	  	            '                            </tr>';
+	  				tableNO++;
+	  				$('.career-list').append(trHTML);
+		    	});
 		    },
 		    error: function (xhr, err) {
 		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
