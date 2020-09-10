@@ -127,7 +127,7 @@
 <!-- Optional JS -->
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script src="../../assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
