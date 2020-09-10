@@ -76,7 +76,7 @@
                   <p class="text-muted" style="font-size: small">파트너스 정보를 선택해 주세요</p>
                   <div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_clientinformation1" name="partnerInfo" class="custom-control-input" value="개인">
+                      <input type="radio" id="project_clientinformation1" name="partnerInfo" class="custom-control-input" value="개인" checked>
                       <label class="custom-control-label" for="project_clientinformation1">개인</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
@@ -98,7 +98,7 @@
                   <p class="text-muted" style="font-size: small">프로젝트에 적합한 작업자를 모집하기 위해 프로젝트 진행 방식을 선택해주세요</p>
                   <div>
                     <div class="custom-control custom-radio custom-control-inline">
-                      <input type="radio" id="project_processstatus1" name="processWay" class="custom-control-input" value="외주">
+                      <input type="radio" id="project_processstatus1" name="processWay" class="custom-control-input" value="외주" checked>
                       <label class="custom-control-label" for="project_processstatus1">외주</label>
                     </div>
                     <div class="custom-control custom-radio custom-control-inline">
@@ -111,7 +111,7 @@
                   <label class="col-form-label form-control-label">프로젝트 진행 분류</label>
                   <label style="color: tomato">*</label>
                   <div class="custom-control custom-radio mb-3">
-                    <input type="radio" id="project_processcategory1" name="processCategory" class="custom-control-input" value="신규 프로젝트">
+                    <input type="radio" id="project_processcategory1" name="processCategory" class="custom-control-input" value="신규 프로젝트" checked>
                     <label class="custom-control-label" for="project_processcategory1">신규 프로젝트</label>
                   </div>
                   <div class="custom-control custom-radio">
@@ -158,51 +158,6 @@
 
 	<!-- 등록 버튼 -->
 	$("#btnRegist").on("click", function() {
-		if ($('input[name=partnerInfo]').is(':checked') == false) {
-			$.notify({
-				// options
-				message: '파트너스 정보를 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
-		if ($('input[name=processWay]').is(':checked') == false) {
-			$.notify({
-				// options
-				message: '프로젝트 진행 방식을 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
-		if ($('input[name=processCategory]').is(':checked') == false) {
-			$.notify({
-				// options
-				message: '프로젝트 진행 분류를 선택해주세요!' 
-			},{
-				// settings
-				placement: {
-					from: "top",
-					align: "center"
-				},
-				type: 'info'
-			});
-			
-			return;
-		}
 		
 		if ($('input[name=projectTitle]').val() == "") {
 			$.notify({

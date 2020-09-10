@@ -84,7 +84,7 @@
                 <label class="col-form-label form-control-label">지원 사업 여부</label>
                 <label style="color: tomato">*</label>
                 <div class="custom-control custom-radio mb-3">
-                  <input type="radio" id="project_supportstatus1" name="supportstatus" class="custom-control-input" value="정부지원 사업입니다.">
+                  <input type="radio" id="project_supportstatus1" name="supportstatus" class="custom-control-input" value="정부지원 사업입니다." checked>
                   <label class="custom-control-label" for="project_supportstatus1">정부지원 사업입니다.</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -155,21 +155,7 @@
 $(".datepicker").datepicker().datepicker("setDate", new Date());
 
 $("#btnRegist").on("click", function() {
-	if ($('input[name=supportstatus]').is(':checked') == false) {
-		$.notify({
-			// options
-			message: '지원사업 여부를 선택해주세요!' 
-		},{
-			// settings
-			placement: {
-				from: "top",
-				align: "center"
-			},
-			type: 'info'
-		});
-		
-		return;
-	}
+
 	if ($('input[type=checkbox]').is(':checked') == false) {
 		$.notify({
 			// options
