@@ -3,16 +3,52 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <script type='text/javascript' src='http://code.jquery.com/jquery-latest.js'></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+    <meta name="author" content="Creative Tim">
+    <!-- Favicon -->
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
+    <!-- Quill -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/select2/dist/css/select2.min.css">
+    <!-- Notify -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
+<script>
  $(function(){
+	 
 $('.btn-primary').click(function(){
+	
+		 
+		Swal.fire({
+			  title: '정말 탈퇴하시겠습니까?',
+			  text: "탈퇴를 클릭하면 되돌릴 수 없습니다.",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			  }).then((result) => {
+				  if (result.value) {
 	$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }');
-});
+				  }
+	});
+ });
+
 }); 
+
 </script>
 <style>
 .btn-primary {
@@ -68,6 +104,9 @@ $('.btn-primary').click(function(){
           <div class="form-group has-feedback">
 					<label class="control-label" for="userId">아이디</label>
 					<input class="form-control" type="text" id="mem_id" name="mem_id" value="${MEMBER_LOGININFO.mem_id}" readonly="readonly"/>
+					<br>
+					<label class="control-label" for="userId">비밀번호</label>
+					<input class="form-control" type="password" id="mem_pass" name="mem_pass" value="" />
 				</div>
                                 <div class="form-group">
                   <!-- <div class="input-group input-group-merge input-group-alternative">
@@ -91,23 +130,23 @@ $('.btn-primary').click(function(){
       </div>
     </div>
   </div>
-  <c:if test="${msg == false}">
-					비밀번호가 맞지 않습니다.
-				</c:if>
+ 
   <!-- Footer -->
 
  
   <!-- Argon Scripts -->
   <!-- Core -->
-  <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="../../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="../../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="../../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
-  <script src="../../assets/js/argon.js?v=1.2.0"></script>
+  <script src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
   <!-- Demo JS - remove this in your project -->
-  <script src="../../assets/js/demo.min.js"></script>
+  <script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+   <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </body>
 </body>
 </html>

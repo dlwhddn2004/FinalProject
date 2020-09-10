@@ -96,6 +96,9 @@ perpectCenter
 <!-- My JavaScript -->
 <script type="text/javascript">
 
+
+
+
 function viewBoardInfo(e) {
 	const project_no = $(e).find('input[name=project_no]').val();
 	const mem_id = $(e).find('input[name=mem_id]').val();
@@ -136,22 +139,22 @@ function viewBoardInfo(e) {
 					<div>
 						<br> <label class="form-control-label" for="input-username">프로젝트
 							진행 방식</label> <br> <label><input type="checkbox"
-							name="search_keyworde"  value="외주"> 외주</label>&nbsp;&nbsp; <label><input
-							type="checkbox" name="search_keywordd"   value="상주"> 상주</label>
+							name="project_processstatus"  value="외주"> 외주</label>&nbsp;&nbsp; <label><input
+							type="checkbox" name="project_processstatus"   value="상주"> 상주</label>
 					</div>
 					<br>
 					<div>
 						<label class="form-control-label" for="input-username">클라이언트
 							위치</label><br> <label><input type="checkbox"
-							name="search_keyword" value="SEOUL"> 서울특별시</label>&nbsp;&nbsp;<br> <label><input
-							type="checkbox" name="mem_notice" value="Gyeonggi"> 경기도</label>&nbsp;&nbsp;<br>
-						<label><input type="checkbox" name="search_keyword" value="BUSAN">
+							name="project_clientlocation" value="서울">서울특별시</label>&nbsp;&nbsp;<br> <label><input
+							type="checkbox" name="project_clientlocation" value="경기도"> 경기도</label>&nbsp;&nbsp;<br>
+						<label><input type="checkbox" name="project_clientlocation" value="부산">
 							부산광역시</label>
 					</div>
 					<br>
 					<div>
 						<label class="form-control-label" for="input-username">프로젝트
-							예상 금액</label><br> <label> <select name="search_keyword1" 
+							예상 금액</label><br> <label> <select name="project_budget" 
 							style="width: 150px;" class="form-control" style="width: 120px;">
 								<option value="금액선택">금액선택</option>
 								<option value="100만원">100만원</option>
@@ -174,7 +177,7 @@ function viewBoardInfo(e) {
 								<option value="9000만원">9000만원</option>
 								<option value="10,000만원">10,000만원</option>
 								<option value="50,000만원">50,000만원</option>
-						</select></label> <label> <select name="search_keyword1"  value="MONEY2" class="form-control"
+						</select></label> <label> <select name="project_budget"  value="MONEY2" class="form-control"
 							style="width: 150px;">
 								<option value="금액선택">금액선택</option>
 								<option value="100만원">100만원</option>

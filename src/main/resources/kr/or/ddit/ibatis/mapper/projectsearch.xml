@@ -241,19 +241,7 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		       INTERVIEW_METHOD,
 		       INTERVIEW_AUTHENTICATION,
 		       INTERVIEW_CUSTOMIZING
-<dynamic prepend="AND">
-			<isNotEmpty property="search_keyword">
-				<isEqual property="search_keyworde" compareValue="외주">
-				AND	 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="search_keyword">
-				<isEqual property="search_keyword" compareValue="상주">
-					 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
-				</isEqual>
-			</isNotEmpty>
-			
-		</dynamic>
+
 		FROM PROJECT,
 		     PROJECT_PARTICIPANTS,
 		     TECHNOLOGIES,
@@ -263,6 +251,50 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
 		  AND PROJECT_ENDSTATUS = 'N'
           AND PROJECT.PROJECT_NO =  INTERVIEW.PROJECT_NO
+       
+          <dynamic prepend="AND">
+			<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="외주">
+				 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="상주">
+				 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="project_clientlocation">
+			<isEqual property="project_clientlocation" compareValue="서울">
+				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="project_clientlocation">
+			<isEqual property="project_clientlocation" compareValue="경기도">
+				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="project_clientlocation">
+			<isEqual property="project_clientlocation" compareValue="부산">
+				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+				</isEqual>
+			</isNotEmpty>
+			<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="100만원">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_clientlocation">
+			<isEqual property="project_budget" compareValue="200만원">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="300만원">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+			
+		</dynamic>
 
 </select>
 <select id="projectInfo" resultClass="ProjectVO">
@@ -333,7 +365,7 @@ from PROJECT_APPLY
 where project_no = #project_no# 
 </select>
 <select id="projectInfo6" resultClass="String"  parameterClass="map">
-select PROJECT_APPLICATIONDEADLINE - PROJECT_STARTDATE
+select ROUND(SYSDATE - PROJECT_STARTDATE)
 from PROJECT
     where PROJECT_NO = #project_no#
 </select> 
