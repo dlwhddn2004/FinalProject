@@ -468,7 +468,7 @@
 			      </div>
 			    </div>
 			  </div>
-   <!-- Argon Scripts -->
+    <!-- Argon Scripts -->
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
 		
