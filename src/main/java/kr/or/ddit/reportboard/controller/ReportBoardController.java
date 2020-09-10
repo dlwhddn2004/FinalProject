@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lowagie.text.pdf.PRAcroForm;
+import com.sun.org.apache.regexp.internal.REProgram;
+
 @Controller
 @RequestMapping("/user/reportboard/")
 public class ReportBoardController {
@@ -104,11 +107,70 @@ public class ReportBoardController {
 		List<Map<String, String>> reportboardList = null;
 		reportboardList = reportBoardService.reportboardList(params);
 		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
 		modelAndView.addObject("reportboardList", reportboardList);
+		modelAndView.addObject("projectInfo", projectInfo);
 		
 		modelAndView.setViewName("user/reportboard/reportboardList");
 		
 		return modelAndView;
 	}
 	
+	@RequestMapping("updateReportBoard")
+	public ModelAndView updateReportBoard(HttpServletRequest request,
+											ModelAndView modelAndView,
+											String report_no,
+											String project_no,
+											String report_title,
+											String report_content
+											)throws Exception{
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("report_no", report_no);
+		params.put("report_title", report_title);
+		params.put("report_content", report_content);
+
+		int chk = reportBoardService.updateReportboard(params);
+		
+		List<Map<String, String>> reportboardList = null;
+		reportboardList = reportBoardService.reportboardList(params);
+		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
+		modelAndView.addObject("report_no", report_no);
+		modelAndView.addObject("project_no", project_no);
+		modelAndView.addObject("reportboardList", reportboardList);
+		modelAndView.addObject("projectInfo", projectInfo);
+		
+		modelAndView.setViewName("user/reportboard/reportboardList");
+		return modelAndView;
+	}
+	
+	@RequestMapping("deleteReportboard")
+	public ModelAndView deleteReportboard(HttpServletRequest request,
+											ModelAndView modelAndView,
+											String project_no,
+											String report_no
+											) throws Exception{
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("report_no", report_no);
+		
+		int chk = reportBoardService.deleteReportboard(params);
+		List<Map<String, String>> reportboardList = null;
+		reportboardList = reportBoardService.reportboardList(params);
+		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
+		modelAndView.addObject("report_no", report_no);
+		modelAndView.addObject("project_no", project_no);
+		modelAndView.addObject("reportboardList", reportboardList);
+		modelAndView.addObject("projectInfo", projectInfo);
+		
+		modelAndView.setViewName("user/reportboard/reportboardList");
+		
+		return modelAndView;
+	}
 }

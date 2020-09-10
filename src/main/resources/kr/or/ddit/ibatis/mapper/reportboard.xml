@@ -65,6 +65,17 @@
 			
 	</insert>
 	
+	<update id="updateReportboard" parameterClass="map">
+		UPDATE REPORT_BOARD SET  REPORT_TITLE = #report_title#,
+                         		REPORT_CONTENT = #report_content#
+		WHERE REPORT_NO = #report_no#
+	</update>
+	
+	<delete id="deleteReportboard" parameterClass="map">
+		DELETE REPORT_BOARD 
+		WHERE REPORT_NO = #report_no# 
+	</delete>
+	
 <!-- 	<select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map"> -->
 <!-- 		SELECT ROWNUM r, A.*, B.* -->
 <!-- 		FROM ISSUE_BOARD A, PROJECT B -->

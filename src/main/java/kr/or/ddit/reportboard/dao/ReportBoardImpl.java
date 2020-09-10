@@ -30,4 +30,14 @@ public class ReportBoardImpl implements IReportBoardDao {
 		return (String) client.insert("reportboard.insertReportboard", params);
 	}
 
+	@Override
+	public int updateReportboard(Map<String, String> params) throws Exception {
+		return client.update("reportboard.updateReportboard", params);
+	}
+
+	@Override
+	public int deleteReportboard(Map<String, String> params) throws Exception {
+		return client.delete("reportboard.deleteReportboard", params);
+	}
+
 }

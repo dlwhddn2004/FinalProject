@@ -195,7 +195,7 @@
 			const button_status = $('.btn-submit').text();
 			
 			if (button_status === "수정") {
-				$('input[name=issue_title]').removeAttr('readonly');
+				$('input[name=report_title]').removeAttr('readonly');
 				quill.enable(true);
 				
 				$('.btn-delete').hide();
@@ -208,19 +208,19 @@
 				$('.btn-back').addClass('btn-warning');
 			} else if (button_status === "완료") {
 				// 수정 기능 실행
-				const issue_title = $('input[name=issue_title]').val();
-				const issue_content = quill.root.innerHTML;
+				const report_title = $('input[name=report_title]').val();
+				const report_content = quill.root.innerHTML;
 				
-				const $ipt_issue_no = $("<input type='hidden' name='issue_no' value='${param.issue_no}'>");
-				const $ipt_issue_title = $("<input type='hidden' name='issue_title' value='" + issue_title + "'>");
-				const $ipt_issue_content = $("<input type='hidden' name='issue_content' value='" + issue_content + "'>");
+				const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
+				const $ipt_report_title = $("<input type='hidden' name='report_title' value='" + report_title + "'>");
+				const $ipt_report_content = $("<input type='hidden' name='report_content' value='" + report_content + "'>");
 				
-				const $frm = $("<form action='${pageContext.request.contextPath}/user/issueboard/updateIssueboard.do?project_no=${param.project_no}' method='POST'> ");
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportBoard.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
 				
 				$('body').append($frm);
-				$frm.append($ipt_issue_no);
-				$frm.append($ipt_issue_title);
-				$frm.append($ipt_issue_content);
+				$frm.append($ipt_report_no);
+				$frm.append($ipt_report_title);
+				$frm.append($ipt_report_content);
 				
 				$frm.submit();
 			}
@@ -263,7 +263,7 @@
 			  cancelButtonText: '취소'
 			}).then((result) => {
 			  if (result.value) {
-				  location.href = '${pageContext.request.contextPath}/user/issueboard/deleteIssueboard.do?issue_no=${param.issue_no}&project_no=${param.project_no}';
+				  location.href = '${pageContext.request.contextPath}/user/reportboard/deleteReportboard.do?report_no=${reportInfo.REPORT_NO}&project_no=${reportInfo.PROJECT_NO}';
 			  }
 			});
 		});

@@ -35,4 +35,16 @@ public class ReportBoardServiceImpl implements IReportBoardService {
 		return dao.insertReportboard(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateReportboard(Map<String, String> params) throws Exception {
+		return dao.updateReportboard(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteReportboard(Map<String, String> params) throws Exception {
+		return dao.deleteReportboard(params);
+	}
+
 }
