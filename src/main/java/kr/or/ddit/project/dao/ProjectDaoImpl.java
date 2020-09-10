@@ -66,10 +66,10 @@ public class ProjectDaoImpl implements IProjectDao {
 	}
 // 덕년 리스트 구현
 	@Override
-	public List<ProjectVO> projectList(Map<String,String>params) throws Exception {
+	public List<ProjectVO> projectList(Map<String,String> params) throws Exception {
 		List<ProjectVO> list = null;
 		
-		list = client.queryForList("projectsearch.projectList");
+		list = client.queryForList("projectsearch.projectList",params);
 		
 		return list;
 	}

@@ -7,13 +7,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
-import kr.or.ddit.vo.MemberVO;
-import kr.or.ddit.vo.Mypage_memberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.ProjectVO;
 
@@ -45,12 +42,17 @@ public class projectsearchcontroller {
 	private IMemberService memberservice;
 	 
 	 @RequestMapping("projectsearch")
-	 public ModelAndView projectList(HttpServletRequest request,String project_no,
-				ModelAndView modelAndView) throws Exception{
+	 public ModelAndView projectList(HttpServletRequest request,String project_no,String project_processstatus, String project_clientlocation,
+			String project_budget,	ModelAndView modelAndView) throws Exception{
 		 Map<String, String> params = new HashMap<String, String>();
+		
+	
+		 params.put("project_budget", project_budget);
+		 params.put("project_clientlocation", project_clientlocation);
+		 params.put("project_processstatus", project_processstatus);
 		 params.put("project_no", project_no);
 		 List<ProjectVO> projectList = null;
-		 
+	
 		 	try{
 		 		projectList = service.projectList(params);
 		 		
@@ -96,6 +98,7 @@ public class projectsearchcontroller {
 					 	
 			return modelAndView;
 		 				 		 		 
+			
 	 }
 	 
 	 @RequestMapping("projectview")

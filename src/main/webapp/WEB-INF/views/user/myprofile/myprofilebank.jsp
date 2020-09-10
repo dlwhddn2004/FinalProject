@@ -4,7 +4,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
 <script>
 $(function(){
 	   
@@ -84,45 +84,7 @@ img{
     <!-- Page content -->
     
       <div class="row">
-        <div class="col-xl-4 order-xl-2">
-          <div class="card-profile">
-            <img src="${pageContext.request.contextPath}/assets/img/theme/cha.jpg" alt="Image placeholder" class="card-img-top">
-            <div class="row justify-content-center">
-              <div class="col-lg-3 order-lg-2">
-                <div class="card-profile-image">
-                  <a href="#">
-                    <img src="${pageContext.request.contextPath}/assets/img/theme/pp.jpg" class="rounded-circle">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div class="d-flex justify-content-between">
-             
-              </div>
-            </div>
-            <div class="card-body pt-0">
-              <div class="row">
-                <div class="col">
-                
-                </div>
-              </div>
-              <div class="text-center">
-                <h5 class="h3">
-                 deokdeoks<span class="font-weight-light">, 27</span>
-                </h5>
-                <div class="h5 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>Bucharest, Romania
-                </div>
-                <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
-                </div>
-              </div>
-            </div>
-          </div>
+       
           <!-- Progress track -->
           <div class="card">
             <!-- Card header -->
@@ -185,7 +147,7 @@ img{
                    <input type="hidden" name="mem_id" class="form-control" value="${MEMBER_LOGININFO.mem_id}" placeholder="Username"> 
                    <input type="hidden" name="mem_pass" class="form-control" value="${MEMBER_LOGININFO.mem_pass}" placeholder="Username"> 
                        
-                        <input type="text" id="mem_bankname" class="form-control"   value='${memberInfo.mem_bankname }'  name="mem_bankname">
+                        <input type="text" id="mem_bankname" class="form-control"   value="${MEMBER_LOGININFO.mem_bankname}"  name="mem_bankname">
                       </div>
                     </div>
                   <div>
@@ -194,7 +156,7 @@ img{
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">계좌 번호</label>
-                        <input type="text" id="input-first-name" value="${memberInfo.mem_bankno}" name="mem_bankno" id="mem_bankno2"class="form-control" placeholder="" value="Lucky">
+                        <input type="text" id="input-first-name" value="${MEMBER_LOGININFO.mem_bankno}" name="mem_bankno" id="mem_bankno2"class="form-control" placeholder="" value="Lucky">
                       <label class="form-control-label" for="input-username">'-'를 제외하고 입력하시오</label>
                       </div>
                     </div>
