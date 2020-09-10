@@ -4,6 +4,7 @@ import java.io.Reader;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +44,8 @@ public class InterviewController {
 	private IInterviewService interviewService;
 	@Autowired
 	private IMemberService memberService;
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("partnersMain")
 	public ModelAndView successList(HttpServletRequest request,
@@ -624,12 +627,21 @@ public class InterviewController {
 	public ModelAndView interviewRTC(ModelAndView modelAndView,
 									 HttpServletRequest request,
 									 String mem_id,
-									 String project_no) {
+									 String project_no,
+									 String description) throws Exception {
 		// breadcrumb
 		modelAndView.addObject("breadcrumb_title", "프로젝트");
 		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
 		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?mem_id=" + mem_id + "&project_no=" + project_no);
 		modelAndView.addObject("breadcrumb_second", "면접");
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", description);
+		params.put("project_no", project_no);
+		
+		Map<String, String> interviewInfo = interviewService.selectInterview(params);
+		modelAndView.addObject("interviewInfo", interviewInfo);
+		modelAndView.addObject("MEM_ID", description);
 		
 		modelAndView.setViewName("user/interview/interviewRTC");
 		
@@ -647,6 +659,8 @@ public class InterviewController {
 		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?mem_id=" + mem_id + "&project_no=" + project_no);
 		modelAndView.addObject("breadcrumb_second", "면접");
 		
+		
+		
 		modelAndView.setViewName("user/interview/interviewRTCRoom");
 		
 		return modelAndView;
@@ -659,5 +673,104 @@ public class InterviewController {
 		params.put("mem_id", mem_id);
 		
 		return interviewService.selectMypageDeveloper(params);
+	}
+	
+	@RequestMapping("selectInterviewTimeChk")
+	@ResponseBody
+	public Map<String, String> selectInterviewTimeChk(String mem_id, String category_no) throws Exception {
+		Date nowDate = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm");
+		String nowDateStr = format.format(nowDate);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		if (category_no.equals("1")) {
+			List<Map<String, String>> makeProjectList = projectService.selectMakeProjectList(params);
+			
+			for (Map<String, String> item : makeProjectList) {
+				boolean findValid = false;
+				
+				params.put("project_no", String.valueOf(item.get("PROJECT_NO")));
+				List<CalendarVO> interviewCalendarInfo = interviewService.selectInterviewCalendar(params);
+				
+				for (int i = 0; i < interviewCalendarInfo.size(); i++) {
+					String start_time = interviewCalendarInfo.get(i).getStart();
+					String end_time = interviewCalendarInfo.get(i).getEnd();
+					
+					Boolean scheduleValid = getValidDate(start_time, end_time, nowDateStr);
+					
+					if (scheduleValid) {
+						resultMap.put("PROJECT_NO", String.valueOf(item.get("PROJECT_NO")));
+						resultMap.put("DESCRIPTION", interviewCalendarInfo.get(i).getDescription());
+						
+						findValid = true;
+						
+						break;
+					}
+				}
+				
+				if (findValid) {
+					break;
+				}
+			}
+		} else {
+			List<Map<String, String>> attendInterviewList = interviewService.selectAttendInterview(params);
+			
+			for (Map<String, String> item : attendInterviewList) {
+				String start_time = String.valueOf(item.get("START"));
+				String end_time = String.valueOf(item.get("END"));
+				
+				Boolean scheduleValid = getValidDate(start_time, end_time, nowDateStr);
+				
+				if (scheduleValid) {
+					resultMap.put("PROJECT_NO", String.valueOf(item.get("PROJECT_NO")));
+					resultMap.put("DESCRIPTION", String.valueOf(item.get("DESCRIPTION")));
+					
+					break;
+				}
+			}
+		}
+		
+		return resultMap;
+	}
+	
+	private Boolean getValidDate(String strStart, String strEnd, String strValue) {
+		Calendar calStart = getDateTime(strStart);
+
+		Calendar calEnd = getDateTime(strEnd);
+
+		Calendar calValue = getDateTime(strValue);
+
+		Boolean bValid = false;
+
+		if (calStart.before(calValue) && calEnd.after(calValue)) {
+
+			bValid = true;
+
+		}
+
+		return bValid;
+	}
+	
+	private Calendar getDateTime(String strDatetime) {
+		Calendar cal = Calendar.getInstance();
+
+		String[] strSplitDateTime = strDatetime.split(" ");
+
+		String[] strSplitDate = strSplitDateTime[0].split("-");
+
+		String[] strSplitTime = strSplitDateTime[1].split(":");
+
+		cal.set(Integer.parseInt(strSplitDate[0]),
+				Integer.parseInt(strSplitDate[1]) - 1,
+
+				Integer.parseInt(strSplitDate[2]),
+				Integer.parseInt(strSplitTime[0]),
+				Integer.parseInt(strSplitTime[1]));
+
+		return cal;
 	}
 }

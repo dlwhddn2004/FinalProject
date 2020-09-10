@@ -199,4 +199,10 @@ public class InterviewDaoImpl implements IInterviewDao {
 		
 		return result;
 	}
+
+	@Override
+	public List<Map<String, String>> selectAttendInterview(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("interview.selectAttendInterview", params);
+	}
 }

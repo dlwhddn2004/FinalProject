@@ -181,4 +181,10 @@ public class InterviewServiceImpl implements IInterviewService {
 	public int selectCareerCnt(Map<String, String> params) throws Exception {
 		return dao.selectCareerCnt(params);
 	}
+
+	@Override
+	public List<Map<String, String>> selectAttendInterview(
+			Map<String, String> params) throws Exception {
+		return dao.selectAttendInterview(params);
+	}
 }

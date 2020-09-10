@@ -414,7 +414,6 @@
                       </div>
                       <div class="card-body">
                         <div class="accordion" id="accordionExample">
-<!--                           작업 중 -->
                           <div class="card">
                             <div class="card-header" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                               <h5 class="mb-0">기본 정보</h5>
@@ -743,7 +742,6 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>

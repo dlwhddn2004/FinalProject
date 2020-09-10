@@ -295,6 +295,12 @@
 		AND (MEM_ID = #mem_id#)
 		GROUP BY MEM_ID
 	</select>
+	
+	<select id="selectAttendInterview" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM CALENDAR_INTERVIEW
+		WHERE DESCRIPTION LIKE #mem_id#
+	</select>
 </sqlMap>
 
  

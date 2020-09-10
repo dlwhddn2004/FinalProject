@@ -28,10 +28,12 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/vendor/nucleo/css/nucleo.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
 	<!-- Page plugins -->
+    <!-- Notify -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
+    <!-- Sweet Alerts -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 	<!-- Argon CSS -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/css/argon.css?v=1.2.0" type="text/css">
-	<!-- Sweet Alerts -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <!-- </head> -->
 
 <!-- <body> -->
@@ -181,7 +183,7 @@
 	<!-- Core -->
 	<script src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
 	
-	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	
 	<!-- My JavaScript -->
 	<script type="text/javascript">
@@ -271,9 +273,82 @@
 						$('.card-compliance').find('span:eq(1)').html('<i class="fa fa-arrow-up"></i> ' + compliance_rate + '%');
 					}
 				}
-				,error: function(response, status, request) {
-					alert(request.status);
+	    		,error: function (xhr, err) {
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
+			});
+		}
+		
+		let interviewAlarmChk = false;
+		chkInterviewTime = setInterval(function() {
+			console.log('${interviewAttendStatus}');
+			if (${interviewAttendStatus != 'Y'} && interviewAlarmChk == false) {
+				interviewTimeChk();
+			}
+		}, 1000);
+
+		// 면접 시간을 확인
+		function interviewTimeChk() {
+			if (${!empty MEMBER_LOGININFO}) {
+				$.ajax({
+					type: 'POST'
+					,url: '${pageContext.request.contextPath}/user/interview/selectInterviewTimeChk.do'
+					,dataType: 'json'
+					,async: false
+					,data: {
+						mem_id: '${MEMBER_LOGININFO.mem_id}',
+						category_no: '${MEMBER_LOGININFO.category_no}'
+					}
+					,success: function(data) {
+						if (data.PROJECT_NO != null) {
+							setSession('interviewAttendStatus', 'Y');
+							interviewAlarmChk = true;
+							
+							Swal.fire({
+								  icon: 'info',
+								  title: '면접 안내',
+								  text: '참여해야 할 면접이 있습니다.',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: '참여',
+								  cancelButtonText: '취소'
+								}).then((result) => {
+								  if (${MEMBER_LOGININFO.category_no == '1'}) {
+									  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTC.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION;
+								  } else {
+									  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTCRoom.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION;
+								  }
+							});
+						}
+					}
+		    		,error: function (xhr, err) {
+		    			console.log('${pageContext.request.contextPath}/user/interview/selectInterviewTimeChk.do ERR 발생!');
+				        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+				        alert("responseText: " + xhr.responseText);
+				    }
+				});
+			}
+		}
+		
+		function setSession(key, value) {
+			$.ajax({
+				type: 'POST'
+				,url: '${pageContext.request.contextPath}/user/all/setSession.do'
+				,dataType: 'json'
+				,data: {
+					key: key,
+					value: value
 				}
+				,success: function(data) {
+					console.log('setSession 성공!');
+				}
+	    		,error: function (xhr, err) {
+	    			console.log('${pageContext.request.contextPath}/user/all/setSession.do ERR 발생!');
+			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+			        alert("responseText: " + xhr.responseText);
+			    }
 			});
 		}
 	</script>

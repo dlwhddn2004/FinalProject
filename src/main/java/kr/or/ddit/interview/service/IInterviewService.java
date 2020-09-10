@@ -63,4 +63,8 @@ public interface IInterviewService {
 	
 	// - 경력 수
 	public int selectCareerCnt(Map<String, String> params) throws Exception;
+	
+	////////////////////////////////////
+	
+	public List<Map<String, String>> selectAttendInterview(Map<String, String> params) throws Exception;
 }
