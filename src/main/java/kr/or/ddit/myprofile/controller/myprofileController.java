@@ -1,3 +1,4 @@
+
 package kr.or.ddit.myprofile.controller;
 
 import java.net.URLEncoder;
@@ -49,6 +50,7 @@ public class myprofileController {
 		 ProfileFileVO profileInfo = profileService.selectProfileFileInfo(params);
 		 MemberVO memberInfo = service.memberInfo(params);
 		 
+		
 		 modelAndView.addObject("profileInfo",profileInfo);
 		 modelAndView.addObject("memberInfo", memberInfo);
 		 

@@ -392,9 +392,13 @@
   <script src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/jvectormap-next/jquery-jvectormap.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
-
   <script src="${pageContext.request.contextPath}/assets/vendor/chart.js/dist/Chart.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/chart.js/dist/Chart.extension.js"></script>
+  
+  <!-- Optional JS -->
+<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
+  
   <!-- Argon JS -->
   <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
   <!-- Demo JS - remove this in your project -->

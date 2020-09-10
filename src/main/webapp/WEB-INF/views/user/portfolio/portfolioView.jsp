@@ -182,7 +182,7 @@
 							<div class="pie-chartTest pie-chart1" style="margin: 15px;">
 								<span class="centerTest">
 									<div style="margin: 16px 0px 0px 0px;">
-										<span class="h1 text-white designSpan"></span> <small
+										<span class="h1 text-white designSpan"></span><small
 											class="text-white designSmall"></small>
 	
 									</div>
@@ -248,7 +248,6 @@
 								<h3 class="text-white">DEVELOP</h3>
 							</div>
 						</div>
-	
 					</div>
 					<div
 						style="display: flex; align-items: flex-end; width: 100%; height: 100%;">
@@ -457,49 +456,61 @@
                                 <!-- Card header -->
                                 <div class="border-0" style="display: flex; justify-content: flex-end; align-items: center; height: 50px; margin-right: 20px;">
                                     <div style="height: auto;">
-                                        <a  class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
-                                         data-toggle="modal" data-target="#ReviewModal" >
-                                            <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
-                                            <span class="btn-inner--text">Review 등록</span>
-                                        </a>
+                                    <!-- 작업중 -->
+                                    	<c:if test="${!empty MEMBER_LOGININFO.mem_id }">
+	                                    	<a  class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
+	                                         data-toggle="modal" data-target="#ReviewModal" >
+	                                            <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
+	                                            <span class="btn-inner--text">Review 등록</span>
+	                                        </a>
+                                    	</c:if>
+                                    	
+                                    	<c:if test="${empty MEMBER_LOGININFO.mem_id }">
+	                                    	<a  class="btn btn-sm btn-neutral btn-round" data-original-title="리뷰는 로그인 이후 작성이 가능합니다.">
+	                                            <span class="btn-inner--icon"><i class="fas fa-user-plus"></i></span>
+	                                            <span class="btn-inner--text">리뷰는 로그인 이후 가능</span>
+	                                        </a>
+                                    	</c:if>
                                     </div>
                                     
                                     <!-- 모달 -->
-									<div class="modal fade" id="ReviewModal" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalLabel"
+									<div class="modal fade" id="ReviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 										aria-hidden="true">
-										<div class="modal-dialog modal-dialog-centered"
-											role="document">
-											<div class="modal-content modal-position-center"
-												style="width: 400px; height: 690px;">
-												<div class="modal-header"
-													style="width: 400px; height: 25px; margin-bottom: 15px;">
+										<div class="modal-dialog modal-dialog-centered" role="document">
+											<div class="modal-content modal-position-center" style="width: 400px; height: 800px;">
+												<div class="modal-header" style="width: 400px; height: 25px; margin-bottom: 15px;">
 													<h5 class="text-dark modal-title" id="exampleModalLabel">Review</h5>
-													<button type="button" class="close" data-dismiss="modal"
-														aria-label="Close">
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<div class="modal-body bg-gradient-info"
-													style="width: 400px; height: 500px;">
+												<div class="modal-body bg-gradient-info" style="width: 400px; height: 500px;">
 													<div class="card">
 														<div class="card-body">
+															<form method="post" name="reviewForm" id="reviewForm">
 															<div class="row" style="margin-bottom: 20px;">
+															<!-- 작업중 -->
+																<input type="hidden" name="portfolio_writer" value="${MEMBER_LOGININFO.mem_id }">
+																<input type="hidden" name="portfolio_no" value="${portfolioInfo.PORTFOLIO_NO }">
 																<input type="text" class="form-control border-primary"
-																	id="example2cols1Input" placeholder="한줄코멘트를 입력해주세요.">
+																	id="example2cols1Input" placeholder="한줄코멘트를 입력해주세요." name="portfolio_content" required>
 															</div>
-															<!-- Slider -->
-															<div class="row"
-																style="display: flex; justify-content: center; align-items: center;">
+															<div class="form-group">
+																<label class="col-form-label form-control-label">포트폴리오
+																	평점</label> <label style="color: tomato">*</label>
+																<p class="text-muted" style="font-size: small">해당 포트폴리오의
+																	평점을 입력해주세요</p>
+																	<!-- Slider -->
+																<div class="row" style="display: flex; justify-content: center; align-items: center;">
 																<h5 class="mb-0 bg-gradient-neutral">디자인</h5>
-															</div>
+																</div>
 															<div class="input-slider-container">
 																<div id="design-slider" class="input-slider"
 																	data-range-value-min="0" data-range-value-max="100"></div>
 																<div class="row mt-3">
 																	<div class="col-6">
 																		<span id="design-slider-value"
-																			class="range-slider-value" data-range-value-low="50"></span>
+																			class="range-slider-value design" data-range-value-low="50"></span>
 																	</div>
 																</div>
 															</div>
@@ -514,7 +525,7 @@
 																<div class="row mt-3">
 																	<div class="col-6">
 																		<span id="useability-slider-value"
-																			class="range-slider-value" data-range-value-low="50"></span>
+																			class="range-slider-value useability" data-range-value-low="50"></span>
 																	</div>
 																</div>
 															</div>
@@ -529,7 +540,7 @@
 																<div class="row mt-3">
 																	<div class="col-6">
 																		<span id="creativity-slider-value"
-																			class="range-slider-value" data-range-value-low="50"></span>
+																			class="range-slider-value creativity" data-range-value-low="50"></span>
 																	</div>
 																</div>
 															</div>
@@ -563,11 +574,13 @@
 																	</div>
 																</div>
 															</div>
+															</div>
+															</form>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn btn-white">Insert</button>
+															<button type="button" class="btn btnInsert modalInsert" data-dismiss="modal">Insert</button>
 															<button type="button"
-																class="btn btn-link text-danger ml-auto"
+																class="btn btn-link text-danger ml-auto closeModal"
 																data-dismiss="modal">Close</button>
 														</div>
 													</div>
@@ -589,55 +602,35 @@
                                             <th>작성날짜</th>
                                         </tr>
                                         </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="table-user">
-                                                <img src="${pageContext.request.contextPath}/assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                                                <b>John Michael</b>
-                                            </td>
-                                            
-                                            <td>
-                                                <span class="text-muted">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
-                                            </td>
-                                            
-                                            <td>
-                                               	점수 넣을거
-                                            </td>
-
-											<td class="table-actions">
-											<span>2020 09 15</span> &nbsp;&nbsp;&nbsp;
-											<a href="#!"
-													class="table-action" data-toggle="tooltip"
-													data-original-title="Edit product"> <i
-														class="fas fa-user-edit"></i>
-												</a> <a href="#!" class="table-action table-action-delete"
-													data-toggle="tooltip" data-original-title="Delete product">
-														<i class="fas fa-trash"></i>
-												</a>
-											</td>
-
-
-											</tr>
-                                        <tr>
-                                            <td class="table-user">
-                                                <img src="${pageContext.request.contextPath}/assets/img/theme/team-2.jpg" class="avatar rounded-circle mr-3">
-                                                <b>Alex Smith</b>
-                                            </td>
-                                            <td>
-                                                <span class="text-muted">08/09/2018</span>
-                                            </td>
-                                            <td>
-                                                <a href="#!" class="font-weight-bold">Argon Design System</a>
-                                            </td>
-                                            <td class="table-actions">
-                                                <a href="#!" class="table-action" data-toggle="tooltip" data-original-title="Edit product">
-                                                    <i class="fas fa-user-edit"></i>
-                                                </a>
-                                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="Delete product">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                        <!-- 작 업 중 -->
+                                        <tbody class="reviewTbody">
+                                        	<c:forEach items="${portfolioReviewList }" var="portfolioReviewList" >
+		                                        <tr>
+		                                            <td class="table-user">
+		                                                <img src="/${portfolioReviewList.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
+		                                                <b>${portfolioReviewList.MEM_ID}</b>
+		                                            </td>
+		                                            
+		                                            <td>
+		                                                <span class="text-muted">${portfolioReviewList.PORTFOLIO_CONTENT }</span>
+		                                            </td>
+		                                            
+		                                            <td>
+		                                               	점수 넣을거
+		                                            </td>
+		
+													<td class="table-actions">
+													<span>2020 09 15</span> &nbsp;&nbsp;&nbsp;
+													<c:if test="${portfolioReviewList.MEM_ID == MEMBER_LOGININFO.mem_id}">
+														<a href="#!" class="table-action" data-toggle="tooltip" data-original-title="리뷰 수정">
+														<i class="fas fa-user-edit"></i></a>
+														<a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="리뷰 삭제">
+														<i class="fas fa-trash"></i></a>
+													</c:if>
+													
+													</td>
+												</tr>
+                                        	</c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -1052,7 +1045,7 @@
 			const contentSmall = contentScore.charAt(0);
 
 			const developSpan = developScore.charAt(0) + '.';
-			const developSmall = developScore.charAt(1);
+			const developSmall = developScore.charAt(1);	
 
 			$('.designSpan').text(designSpan);
 			$('.designSmall').text(designSmall);
@@ -1370,9 +1363,157 @@
 				});
 		
 		
-		function insertReview(){
+		/////리뷰 ////////
+		$(function(){
 			
-		}
+			$('#ReviewModal').on('hidden.bs.modal', function () {
+				$("#reviewForm")[0].reset();
+				})
+			
+			
+			
+			$('.modalInsert').on('click',function(){
+				
+				//const portfolio_content = $('input[name="portfolio_content"]').val();
+				const design_slider_value = $('#design-slider-value').text();
+				const useability_slider_value =$('#useability-slider-value').text();
+				const creativity_slider_value = $('#creativity-slider-value').text();
+				const contentscore_slider_value = $('#contentscore-slider-value').text();				
+				const develop_slider_value =$('#develop-slider-value').text();
+				// 디비에 넣을 소수점 삭제
+				const design_slider = Math.floor(design_slider_value);
+				const useability_slider =Math.floor(useability_slider_value);
+				const creativity_slider =Math.floor(creativity_slider_value);
+				const contentscore_slider = Math.floor(contentscore_slider_value);
+				const develop_slider = Math.floor(develop_slider_value);
+				
+				const $design_slider_ipt = $('<input name="portfolio_design" type="hidden" value="'+ design_slider + '">');
+				const $useability_slider_ipt = $('<input name="portfolio_useability" type="hidden" value ="' +useability_slider + '">' );
+				const $creativity_slider_ipt = $('<input name="portfolio_creativity" type="hidden" value ="' +creativity_slider + '">' );
+				const $contentscore_slider_ipt = $('<input name="portfolio_contentscore" type="hidden" value ="' +contentscore_slider + '">' );
+				const $develop_slider_ipt = $('<input name="portfolio_develop" type="hidden" value ="' +develop_slider + '">' );
+				
+				$('form[name="reviewForm"]').append($design_slider_ipt);
+				$('form[name="reviewForm"]').append($useability_slider_ipt);
+				$('form[name="reviewForm"]').append($creativity_slider_ipt);
+				$('form[name="reviewForm"]').append($contentscore_slider_ipt);
+				$('form[name="reviewForm"]').append($develop_slider_ipt);
+				
+				 var formdata = $("form[name='reviewForm']").serialize() ;
+
+				
+				$.ajax({
+					url :'${pageContext.request.contextPath}/user/portfolio/InsertPortfolioReview.do', 
+					type : 'POST',
+					dataType : 'json',
+					data : formdata,
+					error: function(xhr, status, error){
+		                alert(error);
+		            },
+		            <!-- 작 업 중 --> 
+		            success : function(result){
+		            	console.log(result);   
+		            	let str = "<tbody class='reviewTbody'> <tr><td class='table-user'><img src='/ ";
+		            	let str2 = '<div style="display: flex; justify-content: center; align-items: center; margin: 0px 0px 0px 0px;"><div><div class="pie-chartTest review1" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white designReviewSpan"></span><small class="text-white designReviewSmall"></small>'+
+	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">DESIGN</h3></div></div><div><div class="pie-chartTest review2" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white useabilityReviewSpan"></span> <small class="text-white useabilityReviewSmall"></small>' +
+	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">USEABILITY</h3></div></div><div><div class="pie-chartTest review3" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white creativityReviewSpan"></span> <small class="text-white creativityReviewSmall"></small>'+
+	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">CREATIVITY</h3></div></div><div><div class="pie-chartTest review4" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white contentReviewSpan"></span> <small class="text-white contentReviewSmall"></small></div>'+          
+	                	'</span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">CONTENT</h3></div></div><div><div class="pie-chartTest review5" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white developReviewSpan"></span> <small class="text-white developReviewSmall"></small></div>'+
+	                	'</span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">DEVELOP</h3></div></div></div>';
+		           	
+	                	const id_check = ' ${MEMBER_LOGININFO.mem_id}';
+		            	// 차트 리스트 테이블 만드는 중
+		            	$.each(result.reviewList, function(index, item){
+		            		str += item.PROFILE_REALNAME + "' class='avatar rounded-circle mr-3'> ";
+		            		str += "<b>" + item.MEM_ID + "</b></td>";
+		            		str += "<td><span class='text-muted'>" + item.PROFILE_REALNAME +"</span></td>";
+		            		str += "<td>" + str2 + "<td>";
+		            		str += "<td class='table-actions'><span>" + item.PROFILE_REGDATE +"</span>&nbsp;&nbsp;&nbsp;";
+		            		if(item.MEM_ID ==  id_check){
+		            			str += "<a href='#!' class='table-action' data-toggle='tooltip' data-original-title='리뷰 수정'>";
+		            			str += "<i class='fas fa-user-edit'></i></a>";
+		            			str += "<a href='#!' class='table-action table-action-delete' data-toggle='tooltip' data-original-title='리뷰 삭제'>";
+		            			str += "<i class='fas fa-trash'></i></a>";
+		            		}
+		            		str += "</td></tbody>";
+		            	})
+		            	
+		            	// tbody 아래 값만 지우기
+		            	$('.reviewTbody').remove();
+		            	$('.datatable-basic').append(str);
+		            	// 차트 값 채워서 넣어주자.
+		            	
+		            		function draw1(max, classname, colorname) {
+		    					var i = 1;
+		    					var func1 = setInterval(function() {
+		    						if (i < max) {
+		    							color1(i, classname, colorname);
+		    							i++;
+		    						} else {
+		    							clearInterval(func1);
+		    						}
+		    					}, 10);
+		    				}
+		    				function color2(i, classname, colorname) {
+		    					$(classname).css(
+		    							{
+		    								"background" : "conic-gradient(" + colorname
+		    										+ " 0% " + i + "%, #ffffff " + i
+		    										+ "% 100%)"
+		    							});
+		    				}
+		    				// 만약 댓글이 없을경우 0점 처리 해줘야 한다.
+		            	
+		            	$.each(result.reviewList, function(index, item){
+		            		var designReview = item.PORTFOLIO_DESIGN;
+		            		var useabilityReview = item.PORTFOLIO_USEABILITY;
+		            		var creativityReview = item.PORTFOLIO_CREATIVITY;
+		            		var contentReview = item.PORTFOLIO_CONTENTSCORE;
+		            		var developReview = item.PORTFOLIO_DEVELOP;
+		            		
+		            		draw1(designReview, '.review1', '#11cdef');
+		    				draw1(useabilityReview, '.review2', '#fb6340');
+		    				draw1(creativityReview, '.review3', '#f5365c');
+		    				draw1(contentReview, '.review4', '#2dce89');
+		    				draw1(developReview, '.review5', '#770b93');
+		    				
+
+		    				const designSpan = designReview.charAt(0) + '.';
+		    				const designSmall = designReview.charAt(1);
+
+		    				const useabilitySpan = useabilityReview.charAt(0) + '.';
+		    				const useabilitySmall = useabilityReview.charAt(1);
+
+		    				const creativitySpan = creativityReview.charAt(0) + '.';
+		    				const creativitySmall = creativityReview.charAt(1);
+
+		    				const contentSpan = contentReview.charAt(0) + '.';
+		    				const contentSmall = contentReview.charAt(0);
+
+		    				const developSpan = developReview.charAt(0) + '.';
+		    				const developSmall = developReview.charAt(1);	
+
+		    				$('.designSpan').text(designSpan);
+		    				$('.designSmall').text(designSmall);
+		    				$('.useabilitySpan').text(useabilitySpan);
+		    				$('.useabilitySmall').text(useabilitySmall);
+		    				$('.creativitySpan').text(creativitySpan);
+		    				$('.creativitySmall').text(creativitySmall);
+		    				$('.contentSpan').text(contentSpan);
+		    				$('.contentSmall').text(contentSmall);
+		    				$('.developSpan').text(developSpan);
+		    				$('.developSmall').text(developSmall);
+		            	});
+		            	
+    			
+		            	
+		            	
+
+		            	
+		            }
+				});
+			});
+		});
 		
 		
 	</script>

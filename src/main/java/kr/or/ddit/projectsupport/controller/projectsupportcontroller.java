@@ -1,19 +1,30 @@
-package kr.or.ddit.projectsupport;
+package kr.or.ddit.projectsupport.controller;
 
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ddit.project.service.IProjectService;
+import kr.or.ddit.projectsupport.service.IProjectSupportService;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.projectapplyVO;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +38,9 @@ public class projectsupportcontroller {
 	@Autowired
 	private IProjectService service;
 	
+	@Autowired
+	private IProjectSupportService projectSupportService;
+	
 	@RequestMapping("projectsupport")
 	public ModelAndView projectsupport(HttpServletRequest request,
 			ModelAndView modelAndView, String project_no, String mem_id)throws Exception{
@@ -36,21 +50,16 @@ public class projectsupportcontroller {
 
 		 List<projectapplyVO> applyList = null;
 		 
-		 	try{
-		 		applyList = service.applyList(params);
-		 		
-		 	} catch (Exception e){
-		 		e.printStackTrace();
-		 	}
-		 	
+	 	 try{
+	 		applyList = service.applyList(params);
+	 	 } catch (Exception e){
+	 		e.printStackTrace();
+	 	 }
 		
 		modelAndView.addObject("applyList",applyList);
 		modelAndView.setViewName("user/projectsupport/projectsupport");
 	
 		return modelAndView;
-		
-		
-		
 	}
 	@RequestMapping("applyupdate")
 	public String updateapply(projectapplyVO applyInfo) throws Exception{
@@ -122,5 +131,12 @@ public class projectsupportcontroller {
 		 				 		 		 
 	 }
 	
-	
+	@RequestMapping("mailForm")
+	public ModelAndView mailForm(ModelAndView modelAndView) throws Exception {
+		projectSupportService.sendMail("iai6203@gmail.com", "CONNECTOR 인증 메일 입니다.", "테스트 이메일입니다.");
+		
+		modelAndView.setViewName("user/portfolio/portfolioList");
+
+		return modelAndView;
+	}
 }
