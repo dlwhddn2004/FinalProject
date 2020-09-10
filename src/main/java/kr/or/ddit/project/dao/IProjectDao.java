@@ -50,5 +50,8 @@ public interface IProjectDao {
 	public List<projectapplyVO> applyList(Map<String,String>params) throws Exception;
 	// 지원자 신청 업데이트
 	public void updateapplyInfo (projectapplyVO applyInfo) throws Exception;
+	
+	// 해당 아이디가 생성한 프로젝트 리스트 조회
+	public List<Map<String, String>> selectMakeProjectList(Map<String, String> params) throws Exception;
 
 }

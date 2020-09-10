@@ -200,4 +200,10 @@ public class ProjectServiceImpl implements IProjectService {
 			 dao.updateapplyInfo(applyInfo);
 	}
 
+	@Override
+	public List<Map<String, String>> selectMakeProjectList(
+			Map<String, String> params) throws Exception {
+		return dao.selectMakeProjectList(params);
+	}
+
 }

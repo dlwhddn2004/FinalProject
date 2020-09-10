@@ -191,6 +191,12 @@ public class ProjectDaoImpl implements IProjectDao {
 		client.update("projectsearch.updateapplyInfo",applyInfo);
 		
 	}
+
+	@Override
+	public List<Map<String, String>> selectMakeProjectList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("project.selectMakeProjectList", params);
+	}
 	
 
 

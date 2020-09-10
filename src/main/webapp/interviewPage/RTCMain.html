@@ -148,13 +148,13 @@
                     ]).then((result) => {
                         if (result.value) {
                             const answers = result.value;
-                            console.log(answers);
                             Swal.fire({
                                 title: '화상 면접이 시작되었습니다.',
                                 confirmButtonText: '확인',
                                 confirmButtonColor: '#5e72e4'
                             })
                             start(answers[0]);
+                            evt.preventDefault();
                         }
                     })
                 }, false);
