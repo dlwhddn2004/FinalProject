@@ -331,230 +331,186 @@
 			  </div>
    
    
-   
-				<!-- 회원가입 모달 -->
-                <div class="modal fade" id="signIn-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-			    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
-			      <div class="modal-content">
-			        <div class="modal-body p-0">
-			          <div class="card bg-secondary border-0 mb-0">
-			            <div class="card-body">
-			              <div class="card-header bg-transparent pb-5">
-			
-			              <div class="text-muted text-center mt-2 mb-3"><h3>회원가입</h3></div>
-			              <div class="text-muted text-center mt-2 mb-3"><h5>이용목적</h5></div>
-			
-			              <div class="btn-wrapper text-center">
-			               <!-- <a href="#" class="btn btn-neutral btn-icon" id="btn-developer">
-			                  <span class="btn-inner&#45;&#45;text">디벨로퍼</span>
-			                </a>
-			                <a href="#" class="btn btn-neutral btn-icon">
-			                  <span class="btn-inner&#45;&#45;text">파트너스</span>
-			                </a>-->
-			                <div class="custom-control custom-radio">
-			                  <input type="radio" id="customRadioInline1" name="category" class="custom-control-input" value=2>
-			                  <label class="custom-control-label" for="customRadioInline1">디벨로퍼</label>
-			                  <div class="text-muted text-center mt-2 mb-3"><small>포트폴리오를 등록하고 프로젝트를 수주하고자 하는 개발자</small></div>
-			                </div>
-			                <div class="custom-control custom-radio">
-			                  <input type="radio" id="customRadioInline2" name="category" class="custom-control-input" value=1>
-			                  <label class="custom-control-label" for="customRadioInline2">파트너스</label>
-			                  <div class="text-muted text-center mt-2 mb-3"><small>프로젝트를 의뢰하고자 하는 기업, 개발자</small></div>
-			                </div>
-			              </div>
-			            </div>
-   						<form name="regist" class="needs-validation" novalidate action="${pageContext.request.contextPath}/user/member/insertMember.do" method="post">
-			                <div class="form-group mb-3">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="아이디" type="text" name="mem_id" required pattern="^[a-z0-9]{4,12}$">
-			                    <div class="valid-feedback">
-			                    	success
-			                    </div>
-			                    <div class="invalid-feedback">
-			                    	아이디는 영 소문자와 숫자 4~12자리로 입력해주세요.
-			                    </div>
-			                  </div>
-			                </div>
-			                <div class="form-group mb-3">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="이메일" type="email" name="mem_mail" required pattern="^[a-z0-9]+@[a-z]+(\.[a-z]+){1,2}$">
-<!-- 			                    <button type="button" class="btn btn-outline-primary">인증</button> -->
-			                    <div class="valid-feedback">
-			                    	success
-			                    </div>
-			                    <div class="invalid-feedback">
-			                    	aaa@naver.com
-			                    </div>
-			                  </div>
-			                </div>
-			                <div class="form-group mb-3">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="이름" type="text" name="mem_name" required>
-<!-- 			                    <button type="button" class="btn btn-outline-primary">인증</button> -->
-			                    <div class="valid-feedback">
-			                    	success
-			                    </div>
-			                    <div class="invalid-feedback">
-			                    	이름을 입력해 주세요.
-			                    </div>
-			                  </div>
-			                </div>
-<!-- 			                <div class="form-group"> -->
-<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
-<!-- 			                    <div class="input-group-prepend"> -->
-<!-- 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span> -->
-<!-- 			                    </div> -->
-<!--  			                    <input class="form-control" placeholder="이메일 인증번호" type="text" required> -->
-<!-- 			                    <input class="form-control" placeholder="이메일 인증번호" type="text"> -->
-<!--  			                    <div class="valid-feedback"> -->
-<!-- 			                    	success -->
-<!-- 			                    </div> -->
-<!-- 			                    <div class="invalid-feedback"> -->
-<!-- 			                    	이메일 인증번호를 입력해주세요. -->
-<!-- 			                    </div> -->
-<!-- 			                  </div> -->
-<!-- 			                </div> -->
-			                <div class="form-group">
-			                  <div class="input-group input-group-merge input-group-alternative">
-			                    <div class="input-group-prepend">
-			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-			                    </div>
-			                    <input class="form-control" placeholder="비밀번호" type="password" name="mem_pass" required pattern="^[A-Za-z0-90-9]{4,12}$">
-			              		<div class="valid-feedback">
-			                    	success
-			                  	</div>
-			                  	<div class="invalid-feedback">
-			                    	비밀번호는 영어 소문자,대문자, 숫자 4~12자리로 입력해주세요
-			                  	</div>
-			                  </div>
-			                </div>
-<!-- 			                <div class="form-group"> -->
-<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
-<!-- 			                    <div class="input-group-prepend"> -->
-<!-- 			                      <span class="input-group-text"><i class="fas fa-check"></i></span> -->
-<!-- 			                    </div> -->
-<!-- 			                    <input class="form-control" placeholder="비밀번호 확인" type="password" required> -->
-<!-- 			                  </div> -->
-<!-- 			                </div> -->
-<!-- 			               <div id="capcha"> -->
-<!-- 			                  <img class="capchaImg"> -->
-<!-- 			                    <i class="fas fa-redo"></i> -->
-<!-- 			                  </img> -->
-<!-- 			                </div> -->
-<!-- 			                <div class="form-group"> -->
-<!-- 			                  <div class="input-group input-group-merge input-group-alternative"> -->
-<!-- 			                    <div class="input-group-prepend"> -->
-<!-- 			                      <span class="input-group-text"><i class="fas fa-check"></i></span> -->
-<!-- 			                    </div> -->
-<!-- 			                    <input class="form-control" placeholder="자동입력방지 문자" type="text"> -->
-<!-- 			                  </div> -->
-<!-- 			                </div> -->
-			                <div class="text-center">
-			                  <button type="submit" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button>
-			                </div>
-			              </form>
-			            </div>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-   <!-- Argon Scripts -->
-	<!-- Core -->
-	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-		
-	<script type="text/javascript">
-/* 		function change(){
-			var element = document.getElementByID("sign_id");
-			element.style.color = "red";
-		} */
-		(function() {
-		      'use strict';
-		      window.addEventListener('load', function() {
-		        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-		        var forms = document.getElementsByClassName('needs-validation');
-		        // Loop over them and prevent submission
-		        var validation = Array.prototype.filter.call(forms, function(form) {
-		          form.addEventListener('submit', function(event) {
-		            if (form.checkValidity() === false) {
-		              event.preventDefault();
-		              event.stopPropagation();
-		            }
-		            form.classList.add('was-validated');
-		          }, false);
-		        });
-		      }, false);
-		    })();
-		
-		$(function() {
-            /* $('.loginBtn').on('submit', function(){
-            	
-               var mem_id = $('input[name = mem_id]').val();
-               var mem_pass = $('input[name = mem_pass]').val();
-                              
-               var $frm = $('<form action="${pageContext.request.contextPath}/user/member/loginCheck.do" method="post"></form>');
-               var $inputID = $('<input type="hidden" value="' +mem_id+ '" name="mem_id" />');
-               var $inputPWD = $('<input type="hidden" value="' +mem_pass+ '" name="mem_pass" />');
-               $frm.append($inputID);
-               $frm.append($inputPWD);
-               $(document.body).append($frm);
-               $frm.submit();
-            }); */
-            
-            $('#btnRegistMember').on('click', function() {
-            	var category = $('input[name=category]:checked').val();
-            	
-				var $inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
-				$('form[name=regist]').append($inputCAT);
-			});
-            
-            $('#btnLogout').on('click', function() {
-				$(location).attr('href', '${pageContext.request.contextPath}/user/member/logout.do');
-			});
+  <!-- 회원가입 모달 -->
+<div class="modal fade" id="signIn-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content modal-position-center" style="width: 500px;">
+        <div class="modal-body p-0" style="width: 500px;">
+          <div class="card bg-secondary mb-0">
+          	<div class="card-header bg-transparent pb-5" style="height: 50px;">
+              <div class="text-muted text-center mt-2 mb-3"><h3>회원가입</h3></div>
+            </div>
+            <div class="card-body bg-gradient-neutral">
+              <div class="form-group mb-3">
+                <label class="form-control-label">이용목적</label>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                  <div class="btn-wrapper text-center py-2">
+                    <div class="custom-control custom-radio" style="width: 180px;">
+                      <input type="radio" id="customRadioInline2" name="category" class="custom-control-input" value=1 checked>
+                      <label class="custom-control-label" for="customRadioInline2"><i class="ni ni-building"></i> 파트너스</label>
+                      <div class="text-center mt-2 mb-3"><small>프로젝트를 의뢰하고자<br> 하는 기업, 개발자</small></div>
+                    </div>
+                    <div class="custom-control custom-radio" style="width: 180px;">
+                      <input type="radio" id="customRadioInline1" name="category" class="custom-control-input" value=2>
+                      <label class="custom-control-label" for="customRadioInline1"><i class="ni ni-laptop"></i> 디벨로퍼</label>
+                      <div class="text-center mt-2 mb-3"><small>포트폴리오를 등록하고 &nbsp; 프로젝트를 수주하고자<br> 하는 개발자</small></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <form class="needs-validation" novalidate>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustom01">아이디</label>
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="connector123" required="" pattern="^[a-z0-9]{4,12}$">
+                    <div class="invalid-feedback">
+                     	 아이디는 영 소문자, 숫자 4~12자리로 입력해주세요.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustom02">이메일</label>
+                    <input type="email" class="form-control" id="validationCustom02" placeholder="aaa@connector.com" required="">
+                    <div class="invalid-feedback">
+                     	 이메일 형식에 맞게 입력해주세요.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustomUsername">이메일 인증번호</label>
+                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="인증번호" aria-describedby="inputGroupPrepend" required="">
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustom03">비밀번호</label>
+                    <input type="password" class="form-control" name="password" id="validationCustom03" placeholder="Password" required pattern="^[A-Za-z0-9]{6,12}$">
+                    <div class="invalid-feedback">
+                      	비밀번호는 영 소문자, 숫자 6~12자리로 입력해주세요.
+                    </div>
+                  </div>
+                  <div class="mb-3 password_confirm">
+                    <label class="form-control-label" for="validationCustom04">비밀번호 확인</label>
+                    <input type="password" class="form-control" name="password_confirm" id="validationCustom04" placeholder="PasswordCheck" required>
+                    <div class="invalid-feedback">
+                      	비밀번호가 일치하지 않습니다.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustom05">이름</label>
+                    <input type="text" class="form-control" id="validationCustom05" placeholder="이름" required="">
+                    <div class="invalid-feedback">
+                     	이름을 입력해 주세요.
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-control-label" for="validationCustom06">생일</label>
+                    <div class="form-group px-0">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                        </div>
+                        <input class="form-control datepicker" placeholder="Select date" type="text" id="validationCustom06" name="startDate">
+                      </div>
+
+                    </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">회원가입</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Core -->
+<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+
+<script>
+
+    $(function () {
+       $(".datepicker").datepicker().datepicker("setDate", new Date());
+    })
+</script>
+<script>
+	(function() {
+	    'use strict';
+	    window.addEventListener('load', function() {
+	      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+	      var forms = document.getElementsByClassName('needs-validation');
+	      // Loop over them and prevent submission
+	      var validation = Array.prototype.filter.call(forms, function(form) {
+	        form.addEventListener('focusout', function(event) {
+	          if (form.checkValidity() === false) {
+	            event.preventDefault();
+	            event.stopPropagation();
+	          }
+	          form.classList.add('was-validated');
+	        }, false);
+	      });
+	    }, false);
+	  })();
+</script>		
+<script>
+
+	$(function() {
            
-            
-            
-    		const mem_id = "${MEMBER_LOGININFO.mem_id}";
-			if(mem_id== ""){
-				return false;
-			}else{
-			 	 $.ajax({
-   			    	type:'POST',
-   				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
-   				 dataType:'json',
-   				 data: {mem_id : mem_id},
-   				 success : function(result){
-
-   					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
-   					 console.log(imgHeader);
-   					//$('#ImgHeader').attr('src',imgHeader);
-   					//<img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle">
-   					//<span class='avatar avatar-sm rounded-circle titleImg'></span>
-   					const $imgHeader_ipt = $("<span class='avatar avatar-sm rounded-circle'> <img id='ImgHeader' alt='Image placeholder' src='"
-   							+ imgHeader +"' class='avatar rounded-circle'></span>");	
-   					
-   					 $('#imgtitle').prepend($imgHeader_ipt);
-   				 },
-   				 error: function(xhr,status,error){
-   					 alert(error);
-   				 }
-   			 });	
-			}
-
-    		
-            
-            
+           $('#btnRegistMember').on('click', function() {
+           	var category = $('input[name=category]:checked').val();
+           	
+			var $inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
+			$('form[name=regist]').append($inputCAT);
 		});
-	</script>
+           
+           $('#btnLogout').on('click', function() {
+			$(location).attr('href', '${pageContext.request.contextPath}/user/member/logout.do');
+		});
+          
+           
+           
+   		const mem_id = "${MEMBER_LOGININFO.mem_id}";
+		if(mem_id== ""){
+			return false;
+		}else{
+		 	 $.ajax({
+  			    	type:'POST',
+  				 url:'${pageContext.request.contextPath}/user/mypage/headerImgChange.do',
+  				 dataType:'json',
+  				 data: {mem_id : mem_id},
+  				 success : function(result){
+
+  					 const imgHeader = "/"+ result.headerImgChange.profile_savename;
+  					 console.log(imgHeader);
+  					//$('#ImgHeader').attr('src',imgHeader);
+  					//<img id = "ImgHeader" alt="Image placeholder"  class="avatar rounded-circle">
+  					//<span class='avatar avatar-sm rounded-circle titleImg'></span>
+  					const $imgHeader_ipt = $("<span class='avatar avatar-sm rounded-circle'> <img id='ImgHeader' alt='Image placeholder' src='"
+  							+ imgHeader +"' class='avatar rounded-circle'></span>");	
+  					
+  					 $('#imgtitle').prepend($imgHeader_ipt);
+  				 },
+  				 error: function(xhr,status,error){
+  					 alert(error);
+  				 }
+  			 });	
+		}   
+	});
+</script>
+<!-- <script>
+	var password = document.getElementById("validationCustom03")
+       , confirm_password = document.getElementById("validationCustom04");
+	function validatePassword(){
+	  if(password.value != confirm_password.value) {
+	    confirm_password.setCustomValidity("Passwords Don't Match");
+	  } else {
+	    confirm_password.setCustomValidity('');
+	  }
+	}
+	
+	password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
+</script> -->
 
 
 </body>
