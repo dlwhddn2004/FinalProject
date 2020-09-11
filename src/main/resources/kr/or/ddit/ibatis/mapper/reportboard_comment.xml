@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="reportboard_comment">
+	<!-- <typeAlias alias="ReportBoardVO" type="kr.or.ddit.vo.ReportBoardVO" />
+	<typeAlias alias="SuccessBoardCommentVO" type="kr.or.ddit.vo.ReportBoardCommentVO" /> -->
+	
+	<sql id="selectAll">
+		SELECT success_no, mem_id, comment_content, TO_CHAR(COMMENT_REGDATE, 'YYYY-MM-DD') comment_regdate
+		FROM SUCCESS_BOARD_COMMENT
+	</sql>
+	
+	<select id="reportCommentList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT REPORT_NO,
+		       PROFILE_FILE.MEM_ID mem_id,
+		       REPORT_COMMENT_CONTENT,
+		       TO_CHAR(REPORT_COMMENT_REGDATE, 'YYYY-MM-DD') REPORT_COMMENT_REGDATE,
+		       REPORT_SEQ,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT
+		FROM REPORT_COMMENT_BOARD,
+		     PROFILE_FILE
+		WHERE (REPORT_COMMENT_BOARD.MEM_ID = PROFILE_FILE.MEM_ID)
+		AND REPORT_NO = #report_no#
+	</select>
+	
+	<insert id="insertReportComment" parameterClass="map">
+		INSERT INTO REPORT_COMMENT_BOARD
+			(
+				REPORT_NO,
+				MEM_ID,
+				REPORT_COMMENT_REGDATE,
+				REPORT_COMMENT_CONTENT,
+				REPORT_SEQ
+			)
+		VALUES
+			(
+				#report_no#,
+				#mem_id#,
+				SYSDATE,
+				#report_comment_content#,
+				REPORT_COMMENT_SEQ.NEXTVAL
+			)
+	</insert>
+	
+	<delete id="deleteReportComment" parameterClass="map">
+		DELETE REPORT_COMMENT_BOARD WHERE REPORT_SEQ = #report_seq#
+	</delete>
+	
+	<update id="updateReportComment" parameterClass="map">
+		UPDATE REPORT_COMMENT_BOARD
+		SET REPORT_COMMENT_CONTENT = #report_comment_content#
+		WHERE REPORT_SEQ = #report_seq# 
+	</update>
+	
+<!-- 	<insert id="insertSuccessComment" parameterClass="SuccessBoardCommentVO">
+		INSERT INTO SUCCESS_BOARD_COMMENT (SUCCESS_NO,
+		                                   MEM_ID,
+		                                   COMMENT_CONTENT,
+		                                   COMMENT_REGDATE,
+		                                   COMMENT_SEQ) 
+		VALUES (#success_no#,
+		        #mem_id#,
+		        #comment_content#,
+		        SYSDATE,
+		        SUCCESS_BOARD_COMMENT_SEQ.nextval)
+	</insert>
+	
+	<delete id="deleteSuccessComment" parameterClass="map">
+		DELETE SUCCESS_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
+	</delete>
+	
+	<update id="modifySuccessComment" parameterClass="map">
+		UPDATE SUCCESS_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content#
+		WHERE COMMENT_SEQ = #comment_seq#
+	</update> -->
+</sqlMap>
+
+ 
+
+

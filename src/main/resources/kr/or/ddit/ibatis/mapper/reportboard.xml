@@ -76,48 +76,10 @@
 		WHERE REPORT_NO = #report_no# 
 	</delete>
 	
-<!-- 	<select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map"> -->
-<!-- 		SELECT ROWNUM r, A.*, B.* -->
-<!-- 		FROM ISSUE_BOARD A, PROJECT B -->
-<!-- 		WHERE A.PROJECT_NO = B.PROJECT_NO -->
-<!-- 		AND B.PROJECT_NO = #project_no#  -->
-<!-- 		AND ISSUE_NO = #issue_no#  -->
-	
-<!-- 	</select> -->
-	
-<!-- 	<insert id="insertIssueboard" parameterClass="IssueboardVO"> -->
-<!-- 		<selectKey keyProperty="issue_no" resultClass="string"> -->
-<!-- 		SELECT ISSUE_BOARD_SEQ.nextval FROM DUAL -->
-<!-- 		</selectKey> -->
-<!-- 		INSERT INTO ISSUE_BOARD(ISSUE_NO, -->
-<!-- 							    PROJECT_NO, -->
-<!-- 								MEM_ID, -->
-<!-- 								ISSUE_TITLE, -->
-<!-- 								ISSUE_CONTENT, -->
-<!-- 								ISSUE_REGDATE) -->
-<!-- 						 VALUES(#issue_no#, -->
-<!-- 						 		#project_no#, -->
-<!-- 						 		#mem_id#, -->
-<!-- 						 		#issue_title#, -->
-<!-- 						 		#issue_content#, -->
-<!-- 						 		SYSDATE)						 -->
-<!-- 	</insert> -->
-	
-<!-- 	<update id="updateIssueboard" parameterClass="IssueJoinVO"> -->
-<!-- 		UPDATE ISSUE_BOARD SET  ISSUE_TITLE = #issue_title#, -->
-<!--                          		ISSUE_CONTENT = #issue_content# -->
-<!-- 		WHERE ISSUE_NO = #issue_no# -->
-<!-- 	</update> -->
-	
-<!-- 	<delete id="deleteIssueboard" parameterClass="map"> -->
-<!-- 		DELETE ISSUE_BOARD WHERE ISSUE_NO = #issue_no# -->
-<!-- 	</delete> -->
-	
-<!-- 	<update id="updatehit" parameterClass="map"> -->
-<!-- 		UPDATE ISSUE_BOARD SET ISSUE_HIT = ISSUE_HIT + 1 -->
-<!-- 		WHERE ISSUE_NO = #issue_no# -->
-<!-- 	</update> -->
-	
+	<update id="updateReportStatus" parameterClass="map">
+		UPDATE REPORT_BOARD SET  REPORT_STATUS = #report_status#
+		WHERE REPORT_NO = #report_no#
+	</update>
 </sqlMap>
 
  

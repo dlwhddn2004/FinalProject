@@ -77,7 +77,7 @@
 		const mem_id = $(e).find('input[name=mem_id]').val();
 		const project_no = $(e).find('input[name=project_no]').val();
 		
-		if(${projectInfo.PL == MEMBER_LOGININFO.mem_id}){
+		if(${projectInfo.PL == MEMBER_LOGININFO.mem_id} || ${projectInfo.MEM_ID == MEMBER_LOGININFO.mem_id}){
 			location.href = "${pageContext.request.contextPath}/user/reportboard/reportboardView.do?report_no=" + report_no + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=" + project_no;
 		}
 
