@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="interviewee">
+	<update id="updateInterviewee">
+		UPDATE INTERVIEWEE SET INTERVIEWEE_PASSION = #interviewee_passion#,
+		                       INTERVIEWEE_ABILITY = #interviewee_ability#,
+		                       INTERVIEWEE_RESOLUTION = #interviewee_resolution#,
+		                       INTERVIEWEE_STRATEGY = #interviewee_strategy#,
+		                       INTERVIEWEE_RELATIONSHIP = #interviewee_relationship#
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</update>
+</sqlMap>
