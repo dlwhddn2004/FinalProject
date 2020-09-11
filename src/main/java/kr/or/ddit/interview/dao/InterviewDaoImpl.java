@@ -205,4 +205,15 @@ public class InterviewDaoImpl implements IInterviewDao {
 			Map<String, String> params) throws Exception {
 		return client.queryForList("interview.selectAttendInterview", params);
 	}
+
+	@Override
+	public int endInterviewSchedule(String id) throws Exception {
+		return client.update("interview.endInterviewSchedule", id);
+	}
+
+	@Override
+	public Map<String, String> selectCalendarInterview(String id)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("interview.selectCalendarInterview", id);
+	}
 }

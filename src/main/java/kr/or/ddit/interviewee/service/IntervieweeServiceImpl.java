@@ -24,4 +24,10 @@ public class IntervieweeServiceImpl implements IIntervieweeService {
 	
 	@Autowired
 	private IIntervieweeDao dao;
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateInterviewee(Map<String, String> params) throws Exception {
+		return dao.updateInterviewee(params);
+	}
 }

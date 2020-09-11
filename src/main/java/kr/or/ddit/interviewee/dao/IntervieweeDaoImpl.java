@@ -21,4 +21,9 @@ import com.sun.swing.internal.plaf.metal.resources.metal;
 public class IntervieweeDaoImpl implements IIntervieweeDao {
 	@Autowired
 	private SqlMapClient client;
+
+	@Override
+	public int updateInterviewee(Map<String, String> params) throws Exception {
+		return client.update("interviewee.updateInterviewee", params);
+	}
 }

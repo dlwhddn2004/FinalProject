@@ -182,9 +182,23 @@ public class InterviewServiceImpl implements IInterviewService {
 		return dao.selectCareerCnt(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public List<Map<String, String>> selectAttendInterview(
 			Map<String, String> params) throws Exception {
 		return dao.selectAttendInterview(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int endInterviewSchedule(String id) throws Exception {
+		return dao.endInterviewSchedule(id);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectCalendarInterview(String id)
+			throws Exception {
+		return dao.selectCalendarInterview(id);
 	}
 }

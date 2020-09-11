@@ -41,4 +41,34 @@ import com.lowagie.text.pdf.AcroFields.Item;
 public class IntervieweeController {
 	@Autowired
 	private IIntervieweeService intervieweeService;
+	
+	@RequestMapping("updateInterviewee")
+	@ResponseBody
+	public Map<String, String> updateInterviewee(String mem_id,
+												 String project_no,
+												 String interviewee_passion,
+												 String interviewee_ability,
+												 String interviewee_resolution,
+												 String interviewee_strategy,
+												 String interviewee_relationship) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		params.put("project_no", project_no);
+		params.put("interviewee_passion", interviewee_passion);
+		params.put("interviewee_ability", interviewee_ability);
+		params.put("interviewee_resolution", interviewee_resolution);
+		params.put("interviewee_strategy", interviewee_strategy);
+		params.put("interviewee_relationship", interviewee_relationship);
+		
+		int chk = intervieweeService.updateInterviewee(params);
+		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		if (chk > 0) {
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
+		}
+		
+		return resultMap;
+	}
 }

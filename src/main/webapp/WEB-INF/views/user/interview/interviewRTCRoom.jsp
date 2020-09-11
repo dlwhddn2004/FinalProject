@@ -45,54 +45,9 @@
             </a>
             <div class="pt-4 text-center">
               <h5 class="h3 title">
-                <span class="d-block mb-1">PARTNERS</span>
-                <small class="h4 font-weight-light text-muted">PARTNERS</small>
+                <span class="d-block mb-1 partners-name">PARTNERS</span>
+                <small class="h4 font-weight-light partners-mail">PARTNERS</small>
               </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <!-- Card body -->
-          <div class="card-body">
-            <div class="pt-4 text-center">
-              <div class="nav-wrapper">
-                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                  <li class="nav-item">
-                    <a id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" class="btn btn-twitter btn-icon-only rounded-circle">
-                      <i class="fas fa-user"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" class="btn btn-facebook btn-icon-only rounded-circle">
-                      <i class="fas fa-info-circle"></i>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" class="btn btn-dribbble btn-icon-only rounded-circle">
-                      <i class="fas fa-question"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div class="card shadow">
-                <div class="card-body">
-                  <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="tabs-icons-text-3" role="tabpanel" aria-labelledby="tabs-icons-text-3-tab">
-
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -122,3 +77,60 @@
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
+
+<script>
+	$.ajax({
+		type: 'POST',
+		url: '${pageContext.request.contextPath}/user/project/selectProjectPartnersInfoJSON.do',
+		dataType: 'json',
+		data: {
+			project_no: '${param.project_no}'
+		},
+		success: function(data) {
+			$('.partners-name').text(data.MEM_NAME)
+			$('.partners-mail').text(data.MEM_MAIL)
+		},
+  		error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	    }
+	});
+	
+	let interviewStatusValid = undefined;
+	play = setInterval(function() {
+		if (!interviewStatusValid) {
+			chkInterviewStatus();
+		}
+	}, 500);
+	
+	function chkInterviewStatus() {
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/user/interview/chkInterviewStatus.do',
+			dataType: 'json',
+			data: {
+				id: '${param.id}'
+			},
+			success: function(data) {
+				if (!data) {
+					interviewStatusValid = true;
+					Swal.fire({
+					  title: '면접 종료',
+					  text: "면접이 종료되었습니다.",
+					  icon: 'info',
+					  confirmButtonColor: '#3085d6',
+					  confirmButtonText: '확인'
+					}).then((result) => {
+					  if (result.value) {
+						  location.href = '${pageContext.request.contextPath}';
+					  }
+					});
+				}
+			},
+	  		error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+	}
+</script>

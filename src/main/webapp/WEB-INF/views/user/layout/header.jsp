@@ -315,10 +315,12 @@
 								  confirmButtonText: '참여',
 								  cancelButtonText: '취소'
 								}).then((result) => {
-								  if (${MEMBER_LOGININFO.category_no == '1'}) {
-									  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTC.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION;
-								  } else {
-									  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTCRoom.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION;
+								  if (result.value == true) {
+									  if (${MEMBER_LOGININFO.category_no == '1'}) {
+										  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTC.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION + '&id=' + data.ID;
+									  } else {
+										  location.href = '${pageContext.request.contextPath}/user/interview/interviewRTCRoom.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=' + data.PROJECT_NO + '&description=' + data.DESCRIPTION + '&id=' + data.ID;
+									  }
 								  }
 							});
 						}

@@ -705,6 +705,7 @@ public class InterviewController {
 					if (scheduleValid) {
 						resultMap.put("PROJECT_NO", String.valueOf(item.get("PROJECT_NO")));
 						resultMap.put("DESCRIPTION", interviewCalendarInfo.get(i).getDescription());
+						resultMap.put("ID", interviewCalendarInfo.get(i).getId());
 						
 						findValid = true;
 						
@@ -728,6 +729,7 @@ public class InterviewController {
 				if (scheduleValid) {
 					resultMap.put("PROJECT_NO", String.valueOf(item.get("PROJECT_NO")));
 					resultMap.put("DESCRIPTION", String.valueOf(item.get("DESCRIPTION")));
+					resultMap.put("ID", String.valueOf(item.get("ID")));
 					
 					break;
 				}
@@ -772,5 +774,32 @@ public class InterviewController {
 				Integer.parseInt(strSplitTime[1]));
 
 		return cal;
+	}
+	
+	@RequestMapping("endInterviewSchedule")
+	@ResponseBody
+	public Boolean endInterviewSchedule(String id) throws Exception {
+		int chk = interviewService.endInterviewSchedule(id);
+		
+		boolean result = false;
+		if (chk > 0) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping("chkInterviewStatus")
+	@ResponseBody
+	public Boolean chkInterviewStatus(String id) throws Exception {
+		Map<String, String> interviewInfo = interviewService.selectCalendarInterview(id);
+		
+		boolean result = false;
+		
+		if ((String.valueOf(interviewInfo.get("START_STATUS"))).equals("N")) {
+			result = true;
+		}
+		
+		return result;
 	}
 }

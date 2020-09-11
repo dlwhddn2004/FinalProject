@@ -28,7 +28,7 @@ public class ProjectApplyDaoImpl implements IProjectApplyDao {
 		int chk = 0;
 		
 		Object obj = client.insert("projectApplyInfo.insertProjectApplyInformation", params);
-		if (chk > 0) {
+		if (obj == null) {
 			chk = 1;
 		}
 		

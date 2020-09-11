@@ -780,8 +780,6 @@
   }
   
   $('.card-footer .btn-submit').on('click', function() {
-	  alert('실행!');
-	  
 	  const interview_customizing = '${interviewInfo.INTERVIEW_CUSTOMIZING }';
 
 	  const customizing_arr = interview_customizing.split(',');

@@ -10,4 +10,5 @@ import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface IIntervieweeDao {
+	public int updateInterviewee(Map<String, String> params) throws Exception;
 }

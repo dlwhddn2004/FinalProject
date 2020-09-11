@@ -61,12 +61,12 @@
           	<button type="button" class="btn btn-facebook btn-icon-only rounded-circle">
 			    <span class="btn-inner--icon"><i class="fas fa-id-badge"></i></span>
 			</button>
-			<button type="button" class="btn btn-twitter btn-icon-only rounded-circle">
-			    <span class="btn-inner--icon"><i class="fab fa-twitter"></i></span>
+			<button type="button" class="btn btn-twitter btn-evaluate btn-icon-only rounded-circle">
+			    <span class="btn-inner--icon"><i class="fas fa-pen-alt"></i></span>
 			</button>
-			<button type="button" class="btn btn-google-plus btn-icon-only rounded-circle">
-			    <span class="btn-inner--icon"><i class="fab fa-google-plus-g"></i></span>
-			</button>
+          </div>
+          <div>
+          	<button type="button" class="btn btn-outline-warning btn-lg btn-block btn-interview-end">평가 종료</button>
           </div>
         </div>
       </div>
@@ -524,6 +524,151 @@
     </div>
 </div>
 
+<!-- 모달 -->
+<div class="row evaluation-modal">
+  <div class="col-md-8">
+    <div class="modal fade" id="evaluation-modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card bg-secondary border-0 mb-0">
+              <div class="card-header">
+                <div>
+                  <h2>면접자 평가</h2>
+                </div>
+                <div>
+                  <small class="text-muted">현재 면접자를 실시간으로 평가할 수 있습니다.</small>
+                </div>
+              </div>
+              <div class="card-body">
+                <!-- 열정 -->
+                <div class="form-group passion">
+                  <div>
+                    <small class="text-muted">열정</small>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPassion1" name="customRadioPassion" class="custom-control-input" value="A" checked>
+                    <label class="custom-control-label" for="customRadioPassion1">A</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPassion2" name="customRadioPassion" class="custom-control-input" value="B">
+                    <label class="custom-control-label" for="customRadioPassion2">B</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPassion3" name="customRadioPassion" class="custom-control-input" value="C">
+                    <label class="custom-control-label" for="customRadioPassion3">C</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioPassion4" name="customRadioPassion" class="custom-control-input" value="D">
+                    <label class="custom-control-label" for="customRadioPassion4">D</label>
+                  </div>
+                </div>
+                <!-- 능력 -->
+                <div class="form-group ability">
+                  <div>
+                    <small class="text-muted">능력</small>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioAbility1" name="customRadioAbility" class="custom-control-input" value="A" checked>
+                    <label class="custom-control-label" for="customRadioAbility1">A</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioAbility2" name="customRadioAbility" class="custom-control-input" value="B">
+                    <label class="custom-control-label" for="customRadioAbility2">B</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioAbility3" name="customRadioAbility" class="custom-control-input" value="C">
+                    <label class="custom-control-label" for="customRadioAbility3">C</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioAbility4" name="customRadioAbility" class="custom-control-input" value="D">
+                    <label class="custom-control-label" for="customRadioAbility4">D</label>
+                  </div>
+                </div>
+                <!-- 문제 해결력 -->
+                <div class="form-group resolution">
+                  <div>
+                    <small class="text-muted">문제 해결력</small>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioResoulution1" name="customRadioResoulution" class="custom-control-input" value="A" checked>
+                    <label class="custom-control-label" for="customRadioResoulution1">A</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioResoulution2" name="customRadioResoulution" class="custom-control-input" value="B">
+                    <label class="custom-control-label" for="customRadioResoulution2">B</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioResoulution3" name="customRadioResoulution" class="custom-control-input" value="C">
+                    <label class="custom-control-label" for="customRadioResoulution3">C</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioResoulution4" name="customRadioResoulution" class="custom-control-input" value="D">
+                    <label class="custom-control-label" for="customRadioResoulution4">D</label>
+                  </div>
+                </div>
+                <!-- 전략 -->
+                <div class="form-group strategy">
+                  <div>
+                    <small class="text-muted">전략</small>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioStrategy1" name="customRadioStrategy" class="custom-control-input" value="A" checked>
+                    <label class="custom-control-label" for="customRadioStrategy1">A</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioStrategy2" name="customRadioStrategy" class="custom-control-input" value="B">
+                    <label class="custom-control-label" for="customRadioStrategy2">B</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioStrategy3" name="customRadioStrategy" class="custom-control-input" value="C">
+                    <label class="custom-control-label" for="customRadioStrategy3">C</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioStrategy4" name="customRadioStrategy" class="custom-control-input" value="D">
+                    <label class="custom-control-label" for="customRadioStrategy4">D</label>
+                  </div>
+                </div>
+                <!-- 관계 -->
+                <div class="form-group relationship">
+                  <div>
+                    <small class="text-muted">관계</small>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioRelationship1" name="customRadioRelationship" class="custom-control-input" value="A" checked>
+                    <label class="custom-control-label" for="customRadioStrategy1">A</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioRelationship2" name="customRadioRelationship" class="custom-control-input" value="B">
+                    <label class="custom-control-label" for="customRadioRelationship2">B</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioRelationship3" name="customRadioRelationship" class="custom-control-input" value="C">
+                    <label class="custom-control-label" for="customRadioRelationship3">C</label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="customRadioRelationship4" name="customRadioRelationship" class="custom-control-input" value="D">
+                    <label class="custom-control-label" for="customRadioRelationship4">D</label>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <div>
+                  <small class="text-muted">제출한 등급은 면접이 종료될 때까지 언제든지 수정할 수 있습니다.</small>
+                </div>
+                <div style="display: flex; justify-content: center; padding: 10px 0px 0px 0px;">
+                  <button type="button" class="btn btn-outline-primary btn-submit">제출</button>
+                  <button type="button" class="btn btn-outline-danger" data-dismiss="modal">취소</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Argon Scripts -->
 <!-- Core -->
 <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -971,5 +1116,95 @@
 	  });
 	  
       $('#infographic').modal('show');
+	});
+	
+	$('.btn-evaluate').on('click', function() {
+		const card_body_formgroup = $('.evaluation-modal .card-body .form-group');
+		
+		$.each(card_body_formgroup, function(index, item) {
+			$(item).find('input[type=radio]:eq(0)').prop('checked', true);
+		});
+		
+		$('#evaluation-modal-form').modal('show');
+	});
+	
+	$('.evaluation-modal .btn-submit').on('click', function() {
+		const card_body_formgroup = $('.evaluation-modal .card-body .form-group');
+
+		const formgroupInfoArr = [ 'passion', 'ability', 'resolution', 'strategy', 'relationship' ];
+		const resultArr = [];
+		$.each(card_body_formgroup, function(index, item) {
+			const selectedText = $(item).find('input[type=radio]:checked').val();
+
+			resultArr.push({
+				category : formgroupInfoArr[index],
+				value : selectedText
+			});
+		});
+
+		$.ajax({
+			type: 'POST',
+			url: '${pageContext.request.contextPath}/user/interviewee/updateInterviewee.do',
+			dataType: 'json',
+			data: {
+				mem_id: '${param.description }',
+				project_no: '${param.project_no }',
+				interviewee_passion: resultArr[0].value,
+				interviewee_ability: resultArr[1].value,
+				interviewee_resolution: resultArr[2].value,
+				interviewee_strategy: resultArr[3].value,
+				interviewee_relationship: resultArr[4].value
+			},
+			success: function(data) {
+				$('#evaluation-modal-form').modal('hide');
+			},
+		    error: function (xhr, err) {
+		    	console.log('/user/interviewee/updateInterviewee.do ERR');
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+	});
+	
+	$('.btn-interview-end').on('click', function() {
+		const calendar_id = '${param.id }';
+		
+		Swal.fire({
+		  title: '평가 종료',
+		  text: "현재 면접자의 평가를 종료하시겠습니까?",
+		  icon: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: '삭제',
+		  cancelButtonText: '취소'
+		}).then((result) => {
+		  if (result.value) {
+			  $.ajax({
+					type: 'POST',
+					url: '${pageContext.request.contextPath}/user/interview/endInterviewSchedule.do',
+					dataType: 'json',
+					data: {
+						id: calendar_id
+					},
+					success: function(data) {
+						if(data) {
+							location.href = '${pageContext.request.contextPath}/user/interview/partnersMain.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${param.project_no}';
+						} else {
+							Swal.fire(
+							  'ERROR',
+							  '면접을 종료하는 중 오류가 발생했습니다.',
+							  'danger'
+							)
+						}
+					},
+				    error: function (xhr, err) {
+				    	console.log('/user/interviewee/endInterviewSchedule.do ERR');
+				        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+				        alert("responseText: " + xhr.responseText);
+				    }
+				});
+		  }
+		});
 	});
 </script>

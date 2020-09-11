@@ -130,33 +130,39 @@
                 }
 
                 channelBtnEl.addEventListener('click', (evt) => {
-                    Swal.mixin({
-                        input: 'text',
-                        confirmButtonText: '다음',
-                        confirmButtonColor: '#5e72e4',
-                        showCancelButton: true,
-                        cancelButtonText: '취소',
-                        cancelButtonColor: '#f5365c',
-                        progressSteps: ['1', '2']
-                    }).queue([
-                        {
-                            title: '면접 구분명'
-                        },
-                        {
-                            title: '면접관 이름'
-                        }
-                    ]).then((result) => {
-                        if (result.value) {
-                            const answers = result.value;
-                            Swal.fire({
-                                title: '화상 면접이 시작되었습니다.',
-                                confirmButtonText: '확인',
-                                confirmButtonColor: '#5e72e4'
-                            })
-                            start(answers[0]);
-                            evt.preventDefault();
-                        }
-                    })
+                	const btnName = $('#channelBtn').text();
+                	if (btnName.indexOf('면접 시작') != -1) {
+                		Swal.mixin({
+                            input: 'text',
+                            confirmButtonText: '다음',
+                            confirmButtonColor: '#5e72e4',
+                            showCancelButton: true,
+                            cancelButtonText: '취소',
+                            cancelButtonColor: '#f5365c',
+                            progressSteps: ['1', '2']
+                        }).queue([
+                            {
+                                title: '면접 구분명'
+                            },
+                            {
+                                title: '면접관 이름'
+                            }
+                        ]).then((result) => {
+                            if (result.value) {
+                                const answers = result.value;
+                                Swal.fire({
+                                    title: '화상 면접이 시작되었습니다.',
+                                    confirmButtonText: '확인',
+                                    confirmButtonColor: '#5e72e4'
+                                })
+                                start(answers[0]);
+                                evt.preventDefault();
+                            }
+                        })
+                	} else {
+                		start(null);
+                        evt.preventDefault();
+                	}
                 }, false);
             </script>
         </div>
