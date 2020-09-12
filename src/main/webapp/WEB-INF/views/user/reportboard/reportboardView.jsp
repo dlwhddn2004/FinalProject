@@ -65,8 +65,10 @@
                 </c:if>
                 <c:if test="${MEMBER_LOGININFO.mem_id != reportInfo.MEM_ID}">
 					<div class="form-button-area" align="right">
-	                   	<button class="btn btn-primary btn-approve" type="button">결재</button>
-	                   	<button class="btn btn-danger btn-reject" type="button">반려</button>
+						<c:if test="${empty reportInfo.REPORT_STATUS }">
+		                   	<button class="btn btn-primary btn-approve" type="button">결재</button>
+		                   	<button class="btn btn-danger btn-reject" type="button">반려</button>
+	                   	</c:if>
 	                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
 	                </div>
                 </c:if>

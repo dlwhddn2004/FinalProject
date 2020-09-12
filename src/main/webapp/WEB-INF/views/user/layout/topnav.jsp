@@ -291,13 +291,13 @@
 			              <div class="text-muted text-center mt-2 mb-3"><h3>로그인</h3></div>
 			            </div>
 			            <div class="card-body">
-			              <form role="form" action="${pageContext.request.contextPath}/user/member/loginCheck.do" method="post">
+			              <form role="form" method="post">
 			                <div class="form-group mb-3">
 			                  <div class="input-group input-group-merge input-group-alternative">
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 			                    </div>
-			                    <input id="validationCustom01" class="form-control" placeholder="아이디" type="text" name="mem_id">
+			                    <input id="validationCustom01" class="form-control" placeholder="아이디" type="text" name="login_id">
 			                  </div>
 			                </div>
 			                <div class="form-group">
@@ -305,7 +305,7 @@
 			                    <div class="input-group-prepend">
 			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
 			                    </div>
-			                    <input class="form-control" placeholder="비밀번호" type="password" name="mem_pass">
+			                    <input class="form-control" placeholder="비밀번호" type="password" name="login_pass">
 			                  </div>
 			                </div>
 			                <div class="search">
@@ -319,7 +319,7 @@
 			                  <label class="custom-control-label" for="customCheck1">로그인 상태 유지</label>
 			                </div>-->
 			                <div class="text-center">
-			                  <button type="submit" class="btn btn-primary my-4 loginBtn">로그인</button>
+			                  <button id="btnLogin" type="button" class="btn btn-primary my-4 loginBtn">로그인</button>
 			                </div>
 			              </form>
 			            </div>
@@ -425,33 +425,41 @@
 
 
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/crypto/jsbn.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/crypto/rsa.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/crypto/prng4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/crypto/rng.js"></script>
 	
-	<script>
-	
-		document.getElementById('validationCustom06').value = new Date().toISOString().substring(0, 10);;
-		
-	    (function() {
-	      'use strict';
-	      window.addEventListener('load', function() {
-	        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-	        var forms = document.getElementsByClassName('needs-validation');
-	        // Loop over them and prevent submission
-	        var validation = Array.prototype.filter.call(forms, function(form) {
-	          form.addEventListener('focusout', function(event) {
-	            if (form.checkValidity() === false) {
-	              event.preventDefault();
-	              event.stopPropagation();
-	            }
-	            form.classList.add('was-validated');
-	          }, false);
-	        });
-	      }, false);
-	    })();
-
-  </script>	
-	<script type="text/javascript">
+		<script type="text/javascript">
 		
 		$(function() {
+			$('#btnLogin').click(function() {
+				var mem_id = $('input[name=login_id]').val();
+				var mem_pass = $('input[name=login_pass]').val();
+				
+				//가수부
+				const modulus = '${publicKeyMap.publicModuls}';
+				//지수부
+				const exponent = '${publicKeyMap.publicExponent}';
+				
+				var rsaObject = new RSAKey();
+				rsaObject.setPublic(modulus, exponent);
+				
+				var encryptID = rsaObject.encrypt(mem_id);
+				var encryptPASS = rsaObject.encrypt(mem_pass);
+				
+		        var $frm = $('<form action="${pageContext.request.contextPath}/user/member/loginCheck.do" method ="post" ></form>');
+		        var $inputID = $('<input type="hidden" value="' + encryptID + '" name="mem_id" />');    
+		        var $inputPWD = $('<input type="hidden" value="' + encryptPASS + '" name="mem_pass" />');
+		        
+		        $frm.append($inputID);
+		        $frm.append($inputPWD);
+		        $(document.body).append($frm);
+		        
+		        $frm.submit();
+				/* alert(encryptID); */
+			});
+			
 			
             $('#btnRegistMember').on('click', function() {
             	category = $('input[name=category]:checked').val();
@@ -502,6 +510,31 @@
             
 		});
 	</script>
+	
+	<script>
+	
+		document.getElementById('validationCustom06').value = new Date().toISOString().substring(0, 10);;
+		
+	    (function() {
+	      'use strict';
+	      window.addEventListener('load', function() {
+	        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+	        var forms = document.getElementsByClassName('needs-validation');
+	        // Loop over them and prevent submission
+	        var validation = Array.prototype.filter.call(forms, function(form) {
+	          form.addEventListener('focusout', function(event) {
+	            if (form.checkValidity() === false) {
+	              event.preventDefault();
+	              event.stopPropagation();
+	            }
+	            form.classList.add('was-validated');
+	          }, false);
+	        });
+	      }, false);
+	    })();
+
+  </script>	
+
   <script>
 	var password = document.getElementById("validationCustom03")
 	        , confirm_password = document.getElementById("validationCustom04");
