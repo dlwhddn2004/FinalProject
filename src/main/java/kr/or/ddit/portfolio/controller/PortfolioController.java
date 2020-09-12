@@ -19,6 +19,7 @@ import kr.or.ddit.portfolio.service.IPortfolioService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.utiles.AttachFileMapperMember;
+import kr.or.ddit.utiles.CryptoGenerator;
 import kr.or.ddit.utiles.attachFileMapperTest;
 import kr.or.ddit.vo.FileItemVO;
 import kr.or.ddit.vo.MemberRateVO;
@@ -48,10 +49,14 @@ public class PortfolioController {
 	private IMypageService mypageService;
 	@Autowired
 	private IMemberService memberService;
+	@Autowired
+	private CryptoGenerator cryptoGen;
 
 	
 	@RequestMapping("portfolioList")
-	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request) throws Exception{
+	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request, HttpSession session) throws Exception{
+		
+		Map<String, String> publicKeyMap = this.cryptoGen.generatePairKey(session);
 		
 		List<Map<String,String>> portfolioList = this.portfolioService.selectPortFolioList();
 		
@@ -76,6 +81,7 @@ public class PortfolioController {
 		modelAndView.addObject("maxportfolioAvg",maxportfolioAvg);
 		modelAndView.addObject("mainScoreChart",mainScoreChart);
 		modelAndView.addObject("MainportfolioInfo", MainportfolioInfo);
+		modelAndView.addObject("publicKeyMap", publicKeyMap);
 		modelAndView.setViewName("user/portfolio/portfolioList");
 		return modelAndView;
 	}
