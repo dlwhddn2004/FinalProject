@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.vo.Mypage_memberVO;
+import kr.or.ddit.vo.PortFolioReviewVO;
 import kr.or.ddit.vo.PortFolioVO;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -19,4 +20,11 @@ public interface IPortfolioDao {
 	public int InsertPortflio(PortFolioVO portfolioInfo) throws Exception;
 	public int updatePortfolio(PortFolioVO portfolioInfo) throws Exception;
 	public int deleteportfolio(Map<String,String> params) throws Exception;
+	
+	// review
+	public List<Map<String,String>> selectPortfolioReview(Map<String,String> params) throws Exception;
+	public void insertPortfolioReview(PortFolioReviewVO reviewInfo) throws Exception;
+	public void updatePortfolioReview(PortFolioReviewVO reviewInfo) throws Exception;
+	public Map<String,String> portfolioReviewInfo(Map<String,String> params) throws Exception;
+	public void portfolioReviewDelete(Map<String,String> params) throws Exception;
 }

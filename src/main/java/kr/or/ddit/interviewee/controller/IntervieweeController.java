@@ -41,6 +41,8 @@ import com.lowagie.text.pdf.AcroFields.Item;
 public class IntervieweeController {
 	@Autowired
 	private IIntervieweeService intervieweeService;
+	@Autowired
+	private IMemberService memberService;
 	
 	@RequestMapping("updateInterviewee")
 	@ResponseBody
@@ -70,5 +72,66 @@ public class IntervieweeController {
 		}
 		
 		return resultMap;
+	}
+	
+	@RequestMapping("loadTabTab1")
+	@ResponseBody
+	public List<Map<String, String>> loadTabTab1(String project_no) throws Exception {
+		List<Map<String, String>> endIntervieweeList = intervieweeService.selectEndInterviewee(project_no);
+		
+		List<Map<String, String>> resultList = new ArrayList<Map<String,String>>();
+		Map<String, String> params = new HashMap<String, String>();
+		for (Map<String, String> item : endIntervieweeList) {
+			String mem_id = String.valueOf(item.get("MEM_ID"));
+			
+			// MEMBER의 상세 정보를 조회
+			params.put("mem_id", mem_id);
+			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+			
+			// MEMBER의 평균 등급을 계산
+			int rateAvg = 0;
+			String[] category_arr = {"INTERVIEWEE_PASSION", "INTERVIEWEE_ABILITY", "INTERVIEWEE_RESOLUTION", "INTERVIEWEE_STRATEGY", "INTERVIEWEE_RELATIONSHIP"};
+			for (int i = 0; i < category_arr.length; i++) {
+				String category_name = category_arr[i];
+				
+				if ((String.valueOf(item.get(category_name))).equals("A")) {
+					rateAvg += 4;
+				} else if ((String.valueOf(item.get(category_name))).equals("B")) {
+					rateAvg += 3;
+				} else if ((String.valueOf(item.get(category_name))).equals("C")) {
+					rateAvg += 2;
+				} else if ((String.valueOf(item.get(category_name))).equals("D")) {
+					rateAvg += 1;
+				}
+			}
+			
+			memberInfo.put("AVG", String.valueOf(rateAvg));
+			resultList.add(memberInfo);
+		}
+		
+		return resultList;
+	}
+	
+	@RequestMapping("confirmInterviewee")
+	@ResponseBody
+	public Boolean confirmInterviewee(String project_no,
+									  String mem_id_all) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id_all", mem_id_all);
+		params.put("interviewee_status", "Y");
+		
+		return intervieweeService.confirmInterviewee(params);
+	}
+	
+	@RequestMapping("failInterviewee")
+	@ResponseBody
+	public Boolean failInterviewee(String project_no,
+								   String mem_id_all) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id_all", mem_id_all);
+		
+		return intervieweeService.failInterviewee(params);
 	}
 }
