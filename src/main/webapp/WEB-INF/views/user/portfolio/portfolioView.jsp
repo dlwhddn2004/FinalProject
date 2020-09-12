@@ -1,4 +1,4 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,25 +9,6 @@
 <!-- Fonts -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
 <!-- Icons -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	type="text/css">
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	type="text/css">
-
-<link rel="stylesheet"\
-
-	href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Page plugins -->
@@ -66,6 +47,31 @@
 	text-align: center;
 	line-height: 40px;
 	/*font-size:10px;*/
+	color: bisque;
+	transform: translate(-50%, -50%);
+}
+
+.pie-chartTestReview {
+	position: relative;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	transition: 0.3s;
+}
+
+.centerTestReview {
+	background:
+		url('https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg');
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	font-size:10px;
 	color: bisque;
 	transform: translate(-50%, -50%);
 }
@@ -459,8 +465,8 @@
                                     <!-- 작업중 -->
                                     	<c:if test="${!empty MEMBER_LOGININFO.mem_id }">
 	                                    	<a  class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
-	                                         data-toggle="modal" data-target="#ReviewModal" >
-	                                            <span class="btn-inner--icon"><i class="fas fa-user-edit"></i></span>
+	                                         data-toggle="modal" onclick="modalClick(this);" >
+	                                            <span class="btn-inner--icon modal-insert-icon"><i class="fas fa-user-edit insert"></i></span>
 	                                            <span class="btn-inner--text">Review 등록</span>
 	                                        </a>
                                     	</c:if>
@@ -578,7 +584,7 @@
 															</form>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn btnInsert modalInsert" data-dismiss="modal">Insert</button>
+															<button type="button" class="btn modalInsert" id="modalButton" data-dismiss="modal">Insert</button>
 															<button type="button"
 																class="btn btn-link text-danger ml-auto closeModal"
 																data-dismiss="modal">Close</button>
@@ -604,7 +610,7 @@
                                         </thead>
                                         <!-- 작 업 중 -->
                                         <tbody class="reviewTbody">
-                                        	<c:forEach items="${portfolioReviewList }" var="portfolioReviewList" >
+                                        <!--  	<c:forEach items="${portfolioReviewList }" var="portfolioReviewList" >
 		                                        <tr>
 		                                            <td class="table-user">
 		                                                <img src="/${portfolioReviewList.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
@@ -630,7 +636,7 @@
 													
 													</td>
 												</tr>
-                                        	</c:forEach>
+                                        	</c:forEach> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -958,14 +964,17 @@
 	let contentScore;
 	let developScore;
 	
+	let var_portfolio_seq = '';
+	
 		$(function() {
 			$('.updateDiv').hide();
+			
 			
 			const quill = new Quill('#editor', {
 				theme: 'snow'
 			});
 			
-			
+			reviewList();
 			
 			
 			<!--메인 portfolio 부분 점수 -->
@@ -1242,7 +1251,7 @@
 					  confirmButtonText: '삭제',
 					  cancelButtonText: '취소'
 					}).then((result) => {
-					  if (result.value) {
+					  if (result.value) { 
 			     		location.href='${pageContext.request.contextPath}/user/portfolio/deleteportfolio.do?mem_id=' +mem_id +'&portfolio_no=' + portfolio_no;	
 					  } 
 					});
@@ -1364,17 +1373,410 @@
 		
 		
 		/////리뷰 ////////
-		$(function(){
+		function modalClick(info){
+			const currentSelectedButton = $(info).attr('data-original-title');
 			
-			$('#ReviewModal').on('hidden.bs.modal', function () {
-				$("#reviewForm")[0].reset();
-				})
+			if (currentSelectedButton.indexOf('작성') != -1) {
+				const slider_reset = "50";
+				$('input[name="portfolio_content"]').val("");
+				 
+	            $('#design-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.5 , 1)');
+	            $('#design-slider .noUi-origin').css('transform', 'translate(-' + (100 - slider_reset) + '%, 0px)');
+	            $('#design-slider .noUi-origin').css('z-index', '4');
+	            $('#design-slider-value').text(slider_reset + ".00");
+	            
+	            $('#useability-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.5 , 1)');
+	            $('#useability-slider .noUi-origin').css('transform', 'translate(-' + (100 - slider_reset) + '%, 0px)');
+	            $('#useability-slider .noUi-origin').css('z-index', '4');
+	            $('#useability-slider-value').text(slider_reset + ".00");
+	            
+	            $('#creativity-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.5 , 1)');
+	            $('#creativity-slider .noUi-origin').css('transform', 'translate(-' + (100 - slider_reset) + '%, 0px)');
+	            $('#creativity-slider .noUi-origin').css('z-index', '4');
+	            $('#creativity-slider-value').text(slider_reset + ".00");
+	            
+	            $('#contentscore-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.5 , 1)');
+	            $('#contentscore-slider .noUi-origin').css('transform', 'translate(-' + (100 - slider_reset) + '%, 0px)');
+	            $('#contentscore-slider .noUi-origin').css('z-index', '4');
+	            $('#contentscore-slider-value').text(slider_reset + ".00");
+	            
+	            $('#develop-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.5 , 1)');
+	            $('#develop-slider .noUi-origin').css('transform', 'translate(-' + (100 - slider_reset) + '%, 0px)');
+	            $('#develop-slider .noUi-origin').css('z-index', '4');
+	            $('#develop-slider-value').text(slider_reset + ".00");
+	            
+	            $('#modalButton').text('insert');
+	            $('#modalButton').attr('class','btn modalInsert');
+	            
+			} else if (currentSelectedButton.indexOf('수정') != -1) {
+				$('#modalButton').attr('class','btn btn-default updateModalBtn');
+				$('#modalButton').text('Update');
+				buttonName ="update";
+				const portfolio_seq =$(info).find('input').val();
+				var_portfolio_seq = portfolio_seq;
+					$.ajax({
+						url: '${pageContext.request.contextPath}/user/portfolio/portfolioReviewInfo.do',
+						Type : 'POST',
+						data : { portfolio_seq : portfolio_seq},
+						dataType : 'json',
+						error: function(xhr, status, error){
+			                alert(error);
+			            },
+			            <!-- 작 업 중 --> 
+			            success : function(result){
+			            	console.log(result);
+			            	const portfolio_seq= result.reviewInfo.PORTFOLIO_SEQ;
+			            	const portfolio_no=result.reviewInfo.PORTFOLIO_NO;
+			            	const portfolio_writer=result.reviewInfo.PORTFOLIO_WRITER;
+			            	const portfolio_design=result.reviewInfo.PORTFOLIO_DESIGN;
+			            	const portfolio_useability=result.reviewInfo.PORTFOLIO_USEABILITY;
+			            	const portfolio_creativity=result.reviewInfo.PORTFOLIO_CREATIVITY;
+			            	const portfolio_contentscore=result.reviewInfo.PORTFOLIO_CONTENTSCORE;
+			            	const portfolio_develop=result.reviewInfo.PORTFOLIO_DEVELOP;
+			            	const portfolio_content=result.reviewInfo.PORTFOLIO_CONTENT;
+			            	$('input[name=portfolio_content]').val(portfolio_content);
+			            	$('#design-slider-value').text(portfolio_design+'.00');
+			            	$('#useability-slider-value').text(portfolio_useability+'.00');
+			            	$('#creativity-slider-value').text(portfolio_creativity+'.00');
+			            	$('#contentscore-slider-value').text(portfolio_contentscore+'.00');
+			            	$('#develop-slider-value').text(portfolio_develop+'.00');
+			            	
+			              //디자인
+			               if (portfolio_design == '100') {
+			            	   $('#design-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(1, 1)');
+			               } else {
+			            	   $('#design-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + portfolio_design + ', 1)');
+	
+			               }
+			               $('#design-slider .noUi-origin').css('transform', 'translate(-' + (100 - portfolio_design) + '%, 0px)');
+			               $('#design-slider .noUi-origin').css('z-index', '4');
+			             // 사용성	
+			               if (portfolio_useability == '100') {
+			            	   $('#useability-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(1, 1)');
+			               } else {
+			            	   $('#useability-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + portfolio_useability + ', 1)');
+	
+			               }
+			               $('#useability-slider .noUi-origin').css('transform', 'translate(-' + (100 - portfolio_useability) + '%, 0px)');
+			               $('#useability-slider .noUi-origin').css('z-index', '4');
+			            // 창의성
+			               if (portfolio_creativity == '100') {
+			            	   $('#creativity-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(1, 1)');
+			               } else {
+			            	   $('#creativity-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + portfolio_creativity + ', 1)');
+	
+			               }
+			               $('#creativity-slider .noUi-origin').css('transform', 'translate(-' + (100 - portfolio_creativity) + '%, 0px)');
+			               $('#creativity-slider .noUi-origin').css('z-index', '4');
+			            	// 컨텐츠
+			               if (portfolio_contentscore == '100') {
+			            	   $('#contentscore-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(1, 1)');
+			               } else {
+			            	   $('#contentscore-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + portfolio_contentscore + ', 1)');
+	
+			               }
+			               $('#contentscore-slider .noUi-origin').css('transform', 'translate(-' + (100 - portfolio_contentscore) + '%, 0px)');
+			               $('#contentscore-slider .noUi-origin').css('z-index', '4');
+			            	// 
+			               if (portfolio_develop == '100') {
+			            	   $('#develop-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(1, 1)');
+			               } else {
+			            	   $('#develop-slider .noUi-connect').css('transform', 'translate(0%, 0px) scale(0.' + portfolio_develop + ', 1)');
+	
+			               }
+			               $('#develop-slider .noUi-origin').css('transform', 'translate(-' + (100 - portfolio_develop) + '%, 0px)');
+			               $('#develop-slider .noUi-origin').css('z-index', '4');
+			            }
+					});
+			}
+			$('#ReviewModal').modal('show');
+		}
+		
+		
+
+		function reviewList(){
+			const portfolio_no = '${portfolioInfo.PORTFOLIO_NO }';
+			
+			$.ajax({
+				url :'${pageContext.request.contextPath}/user/portfolio/reviewList.do', 
+				type : 'POST',
+				dataType : 'json',
+				data : {portfolio_no : portfolio_no},
+				error: function(xhr, status, error){
+	                alert(error);
+	            },
+	            <!-- 작 업 중 --> 
+	            success : function(result){
+	            	let str = "";
+                	
+                	const id_check = '${MEMBER_LOGININFO.mem_id}';
+	            	// 차트 리스트 테이블 만드는 중
+	            	$.each(result.reviewList, function(index, item){
+	            		str += "<tr><td class='table-user'><img src='/"
+	            		str += item.PROFILE_SAVENAME + "' class='avatar rounded-circle mr-3'> ";
+	            		str += "<b>" + item.MEM_ID + "</b></td>";
+	            		str += "<td><span class='text-muted'>" + item.PORTFOLIO_CONTENT +"</span></td>";
+	            		str += "<td>" + 
+	            		"<div style='display: flex; justify-content: center; align-items: center; margin: 0px 0px 0px 0px;'>"+
+		                    "<div data-toggle='tooltip' data-placement='bottom' title='Tooltip on bottom'>"+
+		                        "<div class='pie-chartTestReview review1" +index +"'style='margin: 15px;'>"+
+		                            "<span class='centerTestReview'>"+
+		                                "<div style='margin: 0px 0px 5px 0px;'>" +
+		                                    "<span class='h3 text-white designReviewSpan" +index + "'></span>" +
+		                                    "<small class='text-white designReviewSmall" +index +"'></small>" +
+		                                "</div>"+
+		                            "</span>"+
+		                        "</div>"+
+		                        "<div style='display: flex; justify-content: center;'>"+
+		                            "<h6 class='text-info'>DESIGN</h6>" +
+		                        "</div>"+
+		                    "</div>"+
+		                    "<div>"+
+		                        "<div class='pie-chartTestReview review2" +index +"'style='margin: 15px;'>"+
+		                            "<span class='centerTestReview'>"+
+		                                "<div style='margin: 0px 0px 5px 0px;'>" +
+		                                    "<span class='h3 text-white useabilityReviewSpan" +index +"'></span>"+
+		                                    "<small class='text-white useabilityReviewSmall" +index +"'></small>" +
+		                                "</div>" +
+		                            "</span>" +
+		                        "</div>" +
+		                        "<div style='display: flex; justify-content: center;'>"+
+		                            "<h6 class='text-warning'>USEABILITY</h6>" +
+		                        "</div>" +
+		                    "</div>" +
+		                    "<div>" +
+		                        "<div class='pie-chartTestReview review3"+ index +"' + style='margin: 15px;'>" +
+		                            "<span class='centerTestReview'>" +
+		                                "<div style='margin: 0px 0px 5px 0px;'>" +
+		                                    "<span class='h3 text-white creativityReviewSpan" + index + "'></span>" +
+		                                    "<small class='text-white creativityReviewSmall" +index + "'></small>" +
+		                                "</div>" +
+		                            "</span>" +
+		                        "</div>" +
+		                        "<div style='display: flex; justify-content: center;'>" +
+		                            "<h6 class='text-danger'>CREATIVITY</h6>"+
+		                        "</div>" +
+		                    "</div>" +
+		                    "<div>" +
+		                        "<div class='pie-chartTestReview review4"+ index +"' style='margin: 15px;'>" +
+		                            "<span class='centerTestReview'>" +
+		                                "<div style='margin: 0px 0px 5px 0px;'>" +
+		                                    "<span class='h3 text-white contentReviewSpan" +index + "'></span>" +
+		                                    "<small class='text-white contentReviewSmall" +index + "'></small>" +
+		                            "</div>"+
+		                            "</span>"+
+		                        "</div>"+
+		                        "<div style='display: flex; justify-content: center;'>" +
+		                            "<h6 class='text-success'>CONTENT</h6>" +
+		                        "</div>" +
+		                    "</div>" +
+		                    "<div>" +
+		                        "<div class='pie-chartTestReview review5" +index +  "'style='margin: 15px;'>" +
+		                            "<span class='centerTestReview'>" +
+		                                "<div style='margin: 0px 0px 5px 0px;'>" +
+		                                    "<span class='h3 text-white developReviewSpan"+ index + "'></span>" +
+		                                    "<small class='text-white developReviewSmall" + index + "'></small>" +
+		                                "</div>" +
+		                            "</span>"+
+		                        "</div>" +
+		                        "<div style='display: flex; justify-content: center;'>" +
+		                            "<h6 class='text-indigo'>DEVELOP</h6>" +
+		                        "</div>"+
+		                    "</div>" +
+		                "</div>"+ "</td>";
+	            		str += "<td class='table-actions'><span>" + item.PORTFOLIO_REGDATE +"</span>&nbsp;&nbsp;&nbsp;";
+	            		if(item.MEM_ID ==  id_check){
+	            			str += "<a onclick='modalClick(this);' class='table-action reviewUpdate' data-toggle='tooltip' data-original-title='리뷰 수정'>";
+	            			str += "<input name='portfolio_seq' value='" + item.PORTFOLIO_SEQ + "' type='hidden'>";
+	            			str += "<i class='fas fa-user-edit update'></i></a>";
+	            			str += "<a onclick='deleteReview(this);' class='table-action table-action-delete' data-toggle='tooltip' data-original-title='리뷰 삭제'>";
+	            			str += "<input name='portfolio_seq' value='" + item.PORTFOLIO_SEQ + "' type='hidden'>";
+	            			str += "<i class='fas fa-trash'></i></a>";
+	            		}
+	            		str += "</td></tr>";
+	            	});
+	            	
+	            	// tbody 아래 값만 지우기
+	            	$('.reviewTbody').empty();
+	            	$('.reviewTbody').append(str);
+	            	//$('.datatable-basic').append(str);
+	            	// 차트 값 채워서 넣어주자.
+	            	
+	            		function drawReview(max, classname, colorname) {
+	    					var i = 1;
+	    					var func1 = setInterval(function() {
+	    						if (i < max) {
+	    							colorReview(i, classname, colorname);
+	    							i++;
+	    						} else {
+	    							clearInterval(func1);
+	    						}
+	    					}, 10);
+	    				}
+	    				function colorReview(i, classname, colorname) {
+	    					$(classname).css(
+	    							{
+	    								"background" : "conic-gradient(" + colorname
+	    										+ " 0% " + i + "%, #ffffff " + i
+	    										+ "% 100%)"
+	    							});
+	    				}
+	    				
+	            	//각 리뷰에 차트 넣어주기
+	            	$.each(result.reviewList, function(index, item){
+	            		let designReview = String(item.PORTFOLIO_DESIGN);
+	            		let useabilityReview = String(item.PORTFOLIO_USEABILITY);
+	            		let creativityReview = String(item.PORTFOLIO_CREATIVITY);
+	            		let contentReview = String(item.PORTFOLIO_CONTENTSCORE);
+	            		let developReview = String(item.PORTFOLIO_DEVELOP);
+	            		
+	            		let review1 = ".review1"+index;
+	            		let review2 = ".review2"+index;
+	            		let review3 = ".review3"+index;
+	            		let review4 = ".review4"+index;
+	            		let review5 = ".review5"+index;
+	            		
+	            		drawReview(designReview, review1, '#11cdef');
+	            		drawReview(useabilityReview, review2, '#fb6340');
+	            		drawReview(creativityReview, review3, '#f5365c');
+	            		drawReview(contentReview, review4, '#2dce89');
+	            		drawReview(developReview, review5, '#770b93');
+	    				
+	            		
+	    				let designSpanReview = designReview.charAt(0) + '.';
+	    				let designSmallReview = designReview.charAt(1);
+
+	    				let useabilitySpanReview = useabilityReview.charAt(0) + '.';
+	    				let useabilitySmallReview = useabilityReview.charAt(1);
+
+	    				let creativitySpanReview = creativityReview.charAt(0) + '.';
+	    				let creativitySmallReview = creativityReview.charAt(1);
+
+	    				let contentSpanReview = contentReview.charAt(0) + '.';
+	    				let contentSmallReview = contentReview.charAt(0);
+
+	    				let developSpanReview = developReview.charAt(0) + '.';
+	    				let developSmallReview = developReview.charAt(1);
+	    				
+	    				//차트에 넣을 클래스 이름 설정
+	    				let designReviewSpanClass = ".designReviewSpan"+index;
+	    				let designReviewSmallClass =".designReviewSmall"+index;
+	    				
+	    				let useabilityReviewSpanClass = ".useabilityReviewSpan"+index;
+	    				let useabilityReviewSmallClass =".useabilityReviewSmall"+index;
+	    				
+	    				let creativityReviewSpanClass = ".creativityReviewSpan"+index;
+	    				let creativityReviewSmallClass =".creativityReviewSmall"+index;
+
+	    				let contentReviewSpanClass = ".contentReviewSpan"+index;
+	    				let contentReviewSmallClass =".contentReviewSmall"+index;
+	    				
+	    				let developReviewSpanClass = ".developReviewSpan"+index;
+	    				let developReviewSmallClass =".developReviewSmall"+index;
+	    				
+	    				
+
+	    				$(designReviewSpanClass).text(designSpanReview);
+	    				$(designReviewSmallClass).text(designSmallReview);
+	    				
+	    				$(useabilityReviewSpanClass).text(useabilitySpanReview);
+	    				$(useabilityReviewSmallClass).text(useabilitySmallReview);
+	    				
+	    				$(creativityReviewSpanClass).text(creativitySpanReview);
+	    				$(creativityReviewSmallClass).text(creativitySmallReview);
+	    				
+	    				$(contentReviewSpanClass).text(contentSpanReview);
+	    				$(contentReviewSmallClass).text(contentSmallReview);
+	    				
+	    				$(developReviewSpanClass).text(developSpanReview);
+	    				$(developReviewSmallClass).text(developSmallReview);
+	                });
+	            }
+	        });
+	    }
+		
+		
+		function deleteReview(info){
+			Swal.fire({
+				  title: '정말 삭제하시겠습니까?',
+				  text: "삭제를 클릭하면 되돌릴 수 없습니다.",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: '삭제',
+				  cancelButtonText: '취소'
+				}).then((result) => {
+				  if (result.value) { 
+						const portfolio_seq =$(info).find('input').val();
+						$.ajax({
+							url : "${pageContext.request.contextPath}/user/portfolio/portfolioReviewDelete.do",
+							type: 'POST',
+							data : {portfolio_seq : portfolio_seq},
+							dataType : 'json',
+							error: function(xhr, status, error){
+				                alert(error);
+				            },
+				            success : function(result){
+				                Swal.fire(
+				                        'success',
+				                        '리뷰 삭제 완료.',
+				                        'success'
+				                      )
+			            	reviewList();
+			            }
+					});
+			 	 } 
+			});
+		}
+		
+		
+		
+		$('#modalButton').on('click', function() {
+			let modalName = $('#modalButton').text();
 			
 			
-			
-			$('.modalInsert').on('click',function(){
-				
-				//const portfolio_content = $('input[name="portfolio_content"]').val();
+			if(modalName == 'insert'){
+					const portfolio_writer = $('input[name="portfolio_writer"]').val();
+					const portfolio_no =$('input[name="portfolio_no"]').val();
+					const portfolio_content = $('input[name="portfolio_content"]').val();
+					const design_slider_value = $('#design-slider-value').text();
+					const useability_slider_value =$('#useability-slider-value').text();
+					const creativity_slider_value = $('#creativity-slider-value').text();
+					const contentscore_slider_value = $('#contentscore-slider-value').text();				
+					const develop_slider_value =$('#develop-slider-value').text();
+					// 디비에 넣을 소수점 삭제
+					const design_slider = Math.floor(design_slider_value);
+					const useability_slider =Math.floor(useability_slider_value);
+					const creativity_slider =Math.floor(creativity_slider_value);
+					const contentscore_slider = Math.floor(contentscore_slider_value);
+					const develop_slider = Math.floor(develop_slider_value);
+					
+					$.ajax({
+						url :'${pageContext.request.contextPath}/user/portfolio/InsertPortfolioReview.do', 
+						type : 'POST',
+						dataType : 'json',
+						data : {portfolio_writer : portfolio_writer, 
+							portfolio_no : portfolio_no, portfolio_content : portfolio_content,
+							portfolio_design : design_slider ,  portfolio_useability :useability_slider,
+							portfolio_creativity : creativity_slider , portfolio_contentscore: contentscore_slider,
+							portfolio_develop : develop_slider},
+						error: function(xhr, status, error){
+			                alert(error);
+			            },
+			            success : function(result){
+			                Swal.fire(
+			                        'success',
+			                        '리뷰 등록 완료.',
+			                        'success'
+			                      )
+			            	reviewList();
+			            }
+					}); 
+			}else if(modalName == 'Update'){
+				const portfolio_writer = $('input[name="portfolio_writer"]').val();
+				const portfolio_no =$('input[name="portfolio_no"]').val();
+				const portfolio_content = $('input[name="portfolio_content"]').val();
 				const design_slider_value = $('#design-slider-value').text();
 				const useability_slider_value =$('#useability-slider-value').text();
 				const creativity_slider_value = $('#creativity-slider-value').text();
@@ -1387,135 +1789,32 @@
 				const contentscore_slider = Math.floor(contentscore_slider_value);
 				const develop_slider = Math.floor(develop_slider_value);
 				
-				const $design_slider_ipt = $('<input name="portfolio_design" type="hidden" value="'+ design_slider + '">');
-				const $useability_slider_ipt = $('<input name="portfolio_useability" type="hidden" value ="' +useability_slider + '">' );
-				const $creativity_slider_ipt = $('<input name="portfolio_creativity" type="hidden" value ="' +creativity_slider + '">' );
-				const $contentscore_slider_ipt = $('<input name="portfolio_contentscore" type="hidden" value ="' +contentscore_slider + '">' );
-				const $develop_slider_ipt = $('<input name="portfolio_develop" type="hidden" value ="' +develop_slider + '">' );
-				
-				$('form[name="reviewForm"]').append($design_slider_ipt);
-				$('form[name="reviewForm"]').append($useability_slider_ipt);
-				$('form[name="reviewForm"]').append($creativity_slider_ipt);
-				$('form[name="reviewForm"]').append($contentscore_slider_ipt);
-				$('form[name="reviewForm"]').append($develop_slider_ipt);
-				
-				 var formdata = $("form[name='reviewForm']").serialize() ;
-
-				
 				$.ajax({
-					url :'${pageContext.request.contextPath}/user/portfolio/InsertPortfolioReview.do', 
+					url :'${pageContext.request.contextPath}/user/portfolio/updatePortfolioReview.do', 
 					type : 'POST',
 					dataType : 'json',
-					data : formdata,
+					data : {portfolio_writer : portfolio_writer, portfolio_seq : var_portfolio_seq,
+						portfolio_no : portfolio_no, portfolio_content : portfolio_content,
+						portfolio_design : design_slider ,  portfolio_useability :useability_slider,
+						portfolio_creativity : creativity_slider , portfolio_contentscore: contentscore_slider,
+						portfolio_develop : develop_slider},
 					error: function(xhr, status, error){
 		                alert(error);
 		            },
-		            <!-- 작 업 중 --> 
 		            success : function(result){
-		            	console.log(result);   
-		            	let str = "<tbody class='reviewTbody'> <tr><td class='table-user'><img src='/ ";
-		            	let str2 = '<div style="display: flex; justify-content: center; align-items: center; margin: 0px 0px 0px 0px;"><div><div class="pie-chartTest review1" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white designReviewSpan"></span><small class="text-white designReviewSmall"></small>'+
-	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">DESIGN</h3></div></div><div><div class="pie-chartTest review2" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white useabilityReviewSpan"></span> <small class="text-white useabilityReviewSmall"></small>' +
-	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">USEABILITY</h3></div></div><div><div class="pie-chartTest review3" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white creativityReviewSpan"></span> <small class="text-white creativityReviewSmall"></small>'+
-	                	'</div></span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">CREATIVITY</h3></div></div><div><div class="pie-chartTest review4" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white contentReviewSpan"></span> <small class="text-white contentReviewSmall"></small></div>'+          
-	                	'</span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">CONTENT</h3></div></div><div><div class="pie-chartTest review5" style="margin: 15px;"><span class="centerTest"><div style="margin: 16px 0px 0px 0px;"><span class="h1 text-white developReviewSpan"></span> <small class="text-white developReviewSmall"></small></div>'+
-	                	'</span></div><div style="display: flex; justify-content: center;"><h3 class="text-white">DEVELOP</h3></div></div></div>';
-		           	
-	                	const id_check = ' ${MEMBER_LOGININFO.mem_id}';
-		            	// 차트 리스트 테이블 만드는 중
-		            	$.each(result.reviewList, function(index, item){
-		            		str += item.PROFILE_REALNAME + "' class='avatar rounded-circle mr-3'> ";
-		            		str += "<b>" + item.MEM_ID + "</b></td>";
-		            		str += "<td><span class='text-muted'>" + item.PROFILE_REALNAME +"</span></td>";
-		            		str += "<td>" + str2 + "<td>";
-		            		str += "<td class='table-actions'><span>" + item.PROFILE_REGDATE +"</span>&nbsp;&nbsp;&nbsp;";
-		            		if(item.MEM_ID ==  id_check){
-		            			str += "<a href='#!' class='table-action' data-toggle='tooltip' data-original-title='리뷰 수정'>";
-		            			str += "<i class='fas fa-user-edit'></i></a>";
-		            			str += "<a href='#!' class='table-action table-action-delete' data-toggle='tooltip' data-original-title='리뷰 삭제'>";
-		            			str += "<i class='fas fa-trash'></i></a>";
-		            		}
-		            		str += "</td></tbody>";
-		            	})
-		            	
-		            	// tbody 아래 값만 지우기
-		            	$('.reviewTbody').remove();
-		            	$('.datatable-basic').append(str);
-		            	// 차트 값 채워서 넣어주자.
-		            	
-		            		function draw1(max, classname, colorname) {
-		    					var i = 1;
-		    					var func1 = setInterval(function() {
-		    						if (i < max) {
-		    							color1(i, classname, colorname);
-		    							i++;
-		    						} else {
-		    							clearInterval(func1);
-		    						}
-		    					}, 10);
-		    				}
-		    				function color2(i, classname, colorname) {
-		    					$(classname).css(
-		    							{
-		    								"background" : "conic-gradient(" + colorname
-		    										+ " 0% " + i + "%, #ffffff " + i
-		    										+ "% 100%)"
-		    							});
-		    				}
-		    				// 만약 댓글이 없을경우 0점 처리 해줘야 한다.
-		            	
-		            	$.each(result.reviewList, function(index, item){
-		            		var designReview = item.PORTFOLIO_DESIGN;
-		            		var useabilityReview = item.PORTFOLIO_USEABILITY;
-		            		var creativityReview = item.PORTFOLIO_CREATIVITY;
-		            		var contentReview = item.PORTFOLIO_CONTENTSCORE;
-		            		var developReview = item.PORTFOLIO_DEVELOP;
-		            		
-		            		draw1(designReview, '.review1', '#11cdef');
-		    				draw1(useabilityReview, '.review2', '#fb6340');
-		    				draw1(creativityReview, '.review3', '#f5365c');
-		    				draw1(contentReview, '.review4', '#2dce89');
-		    				draw1(developReview, '.review5', '#770b93');
-		    				
-
-		    				const designSpan = designReview.charAt(0) + '.';
-		    				const designSmall = designReview.charAt(1);
-
-		    				const useabilitySpan = useabilityReview.charAt(0) + '.';
-		    				const useabilitySmall = useabilityReview.charAt(1);
-
-		    				const creativitySpan = creativityReview.charAt(0) + '.';
-		    				const creativitySmall = creativityReview.charAt(1);
-
-		    				const contentSpan = contentReview.charAt(0) + '.';
-		    				const contentSmall = contentReview.charAt(0);
-
-		    				const developSpan = developReview.charAt(0) + '.';
-		    				const developSmall = developReview.charAt(1);	
-
-		    				$('.designSpan').text(designSpan);
-		    				$('.designSmall').text(designSmall);
-		    				$('.useabilitySpan').text(useabilitySpan);
-		    				$('.useabilitySmall').text(useabilitySmall);
-		    				$('.creativitySpan').text(creativitySpan);
-		    				$('.creativitySmall').text(creativitySmall);
-		    				$('.contentSpan').text(contentSpan);
-		    				$('.contentSmall').text(contentSmall);
-		    				$('.developSpan').text(developSpan);
-		    				$('.developSmall').text(developSmall);
-		            	});
-		            	
-    			
-		            	
-		            	
-
-		            	
+		                Swal.fire(
+		                        'success',
+		                        '리뷰 수정 완료.',
+		                        'success'
+		                      )
+		            	reviewList();
 		            }
-				});
-			});
+				}); 
+			}
 		});
 		
 		
+
 	</script>
 </body>
 </html>
