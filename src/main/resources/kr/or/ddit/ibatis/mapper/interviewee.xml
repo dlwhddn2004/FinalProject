@@ -13,4 +13,23 @@
 		WHERE PROJECT_NO = #project_no#
 		AND MEM_ID = #mem_id#
 	</update>
+	
+	<select id="selectEndInterviewee" parameterClass="String" resultClass="java.util.HashMap">
+		SELECT *
+		FROM INTERVIEWEE
+		WHERE PROJECT_NO = #project_no#
+		AND INTERVIEWEE_STATUS = 'N'
+	</select>
+	
+	<update id="updateIntervieweeStatus" parameterClass="map">
+		UPDATE INTERVIEWEE SET INTERVIEWEE_STATUS = #interviewee_status#
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</update>
+	
+	<delete id="deleteInterviewee" parameterClass="map">
+		DELETE INTERVIEWEE
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</delete>
 </sqlMap>

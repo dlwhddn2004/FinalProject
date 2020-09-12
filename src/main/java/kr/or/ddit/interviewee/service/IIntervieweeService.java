@@ -14,4 +14,10 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface IIntervieweeService {
 	public int updateInterviewee(Map<String, String> params) throws Exception;
+	
+	public List<Map<String, String>> selectEndInterviewee(String project_no) throws Exception;
+	
+	public boolean confirmInterviewee(Map<String, String> params) throws Exception;
+	
+	public boolean failInterviewee(Map<String, String> params) throws Exception;
 }

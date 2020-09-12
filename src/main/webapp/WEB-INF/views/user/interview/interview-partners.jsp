@@ -30,6 +30,7 @@
 </style>
 
 <input type="hidden" name="check-currentPage-forCalendar" value="interviewCalendar">
+<input type="hidden" name="project_no_hidden" value="${param.project_no }">;
 <div class="row interview">
   <div class="col">
     <!-- 탭 -->
@@ -40,6 +41,9 @@
         </li>
         <li class="nav-item apply-list-tab-btn">
           <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-3-tab" data-toggle="tab" href="#tabs-icons-text-3" role="tab" aria-controls="tabs-icons-text-3" aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>신청자 명단</a>
+        </li>
+        <li class="nav-item apply-list-tab-btn">
+          <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-calendar-grid-58 mr-2"></i>면접 결과</a>
         </li>
       </ul>
     </div>
@@ -115,6 +119,80 @@
                 </table>
               </div>
             </div>
+          </div>
+          <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+          	<div class="nav-wrapper">
+			    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+			        <li class="nav-item">
+			            <a class="nav-link mb-sm-3 mb-md-0 active" id="final-tabs-icons-text-1-tab" data-toggle="tab" href="#final-tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="fas fa-users mr-2"></i></i>명단</a>
+			        </li>
+			        <li class="nav-item">
+			            <a class="nav-link mb-sm-3 mb-md-0" id="final-tabs-icons-text-2-tab" data-toggle="tab" href="#final-tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="fas fa-id-card-alt mr-2"></i></i>최종 합격자</a>
+			        </li>
+			    </ul>
+			</div>
+			<div class="card shadow">
+			    <div class="card-body">
+			        <div class="tab-content tab3-btn" id="myTabContent">
+			            <div class="tab-pane fade show active tab-tab1" id="final-tabs-icons-text-1" role="tabpanel" aria-labelledby="final-tabs-icons-text-1-tab">
+			            	<!-- 명단 -->
+			            	<!-- 작업 중! -->
+							<div class="card">
+							  <!-- Card header -->
+							  <div class="card-header border-0">
+							    <div class="row">
+							      <div class="col-6">
+							      </div>
+							      <div class="col-6 text-right">
+							        <button type="button" class="btn btn-outline-primary btn-sm btn-interview-success"><i class="fas fa-id-card-alt mr-2"></i>합격</button>
+							        <button type="button" class="btn btn-outline-danger btn-sm btn-interview-fail"><i class="fas fa-trash mr-2"></i>탈락</button>
+							      </div>
+							    </div>
+							  </div>
+							  <!-- Light table -->
+							  <div class="table-responsive">
+							    <table class="table align-items-center table-flush table-hover">
+							      <thead class="thead-light">
+							        <tr>
+							          <th>이름</th>
+							          <th>이메일</th>
+							          <th>최종 평가 등급</th>
+							          <th>여부</th>
+							        </tr>
+							      </thead>
+							      <tbody>
+<!-- 							        <tr> -->
+<!-- 							          <td class="table-user"> -->
+<!-- 							            <b>김은대</b> -->
+<!-- 							          </td> -->
+<!-- 							          <td> -->
+<!-- 							            <span class="text-muted">31세</span> -->
+<!-- 							          </td> -->
+<!-- 							          <td> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="far fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							          </td> -->
+<!-- 							          <td> -->
+<!-- 							            <label class="custom-toggle"> -->
+<!-- 							              <input type="checkbox"> -->
+<!-- 							              <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span> -->
+<!-- 							            </label> -->
+<!-- 							          </td> -->
+<!-- 							        </tr> -->
+							      </tbody>
+							    </table>
+							  </div>
+							</div>
+			            </div>
+			            <div class="tab-pane fade tab-tab2" id="final-tabs-icons-text-2" role="tabpanel" aria-labelledby="final-tabs-icons-text-2-tab">
+			            	<!-- 최종 합격자 -->
+			            </div>
+			        </div>
+			    </div>
+			</div>
           </div>
         </div>
       </div>
@@ -739,7 +817,7 @@
 <!-- Optional JS -->
 <script src="${pageContext.request.contextPath}/assets/vendor/moment/min/moment.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
@@ -747,6 +825,8 @@
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/js/interview/interview_partners.js"></script>
 
 <script>
   /**
@@ -1125,7 +1205,6 @@
 		    	mem_id: var_mem_id
 		    },
 		    success: function (data) {
-		    	// 작업 중!
 		    	let tableNO = 1;
 		    	$('.career-list').empty();
 		    	$.each(data, function(index, item) {
