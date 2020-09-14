@@ -2501,9 +2501,6 @@ var Fullcalendar = (function() {
 			
 			const check_currentPage_forCalendar = $('input[name=check-currentPage-forCalendar]').val();
 			
-			console.log(var_first_description);
-			alert(var_first_description);
-			
 			if (check_currentPage_forCalendar === 'interviewCalendar') {
 				if (calendarAction === 'update') {
 					const title = $('.modal-interview-modify .new-event--title').val();

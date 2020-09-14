@@ -5,6 +5,7 @@
 
 <sqlMap namespace="portfolio">
 		<typeAlias alias="portfolioVO" type="kr.or.ddit.vo.PortFolioVO" />
+		<typeAlias alias="ReviewVO" type="kr.or.ddit.vo.PortFolioReviewVO" />
 		
 	<sql id="selectAll">
 	SELECT
@@ -183,6 +184,93 @@ AND PORTFOLIO_NO = #PORTFOLIO_NO#
 	
 	<delete id="deleteportfolio" parameterClass="map">
 		DELETE PORTFOLIO WHERE MEM_ID = #mem_id# AND portfolio_no = #portfolio_no#
+	</delete>
+	
+	
+	<select id="selectPortfolioReview" resultClass="java.util.HashMap" parameterClass="map">
+SELECT PORTFOLIO_SEQ,
+PORTFOLIO_NO,
+PORTFOLIO_WRITER,
+PORTFOLIO_DESIGN,
+PORTFOLIO_USEABILITY,
+PORTFOLIO_CREATIVITY,
+PORTFOLIO_CONTENTSCORE,
+PORTFOLIO_DEVELOP,
+PORTFOLIO_CONTENT,
+TO_CHAR(PORTFOLIO_REGDATE, 'MM/dd/YYYY') PORTFOLIO_REGDATE,
+PROFILE_SAVENAME,
+MEM_ID ,
+(AVG(NVL(PORTFOLIO_DESIGN, 0)) +
+AVG(NVL(PORTFOLIO_USEABILITY, 0))+
+AVG(NVL(PORTFOLIO_CREATIVITY, 0))+
+AVG(NVL(PORTFOLIO_CONTENTSCORE, 0))+
+AVG(NVL(PORTFOLIO_DEVELOP, 0))) / 5 TOTALAVG
+	FROM PORTFOLIO_BOARD, PROFILE_FILE
+	WHERE PORTFOLIO_BOARD.PORTFOLIO_WRITER = PROFILE_FILE.MEM_ID and PORTFOLIO_NO=#portfolio_no#
+    GROUP BY  PORTFOLIO_SEQ,PORTFOLIO_NO,PORTFOLIO_WRITER,PORTFOLIO_DESIGN,PORTFOLIO_USEABILITY,
+PORTFOLIO_CREATIVITY,PORTFOLIO_CONTENTSCORE,PORTFOLIO_DEVELOP,PORTFOLIO_CONTENT,TO_CHAR(PORTFOLIO_REGDATE, 'MM/dd/YYYY'),PROFILE_SAVENAME,MEM_ID
+order by PORTFOLIO_SEQ desc
+	</select>
+	
+	<insert id="insertPortfolioReview" parameterClass="ReviewVO">
+		<selectKey keyProperty="portfolio_seq" resultClass="string">
+			SELECT
+			PORTFOLIO_BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO PORTFOLIO_BOARD 
+			(PORTFOLIO_SEQ,
+			PORTFOLIO_NO,
+			PORTFOLIO_WRITER,
+			PORTFOLIO_DESIGN,
+			PORTFOLIO_USEABILITY,
+			PORTFOLIO_CREATIVITY,
+			PORTFOLIO_CONTENTSCORE,
+			PORTFOLIO_DEVELOP,
+			PORTFOLIO_CONTENT,
+			PORTFOLIO_REGDATE) VALUES 
+				(#portfolio_seq#,
+				#portfolio_no#,
+				#portfolio_writer#,
+				#portfolio_design#,
+				#portfolio_useability#,
+				#portfolio_creativity#,
+				#portfolio_contentscore#,
+				#portfolio_develop#,
+				#portfolio_content#,
+				SYSDATE)
+	</insert>
+	
+	<select id="portfolioReviewInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT 
+		PORTFOLIO_SEQ,
+	    PORTFOLIO_NO,
+	    PORTFOLIO_WRITER,
+	    PORTFOLIO_DESIGN,
+	    PORTFOLIO_USEABILITY,
+	    PORTFOLIO_CREATIVITY,
+	    PORTFOLIO_CONTENTSCORE,
+	    PORTFOLIO_DEVELOP,
+	    PORTFOLIO_CONTENT,
+    	TO_CHAR(PORTFOLIO_REGDATE, 'MM/dd/YYYY') PORTFOLIO_REGDATE
+		FROM PORTFOLIO_BOARD WHERE  PORTFOLIO_SEQ= #portfolio_seq#
+	</select>
+	
+	<update id="updatePortfolioReview" parameterClass="ReviewVO">
+		UPDATE PORTFOLIO_BOARD SET
+			PORTFOLIO_WRITER= #portfolio_writer#,
+			PORTFOLIO_DESIGN= #portfolio_design#,
+			PORTFOLIO_USEABILITY= #portfolio_useability#,
+			PORTFOLIO_CREATIVITY= #portfolio_creativity#,
+			PORTFOLIO_CONTENTSCORE= #portfolio_contentscore#,
+			PORTFOLIO_DEVELOP= #portfolio_develop#,
+			PORTFOLIO_CONTENT= #portfolio_content#
+			 WHERE PORTFOLIO_SEQ=#portfolio_seq#
+			
+	</update>
+	
+	<delete id="portfolioReviewDelete" parameterClass="map">
+		DELETE PORTFOLIO_BOARD
+		WHERE PORTFOLIO_SEQ= #portfolio_seq#
 	</delete>
 </sqlMap>
 

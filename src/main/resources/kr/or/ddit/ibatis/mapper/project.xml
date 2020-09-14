@@ -266,6 +266,12 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		)
 </insert>
 
+	<select id="selectMakeProjectList" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT
+		WHERE MEM_ID = #mem_id#
+	</select>
+
 </sqlMap>
 
  

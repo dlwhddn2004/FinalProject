@@ -34,9 +34,11 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/projectRegist.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/riskboard.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/reportboard.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/reportboard_comment.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/riskboard_comment.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/career.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/projectApplyInfo.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/interviewee.xml"/>	
 </sqlMapConfig>
 
 

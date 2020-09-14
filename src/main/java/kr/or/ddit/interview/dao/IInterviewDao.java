@@ -63,4 +63,12 @@ public interface IInterviewDao {
 	
 	// - 경력 수
 	public int selectCareerCnt(Map<String, String> params) throws Exception;
+	
+	////////////////////////////////////
+	
+	public List<Map<String, String>> selectAttendInterview(Map<String, String> params) throws Exception;
+	
+	public int endInterviewSchedule(String id) throws Exception;
+	
+	public Map<String, String> selectCalendarInterview(String id) throws Exception;
 }

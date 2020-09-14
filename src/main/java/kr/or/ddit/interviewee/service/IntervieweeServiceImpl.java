@@ -24,4 +24,30 @@ public class IntervieweeServiceImpl implements IIntervieweeService {
 	
 	@Autowired
 	private IIntervieweeDao dao;
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateInterviewee(Map<String, String> params) throws Exception {
+		return dao.updateInterviewee(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectEndInterviewee(String project_no)
+			throws Exception {
+		return dao.selectEndInterviewee(project_no);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public boolean confirmInterviewee(Map<String, String> params)
+			throws Exception {
+		return dao.confirmInterviewee(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public boolean failInterviewee(Map<String, String> params) throws Exception {
+		return dao.failInterviewee(params);
+	}
 }

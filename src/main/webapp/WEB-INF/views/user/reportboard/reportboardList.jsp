@@ -72,19 +72,15 @@
 	});
 	
 	function reportBoardInfo(e) {
-// 		const projectInfo = ${projectInfo.PL};
-// 		const member = ${MEMBER_LOGININFO.mem_id};
 		
 		const report_no = $(e).find('input[name=report_no]').val();
 		const mem_id = $(e).find('input[name=mem_id]').val();
 		const project_no = $(e).find('input[name=project_no]').val();
 		
-// 		if(projectInfo == member){
-// 		}
+		if(${projectInfo.PL == MEMBER_LOGININFO.mem_id} || ${projectInfo.MEM_ID == MEMBER_LOGININFO.mem_id}){
 			location.href = "${pageContext.request.contextPath}/user/reportboard/reportboardView.do?report_no=" + report_no + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=" + project_no;
-		
-		
-		
+		}
+
 	}
 </script>
 </head>
@@ -149,7 +145,6 @@
 								<th>작성자</th>
 								<th>상태</th>
 								<th>등록일</th>
-								<th>조회수</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -159,7 +154,6 @@
 								<th>작성자</th>
 								<th>상태</th>
 								<th>등록일</th>
-								<th>조회수</th>
 							</tr>
 						</tfoot>
 						<tbody>
@@ -168,11 +162,10 @@
 									<td>${item.R }<input type="hidden" name="report_no" value="${item.REPORT_NO }"></td>
 									<td>${item.REPORT_TITLE }</td>
 									<td>${item.MEM_ID }<input type="hidden" name="mem_id" value="${item.MEM_ID }"></td>
-									<td>
-										<c:if test="${item.REPORT_STATUS  == 'N'}">결재대기</c:if>
-									</td>
+									<c:if test="${empty item.REPORT_STATUS}"><td style="color : #5e72e4">결재대기</td></c:if>
+									<c:if test="${item.REPORT_STATUS == 'N'}"><td style="color : #f5365c">반려</td></c:if>
+									<c:if test="${item.REPORT_STATUS == 'Y'}"><td style="color : #2dce89">결재완료</td></c:if>
 									<td>${item.REPORT_REGDATE }</td>
-									<td>${item.REPORT_HIT }</td>
 									<input type="hidden" name="project_no" value="${item.PROJECT_NO }">
 								</tr>
 							</c:forEach>
@@ -223,5 +216,8 @@
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
 	<!-- Demo JS - remove this in your project -->
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+	<script>
+	
+	</script>
 </body>
 </html>

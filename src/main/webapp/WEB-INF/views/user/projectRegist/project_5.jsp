@@ -75,7 +75,7 @@
                 <p class="text-muted" style="font-size: small">사전 미팅 방식을 선택해 주세요</p>
                 <div>
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_premeeting1" name="premeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)">
+                    <input type="radio" id="project_premeeting1" name="premeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)" checked>
                     <label class="custom-control-label" for="project_premeeting1">온라인(카카오톡, 화상미팅 등)</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
@@ -89,7 +89,7 @@
                 <span style="font-size: small">미팅 방식</span><label style="color: tomato">*</label>
                 <div class="pt-3 pb-3">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="project_porceedmeeting1" name="porceedmeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)">
+                    <input type="radio" id="project_porceedmeeting1" name="porceedmeeting" class="custom-control-input" value="온라인(카카오톡, 화상미팅 등)" checked>
                     <label class="custom-control-label" for="project_porceedmeeting1">온라인(카카오톡, 화상미팅 등)</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
@@ -100,7 +100,7 @@
                 <span style="font-size: small">미팅 주기</span><label style="color: tomato">*</label>
                 <div class="pt-3 pb-3">
                   <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="meeting_cycle1" name="meeting_cycle" class="custom-control-input" value="2">
+                    <input type="radio" id="meeting_cycle1" name="meeting_cycle" class="custom-control-input" value="2" checked>
                     <label class="custom-control-label" for="meeting_cycle1">주 2회</label>
                   </div>
                   <div class="custom-control custom-radio custom-control-inline">
@@ -167,51 +167,7 @@
 <script>
 
 $("#btnRegist").on("click", function() {
-	if ($('input[name=premeeting]').is(':checked') == false) {
-		$.notify({
-			// options
-			message: '사전 미팅 방식을 선택해주세요!' 
-		},{
-			// settings
-			placement: {
-				from: "top",
-				align: "center"
-			},
-			type: 'info'
-		});
-		
-		return;
-	}
-	if ($('input[name=porceedmeeting]').is(':checked') == false) {
-		$.notify({
-			// options
-			message: '진행중 미팅 방식을 선택해주세요!' 
-		},{
-			// settings
-			placement: {
-				from: "top",
-				align: "center"
-			},
-			type: 'info'
-		});
-		
-		return;
-	}
-	if ($('input[name=meeting_cycle]').is(':checked') == false) {
-		$.notify({
-			// options
-			message: '미팅 주기를 선택해주세요!' 
-		},{
-			// settings
-			placement: {
-				from: "top",
-				align: "center"
-			},
-			type: 'info'
-		});
-		
-		return;
-	}
+
 	
 	if ($("#clientLocation option:selected").val() == "시/도") {
 		$.notify({

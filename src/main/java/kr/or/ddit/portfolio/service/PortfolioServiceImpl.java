@@ -12,6 +12,7 @@ import kr.or.ddit.utiles.AttachFileMapper;
 import kr.or.ddit.utiles.AttachFileMapperMember;
 import kr.or.ddit.vo.FileItemVO;
 import kr.or.ddit.vo.Mypage_memberVO;
+import kr.or.ddit.vo.PortFolioReviewVO;
 import kr.or.ddit.vo.PortFolioVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
@@ -85,6 +86,37 @@ public class PortfolioServiceImpl implements IPortfolioService{
 	@Override
 	public int deleteportfolio(Map<String, String> params) throws Exception {
 		return portfolioDao.deleteportfolio(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String,String>> selectPortfolioReview(Map<String,String> params) throws Exception {
+		return portfolioDao.selectPortfolioReview(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertPortfolioReview(PortFolioReviewVO reviewInfo)
+			throws Exception {
+		portfolioDao.insertPortfolioReview(reviewInfo);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void updatePortfolioReview(PortFolioReviewVO reviewInfo)
+			throws Exception {
+		portfolioDao.updatePortfolioReview(reviewInfo);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> portfolioReviewInfo(Map<String, String> params)
+			throws Exception {
+		return portfolioDao.portfolioReviewInfo(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void portfolioReviewDelete(Map<String, String> params)
+			throws Exception {
+		 portfolioDao.portfolioReviewDelete(params);
 	}
 
 	

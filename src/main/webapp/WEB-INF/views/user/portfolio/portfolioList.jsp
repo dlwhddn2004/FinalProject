@@ -389,7 +389,7 @@
   <!-- Optional JS -->
   <script src="${pageContext.request.contextPath}/assets/vendor/moment/min/moment.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/fullcalendar/dist/fullcalendar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/jvectormap-next/jquery-jvectormap.min.js"></script>
   <script src="${pageContext.request.contextPath}/assets/js/vendor/jvectormap/jquery-jvectormap-world-mill.js"></script>
   <script src="${pageContext.request.contextPath}/assets/vendor/chart.js/dist/Chart.min.js"></script>

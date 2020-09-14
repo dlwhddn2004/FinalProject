@@ -21,6 +21,7 @@ import kr.or.ddit.vo.newsboardVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ibatis.sqlmap.engine.mapping.result.ResultMap;
@@ -365,5 +366,15 @@ public class ProjectController {
 		return modelAndView;
 	}
 	
-	
+	@RequestMapping("selectProjectPartnersInfoJSON")
+	@ResponseBody
+	public Map<String, String> selectProjectPartnersInfoJSON(String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
+		
+		return memberService.selectMemberInfo(params);
+	}
 }

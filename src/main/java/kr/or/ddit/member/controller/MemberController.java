@@ -14,6 +14,7 @@ import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.utiles.CryptoGenerator;
 import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
@@ -42,7 +43,7 @@ import com.sun.org.glassfish.gmbal.ParameterNames;
 
 
 @Controller
-@RequestMapping("/user/member")
+@RequestMapping("/user/member/")
 public class MemberController {
 	
 	@Autowired
@@ -58,7 +59,10 @@ public class MemberController {
 	@Autowired
 	private IMemberRateService rateService;
 	
-	@RequestMapping("loginCheck")
+	@Autowired
+	private CryptoGenerator crypto;
+	
+	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public ModelAndView loginCheck(String mem_id, 
 	                       String mem_pass,
 	                       HttpServletRequest request,
@@ -67,6 +71,9 @@ public class MemberController {
 	                       Map<String, String> params,
 	                       ModelAndView modelAndView)
 	                      throws Exception{
+		
+		  mem_id = this.crypto.decryptRSA(session, mem_id);
+		  mem_pass = this.crypto.decryptRSA(session, mem_pass);
 
 		  params.put("mem_id", mem_id);
 	      params.put("mem_pass", mem_pass);

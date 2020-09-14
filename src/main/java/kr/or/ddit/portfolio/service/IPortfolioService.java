@@ -5,6 +5,7 @@ import java.util.Map;
 
 import kr.or.ddit.vo.FreeboardVO;
 import kr.or.ddit.vo.Mypage_memberVO;
+import kr.or.ddit.vo.PortFolioReviewVO;
 import kr.or.ddit.vo.PortFolioVO;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -19,4 +20,11 @@ public interface IPortfolioService {
 	public int InsertPortflio(PortFolioVO portfolioInfo) throws Exception;
 	public int updatePortfolio(PortFolioVO portfolioInfo) throws Exception;
 	public int deleteportfolio(Map<String,String> params) throws Exception;
+	
+	// 리뷰 
+	public List<Map<String,String>> selectPortfolioReview(Map<String,String> params) throws Exception;
+	public void insertPortfolioReview(PortFolioReviewVO reviewInfo) throws Exception;
+	public void updatePortfolioReview(PortFolioReviewVO reviewInfo) throws Exception;
+	public Map<String,String> portfolioReviewInfo(Map<String,String> params) throws Exception;
+	public void portfolioReviewDelete(Map<String,String> params) throws Exception;
 }

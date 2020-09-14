@@ -19,11 +19,13 @@ import kr.or.ddit.portfolio.service.IPortfolioService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.utiles.AttachFileMapperMember;
+import kr.or.ddit.utiles.CryptoGenerator;
 import kr.or.ddit.utiles.attachFileMapperTest;
 import kr.or.ddit.vo.FileItemVO;
 import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.Mypage_memberVO;
+import kr.or.ddit.vo.PortFolioReviewVO;
 import kr.or.ddit.vo.PortFolioVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
@@ -48,10 +50,14 @@ public class PortfolioController {
 	private IMypageService mypageService;
 	@Autowired
 	private IMemberService memberService;
+	@Autowired
+	private CryptoGenerator cryptoGen;
 
 	
 	@RequestMapping("portfolioList")
-	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request) throws Exception{
+	public ModelAndView portfolioList(ModelAndView modelAndView, HttpServletRequest request, HttpSession session) throws Exception{
+		
+		Map<String, String> publicKeyMap = this.cryptoGen.generatePairKey(session);
 		
 		List<Map<String,String>> portfolioList = this.portfolioService.selectPortFolioList();
 		
@@ -76,6 +82,7 @@ public class PortfolioController {
 		modelAndView.addObject("maxportfolioAvg",maxportfolioAvg);
 		modelAndView.addObject("mainScoreChart",mainScoreChart);
 		modelAndView.addObject("MainportfolioInfo", MainportfolioInfo);
+		modelAndView.addObject("publicKeyMap", publicKeyMap);
 		modelAndView.setViewName("user/portfolio/portfolioList");
 		return modelAndView;
 	}
@@ -122,11 +129,16 @@ public class PortfolioController {
 		 // 이미지로 등록한 사진들
 		 String[] portfolio_imgs = portfolio_imgs_str.split(",");
 		 
+		 
+		 //리뷰 리스트
+		 //List<Map<String,String>> reviewList =  this.portfolioService.selectPortfolioReview();
+		 
 		 modelAndView.addObject("projectAndportfolioNum",projectAndportfolioNum);
 		 modelAndView.addObject("portfolioInfo",portfolioInfo);
 		 modelAndView.addObject("chartInfo", chartInfo);
 		 modelAndView.addObject("portfolio_imgs", portfolio_imgs);
 		 
+		// modelAndView.addObject("portfolioReviewList", reviewList);
 		 
 		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
 	    modelAndView.addObject("breadcrumb_first", "포트 폴리오 리스트");
@@ -257,6 +269,65 @@ public class PortfolioController {
 		
 		return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	}
+	
+	@RequestMapping("InsertPortfolioReview")
+	public ModelAndView InsertPortfolioReview(PortFolioReviewVO reviewInfo) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		this.portfolioService.insertPortfolioReview(reviewInfo);
+		
+		modelAndView.setViewName("jsonConvertView");
+		
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping("updatePortfolioReview")
+	public ModelAndView updatePortfolioReview(PortFolioReviewVO reviewInfo) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		this.portfolioService.updatePortfolioReview(reviewInfo);
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
+	}
+	
+	@RequestMapping("reviewList")
+	public ModelAndView reviewList(String portfolio_no) throws Exception{
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("portfolio_no", portfolio_no);
+		List<Map<String,String>> reviewList = this.portfolioService.selectPortfolioReview(params);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("reviewList", reviewList);
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
+	}
+	
+	@RequestMapping("portfolioReviewInfo")
+	public ModelAndView portfolioReviewInfo(String portfolio_seq) throws Exception{
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("portfolio_seq", portfolio_seq);
+		Map<String,String> reviewInfo = this.portfolioService.portfolioReviewInfo(params);
+		
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("reviewInfo",reviewInfo);
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
+		
+	}
+	
+	
+	@RequestMapping("portfolioReviewDelete")
+	public ModelAndView portfolioReviewDelete(String portfolio_seq) throws Exception{
+		
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("portfolio_seq", portfolio_seq);
+		
+		this.portfolioService.portfolioReviewDelete(params);
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
+	}
+	
 }
 
 

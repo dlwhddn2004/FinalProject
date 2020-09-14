@@ -56,103 +56,113 @@
                 </div>
                    
 				<!-- Create the editor container -->
-				
-				<div class="form-button-area" align="right">
-                   	<button class="btn btn-primary btn-submit" type="submit">수정</button>
-                   	<button class="btn btn-danger btn-delete" type="button">삭제</button>
-                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
-                </div>
+				<c:if test="${MEMBER_LOGININFO.mem_id == reportInfo.MEM_ID}">
+					<div class="form-button-area" align="right">
+	                   	<button class="btn btn-primary btn-submit" type="submit">수정</button>
+	                   	<button class="btn btn-danger btn-delete" type="button">삭제</button>
+	                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
+	                </div>
+                </c:if>
+                <c:if test="${MEMBER_LOGININFO.mem_id != reportInfo.MEM_ID}">
+					<div class="form-button-area" align="right">
+						<c:if test="${empty reportInfo.REPORT_STATUS }">
+		                   	<button class="btn btn-primary btn-approve" type="button">결재</button>
+		                   	<button class="btn btn-danger btn-reject" type="button">반려</button>
+	                   	</c:if>
+	                    <button class="btn btn-primary btn-back" type="button">뒤로가기</button>
+	                </div>
+                </c:if>
             </div>
             
             <!-- 댓글 -->
-<!--             <div class="card here"> -->
-<!-- 		        Card header -->
-<!-- 		        <div class="card-header border-0"> -->
-<!-- 		          <div class="row"> -->
-<!-- 		            <div class="col-6"> -->
-<!-- 		              <h3 class="mb-0">댓글</h3> -->
-<!-- 		            </div> -->
-<!-- 		            <div class="col-6 text-right"> -->
-<!-- 		              <a class="btn btn-sm btn-neutral btn-round btn-icon btn-comment-write" data-toggle="tooltip" data-original-title="댓글을 등록합니다."> -->
-<!-- 		                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span> -->
-<!-- 		                <span class="btn-inner--text">등록</span> -->
-<!-- 		              </a> -->
-<!-- 		            </div> -->
-<!-- 		          </div> -->
-<!-- 		        </div> -->
-<!-- 		        Light table -->
-<!-- 		        <div class="table-responsive"> -->
-<!-- 		          <table class="table align-items-center table-flush"> -->
-<!-- 		            <thead class="thead-light"> -->
-<!-- 		              <tr> -->
-<!-- 		                <th>작성자</th> -->
-<!-- 		                <th>내용</th> -->
-<!-- 		                <th>등록일</th> -->
-<!-- 		                <th></th> -->
-<!-- 		              </tr> -->
-<!-- 		            </thead> -->
-<!-- 		            <tbody> -->
-<%-- 		            	<c:forEach items="${commentList }" var="item"> --%>
-<!-- 							<tr> -->
-<!-- 							    <td class="table-user"> -->
-<%-- 							      <img src="/${item.profile_savename }" class="avatar rounded-circle mr-3"> --%>
-<%-- 							      <b>${item.mem_id }</b> --%>
-<!-- 							    </td> -->
-<!-- 							    <td class="td-comment_content"> -->
-<%-- 							      <span class="text-muted span-comment_content process-first">${item.comment_content }</span> --%>
-<%-- 							      <input type="text" class="form-control form-control-alternative process-second modi-ipt-comment-content" value="${item.comment_content }"> --%>
-<!-- 							    </td> -->
-<!-- 							    <td> -->
-<%-- 							      <span class="text-muted">${item.comment_regdate }</span> --%>
-<!-- 							    </td> -->
+            <div class="card here">
+				<!--Card header -->
+		        <div class="card-header border-0">
+		          <div class="row">
+		            <div class="col-6">
+		              <h3 class="mb-0">댓글</h3>
+		            </div>
+		            <div class="col-6 text-right">
+		              <a class="btn btn-sm btn-neutral btn-round btn-icon btn-comment-write" data-toggle="tooltip" data-original-title="댓글을 등록합니다.">
+		                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+		                <span class="btn-inner--text">등록</span>
+		              </a>
+		            </div>
+		          </div>
+		        </div>
+				<!--Light table -->
+		        <div class="table-responsive">
+		          <table class="table align-items-center table-flush">
+		            <thead class="thead-light">
+		              <tr>
+		                <th>작성자</th>
+		                <th>내용</th>
+		                <th>등록일</th>
+		                <th></th>
+		              </tr>
+		            </thead>
+		            <tbody>
+		            	<c:forEach items="${commentList }" var="item">
+							<tr>
+							    <td class="table-user">
+							      <img src="/${item.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
+							      <b>${item.MEM_ID }</b>
+							    </td>
+							    <td class="td-comment_content">
+							      <span class="text-muted span-comment_content process-first">${item.REPORT_COMMENT_CONTENT }</span>
+							      <input type="text" class="form-control form-control-alternative process-second modi-ipt-comment-content" value="${item.REPORT_COMMENT_CONTENT }">
+							    </td>
+							    <td>
+							      <span class="text-muted">${item.REPORT_COMMENT_REGDATE }</span>
+							    </td>
 							    
-<!-- 							    <td class="table-actions"> -->
-<%-- 							      <c:if test="${MEMBER_LOGININFO.mem_id == item.mem_id }"> --%>
-<!-- 								      <a class="table-action process-first" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="loadModifyView(this);"> -->
-<!-- 								        <i class="fas fa-user-edit"></i> -->
-<!-- 								      </a> -->
-<!-- 								      <a class="table-action table-action-delete process-first" data-toggle="tooltip" data-original-title="댓글을 삭제합니다." onclick="deleteComment(this);"> -->
-<%-- 								      	<input type="hidden" name="comment_seq" value="${item.comment_seq }"> --%>
-<!-- 								        <i class="fas fa-trash"></i> -->
-<!-- 								      </a> -->
+							    <td class="table-actions">
+							      <c:if test="${MEMBER_LOGININFO.mem_id == item.MEM_ID }">
+								      <a class="table-action process-first" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="loadModifyView(this);">
+								        <i class="fas fa-user-edit"></i>
+								      </a>
+								      <a class="table-action table-action-delete process-first" data-toggle="tooltip" data-original-title="댓글을 삭제합니다." onclick="deleteComment(this);">
+								      	<input type="hidden" name="comment_seq" value="${item.REPORT_SEQ }">
+								        <i class="fas fa-trash"></i>
+								      </a>
 								      
-<!-- 								      <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="modifyComment(this);"> -->
-<!-- 						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span> -->
-<!-- 						                <span class="btn-inner--text">수정</span> -->
-<!-- 						              </a> -->
-<!-- 						              <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글 수정을 취소합니다." onclick="unloadModifyView(this)"> -->
-<!-- 						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span> -->
-<!-- 						                <span class="btn-inner--text">취소</span> -->
-<!-- 						              </a> -->
-<%-- 							      </c:if> --%>
-<!-- 							    </td> -->
-<!-- 							 </tr> -->
-<%-- 		            	</c:forEach> --%>
-<!-- 		            </tbody> -->
-<!-- 		            <tfoot class="comment-write-area"> -->
-<!-- 		            	<tr> -->
-<!-- 		            		<td> -->
-<%-- 		            			<img src="/${profileInfo.profile_savename }" class="avatar rounded-circle mr-3"> --%>
-<%-- 							    <b>${MEMBER_LOGININFO.mem_id }</b> --%>
-<!-- 		            		</td> -->
-<!-- 		            		<td> -->
-<!-- 							    <input type="text" class="form-control form-control-alternative ipt-comment-area" placeholder="내용을 입력해주세요."> -->
-<!-- 						    </td> -->
-<!-- 						    <td> -->
-<!-- 							    <a class="btn btn-sm btn-neutral btn-round btn-icon write-tooltip" data-toggle="tooltip" data-original-title="댓글을 작성합니다." onclick="inCommentWrite()"> -->
-<!-- 				                  <span class="btn-inner--icon"><i class="fas fa-pen"></i></span> -->
-<!-- 				                  <span class="btn-inner--text btn-comment-inwrite">등록</span> -->
-<!-- 				                </a> -->
-<!-- 				                <a class="btn btn-sm btn-neutral btn-round btn-icon cancel-tooltip" data-toggle="tooltip" data-original-title="댓글 작성을 취소합니다." onclick="inCommentCancel()"> -->
-<!-- 				                  <span class="btn-inner--icon"><i class="fas fa-ban"></i></span> -->
-<!-- 				                  <span class="btn-inner--text btn-comment-cancel">취소</span> -->
-<!-- 				                </a> -->
-<!-- 						    </td> -->
-<!-- 		            	</tr> -->
-<!-- 		            </tfoot> -->
-<!-- 		          </table> -->
-<!-- 		        </div> -->
-<!-- 		      </div> -->
+								      <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글을 수정합니다." onclick="modifyComment(this);">
+						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+						                <span class="btn-inner--text">수정</span>
+						              </a>
+						              <a class="btn btn-sm btn-neutral btn-round btn-icon process-second" data-toggle="tooltip" data-original-title="댓글 수정을 취소합니다." onclick="unloadModifyView(this)">
+						                <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+						                <span class="btn-inner--text">취소</span>
+						              </a>
+							      </c:if>
+							    </td>
+							 </tr>
+		            	</c:forEach>
+		            </tbody>
+		            <tfoot class="comment-write-area">
+		            	<tr>
+		            		<td>
+		            			<img src="/${profileInfo.profile_savename }" class="avatar rounded-circle mr-3">
+							    <b>${MEMBER_LOGININFO.mem_id }</b>
+		            		</td>
+		            		<td>
+							    <input type="text" class="form-control form-control-alternative ipt-comment-area" placeholder="내용을 입력해주세요.">
+						    </td>
+						    <td>
+							    <a class="btn btn-sm btn-neutral btn-round btn-icon write-tooltip" data-toggle="tooltip" data-original-title="댓글을 작성합니다." onclick="inCommentWrite()">
+				                  <span class="btn-inner--icon"><i class="fas fa-pen"></i></span>
+				                  <span class="btn-inner--text btn-comment-inwrite">등록</span>
+				                </a>
+				                <a class="btn btn-sm btn-neutral btn-round btn-icon cancel-tooltip" data-toggle="tooltip" data-original-title="댓글 작성을 취소합니다." onclick="inCommentCancel()">
+				                  <span class="btn-inner--icon"><i class="fas fa-ban"></i></span>
+				                  <span class="btn-inner--text btn-comment-cancel">취소</span>
+				                </a>
+						    </td>
+		            	</tr>
+		            </tfoot>
+		          </table>
+		        </div>
+		      </div>
         </div>
     </div>
 </div>
@@ -195,7 +205,7 @@
 			const button_status = $('.btn-submit').text();
 			
 			if (button_status === "수정") {
-				$('input[name=issue_title]').removeAttr('readonly');
+				$('input[name=report_title]').removeAttr('readonly');
 				quill.enable(true);
 				
 				$('.btn-delete').hide();
@@ -208,19 +218,19 @@
 				$('.btn-back').addClass('btn-warning');
 			} else if (button_status === "완료") {
 				// 수정 기능 실행
-				const issue_title = $('input[name=issue_title]').val();
-				const issue_content = quill.root.innerHTML;
+				const report_title = $('input[name=report_title]').val();
+				const report_content = quill.root.innerHTML;
 				
-				const $ipt_issue_no = $("<input type='hidden' name='issue_no' value='${param.issue_no}'>");
-				const $ipt_issue_title = $("<input type='hidden' name='issue_title' value='" + issue_title + "'>");
-				const $ipt_issue_content = $("<input type='hidden' name='issue_content' value='" + issue_content + "'>");
+				const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
+				const $ipt_report_title = $("<input type='hidden' name='report_title' value='" + report_title + "'>");
+				const $ipt_report_content = $("<input type='hidden' name='report_content' value='" + report_content + "'>");
 				
-				const $frm = $("<form action='${pageContext.request.contextPath}/user/issueboard/updateIssueboard.do?project_no=${param.project_no}' method='POST'> ");
+				const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportBoard.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
 				
 				$('body').append($frm);
-				$frm.append($ipt_issue_no);
-				$frm.append($ipt_issue_title);
-				$frm.append($ipt_issue_content);
+				$frm.append($ipt_report_no);
+				$frm.append($ipt_report_title);
+				$frm.append($ipt_report_content);
 				
 				$frm.submit();
 			}
@@ -231,14 +241,14 @@
 			const button_status = $('.btn-back').text();
 			
 			if (button_status === "뒤로가기") {
-				location.href = '${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no=${param.project_no}';
+				location.href = '${pageContext.request.contextPath}/user/reportboard/reportboardList.do?project_no=${reportInfo.PROJECT_NO}';
 			} else if (button_status === "취소") {
-				$('input[name=issue_title]').val('${issueboardInfo.issue_title}');
-				quill.clipboard.dangerouslyPasteHTML('${issueboardInfo.issue_content}');
+				$('input[name=report_title]').val('${reportInfo.REPORT_CONTENT}');
+				quill.clipboard.dangerouslyPasteHTML('${reportInfo.REPORT_CONTENT}');
 				
 				$('.btn-delete').show();
 				
-				$('input[name=issue_title]').attr('readonly', 'readonly');
+				$('input[name=report_title]').attr('readonly', 'readonly');
 				quill.enable(false);
 				
 				$('.btn-submit').text('수정');
@@ -263,7 +273,57 @@
 			  cancelButtonText: '취소'
 			}).then((result) => {
 			  if (result.value) {
-				  location.href = '${pageContext.request.contextPath}/user/issueboard/deleteIssueboard.do?issue_no=${param.issue_no}&project_no=${param.project_no}';
+				  location.href = '${pageContext.request.contextPath}/user/reportboard/deleteReportboard.do?report_no=${reportInfo.REPORT_NO}&project_no=${reportInfo.PROJECT_NO}';
+			  }
+			});
+		});
+		
+		$('.btn-reject').on('click', function() {
+			Swal.fire({
+			  title: '반려하시겠습니까?',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '반려',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
+				  const $ipt_report_status = $("<input type='hidden' name='report_status' value='N'>");
+				  
+				  const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportStatus.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
+					
+					$('body').append($frm);
+					$frm.append($ipt_report_no);
+					$frm.append($ipt_report_status);
+					
+					$frm.submit(); 
+			  }
+			});
+		});
+		
+		$('.btn-approve').on('click', function() {
+			Swal.fire({
+			  title: '결재하시겠습니까?',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '결재',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
+				  const $ipt_report_status = $("<input type='hidden' name='report_status' value='Y'>");
+				  
+				  const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportStatus.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
+					
+					$('body').append($frm);
+					$frm.append($ipt_report_no);
+					$frm.append($ipt_report_status);
+					
+					$frm.submit(); 
 			  }
 			});
 		});
@@ -287,19 +347,19 @@
 		
 		<!-- 댓글 등록 버튼 클릭 후 (댓글 등록 버튼) -->
 		function inCommentWrite() {
-			const issue_no = '${param.issue_no}';
+			const report_no = '${reportInfo.REPORT_NO}';
 			const mem_id = '${MEMBER_LOGININFO.mem_id}';
 			const comment_content = $('.ipt-comment-area').val();
-			const project_no = '${param.project_no}'
+			const project_no = '${reportInfo.PROJECT_NO}'
 			
-			const $frm = $("<form action='${pageContext.request.contextPath}/user/issueboard/insertissueComment.do' method='POST'>");
-			const $ipt_issue_no = $("<input type='hidden' name='issue_no' value='" + issue_no + "'>");
+			const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/insertReportComment.do' method='POST'>");
+			const $ipt_report_no = $("<input type='hidden' name='report_no' value='" + report_no + "'>");
 			const $ipt_mem_id = $("<input type='hidden' name='mem_id' value='" + mem_id + "'>");
-			const $ipt_comment_content = $("<input type='hidden' name='comment_content' value='" + comment_content + "'>");
+			const $ipt_comment_content = $("<input type='hidden' name='report_comment_content' value='" + comment_content + "'>");
 			const $ipt_project_no = $("<input type='hidden' name='project_no' value='" + project_no + "'>");
 			
 			$('body').append($frm);
-			$frm.append($ipt_issue_no);
+			$frm.append($ipt_report_no);
 			$frm.append($ipt_mem_id);
 			$frm.append($ipt_comment_content);
 			$frm.append($ipt_project_no);
@@ -330,7 +390,7 @@
 			  cancelButtonText: '취소'
 			}).then((result) => {
 			  if (result.value) {
-				  location.href = '${pageContext.request.contextPath}/user/issueboard/deleteissueComment.do?issue_no=${param.issue_no}&comment_seq=' + comment_seq + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=${param.project_no}";
+				  location.href = '${pageContext.request.contextPath}/user/reportboard/deleteReportComment.do?report_no=${reportInfo.REPORT_NO}&report_seq=' + comment_seq + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=${reportInfo.PROJECT_NO}";
 			  }
 			});
 		}
@@ -358,7 +418,7 @@
 			const comment_seq = $(e).parent().parent().find('input[name=comment_seq]').val();
 			const comment_content = $(e).parent().parent().find('.modi-ipt-comment-content').val();
 			
-			location.href = '${pageContext.request.contextPath}/user/issueboard/updateissueComment.do?issue_no=${param.issue_no}&comment_seq=' + comment_seq + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&comment_content=" + comment_content + "&project_no=${param.project_no}";
+			location.href = '${pageContext.request.contextPath}/user/reportboard/updateReportComment.do?report_no=${reportInfo.REPORT_NO}&report_seq=' + comment_seq + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&report_comment_content=" + comment_content + "&project_no=${reportInfo.PROJECT_NO}";
 		}
 	</script>
 </body>

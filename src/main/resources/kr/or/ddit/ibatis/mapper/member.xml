@@ -109,7 +109,8 @@
 				CATEGORY_NO,
 				MEM_PASS,
 				MEM_NAME,
-				MEM_MAIL
+				MEM_MAIL,
+				MEM_BIR
 			)
 		VALUES
 			(
@@ -117,7 +118,8 @@
 				#category_no#,
 				#mem_pass#,
 				#mem_name#,
-				#mem_mail#
+				#mem_mail#,
+				#mem_bir#
 			)
 			
 	</insert>

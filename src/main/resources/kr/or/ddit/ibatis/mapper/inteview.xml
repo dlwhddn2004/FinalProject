@@ -137,6 +137,7 @@
 		SELECT *
 		FROM CALENDAR_INTERVIEW
 		WHERE PROJECT_NO = #project_no#
+		AND START_STATUS = 'N'
 	</select>
 	
 	<insert id="insertInterviewCalendar" parameterClass="map">
@@ -294,6 +295,24 @@
 		WHERE MYPAGE_DEVELOPER.MYPAGE_NO = CAREER.MYPAGE_NO
 		AND (MEM_ID = #mem_id#)
 		GROUP BY MEM_ID
+	</select>
+	
+	<select id="selectAttendInterview" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM CALENDAR_INTERVIEW
+		WHERE DESCRIPTION LIKE #mem_id#
+		AND START_STATUS = 'N'
+	</select>
+	
+	<update id="endInterviewSchedule" parameterClass="String">
+		UPDATE CALENDAR_INTERVIEW SET START_STATUS = 'Y'
+		WHERE ID = #id#
+	</update>
+	
+	<select id="selectCalendarInterview" parameterClass="String" resultClass="java.util.HashMap">
+		SELECT *
+		FROM CALENDAR_INTERVIEW
+		WHERE ID = #id#
 	</select>
 </sqlMap>
 
