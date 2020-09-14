@@ -127,11 +127,18 @@ public String memberDelete(HttpServletRequest request,
 }
 
 @RequestMapping("myprofilebank")
-  public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id){
+  public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id) throws Exception{
 	
 	Map<String, String> params = new HashMap<String, String>();
 	params.put("mem_id", mem_id);
 	
+	ProfileFileVO profileInfo1 = profileservice.selectProfileFileInfo(params);
+	MemberVO memberInfo = this.service.memberInfo(params);
+	
+	 modelAndView.addObject("profileInfo",profileInfo1);
+	 modelAndView.addObject("memberInfo", memberInfo);
+	 
+	 modelAndView.setViewName("user/myprofile/myprofilebank");
 	
 	return modelAndView;
 } 

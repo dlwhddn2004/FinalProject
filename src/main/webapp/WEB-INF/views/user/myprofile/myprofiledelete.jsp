@@ -108,28 +108,19 @@ $('.btn-primary').click(function(){
 					<label class="control-label" for="userId">비밀번호</label>
 					<input class="form-control" type="password" id="mem_pass" name="mem_pass" value="" />
 				</div>
-                                <div class="form-group">
-                  <!-- <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                    </div>
-                    <input class="form-control" name="mem_pass" id="mem_pass" placeholder="Password" type="password">
-                  </div>
-                </div> -->
+                  
+              </form>
                   <button type="button" id="btn-primary" value='탈퇴' class="btn btn-primary mt-2" >탈퇴</button>
                 <div class="text-center">
                 </div>
                 </div>
                 </div>
-              </form>
              
             </div>
           </div>
          
         </div>
-      </div>
-    </div>
-  </div>
+   
  
   <!-- Footer -->
 

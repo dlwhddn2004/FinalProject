@@ -47,10 +47,10 @@ li a:hover:not(.active) {
 										<label class="col-form-label form-control-label">아이디</label> <label
 											style="color: tomato">*</label> <input type="hidden"
 											name="mem_id" class="form-control"
-											value="${MEMBER_LOGININFO.mem_id}" placeholder="Username">
+											value="${memberInfo.mem_id}" placeholder="Username">
 										<input type="text" name="mem_id" class="form-control"
 											placeholder="Username" disabled="disabled"
-											value="${MEMBER_LOGININFO.mem_id}">
+											value="${memberInfo.mem_id}">
 									</div>
 									<div class="form-group flex-column">
 										<label class="col-form-label form-control-label">이메일</label> <label
@@ -64,14 +64,14 @@ li a:hover:not(.active) {
 								</div>
 							<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
 								<div class="col">
-									<label class="col-form-label form-control-label">이름</label> <label
-										style="color: tomato">*</label>
+									<label class="col-form-label form-control-label">이름</label>
+									 <label style="color: tomato">*</label>
 								</div>
 								<div class="row">
 									<div class="col" style="margin: 0px 40px 0px 0px;">
 										 <input
 											style="" "type="text" class="form-control" id="mem_name"
-											name="mem_name" value="${MEMBER_LOGININFO.mem_name}" placeholder="">
+											name="mem_name" value="${memberInfo.mem_name}" placeholder="">
 									</div>						
 								</div>					
 								<br>
@@ -103,7 +103,7 @@ li a:hover:not(.active) {
 						</div>							
 						</div>
 						
-						<div class="pl-lg-2">
+						<div class="pl-lg-4">
 							<div class="row">
 								<div class="col-lg-4">
 									<div class="form-group flex-column">
@@ -135,14 +135,14 @@ li a:hover:not(.active) {
 									<label class="col-form-label form-control-label">알림 방식</label>
 										<label style="color: tomato">*</label></div>
 								<div class="row">
-									<div class="col">
-									 <div class="col"><button type="button" name="mem_notice" class="btn btn-primary"  data-toggle="button"><i class="ni ni-email-83"></i> 이메일</button></div>
-                     
-									</div>
-									<div class="col">	
-									 <div class="col"><button type="button" name="mem_notice"class="btn btn-primary"  data-toggle="button" ><i class="ni ni-email-83"></i>문자 메시지</button>
-									</div>
-									</div>
+									 <div class="custom-control custom-checkbox" style="margin: 0px 0px 0px 0px">
+                            <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck1" value="이메일">
+                            <label class="custom-control-label" for="customCheck1">이메일</label>
+                          </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									 <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck2" value="문자메시지">
+                            <label class="custom-control-label" for="customCheck2">문자 메시지</label>
+                          </div>
 								</div>
 
 							
@@ -193,11 +193,24 @@ li a:hover:not(.active) {
 					<br>
 					<h3 style="margin : 0px 0px 0px 20px;">파트너스</h3>
 						<hr/>
-						<div class="card-profile-image">
-						<img class="rounded-circle"
-							src="/${profileInfo1.profile_savename}">
-												
+						<div class="card-profile-image" style="margin : 50px 0px 0px 0px">
+						<img class="rounded-circle" 
+							src="/${profileInfo1.profile_savename}">				
 					</div>
+					<div
+				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+				<div class="d-flex justify-content-between"></div>
+			</div>
+					<div class="text-center">
+							<br>
+							<br>
+							<h5 class="h3">
+								<span class="font-weight-light"> <span
+									class="badge-md badge-pill badge-primary">파트너스</span></span><br>
+								<br> ${memberInfo.mem_id }
+								<br> ${memberInfo.mem_mail }
+							</h5>
+						</div>
 					<div class="card-body pt-0">
 						<div class="row">
 							<div class="col">
@@ -221,9 +234,7 @@ li a:hover:not(.active) {
 								<div style="margin : 10px 0px 10px 0px;">
 										
 											<li style="list-style-type: none;" ><a class="active" href="#home">기본정보수정</a></li>
-											<li style="list-style-type: none;"> <a href="#news">신원 인증</a></li>
-											<li style="list-style-type: none;"><a href="#contact">날인 방법 관리</a></li>
-											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id =" +mem_id ; >계좌 관리</a></li>
+											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" >계좌 관리</a></li>
 											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
 								
 									</div>
