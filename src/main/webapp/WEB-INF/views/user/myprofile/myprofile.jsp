@@ -1,52 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description"
-	content="Start your development with a Dashboard for Bootstrap 4.">
-<meta name="author" content="CONNECTOR">
-<title>Insert title here</title>
 
-<!-- Favicon -->
-<link rel="icon"
-	href="${pageContext.request.contextPath}/assets/img/brand/favicon.png"
-	type="image/png">
-<!-- Fonts -->
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-<!-- Icons -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
-	type="text/css">
-<!-- Page plugins -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
-<!-- Argon CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
-	type="text/css">
 <!-- Sweet Alerts -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
-
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-
-
-
 <style>
-
-
 li a {
 list-style-type: none;
     display: block;
@@ -67,26 +27,14 @@ li a:hover:not(.active) {
 	width:110%;
 	height: 110%
 }
-
 </style>
-</head>
-<body>
-
-
-
-
 		<!-- Main content -->
+		
 		<div class="row">
 			<div class="col-md-9">
 				<div class="card">
-
-					<div class="card-header">
-					
-
-							<h3 class="mb-0">회원 수정</h3>
-
-
-						
+					<div class="card-header">					
+							<h3 class="mb-0">회원 수정</h3>						
 					</div>
 					<div class="card-body" >
 					<form name=memberForm>
@@ -112,11 +60,8 @@ li a:hover:not(.active) {
 										<input type="text" name="mem_mail" class="form-control"
 											placeholder="Username" disabled="disabled"
 											value="${MEMBER_LOGININFO.mem_mail}">
-									</div>
-									
+									</div>									
 								</div>
-
-
 							<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
 								<div class="col">
 									<label class="col-form-label form-control-label">이름</label> <label
@@ -127,10 +72,9 @@ li a:hover:not(.active) {
 										 <input
 											style="" "type="text" class="form-control" id="mem_name"
 											name="mem_name" value="${MEMBER_LOGININFO.mem_name}" placeholder="">
-									</div>
-									
-								</div>
-								
+									</div>						
+								</div>					
+								<br>
 								
 									<div class="col">	
 									<label class="col-form-label form-control-label">휴대전화</label>
@@ -139,17 +83,17 @@ li a:hover:not(.active) {
 									<div class="col">
 									<input type="hidden" name="mem_tel" class="form-control" />
 									<select name="mem_tel1" class="form-control">
-									<option value="010">010</option>
+									<option value="${MemberInfoTel[0]}">010</option>
 														<option value="016">016</option>
 														<option value="017">017</option>
 														<option value="019">019</option>
 												</select>
 									</div>
 									<div class="col">	
-									<input type="text" name="mem_tel2" size="4" value=""class="form-control" />
+									<input type="text" name="mem_tel2" size="4" value="${MemberInfoTel[1]}"class="form-control" />
 									</div>
 									 <div class="col">
-									 		  <input type="text"name="mem_tel3" size="4" value="" class="form-control" />
+									 		  <input type="text"name="mem_tel3" size="4" value="${MemberInfoTel[2]}" class="form-control" />
 									 </div>
 								</div>
 
@@ -159,7 +103,7 @@ li a:hover:not(.active) {
 						</div>							
 						</div>
 						
-						<div class="pl-lg-4">
+						<div class="pl-lg-2">
 							<div class="row">
 								<div class="col-lg-4">
 									<div class="form-group flex-column">
@@ -172,41 +116,38 @@ li a:hover:not(.active) {
 										<label class="col-form-label form-control-label">비밀번호
 											확인</label> <label style="color: tomato">*</label> 
 										<input type="password" name="mem_pass1" class="form-control"
-											value="1234">
+											value="${memberInfo.mem_pass}">
 									</div>
 								</div>
-									<div class="col-lg-6" style="margin : 0px 0px 0px 80px;">
-									<div class="col">	
-									
-									
-									
-									<label class="col-form-label form-control-label">생년월일</label>
-										<label style="color: tomato">*</label></div>
-								
+									<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
+								<div class="col">
+									<label class="col-form-label form-control-label">생년월일</label> <label
+										style="color: tomato">*</label>
+								</div>
 								<div class="row">
+									<div class="col" style="margin: 0px 40px 0px 0px;">
+										      <input class="form-control datepicker" value="${memberInfo.mem_bir }"placeholder="Select date" type="text" id="today" name="mem_bir">										
+										</div>																			
+								</div>
+								<br>
 								
+									<div class="col">	
+									<label class="col-form-label form-control-label">알림 방식</label>
+										<label style="color: tomato">*</label></div>
+								<div class="row">
 									<div class="col">
-									
-									
-									<input
-											type="hidden" class="form-control" name="mem_bir" />
-												<input style="" "type="text" class="form-control"
-												id="mem_bir1" name="mem_bir1" value="${MEMBER_LOGININFO.mem_bir}"> 
-												
+									 <div class="col"><button type="button" name="mem_notice" class="btn btn-primary"  data-toggle="button"><i class="ni ni-email-83"></i> 이메일</button></div>
+                     
 									</div>
-									<div class="col">	<input
-												type="text" class="form-control" id="mem_bir2"
-												name="mem_bir2"  value="" placeholder="생년월일"></div>
-									 <div class="col">
-									 		<input
-												type="text" class="form-control" id="mem_bir3"
-												name="mem_bir3" placeholder="생년월일">
-									 </div>
-								   </div>
-								  
-								</div>		
-							</div>
+									<div class="col">	
+									 <div class="col"><button type="button" name="mem_notice"class="btn btn-primary"  data-toggle="button" ><i class="ni ni-email-83"></i>문자 메시지</button>
+									</div>
+									</div>
+								</div>
 
+							
+							</div>    									
+							</div>
 						</div>
 
 
@@ -215,6 +156,7 @@ li a:hover:not(.active) {
 						<div class="pl-lg-4">
 							<div class="row">
 								<div class="col-lg-4">
+								
 									<div class="form-group flex-column" style="margin:0px 20px 0px 0px;">
 										<label class="col-form-label form-control-label">주소</label> <label
 											style="color: tomato">*</label><br> <input type="button"
@@ -223,26 +165,15 @@ li a:hover:not(.active) {
 										<input type="hidden" class="form-control" name="mem_addr" />
 										<div class="input flex-column" style="display:">
 											<input type="text" class="form-control" id="addr1"
-												name="mem_addr1" placeholder="우편번호" required> 
-												<input type="text" class="form-control" name="mem_addr2" id="addr2"
+												name="mem_addr1" value="${MemberInfoaddr[0]}" placeholder="우편번호" required> 
+												<input type="text"  value="${MemberInfoaddr[1]}"  class="form-control" name="mem_addr2" id="addr2"
 												placeholder="도로명주소" required> 
-												<input type="text" class="form-control" name="mem_addr3" id="addr3" placeholder="지번주소" required> 
-												<input type="text" class="form-control" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required>
+												<input type="text" class="form-control" value="${MemberInfoaddr[2]}"  name="mem_addr3" id="addr3" placeholder="지번주소" required> 
+												<input type="text" class="form-control"  value="${MemberInfoaddr[3]}" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required>
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-3" style="margin : 0px 0px 0px 80px;">
-									<div class="col">	
-									<label class="col-form-label form-control-label">알림 방식</label>
-										<label style="color: tomato">*</label></div>
-								<div class="row">
-									<div class="col"><button type="button" name="mem_notice" class="btn btn-outline-primary"  data-toggle="button"><i class="ni ni-email-83"></i> 이메일</button></div>
-									<div class="col"><button type="button" name="mem_notice"class="btn btn-outline-primary"  data-toggle="button" ><i class="ni ni-email-83"></i>문자메시지</button>
-									 </div>
-									 
-								   </div>
-								  
-								</div>		
+								
 															
 							</div>
 							<button type="submit" class="btn btn-primary btn-write"
@@ -264,7 +195,7 @@ li a:hover:not(.active) {
 						<hr/>
 						<div class="card-profile-image">
 						<img class="rounded-circle"
-							src="/${profileInfo.profile_savename}">
+							src="/${profileInfo1.profile_savename}">
 												
 					</div>
 					<div class="card-body pt-0">
@@ -292,7 +223,7 @@ li a:hover:not(.active) {
 											<li style="list-style-type: none;" ><a class="active" href="#home">기본정보수정</a></li>
 											<li style="list-style-type: none;"> <a href="#news">신원 인증</a></li>
 											<li style="list-style-type: none;"><a href="#contact">날인 방법 관리</a></li>
-											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do">계좌 관리</a></li>
+											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id =" +mem_id ; >계좌 관리</a></li>
 											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
 								
 									</div>
@@ -336,6 +267,7 @@ li a:hover:not(.active) {
 	<script
 		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
 	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 	<!-- Argon JS -->
 	<script
 		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
@@ -343,6 +275,10 @@ li a:hover:not(.active) {
 	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
 	<script>
 	$(function() {
+
+							var a = "${memberInfo.mem_tel}";
+							var b = a.split("-");
+							
 		$('form[name=memberForm]')
 				.submit(
 						function() {
@@ -350,14 +286,13 @@ li a:hover:not(.active) {
 									.attr('action',
 											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
 
-							var mem_bir = $('input[name=mem_bir1]').val() + '-'
-									+ $('input[name=mem_bir2]').val() + '-'
-									+ $('input[name=mem_bir3]').val();
-							$('input[name=mem_bir]').val(mem_bir);
+							
+							
 
 							var mem_tel = $('select[name=mem_tel1]').val()
 									+ '-' + $('input[name=mem_tel2]').val()
 									+ '-' + $('input[name=mem_tel3]').val();
+							
 							$('input[name=mem_tel]').val(mem_tel);
 
 							var mem_addr = $('input[name=mem_addr1]').val()
@@ -366,9 +301,15 @@ li a:hover:not(.active) {
 									+ '-' + $('input[name=mem_addr4]').val();
 
 							$('input[name=mem_addr]').val(mem_addr);
-						});
+
+		});	
+		
+	
 	
 	});
+	 
+
+
 		
 	
 
@@ -443,6 +384,3 @@ li a:hover:not(.active) {
 	
 	
 </script>
-	
-</body>
-</html>

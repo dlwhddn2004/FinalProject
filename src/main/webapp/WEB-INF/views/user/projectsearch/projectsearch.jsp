@@ -106,6 +106,8 @@ function viewBoardInfo(e) {
 	location.href = "${pageContext.request.contextPath}/user/projectsearch/projectview.do?project_no=" + project_no + "&mem_id=" + mem_id ;
 }
 
+ 
+
 </script>
 </head>
 <body>
@@ -154,33 +156,34 @@ function viewBoardInfo(e) {
 					<br>
 					<div>
 						<label class="form-control-label" for="input-username">프로젝트
-							예상 금액</label><br> <label> <select name="project_budget" 
+							예상 금액</label><br> <label> 
+							<select name="project_budget" 
 							style="width: 150px;" class="form-control" style="width: 120px;">
 								<option value="금액선택">금액선택</option>
-								<option value="100만원">100만원</option>
-								<option value="200만원">200만원</option>
-								<option value="300만원">300만원</option>
-								<option value="400만원">400만원</option>
-								<option value="500만원">500만원</option>
-								<option value="600만원">600만원</option>
-								<option value="700만원">700만원</option>
-								<option value="800만원">800만원</option>
-								<option value="900만원">900만원</option>
-								<option value="1000만원">1000만원</option>
-								<option value="2000만원">2000만원</option>
-								<option value="3000만원">3000만원</option>
-								<option value="4000만원">4000만원</option>
-								<option value="5000만원">5000만원</option>
-								<option value="6000만원">6000만원</option>
-								<option value="7000만원">7000만원</option>
-								<option value="8000만원">8000만원</option>
-								<option value="9000만원">9000만원</option>
-								<option value="10,000만원">10,000만원</option>
-								<option value="50,000만원">50,000만원</option>
-						</select></label> <label> <select name="project_budget"  value="MONEY2" class="form-control"
+								<option value="100">100만원</option>
+								<option value="200">200만원</option>
+								<option value="300">300만원</option>
+								<option value="400">400만원</option>
+								<option value="500">500만원</option>
+								<option value="600">600만원</option>
+								<option value="700">700만원</option>
+								<option value="800">800만원</option>
+								<option value="900">900만원</option>
+								<option value="1000">1000만원</option>
+								<option value="2000">2000만원</option>
+								<option value="3000">3000만원</option>
+								<option value="4000">4000만원</option>
+								<option value="5000">5000만원</option>
+								<option value="6000">6000만원</option>
+								<option value="7000">7000만원</option>
+								<option value="8000">8000만원</option>
+								<option value="9000">9000만원</option>
+								<option value="10000">10,000만원</option>
+								<option value="50000">50,000만원</option>
+						</select></label> <label> <select name="project_budget1" id="money" class="form-control"
 							style="width: 150px;">
 								<option value="금액선택">금액선택</option>
-								<option value="100만원">100만원</option>
+								<option value="1001">100만원</option>
 								<option value="200만원">200만원</option>
 								<option value="300만원">300만원</option>
 								<option value="400만원">400만원</option>
@@ -223,7 +226,7 @@ function viewBoardInfo(e) {
 						<label class="form-control-label" for="input-username">관련
 							기술</label><br>
 						<!-- <input type='reset' class="img-button"> -->
-						<label> <select name="search_keyword3"  value="TECH" class="form-control"
+						<label> <select name="project_technologies"  class="form-control"
 							style="width: 150px;" style="width: 120px;">
 								<option value="기술선택">기술선택</option>
 								<option value="angular">angular</option>
@@ -290,8 +293,7 @@ function viewBoardInfo(e) {
 													</p>
 													<p class="mb-0">
 														<i class="far fa-clock"></i> <span>예상 기간</span> <span
-															class="mb-0">${item.project_duration }일 </span> <br>
-											
+															class="mb-0">${item.project_duration }일 </span> <br>										
 													 <label class="form-control-label"
 														for="input-username">${item.project_note } </label><br>
 													<span class="badge badge-info">${item.project_processstatus } </span> | <span
@@ -299,12 +301,9 @@ function viewBoardInfo(e) {
 														class="fas fa-map-marker-alt"></i><span class="mb-0"
 														style="font-size: 0.8em;"> ${item.project_clientlocation }</span> | <span
 														class="mb-0" style="font-size: 0.8em;">${item.project_startdate }</span>
-
-													</p>
-													
+													</p>		
 												</div>
 												</div>
-
 											</td>
 									<td><div class="flex">
 													<div class="pp">
@@ -331,9 +330,7 @@ function viewBoardInfo(e) {
 							</c:forEach>
 						</tbody>
 					</table>
-					<div align="right" style="padding: 15px 15px 0px 0px;">
-						<button type="button" class="btn btn-primary btn-write">등록</button>
-					</div>
+				
 				</div>
 			</div>
 		</div>

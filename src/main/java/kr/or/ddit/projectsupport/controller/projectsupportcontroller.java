@@ -17,10 +17,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.projectsupport.service.IProjectSupportService;
+import kr.or.ddit.utiles.Coolsms;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.projectapplyVO;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -131,6 +133,7 @@ public class projectsupportcontroller {
 		 				 		 		 
 	 }
 	
+	
 	@RequestMapping("mailForm")
 	public ModelAndView mailForm(ModelAndView modelAndView) throws Exception {
 		projectSupportService.sendMail("iai6203@gmail.com", "CONNECTOR 인증 메일 입니다.", "테스트 이메일입니다.");
@@ -139,4 +142,41 @@ public class projectsupportcontroller {
 
 		return modelAndView;
 	}
+	  @RequestMapping("sms")
+	  public String sendSms(HttpServletRequest request) throws Exception {
+
+	    String api_key = "";
+	    String api_secret = "";
+	    Coolsms coolsms = new Coolsms(api_key, api_secret);
+
+	    HashMap<String, String> set = new HashMap<String, String>();
+	    set.put("to", "01024996002"); // 수신번호
+
+	    set.put("from", (String)request.getParameter("from")); // 발신번호
+	    set.put("text", (String)request.getParameter("text")); // 문자내용
+	    set.put("type", "sms"); // 문자 타입
+
+	    System.out.println(set);
+
+	    JSONObject result = coolsms.send(set);
+
+	    if ((boolean)result.get("status") == true) {
+	      // 메시지 보내기 성공 및 전송결과 출력
+	      System.out.println("성공");
+
+	      System.out.println(result.get("result_code")); // 결과코드
+	      System.out.println(result.get("result_message")); // 결과 메시지
+	      System.out.println(result.get("success_count")); // 메시지아이디
+	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	    } else {
+	      // 메시지 보내기 실패
+	      System.out.println("실패");
+	      System.out.println(result.get("code")); // REST API 에러코드
+	      System.out.println(result.get("message")); // 에러메시지
+	    }
+
+	    return "redirect:/user/projectsupport/projectsupport1.do";
+	  }
+	  
+	  
 }

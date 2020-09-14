@@ -1,147 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<!-- Favicon -->
 
-<script>
-$(function(){
-	   
-	   
-	   $('form[name=memberForm]').submit(function(){
-	      $(this).attr('action', '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
-	     
-	     
-	   }); 
-	   });
-</script>
-<html>
+<!-- Sweet Alerts -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+
 <style>
-.btn-primary {
-      
-    width:100px; 
-    margin: -20px -50px; 
-    position:relative;
-    top:50%; 
-    left:40%;
+
+
+li a {
+list-style-type: none;
+    display: block;
+    color: #000;
+    padding: 20px 16px;
+  
 }
-
-.card-profile {
-	width : 100%;
- 	height : 100%;
- 
+li a.active {
+    background-color: #819FF7;
+    color: white;
 }
-.card{
- display: table; margin-left: auto; margin-right: auto; display: inline-block;
-
+li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
 }
- .card-body {
- display: table; margin-left: auto; margin-right: auto; display: inline-block;   
- 
- width : 40%;
- 	height : 30%;
-
-} 
-img{
-
-  float : left;
+.ui{
+	
+	width:110%;
+	height: 110%
 }
 
 </style>
-<head>
-<head>
-
-  <!-- Favicon -->
-  <link rel="icon" href="${pageContext.request.contextPath}/assets/img/brand/favicon.png" type="image/png">
-  <!-- Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
-  <!-- Icons -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/nucleo/css/nucleo.css" type="text/css">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Argon CSS -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
-</head>
-<link rel="stylesheet" herf="${pageContext.request.contextPath}/assets/dropzone-4.3.0/dist/dropzone.css">
-<title>Insert title here</title>
 </head>
 <body>
-<form name="memberForm" method="post">
- <!-- Main content -->
-  <div class="main-content" id="panel">
-    <!-- Topnav -->
 
-      <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-           
-             
-    </nav>
-    <!-- Header -->
-    <!-- Header -->
-    
-    <!-- Page content -->
-    
-      <div class="row">
-       
-          <!-- Progress track -->
-          <div class="card">
-            <!-- Card header -->
-      
-              <!-- Title -->
-             
-          </div>
-        </div>
 
-                <!-- Card body -->
-           
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-              <div class="align-items-center">
-                <div class="col-8">
-                <h3>계좌관리</h3>
-                  <h3 class="text-muted mb-0">프로젝트 대금을 지급받을 계좌 정보를 등록해주세요.</h3>
-                </div>
-             
-              </div>
-            </div>
-            <div class="card-body">
-          <img src="${pageContext.request.contextPath}/assets/img/theme/p2.png" >
-        <!--   <h1>계좌 등록</h1> -->
-              
-                <div class="pl-lg-4">
-                  <div class="cx">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                <h6 class="heading-small text-muted mb-2">계좌 등록</h6>
-                        <label class="form-control-label" for="input-username">은행명</label>
-                         
-                         <select name="mem_bank" class="form-control">
-            <option value="은행선택">은행선택</option>
-            <option value="한국산업은행">한국산업은행</option>                       
-            <option value="기업은행">기업은행</option>                       
-            <option value="국민은행">국민은행</option>                       
-            <option value="우리은행">우리은행</option>                       
-            <option value="신한은행">신한은행</option>                       
-            <option value="하나은행">하나은행</option>                       
-            <option value="농협">농협</option>                       
-            <option value="단위농협">단위농협</option>                       
-            <option value="SC은행">SC은행</option>                       
-            <option value="외환은행">외환은행</option>                       
-            <option value="한국씨티은행">한국씨티은행</option>                       
-            <option value="우체국">우체국</option>                       
-            <option value="경남은행">경남은행</option>                       
-            <option value="광주은행">광주은행</option>                       
-            <option value="대구은행">대구은행</option>                       
-         </select> 
-                      </div>
-                    </div>
-                   
-                  
-                    <div class="col-lg-6">
+
+
+		<!-- Main content -->
+		<div class="row">
+			<div class="col-md-9">
+				<div class="card">
+
+					<div class="card-header">
+					
+
+							<h3 class="mb-0">계좌 등록</h3>
+
+
+						
+					</div>
+					<div class="card-body" >
+					<form name=memberForm>
+						<h6 class="heading-small text-muted mb-4">* 프로젝트 대금을 지급받을 계좌 정보를 등록해주세요.</h6>
+						<div class="pl-lg-4">
+							<div class="row">
+								<div class="col-lg-4" style="width: 100px;  margin: 0 auto;">
+								   <img src="${pageContext.request.contextPath}/assets/img/theme/p2.png" >
+									<div class="col-lg-6">
+									<div class="form-group">
+										<h6 class="heading-small text-muted mb-2">계좌 등록</h6>
+										<label class="form-control-label" for="input-username">은행명</label>
+
+										<select name="mem_bank" class="form-control">
+											<option value="은행선택">은행선택</option>
+											<option value="한국산업은행">한국산업은행</option>
+											<option value="기업은행">기업은행</option>
+											<option value="국민은행">국민은행</option>
+											<option value="우리은행">우리은행</option>
+											<option value="신한은행">신한은행</option>
+											<option value="하나은행">하나은행</option>
+											<option value="농협">농협</option>
+											<option value="단위농협">단위농협</option>
+											<option value="SC은행">SC은행</option>
+											<option value="외환은행">외환은행</option>
+											<option value="한국씨티은행">한국씨티은행</option>
+											<option value="우체국">우체국</option>
+											<option value="경남은행">경남은행</option>
+											<option value="광주은행">광주은행</option>
+											<option value="대구은행">대구은행</option>
+										</select>
+									</div>
+								</div>
+
+				<div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">예금주</label>
                    <input type="hidden" name="mem_id" class="form-control" value="${MEMBER_LOGININFO.mem_id}" placeholder="Username"> 
@@ -150,67 +93,126 @@ img{
                         <input type="text" id="mem_bankname" class="form-control"   value="${MEMBER_LOGININFO.mem_bankname}"  name="mem_bankname">
                       </div>
                     </div>
-                  <div>
-                  
-                  
-                    <div class="col-lg-6">
+						<div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">계좌 번호</label>
                         <input type="text" id="input-first-name" value="${MEMBER_LOGININFO.mem_bankno}" name="mem_bankno" id="mem_bankno2"class="form-control" placeholder="" value="Lucky">
                       <label class="form-control-label" for="input-username">'-'를 제외하고 입력하시오</label>
-                      </div>
+                      </div>                     
                     </div>
-                    </form>
-                   
-               
-                
-   
-                    </div>
-                    <br>
-                    </div>
-    				    <button type="submit"  class="btn btn-primary btn-write" id="btn3" >등록</button>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-	
-                  </div>
-                         <div>
+							</div>
+							
+															
+							</div>
+							<button type="submit" class="btn btn-primary btn-write"
+										id="btn3" style="float: right";>변경</button>
+						</div>	
+						</form>
+						<div class="form-row">
+							<div class="col-md-6 mb-3"></div>
+							<div class="col-md-3 mb-3"></div>
+							<div class="col-md-3 mb-3"></div>
 						</div>
-                  
-                  
-                 
-                  </div>
-                </div>
-               
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-   </form>
-  <!-- Argon Scripts -->
-  <!-- Core -->
- 
-  <script src="${pageContext.request.contextPath}/assets/vendor/jquery/dist/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/js-cookie/js.cookie.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-   <script src="${pageContext.request.contextPath}/assets/vendor/dropzone/dist/min/dropzone.min.js"></script>
-  <!-- Argon JS -->
-  <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
-  <!-- Demo JS - remove this in your project -->
-  <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
-</body>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card card-profile">					
+					<br>
+					<h3 style="margin : 0px 0px 0px 20px;">파트너스</h3>
+						<hr/>
+						<div class="card-profile-image">
+						<img class="rounded-circle"
+							src="/${profileInfo.profile_savename}">
+												
+					</div>
+					<div class="card-body pt-0">
+						<div class="row">
+							<div class="col">
+								<div class="text-center">
+									<br> <br>
+									<h5 class="h3"></h5>
+								</div>
+								<div class="card-profile-stats d-flex justify-content-center">
 
-</html>
-</body>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
 
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-md-13">
+					<div class="card card-profile">											
+						<div class="card-body pt-0">
+								<div style="margin : 10px 0px 10px 0px;">
+										
+											<li style="list-style-type: none;" ><a href="#home">기본정보수정</a></li>
+											<li style="list-style-type: none;"> <a href="#news">신원 인증</a></li>
+											<li style="list-style-type: none;"><a href="#contact">날인 방법 관리</a></li>
+											<li style="list-style-type: none;"><a class="active" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do">계좌 관리</a></li>
+											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
+								
+									</div>
+						</div>
+
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+	<!-- Argon Scripts -->
+	<!-- Core -->
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery/dist/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/js-cookie/js.cookie.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
+	<!-- Optional JS -->
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+	<script src="${pageContext.request.contextPath }/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<!-- Argon JS -->
+	<script
+		src="${pageContext.request.contextPath }/assets/js/argon.js?v=1.2.0"></script>
+	<!-- Demo JS - remove this in your project -->
+	<script src="${pageContext.request.contextPath }/assets/js/demo.min.js"></script>
+	<script>
+	$(function() {
+
+		$('form[name=memberForm]')
+				.submit(
+						function() {
+							$(this)
+									.attr('action',
+											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
+						});
+	
+	});
+
+	
 </script>
-
-
-</html>

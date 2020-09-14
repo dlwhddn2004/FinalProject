@@ -148,6 +148,9 @@
 			<isNotEmpty prepend="," property="mem_bankno"> 
 			mem_bankno = #mem_bankno#
 			</isNotEmpty>
+			<isNotEmpty prepend="," property="mem_name"> 
+			mem_name = #mem_name#
+			</isNotEmpty>
 	
 </dynamic>
 		WHERE mem_id = #mem_id#

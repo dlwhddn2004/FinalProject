@@ -279,21 +279,120 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 				</isEqual>
 			</isNotEmpty>
 			<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="100만원">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_clientlocation">
-			<isEqual property="project_budget" compareValue="200만원">
+			<isEqual property="project_budget" compareValue="100">
 				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
 				</isEqual>
 			</isNotEmpty>
 				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="300만원">
+			<isEqual property="project_budget" compareValue="200">
 				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
 				</isEqual>
 			</isNotEmpty>
-			
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="300">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="400">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="500">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="600">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="700">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="800">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="900">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="1000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="2000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="2000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="3000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="4000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="5000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="6000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="7000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="8000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="9000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="10000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget">
+			<isEqual property="project_budget" compareValue="50000">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+				<isNotEmpty property="project_budget1">
+			<isEqual property="project_budget1" compareValue="1001">
+				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
+				</isEqual>
+			</isNotEmpty>
+					<isNotEmpty property="project_technologies">
+			<isEqual property="project_technologies" compareValue="angular">
+				 PROJECT_TECHNOLOGIES LIKE '%'||#project_technologies#||'%'
+				</isEqual>
+			</isNotEmpty>
 		</dynamic>
 
 </select>

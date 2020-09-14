@@ -2,9 +2,10 @@
 package kr.or.ddit.myprofile.controller;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class myprofileController {
 	@Autowired
 	private IMemberService service;
 	@Autowired
-	private IProfileFileService profileService;
+	private IProfileFileService profileservice;
 	@Autowired
 	private IMemberDAO dao;
 	
@@ -43,18 +44,38 @@ public class myprofileController {
 	
 	
 	 @RequestMapping("myprofile")
-	  public ModelAndView myprofile(ModelAndView modelAndView, String mem_id) throws Exception{
+	  public ModelAndView myprofile(ModelAndView modelAndView, String mem_id,HttpServletRequest request) throws Exception{
 		 Map<String, String> params = new HashMap<String, String>();
 		 params.put("mem_id", mem_id);
 		 
-		 ProfileFileVO profileInfo = profileService.selectProfileFileInfo(params);
-		 MemberVO memberInfo = service.memberInfo(params);
+		 ProfileFileVO profileInfo = profileservice.selectProfileFileInfo(params);
+		 MemberVO memberInfo = this.service.memberInfo(params);
 		 
-		
-		 modelAndView.addObject("profileInfo",profileInfo);
+		 modelAndView.addObject("profileInfo1",profileInfo);
 		 modelAndView.addObject("memberInfo", memberInfo);
 		 
+		 String temp = memberInfo.getMem_tel();
+		 String[] tempString = temp.split("-");
+		 
+		 List<String> MemberInfoTel = new ArrayList<String>();
+		 for (int i = 0; i < tempString.length; i++) {
+			 MemberInfoTel.add(tempString[i]);
+		}
+		 
+		 String temp1 = memberInfo.getMem_addr();
+		 String[] tempString1 = temp1.split("-");
+		 
+		 List<String> MemberInfoaddr = new ArrayList<String>();
+		 for (int i = 0; i < tempString1.length; i++) {
+			 MemberInfoaddr.add(tempString1[i]);
+		}
+		 
+		 modelAndView.addObject("MemberInfoTel", MemberInfoTel);
+		 modelAndView.addObject("MemberInfoaddr", MemberInfoaddr);
+		 
+		 
 		 modelAndView.setViewName("user/myprofile/myprofile");
+		
 		 
 		 return modelAndView;
 	 }
@@ -62,7 +83,7 @@ public class myprofileController {
 	 
 	
 @RequestMapping("updateMemberInfo")	
-		public String updateMember(MemberVO memberInfo, ProfileFileVO profileInfo
+		public String updateMember(MemberVO memberInfo
 				  ) throws Exception{
 this.service.updateMemberInfo(memberInfo);
 
@@ -106,7 +127,14 @@ public String memberDelete(HttpServletRequest request,
 }
 
 @RequestMapping("myprofilebank")
-  public void myprofilebank(){} 
+  public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id){
+	
+	Map<String, String> params = new HashMap<String, String>();
+	params.put("mem_id", mem_id);
+	
+	
+	return modelAndView;
+} 
   
 
 

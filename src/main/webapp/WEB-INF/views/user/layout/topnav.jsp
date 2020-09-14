@@ -253,7 +253,7 @@
                   </div>
                   <a href="${pageContext.request.contextPath }/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}" class="dropdown-item"> <i class="ni ni-single-02"></i>
                      <span>My profile</span>
-                  </a> <a href="${pageContext.request.contextPath }/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="dropdown-item"> <i
+                  </a> <a href="${pageContext.request.contextPath }/user/myprofile/myprofile.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="dropdown-item"> <i
                      class="ni ni-settings-gear-65"></i> <span>Settings</span>
                   </a> <a href="#!" class="dropdown-item"> <i
                      class="ni ni-calendar-grid-58"></i> <span>Activity</span>
