@@ -144,7 +144,6 @@ public class projectsupportcontroller {
 	}
 	  @RequestMapping("sms")
 	  public String sendSms(HttpServletRequest request) throws Exception {
-
 	    String api_key = "";
 	    String api_secret = "";
 	    Coolsms coolsms = new Coolsms(api_key, api_secret);
@@ -155,8 +154,6 @@ public class projectsupportcontroller {
 	    set.put("from", (String)request.getParameter("from")); // 발신번호
 	    set.put("text", (String)request.getParameter("text")); // 문자내용
 	    set.put("type", "sms"); // 문자 타입
-
-	    System.out.println(set);
 
 	    JSONObject result = coolsms.send(set);
 

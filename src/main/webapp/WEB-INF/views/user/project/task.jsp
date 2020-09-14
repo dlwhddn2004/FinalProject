@@ -314,11 +314,7 @@
 				"change",
 				".select-project",
 				function() {
-					let
-					project_no = $('.select-project').select2('val');
-					project_no = project_no.substring(
-							project_no.indexOf(':') + 2, project_no
-									.indexOf('이') - 1);
+					let project_no = $('.select-project').select2('val');
 
 					loadManager(project_no);
 				});
@@ -328,11 +324,7 @@
 				"change",
 				".select-manager",
 				function() {
-					let
-					project_no = $('.select-project').select2('val');
-					project_no = project_no.substring(
-							project_no.indexOf(':') + 2, project_no
-									.indexOf('이') - 1);
+					let project_no = $('.select-project').select2('val');
 
 					let manager = $('.select-manager').select2('val');
 
