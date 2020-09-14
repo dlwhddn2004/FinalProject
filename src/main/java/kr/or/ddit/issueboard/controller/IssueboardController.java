@@ -45,12 +45,14 @@ public class IssueboardController {
 		List<IssueJoinVO> issueboardList = this.issueboardService
 				.issueboardList(params);
 		
-		modelView.addObject("breadcrumb_title", "뉴스 센터");
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
+		modelView.addObject("breadcrumb_title", "프로젝트");
 		modelView.addObject("breadcrumb_first", "이슈 게시판");
 		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/issueboard/issueboardList.do?project_no=" + project_no);
 		
-		
 		modelView.addObject("issueboardList", issueboardList);
+		modelView.addObject("projectInfo", projectInfo);
 		modelView.setViewName("user/issueboard/issueboardList");
 
 		return modelView;
@@ -62,7 +64,7 @@ public class IssueboardController {
 									   ModelAndView modelView,
 									   String project_no) throws Exception{
 		
-		modelView.addObject("breadcrumb_title", "뉴스 센터");
+		modelView.addObject("breadcrumb_title", "프로젝트");
 		modelView.addObject("breadcrumb_first", "이슈 게시판");
 		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/issueboard/issueboardList.do?project_no=" + project_no);
 		modelView.addObject("breadcrumb_second", "이슈 게시글 등록");
@@ -77,7 +79,7 @@ public class IssueboardController {
 			String mem_id, String project_no, HttpServletRequest request)
 			throws Exception {
 		
-		modelView.addObject("breadcrumb_title", "뉴스 센터");
+		modelView.addObject("breadcrumb_title", "프로젝트");
 		modelView.addObject("breadcrumb_first", "이슈 게시판");
 		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/issueboard/issueboardList.do?project_no=" + project_no);
 		modelView.addObject("breadcrumb_second", "이슈 게시글 보기");

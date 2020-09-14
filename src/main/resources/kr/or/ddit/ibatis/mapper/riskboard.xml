@@ -76,54 +76,60 @@
 		where  PROJECT.PROJECT_NO = #project_no# -->	
 	</sql>
 	
-	<select id="issueboardList" resultClass="RiskjoinVO" parameterClass="map">
+	<select id="riskboardList" resultClass="RiskjoinVO" parameterClass="map">
 		<include refid="selectAll"/>
 	</select>
 	
-	<!-- <select id="issueboardInfo" resultClass="IssuejoinVO" parameterClass="map">
+	<select id="riskboardInfo" resultClass="RiskboardVO" parameterClass="map">
 		SELECT ROWNUM r, A.*, B.*
-		FROM ISSUE_BOARD A, PROJECT B
+		FROM RISKMANAGEMENT_BOARD A, PROJECT B
 		WHERE A.PROJECT_NO = B.PROJECT_NO
 		AND B.PROJECT_NO = #project_no# 
-		AND ISSUE_NO = #issue_no# 
+		AND RISK_NO = #risk_no# 
 	
 	</select>
 	
-	<insert id="insertIssueboard" parameterClass="IssueboardVO">
-		<selectKey keyProperty="issue_no" resultClass="string">
-		SELECT ISSUE_BOARD_SEQ.nextval FROM DUAL
+	<insert id="insertRiskboard" parameterClass="RiskboardVO">
+		<selectKey keyProperty="risk_no" resultClass="string">
+		SELECT RISKMANAGEMENT_BOARD_SEQ.nextval FROM DUAL
 		</selectKey>
-		INSERT INTO ISSUE_BOARD(ISSUE_NO,
+		INSERT INTO RISKMANAGEMENT_BOARD(RISK_NO,
 							    PROJECT_NO,
 								MEM_ID,
-								ISSUE_TITLE,
-								ISSUE_CONTENT,
-								ISSUE_REGDATE)
-						 VALUES(#issue_no#,
+								RISK_TITLE,
+								RISK_CONTENT,
+								RISK_REGDATE,
+								RISK_HIT,
+								RISK_ERRORSTATUS)
+						 VALUES(#risk_no#,
 						 		#project_no#,
 						 		#mem_id#,
-						 		#issue_title#,
-						 		#issue_content#,
-						 		SYSDATE)						
+						 		#risk_title#,
+						 		#risk_content#,
+						 		SYSDATE,
+						 		0,
+						 		#risk_errorstatus#)						
 	</insert>
 	
-	<update id="updateIssueboard" parameterClass="IssueJoinVO">
-		UPDATE ISSUE_BOARD SET  ISSUE_TITLE = #issue_title#,
-                         		ISSUE_CONTENT = #issue_content#
-		WHERE ISSUE_NO = #issue_no#
+	<update id="updateRiskboard" parameterClass="RiskboardVO">
+		UPDATE RISKMANAGEMENT_BOARD SET  RISK_TITLE = #risk_title#,
+                         		RISK_CONTENT = #risk_content#
+		WHERE RISK_NO = #risk_no#
 	</update>
 	
-	<delete id="deleteIssueboard" parameterClass="map">
-		DELETE ISSUE_BOARD WHERE ISSUE_NO = #issue_no#
+	<delete id="deleteRiskboard" parameterClass="map">
+		DELETE RISKMANAGEMENT_BOARD WHERE RISK_NO = #risk_no#
 	</delete>
 	
 	<update id="updatehit" parameterClass="map">
-		UPDATE ISSUE_BOARD SET ISSUE_HIT = ISSUE_HIT + 1
-		WHERE ISSUE_NO = #issue_no#
-	</update> -->
+		UPDATE RISKMANAGEMENT_BOARD SET RISK_HIT = RISK_HIT + 1
+		WHERE RISK_NO = #risk_no#
+	</update>
+	
+	<update id="updateErrorStatus" parameterClass="RiskboardVO">
+		UPDATE RISKMANAGEMENT_BOARD SET  RISK_ERRORSTATUS = '오류 해결'
+		WHERE RISK_NO = #risk_no#
+	</update>
 	
 </sqlMap>
-
- 
-
 

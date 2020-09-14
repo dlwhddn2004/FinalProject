@@ -69,11 +69,6 @@
 		FROM ISSUE_BOARD A, PROJECT B
 		WHERE A.PROJECT_NO = B.PROJECT_NO
 		AND B.PROJECT_NO = #project_no#
-		
-		<!-- select ISSUE_BOARD.*, PROJECT.*
-		from ISSUE_BOARD
-    	join PROJECT on ISSUE_BOARD.PROJECT_NO = PROJECT.PROJECT_NO
-		where  PROJECT.PROJECT_NO = #project_no# -->	
 	</sql>
 	
 	<select id="issueboardList" resultClass="IssuejoinVO" parameterClass="map">

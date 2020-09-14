@@ -42,15 +42,15 @@
 			   #mem_id#,
 			   #comment_content#,
 			   SYSDATE,
-			   RISKMANAGEMENT_BOARD_COMMENT_SEQ.nextval)	
+			   RISK_BOARD_COMMENT_SEQ.nextval)	
 	</insert>
 	
-	<!-- <delete id="deleteissueComment" parameterClass="map">
-		DELETE ISSUE_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
+	<delete id="deleteriskComment" parameterClass="map">
+		DELETE RISKMANAGEMENT_BOARD_COMMENT WHERE COMMENT_SEQ = #comment_seq#
 	</delete>
 	
-	<update id="updateissueComment" parameterClass="map">
-		UPDATE ISSUE_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content#
+	<update id="updateriskComment" parameterClass="map">
+		UPDATE RISKMANAGEMENT_BOARD_COMMENT SET COMMENT_CONTENT = #comment_content#
 		WHERE COMMENT_SEQ = #comment_seq#
-	</update> -->
+	</update> 
 </sqlMap>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.riskboard.service.IRiskboardService;
 import kr.or.ddit.vo.ProfileFileVO;
 import kr.or.ddit.vo.RiskJoinVO;
@@ -30,6 +31,8 @@ public class RiskboardController{
 	private IRiskboardService riskboardservice;
 	@Autowired
 	private IProfileFileService profileservice;
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("riskboardList")
 	public ModelAndView riskList(HttpServletRequest request,
@@ -42,7 +45,14 @@ public class RiskboardController{
 		
 		List<RiskJoinVO> riskboardList = this.riskboardservice.riskboardList(params);
 		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
+		modelView.addObject("breadcrumb_title", "프로젝트");
+		modelView.addObject("breadcrumb_first", "위험 관리 게시판");
+		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/riskboard/riskboardList.do?project_no=" + project_no);
+		
 		modelView.addObject("riskboardList", riskboardList);
+		modelView.addObject("projectInfo", projectInfo);
 		modelView.setViewName("user/riskboard/riskboardList");
 		
 		return modelView;
@@ -52,6 +62,11 @@ public class RiskboardController{
 	public ModelAndView riskboardForm(HttpServletRequest request,
 									  ModelAndView modelView,
 									  String project_no) throws Exception{
+		
+		modelView.addObject("breadcrumb_title" , "프로젝트");
+		modelView.addObject("breadcrumb", "위험 관리 게시판");
+		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/riskboard/riskboardList.do?project_no=" + project_no);
+		modelView.addObject("breadcrumb_second", "위험 관리 게시글 등록");
 		
 		modelView.setViewName("user/riskboard/riskboardForm");
 		
@@ -65,6 +80,12 @@ public class RiskboardController{
 									  String project_no,
 									  String risk_errorstatus,
 									  HttpServletRequest request) throws Exception{
+		
+		modelView.addObject("breadcrumb_title", "프로젝트");
+		modelView.addObject("breadcrumb_first", "위험 관리 게시판");
+		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/riskboard/riskboardList.do?project_no=" + project_no);
+		modelView.addObject("breadcrumb_second", "위험 관리 게시글 보기");
+		
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("risk_no", risk_no);

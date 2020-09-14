@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,9 +77,7 @@
 		const mem_id = $(e).find('input[name=mem_id]').val();
 		const project_no = $(e).find('input[name=project_no]').val();
 		
-		
-		location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardView.do?issue_no=" + issue_no + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=" + project_no;
-		
+			location.href = "${pageContext.request.contextPath}/user/issueboard/issueboardView.do?issue_no=" + issue_no + "&mem_id=${MEMBER_LOGININFO.mem_id}" + "&project_no=" + project_no;
 		
 	}
 </script>
@@ -134,7 +133,6 @@
 				<!-- Card header -->
 				<div class="card-header">
 					<h3 class="mb-0">이슈 게시판</h3>
-					<p class="text-sm mb-0">우수한 프로젝트 사례 게시판입니다.</p>
 				</div>
 				<div class="table-responsive py-4">
 					<table class="table table-flush datatable-basic">
@@ -162,7 +160,7 @@
 									<td>${item.r }<input type="hidden" name="issue_no" value="${item.issue_no }"></td>
 									<td>${item.issue_title }</td>
 									<td>${item.mem_id }<input type="hidden" name="mem_id" value="${item.mem_id }"></td>
-									<td>${item.issue_regdate }</td>
+									<td>${fn:split(item.issue_regdate,' ')[0]}</td>
 									<td>${item.issue_hit }</td>
 									<input type="hidden" name="project_no" value="${item.project_no }">
 								</tr>

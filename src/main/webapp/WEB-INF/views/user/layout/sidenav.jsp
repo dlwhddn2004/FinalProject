@@ -164,7 +164,7 @@
               <div class="collapse" id="navbar-forms">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="../../pages/forms/elements.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/noticeboard/noticeboardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 공지 </span>
                       <span class="sidenav-normal"> 공지 사항 </span>
                     </a>
