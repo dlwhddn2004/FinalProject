@@ -39,4 +39,11 @@ public class ProjectApplyServiceImpl implements IProjectApplyService {
 			throws Exception {
 		return dao.selectProjectApplyInfo(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> chkDuplicate(Map<String, String> params)
+			throws Exception {
+		return dao.chkDuplicate(params);
+	}
 }

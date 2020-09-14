@@ -118,4 +118,22 @@ public class ProjectApplyController {
 		
 		return projectApplyService.selectProjectApplyInfo(params);
 	}
+	
+	@RequestMapping("chkDuplicate")
+	@ResponseBody
+	public boolean chkDuplicate(String project_no,
+								String mem_id) throws Exception {
+		Boolean result = true;
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id", mem_id);
+		
+		Map<String, String> applyInfo = projectApplyService.chkDuplicate(params);
+		if (applyInfo != null) {
+			result = false;
+		}
+		
+		return result;
+	}
 }

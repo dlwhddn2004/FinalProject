@@ -12,4 +12,6 @@ import kr.or.ddit.vo.SuccessBoardVO;
 public interface IProjectApplyService {
 	public int insertProjectApplyInformation(Map<String, String> params) throws Exception;
 	public Map<String, String> selectProjectApplyInfo(Map<String, String> params) throws Exception;
+	
+	public Map<String, String> chkDuplicate(Map<String, String> params) throws Exception;
 }

@@ -50,4 +50,17 @@ public class IntervieweeServiceImpl implements IIntervieweeService {
 	public boolean failInterviewee(Map<String, String> params) throws Exception {
 		return dao.failInterviewee(params);
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> selectSuccessInterviewee(String project_no)
+			throws Exception {
+		return dao.selectSuccessInterviewee(project_no);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public Boolean assignRole(Map<String, String> params) throws Exception {
+		return dao.assignRole(params);
+	}
 }

@@ -136,7 +136,6 @@
 			        <div class="tab-content tab3-btn" id="myTabContent">
 			            <div class="tab-pane fade show active tab-tab1" id="final-tabs-icons-text-1" role="tabpanel" aria-labelledby="final-tabs-icons-text-1-tab">
 			            	<!-- 명단 -->
-			            	<!-- 작업 중! -->
 							<div class="card">
 							  <!-- Card header -->
 							  <div class="card-header border-0">
@@ -189,6 +188,60 @@
 			            </div>
 			            <div class="tab-pane fade tab-tab2" id="final-tabs-icons-text-2" role="tabpanel" aria-labelledby="final-tabs-icons-text-2-tab">
 			            	<!-- 최종 합격자 -->
+							<div class="card">
+							  <!-- Card header -->
+							  <div class="card-header border-0">
+							    <div class="row">
+							      <div class="col-6">
+							      </div>
+							      <div class="col-6 text-right">
+							      	<div>
+							      		
+							      	</div>
+							      	<div>
+							      		<small class="text-muted">최종 합격자에게 역할을 배정해주세요.</small>
+							      	</div>
+							      </div>
+							    </div>
+							  </div>
+							  <!-- Light table -->
+							  <div class="table-responsive success-interviewee-table">
+							    <table class="table align-items-center table-flush">
+							      <thead class="thead-light">
+							        <tr>
+							          <th>이름</th>
+							          <th>이메일</th>
+							          <th>최종 평가 등급</th>
+							          <th></th>
+							        </tr>
+							      </thead>
+							      <tbody>
+<!-- 							        <tr> -->
+<!-- 							          <td class="table-user"> -->
+<!-- 							            <img src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle mr-3"> -->
+<!-- 							            <b>김재석</b> -->
+<!-- 							          </td> -->
+<!-- 							          <td> -->
+<!-- 							            <span class="text-muted">iai6203@gmail.com</span> -->
+<!-- 							          </td> -->
+<!-- 							          <td> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="fas fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							            <i class="far fa-star" style="color: #ff4a1c;"></i> -->
+<!-- 							          </td> -->
+<!-- 							          <td class="table-actions"> -->
+<!-- 							            <a class="table-action assign-role-btn" data-toggle="tooltip" data-original-title="역할 배정" style="cursor: pointer;"> -->
+<!-- 							              <i class="fas fa-briefcase"></i> -->
+<!-- 							              <input type="hidden" name="mem_id" value=""> -->
+<!-- 							            </a> -->
+<!-- 							          </td> -->
+<!-- 							        </tr> -->
+							      </tbody>
+							    </table>
+							  </div>
+							</div>
 			            </div>
 			        </div>
 			    </div>
@@ -200,7 +253,58 @@
   </div>
 </div>
 
-
+<!-- 역할 배정 모달 -->
+<!-- 작업 -->
+<div class="row">
+  <div class="col-md-4">
+    <div class="modal fade" id="assign-role-modal" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+      <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-body p-0">
+            <div class="card bg-secondary border-0 mb-0">
+              <div class="card-header bg-transparent">
+                <h2 class="font-weight-bold">역할 배정</h2>
+                <small class="text-muted">앞으로 같이 일하게 될 디벨로퍼에게 역할을 배정해주세요.</small>
+              </div>
+              <div class="card-body">
+                <div>
+                  <a href="#!">
+                    <img src="" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 140px;">
+                  </a>
+                  <div class="pt-4 text-center">
+                    <h5 class="h3 title">
+                      <span class="d-block mb-1 mem_name"></span>
+                      <small class="h4 font-weight-light text-muted">Web Developer</small>
+                    </h5>
+                  </div>
+                  <div>
+                    <div style="display: flex; justify-content: center;">
+                      <div style="width: 100px;">
+                        <select class="form-control role-select" data-toggle="select" data-placeholder="역할">
+                        </select>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <small class="text-muted">배정할 역할을 선택해주세요.</small>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: center; margin: 10px 0px 0px 0px;">
+                  <div style="margin: 0px 10px 0px 0px">
+                    <button type="button" class="btn btn-outline-primary btn-add--event">배정</button>
+                  </div>
+                  <div style="margin: 0px 0px 0px 10px">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">취소</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- 모달 캘린더 등록 -->
 <div class="modal fade modal-interview-add" id="new-event" tabindex="-1" role="dialog"
@@ -826,13 +930,13 @@
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
-<script src="${pageContext.request.contextPath}/js/interview/interview_partners.js"></script>
-
 <script>
   /**
       초기 설정 Init
   */
   loadApplyList();
+  
+  let var_mem_id = '';
   
   $('.information-card1 .row-gender').hide();
   $('.information-card1 .row-birth').hide();
@@ -957,8 +1061,6 @@
   }
 
   // <신청자 명단>
-  
-  let var_mem_id = '';
   
   // 1. 인포그래픽 표시
   function loadInfographicModal(e) {
@@ -1445,4 +1547,449 @@
 		  loadConfirmApplyList();
 	  }
   });
+  
+  
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  
+$('#tabs-icons-text-2-tab').on('click', function() {
+	const currentSelectedTab = $('.tab3-btn .active').attr('class');
+	
+	if (currentSelectedTab.indexOf('tab-tab1') != -1) {
+		loadTabTab1();
+	} else if (currentSelectedTab.indexOf('tab-tab2') != -1) {
+		loadSuccessIntervieweeList();
+	}
+});
+  
+$('#final-tabs-icons-text-1-tab').on('click', function() {
+	loadTabTab1();
+});
+
+$('#final-tabs-icons-text-2-tab').on('click', function() {
+	loadSuccessIntervieweeList();
+});
+
+function loadTabTab1() {
+	const project_no = $('input[name=project_no_hidden]').val();
+	$.ajax({
+		url: '/CONNECTOR/user/interviewee/loadTabTab1.do',
+	    type: 'POST',
+	    async: false,
+	    data: {
+	    	project_no: project_no,
+	    },
+	    success: function (data) {
+	    	$('.tab-tab1 tbody').empty();
+	    	$.each(data, function(index, item) {
+	    		let rateHTML = '';
+	    		if (4 <= item.AVG && item.AVG <= 7) {
+		    		rateHTML = '' +
+		    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+	    		} else if (9 <= item.AVG && item.AVG <= 11) {
+		    		rateHTML = '' +
+		    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+	    		} else if (12 <= item.AVG && item.AVG <= 14) {
+		    		rateHTML = '' +
+		    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+	    		} else if (15 <= item.AVG && item.AVG <= 17) {
+		    		rateHTML = '' +
+		    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+	    		} else if (18 <= item.AVG && item.AVG <= 20) {
+		    		rateHTML = '' +
+		    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+		            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n';
+	    		}
+	    		
+	    	    const textHTML = '\t\t\t\t\t\t\t        <tr>\n' +
+	            '\t\t\t\t\t\t\t          <td class="table-user">\n' +
+	            '\t\t\t\t\t\t\t            <b>' + item.MEM_NAME + '</b>\n' +
+	            '\t\t\t\t\t\t\t          </td>\n' +
+	            '\t\t\t\t\t\t\t          <td>\n' +
+	            '\t\t\t\t\t\t\t            <span class="text-muted">' + item.MEM_MAIL + '</span>\n' +
+	            '\t\t\t\t\t\t\t          </td>\n' +
+	            '\t\t\t\t\t\t\t          <td>\n' +
+	            rateHTML +
+	            '\t\t\t\t\t\t\t          </td>\n' +
+	            '\t\t\t\t\t\t\t          <td>\n' +
+	            '\t\t\t\t\t\t\t            <label class="custom-toggle">\n' +
+	            '\t\t\t\t\t\t\t              <input type="checkbox" value="' + item.MEM_ID + '">\n' +
+	            '\t\t\t\t\t\t\t              <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>\n' +
+	            '\t\t\t\t\t\t\t            </label>\n' +
+	            '\t\t\t\t\t\t\t          </td>\n' +
+	            '\t\t\t\t\t\t\t        </tr>';
+	    	    
+	    	    $('.tab-tab1 tbody').append(textHTML);
+	    	});
+	    },
+	    error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	    }
+	});
+}
+
+function loadTabTab2() {
+	$.ajax({
+		url: '/CONNECTOR/user/',
+	    type: 'POST',
+	    async: false,
+	    data: {
+	    	s
+	    },
+	    success: function (data) {
+	    	
+	    },
+	    error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	    }
+	});
+}
+
+$('.tab-tab1 .btn-interview-success').on('click', function() {
+	const tr_arr = $('.tab-tab1 tbody tr');
+	
+	let result_arr = [];
+	$.each(tr_arr, function(idx, item) {
+		const val = $(item).find('input[type=checkbox]:checked').val();
+		
+		if (val != undefined) {
+			result_arr.push(val);
+		}
+	});
+	
+	let result_str = result_arr.join(',');
+	
+	if (result_arr.length == 0) {
+		Swal.fire(
+		  '경고',
+		  '먼저 면접자를 선택해주세요.',
+		  'warning'
+		);
+		
+		return;
+	}
+	
+	const project_no = $('input[name=project_no_hidden]').val();
+	Swal.fire({
+	  title: '합격',
+	  text: "선택한 면접자를 합격시키겠습니까?",
+	  icon: 'success',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '확인',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+		  $.ajax({
+			url: '/CONNECTOR/user/interviewee/confirmInterviewee.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    	mem_id_all: result_str
+		    },
+		    success: function (data) {
+		    	if (data) {
+		    		Swal.fire(
+    				  '성공',
+    				  '선택한 면접자가 합격 처리 되었습니다.',
+    				  'success'
+    				);
+		    		
+		    		loadTabTab1();
+		    	} else {
+		    		Swal.fire(
+    				  '에러',
+    				  '면접자를 합격시키는 과정에서 에러 발생!',
+    				  'danger'
+    				);
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		  });
+	  }
+	});
+});
+
+$('.tab-tab1 .btn-interview-fail').on('click', function() {
+	const tr_arr = $('.tab-tab1 tbody tr');
+	
+	let result_arr = [];
+	$.each(tr_arr, function(idx, item) {
+		const val = $(item).find('input[type=checkbox]:checked').val();
+		
+		if (val != undefined) {
+			result_arr.push(val);
+		}
+	});
+	
+	let result_str = result_arr.join(',');
+	
+	if (result_arr.length == 0) {
+		Swal.fire(
+		  '경고',
+		  '먼저 면접자를 선택해주세요.',
+		  'warning'
+		);
+		
+		return;
+	}
+	
+	const project_no = $('input[name=project_no_hidden]').val();
+	Swal.fire({
+	  title: '탈락',
+	  text: "선택한 면접자를 탈락시키겠습니까?",
+	  icon: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '확인',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+		  $.ajax({
+			url: '/CONNECTOR/user/interviewee/failInterviewee.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no,
+		    	mem_id_all: result_str
+		    },
+		    success: function (data) {
+		    	if (data) {
+		    		Swal.fire(
+    				  '성공',
+    				  '선택한 면접자가 탈락 처리 되었습니다.',
+    				  'success'
+    				);
+		    		
+		    		loadTabTab1();
+		    	} else {
+		    		Swal.fire(
+    				  '에러',
+    				  '면접자를 탈락시키는 과정에서 에러 발생!',
+    				  'danger'
+    				);
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		  });
+	  }
+	});
+});
+
+
+///////////////////////////////////////// 역할 배정 ///////////////////////////////////////// 
+function loadSuccessIntervieweeList() {
+	  const project_no = $('input[name=project_no_hidden]').val();
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interviewee/selectSuccessInterviewee.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: project_no
+		    },
+		    success: function (data) {
+		    	$('.success-interviewee-table tbody').empty();
+		    	
+		    	$.each(data, function(idx, item) {
+		    		let rateHTML = '';
+		    		if (4 <= item.AVG && item.AVG <= 7) {
+			    		rateHTML = '' +
+			    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+		    		} else if (9 <= item.AVG && item.AVG <= 11) {
+			    		rateHTML = '' +
+			    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+		    		} else if (12 <= item.AVG && item.AVG <= 14) {
+			    		rateHTML = '' +
+			    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+		    		} else if (15 <= item.AVG && item.AVG <= 17) {
+			    		rateHTML = '' +
+			    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="far fa-star" style="color: #ff4a1c;"></i>\n';
+		    		} else if (18 <= item.AVG && item.AVG <= 20) {
+			    		rateHTML = '' +
+			    		'<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n' +
+			            '<i class="fas fa-star" style="color: #ff4a1c;"></i>\n';
+		    		}
+		    		
+		    	    const textHTML = '\t\t\t\t\t\t\t        <tr>\n' +
+		            '\t\t\t\t\t\t\t          <td class="table-user">\n' +
+		            '\t\t\t\t\t\t\t            <img src="/' + item.PROFILE_SAVENAME + '" class="avatar rounded-circle mr-3">\n' +
+		            '\t\t\t\t\t\t\t            <b>' + item.MEM_NAME + '</b>\n' +
+		            '\t\t\t\t\t\t\t          </td>\n' +
+		            '\t\t\t\t\t\t\t          <td>\n' +
+		            '\t\t\t\t\t\t\t            <span class="text-muted">' + item.MEM_MAIL + '</span>\n' +
+		            '\t\t\t\t\t\t\t          </td>\n' +
+		            '\t\t\t\t\t\t\t          <td>\n' +
+		            rateHTML +
+		            '\t\t\t\t\t\t\t          </td>\n' +
+		            '\t\t\t\t\t\t\t          <td class="table-actions">\n' +
+		            '\t\t\t\t\t\t\t            <a class="table-action assign-role-btn" data-toggle="tooltip" data-original-title="역할 배정" style="cursor: pointer;" onclick="loadAssignModal(this);">\n' +
+		            '\t\t\t\t\t\t\t              <i class="fas fa-briefcase"></i>\n' +
+		            '\t\t\t\t\t\t\t              <input type="hidden" name="mem_id" value="' + item.MEM_ID + '">\n' +
+		            '\t\t\t\t\t\t\t            </a>\n' +
+		            '\t\t\t\t\t\t\t          </td>\n' +
+		            '\t\t\t\t\t\t\t        </tr>';
+		            
+		    	    $('.success-interviewee-table tbody').append(textHTML);
+		    	});
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+}
+
+function loadAssignModal(e) {
+	  // 실행되기 전 정보를 조회해서 모달창 세팅!
+	  const mem_id = $(e).find('input[name=mem_id]').val();
+	  var_mem_id = mem_id;
+	  const project_no = '${param.project_no}';
+	  
+	  $.ajax({
+		  url: '/CONNECTOR/user/interviewee/loadAssignModalInfo.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: '${param.project_no }',
+		    	mem_id: mem_id
+		    },
+		    success: function (data) {
+		    	$('#assign-role-modal .rounded-circle').attr('src', '/' + data.memberInfo.PROFILE_SAVENAME);
+		    	$('#assign-role-modal .mem_name').text(data.memberInfo.MEM_NAME);
+		    	
+		    	$('#assign-role-modal .role-select').empty();
+		    	if (data.projectInfo.PL == null) {
+		    		$('#assign-role-modal .role-select').append('<option>PL</option>');
+		    	} else {
+		    		$('#assign-role-modal .role-select').append('<option disabled>PL (배정됨)</option>');
+		    	}
+		    	if (data.projectInfo.TA == null) {
+		    		$('#assign-role-modal .role-select').append('<option>TA</option>');
+		    	} else {
+		    		$('#assign-role-modal .role-select').append('<option disabled>TA (배정됨)</option>');
+		    	}
+		    	if (data.projectInfo.DA == null) {
+		    		$('#assign-role-modal .role-select').append('<option>DA</option>');
+		    	} else {
+		    		$('#assign-role-modal .role-select').append('<option disabled>DA (배정됨)</option>');
+		    	}
+		    	if (data.projectInfo.UA == null) {
+		    		$('#assign-role-modal .role-select').append('<option>UA</option>');
+		    	} else {
+		    		$('#assign-role-modal .role-select').append('<option disabled>UA (배정됨)</option>');
+		    	}
+		    	if (data.projectInfo.AA == null) {
+		    		$('#assign-role-modal .role-select').append('<option>AA</option>');
+		    	} else {
+		    		$('#assign-role-modal .role-select').append('<option disabled>AA (배정됨)</option>');
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+	  });
+	  
+	  $('#assign-role-modal').modal('show');
+};
+
+// 작업
+$('#assign-role-modal .btn-add--event').on('click', function() {
+	const selectedValue = $('#assign-role-modal .role-select').select2('val');
+	const mem_id = var_mem_id;
+	const project_no = '${param.project_no}';
+
+	if (selectedValue == null) {
+		Swal.fire(
+		  '경고',
+		  '배정할 역할을 선택해주세요.',
+		  'warning'
+		);
+		
+		return;
+	}
+	
+	$.ajax({
+	    url: '/CONNECTOR/user/interviewee/assignRole.do',
+	    type: 'POST',
+	    async: false,
+	    data: {
+	    	project_no: project_no,
+	    	mem_id: mem_id,
+	    	selectedValue: selectedValue
+	    },
+	    success: function (data) {
+	    	if (data) {
+	    		Swal.fire(
+   				  '성공',
+   				  '해당 면접자에게 역할이 배정되었습니다.',
+   				  'info'
+   				);
+	    	} else {
+	    		Swal.fire(
+   				  '에러',
+   				  '역할을 배정하는 중 에러 발생!',
+   				  'danger'
+   				);
+	    	}
+	    	
+	    	loadSuccessIntervieweeList();
+	    	$('#assign-role-modal').modal('hide');
+	    },
+	    error: function (xhr, err) {
+	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	        alert("responseText: " + xhr.responseText);
+	    }
+	});
+});
 </script>

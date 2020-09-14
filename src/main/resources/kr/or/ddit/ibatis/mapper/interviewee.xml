@@ -32,4 +32,68 @@
 		WHERE PROJECT_NO = #project_no#
 		AND MEM_ID = #mem_id#
 	</delete>
+	
+	<select id="selectSuccessInterviewee" parameterClass="String" resultClass="java.util.HashMap">
+		SELECT MEMBER.MEM_ID,
+		       CATEGORY_NO,
+		       NOTIFICATION_NO,
+		       MEM_PASS,
+		       MEM_NAME,
+		       MEM_MAIL,
+		       MEM_ADDR,
+		       MEM_TEL,
+		       MEM_BANKNO,
+		       MEM_BUSINESSNO,
+		       MEM_IDENTITYAUTHENTICATION,
+		       MEM_BIR,
+		       MEM_BANKNAME,
+		       MEM_BANK,
+		       MEM_WORKSTATUS,
+		       MEM_NOTICE,
+		       PROFILE_SEQ,
+		       PROFILE_SAVENAME,
+		       PROFILE_REALNAME,
+		       PROFILE_CONTENTTYPE,
+		       PROFILE_SIZE,
+		       PROFILE_REGDATE,
+		       PROFILE_DOWNHIT,
+		       INTERVIEWEE_SEQ,
+		       PROJECT_NO,
+		       INTERVIEWEE_PASSION,
+		       INTERVIEWEE_ABILITY,
+		       INTERVIEWEE_RESOLUTION,
+		       INTERVIEWEE_STRATEGY,
+		       INTERVIEWEE_RELATIONSHIP,
+		       STRUCTURE_SCORE,
+		       INTERVIEWEE_STATUS
+		FROM MEMBER,
+		     PROFILE_FILE,
+		     INTERVIEWEE
+		WHERE MEMBER.MEM_ID = PROFILE_FILE.MEM_ID
+		  AND MEMBER.MEM_ID = INTERVIEWEE.MEM_ID
+		  AND (INTERVIEWEE.INTERVIEWEE_STATUS = 'Y'
+		      AND INTERVIEWEE.PROJECT_NO = #project_no#)
+	</select>
+	
+	<update id="updateProjectParticipants" parameterClass="map">
+		UPDATE PROJECT_PARTICIPANTS SET
+		<dynamic>
+			<isEqual property="selectedValue" compareValue="PL">
+				PL = #mem_id#
+			</isEqual>
+			<isEqual property="selectedValue" compareValue="TA">
+				TA = #mem_id#
+			</isEqual>
+			<isEqual property="selectedValue" compareValue="DA">
+				DA = #mem_id#
+			</isEqual>
+			<isEqual property="selectedValue" compareValue="UA">
+				UA = #mem_id#
+			</isEqual>
+			<isEqual property="selectedValue" compareValue="AA">
+				AA = #mem_id#
+			</isEqual>
+		</dynamic>
+		WHERE PROJECT_NO = #project_no#
+	</update>
 </sqlMap>

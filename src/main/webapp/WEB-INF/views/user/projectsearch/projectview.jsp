@@ -284,6 +284,29 @@
 			return;
 		}
 		
-		location.href='${pageContext.request.contextPath}/user/interview/projectApplyForm.do?project_no=${param.project_no}&mem_id=${MEMBER_LOGININFO.mem_id}';
+		$.ajax({
+			url: '/CONNECTOR/user/projectApply/chkDuplicate.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	project_no: '${param.project_no }',
+		    	mem_id: '${MEMBER_LOGININFO.mem_id }'
+		    },
+		    success: function (data) {
+		    	if (!data) {
+					Swal.fire(
+					  'WARNING',
+					  '이미 신청한 프로젝트입니다.',
+					  'warning'
+					)
+		    	} else {
+		    		location.href='${pageContext.request.contextPath}/user/interview/projectApplyForm.do?project_no=${param.project_no}&mem_id=${MEMBER_LOGININFO.mem_id}';
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
 	});
 </script>

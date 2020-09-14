@@ -43,6 +43,8 @@ public class IntervieweeController {
 	private IIntervieweeService intervieweeService;
 	@Autowired
 	private IMemberService memberService;
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("updateInterviewee")
 	@ResponseBody
@@ -133,5 +135,68 @@ public class IntervieweeController {
 		params.put("mem_id_all", mem_id_all);
 		
 		return intervieweeService.failInterviewee(params);
+	}
+	
+	@RequestMapping("selectSuccessInterviewee")
+	@ResponseBody
+	public List<Map<String, String>> selectSuccessInterviewee(String project_no) throws Exception {
+		
+		List<Map<String, String>> successIntervieweeList = intervieweeService.selectSuccessInterviewee(project_no);
+		
+		for (Map<String, String> item : successIntervieweeList) {
+			String mem_id = String.valueOf(item.get("MEM_ID"));
+			
+			// MEMBER의 평균 등급을 계산
+			int rateAvg = 0;
+			String[] category_arr = {"INTERVIEWEE_PASSION", "INTERVIEWEE_ABILITY", "INTERVIEWEE_RESOLUTION", "INTERVIEWEE_STRATEGY", "INTERVIEWEE_RELATIONSHIP"};
+			for (int i = 0; i < category_arr.length; i++) {
+				String category_name = category_arr[i];
+				
+				if ((String.valueOf(item.get(category_name))).equals("A")) {
+					rateAvg += 4;
+				} else if ((String.valueOf(item.get(category_name))).equals("B")) {
+					rateAvg += 3;
+				} else if ((String.valueOf(item.get(category_name))).equals("C")) {
+					rateAvg += 2;
+				} else if ((String.valueOf(item.get(category_name))).equals("D")) {
+					rateAvg += 1;
+				}
+			}
+			
+			item.put("AVG", String.valueOf(rateAvg));
+		}
+		
+		return successIntervieweeList;
+	}
+	
+	@RequestMapping("loadAssignModalInfo")
+	@ResponseBody
+	public Map<String, Object> loadAssignModalInfo(String project_no,
+												   String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id", mem_id);
+		
+		Map<String, String> memberInfo = memberService.selectMemberInfo(params);
+		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("memberInfo", memberInfo);
+		resultMap.put("projectInfo", projectInfo);
+		
+		return resultMap;
+	}
+	
+	@RequestMapping("assignRole")
+	@ResponseBody
+	public Boolean assignRole(String project_no,
+							  String mem_id,
+							  String selectedValue) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		params.put("mem_id", mem_id);
+		params.put("selectedValue", selectedValue);
+		
+		return intervieweeService.assignRole(params);
 	}
 }

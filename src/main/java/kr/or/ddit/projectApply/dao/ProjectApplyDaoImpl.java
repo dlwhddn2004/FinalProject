@@ -42,4 +42,10 @@ public class ProjectApplyDaoImpl implements IProjectApplyDao {
 			throws Exception {
 		return (Map<String, String>) client.queryForObject("projectApplyInfo.selectProjectApplyInfo", params);
 	}
+
+	@Override
+	public Map<String, String> chkDuplicate(Map<String, String> params)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("projectApplyInfo.selectApplyInfo", params);
+	}
 }

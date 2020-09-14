@@ -70,4 +70,25 @@ public class IntervieweeDaoImpl implements IIntervieweeDao {
 		
 		return result;
 	}
+
+	@Override
+	public List<Map<String, String>> selectSuccessInterviewee(String project_no)
+			throws Exception {
+		return client.queryForList("interviewee.selectSuccessInterviewee", project_no);
+	}
+
+	@Override
+	public Boolean assignRole(Map<String, String> params) throws Exception {
+		boolean result = true;
+		
+		int chk1 = client.delete("interviewee.deleteInterviewee", params);
+		
+		int chk2 = client.update("interviewee.updateProjectParticipants", params);
+		
+		if (!(chk1 > 0 && chk2 > 0)) {
+			result = false;
+		}
+		
+		return result;
+	}
 }

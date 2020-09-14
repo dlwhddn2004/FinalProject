@@ -20,4 +20,8 @@ public interface IIntervieweeService {
 	public boolean confirmInterviewee(Map<String, String> params) throws Exception;
 	
 	public boolean failInterviewee(Map<String, String> params) throws Exception;
+	
+	public List<Map<String, String>> selectSuccessInterviewee(String project_no) throws Exception;
+	
+	public Boolean assignRole(Map<String, String> params) throws Exception;
 }

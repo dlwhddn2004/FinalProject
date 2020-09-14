@@ -68,4 +68,11 @@
 		WHERE PROJECT_NO = #project_no#
 		AND MEM_ID = #mem_id#
 	</select>
+	
+	<select id="selectApplyInfo" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT_APPLY
+		WHERE PROJECT_NO = #project_no#
+		AND MEM_ID = #mem_id#
+	</select>
 </sqlMap>
