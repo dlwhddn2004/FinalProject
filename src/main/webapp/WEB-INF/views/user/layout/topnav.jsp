@@ -357,19 +357,23 @@
                   </div>
                 </div>
               </div>
-              <form name="regist" class="needs-validation" novalidate action="${pageContext.request.contextPath}/user/member/insertMember.do" method="post">
+<%--               <form name="regist" class="needs-validation" novalidate action="${pageContext.request.contextPath}/user/member/insertMember.do" method="post"> --%>
+              <form name="regist" class="needs-validation" novalidate method="post">
                   <div class="mb-3">
                     <label class="form-control-label" for="validationCustom01">아이디</label>
-                    <input type="text" class="form-control" id="validationCustom01" placeholder="connector123" required="" pattern="^[a-z0-9]{4,12}$" name="mem_id">
+                    <input type="text" class="form-control" id="validationCustom01" placeholder="connector123" required pattern="^[A-Za-z0-9]{4,12}$" name="mem_id" onkeyup="">
                     <div class="invalid-feedback">
                       	아이디는 영 소문자, 숫자 4~12자리로 입력해주세요.
+                    </div>
+                    <div class="invalid-feedback idcheck">
+                      	중복된 아이디입니다. 
                     </div>
                   </div>
                   <div class="mb-3">
                     <label class="form-control-label" for="validationCustom02">이메일</label>
                     <div class="input-group">
                       <input type="email" class="form-control" id="validationCustom02" placeholder="aaa@connector.com" required="" name="mem_mail">
-                      <button type="button" class="btn btn-outline-default">인증</button>
+                      <button type="button" id="mail_confirm" class="btn btn-outline-default" onclick="mailCheck()">인증</button>
                     </div>
                     <div class="invalid-feedback">
                       	이메일 형식에 맞게 입력해주세요.
@@ -377,7 +381,7 @@
                   </div>
                   <div class="mb-3">
                     <label class="form-control-label" for="validationCustomUsername">이메일 인증번호</label>
-                    <input type="text" class="form-control" id="validationCustomUsername" placeholder="인증번호" aria-describedby="inputGroupPrepend" required="">
+                    <input type="text" class="form-control" name="mail_confirm" id="validationCustomUsername" placeholder="인증번호" aria-describedby="inputGroupPrepend" required="">
                     <div class="invalid-feedback">
                      	 인증번호를 바르게 입력해 주세요.
                     </div>
@@ -413,7 +417,8 @@
                     </div>
                 </div>
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button>
+<!--                   <button type="submit" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button> -->
+                  <button type="button" class="btn btn-primary my-4" id="btnRegistMember">회원가입</button>
                 </div>
               </form>
             </div>
@@ -433,6 +438,8 @@
 		<script type="text/javascript">
 		
 		$(function() {
+			$('.idcheck').hide();
+			
 			$('#btnLogin').click(function() {
 				var mem_id = $('input[name=login_id]').val();
 				var mem_pass = $('input[name=login_pass]').val();
@@ -462,14 +469,29 @@
 			
 			
             $('#btnRegistMember').on('click', function() {
-            	category = $('input[name=category]:checked').val();
-            	pass = $('input[name=password]').val();
-
+            	invalidClass = $('form[name=regist] .form-control:invalid').length;
             	
-				$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
-				$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
-				$('form[name=regist]').append($inputCAT);
-				$('form[name=regist]').append($inputPass);
+            	if(invalidClass > 0){
+    				Swal.fire(
+    						'Warning',
+    						'회원 정보를 바르게 입력해 주세요.',
+    						'warning'
+    					)
+    					return;
+            	}else{
+	            	category = $('input[name=category]:checked').val();
+	            	pass = $('input[name=password]').val();
+	
+	            	
+					$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
+					$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
+					$('form[name=regist]').append($inputCAT);
+					$('form[name=regist]').append($inputPass);
+					
+					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
+					$('form[name=regist]').submit();
+
+            	}
 			});
             
             $('#btnLogout').on('click', function() {
@@ -504,8 +526,6 @@
    				 }
    			 });	
 			}
-
-    		
             
             
 		});
@@ -548,6 +568,56 @@
 	
 	password.onchange = validatePassword;
 	confirm_password.onkeyup = validatePassword;
+	
+	$('input[name=mem_id]').keyup(function() {
+		var inputID = document.getElementById("validationCustom01");
+		
+		$.ajax({
+    		type : 'POST',
+    		url : '${pageContext.request.contextPath}/user/member/selectMemberInfoJSON.do',
+    		dataType : 'json',
+    		data : {
+    			mem_id : $('input[name=mem_id]').val()
+    		},
+    		success : function(data) {
+    			$('input[name=mem_id]').css("border-color", "#fb6340");
+    			$('.idcheck').show();
+			},
+			error : function(xhr, err) {
+				$('input[name=mem_id]').css("border-color", "#2dce89");
+				$('.idcheck').hide();
+			}
+    	});
+	})
+	
+	function mailCheck() {
+		Swal.fire(
+				'info',
+				'인증번호가 발송되었습니다.',
+				'info'
+			)
+		memMailConfirm = document.getElementById("validationCustomUsername");
+		$.ajax({
+    		type : 'POST',
+    		url : '${pageContext.request.contextPath}/user/member/mailConfirm.do',
+    		dataType : 'json',
+    		data : {
+    			mem_mail : $('input[name=mem_mail]').val()
+    		},
+    		success : function(data) {
+    			$('input[name=mail_confirm]').keyup(function() {
+    				if ($('input[name=mail_confirm]').val() != data){
+    					memMailConfirm.setCustomValidity("Passwords Don't Match");
+    				}else{
+    					memMailConfirm.setCustomValidity("");
+    				}
+    			})
+			},
+			error : function(xhr, err) {
+				
+			}
+    	});
+	}
   </script>
 
 

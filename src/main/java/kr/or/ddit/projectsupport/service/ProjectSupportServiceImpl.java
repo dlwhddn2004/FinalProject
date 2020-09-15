@@ -25,4 +25,10 @@ public class ProjectSupportServiceImpl implements IProjectSupportService {
 	public String sendMail(String to, String title, String content) throws Exception {
 		return dao.sendMail(to, title, content);
 	}
+
+	@Override
+	public int generateRandNum(int length) throws Exception {
+		return dao.generateRandNum(length);
+	}
+	
 }

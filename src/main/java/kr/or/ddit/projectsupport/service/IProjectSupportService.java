@@ -13,4 +13,6 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface IProjectSupportService {
 	public String sendMail(String to, String title, String content) throws Exception;
+	
+	public int generateRandNum(int length) throws Exception;
 }
