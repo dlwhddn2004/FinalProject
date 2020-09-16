@@ -187,12 +187,6 @@
                       <span class="sidenav-normal"> 프로젝트 성공 사례 </span>
                     </a>
                   </li>
-                    <li class="nav-item">
-                    <a href="../../pages/forms/validation.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> 소식 </span>
-                      <span class="sidenav-normal"> 소식 게시판 </span>
-                    </a>
-                  </li>
                 </ul>
               </div>
             </li>
