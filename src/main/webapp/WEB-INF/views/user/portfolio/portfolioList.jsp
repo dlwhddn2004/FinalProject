@@ -464,6 +464,7 @@
 	    $('.developSpan').text(developSpan);
 	    $('.developSmall').text(developSmall);
 	    
+	    let skill_check = 0;
 	    
 		$('.inserBtn').on('click',function(){
 			
@@ -476,6 +477,34 @@
 						
 						return;
 			}
+			
+			if(${!empty MEMBER_LOGININFO}){
+				$.ajax({
+					url : "${pageContext.request.contextPath}/user/mypage/mypageTechnologiesCheck.do",
+					data : {mem_id : "${MEMBER_LOGININFO.mem_id}" },
+					dataType: "json",
+					type : "POST",
+					error : function(error){
+						alert(error);
+					},
+					success : function(result){
+						console.log(result);
+						if(result.MYPAGE_TECHNOLOGIES == null){
+							 skill_check = 1;
+						}
+					}
+				});
+			}
+			
+			if(skill_check == 1){
+				Swal.fire(
+						  'Warning',
+						  '포트폴리오 작성은 보유 기술 등록 후 이용하실 수 있습니다.',
+						  'warning'
+						)
+						return;
+			}
+			
 			
 			location.href ="${pageContext.request.contextPath}/user/portfolio/portfolioForm.do";
 		});  

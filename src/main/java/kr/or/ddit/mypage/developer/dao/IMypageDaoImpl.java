@@ -1,6 +1,7 @@
 ﻿package kr.or.ddit.mypage.developer.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.vo.Mypage_memberVO;
@@ -59,5 +60,33 @@ public class IMypageDaoImpl implements IMypageDao {
 			throws Exception {
 		client.insert("mypageDeverloper.insertAll", mypageInfo);
 		
+	}
+
+	@Override
+	public List<Map<String, String>> projectTechnologiesChart(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("mypageDeverloper.projectTechnologiesChart", params);
+	}
+
+	@Override
+	public List<Map<String, String>> portfolioMypageList(
+			Map<String, String> params) throws Exception {
+		return client.queryForList("mypageDeverloper.portfolioMypageList",params);
+	}
+
+	@Override
+	public Map<String, String> mypageTechnologiesCheck(
+			Map<String, String> params) throws Exception {
+		return (Map<String, String>) client.queryForObject("mypageDeverloper.mypageTechnologiesCheck", params);
+	}
+
+	@Override
+	public int updateTechnologies(Map<String, String> params) throws Exception {
+		return client.update("mypageDeverloper.updateTechnologies", params);
+	}
+
+	@Override
+	public void updateTechnologiesCount(Map<String,String> params) throws Exception {
+		client.update("mypageDeverloper.updateTechnologiesCount", params);
 	}
 }

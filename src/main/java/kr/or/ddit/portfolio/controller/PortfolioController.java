@@ -216,7 +216,8 @@ public class PortfolioController {
 	
 	
 	@RequestMapping("updateportfolio")
-	public String updatePortfolio(PortFolioVO portfolioInfo ,@RequestParam("files") MultipartFile[] items) throws Exception{
+	public String updatePortfolio(PortFolioVO portfolioInfo ,@RequestParam("files") MultipartFile[] items
+			,String mainImage, String sub_profile1, String sub_profile2) throws Exception{
 		
 		List<FileItemVO> list =  attachFileMapperTest.mapper(items);
 		portfolioInfo.setPortfolio_thumbnailimg(list.get(0).getFile_save_name());

@@ -59,7 +59,7 @@
 	
 	<select id="selectMypageInfo" parameterClass="map" resultClass="mypageVO">
 		<include refid="selectMypage"/>
-		WHERE MEM_ID =#mem_id# and mypage_no= #mypage_no#
+		WHERE MEM_ID =#mem_id#
 	</select>
 	
 	<update id="modifyMyabout" parameterClass="mypageVO">
@@ -96,6 +96,50 @@
 			#mypage_techworkmanship#
 			)
 	</insert>
+	
+	
+	
+	<select id="projectTechnologiesChart" parameterClass="map" resultClass="java.util.HashMap">
+		select a.PROJECT_TECHNOLOGIES PROJECT_TECHNOLOGIES ,count(a.PROJECT_TECHNOLOGIES) SUM
+		from project a, PROJECT_PARTICIPANTS b
+		where a.PROJECT_NO = b.PROJECT_NO
+		and (b.PL = #mem_id# or b.TA = #mem_id# or  b.AA= #mem_id# or b.DA=#mem_id# or b.UA=#mem_id#)
+		group by a.PROJECT_TECHNOLOGIES
+	</select>
+	
+	<select id="portfolioMypageList" parameterClass="map" resultClass="java.util.HashMap">
+	select PORTFOLIO.MEM_ID mem_id,
+       PORTFOLIO_NO,
+       to_char(PORTFOLIO_REGDATE, 'YYYY-MM-dd') PORTFOLIO_REGDATE,
+       PORTFOLIO_TECHNOLOGIES,
+       PORTFOLIO_THUMBNAILIMG,
+       PORTFOLIO_NAME
+
+	from PORTFOLIO, MYPAGE_DEVELOPER
+	where PORTFOLIO.MEM_ID = MYPAGE_DEVELOPER.MEM_ID
+	AND PORTFOLIO.MEM_ID= #mem_id#
+	
+	</select>
+	
+	<select id="mypageTechnologiesCheck" parameterClass="map" resultClass="java.util.HashMap">
+		select MYPAGE_TECHNOLOGIES ,MYPAGE_TECHEXPERIENCE
+		from MYPAGE_DEVELOPER where MEM_ID =#mem_id#
+	</select>
+	
+	<update id="updateTechnologies" parameterClass="map">
+	UPDATE MYPAGE_DEVELOPER
+	SET MYPAGE_TECHNOLOGIES = #mypage_technologies# , 
+	MYPAGE_TECHEXPERIENCE = #mypage_techexperience#,
+	MYPAGE_TECHNOLOGIES_COUNT = MYPAGE_TECHNOLOGIES_COUNT +1
+	WHERE MEM_ID= #mem_id#
+	</update>
+	
+	
+	<update id="updateTechnologiesCount" parameterClass="map">
+	UPDATE
+	 MYPAGE_DEVELOPER SET MYPAGE_TECHNOLOGIES_COUNT = MYPAGE_TECHNOLOGIES_COUNT + 1 
+	 WHERE MEM_ID= #mem_id#
+	</update>
 </sqlMap>
 
  

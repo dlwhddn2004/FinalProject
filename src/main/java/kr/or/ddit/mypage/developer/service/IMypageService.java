@@ -1,5 +1,6 @@
 ﻿package kr.or.ddit.mypage.developer.service;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.vo.FreeboardVO;
@@ -17,4 +18,10 @@ public interface IMypageService {
 	public String modifyMyabout(Mypage_memberVO vo, MultipartFile[] items ) throws Exception;
 	
 	public void insertMypageDeveloper(Mypage_memberVO mypageInfo) throws Exception;
+	public List<Map<String,String>> projectTechnologiesChart (Map<String,String> params ) throws Exception;
+	public List<Map<String,String>> portfolioMypageList(Map<String,String> params) throws Exception;
+	public Map<String,String> mypageTechnologiesCheck(Map<String,String> params) throws Exception;
+	
+	public int updateTechnologies(Map<String,String> params) throws Exception;
+	public void updateTechnologiesCount(Map<String,String> params) throws Exception;
 }

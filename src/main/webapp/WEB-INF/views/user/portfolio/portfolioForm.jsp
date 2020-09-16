@@ -261,7 +261,7 @@
 									<div class="upload-button main-profile-upload-button">
 										<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 									</div>
-									<input class="file-upload file-upload-input1" type="file" accept="image/*" name="files"/>
+									<input class="file-upload file-upload-input1" type="file" accept="image/*" name="files" id="firstfiles"/>
 								</div>
 							</div>
 						</div>
@@ -454,7 +454,27 @@
 					
 					return;
 				}
-				//작업중
+				
+				const fileValue = $("#firstfiles").val().split("\\");
+				const fileName = fileValue[fileValue.length-1];
+				
+				
+				if (fileName == "") {
+					$.notify({
+						// options
+						message: '썸네일 파일을  등록해주세요!' 
+					},{
+						// settings
+						placement: {
+							from: "top",
+							align: "center"
+						},
+						type: 'info'
+					});
+					
+					return;
+				}
+				
 				// 포트폴리오 내용
 				const $portfolio_description = '<input type="hidden" name="portfolio_description" value="' +portfolio_description_ipt +'">';
 				// 포트폴리오 참여율

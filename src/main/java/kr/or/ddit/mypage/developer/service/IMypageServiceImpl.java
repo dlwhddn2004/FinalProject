@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 @Service("mypageService")
 public class IMypageServiceImpl implements IMypageService{
-
 	
 	@Autowired
 	private IMypageDao dao;
@@ -84,6 +83,34 @@ public class IMypageServiceImpl implements IMypageService{
 			throws Exception {
 		dao.insertMypageDeveloper(mypageInfo);
 		
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> projectTechnologiesChart(
+			Map<String, String> params) throws Exception {
+		return dao.projectTechnologiesChart(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> portfolioMypageList(
+			Map<String, String> params) throws Exception {
+		return dao.portfolioMypageList(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> mypageTechnologiesCheck(
+			Map<String, String> params) throws Exception {
+		return dao.mypageTechnologiesCheck(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int updateTechnologies(Map<String, String> params) throws Exception {
+		return dao.updateTechnologies(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void updateTechnologiesCount(Map<String,String> params ) throws Exception {
+		 dao.updateTechnologiesCount(params);
 	}
 
 }
