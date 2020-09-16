@@ -196,210 +196,116 @@
 
 <!-- 덕년  -->
 <select id="projectList" parameterClass="map" resultClass="ProjectVO">
-SELECT PROJECT.PROJECT_NO PROJECT_NO,
-		       MEM_ID,
-		       PROJECT_PROCESSSTATUS,
-		       PROJECT_PROCESSCATEGORY,
-		       PROJECT_CONSULLTING,
-		       PROJECT_READYSTATUS,
-		       PROJECT_CURRENTSTATUS,
-		       PROJECT_BUSINESSINFO,
-		       PROJECT_REFERENCE,
-		       PROJECT_NOTE,
-		       PROJECT_TECHNOLOGIES,
-		       PROJECT_BUDGET,
-		        TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,
-		       PROJECT_DURATION,
-		       PROJECT_ENDSTATUS,
-		       PROJECT_PREMEETING,
-		       PROJECT_PROCEEDINGMEETING,
-		       PROJECT_MEETINGCYCLE,
-		       PROJECT_CLIENTLOCATION,
-		       PROJECT_APPLICATIONDEADLINE,
-		       PROJECT_SUPPORTSTATUS,
-		       PROJECT_ESSENTIALREQUIREMENTS,
-		       PROJECT_MANPOWER,
-		       PROJECT_MANAGEMENTEXPERIENCE,
-		       PROJECT_FUTUREPLANS,
-		       PROJECT_PRIORITY,
-		       PROJECT_ENDDATE,
-		       PROJECT_TITLE,
-		       PROJECT_CLIENTINFORMATION,
-		       PROJECT_CLIENTINTRODUCE,
-		       PL,
-		       DA,
-		       UA,
-		       TA,
-		       AA,
-		       TECH_NO,
-		       TECH_NAME,
-		       INTERVIEW_NO,
-		       INTERVIEW_TITLE,
-		       INTERVIEW_HIRE_SHAPE,
-		       INTERVIEW_DIVISION,
-		       INTERVIEW_TECH,
-		       INTERVIEW_PEOPLENUM,
-		       INTERVIEW_METHOD,
-		       INTERVIEW_AUTHENTICATION,
-		       INTERVIEW_CUSTOMIZING
+	SELECT PROJECT.PROJECT_NO PROJECT_NO,
+	MEM_ID,
+	PROJECT_PROCESSSTATUS,
+	PROJECT_PROCESSCATEGORY,
+	PROJECT_CONSULLTING,
+	PROJECT_READYSTATUS,
+	PROJECT_CURRENTSTATUS,
+	PROJECT_BUSINESSINFO,
+	PROJECT_REFERENCE,
+	PROJECT_NOTE,
+	PROJECT_TECHNOLOGIES,
+	PROJECT_BUDGET,
+	TO_CHAR(project_startdate, 'YYYY-MM-DD') project_startdate,
+	PROJECT_DURATION,
+	PROJECT_ENDSTATUS,
+	PROJECT_PREMEETING,
+	PROJECT_PROCEEDINGMEETING,
+	PROJECT_MEETINGCYCLE,
+	PROJECT_CLIENTLOCATION,
+	PROJECT_APPLICATIONDEADLINE,
+	PROJECT_SUPPORTSTATUS,
+	PROJECT_ESSENTIALREQUIREMENTS,
+	PROJECT_MANPOWER,
+	PROJECT_MANAGEMENTEXPERIENCE,
+	PROJECT_FUTUREPLANS,
+	PROJECT_PRIORITY,
+	PROJECT_ENDDATE,
+	PROJECT_TITLE,
+	PROJECT_CLIENTINFORMATION,
+	PROJECT_CLIENTINTRODUCE,
+	PL,
+	DA,
+	UA,
+	TA,
+	AA,
+	TECH_NO,
+	TECH_NAME,
+	INTERVIEW_NO,
+	INTERVIEW_TITLE,
+	INTERVIEW_HIRE_SHAPE,
+	INTERVIEW_DIVISION,
+	INTERVIEW_TECH,
+	INTERVIEW_PEOPLENUM,
+	INTERVIEW_METHOD,
+	INTERVIEW_AUTHENTICATION,
+	INTERVIEW_CUSTOMIZING
 
-		FROM PROJECT,
-		     PROJECT_PARTICIPANTS,
-		     TECHNOLOGIES,
-		     INTERVIEW
+	FROM PROJECT,
+	PROJECT_PARTICIPANTS,
+	TECHNOLOGIES,
+	INTERVIEW
 
-		WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
-		  AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
-		  AND PROJECT_ENDSTATUS = 'N'
-          AND PROJECT.PROJECT_NO =  INTERVIEW.PROJECT_NO
-       
-          <dynamic prepend="AND">
-			<isNotEmpty property="project_processstatus">
-			<isEqual property="project_processstatus" compareValue="외주">
-				 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_processstatus">
-			<isEqual property="project_processstatus" compareValue="상주">
-				 PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_clientlocation">
+	WHERE PROJECT.PROJECT_NO = PROJECT_PARTICIPANTS.PROJECT_NO
+	AND PROJECT.PROJECT_TECHNOLOGIES = TECHNOLOGIES.TECH_NO
+	AND PROJECT_ENDSTATUS = 'N'
+	AND PROJECT.PROJECT_NO = INTERVIEW.PROJECT_NO
+
+	AND 1=1
+
+
+	<dynamic>
+		<isNotEmpty property="project_clientlocation">
 			<isEqual property="project_clientlocation" compareValue="서울">
-				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_clientlocation">
+				AND PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="project_clientlocation">
 			<isEqual property="project_clientlocation" compareValue="경기도">
-				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_clientlocation">
+				AND PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="project_clientlocation">
 			<isEqual property="project_clientlocation" compareValue="부산">
-				 PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_clientlocation">
-			<isEqual property="project_clientlocation" compareValue="외주,서울">
-				PROJECT IN (#project_processstatus#,#project_clientlocation#)
-				</isEqual>
-			</isNotEmpty>
-			<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="100">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="200">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="300">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="400">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="500">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="600">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="700">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="800">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="900">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="1000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="2000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="2000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="3000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="4000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="5000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="6000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="7000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="8000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="9000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="10000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="50000">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-				<isNotEmpty property="project_budget">
-			<isEqual property="project_budget" compareValue="1001">
-				 PROJECT_BUDGET LIKE '%'||#project_budget#||'%'
-				</isEqual>
-			</isNotEmpty>
-					<isNotEmpty property="project_technologies">
-			<isEqual property="project_technologies" compareValue="1">
-				 PROJECT_TECHNOLOGIES LIKE '%'||#project_technologies#||'%'
-				</isEqual>
-			</isNotEmpty>
-		</dynamic>
+				AND PROJECT_CLIENTLOCATION LIKE '%'||#project_clientlocation#||'%'
+			</isEqual>
+		</isNotEmpty>
+	</dynamic>
+
+	<dynamic>
+		<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="외주">
+				AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="상주">
+				AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+			</isEqual>
+		</isNotEmpty>
+
+
+
+	</dynamic>
+
+	<dynamic>
+		<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="외주">
+				AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="project_processstatus">
+			<isEqual property="project_processstatus" compareValue="상주">
+				AND PROJECT_PROCESSSTATUS LIKE '%'||#project_processstatus#||'%'
+			</isEqual>
+		</isNotEmpty>
+
+
+
+	</dynamic>
+
 
 </select>
 <select id="projectInfo" resultClass="ProjectVO">
