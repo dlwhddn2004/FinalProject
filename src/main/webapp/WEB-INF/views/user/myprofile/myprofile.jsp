@@ -7,25 +7,22 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <style>
-li a {
+/*  li a {
 list-style-type: none;
     display: block;
     color: #000;
     padding: 20px 16px;
   
-}
-li a.active {
+} 
+ li a.active {
     background-color: #819FF7;
     color: white;
 }
 li a:hover:not(.active) {
     background-color: #555;
     color: white;
-}
-.ui{
-	
-	width:110%;
-	height: 110%
+} 
+ */
 }
 </style>
 		<!-- Main content -->
@@ -75,7 +72,9 @@ li a:hover:not(.active) {
 									</div>						
 								</div>					
 								<br>
-								
+				 
+									
+									
 									<div class="col">	
 									<label class="col-form-label form-control-label">휴대전화</label>
 										<label style="color: tomato">*</label></div>
@@ -83,6 +82,8 @@ li a:hover:not(.active) {
 									<div class="col">
 									<input type="hidden" name="mem_tel" class="form-control" />
 									<select name="mem_tel1" class="form-control">
+								
+								
 									<option value="${MemberInfoTel[0]}">010</option>
 														<option value="016">016</option>
 														<option value="017">017</option>
@@ -96,10 +97,8 @@ li a:hover:not(.active) {
 									 		  <input type="text"name="mem_tel3" size="4" value="${MemberInfoTel[2]}" class="form-control" />
 									 </div>
 								</div>
-
 							
 							</div>
-
 						</div>							
 						</div>
 						
@@ -110,7 +109,7 @@ li a:hover:not(.active) {
 										<label class="col-form-label form-control-label">비밀번호</label>
 										<label style="color: tomato">*</label> <input
 											type="password" name="mem_pass" class="form-control"
-											value="${MEMBER_LOGININFO.mem_pass}">
+											value="${memberInfo.mem_pass}">
 									</div>
 									<div class="form-group flex-column">
 										<label class="col-form-label form-control-label">비밀번호
@@ -174,11 +173,12 @@ li a:hover:not(.active) {
 									</div>
 								</div>
 								
-															
+														
 							</div>
 							<button type="submit" class="btn btn-primary btn-write"
 										id="btn3" style="float: right";>변경</button>
 						</div>	
+
 						</form>
 						<div class="form-row">
 							<div class="col-md-6 mb-3"></div>
@@ -233,9 +233,9 @@ li a:hover:not(.active) {
 						<div class="card-body pt-0">
 								<div style="margin : 10px 0px 10px 0px;">
 										
-											<li style="list-style-type: none;" ><a class="active" href="#home">기본정보수정</a></li>
-											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" >계좌 관리</a></li>
-											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
+											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;  "><a style="   padding: 20px 16px; background-color: #819FF7; color: white; display: block; " class="active" href="#home">기본정보수정</a></li>
+											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;    "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" >계좌 관리</a></li>
+											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;   "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
 								
 									</div>
 						</div>
@@ -287,111 +287,109 @@ li a:hover:not(.active) {
 	<script>
 	$(function() {
 
-							var a = "${memberInfo.mem_tel}";
-							var b = a.split("-");
-							
-		$('form[name=memberForm]')
-				.submit(
-						function() {
-							$(this)
-									.attr('action',
-											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
+        var a = "${memberInfo.mem_tel}";
+        var b = a.split("-");
+        
+$('form[name=memberForm]')
+.submit(
+     function() {
+        $(this)
+              .attr('action',
+                    '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
 
-							
-							
+        
+        
 
-							var mem_tel = $('select[name=mem_tel1]').val()
-									+ '-' + $('input[name=mem_tel2]').val()
-									+ '-' + $('input[name=mem_tel3]').val();
-							
-							$('input[name=mem_tel]').val(mem_tel);
+        var mem_tel = $('select[name=mem_tel1]').val()
+              + '-' + $('input[name=mem_tel2]').val()
+              + '-' + $('input[name=mem_tel3]').val();
+        
+        $('input[name=mem_tel]').val(mem_tel);
 
-							var mem_addr = $('input[name=mem_addr1]').val()
-									+ '-' + $('input[name=mem_addr2]').val()
-									+ '-' + $('input[name=mem_addr3]').val()
-									+ '-' + $('input[name=mem_addr4]').val();
+        var mem_addr = $('input[name=mem_addr1]').val()
+              + '-' + $('input[name=mem_addr2]').val()
+              + '-' + $('input[name=mem_addr3]').val()
+              + '-' + $('input[name=mem_addr4]').val();
 
-							$('input[name=mem_addr]').val(mem_addr);
+        $('input[name=mem_addr]').val(mem_addr);
 
-		});	
-		
-	
-	
-	});
-	 
+});   
 
 
-		
-	
 
-	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	function sample4_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+});
 
-						// 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-						var extraRoadAddr = ''; // 도로명 조합형 주소 변수
 
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraRoadAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-							extraRoadAddr += (extraRoadAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						// 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraRoadAddr !== '') {
-							extraRoadAddr = ' (' + extraRoadAddr + ')';
-						}
-						// 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-						if (fullRoadAddr !== '') {
-							fullRoadAddr += extraRoadAddr;
-						}
 
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
-						document.getElementById('addr2').value = fullRoadAddr;
-						document.getElementById('addr3').value = data.jibunAddress;
 
-						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-						if (data.autoRoadAddress) {
-							//예상되는 도로명 주소에 조합형 주소를 추가한다.
-							var expRoadAddr = data.autoRoadAddress
-									+ extraRoadAddr;
-							document.getElementById('guide').innerHTML = '(예상 도로명 주소 : '
-									+ expRoadAddr + ')';
 
-						} else if (data.autoJibunAddress) {
-							var expJibunAddr = data.autoJibunAddress;
-							document.getElementById('guide').innerHTML = '(예상 지번 주소 : '
-									+ expJibunAddr + ')';
 
-						} else {
-							document.getElementById('guide').innerHTML = '';
-						}
-					}
-				}).open();
-	}
-	new daum.Postcode({
-		onclose : function(state) {
-			//state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
-			if (state === 'FORCE_CLOSE') {
-				//사용자가 브라우저 닫기 버튼을 통해 팝업창을 닫았을 경우, 실행될 코드를 작성하는 부분입니다.
+//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+function sample4_execDaumPostcode() {
+new daum.Postcode(
+{
+  oncomplete : function(data) {
+     // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-			} else if (state === 'COMPLETE_CLOSE') {
-				//사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우, 실행될 코드를 작성하는 부분입니다.
-				//oncomplete 콜백 함수가 실행 완료된 후에 실행됩니다.
-			}
-		}
-	});
-	
-	
-	
+     // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
+     // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+     var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
+     var extraRoadAddr = ''; // 도로명 조합형 주소 변수
+
+     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+     if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+        extraRoadAddr += data.bname;
+     }
+     // 건물명이 있고, 공동주택일 경우 추가한다.
+     if (data.buildingName !== '' && data.apartment === 'Y') {
+        extraRoadAddr += (extraRoadAddr !== '' ? ', '
+              + data.buildingName : data.buildingName);
+     }
+     // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+     if (extraRoadAddr !== '') {
+        extraRoadAddr = ' (' + extraRoadAddr + ')';
+     }
+     // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
+     if (fullRoadAddr !== '') {
+        fullRoadAddr += extraRoadAddr;
+     }
+
+     // 우편번호와 주소 정보를 해당 필드에 넣는다.
+     document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
+     document.getElementById('addr2').value = fullRoadAddr;
+     document.getElementById('addr3').value = data.jibunAddress;
+
+     // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+     if (data.autoRoadAddress) {
+        //예상되는 도로명 주소에 조합형 주소를 추가한다.
+        var expRoadAddr = data.autoRoadAddress
+              + extraRoadAddr;
+        document.getElementById('guide').innerHTML = '(예상 도로명 주소 : '
+              + expRoadAddr + ')';
+
+     } else if (data.autoJibunAddress) {
+        var expJibunAddr = data.autoJibunAddress;
+        document.getElementById('guide').innerHTML = '(예상 지번 주소 : '
+              + expJibunAddr + ')';
+
+     } else {
+        document.getElementById('guide').innerHTML = '';
+     }
+  }
+}).open();
+}
+new daum.Postcode({
+onclose : function(state) {
+//state는 우편번호 찾기 화면이 어떻게 닫혔는지에 대한 상태 변수 이며, 상세 설명은 아래 목록에서 확인하실 수 있습니다.
+if (state === 'FORCE_CLOSE') {
+//사용자가 브라우저 닫기 버튼을 통해 팝업창을 닫았을 경우, 실행될 코드를 작성하는 부분입니다.
+
+} else if (state === 'COMPLETE_CLOSE') {
+//사용자가 검색결과를 선택하여 팝업창이 닫혔을 경우, 실행될 코드를 작성하는 부분입니다.
+//oncomplete 콜백 함수가 실행 완료된 후에 실행됩니다.
+}
+}
+});
+
 </script>

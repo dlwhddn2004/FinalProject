@@ -6,50 +6,16 @@
 
 <!-- Sweet Alerts -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
-
 <style>
-
-
-li a {
-list-style-type: none;
-    display: block;
-    color: #000;
-    padding: 20px 16px;
-  
-}
-li a.active {
-    background-color: #819FF7;
-    color: white;
-}
-li a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
-.ui{
-	
-	width:110%;
-	height: 110%
-}
-
 </style>
 </head>
 <body>
-
-
-
-
 		<!-- Main content -->
 		<div class="row">
 			<div class="col-md-9">
 				<div class="card">
-
 					<div class="card-header">
-					
-
 							<h3 class="mb-0">계좌 등록</h3>
-
-
-						
 					</div>
 					<div class="card-body" >
 					<form name=memberForm>
@@ -160,10 +126,9 @@ li a:hover:not(.active) {
 					<div class="card card-profile">											
 						<div class="card-body pt-0">
 								<div style="margin : 10px 0px 10px 0px;">
-										
-											<li style="list-style-type: none;" ><a href="${pageContext.request.contextPath}/user/myprofile/myprofile.do?mem_id=${MEMBER_LOGININFO.mem_id}" >기본정보수정</a></li>
-											<li style="list-style-type: none;"><a class="active" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do">계좌 관리</a></li>
-											<li style="list-style-type: none;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
+										<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofile.do?mem_id=${MEMBER_LOGININFO.mem_id}">기본정보수정</a></li>
+									<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white; "><a style=" padding: 20px 16px; background-color: #819FF7; color: white; display: block; " class="active" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do">계좌 관리</a></li>
+										<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;"><a href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
 								
 									</div>
 						</div>

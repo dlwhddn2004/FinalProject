@@ -93,7 +93,7 @@ public class projectsupportcontroller {
 		 		e.printStackTrace();
 		 	}
 		 	
-		   
+		 	projectSupportService.sendMail("iai6203@gmail.com", "CONNECTOR입니다.", "안녕하세요 커넥터 입니다 귀하의 지원 신청을 수락 하였습니다 다음주부터 당장 나오세요.");
 		 	String projectInfo6 = service.projectInfo6(params);
 		 	int projectInfo5 = this.service.projectInfo5(params);
 		 	modelAndView.addObject("breadcrumb_title", "프로젝트");
@@ -135,45 +135,28 @@ public class projectsupportcontroller {
 	
 	
 	@RequestMapping("mailForm")
-	public ModelAndView mailForm(ModelAndView modelAndView) throws Exception {
+	public String mailForm() throws Exception {
 		projectSupportService.sendMail("iai6203@gmail.com", "CONNECTOR 인증 메일 입니다.", "테스트 이메일입니다.");
 		
-		modelAndView.setViewName("user/portfolio/portfolioList");
+		String taskResult = null;
+		String message = null;
+		taskResult = "success";
+		message = URLEncoder.encode("메일 전송 완료.", "UTF-8");
 
-		return modelAndView;
+		return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	}
-	  @RequestMapping("sms")
-	  public String sendSms(HttpServletRequest request) throws Exception {
-	    String api_key = "";
-	    String api_secret = "";
-	    Coolsms coolsms = new Coolsms(api_key, api_secret);
-
-	    HashMap<String, String> set = new HashMap<String, String>();
-	    set.put("to", "01024996002"); // 수신번호
-
-	    set.put("from", (String)request.getParameter("from")); // 발신번호
-	    set.put("text", (String)request.getParameter("text")); // 문자내용
-	    set.put("type", "sms"); // 문자 타입
-
-	    JSONObject result = coolsms.send(set);
-
-	    if ((boolean)result.get("status") == true) {
-	      // 메시지 보내기 성공 및 전송결과 출력
-	      System.out.println("성공");
-
-	      System.out.println(result.get("result_code")); // 결과코드
-	      System.out.println(result.get("result_message")); // 결과 메시지
-	      System.out.println(result.get("success_count")); // 메시지아이디
-	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
-	    } else {
-	      // 메시지 보내기 실패
-	      System.out.println("실패");
-	      System.out.println(result.get("code")); // REST API 에러코드
-	      System.out.println(result.get("message")); // 에러메시지
-	    }
-
-	    return "redirect:/user/projectsupport/projectsupport1.do";
+	  @RequestMapping("sms1")
+	  public String sendSms() throws Exception {
+		  
+		  projectSupportService.sms("01053756203", "안녕하세요 (주)에이투엠에서 김재석님의 포트폴리오를 확인하고 지원 요청을 하였습니다.");
+		  String taskResult = null;
+			String message = null;
+			taskResult = "success";
+			message = URLEncoder.encode("지원 요청 완료.", "UTF-8");
+		  
+	    return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	  }
 	  
+	
 	  
 }
