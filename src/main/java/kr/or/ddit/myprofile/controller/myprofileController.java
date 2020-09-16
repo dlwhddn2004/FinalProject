@@ -55,25 +55,36 @@ public class myprofileController {
 		 modelAndView.addObject("memberInfo", memberInfo);
 		 
 		 String temp = memberInfo.getMem_tel();
-		 String[] tempString = temp.split("-");
+		 String[] tempString = null;
+		 if(temp != null){
+			  tempString = temp.split("-");
+		 }
 		 
 		 List<String> MemberInfoTel = new ArrayList<String>();
-		 for (int i = 0; i < tempString.length; i++) {
-			 MemberInfoTel.add(tempString[i]);
-		}
+		 if(tempString != null){
+			 for (int i = 0; i < tempString.length; i++) {
+				 MemberInfoTel.add(tempString[i]);
+			 }
+		 }
 		 
 		 String temp1 = memberInfo.getMem_addr();
-		 String[] tempString1 = temp1.split("-");
+		 String[] tempString1 = null;
+		 if(temp1 != null){
+			 tempString1 = temp1.split("-");
+		 }
 		 
 		 List<String> MemberInfoaddr = new ArrayList<String>();
-		 for (int i = 0; i < tempString1.length; i++) {
-			 MemberInfoaddr.add(tempString1[i]);
-		}
-		 
+		 if(tempString1 != null){
+			 for (int i = 0; i < tempString1.length; i++) {
+				 MemberInfoaddr.add(tempString1[i]);
+			 }
+		 }
+			modelAndView.addObject("breadcrumb_title", "마이프로필");
+			modelAndView.addObject("breadcrumb_first", "계정 설정");
+			modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/myprofile/myprofile.do");
 		 modelAndView.addObject("MemberInfoTel", MemberInfoTel);
 		 modelAndView.addObject("MemberInfoaddr", MemberInfoaddr);
-		 
-		 
+
 		 modelAndView.setViewName("user/myprofile/myprofile");
 		
 		 
@@ -123,15 +134,22 @@ public String memberDelete(HttpServletRequest request,
 	
 	
 	
-	return "redirect:/user/myprofile/myprofile.do";
+	return "redirect:/user/portfolio/portfolioList.do";
 }
 
 @RequestMapping("myprofilebank")
-  public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id){
+  public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id) throws Exception{
 	
 	Map<String, String> params = new HashMap<String, String>();
 	params.put("mem_id", mem_id);
 	
+	ProfileFileVO profileInfo1 = profileservice.selectProfileFileInfo(params);
+	MemberVO memberInfo = this.service.memberInfo(params);
+	
+	 modelAndView.addObject("profileInfo",profileInfo1);
+	 modelAndView.addObject("memberInfo", memberInfo);
+	 
+	 modelAndView.setViewName("user/myprofile/myprofilebank");
 	
 	return modelAndView;
 } 

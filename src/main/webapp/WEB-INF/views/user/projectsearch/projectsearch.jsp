@@ -229,7 +229,7 @@ function viewBoardInfo(e) {
 						<label> <select name="project_technologies"  class="form-control"
 							style="width: 150px;" style="width: 120px;">
 								<option value="기술선택">기술선택</option>
-								<option value="angular">angular</option>
+								<option value="1">angular</option>
 								<option value="bootstrap">bootstrap</option>
 								<option value="react">react</option>
 								<option value="vue">vue</option>

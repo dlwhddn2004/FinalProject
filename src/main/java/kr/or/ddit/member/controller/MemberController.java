@@ -14,6 +14,7 @@ import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member_rate.service.IMemberRateService;
 import kr.or.ddit.mypage.developer.service.IMypageService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
+import kr.or.ddit.projectsupport.service.IProjectSupportService;
 import kr.or.ddit.utiles.CryptoGenerator;
 import kr.or.ddit.vo.MemberRateVO;
 import kr.or.ddit.vo.MemberVO;
@@ -61,6 +62,9 @@ public class MemberController {
 	
 	@Autowired
 	private CryptoGenerator crypto;
+	
+	@Autowired
+	private IProjectSupportService projectSupportService;
 	
 	@RequestMapping(value="loginCheck", method=RequestMethod.POST)
 	public ModelAndView loginCheck(String mem_id, 
@@ -147,6 +151,16 @@ public class MemberController {
 		Map<String, String> memberInfo = service.selectMemberInfo(params);
 		
 		return memberInfo; 
+	}
+	
+	@RequestMapping("mailConfirm")
+	@ResponseBody
+	public int mailConfirm(String mem_mail) throws Exception{
+		
+		int ranNum = projectSupportService.generateRandNum(6);
+		
+		projectSupportService.sendMail(mem_mail, "CONNECTOR 인증 메일입니다.", "인증번호 : " + ranNum);
+		return ranNum;
 	}
 
 }

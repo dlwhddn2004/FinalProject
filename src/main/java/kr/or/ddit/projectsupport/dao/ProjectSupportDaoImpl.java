@@ -1,5 +1,6 @@
 package kr.or.ddit.projectsupport.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -12,13 +13,16 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 
+import kr.or.ddit.utiles.Coolsms;
 import kr.or.ddit.vo.JoinVO;
 import kr.or.ddit.vo.ProjectVO;
 import kr.or.ddit.vo.SuccessBoardCommentVO;
 import kr.or.ddit.vo.SuccessBoardVO;
 import kr.or.ddit.vo.newsboardVO;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -100,7 +104,7 @@ public class ProjectSupportDaoImpl implements IProjectSupportDao {
 	@Override
 	public int generateRandNum(int length) throws Exception {
 		Random rand = new Random();
-		String randNumStr = null;
+		String randNumStr = "";
 		
 		for (int i = 0; i < length; i++) {
 			randNumStr += Integer.toString(rand.nextInt(10));
@@ -108,4 +112,44 @@ public class ProjectSupportDaoImpl implements IProjectSupportDao {
 		
 		return Integer.parseInt(randNumStr);
 	}
+
+	@Override
+	public String sms(String to, String text) throws Exception {
+		
+		
+		String sms2 = to;
+		String sms3 = text;
+		
+		String api_key = "NCSNNCABDGNX72H3";
+	    String api_secret = "KOPJ8ANQPMQGT6TPBJVWJUVDPMBQBYJV";
+	    Coolsms coolsms = new Coolsms(api_key, api_secret);
+
+	    HashMap<String, String> set = new HashMap<String, String>();
+	    set.put("to", to); // 수신번호
+
+	    set.put("from", "01034242869"); // 발신번호
+	    set.put("text", sms3); // 문자내용
+	    set.put("type", "sms"); // 문자 타입
+
+	    JSONObject result = coolsms.send(set);
+
+	    if ((boolean)result.get("status") == true) {
+	      // 메시지 보내기 성공 및 전송결과 출력
+	      System.out.println("성공");
+	      System.out.println(result.get("result_code")); // 결과코드
+	      System.out.println(result.get("result_message")); // 결과 메시지
+	      System.out.println(result.get("success_count")); // 메시지아이디
+	      System.out.println(result.get("error_count")); // 여러개 보낼시 오류난 메시지 수
+	      return "성공";
+
+	    } else {
+	      // 메시지 보내기 실패
+	    	System.out.println("실패");
+	    	System.out.println(result.get("code")); // REST API 에러코드
+	    	System.out.println(result.get("message")); // 에러메시지
+	    	return "실패"; 
+	    }
+
+	  }
+	  
 }

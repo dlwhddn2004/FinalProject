@@ -6,9 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
+import kr.or.ddit.projectsupport.service.IProjectSupportService;
 import kr.or.ddit.reportboard.service.IReportBoardService;
+import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,23 @@ public class ReportBoardController {
 	private IProjectService projectService;
 	@Autowired
 	private IProfileFileService profileFileService;
+	@Autowired
+	private IProjectSupportService projectSupportService;
+	@Autowired
+	private IMemberService memberService;
 	
 	@RequestMapping("reportboardList")
 	public ModelAndView reportboardList(HttpServletRequest request,
 										ModelAndView modelAndView,
-										String project_no
+										String project_no,
+										String mem_id
 											)throws Exception{
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "보고서 게시판");
+		modelAndView.addObject("breadcrumb_second_url", request.getContextPath() + "/reportboard/reportboardList.do?project_no=" +project_no );
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
@@ -59,6 +73,12 @@ public class ReportBoardController {
 										String mem_id,
 										String project_no
 											)throws Exception{
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "보고서 게시판");
+		modelAndView.addObject("breadcrumb_second_url", request.getContextPath() + "/reportboard/reportboardList.do?project_no=" +project_no );
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("report_no", report_no);
@@ -86,6 +106,12 @@ public class ReportBoardController {
 										ModelAndView modelAndView,
 										String project_no
 										) throws Exception{
+		// breadcrumb
+		modelAndView.addObject("breadcrumb_title", "프로젝트");
+		modelAndView.addObject("breadcrumb_first", "프로젝트 상세");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/project/projectView.do?project_no=" + project_no);
+		modelAndView.addObject("breadcrumb_second", "보고서 게시판");
+		modelAndView.addObject("breadcrumb_second_url", request.getContextPath() + "/reportboard/reportboardList.do?project_no=" +project_no );
 		
 		modelAndView.addObject("project_no", project_no);
 		modelAndView.setViewName("user/reportboard/reportboardForm");
@@ -193,12 +219,26 @@ public class ReportBoardController {
 	public ModelAndView updateReportStatus(String project_no,
 											String report_no,
 											String report_status,
+											String mem_id,
+											String report_title,
 											ModelAndView modelAndView) throws Exception{
 		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
 		params.put("report_no", report_no);
 		params.put("report_status", report_status);
+		params.put("mem_id", mem_id);
+		params.put("report_title", report_title);
+		
+		MemberVO memberInfo = memberService.memberInfo(params);
+		String mail = memberInfo.getMem_mail();
+		
+		if(report_status.equals("N")){
+			projectSupportService.sendMail(mail, "CONNECTOR 보고서 결과.", mem_id + "님 " + report_title +" 보고서가 반려되었습니다.");						
+		}else if(report_status.equals("Y")){
+			projectSupportService.sendMail(mail, "CONNECTOR 보고서 결과.", mem_id + "님 " + report_title +" 보고서가 결재되었습니다.");			
+		}
+		
 		
 		int chk = reportBoardService.updateReportStatus(params);
 		List<Map<String, String>> reportboardList = null;

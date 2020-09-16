@@ -43,7 +43,7 @@
             <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no=${param.project_no }'">이슈 게시판</button>
           </li>
           <li class="nav-item">
-            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/reportboard/reportboardList.do?project_no=${param.project_no }'">보고서 게시판</button>
+            <button type="button" class="btn btn-secondary btn-lg" style="width: 450px;"  onclick="javascript:location.href='${pageContext.request.contextPath}/user/reportboard/reportboardList.do?project_no=${param.project_no }&mem_id=${MEMBER_LOGININFO.mem_id }'">보고서 게시판</button>
           </li>
         </ul>
       </div>
@@ -202,6 +202,7 @@
         </div>
         <div>
         	<c:if test="${MEMBER_LOGININFO.mem_id == projectInfo.MEM_ID}">
+        		<button onClick="shareKakaotalk();"class="btn btn-sm btn-neutral" style="height: 25px;">카카오톡</button>
         		<a href="${pageContext.request.contextPath }/user/interview/partnersMain.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${projectInfo.PROJECT_NO}" class="btn btn-sm btn-neutral" style="height: 25px;">채용 관리</a>
         	</c:if>
         </div>
@@ -380,7 +381,35 @@
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
-
+<script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
-
+function shareKakaotalk() {
+    Kakao.init("020511f2c122d132ca189cef2b47456f");      // 사용할 앱의 JavaScript 키를 설정
+    Kakao.Link.sendDefault({
+          objectType:"feed"
+        , content : {
+              title:"커넥터 프로젝트 확인"   // 콘텐츠의 타이틀
+            , description:"신나라씨 확인하고 수정해주세요."   // 콘텐츠 상세설명
+            , imageUrl:"http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg"   // 썸네일 이미지
+            , link : {
+                  mobileWebUrl:"http://localhost:80/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+            }
+        }
+        , social : {
+              likeCount:0       // LIKE 개수
+            , commentCount:0    // 댓글 개수
+            , sharedCount:0     // 공유 회수
+        }
+        , buttons : [
+            {
+                  title:"게시글 확인"    // 버튼 제목
+                , link : {
+                    mobileWebUrl:"http://localhost:80/"  // 모바일 카카오톡에서 사용하는 웹 링크 URL
+                  , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+                }
+            }
+        ]
+    });
+}   
 </script>

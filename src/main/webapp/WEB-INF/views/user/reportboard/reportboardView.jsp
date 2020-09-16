@@ -291,12 +291,16 @@
 			  if (result.value) {
 				  const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
 				  const $ipt_report_status = $("<input type='hidden' name='report_status' value='N'>");
+				  const $ipt_mem_id = $("<input type='hidden' name='mem_id' value='${reportInfo.MEM_ID}'>");
+				  const $ipt_report_title = $("<input type='hidden' name='report_title' value='${reportInfo.REPORT_TITLE}'>");
 				  
 				  const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportStatus.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
 					
 					$('body').append($frm);
 					$frm.append($ipt_report_no);
 					$frm.append($ipt_report_status);
+					$frm.append($ipt_mem_id);
+					$frm.append($ipt_report_title);
 					
 					$frm.submit(); 
 			  }
@@ -316,14 +320,18 @@
 			  if (result.value) {
 				  const $ipt_report_no = $("<input type='hidden' name='report_no' value='${reportInfo.REPORT_NO}'>");
 				  const $ipt_report_status = $("<input type='hidden' name='report_status' value='Y'>");
+				  const $ipt_mem_id = $("<input type='hidden' name='mem_id' value='${reportInfo.MEM_ID}'>");
+				  const $ipt_report_title = $("<input type='hidden' name='report_title' value='${reportInfo.REPORT_TITLE}'>");
 				  
 				  const $frm = $("<form action='${pageContext.request.contextPath}/user/reportboard/updateReportStatus.do?project_no=${reportInfo.PROJECT_NO}' method='POST'> ");
 					
-					$('body').append($frm);
-					$frm.append($ipt_report_no);
-					$frm.append($ipt_report_status);
-					
-					$frm.submit(); 
+				$('body').append($frm);
+				$frm.append($ipt_report_no);
+				$frm.append($ipt_report_status);
+				$frm.append($ipt_mem_id);
+				$frm.append($ipt_report_title);
+				
+				$frm.submit(); 
 			  }
 			});
 		});
