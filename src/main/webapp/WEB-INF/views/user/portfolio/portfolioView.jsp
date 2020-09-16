@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/animate.css/animate.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0" type="text/css">
 
@@ -464,7 +465,7 @@
                                     <div style="height: auto;">
                                     <!-- 작업중 -->
                                     	<c:if test="${!empty MEMBER_LOGININFO.mem_id }">
-	                                    	<a  class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
+	                                    	<a class="btn btn-sm btn-neutral btn-round btn-icon" data-original-title="리뷰를 작성해 주세요"
 	                                         data-toggle="modal" onclick="modalClick(this);" >
 	                                            <span class="btn-inner--icon modal-insert-icon"><i class="fas fa-user-edit insert"></i></span>
 	                                            <span class="btn-inner--text">Review 등록</span>
@@ -830,7 +831,7 @@
 									<div class="upload-button main-profile-upload-button">
 										<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 									</div>
-									<input class="file-upload file-upload-input1" type="file" accept="image/*" name="files"/>
+									<input class="file-upload file-upload-input1" type="file" accept="image/*" id="firstfiles" name="files"/>
 								</div>
 							</div>
 						</div>
@@ -919,7 +920,6 @@
   <script src="${pageContext.request.contextPath}/assets/vendor/datatables.net-select/js/dataTables.select.min.js"></script>
   
   <script src="${pageContext.request.contextPath}/assets/test/quill.js"></script>
-  <script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
    <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
    <script src="${pageContext.request.contextPath}/assets/vendor/moment.min.js"></script>
@@ -927,7 +927,7 @@
    <script src="${pageContext.request.contextPath}/assets/vendor/nouislider/distribute/nouislider.min.js"></script>
    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
    <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
-  
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<!-- Argon JS -->
 	<script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
@@ -1209,6 +1209,32 @@
 					return;
 				}
 				
+				
+/* 				const fileValue = $("#firstfiles").val().split("\\");
+				const fileName = fileValue[fileValue.length-1];
+				
+				
+				if (fileName == "") {
+					$.notify({
+						// options
+						message: '수정하실 파일을 다시 한번 등록해주세요!' 
+					},{
+						// settings
+						placement: {
+							from: "top",
+							align: "center"
+						},
+						type: 'info'
+					});
+					
+					return;
+				} */
+
+				<!-- 작업 중 -->
+				const mainImage =  "${portfolioInfo.PORTFOLIO_THUMBNAILIMG }";
+				const sub_profile1 = "${portfolio_imgs[0]}";
+				const sub_profile2 = "${portfolio_imgs[1]}";
+				
 				// 포트폴리오 내용
 				const $portfolio_description = '<input type="hidden" name="portfolio_description" value="' +portfolio_description_ipt +'">';
 				// 포트폴리오 참여율
@@ -1216,10 +1242,21 @@
 				// 포트폴리오 사용한 기술 체크 값
 				const $portfolio_technologies = '<input type="hidden" name="portfolio_technologies" value="' + portfolio_technologies_ipt + '">';
 				
+				const $portfolio_main = '<input type="hidden" name="mainImage" value="' + mainImage + '">';
+				const $portfolio_sub1 = '<input type="hidden" name="sub_profile1" value="' + sub_profile1 + '">';
+				const $portfolio_sub2 = '<input type="hidden" name="sub-profile2" value="' + sub_profile2 + '">';
+				
+				
  				$('form[name=portFolioForm]').append($portfolio_description);
  				$('form[name=portFolioForm]').append($portfolio_participationrate1);
  				$('form[name=portFolioForm]').append($portfolio_technologies);
+ 				
+ 				$('form[name=portFolioForm]').append($portfolio_main);
+ 				$('form[name=portFolioForm]').append($portfolio_sub1);
+ 				$('form[name=portFolioForm]').append($portfolio_sub2);
 				
+ 				
+ 				
  				$('form[name=portFolioForm]').submit();
 				
 			});
