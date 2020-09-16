@@ -2,28 +2,12 @@
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-<!-- 		<Resource name="jdbc/ddit"  -->
-<!-- 				  auth="CONNECTOR"  -->
-<!-- 				  type="javax.sql.DataSource"  -->
-<!-- 				  driverClassName="oracle.jdbc.driver.OracleDriver"  -->
-<!-- 				  url="jdbc:oracle:thin:@112.220.114.130:1521:XE" -->
-<!-- 				  username="CONNECTOR"  -->
-<!-- 				  password="java"  -->
-<!-- 				  initialSize="10" -->
-<!-- 				  maxActive="7"  -->
-<!-- 				  maxIdle="6"  -->
-<!-- 				  minIdle="3" -->
-<!-- 				  removeAbandoned="true" -->
-<!-- 				  removeAbandonedTimeout="60" -->
-<!-- 				  maxWait="-1" -->
-<!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
-<!-- 		</Resource> -->
-			<Resource name="jdbc/ddit" 
-				  auth="FinalProjectLocal" 
+		<Resource name="jdbc/ddit" 
+				  auth="CONNECTOR" 
 				  type="javax.sql.DataSource" 
 				  driverClassName="oracle.jdbc.driver.OracleDriver" 
-				  url="jdbc:oracle:thin:@localhost:1521:XE"
-				  username="FinalProjectLocal" 
+				  url="jdbc:oracle:thin:@112.220.114.130:1521:XE"
+				  username="CONNECTOR" 
 				  password="java" 
 				  initialSize="10"
 				  maxActive="7" 
@@ -34,4 +18,21 @@
 				  maxWait="-1"
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory">
 		</Resource>
+
+<!-- 			<Resource name="jdbc/ddit"  -->
+<!-- 				  auth="CONNECTOR"  -->
+<!-- 				  type="javax.sql.DataSource"  -->
+<!-- 				  driverClassName="oracle.jdbc.driver.OracleDriver"  -->
+<!-- 				  url="jdbc:oracle:thin:@localhost:1521:oracle" -->
+<!-- 				  username="FinalProject"  -->
+<!-- 				  password="oracle"  -->
+<!-- 				  initialSize="10" -->
+<!-- 				  maxActive="7"  -->
+<!-- 				  maxIdle="6"  -->
+<!-- 				  minIdle="3" -->
+<!-- 				  removeAbandoned="true" -->
+<!-- 				  removeAbandonedTimeout="60" -->
+<!-- 				  maxWait="-1" -->
+<!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
+<!-- 		</Resource> -->
 </Context>

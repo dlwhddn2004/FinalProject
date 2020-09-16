@@ -3,6 +3,8 @@ package kr.or.ddit.projectsupport.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -14,6 +16,7 @@ import kr.or.ddit.vo.SuccessBoardVO;
 
 public interface IProjectSupportDao {
 	public String sendMail(String to, String title, String content) throws Exception;
+	public String sms(String to, String text) throws Exception;
 	
 	public int generateRandNum(int length) throws Exception;
 }

@@ -400,7 +400,7 @@
 				<div
 					class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
 					<div class="d-flex justify-content-between">
-						<a href="${pageContext.request.contextPath}/user/projectsupport/mailForm.do" class="btn btn-sm btn-info  mr-4 ">Contact</a> <a
+						<a href="${pageContext.request.contextPath}/user/projectsupport/sms1.do" class="btn btn-sm btn-info  mr-4 ">Contact</a> <a
 							href="#" class="btn btn-sm btn-default float-right">Message</a>
 					</div>
 				</div>

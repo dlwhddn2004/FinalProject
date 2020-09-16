@@ -170,6 +170,9 @@ public class projectsearchcontroller {
 			return modelAndView;
 			
 	 }
+	 
+	 @RequestMapping("test")
+	 public void test() {}
 		 
 
 	 }
