@@ -65,8 +65,7 @@
               <div class="form-group">
                 <h3>${projectInfo.project_title}</h3>
                 <h2>프로젝트를 등록해주셔서 감사합니다.</h2>
-                <button id="btnInterview" type="button" class="btn btn-outline-default">면접 설정하러 가기</button>
-                <button type="button" class="btn btn-default">다른 프로젝트 등록</button>
+                <button type="button" class="btn btn-default" id="otherProject">다른 프로젝트 등록</button>
               </div>
             </form>
           </div>
@@ -91,6 +90,9 @@
 <script>
 	$('#btnInterview').on('click', function() {
 		location.href = '${pageContext.request.contextPath}/user/interview/partnersMain.do?mem_id=${MEMBER_LOGININFO.mem_id}&project_no=${projectInfo.project_no}';
+	});
+	$('#otherProject').on('click', function() {
+		location.href = '${pageContext.request.contextPath }/user/projectRegist/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}';
 	});
 </script>
 	
