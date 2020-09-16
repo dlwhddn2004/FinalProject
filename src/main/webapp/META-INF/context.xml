@@ -19,11 +19,11 @@
 <!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
 <!-- 		</Resource> -->
 			<Resource name="jdbc/ddit" 
-				  auth="FinalProjectLocal" 
+				  auth="finalprojectLocal" 
 				  type="javax.sql.DataSource" 
 				  driverClassName="oracle.jdbc.driver.OracleDriver" 
-				  url="jdbc:oracle:thin:@localhost:1522:XE"
-				  username="FinalProjectLocal" 
+				  url="jdbc:oracle:thin:@localhost:1521:XE"
+				  username="finalprojectLocal" 
 				  password="oracle" 
 				  initialSize="10"
 				  maxActive="7" 
