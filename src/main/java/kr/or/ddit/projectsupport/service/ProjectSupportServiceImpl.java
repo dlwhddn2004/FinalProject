@@ -33,6 +33,7 @@ public class ProjectSupportServiceImpl implements IProjectSupportService {
 			throws Exception {
 		
 		return dao.sms(to, text);
+	}
 	public int generateRandNum(int length) throws Exception {
 		return dao.generateRandNum(length);
 	}
