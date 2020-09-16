@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -95,14 +96,15 @@ public class myprofileController {
 	
 @RequestMapping("updateMemberInfo")	
 		public String updateMember(MemberVO memberInfo
-				  ) throws Exception{
+				,HttpSession session  ) throws Exception{
 this.service.updateMemberInfo(memberInfo);
 
+session.invalidate();
 
 String taskResult = "success";
 String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
 
-return "redirect:/user/successboard/successboardList.do?taskResult=" + taskResult + "&message=" + message;
+return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 }
 /*@RequestMapping("updateMemberInfo2")	
 public String updateMember2(MemberVO memberInfo
@@ -122,15 +124,14 @@ public void myprofiledelete(){}
 
 	 
 @RequestMapping("deleteMemberInfo")
-public String memberDelete(HttpServletRequest request,
-		HttpServletResponse response, HttpSession session) throws Exception {
+public String memberDelete(HttpServletRequest request, HttpSession session) throws Exception {
 
 	String mem_id = request.getParameter("mem_id");
 	
 	Map<String,String> params = new HashMap<String,String>();
 	params.put("mem_id", mem_id);
-	session.invalidate();
 	this.service.deleteMemberInfo(params);
+	session.invalidate();
 	
 	
 	
@@ -146,6 +147,10 @@ public String memberDelete(HttpServletRequest request,
 	ProfileFileVO profileInfo1 = profileservice.selectProfileFileInfo(params);
 	MemberVO memberInfo = this.service.memberInfo(params);
 	
+	
+	modelAndView.addObject("breadcrumb_title", "마이프로필");
+	modelAndView.addObject("breadcrumb_first", "계좌 설정");
+	modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/myprofile/myprofile.do");
 	 modelAndView.addObject("profileInfo",profileInfo1);
 	 modelAndView.addObject("memberInfo", memberInfo);
 	 
