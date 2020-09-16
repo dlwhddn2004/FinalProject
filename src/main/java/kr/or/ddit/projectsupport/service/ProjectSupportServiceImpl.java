@@ -1,4 +1,4 @@
-package kr.or.ddit.projectsupport.service;
+﻿package kr.or.ddit.projectsupport.service;
 
 import java.util.List;
 import java.util.Map;
@@ -33,5 +33,8 @@ public class ProjectSupportServiceImpl implements IProjectSupportService {
 			throws Exception {
 		
 		return dao.sms(to, text);
+	public int generateRandNum(int length) throws Exception {
+		return dao.generateRandNum(length);
 	}
+	
 }

@@ -104,7 +104,7 @@ public class ProjectSupportDaoImpl implements IProjectSupportDao {
 	@Override
 	public int generateRandNum(int length) throws Exception {
 		Random rand = new Random();
-		String randNumStr = null;
+		String randNumStr = "";
 		
 		for (int i = 0; i < length; i++) {
 			randNumStr += Integer.toString(rand.nextInt(10));
