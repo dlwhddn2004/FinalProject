@@ -73,7 +73,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<!-- Image-Text card -->
-			<div class="card mainDiv" style="background-image: url('/${MainportfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
+			<div class="card mainDiv" style="background-image: url('/${MainportfolioInfo.regImage}'); height: 600px;">
 				<!-- Card image -->
 				<!--              <img class="card-img-top" src="https://assets.awwwards.com/awards/media/cache/optimize/sites_of_the_day/2020/08/thanks-site.jpg" alt="Image placeholder" style="height: 500px;">-->
 				<!-- Chart wrapper -->
@@ -464,14 +464,24 @@
 	    $('.developSpan').text(developSpan);
 	    $('.developSmall').text(developSmall);
 	    
-	    let skill_check = 0;
-	    
+	    // 포트폴리오 등록 할시 보유 스킬과, 디벨로퍼 유저만 등록할수 있게 처리!
+	    let skill_check ="";
 		$('.inserBtn').on('click',function(){
 			
 			if(${empty MEMBER_LOGININFO}){
 				Swal.fire(
 						  'Warning',
 						  '포트폴리오 작성은 로그인 후 이용하실 수 있습니다.',
+						  'warning'
+						)
+						
+						return;
+			}
+			
+			if("${MEMBER_LOGININFO.category_no}" == "1"){
+				Swal.fire(
+						  'Warning',
+						  '포트폴리오 작성은 디벨로퍼 유저만 등록할 수 있습니다.',
 						  'warning'
 						)
 						
@@ -489,21 +499,21 @@
 					},
 					success : function(result){
 						console.log(result);
-						if(result.MYPAGE_TECHNOLOGIES == null){
-							 skill_check = 1;
+						skill_check = result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES;
+						console.log(skill_check);
 						}
-					}
 				});
 			}
 			
-			if(skill_check == 1){
+			
+ 			if(skill_check == null){
 				Swal.fire(
 						  'Warning',
 						  '포트폴리오 작성은 보유 기술 등록 후 이용하실 수 있습니다.',
 						  'warning'
 						)
 						return;
-			}
+			} 
 			
 			
 			location.href ="${pageContext.request.contextPath}/user/portfolio/portfolioForm.do";

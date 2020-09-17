@@ -273,9 +273,9 @@
 						<div class="card" style="height: 435px;">
 							<div class="card-header">
 								<h2 class="mb-0">2. 포트폴리오 사진 등록</h2>
-								<label class="col-form-label form-control-label">포트폴리오
-									등록</label>
-								<p class="text-muted" style="font-size: small">포트폴리오를 등록해주세요</p>
+								<label class="col-form-label form-control-label">대표 포트폴리오
+									등록</label></label> <label style="color: tomato">*</label>
+								<p class="text-muted" style="font-size: small">대표 포트폴리오를 등록해주세요</p>
 							</div>
 							<div id="image-image-Form">
 								<div class="avatar-wrapper">
@@ -283,7 +283,7 @@
 									<div class="upload-button sub-profile-upload-button1">
 										<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 									</div>
-									<input class="file-upload file-upload-input2" type="file" accept="image/*" name="files"/>
+									<input class="file-upload file-upload-input2" type="file" accept="image/*" name="files" id="subfiles1"/>
 								</div>
 							</div>
 						</div>
@@ -305,7 +305,7 @@
 									<div class="upload-button sub-profile-upload-button2">
 										<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
 									</div>
-									<input class="file-upload file-upload-input3" type="file" accept="image/*" name="files"/>
+									<input class="file-upload file-upload-input3" type="file" accept="image/*" name="files" id="subfiles2"/>
 								</div>
 							</div>
 						</div>
@@ -455,14 +455,15 @@
 					return;
 				}
 				
-				const fileValue = $("#firstfiles").val().split("\\");
-				const fileName = fileValue[fileValue.length-1];
-				
-				
-				if (fileName == "") {
+				const mainfile = $('.main-profile').attr('src');
+				const subfile_1 = $('.sub-profile1').attr('src');
+				const subfile_2= $('.sub-profile2').attr('src');
+
+
+				if (mainfile =="" &&  subfile_1 == "" && subfile_2 == "") {
 					$.notify({
 						// options
-						message: '썸네일 파일을  등록해주세요!' 
+						message: '포트폴리오를 전부 입력해주세요!' 
 					},{
 						// settings
 						placement: {
@@ -475,8 +476,9 @@
 					return;
 				}
 				
+			
 				// 포트폴리오 내용
-				const $portfolio_description = '<input type="hidden" name="portfolio_description" value="' +portfolio_description_ipt +'">';
+ 				const $portfolio_description = '<input type="hidden" name="portfolio_description" value="' +portfolio_description_ipt +'">';
 				// 포트폴리오 참여율
 				const $portfolio_participationrate =  '<input type="hidden" name="portfolio_participationrate" value="' + input_slider_value_ipt + '">';
 				// 포트폴리오 사용한 기술 체크 값
@@ -486,7 +488,7 @@
 				$('form[name=portFolioForm]').append($portfolio_participationrate);
 				$('form[name=portFolioForm]').append($portfolio_technologies);
 				
-				$('form[name=portFolioForm]').submit();
+				$('form[name=portFolioForm]').submit(); 
 			});
 			
 		//목록 버튼

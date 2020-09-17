@@ -30,6 +30,7 @@ import kr.or.ddit.vo.PortFolioVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,6 +74,10 @@ public class PortfolioController {
 		
 		// 최고 평균점수가 높은 포트폴리오의 정보를 가져와서 뛰어줌 
 		Map<String,String> MainportfolioInfo = this.portfolioService.portfolioInfo(maxportfolioAvg); 
+		String repImage_ipt = MainportfolioInfo.get("PORTFOLIO_IMGS");
+		String[] REGIMAGE = repImage_ipt.split(",");
+		MainportfolioInfo.put("regImage", String.valueOf(REGIMAGE[0]));
+		
 		
 		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
         modelAndView.addObject("breadcrumb_first", "포트 폴리오 리스트");
@@ -219,34 +224,59 @@ public class PortfolioController {
 	public String updatePortfolio(PortFolioVO portfolioInfo ,@RequestParam("files") MultipartFile[] items
 			,String mainImage, String sub_profile1, String sub_profile2) throws Exception{
 		
-		List<FileItemVO> list =  attachFileMapperTest.mapper(items);
-		portfolioInfo.setPortfolio_thumbnailimg(list.get(0).getFile_save_name());
-		
-		String portfolioImg ="";
-		for(int i=1; i<list.size(); i++){
-			if( i == (list.size()-1) ){
-				portfolioImg += list.get(i).getFile_save_name();
-				
-			}else{
-				//portfolioInfo.setPortfolio_imgs(list.get(i).getFile_save_name() + ",");
-				portfolioImg += list.get(i).getFile_save_name()+ ",";
-			}
+		String fileName = "";
+		for(int i=0; i< items.length; i++){
+			fileName += FilenameUtils.getName(items[i].getOriginalFilename());
 		}
-		// 마무리~!
-		portfolioInfo.setPortfolio_imgs(portfolioImg);
-		
 		int cnt= 0;
-		cnt = this.portfolioService.updatePortfolio(portfolioInfo);
 		
-		String taskResult = null;
-		String message = null;
 		
-		if(cnt> 0){
-			taskResult = "success";
-			message = URLEncoder.encode("포트폴리오가 정상적으로 수정되었습니다.", "UTF-8");
+		if(fileName.equals("")){
+			portfolioInfo.setPortfolio_thumbnailimg(mainImage);
+			portfolioInfo.setPortfolio_imgs(sub_profile1+","+sub_profile2);
+			
+			cnt = this.portfolioService.updatePortfolio(portfolioInfo);
+			
+			String taskResult = null;
+			String message = null;
+			
+			if(cnt> 0){
+				taskResult = "success";
+				message = URLEncoder.encode("포트폴리오가 정상적으로 수정되었습니다.", "UTF-8");
+			}
+			
+			return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
+		}else{
+			
+			List<FileItemVO> list =  attachFileMapperTest.mapper(items);
+			portfolioInfo.setPortfolio_thumbnailimg(list.get(0).getFile_save_name());
+			
+			String portfolioImg ="";
+			for(int i=1; i<list.size(); i++){
+				if( i == (list.size()-1) ){
+					portfolioImg += list.get(i).getFile_save_name();
+					
+				}else{
+					//portfolioInfo.setPortfolio_imgs(list.get(i).getFile_save_name() + ",");
+					portfolioImg += list.get(i).getFile_save_name()+ ",";
+				}
+			}
+			// 마무리~!
+			portfolioInfo.setPortfolio_imgs(portfolioImg);
+			
+			cnt= 0;
+			cnt = this.portfolioService.updatePortfolio(portfolioInfo);
+			
+			String taskResult = null;
+			String message = null;
+			
+			if(cnt> 0){
+				taskResult = "success";
+				message = URLEncoder.encode("포트폴리오가 정상적으로 수정되었습니다.", "UTF-8");
+			}
+			
+			return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 		}
-		
-		return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	}
 
 	@RequestMapping("deleteportfolio")

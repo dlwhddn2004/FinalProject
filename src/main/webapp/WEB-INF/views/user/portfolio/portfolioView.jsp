@@ -153,11 +153,13 @@
 <body>
 
 	<div class="viewPage">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-md-12">
-				<!-- Image-Text card -->
+				<!-- Image-작업 중 --> 
+			<!--  	<div class="card mainDiv"
+					style="background-image: url('/${portfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;"> -->
 				<div class="card mainDiv"
-					style="background-image: url('/${portfolioInfo.PORTFOLIO_THUMBNAILIMG}'); height: 600px;">
+					style="background-image: url('/${portfolio_imgs[0]}'); height: 600px;">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="icon-actions"
@@ -179,7 +181,7 @@
 								style="font-size: 30px;">${portfolioInfo.PORTFOLIO_NAME }</span>
 						</div>
 						<div class="perpectCenter">
-							<span class="h3 font-weight-light text-cyan"> by
+							<span class="h1 font-weight-light text-cyan"> by
 								${portfolioInfo.MEM_ID } FROM TotalScore ${chartInfo.TOTALAVG}</span>
 						</div>
 					</div>
@@ -611,33 +613,6 @@
                                         </thead>
                                         <!-- 작 업 중 -->
                                         <tbody class="reviewTbody">
-                                        <!--  	<c:forEach items="${portfolioReviewList }" var="portfolioReviewList" >
-		                                        <tr>
-		                                            <td class="table-user">
-		                                                <img src="/${portfolioReviewList.PROFILE_SAVENAME }" class="avatar rounded-circle mr-3">
-		                                                <b>${portfolioReviewList.MEM_ID}</b>
-		                                            </td>
-		                                            
-		                                            <td>
-		                                                <span class="text-muted">${portfolioReviewList.PORTFOLIO_CONTENT }</span>
-		                                            </td>
-		                                            
-		                                            <td>
-		                                               	점수 넣을거
-		                                            </td>
-		
-													<td class="table-actions">
-													<span>2020 09 15</span> &nbsp;&nbsp;&nbsp;
-													<c:if test="${portfolioReviewList.MEM_ID == MEMBER_LOGININFO.mem_id}">
-														<a href="#!" class="table-action" data-toggle="tooltip" data-original-title="리뷰 수정">
-														<i class="fas fa-user-edit"></i></a>
-														<a href="#!" class="table-action table-action-delete" data-toggle="tooltip" data-original-title="리뷰 삭제">
-														<i class="fas fa-trash"></i></a>
-													</c:if>
-													
-													</td>
-												</tr>
-                                        	</c:forEach> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -1210,25 +1185,6 @@
 				}
 				
 				
-/* 				const fileValue = $("#firstfiles").val().split("\\");
-				const fileName = fileValue[fileValue.length-1];
-				
-				
-				if (fileName == "") {
-					$.notify({
-						// options
-						message: '수정하실 파일을 다시 한번 등록해주세요!' 
-					},{
-						// settings
-						placement: {
-							from: "top",
-							align: "center"
-						},
-						type: 'info'
-					});
-					
-					return;
-				} */
 
 				<!-- 작업 중 -->
 				const mainImage =  "${portfolioInfo.PORTFOLIO_THUMBNAILIMG }";
@@ -1244,7 +1200,7 @@
 				
 				const $portfolio_main = '<input type="hidden" name="mainImage" value="' + mainImage + '">';
 				const $portfolio_sub1 = '<input type="hidden" name="sub_profile1" value="' + sub_profile1 + '">';
-				const $portfolio_sub2 = '<input type="hidden" name="sub-profile2" value="' + sub_profile2 + '">';
+				const $portfolio_sub2 = '<input type="hidden" name="sub_profile2" value="' + sub_profile2 + '">';
 				
 				
  				$('form[name=portFolioForm]').append($portfolio_description);
