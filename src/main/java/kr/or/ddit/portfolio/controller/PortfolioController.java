@@ -73,10 +73,13 @@ public class PortfolioController {
 		Map<String,String> mainScoreChart = this.portfolioService.mainScoreChart(maxportfolioAvg);
 		
 		// 최고 평균점수가 높은 포트폴리오의 정보를 가져와서 뛰어줌 
-		Map<String,String> MainportfolioInfo = this.portfolioService.portfolioInfo(maxportfolioAvg); 
-		String repImage_ipt = MainportfolioInfo.get("PORTFOLIO_IMGS");
-		String[] REGIMAGE = repImage_ipt.split(",");
-		MainportfolioInfo.put("regImage", String.valueOf(REGIMAGE[0]));
+		Map<String,String> MainportfolioInfo = this.portfolioService.portfolioInfo(maxportfolioAvg);
+		String repImage_ipt = null;
+		if(MainportfolioInfo != null){
+			repImage_ipt = MainportfolioInfo.get("PORTFOLIO_IMGS");
+			String[] REGIMAGE = repImage_ipt.split(",");
+			MainportfolioInfo.put("regImage", String.valueOf(REGIMAGE[0]));
+		}
 		
 		
 		modelAndView.addObject("breadcrumb_title", "포트 폴리오");
