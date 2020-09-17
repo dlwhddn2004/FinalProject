@@ -27,226 +27,309 @@ li a:hover:not(.active) {
 </style>
 		<!-- Main content -->
 		
-		<div class="row">
-			<div class="col-md-9">
-				<div class="card">
-					<div class="card-header">					
-							<h3 class="mb-0">회원 수정</h3>						
-					</div>
-					<div class="card-body" >
-					<form name=memberForm>
-						<h6 class="heading-small text-muted mb-4">* 아래 회원 수정을 작성
-							변경해주세요.</h6>
-						<div class="pl-lg-4">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="form-group flex-column">
-										<label class="col-form-label form-control-label">아이디</label> <label
-											style="color: tomato">*</label> <input type="hidden"
-											name="mem_id" class="form-control"
-											value="${memberInfo.mem_id}" placeholder="Username">
-										<input type="text" name="mem_id" class="form-control"
-											placeholder="Username" disabled="disabled"
-											value="${memberInfo.mem_id}">
-									</div>
-									<div class="form-group flex-column">
-										<label class="col-form-label form-control-label">이메일</label> <label
-											style="color: tomato">*</label> <input type="hidden"
-											name="mem_mail" class="form-control"
-											value="${MEMBER_LOGININFO.mem_mail}" placeholder="Username">
-										<input type="text" name="mem_mail" class="form-control"
-											placeholder="Username" disabled="disabled"
-											value="${MEMBER_LOGININFO.mem_mail}">
-									</div>									
-								</div>
-							<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
-								<div class="col">
-									<label class="col-form-label form-control-label">이름</label>
-									 <label style="color: tomato">*</label>
-								</div>
-								<div class="row">
-									<div class="col" style="margin: 0px 40px 0px 0px;">
-										 <input
-											style="" "type="text" class="form-control" id="mem_name"
-											name="mem_name" value="${memberInfo.mem_name}" placeholder="">
-									</div>						
-								</div>					
-								<br>
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-9"> -->
+<!-- 				<div class="card"> -->
+<!-- 					<div class="card-header">					 -->
+<!-- 							<h3 class="mb-0">회원 수정</h3>						 -->
+<!-- 					</div> -->
+<!-- 					<div class="card-body" > -->
+<!-- 					<form name=memberForm> -->
+<!-- 						<h6 class="heading-small text-muted mb-4">* 아래 회원 수정을 작성 -->
+<!-- 							변경해주세요.</h6> -->
+<!-- 						<div class="pl-lg-4"> -->
+<!-- 							<div class="row"> -->
+<!-- 								<div class="col-lg-4"> -->
+<!-- 									<div class="form-group flex-column"> -->
+<!-- 										<label class="col-form-label form-control-label">아이디</label> <label -->
+<!-- 											style="color: tomato">*</label> <input type="hidden" -->
+<!-- 											name="mem_id" class="form-control" -->
+<%-- 											value="${memberInfo.mem_id}" placeholder="Username"> --%>
+<!-- 										<input type="text" name="mem_id" class="form-control" -->
+<!-- 											placeholder="Username" disabled="disabled" -->
+<%-- 											value="${memberInfo.mem_id}"> --%>
+<!-- 									</div> -->
+<!-- 									<div class="form-group flex-column"> -->
+<!-- 										<label class="col-form-label form-control-label">이메일</label> <label -->
+<!-- 											style="color: tomato">*</label> <input type="hidden" -->
+<!-- 											name="mem_mail" class="form-control" -->
+<%-- 											value="${MEMBER_LOGININFO.mem_mail}" placeholder="Username"> --%>
+<!-- 										<input type="text" name="mem_mail" class="form-control" -->
+<!-- 											placeholder="Username" disabled="disabled" -->
+<%-- 											value="${MEMBER_LOGININFO.mem_mail}"> --%>
+<!-- 									</div>									 -->
+<!-- 								</div> -->
+<!-- 							<div class="col-lg-3" style="margin: 0px 0px 0px 80px;"> -->
+<!-- 								<div class="col"> -->
+<!-- 									<label class="col-form-label form-control-label">이름</label> -->
+<!-- 									 <label style="color: tomato">*</label> -->
+<!-- 								</div> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col" style="margin: 0px 40px 0px 0px;"> -->
+<!-- 										 <input -->
+<!-- 											style="" "type="text" class="form-control" id="mem_name" -->
+<%-- 											name="mem_name" value="${memberInfo.mem_name}" placeholder=""> --%>
+<!-- 									</div>						 -->
+<!-- 								</div>					 -->
+<!-- 								<br> -->
 				 
 									
 									
-									<div class="col">	
-									<label class="col-form-label form-control-label">휴대전화</label>
-										<label style="color: tomato">*</label></div>
-								<div class="row">
-									<div class="col">
-									<input type="hidden" name="mem_tel" class="form-control" />
-									<select name="mem_tel1" class="form-control">
+<!-- 									<div class="col">	 -->
+<!-- 									<label class="col-form-label form-control-label">휴대전화</label> -->
+<!-- 										<label style="color: tomato">*</label></div> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col"> -->
+<!-- 									<input type="hidden" name="mem_tel" class="form-control" /> -->
+<!-- 									<select name="mem_tel1" class="form-control"> -->
 								
 								
-									<option value="${MemberInfoTel[0]}">010</option>
-														<option value="016">016</option>
-														<option value="017">017</option>
-														<option value="019">019</option>
-												</select>
-									</div>
-									<div class="col">	
-									<input type="text" name="mem_tel2" size="4" value="${MemberInfoTel[1]}"class="form-control" />
-									</div>
-									 <div class="col">
-									 		  <input type="text"name="mem_tel3" size="4" value="${MemberInfoTel[2]}" class="form-control" />
-									 </div>
-								</div>
+<%-- 									<option value="${MemberInfoTel[0]}">010</option> --%>
+<!-- 														<option value="016">016</option> -->
+<!-- 														<option value="017">017</option> -->
+<!-- 														<option value="019">019</option> -->
+<!-- 												</select> -->
+<!-- 									</div> -->
+<!-- 									<div class="col">	 -->
+<%-- 									<input type="text" name="mem_tel2" size="4" value="${MemberInfoTel[1]}"class="form-control" /> --%>
+<!-- 									</div> -->
+<!-- 									 <div class="col"> -->
+<%-- 									 		  <input type="text"name="mem_tel3" size="4" value="${MemberInfoTel[2]}" class="form-control" /> --%>
+<!-- 									 </div> -->
+<!-- 								</div> -->
 							
-							</div>
-						</div>							
-						</div>
+<!-- 							</div> -->
+<!-- 						</div>							 -->
+<!-- 						</div> -->
 						
-						<div class="pl-lg-4">
-							<div class="row">
-								<div class="col-lg-4">
-									<div class="form-group flex-column">
-										<label class="col-form-label form-control-label">비밀번호</label>
-										<label style="color: tomato">*</label> <input
-											type="password" name="mem_pass" class="form-control"
-											value="${memberInfo.mem_pass}">
-									</div>
-									<div class="form-group flex-column">
-										<label class="col-form-label form-control-label">비밀번호
-											확인</label> <label style="color: tomato">*</label> 
-										<input type="password" name="mem_pass1" class="form-control"
-											value="${memberInfo.mem_pass}">
-									</div>
-								</div>
-									<div class="col-lg-3" style="margin: 0px 0px 0px 80px;">
-								<div class="col">
-									<label class="col-form-label form-control-label">생년월일</label> <label
-										style="color: tomato">*</label>
-								</div>
-								<div class="row">
-									<div class="col" style="margin: 0px 40px 0px 0px;">
-										      <input class="form-control datepicker" value="${memberInfo.mem_bir }"placeholder="Select date" type="text" id="today" name="mem_bir">										
-										</div>																			
-								</div>
-								<br>
+<!-- 						<div class="pl-lg-4"> -->
+<!-- 							<div class="row"> -->
+<!-- 								<div class="col-lg-4"> -->
+<!-- 									<div class="form-group flex-column"> -->
+<!-- 										<label class="col-form-label form-control-label">비밀번호</label> -->
+<!-- 										<label style="color: tomato">*</label> <input -->
+<!-- 											type="password" name="mem_pass" class="form-control" -->
+<%-- 											value="${memberInfo.mem_pass}"> --%>
+<!-- 									</div> -->
+<!-- 									<div class="form-group flex-column"> -->
+<!-- 										<label class="col-form-label form-control-label">비밀번호 -->
+<!-- 											확인</label> <label style="color: tomato">*</label>  -->
+<!-- 										<input type="password" name="mem_pass1" class="form-control" -->
+<%-- 											value="${memberInfo.mem_pass}"> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 									<div class="col-lg-3" style="margin: 0px 0px 0px 80px;"> -->
+<!-- 								<div class="col"> -->
+<!-- 									<label class="col-form-label form-control-label">생년월일</label> <label -->
+<!-- 										style="color: tomato">*</label> -->
+<!-- 								</div> -->
+<!-- 								<div class="row"> -->
+<!-- 									<div class="col" style="margin: 0px 40px 0px 0px;"> -->
+<%-- 										      <input class="form-control datepicker" value="${memberInfo.mem_bir }"placeholder="Select date" type="text" id="today" name="mem_bir">										 --%>
+<!-- 										</div>																			 -->
+<!-- 								</div> -->
+<!-- 								<br> -->
 								
-									<div class="col">	
-									<label class="col-form-label form-control-label">알림 방식</label>
-										<label style="color: tomato">*</label></div>
-								<div class="row">
-									 <div class="custom-control custom-checkbox" style="margin: 0px 0px 0px 0px">
-                            <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck1" value="이메일">
-                            <label class="custom-control-label" for="customCheck1">이메일</label>
-                          </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									 <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck2" value="문자메시지">
-                            <label class="custom-control-label" for="customCheck2">문자 메시지</label>
-                          </div>
-								</div>
+<!-- 									<div class="col">	 -->
+<!-- 									<label class="col-form-label form-control-label">알림 방식</label> -->
+<!-- 										<label style="color: tomato">*</label></div> -->
+<!-- 								<div class="row"> -->
+<!-- 									 <div class="custom-control custom-checkbox" style="margin: 0px 0px 0px 0px"> -->
+<!--                             <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck1" value="이메일"> -->
+<!--                             <label class="custom-control-label" for="customCheck1">이메일</label> -->
+<!--                           </div> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!-- 									 <div class="custom-control custom-checkbox"> -->
+<!--                             <input type="checkbox" class="custom-control-input" name="mem_notice" id="customCheck2" value="문자메시지"> -->
+<!--                             <label class="custom-control-label" for="customCheck2">문자 메시지</label> -->
+<!--                           </div> -->
+<!-- 								</div> -->
 
 							
-							</div>    									
-							</div>
-						</div>
+<!-- 							</div>    									 -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
 
-						<!-- 주소  -->
+<!-- 						주소  -->
 
-						<div class="pl-lg-4">
-							<div class="row">
-								<div class="col-lg-4">
+<!-- 						<div class="pl-lg-4"> -->
+<!-- 							<div class="row"> -->
+<!-- 								<div class="col-lg-4"> -->
 								
-									<div class="form-group flex-column" style="margin:0px 20px 0px 0px;">
-										<label class="col-form-label form-control-label">주소</label> <label
-											style="color: tomato">*</label><br> <input type="button"
-											class="btn btn-primary btn-write"
-											onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-										<input type="hidden" class="form-control" name="mem_addr" />
-										<div class="input flex-column" style="display:">
-											<input type="text" class="form-control" id="addr1"
-												name="mem_addr1" value="${MemberInfoaddr[0]}" placeholder="우편번호" required> 
-												<input type="text"  value="${MemberInfoaddr[1]}"  class="form-control" name="mem_addr2" id="addr2"
-												placeholder="도로명주소" required> 
-												<input type="text" class="form-control" value="${MemberInfoaddr[2]}"  name="mem_addr3" id="addr3" placeholder="지번주소" required> 
-												<input type="text" class="form-control"  value="${MemberInfoaddr[3]}" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required>
-										</div>
-									</div>
-								</div>
+<!-- 									<div class="form-group flex-column" style="margin:0px 20px 0px 0px;"> -->
+<!-- 										<label class="col-form-label form-control-label">주소</label> <label -->
+<!-- 											style="color: tomato">*</label><br> <input type="button" -->
+<!-- 											class="btn btn-primary btn-write" -->
+<!-- 											onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> -->
+<!-- 										<input type="hidden" class="form-control" name="mem_addr" /> -->
+<!-- 										<div class="input flex-column" style="display:"> -->
+<!-- 											<input type="text" class="form-control" id="addr1" -->
+<%-- 												name="mem_addr1" value="${MemberInfoaddr[0]}" placeholder="우편번호" required>  --%>
+<%-- 												<input type="text"  value="${MemberInfoaddr[1]}"  class="form-control" name="mem_addr2" id="addr2" --%>
+<!-- 												placeholder="도로명주소" required>  -->
+<%-- 												<input type="text" class="form-control" value="${MemberInfoaddr[2]}"  name="mem_addr3" id="addr3" placeholder="지번주소" required>  --%>
+<%-- 												<input type="text" class="form-control"  value="${MemberInfoaddr[3]}" name="mem_addr4" id="addr4" placeholder="나머지 주소" size="6" required> --%>
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 								
 														
-							</div>
-							<button type="submit" class="btn btn-primary btn-write"
-										id="btn3" style="float: right";>변경</button>
-						</div>	
+<!-- 							</div> -->
+<!-- 							<button type="submit" class="btn btn-primary btn-write" -->
+<!-- 										id="btn3" style="float: right";>변경</button> -->
+<!-- 						</div>	 -->
 
-						</form>
-						<div class="form-row">
-							<div class="col-md-6 mb-3"></div>
-							<div class="col-md-3 mb-3"></div>
-							<div class="col-md-3 mb-3"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="card card-profile">					
-					<br>
-					<h3 style="margin : 0px 0px 0px 20px;">파트너스</h3>
-						<hr/>
-						<div class="card-profile-image" style="margin : 50px 0px 0px 0px">
-						<img class="rounded-circle" 
-							src="/${profileInfo1.profile_savename}">				
-					</div>
-					<div
-				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-				<div class="d-flex justify-content-between"></div>
-			</div>
-					<div class="text-center">
-							<br>
-							<br>
-							<h5 class="h3">
-								<span class="font-weight-light"> <span
-									class="badge-md badge-pill badge-primary">파트너스</span></span><br>
-								<br> ${memberInfo.mem_id }
-								<br> ${memberInfo.mem_mail }
-							</h5>
-						</div>
-					<div class="card-body pt-0">
-						<div class="row">
-							<div class="col">
-								<div class="text-center">
-									<br> <br>
-									<h5 class="h3"></h5>
-								</div>
-								<div class="card-profile-stats d-flex justify-content-center">
+<!-- 						</form> -->
+<!-- 						<div class="form-row"> -->
+<!-- 							<div class="col-md-6 mb-3"></div> -->
+<!-- 							<div class="col-md-3 mb-3"></div> -->
+<!-- 							<div class="col-md-3 mb-3"></div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-3"> -->
+<!-- 				<div class="card card-profile">					 -->
+<!-- 					<br> -->
+<!-- 					<h3 style="margin : 0px 0px 0px 20px;">파트너스</h3> -->
+<!-- 						<hr/> -->
+<!-- 						<div class="card-profile-image" style="margin : 50px 0px 0px 0px"> -->
+<!-- 						<img class="rounded-circle"  -->
+<%-- 							src="/${profileInfo1.profile_savename}">				 --%>
+<!-- 					</div> -->
+<!-- 					<div -->
+<!-- 				class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4"> -->
+<!-- 				<div class="d-flex justify-content-between"></div> -->
+<!-- 			</div> -->
+<!-- 					<div class="text-center"> -->
+<!-- 							<br> -->
+<!-- 							<br> -->
+<!-- 							<h5 class="h3"> -->
+<!-- 								<span class="font-weight-light"> <span -->
+<!-- 									class="badge-md badge-pill badge-primary">파트너스</span></span><br> -->
+<%-- 								<br> ${memberInfo.mem_id } --%>
+<%-- 								<br> ${memberInfo.mem_mail } --%>
+<!-- 							</h5> -->
+<!-- 						</div> -->
+<!-- 					<div class="card-body pt-0"> -->
+<!-- 						<div class="row"> -->
+<!-- 							<div class="col"> -->
+<!-- 								<div class="text-center"> -->
+<!-- 									<br> <br> -->
+<!-- 									<h5 class="h3"></h5> -->
+<!-- 								</div> -->
+<!-- 								<div class="card-profile-stats d-flex justify-content-center"> -->
 
 
-								</div>
-							</div>
-						</div>
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 
-					</div>
-				</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
 
-				<div class="col-md-13">
-					<div class="card card-profile">											
-						<div class="card-body pt-0">
-								<div style="margin : 10px 0px 10px 0px;">
+<!-- 				<div class="col-md-13"> -->
+<!-- 					<div class="card card-profile">											 -->
+<!-- 						<div class="card-body pt-0"> -->
+<!-- 								<div style="margin : 10px 0px 10px 0px;"> -->
 										
-											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;  "><a style="   padding: 20px 16px; background-color: #819FF7; color: white; display: block; " class="active" href="#home">기본정보수정</a></li>
-											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;    "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" >계좌 관리</a></li>
-											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;   "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li>
+<!-- 											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;  "><a style="   padding: 20px 16px; background-color: #819FF7; color: white; display: block; " class="active" href="#home">기본정보수정</a></li> -->
+<%-- 											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;    "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofilebank.do?mem_id=${MEMBER_LOGININFO.mem_id}" >계좌 관리</a></li> --%>
+<%-- 											<li style="list-style-type: none;  display: block; color: #000;  padding: 20px 16px; color: white;   "><a style=" padding: 20px 16px;" href="${pageContext.request.contextPath}/user/myprofile/myprofiledelete.do">회원 탈퇴</a></li> --%>
 								
-									</div>
-						</div>
+<!-- 									</div> -->
+<!-- 						</div> -->
 
 
-					</div>
-				</div>
-			</div>
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
 
-		</div>
+<!-- 		</div> -->
+
+
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>회원 정보 수정</h2>
+                        <div>
+                            <small class="text-muted">회원 정보를 수정하거나 관리할 수 있습니다.</small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button type="button" class="btn btn-outline-primary mt-1 mr-1 mb-1 ml-1">수정</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <small class="text-muted">회원의 기본 프로필 정보입니다.</small>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <a href="#!">
+                            <img src="../../assets/img/theme/team-1.jpg"
+                                 class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
+                                 style="width: 140px;">
+                        </a>
+                        <div class="pt-4 text-center">
+                            <h5 class="h3 title">
+                                <span class="d-block mb-1">Ryan Tompson</span>
+                                <small class="h4 font-weight-light text-muted">Web Developer</small>
+                            </h5>
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-form">회원 탈퇴</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MODAL -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <div class="card bg-secondary border-0 mb-0">
+                                    <div class="card-header bg-transparent text-center">
+                                        <h2 class="text-muted">회원 탈퇴</h2>
+                                        <div class="text-muted text-center">
+                                            <small>회원 탈퇴는 복구가 불가능합니다.</small>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <small class="text-muted">아이디</small>
+                                            <input type="text" class="form-control" placeholder="ID">
+                                        </div>
+                                        <div class="form-group">
+                                            <small class="text-muted">비밀번호</small>
+                                            <input type="text" class="form-control" placeholder="PW">
+                                        </div>
+                                        <div style="display: flex; justify-content: center;">
+                                            <button type="button" class="btn btn-outline-primary mr-2">탈퇴</button>
+                                            <button type="button" class="btn btn-outline-warning ml-2" data-dismiss="modal">취소</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
 	<!-- Argon Scripts -->
 	<!-- Core -->
