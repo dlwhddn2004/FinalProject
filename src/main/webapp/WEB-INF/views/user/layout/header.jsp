@@ -370,21 +370,14 @@
 					},
 					success : function(result){
 						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${MEMBER_LOGININFO.category_no}' == '2'){
-							Swal.fire({
-								  icon: 'warning',
-								  title: '기술 안내',
-								  text: '중요 기능들을 이용하시려면 보유 기술을 작성해주세요.',
-								  showCancelButton: true,
-								  confirmButtonColor: '#3085d6',
-								  cancelButtonColor: '#d33',
-								  confirmButtonText: '작성',
-								  cancelButtonText: '취소'
-								}).then((result) => {
-								  if (result.value == true) {
-										  location.href = '${pageContext.request.contextPath}/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}';
-								  }
-							});
 							
+							Swal.fire(
+									  'Warning',
+									  '중요 기능들을 이용하시려면 마이페이지에서 보유 기술을 작성해주세요.',
+									  'warning'
+									)
+									
+									return;
 							
 							
 						}
