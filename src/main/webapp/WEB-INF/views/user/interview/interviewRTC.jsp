@@ -913,6 +913,8 @@
 		    	mem_id: var_mem_id
 		    },
 		    success: function (data) {
+		    	$('.information-card3 .technologies').empty();
+		    	
 		    	let tempHTML = '';
 		    	if (data.MYPAGE_TECHNOLOGIES != null) {
 		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('1') != -1) {
@@ -1176,7 +1178,7 @@
 		  showCancelButton: true,
 		  confirmButtonColor: '#3085d6',
 		  cancelButtonColor: '#d33',
-		  confirmButtonText: '삭제',
+		  confirmButtonText: '종료',
 		  cancelButtonText: '취소'
 		}).then((result) => {
 		  if (result.value) {

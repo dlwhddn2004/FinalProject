@@ -1135,6 +1135,8 @@
 		    	mem_id: var_mem_id
 		    },
 		    success: function (data) {
+		    	$('.information-card3 .technologies').empty();
+		    	
 		    	let tempHTML = '';
 		    	if (data.MYPAGE_TECHNOLOGIES != null) {
 		    		if ((data.MYPAGE_TECHNOLOGIES).indexOf('1') != -1) {

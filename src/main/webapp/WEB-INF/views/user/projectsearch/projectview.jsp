@@ -66,7 +66,7 @@
 										<span>모집 마감일</span> 
 									</div>
 									<div>
-										<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_enddate }일</span>
+										<span class="mb-0" style="font-weight: bolder; ">${projectInfo.project_applicationdeadline}일</span>
 									</div>
 								</div>
 							</div>

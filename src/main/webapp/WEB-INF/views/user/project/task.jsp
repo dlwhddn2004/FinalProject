@@ -60,7 +60,7 @@
 					<div
 						style="display: flex; margin: 0px 0px 0px 0px; justify-content: space-between;">
 						<div style="display: flex; width: 500px;">
-							<div style="margin: 10px 10px 10px 0px; width: 300px;">
+							<div style="margin: 10px 10px 10px 0px; width: 800px;">
 								<h5>프로젝트</h5>
 								<select class="form-control select-project" data-toggle="select"
 									title="Simple select" data-live-search="true"

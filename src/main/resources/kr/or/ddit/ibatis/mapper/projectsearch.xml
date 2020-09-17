@@ -376,7 +376,7 @@ from PROJECT_APPLY
 where project_no = #project_no# 
 </select>
 <select id="projectInfo6" resultClass="String"  parameterClass="map">
-select ROUND(SYSDATE - PROJECT_STARTDATE)
+select ROUND(PROJECT_APPLICATIONDEADLINE - SYSDATE)
 from PROJECT
     where PROJECT_NO = #project_no#
 </select> 

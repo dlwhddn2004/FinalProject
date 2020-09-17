@@ -672,7 +672,9 @@ public class InterviewController {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
 		
-		return interviewService.selectMypageDeveloper(params);
+		Map<String, String> resultMap = interviewService.selectMypageDeveloper(params);
+		
+		return resultMap;
 	}
 	
 	@RequestMapping("selectInterviewTimeChk")

@@ -164,7 +164,7 @@
               <div class="collapse" id="navbar-forms">
                 <ul class="nav nav-sm flex-column">
                   <li class="nav-item">
-                    <a href="${pageContext.request.contextPath }/user/noticeboard/noticeboardList.do" class="nav-link">
+                    <a href="${pageContext.request.contextPath }/user/noticeboard/noticeboardList.do?mem_id=${MEMBER_LOGININFO.mem_id}" class="nav-link">
                       <span class="sidenav-mini-icon"> 공지 </span>
                       <span class="sidenav-normal"> 공지 사항 </span>
                     </a>
@@ -185,12 +185,6 @@
                     <a href="${pageContext.request.contextPath }/user/successboard/successboardList.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 성공 </span>
                       <span class="sidenav-normal"> 프로젝트 성공 사례 </span>
-                    </a>
-                  </li>
-                    <li class="nav-item">
-                    <a href="../../pages/forms/validation.html" class="nav-link">
-                      <span class="sidenav-mini-icon"> 소식 </span>
-                      <span class="sidenav-normal"> 소식 게시판 </span>
                     </a>
                   </li>
                 </ul>
