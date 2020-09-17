@@ -122,9 +122,11 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<div align="right" style="padding: 15px 15px 0px 0px;">
-						<button type="button" class="btn btn-primary btn-write">등록</button>
-					</div>
+					<c:if test="${memberInfo.CATEGORY_NO == 0 }">
+						<div align="right" style="padding: 15px 15px 0px 0px;">
+							<button type="button" class="btn btn-primary btn-write">등록</button>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</div>

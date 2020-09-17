@@ -8,7 +8,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.noticeboard.service.INoticeboardService;
+import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.NoticeboardVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.lowagie.text.pdf.PRAcroForm;
+
 @Controller
 @RequestMapping("/user/noticeboard/")
 public class NoticeboardController {
@@ -24,9 +28,17 @@ public class NoticeboardController {
 	@Autowired
 	private INoticeboardService noticeboardService;
 	
+	@Autowired
+	private IMemberService memberService;
+	
 	@RequestMapping("noticeboardList")
 	public ModelAndView noticeList(HttpServletRequest request,
-								  ModelAndView modelView)throws Exception{
+								  ModelAndView modelView,
+								  String mem_id)throws Exception{
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 		
 		List<NoticeboardVO> noticeboardList = null;
 		noticeboardList = noticeboardService.noticeboardList();
@@ -35,6 +47,7 @@ public class NoticeboardController {
 		modelView.addObject("breadcrumb_first", "공지사항 게시판");
 		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/noticeboard/noticeboardList.do");
 		
+		modelView.addObject("memberInfo", memberInfo);
 		modelView.addObject("noticeboardList", noticeboardList);
 		modelView.setViewName("user/noticeboard/noticeboardList");
 		
