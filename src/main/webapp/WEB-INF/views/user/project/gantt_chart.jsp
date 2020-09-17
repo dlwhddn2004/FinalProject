@@ -33,7 +33,7 @@
       <!-- Card header -->
       <div class="card-header border-0">
         <h3 class="mb-0">GANTT 차트</h3>
-        <div style="display: flex; width: 400px; margin: 10px 0px 10px 0px;">
+        <div style="display: flex; width: 490px; margin: 10px 0px 10px 0px;">
           <select class="form-control select-project" data-toggle="select" title="Simple select" data-live-search="true" data-live-search-placeholder="프로젝트 선택">
           	<c:forEach items="${projectList }" var="item">
           		<option value="${item.PROJECT_NO }">${item.PROJECT_TITLE }</option>
