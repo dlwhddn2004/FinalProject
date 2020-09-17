@@ -278,7 +278,7 @@
                             <div class="col-md-6 row-">
                               <small class="text-muted">기술</small>
                               <div class="form-group">
-                                <select class="form-control technologies" data-toggle="select" multiple data-placeholder="Select multiple options">
+                                <select class="form-control technologies" data-toggle="select" multiple data-placeholder="Select multiple options" disabled>
                                 </select>
                               </div>
                             </div>
