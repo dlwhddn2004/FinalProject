@@ -50,7 +50,7 @@ $(function(){
 				  cancelButtonText: '취소'
 				  }).then((result) => {
 					  if (result.value) {
-		$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }&mem_pass=${MEMBER_LOGININFO.mem_pass}');
+		$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }&mem_passs='+$('#mem_passs').val()+'');
 					  }
 		});
 	 });
@@ -179,8 +179,8 @@ $(function(){
 									<div class="col">
 									<input type="hidden" name="mem_tel" class="form-control" />
 									<select name="mem_tel1" class="form-control">
-												<option value="${MemberInfoTel[0]}">${MemberInfoTel[0]}</option>
-												<option value="">010</option>
+												<option value="${MemberInfoTel[0]}">선택하시오</option>
+												<option value="010">010</option>
 												<option value="016">016</option>
 												<option value="017">017</option>
 												<option value="019">019</option>
@@ -253,7 +253,7 @@ $(function(){
 										class="form-control" id="mem_id" name="mem_id" value="${MEMBER_LOGININFO.mem_id}" placeholder="ID">
 								</div>
 								<div class="form-group">
-									<small class="text-muted">비밀번호</small> <input  type="password" id="mem_pass" name="mem_pass"
+									<small class="text-muted">비밀번호</small> <input  type="password" id="mem_passs" name="mem_passs"
 										class="form-control" placeholder="PW">
 								</div>
 								<div style="display: flex; justify-content: center;">
