@@ -65,6 +65,7 @@ public class InterviewController {
 	Map<String, String> interviewInfo = interviewService.selectInterview(params);
 	List<Map<String, String>> notApplyMemList = interviewService.selectNotConfirmApplyList(params);
 	Map<String, String> mypageDeveloperInfo = interviewService.selectMypageDeveloper(params);
+	Map<String, String> projectInfo = projectService.selectOnlyProjectInfo(project_no);
 	
 	for (Map<String, String> item : notApplyMemList) {
 		String DBTechData = String.valueOf(item.get("MYPAGE_TECHNOLOGIES"));
@@ -97,6 +98,7 @@ public class InterviewController {
 	modelAndView.addObject("notApplyMemList", notApplyMemList);
 	modelAndView.addObject("interviewInfo", interviewInfo);
 	modelAndView.addObject("mypageDeveloperInfo", mypageDeveloperInfo);
+	modelAndView.addObject("projectInfo", projectInfo);
 	
 	modelAndView.setViewName("user/interview/interview-partners");
 	

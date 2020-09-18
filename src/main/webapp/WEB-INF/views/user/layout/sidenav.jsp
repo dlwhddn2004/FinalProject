@@ -36,7 +36,7 @@
       <!-- Brand -->
       <div class="sidenav-header  d-flex  align-items-center">
         <a class="navbar-brand" href="${pageContext.request.contextPath }">
-          <img src="${pageContext.request.contextPath }/assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="${pageContext.request.contextPath }/assets/img/brand/logo_blue.png" class="navbar-brand-img" alt="...">
         </a>
         <div class=" ml-auto ">
           <!-- Sidenav toggler -->

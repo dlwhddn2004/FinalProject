@@ -271,6 +271,22 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		FROM PROJECT
 		WHERE MEM_ID = #mem_id#
 	</select>
+	
+	<update id="projectEnd" parameterClass="map">
+		UPDATE PROJECT SET PROJECT_ENDSTATUS = 'Y'
+		WHERE PROJECT_NO = #project_no#
+	</update>
+	
+	<select id="selectOnlyProjectInfo" parameterClass="String" resultClass="java.util.HashMap">
+		SELECT *
+		FROM PROJECT
+		WHERE PROJECT_NO = #project_no#
+	</select>
+	
+	<update id="endHire" parameterClass="map">
+		UPDATE PROJECT SET PROJECT_HIRESTATUS = 'Y'
+		WHERE PROJECT_NO = #project_no#
+	</update>
 
 </sqlMap>
 

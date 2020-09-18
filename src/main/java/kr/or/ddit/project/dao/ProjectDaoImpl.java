@@ -197,11 +197,20 @@ public class ProjectDaoImpl implements IProjectDao {
 			Map<String, String> params) throws Exception {
 		return client.queryForList("project.selectMakeProjectList", params);
 	}
-	
 
+	@Override
+	public int projectEnd(Map<String, String> params) throws Exception {
+		return client.update("project.projectEnd", params);
+	}
 
+	@Override
+	public Map<String, String> selectOnlyProjectInfo(String project_no)
+			throws Exception {
+		return (Map<String, String>) client.queryForObject("project.selectOnlyProjectInfo", project_no);
+	}
 
-
-
-
+	@Override
+	public int endHire(Map<String, String> params) throws Exception {
+		return client.update("project.endHire", params);
+	}
 }

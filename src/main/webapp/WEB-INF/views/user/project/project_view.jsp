@@ -28,6 +28,12 @@
                   <span class="btn-inner--icon"><i class="fas fa-home"></i></span>
                   <span class="btn-inner--text">HOME</span>
                 </a>
+                <c:if test="${projectInfo.PARTNERS_ID == MEMBER_LOGININFO.mem_id }">
+                	<button type="button" class="btn btn-outline-primary btn-sm btn-project-end">프로젝트 종료</button>
+                </c:if>
+                <c:if test="${projectInfo.PL_ID == MEMBER_LOGININFO.mem_id }">
+                	<button type="button" class="btn btn-outline-primary btn-sm btn-project-end">프로젝트 종료</button>
+                </c:if>
               </div>
             </div>
             <h2 class="h2 mb-0">${projectInfo.PROJECT_TITLE }</h2>
@@ -383,33 +389,50 @@
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 <script type="text/JavaScript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
-function shareKakaotalk() {
-    Kakao.init("020511f2c122d132ca189cef2b47456f");      // 사용할 앱의 JavaScript 키를 설정
-    Kakao.Link.sendDefault({
-          objectType:"feed"
-        , content : {
-              title:"커넥터 프로젝트 확인"   // 콘텐츠의 타이틀
-            , description:"신나라씨 확인하고 수정해주세요."   // 콘텐츠 상세설명
-            , imageUrl:"http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg"   // 썸네일 이미지
-            , link : {
-                  mobileWebUrl:"http://localhost:80/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
-            }
-        }
-        , social : {
-              likeCount:0       // LIKE 개수
-            , commentCount:0    // 댓글 개수
-            , sharedCount:0     // 공유 회수
-        }
-        , buttons : [
-            {
-                  title:"게시글 확인"    // 버튼 제목
-                , link : {
-                    mobileWebUrl:"http://localhost:80/"  // 모바일 카카오톡에서 사용하는 웹 링크 URL
-                  , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
-                }
-            }
-        ]
-    });
-}   
+	function shareKakaotalk() {
+	    Kakao.init("020511f2c122d132ca189cef2b47456f");      // 사용할 앱의 JavaScript 키를 설정
+	    Kakao.Link.sendDefault({
+	          objectType:"feed"
+	        , content : {
+	              title:"커넥터 프로젝트 확인"   // 콘텐츠의 타이틀
+	            , description:"신나라씨 확인하고 수정해주세요."   // 콘텐츠 상세설명
+	            , imageUrl:"http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg"   // 썸네일 이미지
+	            , link : {
+	                  mobileWebUrl:"http://localhost:80/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL
+	                , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+	            }
+	        }
+	        , social : {
+	              likeCount:0       // LIKE 개수
+	            , commentCount:0    // 댓글 개수
+	            , sharedCount:0     // 공유 회수
+	        }
+	        , buttons : [
+	            {
+	                  title:"게시글 확인"    // 버튼 제목
+	                , link : {
+	                    mobileWebUrl:"http://localhost:80/"  // 모바일 카카오톡에서 사용하는 웹 링크 URL
+	                  , webUrl:"http://localhost:80/" // PC버전 카카오톡에서 사용하는 웹 링크 URL
+	                }
+	            }
+	        ]
+	    });
+	}   
+	
+	$('.btn-project-end').on('click', function() {
+		Swal.fire({
+			  icon: 'info',
+			  title: '프로젝트 마감',
+			  text: '프로젝트를 마감하시겠습니까?',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '마감',
+			  cancelButtonText: '취소'
+			}).then((result) => {
+			  if (result.value) {
+				  location.href = '${pageContext.request.contextPath }/user/project/projectEnd.do?project_no=${param.project_no }&mem_id=${MEMBER_LOGININFO.mem_id}';
+			  }
+		});
+	});
 </script>

@@ -1,5 +1,7 @@
 package kr.or.ddit.reportboard.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,7 @@ import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.projectsupport.service.IProjectSupportService;
 import kr.or.ddit.reportboard.service.IReportBoardService;
+import kr.or.ddit.timeline.service.ITimelineService;
 import kr.or.ddit.vo.MemberVO;
 import kr.or.ddit.vo.ProfileFileVO;
 
@@ -35,6 +38,8 @@ public class ReportBoardController {
 	private IProjectSupportService projectSupportService;
 	@Autowired
 	private IMemberService memberService;
+	@Autowired
+	private ITimelineService timelineService;
 	
 	@RequestMapping("reportboardList")
 	public ModelAndView reportboardList(HttpServletRequest request,
@@ -145,10 +150,34 @@ public class ReportBoardController {
 		modelAndView.addObject("taskResult", taskResult);
 		modelAndView.addObject("message", message);
 		
+		
 		List<Map<String, String>> reportboardList = null;
 		reportboardList = reportBoardService.reportboardList(params);
 		
 		Map<String, String> projectInfo = projectService.selectProjectInfo(params);
+
+		// 타임라인에 등록!
+		Date nowDate = new Date();
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd");
+		Map<String, String> timelinePL = new HashMap<String, String>();
+		
+		timelinePL.put("project_no", project_no);
+		timelinePL.put("mem_id", mem_id);
+		timelinePL.put("timeline_title", "보고서 등록");
+		timelinePL.put("timeline_tag", "NEW,REPORT");
+		timelinePL.put("timeline_content",  format.format(nowDate) + "에 보고서가 등록되었습니다.");
+		timelinePL.put("timeline_category",  "Y");
+		timelineService.insertTimeline(timelinePL);
+		
+		Map<String, String> timelinePartner = new HashMap<String, String>();
+		timelinePartner.put("project_no", project_no);
+		String partnerID = String.valueOf(projectInfo.get("MEM_ID"));
+		timelinePartner.put("mem_id", partnerID);
+		timelinePartner.put("timeline_title", "보고서 등록");
+		timelinePartner.put("timeline_tag", "NEW,REPORT");
+		timelinePartner.put("timeline_content",  format.format(nowDate) + "에 " + mem_id +"님이 보고서를 등록했습니다.");
+		timelinePartner.put("timeline_category",  "Y");
+		timelineService.insertTimeline(timelinePartner);
 		
 		modelAndView.addObject("reportboardList", reportboardList);
 		modelAndView.addObject("projectInfo", projectInfo);

@@ -147,8 +147,8 @@ public class projectsupportcontroller {
 	}
 	  @RequestMapping("sms1")
 	  public String sendSms() throws Exception {
-		  projectSupportService.sendMail("iai6203@gmail.com", "CONNECTOR 인증 메일 입니다.", "테스트 이메일입니다.");
-		  projectSupportService.sms("01053756203", "안녕하세요 (주)에이투엠에서 김재석님의 포트폴리오를 확인하고 지원 요청을 하였습니다.");
+		  projectSupportService.sendMail("iai6203@gmail.com", "안녕하세요 유클리드 입니다.", "널. 갖.겠.어.");
+		  projectSupportService.sms("01053756203", "안녕하세요 유클리드 입니다. 김재석님의 포트폴리오를 확인하고 지원 요청을 하였습니다.");
 		  String taskResult = null;
 			String message = null;
 			taskResult = "success";
