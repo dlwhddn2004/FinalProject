@@ -1,6 +1,7 @@
 package kr.or.ddit.riskboard.controller;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.ddit.profile_file.service.IProfileFileService;
 import kr.or.ddit.project.service.IProjectService;
 import kr.or.ddit.riskboard.service.IRiskboardService;
+import kr.or.ddit.timeline.service.ITimelineService;
 import kr.or.ddit.vo.ProfileFileVO;
+import kr.or.ddit.vo.ProjectParticipantsVO;
+import kr.or.ddit.vo.Project_ProjectParticipantsVO;
 import kr.or.ddit.vo.RiskJoinVO;
 import kr.or.ddit.vo.RiskboardCommentVO;
 import kr.or.ddit.vo.RiskboardVO;
@@ -21,6 +25,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.sun.org.apache.bcel.internal.generic.Select;
 
 
 @Controller
@@ -33,6 +39,8 @@ public class RiskboardController{
 	private IProfileFileService profileservice;
 	@Autowired
 	private IProjectService projectService;
+	@Autowired
+	private ITimelineService timelineService;
 	
 	@RequestMapping("riskboardList")
 	public ModelAndView riskList(HttpServletRequest request,
@@ -114,7 +122,13 @@ public class RiskboardController{
 								  String risk_content,
 								  String project_no,
 								  String mem_id,
-								  String risk_errorstatus) throws Exception{
+								  String risk_errorstatus,
+								  String timeline_title,
+								  String timeline_content,
+								  String timeline_tag,
+								  String timeline_category)throws Exception{
+		Map<String, String> no = new HashMap<String, String>();
+		no.put("project_no", project_no);
 		
 		RiskboardVO riskboardInfo = new RiskboardVO();
 		riskboardInfo.setProject_no(project_no);
@@ -124,6 +138,44 @@ public class RiskboardController{
 		riskboardInfo.setRisk_errorstatus(risk_errorstatus);
 		
 		riskboardservice.insertRiskboard(riskboardInfo);
+		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(no);
+		
+		List<String> list = new ArrayList<String>();
+		if (projectInfo.get("PL") != null) {
+			list.add(String.valueOf(projectInfo.get("PL")));
+		}
+		if (projectInfo.get("DA") != null) {
+			list.add(String.valueOf(projectInfo.get("DA")));
+		}
+		if (projectInfo.get("TA") != null) {
+			list.add(String.valueOf(projectInfo.get("TA")));
+		}
+		if (projectInfo.get("UA") != null) {
+			list.add(String.valueOf(projectInfo.get("UA")));
+		}
+		if (projectInfo.get("AA") != null) {
+			list.add(String.valueOf(projectInfo.get("AA")));
+		}
+		
+
+		
+		for (int i = 0; i < list.size(); i++) {
+			
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("mem_id",list.get(i));
+				params.put("project_no", project_no);
+				params.put("timeline_title", "위험요소 발생");
+				params.put("timeline_content", "새로운 위험요소가 등록되었습니다");
+				params.put("timeline_tag", "RISK");
+				params.put("timeline_category", "N");
+
+				timelineService.insertTimeline(params);
+			
+			
+		}
+
+		
 		
 		String taskResult = null;
 		String message = null;
@@ -250,9 +302,17 @@ public class RiskboardController{
 	}
 	
 	@RequestMapping("updateErrorStatus")
-	public String updateErrorStatus (RiskboardVO riskboardInfo,
+	public String updateErrorStatus (HttpServletRequest request,
+			  						 HttpServletResponse response,
+									 RiskboardVO riskboardInfo,
 									 String risk_errorstatus,
-									 String project_no) throws Exception{
+									 String project_no,
+									 String mem_id,
+									 String timeline_content,
+									 String timeline_category,
+									 String timeline_tag,
+									 String timeline_title) throws Exception{
+		
 		
 		int chk = riskboardservice.updateErrorStatus(riskboardInfo);
 		
@@ -261,11 +321,48 @@ public class RiskboardController{
 		if (chk > 0){
 			taskResult = "success";
 			message = URLEncoder.encode("게시글이 정상적으로 수정되었습니다", "UTF-8");
+			
 		}else{
 			taskResult = "warning";
 			message = URLEncoder.encode("게시글 수정에 실패했습니다", "UTF-8");
 		}
 		
+		Map<String, String> no = new HashMap<String, String>();
+		no.put("project_no", project_no);
+		
+		Map<String, String> projectInfo = projectService.selectProjectInfo(no);
+		
+		List<String> list = new ArrayList<String>();
+		if (projectInfo.get("PL") != null) {
+			list.add(String.valueOf(projectInfo.get("PL")));
+		}
+		if (projectInfo.get("DA") != null) {
+			list.add(String.valueOf(projectInfo.get("DA")));
+		}
+		if (projectInfo.get("TA") != null) {
+			list.add(String.valueOf(projectInfo.get("TA")));
+		}
+		if (projectInfo.get("UA") != null) {
+			list.add(String.valueOf(projectInfo.get("UA")));
+		}
+		if (projectInfo.get("AA") != null) {
+			list.add(String.valueOf(projectInfo.get("AA")));
+		}
+		
+		
+		
+		for (int i = 0; i < list.size(); i++) {
+			
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", list.get(i));
+		params.put("project_no", project_no);
+		params.put("timeline_title", "위험요소 해결" );
+		params.put("timeline_content", "위험요소가 해결되었습니다");
+		params.put("timeline_tag", "RISK");
+		params.put("timeline_category", "Y");
+		
+		timelineService.insertTimeline(params);
+		}
 		return "redirect:/user/riskboard/riskboardList.do?taskResult=" + taskResult + "&message=" + message + "&project_no=" + project_no;
 		
 	}
