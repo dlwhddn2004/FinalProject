@@ -162,7 +162,7 @@
 		
 		// 뒤로 가기 버튼  
 		$('.btn-back').on('click', function() {
-			location.href = '${pageContext.request.contextPath}/user/issueboard/issueboardList.do?project_no' + project_no; 
+			location.href = '${pageContext.request.contextPath}/user/riskboard/riskboardList.do?project_no=${param.project_no}'; 
 		});
 	</script>
 </body>
