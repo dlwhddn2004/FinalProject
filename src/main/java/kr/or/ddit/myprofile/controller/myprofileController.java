@@ -142,7 +142,7 @@ public String memberDelete( String mem_passs,HttpServletRequest request, HttpSes
 	 String taskResult = "success";
 	 String message = URLEncoder.encode("삭제 되었습니다.","UTF-8");
 	 String taskResult1 = "warning";
-	 String message1 = URLEncoder.encode("비밀번호가 틀립니다.","UTF-8");
+	 String message1 = URLEncoder.encode("비밀번호가 다릅니다.","UTF-8");
 	 if(temp2.equals(mem_passs)){
 		 this.service.deleteMemberInfo(params);
 		 session.invalidate();
