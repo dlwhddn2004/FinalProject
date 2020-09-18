@@ -354,10 +354,11 @@
 			});
 		}
 		<!-- 마이페이지 기술 숙련도-->
+		
 		alermMypage();
 		function alermMypage(){
 			const mem_id = "${MEMBER_LOGININFO.mem_id}";
-			if(mem_id == "" && "${MEMBER_LOGININFO.category_no}" == "1" ){
+			if(mem_id == "" || "${MEMBER_LOGININFO.category_no}" == "1"){
 				return;
 			}else{
 				$.ajax({
@@ -369,7 +370,8 @@
 						alert('마이페이지 기술 체크 에러');
 					},
 					success : function(result){
-						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${MEMBER_LOGININFO.category_no}' == '2' && '${SKILLCHECK}' =='0'){
+					
+						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${TECHNOLOGIESCHECK}' == 'false' ){
 							
 							Swal.fire({
 								  title: '보유하신 기술이 없습니다.',
@@ -382,22 +384,22 @@
 								  cancelButtonText: '취소'
 								}).then((result) => {
 									  if (result.value) {
-										  	const SKILLCHECK =1;
-										  $.ajax({
-												url : "${pageContext.request.contextPath}/user/mypage/mypageTechnologiesCheck.do",
+										  
+										  $.ajax({      
+												url : "${pageContext.request.contextPath}/user/mypage/skillCheck.do",
 												type : "POST",
-												data : {SKILLCHECK : SKILLCHECK},
+												data : {SKILLCHECK :"1"},
 												dataType : "json",
 												error : function(err){
-													alert('마이페이지 기술 체크 에러');
+													alert('마이페이지 123412312기술 체크 에러');
 												},
 												success : function(result){
-												  location.href = '${pageContext.request.contextPath}/user/portfolio/portfolioView.do?mem_id=${MEMBER_LOGININFO.mem_id}';
+													
+												  location.href = '${pageContext.request.contextPath}/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}';
 												}
-										  })
+										  	})
 									  } 
 								});
-							
 						}
 					}
 				});

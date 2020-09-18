@@ -62,6 +62,7 @@ public class PortfolioController {
 		
 		List<Map<String,String>> portfolioList = this.portfolioService.selectPortFolioList();
 		
+		session.setAttribute("TECHNOLOGIESCHECK", false);
 		
 		Map<String,String> maxportfolioAvg = new HashMap<String, String>();
 		//맵으로 평균 점수가 가장 높은 프로젝트 번호 , 평균 점수 구하기. PORTFOLIO_NO,TOTALAVG
@@ -105,6 +106,27 @@ public class PortfolioController {
 
 		// 포트폴리오 번호에 따른 포트폴리오 정보 및 개인 사진
 		 Map<String,String> portfolioInfo = this.portfolioService.portfolioInfo(params);
+		 
+		 // 마이페이지에 있는 보유 기술을 확인해야함.
+		 Mypage_memberVO mypage_skillCheck= this.mypageService.selectMypageInfo(params);
+		 
+		 String[] mypage_technologies_ipt=null;
+		 
+		 int technologiesNum = 0;
+		 if(mypage_skillCheck.getMypage_technologies() !=null ){
+			 //마이페이지 기술 컬럼값 을 짤라서 넣어줌
+			 mypage_technologies_ipt = mypage_skillCheck.getMypage_technologies().split(",");
+			 // 마이페이지 숙련도 컬럼 값을 짤라
+			
+			 for(int i=0; i<mypage_technologies_ipt.length; i++){
+					 	technologiesNum ++;
+			 }
+			 portfolioInfo.put("technologiesNum", String.valueOf(technologiesNum));
+		 }
+			 
+		
+		 
+		 
 		 // 포트폴리오 번호에 따른 차트 총 평균 점수 및 각 차트 별 평균 점수
 		 Map<String,String> chartInfo = this.portfolioService.totalAVG(params);
 		

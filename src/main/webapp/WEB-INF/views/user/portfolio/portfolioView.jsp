@@ -339,7 +339,9 @@
 						<div class="col">
 							<div class="form-group">
 								<h3 style="font-size: 1.2em;">포트 폴리오 소개</h3>
-								<span>${portfolioInfo.PORTFOLIO_DESCRIPTION}</span>
+								<div style="height: 160px; overflow: auto;">
+									<span>${portfolioInfo.PORTFOLIO_DESCRIPTION}</span>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -419,7 +421,7 @@
 									<span class="description">Portfolio</span>
 								</div>
 								<div>
-									<span class="heading">미정</span> <span class="description">Career</span>
+									<span class="heading"> ${portfolioInfo.technologiesNum}</span> <span class="description">Career</span>
 								</div>
 							</div>
 						</div>
@@ -458,7 +460,7 @@
                 <div class="accordion" id="accordionExample">
                     <div class="card">
                         <div class="card-header bg-gradient-info" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <h2 class="mb-0 text-white">PortfolioReview List</h2>
+                            <h2 class="mb-0 text-white">Review</h2>
                         </div>
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card">
@@ -587,10 +589,10 @@
 															</form>
 														</div>
 														<div class="modal-footer">
-															<button type="button" class="btn modalInsert" id="modalButton" data-dismiss="modal">Insert</button>
+															<button type="button" class="btn modalInsert" id="modalButton" data-dismiss="modal">등 록</button>
 															<button type="button"
 																class="btn btn-link text-danger ml-auto closeModal"
-																data-dismiss="modal">Close</button>
+																data-dismiss="modal">닫 기</button>
 														</div>
 													</div>
 												</div>
@@ -1065,7 +1067,8 @@
                $('.noUi-origin').css('transform', 'translate(-' + (100 - ${portfolioInfo.PORTFOLIO_PARTICIPATIONRATE}) + '%, 0px)');
                $('.noUi-origin').css('z-index', '4');
                
-				quill.clipboard.dangerouslyPasteHTML('${portfolioInfo.PORTFOLIO_DESCRIPTION}');
+               const contentHTML = '${portfolioInfo.PORTFOLIO_DESCRIPTION}';
+				quill.clipboard.dangerouslyPasteHTML(contentHTML);
 				
 				//포트폴리오 이름
 				$('input[name="portfolio_name"]').val('${portfolioInfo.PORTFOLIO_NAME}');
@@ -1398,12 +1401,12 @@
 	            $('#develop-slider .noUi-origin').css('z-index', '4');
 	            $('#develop-slider-value').text(slider_reset + ".00");
 	            
-	            $('#modalButton').text('insert');
+	            $('#modalButton').text('등 록');
 	            $('#modalButton').attr('class','btn modalInsert');
 	            
 			} else if (currentSelectedButton.indexOf('수정') != -1) {
 				$('#modalButton').attr('class','btn btn-default updateModalBtn');
-				$('#modalButton').text('Update');
+				$('#modalButton').text('수 정');
 				buttonName ="update";
 				const portfolio_seq =$(info).find('input').val();
 				var_portfolio_seq = portfolio_seq;
@@ -1634,22 +1637,71 @@
 	            		drawReview(creativityReview, review3, '#f5365c');
 	            		drawReview(contentReview, review4, '#2dce89');
 	            		drawReview(developReview, review5, '#770b93');
-	    				
 	            		
-	    				let designSpanReview = designReview.charAt(0) + '.';
-	    				let designSmallReview = designReview.charAt(1);
-
-	    				let useabilitySpanReview = useabilityReview.charAt(0) + '.';
-	    				let useabilitySmallReview = useabilityReview.charAt(1);
-
-	    				let creativitySpanReview = creativityReview.charAt(0) + '.';
-	    				let creativitySmallReview = creativityReview.charAt(1);
-
-	    				let contentSpanReview = contentReview.charAt(0) + '.';
-	    				let contentSmallReview = contentReview.charAt(0);
-
-	    				let developSpanReview = developReview.charAt(0) + '.';
-	    				let developSmallReview = developReview.charAt(1);
+	    				let designSpanReview = "";
+	    				let designSmallReview = "";
+	            		
+	            		
+	            		if(designReview == '100'){
+	            			designSpanReview = "10.";
+	            			designSmallReview = "0";
+	            		}else{
+	            			designSpanReview = designReview.charAt(0) + '.';
+	            			designSmallReview = designReview.charAt(1);
+	            		}
+	            		//
+	    				let useabilitySpanReview = "";
+	    				let useabilitySmallReview = "";
+	            		
+	            		
+	            		if(useabilityReview == '100'){
+	            			useabilitySpanReview = "10.";
+	            			useabilitySmallReview = "0";
+	            		}else{
+	            			useabilitySpanReview = useabilityReview.charAt(0) + '.';
+	            			useabilitySmallReview = useabilityReview.charAt(1);
+	            		}
+	            		
+	            		//
+	    				let creativitySpanReview = "";
+	    				let creativitySmallReview = "";
+	            		
+	            		
+	            		if(useabilityReview == '100'){
+	            			creativitySpanReview = "10.";
+	            			creativitySmallReview = "0";
+	            		}else{
+	            			creativitySpanReview = creativityReview.charAt(0) + '.';
+	            			creativitySmallReview = creativityReview.charAt(1);
+	            		}
+	            		
+	            		
+	            		//
+	    				let contentSpanReview = "";
+	    				let contentSmallReview = "";
+	            		
+	            		
+	            		if(contentReview == '100'){
+	            			contentSpanReview = "10.";
+	            			contentSmallReview = "0";
+	            		}else{
+	            			contentSpanReview = contentReview.charAt(0) + '.';
+	            			contentSmallReview = contentReview.charAt(1);
+	            		}
+	            		
+	            		//
+	    				let developSpanReview = "";
+	    				let developSmallReview = "";
+	            		
+	            		
+	            		if(developReview == '100'){
+	            			developSpanReview = "10.";
+	            			developSmallReview = "0";
+	            		}else{
+	            			developSpanReview = developReview.charAt(0) + '.';
+	            			developSmallReview = developReview.charAt(1);
+	            		}
+	            		
 	    				
 	    				//차트에 넣을 클래스 이름 설정
 	    				let designReviewSpanClass = ".designReviewSpan"+index;
@@ -1729,7 +1781,7 @@
 			let modalName = $('#modalButton').text();
 			
 			
-			if(modalName == 'insert'){
+			if(modalName == '등 록'){
 					const portfolio_writer = $('input[name="portfolio_writer"]').val();
 					const portfolio_no =$('input[name="portfolio_no"]').val();
 					const portfolio_content = $('input[name="portfolio_content"]').val();
@@ -1766,7 +1818,7 @@
 			            	reviewList();
 			            }
 					}); 
-			}else if(modalName == 'Update'){
+			}else if(modalName == '수 정'){
 				const portfolio_writer = $('input[name="portfolio_writer"]').val();
 				const portfolio_no =$('input[name="portfolio_no"]').val();
 				const portfolio_content = $('input[name="portfolio_content"]').val();

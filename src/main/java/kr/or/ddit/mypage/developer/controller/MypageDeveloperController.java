@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.member.service.IMemberService;
 import kr.or.ddit.member_rate.service.IMemberRateService;
@@ -53,11 +54,12 @@ public class MypageDeveloperController {
 	private IPortfolioService portfolioService;
 	
 	@RequestMapping("myPageView")
-	public ModelAndView mainpage(String mem_id, ModelAndView modelAndView,String category_no,HttpServletRequest request) throws Exception{
+	public ModelAndView mainpage(String mem_id, ModelAndView modelAndView,String category_no,HttpServletRequest request, HttpSession session) throws Exception{
 		Map<String,String> params = new HashMap<String,String>();
 		params.put("mem_id", mem_id);
 		params.put("category_no",category_no);
 		
+		// 보유기술 선택했을때 세션 선택.
 		int protfolioNum = this.mypageService.portfolioFinishNumber(params);
 		int projectNum = this.mypageService.projectFinishNumber(params);
 		
@@ -207,12 +209,14 @@ public class MypageDeveloperController {
 	
 	// 마이페이지 고유 기술 값 있는지 체크
 	@RequestMapping("mypageTechnologiesCheck")
-	public ModelAndView mypageTechnologiesCheck(String mem_id) throws Exception{
+	public ModelAndView mypageTechnologiesCheck(String mem_id, HttpSession session) throws Exception{
+		
 		ModelAndView modelAndView = new ModelAndView();
 		Map<String,String> params = new HashMap<String, String>();
 		params.put("mem_id", mem_id);
 		
 		Map<String,String> TechnologiesCheckInfo =  this.mypageService.mypageTechnologiesCheck(params);
+
 		modelAndView.addObject("TechnologiesCheckInfo", TechnologiesCheckInfo);
 		modelAndView.setViewName("jsonConvertView");
 		return modelAndView;
@@ -280,6 +284,24 @@ public class MypageDeveloperController {
 		return modelAndView;
 	}
 	
+	
+	@RequestMapping("skillCheck")
+	public ModelAndView skillCheck(String SKILLCHECK, HttpSession session ) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		if(SKILLCHECK.equals("1")){
+			session.setAttribute("TECHNOLOGIESCHECK", true);
+		}else{
+			session.setAttribute("TECHNOLOGIESCHECK", false);
+		}
+		
+		
+		
+		
+		modelAndView.setViewName("jsonConvertView");
+		
+		return modelAndView;
+		
+	}
 	
 }
 

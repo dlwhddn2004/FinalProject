@@ -391,7 +391,7 @@ input[type="file"]::-webkit-file-upload-button {
 												type="button" style="margin: 15px 0px 0px 0px;"
 												data-toggle="modal" data-target="#modal-form2">
 												<span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
-												<span class="btn-inner--text">업데이트하기</span>
+												<span class="btn-inner--text">자기소개 등록</span>
 											</button>
 										</div>
 									</c:if>
@@ -462,7 +462,7 @@ input[type="file"]::-webkit-file-upload-button {
 										style="display: flex; justify-content: flex-end; align-items: flex-end; margin: 10px 10px 10px 10px;">
 										<button class="btn btn-icon btn-primary inserPortfolio"
 											type="button">
-											<span class="btn-inner--icon"><i class="ni ni-bag-17"></i></span>
+											<span class="btn-inner--icon"><i class="far fa-file-powerpoint"></i></span>
 											<span class="btn-inner--text">포트폴리오 등록</span>
 										</button>
 									</div>
@@ -679,8 +679,7 @@ input[type="file"]::-webkit-file-upload-button {
 														<button
 															class="btn btn-icon btn-outline-primary technologiesUpdateBtn"
 															type="button" style="margin: 15px 0px 0px 0px;" data-toggle="modal" onclick="modalClick(this);" >
-															<span class="btn-inner--icon"><i
-																class="ni ni-bag-17"></i></span> <span class="btn-inner--text">업데이트하기</span>
+															<span class="btn-inner--icon"><i class="fas fa-user-plus"></i></span> <span class="btn-inner--text">보유기술 등록</span>
 														</button>
 													</div>
 												</div>
@@ -698,7 +697,6 @@ input[type="file"]::-webkit-file-upload-button {
 												<!-- 작업 중! -->
 													<div class="row career-table">
 														<div class="col">
-															<div class="card bg-default">
 																<div class="table-responsive">
 																	<table
 																		class="table align-items-center table-danger table-flush">
@@ -710,7 +708,7 @@ input[type="file"]::-webkit-file-upload-button {
 																				<th scope="col">직책</th>
 																				<th scope="col">입사일</th>
 																				<th scope="col">퇴사일</th>
-																				<th scope="col"></th>
+																				<th scope="col">시발뭐야</th>
 																			</tr>
 																		</thead>
 																		<tbody class="list">
@@ -718,8 +716,16 @@ input[type="file"]::-webkit-file-upload-button {
 																		</tbody>
 																	</table>
 																</div>
-															</div>
 														</div>
+													</div>
+													<div
+														style="display: flex; justify-content: flex-end; align-items: flex-end; margin: 10px 10px 10px 10px;">
+														<button
+															class="btn btn-icon btn-outline-primary carrerBtn"
+															type="button" style="margin: 15px 0px 0px 0px;"
+															data-toggle="modal" onclick="careerModalClick();">
+															<span class="btn-inner--icon"><i class="fas fa-address-book"></i></span> <span class="btn-inner--text">이력사항 등록</span>
+														</button>
 													</div>
 												</div>
 											</div>
@@ -739,11 +745,11 @@ input[type="file"]::-webkit-file-upload-button {
 
 
 
-													<!-- 모달 -->
-													<!-- MODAL -->
+		<!-- 작업중 -->
+		<!-- MODAL -->
 <div class="row">
   <div class="col-md-4">
-    <div class="modal fade" id="modal-insert-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+    <div class="modal fade" id="modal-carrer-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
       <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-body p-0">
@@ -795,7 +801,8 @@ input[type="file"]::-webkit-file-upload-button {
                 </div>
                 <div style="display: flex; justify-content: flex-end;">
                   <div style="margin: 0px 10px 0px 0px;">
-                    <button type="button" class="btn btn-outline-primary btn-sm btn-insert">등록</button>
+                        <!-- 작업 중 -->
+                    <button type="button" class="btn btn-outline-primary btn-sm btn-career-insert">등록</button>
                   </div>
                   <div style="margin: 0px 0px 10px 0px;">
                     <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">취소</button>
@@ -857,7 +864,13 @@ input[type="file"]::-webkit-file-upload-button {
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
 <script>
-	/* 보유기술 표시 */
+	//마이페이지 자기소개 글
+	let mypage_aboutme = "${mypageMemberInfo.mypage_aboutme}";
+	if(mypage_aboutme != ""){
+		$('textarea[name=mypage_aboutme]').val("${mypageMemberInfo.mypage_aboutme}");
+	}
+		
+	
 
 			// 보유 기술 값 표현.
 		let mypage_techexperience_ipt = ${mypage_techexperience};
@@ -1176,5 +1189,132 @@ input[type="file"]::-webkit-file-upload-button {
  		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
  	  }
 	
+ 	 <!-- 작업 중 -->
+ 	 function careerModalClick(){
+ 	    $('#modal-carrer-form .companyname').val('');
+ 	    $('#modal-carrer-form .department').val('');
+ 	    $('#modal-carrer-form .class').val('');
+ 	    $('#modal-carrer-form .startdate').val('');
+ 	    $('#modal-carrer-form .enddate').val('');
+ 	    $('#modal-carrer-form').modal('show');
+ 	 }
+ 	 
+		// 이력 사항 등록 
+		$('.btn-career-insert').on('click',function(){
+	 	   const career_companyname = $('#modal-carrer-form .companyname').val();
+	 	   const career_department = $('#modal-carrer-form .department').val();
+	 	   const career_class = $('#modal-carrer-form .class').val();
+	 	   const career_startdate = $('#modal-carrer-form .startdate').val();
+	 	   const carrer_enddate = $('#modal-carrer-form .enddate').val();
+	 	   
+	 	   
+	 	    $.ajax({
+	 		    type: 'POST',
+	 	  		url: '${pageContext.request.contextPath}/user/career/insertCareer.do',
+	 	  		dataType: 'json',
+	 	  		data: {
+	 	  			mypage_no: '${mypageMemberInfo.mypage_no}',
+	 	  			career_companyname: career_companyname,
+	 	  			career_department: career_department,
+	 	  			career_class: career_class,
+	 	  			career_startdate: career_startdate,
+	 	  			carrer_enddate: carrer_enddate
+	 	  		},
+	 	  		async: false,
+	 	  		success: function(data) {
+	 	  			if (data.result == 'Y') {
+	 	  				loadCareer();
+	 	  			} else {
+	 					Swal.fire(
+	 					  'DANGER',
+	 					  '이력을 등록하는 과정에서 오류가 발생했습니다.',
+	 					  'danger'
+	 					)
+	 	  			}
+	 	  		},
+	 	  		error: function (xhr, err) {
+	 			        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+	 			        alert("responseText: " + xhr.responseText);
+	 			    }
+	 		  });
+
+	 	    $('#modal-insert-form').modal('hide');
+		});
+ 	 
+		  // 이력서 내용 삭제
+		  $(document).on('click', '.career-table tbody .trashcan-icon-area', function () {
+			const career_seq = $(this).closest('tr').find('input[name=career_seq]').val();
+			
+			$.ajax({
+			    type: 'POST',
+		  		url: '${pageContext.request.contextPath}/user/career/deleteCareer.do',
+		  		dataType: 'json',
+		  		data: {
+		  			career_seq: career_seq
+		  		},
+		  		async: false,
+		  		success: function(data) {
+		  			if (data.result == 'Y') {
+		  				loadCareer();
+		  			} else {
+						Swal.fire(
+						  'DANGER',
+						  '이력을 삭제하는 과정에서 오류가 발생했습니다.',
+						  'danger'
+						)
+		  			}
+		  		},
+		  		error: function (xhr, err) {
+				        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+				        alert("responseText: " + xhr.responseText);
+				    }
+			  });
+		  });	
+		
+		
+		  loadCareer();
+		  function loadCareer() {
+			  $.ajax({
+			    type: 'POST',
+		  		url: '${pageContext.request.contextPath}/user/career/selectCareer.do',
+		  		dataType: 'json',
+		  		data: {
+		  			mem_id: '${mypageMemberInfo.mem_id}'
+		  		},
+		  		async: false,
+		  		success: function(data) {
+		  			$('.career-table tbody').empty();
+		  			let tableNO = 1;
+		  			$.each(data, function(index, item) {
+		  				const trHTML = '<tr class="checklist-entry">\n' +
+		  	            '                              <input type="hidden" name="career_seq" value="' + item.CAREER_SEQ + '">\n' +
+		  	            '                              <th scope="row">\n' +
+		  	            '                                <div class="media align-items-center">\n' +
+		  	            '                                  <div class="media-body">\n' +
+		  	            '                                    <span class="name mb-0 text-sm">' + tableNO + '</span>\n' +
+		  	            '                                  </div>\n' +
+		  	            '                                </div>\n' +
+		  	            '                              </th>\n' +
+		  	            '                              <td>' + item.CAREER_COMPANYNAME + '</td>\n' +
+		  	            '                              <td>' + item.CAREER_DEPARTMENT + '</td>\n' +
+		  	            '                              <td>' + item.CAREER_CLASS + '</td>\n' +
+		  	            '                              <td>' + item.CARRER_STARTDATE + '</td>\n' +
+		  	            '                              <td>' + item.CARRER_ENDDATE + '</td>\n' +
+		  	            '                              <td><a class="trashcan-icon-area"></a></td>' +
+		  	            '                            </tr>';
+		  	            
+		  			    $('.career-table tbody').append(trHTML);
+		  			    tableNO++;
+		  			});
+		  		},
+		  		error: function (xhr, err) {
+				        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+				        alert("responseText: " + xhr.responseText);
+				    }
+			  });
+		  }
+		
+		
+ 	 
 </script>
 
