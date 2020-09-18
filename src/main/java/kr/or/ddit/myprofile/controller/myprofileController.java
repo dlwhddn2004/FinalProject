@@ -124,19 +124,26 @@ public void myprofiledelete(){}
 
 	 
 @RequestMapping("deleteMemberInfo")
-public String memberDelete(HttpServletRequest request, HttpSession session) throws Exception {
+public String memberDelete( String mem_pass,HttpServletRequest request, HttpSession session) throws Exception {
 
 	String mem_id = request.getParameter("mem_id");
 	
 	Map<String,String> params = new HashMap<String,String>();
 	params.put("mem_id", mem_id);
-	this.service.deleteMemberInfo(params);
-	session.invalidate();
+	params.put("mem_pass", mem_pass);
+	 MemberVO memberInfo = this.service.memberInfo(params);
 	
-	
-	
-	return "redirect:/user/portfolio/portfolioList.do";
-}
+	 String temp = memberInfo.getMem_pass();
+	 String taskResult = "success";
+	 String message = URLEncoder.encode("삭제 되었습니다.","UTF-8");
+	 if(mem_pass != temp){
+		 this.service.deleteMemberInfo(params);
+		 session.invalidate();
+		 return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
+	 }else{
+		 return "redirect:/user/myprofile/myprofile.do";
+	}
+	 }
 
 @RequestMapping("myprofilebank")
   public ModelAndView myprofilebank(ModelAndView modelAndView , HttpServletRequest request, String mem_id) throws Exception{
