@@ -42,12 +42,12 @@ $('form[name=memberForm]')
       
 		
 		
-      $('input[name=mem_tel]').val(mem_tel);
+     /*  $('input[name=mem_tel]').val(mem_tel);
 
       var mem_addr = $('input[name=mem_addr1]').val()
             + '-' + $('input[name=mem_addr2]').val()
             + '-' + $('input[name=mem_addr3]').val()
-            + '-' + $('input[name=mem_addr4]').val(); 
+            + '-' + $('input[name=mem_addr4]').val(); */
 
       $('input[name=mem_addr]').val(mem_addr);
 
@@ -328,7 +328,37 @@ $('#btn-primary').click(function(){
  <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
-	
+	$(function() {
+		
+
+		
+
+		var a = "${memberInfo.mem_tel}";
+		var b = a.split("-");
+
+		$('form[name=memberForm]')
+				.submit(
+						function() {
+							$(this)
+									.attr('action',
+											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
+
+						/* 	var mem_tel = $('select[name=mem_tel1]').val()
+									+ '-' + $('input[name=mem_tel2]').val()
+									+ '-' + $('input[name=mem_tel3]').val();
+
+							$('input[name=mem_tel]').val(mem_tel); */
+
+							var mem_addr = $('input[name=mem_addr1]').val()
+									+ '-' + $('input[name=mem_addr2]').val()
+									+ '-' + $('input[name=mem_addr3]').val();
+									
+
+							$('input[name=mem_addr]').val(mem_addr);
+
+						});
+
+	});
 
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function execPostCode() {
