@@ -97,9 +97,13 @@ public class myprofileController {
 @RequestMapping("updateMemberInfo")	
 		public String updateMember(MemberVO memberInfo
 				,HttpSession session  ) throws Exception{
-this.service.updateMemberInfo(memberInfo);
 
-session.invalidate();
+
+	
+	
+	this.service.updateMemberInfo(memberInfo);
+
+session.setAttribute("MEMBER_LOGININFO",memberInfo);
 
 String taskResult = "success";
 String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
@@ -128,15 +132,17 @@ public String memberDelete( String mem_pass,HttpServletRequest request, HttpSess
 
 	String mem_id = request.getParameter("mem_id");
 	
+	MemberVO member = (MemberVO)session.getAttribute("member");
 	Map<String,String> params = new HashMap<String,String>();
 	params.put("mem_id", mem_id);
 	params.put("mem_pass", mem_pass);
-	 MemberVO memberInfo = this.service.memberInfo(params);
 	
+	 MemberVO memberInfo = this.service.memberInfo(params);
+	 String temp2 = member.getMem_pass();
 	 String temp = memberInfo.getMem_pass();
 	 String taskResult = "success";
 	 String message = URLEncoder.encode("삭제 되었습니다.","UTF-8");
-	 if(mem_pass != temp){
+	 if(temp2 != mem_pass){
 		 this.service.deleteMemberInfo(params);
 		 session.invalidate();
 		 return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
