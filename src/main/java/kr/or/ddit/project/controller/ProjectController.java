@@ -272,6 +272,7 @@ public class ProjectController {
 			params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			projectInfo.put("PARTNERS_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			projectInfo.put("PARTNERS_ID", String.valueOf(memberInfo.get("MEM_ID")));
 		}
 		
 		// 프로젝트 PL 이름
@@ -284,6 +285,7 @@ public class ProjectController {
 			Map<String, String> memberInfo = memberService.selectMemberInfo(params);
 			Map<String, String> personAvg = taskService.selectPersonAverage(params);
 			projectInfo.put("PL_NAME", String.valueOf(memberInfo.get("MEM_NAME")));
+			projectInfo.put("PL_ID", String.valueOf(memberInfo.get("MEM_ID")));
 			projectInfo.put("PL_WORKSTATUS", String.valueOf(memberInfo.get("MEM_WORKSTATUS")));
 			if (personAvg != null) {
 				projectInfo.put("PL_AVG", String.valueOf(personAvg.get("AVERAGE")));
@@ -376,5 +378,27 @@ public class ProjectController {
 		params.put("mem_id", String.valueOf(projectInfo.get("MEM_ID")));
 		
 		return memberService.selectMemberInfo(params);
+	}
+	
+	@RequestMapping("projectEnd")
+	public String projectEnd(String mem_id,
+							 String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		int chk = projectService.projectEnd(params);
+		
+		return "redirect:/user/project/project.do?mem_id=" + mem_id;
+	}
+	
+	@RequestMapping("endHire")
+	public String endHire(String mem_id,
+				 		  String project_no) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("project_no", project_no);
+		
+		int chk = projectService.endHire(params);
+		
+		return "redirect:/user/project/project.do?mem_id=" + mem_id;
 	}
 }

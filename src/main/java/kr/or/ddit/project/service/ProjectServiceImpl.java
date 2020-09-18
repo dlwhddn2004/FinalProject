@@ -200,10 +200,30 @@ public class ProjectServiceImpl implements IProjectService {
 			 dao.updateapplyInfo(applyInfo);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
 	@Override
 	public List<Map<String, String>> selectMakeProjectList(
 			Map<String, String> params) throws Exception {
 		return dao.selectMakeProjectList(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int projectEnd(Map<String, String> params) throws Exception {
+		return dao.projectEnd(params);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Map<String, String> selectOnlyProjectInfo(String project_no)
+			throws Exception {
+		return dao.selectOnlyProjectInfo(project_no);
+	}
+
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int endHire(Map<String, String> params) throws Exception {
+		return dao.endHire(params);
 	}
 
 }

@@ -177,6 +177,7 @@
 						<span style="font-weight: bolder; margin-left: 35px;">
 							${projectInfo.project_clientlocation }</span><br>
 						<br>
+						
 						<button style="float:right;" class="btn btn-primary btn-submit" id="support" type="button">지원 신청</button>
 				</div>
 				<div class="form-row">
@@ -293,7 +294,16 @@
 		    	mem_id: '${MEMBER_LOGININFO.mem_id }'
 		    },
 		    success: function (data) {
-		    	if (!data) {
+		    	if (data.project_hirestatus == 'Y') {
+		    		Swal.fire(
+					  'WARNING',
+					  '신청을 마감한 프로젝트입니다.',
+					  'warning'
+					)
+					return;
+		    	}
+		    	
+		    	if (data.result == 'Y') {
 					Swal.fire(
 					  'WARNING',
 					  '이미 신청한 프로젝트입니다.',

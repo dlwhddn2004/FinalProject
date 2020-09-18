@@ -98,6 +98,9 @@
                   </div>
                   <div>
                   	<button type="button" class="btn btn-outline-primary btn-sm btn-view-category">면접자</button>
+                  	<c:if test="${projectInfo.PROJECT_HIRESTATUS == 'N' }">
+                  		<button type="button" class="btn btn-outline-primary btn-sm btn-end-hire">모집 마감</button>
+                  	</c:if>
                   </div>
                 </div>
                 <small class="text-muted sub-title">지원자 조회</small>
@@ -925,6 +928,7 @@
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.js"></script> --%>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
@@ -1992,6 +1996,23 @@ $('#assign-role-modal .btn-add--event').on('click', function() {
 	        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
 	        alert("responseText: " + xhr.responseText);
 	    }
+	});
+});
+
+$('.div-apply-table-list .btn-end-hire').on('click', function() {
+	Swal.fire({
+	  title: '모집 마감',
+	  text: "지원자 신청을 마감하시겠습니까?",
+	  icon: 'info',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: '마감',
+	  cancelButtonText: '취소'
+	}).then((result) => {
+	  if (result.value) {
+		  location.href = '${pageContext.request.contextPath}/user/project/endHire.do?mem_id=${MEMBER_LOGININFO.mem_id }&project_no=${param.project_no }';
+	  }
 	});
 });
 </script>

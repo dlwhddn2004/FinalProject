@@ -42,6 +42,8 @@ import com.lowagie.text.pdf.AcroFields.Item;
 public class ProjectApplyController {
 	@Autowired
 	private IProjectApplyService projectApplyService;
+	@Autowired
+	private IProjectService projectService;
 	
 	@RequestMapping("insertProjectApplyInformation")
 	public String insertProjectApply(String project_no,
@@ -121,19 +123,24 @@ public class ProjectApplyController {
 	
 	@RequestMapping("chkDuplicate")
 	@ResponseBody
-	public boolean chkDuplicate(String project_no,
+	public Map<String, String> chkDuplicate(String project_no,
 								String mem_id) throws Exception {
-		Boolean result = true;
-		
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("project_no", project_no);
 		params.put("mem_id", mem_id);
 		
+		Map<String, String> resultMap = new HashMap<String, String>();
+		
+		Map<String, String> projectInfo = projectService.selectOnlyProjectInfo(project_no);
+		resultMap.put("project_hirestatus", String.valueOf(projectInfo.get("PROJECT_HIRESTATUS")));
+		
 		Map<String, String> applyInfo = projectApplyService.chkDuplicate(params);
 		if (applyInfo != null) {
-			result = false;
+			resultMap.put("result", "Y");
+		} else {
+			resultMap.put("result", "N");
 		}
 		
-		return result;
+		return resultMap;
 	}
 }

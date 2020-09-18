@@ -2642,8 +2642,8 @@ var Fullcalendar = (function() {
 									},
 									error: function (xhr, err) {
 										alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
-								        alert("responseText: " + xhr.responseText);
-								    }
+										alert("responseText: " + xhr.responseText);
+									}
 								});
 							}
 						})
