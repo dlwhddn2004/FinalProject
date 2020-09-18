@@ -72,7 +72,7 @@ public class RiskboardController{
 									  String project_no) throws Exception{
 		
 		modelView.addObject("breadcrumb_title" , "프로젝트");
-		modelView.addObject("breadcrumb", "위험 관리 게시판");
+		modelView.addObject("breadcrumb_first", "위험 관리 게시판");
 		modelView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/riskboard/riskboardList.do?project_no=" + project_no);
 		modelView.addObject("breadcrumb_second", "위험 관리 게시글 등록");
 		
@@ -156,6 +156,9 @@ public class RiskboardController{
 		}
 		if (projectInfo.get("AA") != null) {
 			list.add(String.valueOf(projectInfo.get("AA")));
+		}
+		if (projectInfo.get("MEM_ID") != null) {
+			list.add(String.valueOf(projectInfo.get("MEM_ID")));
 		}
 		
 
@@ -348,7 +351,9 @@ public class RiskboardController{
 		if (projectInfo.get("AA") != null) {
 			list.add(String.valueOf(projectInfo.get("AA")));
 		}
-		
+		if (projectInfo.get("MEM_ID") != null) {
+			list.add(String.valueOf(projectInfo.get("MEM_ID")));
+		}
 		
 		
 		for (int i = 0; i < list.size(); i++) {

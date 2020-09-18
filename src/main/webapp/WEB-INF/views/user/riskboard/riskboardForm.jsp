@@ -101,12 +101,6 @@
 		$('input[name=mem_id]').val('${MEMBER_LOGININFO.mem_id}');
 		
 		$("select[name=risk_errorstatus]").select2('val');
-		alert($("select[name=risk_errorstatus]").select2('val'));
-		
-		
-		
-		
-		
 		
  		// Quill Text Editor Initialize
 		const quill = new Quill('#editor', {
@@ -195,7 +189,7 @@
 		
 		// 뒤로 가기 버튼  
 		$('.btn-back').on('click', function() {
-			location.href = '${pageContext.request.contextPath}/user/riskboard/riskboardList.do?project_no' + project_no; 
+			location.href = '${pageContext.request.contextPath}/user/riskboard/riskboardList.do?project_no=${param.project_no}'; 
 		});
 	</script>
 </body>
