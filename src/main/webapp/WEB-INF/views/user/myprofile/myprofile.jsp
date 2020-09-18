@@ -50,7 +50,7 @@ $(function(){
 				  cancelButtonText: '취소'
 				  }).then((result) => {
 					  if (result.value) {
-		$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }');
+		$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }&mem_pass=${MEMBER_LOGININFO.mem_pass}');
 					  }
 		});
 	 });
@@ -179,11 +179,11 @@ $(function(){
 									<div class="col">
 									<input type="hidden" name="mem_tel" class="form-control" />
 									<select name="mem_tel1" class="form-control">
-																
-									<option value="${MemberInfoTel[0]}">010</option>
-														<option value="016">016</option>
-														<option value="017">017</option>
-														<option value="019">019</option>
+												<option value="${MemberInfoTel[0]}">${MemberInfoTel[0]}</option>
+												<option value="">010</option>
+												<option value="016">016</option>
+												<option value="017">017</option>
+												<option value="019">019</option>
 												</select>
 									</div>
 									<div class="col">	
@@ -214,7 +214,7 @@ $(function(){
 			</div>
 			<!-- Card body -->
 			<div class="card-body">
-				<a href="#!"> <img src="../../assets/img/theme/team-1.jpg"
+				<a href="#!"> <img src="/${profileInfo1.profile_savename}"
 					class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
 					style="width: 140px;">
 				</a>

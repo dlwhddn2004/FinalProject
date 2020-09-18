@@ -357,7 +357,7 @@
 		alermMypage();
 		function alermMypage(){
 			const mem_id = "${MEMBER_LOGININFO.mem_id}";
-			if(mem_id == ""){
+			if(mem_id == "" && "${MEMBER_LOGININFO.category_no}" == "1" ){
 				return;
 			}else{
 				$.ajax({
@@ -369,16 +369,34 @@
 						alert('마이페이지 기술 체크 에러');
 					},
 					success : function(result){
-						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${MEMBER_LOGININFO.category_no}' == '2'){
+						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${MEMBER_LOGININFO.category_no}' == '2' && '${SKILLCHECK}' =='0'){
 							
-							Swal.fire(
-									  'Warning',
-									  '중요 기능들을 이용하시려면 마이페이지에서 보유 기술을 작성해주세요.',
-									  'warning'
-									)
-									
-									return;
-							
+							Swal.fire({
+								  title: '보유하신 기술이 없습니다.',
+								  text: "마이페이지에서 기술을 등록해주세요.",
+								  icon: 'warning',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: '등록',
+								  cancelButtonText: '취소'
+								}).then((result) => {
+									  if (result.value) {
+										  	const SKILLCHECK =1;
+										  $.ajax({
+												url : "${pageContext.request.contextPath}/user/mypage/mypageTechnologiesCheck.do",
+												type : "POST",
+												data : {SKILLCHECK : SKILLCHECK},
+												dataType : "json",
+												error : function(err){
+													alert('마이페이지 기술 체크 에러');
+												},
+												success : function(result){
+												  location.href = '${pageContext.request.contextPath}/user/portfolio/portfolioView.do?mem_id=${MEMBER_LOGININFO.mem_id}';
+												}
+										  })
+									  } 
+								});
 							
 						}
 					}
