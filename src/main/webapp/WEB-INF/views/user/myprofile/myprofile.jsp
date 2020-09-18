@@ -42,12 +42,12 @@ $('form[name=memberForm]')
       
 		
 		
-     /*  $('input[name=mem_tel]').val(mem_tel);
+   
 
       var mem_addr = $('input[name=mem_addr1]').val()
             + '-' + $('input[name=mem_addr2]').val()
             + '-' + $('input[name=mem_addr3]').val()
-            + '-' + $('input[name=mem_addr4]').val(); */
+            + '-' + $('input[name=mem_addr4]').val(); 
 
       $('input[name=mem_addr]').val(mem_addr);
 
