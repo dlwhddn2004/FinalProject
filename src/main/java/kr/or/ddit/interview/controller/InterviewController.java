@@ -806,4 +806,68 @@ public class InterviewController {
 		
 		return result;
 	}
+	
+	@RequestMapping("chkWritingProjectRegist")
+	@ResponseBody
+	public Map<String, Object> chkWritingProjectRegist(String mem_id) throws Exception {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		List<Map<String, String>> makeProjectList = projectService.selectMakeProjectList(params);
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		for (Map<String, String> item : makeProjectList) {
+			int chk = 1;
+			
+			params.put("project_no", String.valueOf(item.get("PROJECT_NO")));
+			Map<String, String> interviewInfo = interviewService.selectInterview(params);
+			
+			// 프로젝트 항목만 진행함
+			if (interviewInfo == null) {
+				chk++;
+			} else {
+				if (String.valueOf(interviewInfo.get("INTERVIEW_ENDINPUT")).equals("Y")) {
+					continue;
+				}
+			}
+			
+			// 6페이지까지만 진행함
+			if (item.get("PROJECT_PRIORITY") == null) {
+				chk++;
+			}
+			
+			// 5페이지까지만 진행함
+			if (item.get("PROJECT_ESSENTIALREQUIREMENTS") == null) {
+				chk++;
+			}
+			
+			// 4페이지까지만 진행함
+			if (item.get("PROJECT_CLIENTLOCATION") == null) {
+				chk++;
+			}
+			
+			// 3페이지까지만 진행함
+			if (item.get("PROJECT_DURATION") == null) {
+				chk++;
+			}
+			
+			// 2페이지까지만 진행함
+			if (item.get("PROJECT_TECHNOLOGIES") == null) {
+				chk++;
+			}
+			
+			// 1페이지까지만 진행함
+			if (item.get("PROJECT_REFERENCE") == null) {
+				chk++;
+			}
+			
+			if (chk >= 1) {
+				resultMap.put("chk", chk);
+				resultMap.put("project_no", String.valueOf(item.get("PROJECT_NO")));
+				if (interviewInfo != null) {
+					resultMap.put("interview_no", String.valueOf(interviewInfo.get("INTERVIEW_NO")));
+				}
+			}
+		}
+		return resultMap;
+	} 
 }

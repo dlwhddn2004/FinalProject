@@ -59,4 +59,7 @@ public interface IProjectService {
 	public int endHire(Map<String, String> params) throws Exception;
 	
 	public Map<String, String> selectOnlyProjectInfo(String project_no) throws Exception;
+	
+	// 프로젝트 삭제
+	public int deleteProject(Map<String, String> params) throws Exception;
 }

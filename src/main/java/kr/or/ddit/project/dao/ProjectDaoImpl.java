@@ -213,4 +213,9 @@ public class ProjectDaoImpl implements IProjectDao {
 	public int endHire(Map<String, String> params) throws Exception {
 		return client.update("project.endHire", params);
 	}
+
+	@Override
+	public int deleteProject(Map<String, String> params) throws Exception {
+		return client.delete("project.deleteProject", params);
+	}
 }
