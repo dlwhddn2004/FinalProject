@@ -31,4 +31,7 @@ public interface IMypageDao {
 	public int updateTechnologies(Map<String,String> params) throws Exception;
 	public void updateTechnologiesCount(Map<String,String> params) throws Exception;
 	
+	//이력사항 등록
+	public List<Map<String,String>> carrerList (Map<String,String> params) throws Exception;
+	
 }

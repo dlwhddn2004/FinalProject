@@ -24,4 +24,5 @@ public interface IMypageService {
 	
 	public int updateTechnologies(Map<String,String> params) throws Exception;
 	public void updateTechnologiesCount(Map<String,String> params) throws Exception;
+	public List<Map<String,String>> carrerList (Map<String,String> params) throws Exception;
 }

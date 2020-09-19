@@ -29,6 +29,20 @@
 	type="text/css">
 <style>
 
+  .checklist-entry:hover .trashcan-icon-area::after {
+    content: "\f1f8";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #f5365c;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .trashcan-icon-area {
+    display: inline-block;
+    width: 20px;
+  }
+
 .img-hover-css img:hover {
 	animation-name: img-hover;
 	animation-duration: 0.25s;
@@ -708,11 +722,11 @@ input[type="file"]::-webkit-file-upload-button {
 																				<th scope="col">직책</th>
 																				<th scope="col">입사일</th>
 																				<th scope="col">퇴사일</th>
-																				<th scope="col">시발뭐야</th>
+																				<th scope="col"></th>
 																			</tr>
 																		</thead>
 																		<tbody class="list">
-
+																	
 																		</tbody>
 																	</table>
 																</div>
@@ -870,7 +884,6 @@ input[type="file"]::-webkit-file-upload-button {
 		$('textarea[name=mypage_aboutme]').val("${mypageMemberInfo.mypage_aboutme}");
 	}
 		
-	
 
 			// 보유 기술 값 표현.
 		let mypage_techexperience_ipt = ${mypage_techexperience};
@@ -1123,7 +1136,9 @@ input[type="file"]::-webkit-file-upload-button {
 			})
 		});
 		
-	});
+		
+		
+	}); // end jquery
 
 	function modalClick(){
 		// ajax 할 필요 없이 이미 View에 넘겨주기 때문에 전역변수로 설정했으니 그값만 변동해주면 수정해도 값이 보인다.
@@ -1205,7 +1220,7 @@ input[type="file"]::-webkit-file-upload-button {
 	 	   const career_department = $('#modal-carrer-form .department').val();
 	 	   const career_class = $('#modal-carrer-form .class').val();
 	 	   const career_startdate = $('#modal-carrer-form .startdate').val();
-	 	   const carrer_enddate = $('#modal-carrer-form .enddate').val();
+	 	   const career_enddate = $('#modal-carrer-form .enddate').val();
 	 	   
 	 	   
 	 	    $.ajax({
@@ -1218,7 +1233,7 @@ input[type="file"]::-webkit-file-upload-button {
 	 	  			career_department: career_department,
 	 	  			career_class: career_class,
 	 	  			career_startdate: career_startdate,
-	 	  			carrer_enddate: carrer_enddate
+	 	  			career_enddate : career_enddate
 	 	  		},
 	 	  		async: false,
 	 	  		success: function(data) {
@@ -1276,16 +1291,18 @@ input[type="file"]::-webkit-file-upload-button {
 		  function loadCareer() {
 			  $.ajax({
 			    type: 'POST',
-		  		url: '${pageContext.request.contextPath}/user/career/selectCareer.do',
+		  		url: '${pageContext.request.contextPath}/user/mypage/selectCareer.do',
 		  		dataType: 'json',
 		  		data: {
-		  			mem_id: '${mypageMemberInfo.mem_id}'
+		  			mem_id: '${MEMBER_LOGININFO.mem_id }'
 		  		},
-		  		async: false,
+		  		//async: false,
 		  		success: function(data) {
+		  			console.log(data);
 		  			$('.career-table tbody').empty();
 		  			let tableNO = 1;
-		  			$.each(data, function(index, item) {
+		  			<!-- 작업 중-->
+		  			$.each(data.CarrerList, function(index, item) {
 		  				const trHTML = '<tr class="checklist-entry">\n' +
 		  	            '                              <input type="hidden" name="career_seq" value="' + item.CAREER_SEQ + '">\n' +
 		  	            '                              <th scope="row">\n' +
@@ -1313,7 +1330,7 @@ input[type="file"]::-webkit-file-upload-button {
 				    }
 			  });
 		  }
-		
+		  
 		
  	 
 </script>

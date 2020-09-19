@@ -112,5 +112,12 @@ public class IMypageServiceImpl implements IMypageService{
 	public void updateTechnologiesCount(Map<String,String> params ) throws Exception {
 		 dao.updateTechnologiesCount(params);
 	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> carrerList(Map<String, String> params)
+			throws Exception {
+		return dao.carrerList(params);
+	}
 
 }
