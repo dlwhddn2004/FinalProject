@@ -226,4 +226,10 @@ public class ProjectServiceImpl implements IProjectService {
 		return dao.endHire(params);
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public int deleteProject(Map<String, String> params) throws Exception {
+		return dao.deleteProject(params);
+	}
+
 }

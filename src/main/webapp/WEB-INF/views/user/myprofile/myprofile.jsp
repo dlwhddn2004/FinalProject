@@ -11,51 +11,68 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 $(function(){
-	$('form[name=memberForm]')
-	.submit(
-	     function() {
-	        $(this)
-	              .attr('action',
-	                    '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
-
-	        
-	        
-
-	        var mem_tel = $('select[name=mem_tel1]').val()
-	              + '-' + $('input[name=mem_tel2]').val()
-	              + '-' + $('input[name=mem_tel3]').val();
-	        
-	        $('input[name=mem_tel]').val(mem_tel);
-
-	        var mem_addr = $('input[name=mem_addr1]').val()
-	              + '-' + $('input[name=mem_addr2]').val()
-	              + '-' + $('input[name=mem_addr3]').val()
-	              + '-' + $('input[name=mem_addr4]').val();
-
-	        $('input[name=mem_addr]').val(mem_addr);
-
-	});   
-
-	$('#btn-primary').click(function(){
+      function settingDisernNum(){
+      	var disernHtml = '<option value="010">010</option>' +
+      				    '<option value="011">011</option>' +
+      				    '<option value="016">016</option>' +
+      				    '<option value="017">017</option>' +
+      				    '<option value="018">018</option>' +
+      					'<option value="019">019</option>';
+      	return disernHtml; 
+      	
+      }
+  	const memhp = settingDisernNum();
+		const mem_tel ="${memberInfo.mem_tel}";
 		
-	
-			Swal.fire({
-				  title: '정말 탈퇴하시겠습니까?',
-				  text: "탈퇴를 클릭하면 되돌릴 수 없습니다.",
-				  icon: 'warning',
-				  showCancelButton: true,
-				  confirmButtonColor: '#3085d6',
-				  cancelButtonColor: '#d33',
-				  confirmButtonText: '삭제',
-				  cancelButtonText: '취소'
-				  }).then((result) => {
-					  if (result.value) {
-		$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }');
-					  }
-		});
-	 });
+		$('select[name=mem_tel1]').append(memhp);
+		
+		$('select[name=mem_tel1]').val("${MemberInfoTel[0]}");
+		$('input[name=mem_tel2]').val(${MemberInfoTel[1]});
+		$('input[name=mem_tel3]').val(${MemberInfoTel[2]}); 
+$('form[name=memberForm]')
+.submit(
+   function() {
+      $(this)
+            .attr('action',
+                  '${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
 
-	}); 
+		$('input[name=mem_tel]').val($('select[name=mem_tel1]').val()+"-"+
+				$('input[name=mem_tel2]').val()+"-"+
+				$('input[name=mem_tel3]').val());
+      
+		
+		
+   
+
+      var mem_addr = $('input[name=mem_addr1]').val()
+            + '-' + $('input[name=mem_addr2]').val()
+            + '-' + $('input[name=mem_addr3]').val()
+            + '-' + $('input[name=mem_addr4]').val(); 
+
+      $('input[name=mem_addr]').val(mem_addr);
+
+});   
+
+$('#btn-primary').click(function(){
+	
+
+		Swal.fire({
+			  title: '정말 탈퇴하시겠습니까?',
+			  text: "탈퇴를 클릭하면 되돌릴 수 없습니다.",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '삭제',
+			  cancelButtonText: '취소'
+			  }).then((result) => {
+				  if (result.value) {
+	$(location).attr('href', '${pageContext.request.contextPath}/user/myprofile/deleteMemberInfo.do?mem_id=${MEMBER_LOGININFO.mem_id }&mem_passs='+$('#mem_passs').val()+'');
+				  }
+	});
+});
+
+}); 
 </script>
 <style>
 .one{
@@ -179,18 +196,15 @@ $(function(){
 									<div class="col">
 									<input type="hidden" name="mem_tel" class="form-control" />
 									<select name="mem_tel1" class="form-control">
-																
-									<option value="${MemberInfoTel[0]}">010</option>
-														<option value="016">016</option>
-														<option value="017">017</option>
-														<option value="019">019</option>
+												<option >선택하세요</option>
+												
 												</select>
 									</div>
 									<div class="col">	
-									<input type="text" name="mem_tel2" size="4" value="${MemberInfoTel[1]}"class="form-control" />
+									<input type="text" name="mem_tel2" size="4" class="form-control" />
 									</div>
 									 <div class="col">
-									 		  <input type="text"name="mem_tel3" size="4" value="${MemberInfoTel[2]}" class="form-control" />
+									 		  <input type="text"name="mem_tel3" size="4" class="form-control" />
 									 </div>
 								</div>
 							</div>
@@ -214,7 +228,7 @@ $(function(){
 			</div>
 			<!-- Card body -->
 			<div class="card-body">
-				<a href="#!"> <img src="../../assets/img/theme/team-1.jpg"
+				<a href="#!"> <img src="/${profileInfo1.profile_savename}"
 					class="rounded-circle img-center img-fluid shadow shadow-lg--hover"
 					style="width: 140px;">
 				</a>
@@ -253,7 +267,7 @@ $(function(){
 										class="form-control" id="mem_id" name="mem_id" value="${MEMBER_LOGININFO.mem_id}" placeholder="ID">
 								</div>
 								<div class="form-group">
-									<small class="text-muted">비밀번호</small> <input  type="password" id="mem_pass" name="mem_pass"
+									<small class="text-muted">비밀번호</small> <input  type="password" id="mem_passs" name="mem_passs"
 										class="form-control" placeholder="PW">
 								</div>
 								<div style="display: flex; justify-content: center;">
@@ -329,11 +343,11 @@ $(function(){
 									.attr('action',
 											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
 
-							var mem_tel = $('select[name=mem_tel1]').val()
+						/* 	var mem_tel = $('select[name=mem_tel1]').val()
 									+ '-' + $('input[name=mem_tel2]').val()
 									+ '-' + $('input[name=mem_tel3]').val();
 
-							$('input[name=mem_tel]').val(mem_tel);
+							$('input[name=mem_tel]').val(mem_tel); */
 
 							var mem_addr = $('input[name=mem_addr1]').val()
 									+ '-' + $('input[name=mem_addr2]').val()

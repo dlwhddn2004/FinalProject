@@ -281,12 +281,12 @@
 		}
 		
 		let interviewAlarmChk = false;
-// 		chkInterviewTime = setInterval(function() {
-// 			console.log('${interviewAttendStatus}');
-// 			if (${interviewAttendStatus != 'Y'} && interviewAlarmChk == false) {
-// 				interviewTimeChk();
-// 			}
-// 		}, 1000);
+		chkInterviewTime = setInterval(function() {
+			console.log('${interviewAttendStatus}');
+			if (${interviewAttendStatus != 'Y'} && interviewAlarmChk == false) {
+				interviewTimeChk();
+			}
+		}, 10000);
 
 		// 면접 시간을 확인
 		function interviewTimeChk() {
@@ -354,10 +354,11 @@
 			});
 		}
 		<!-- 마이페이지 기술 숙련도-->
+		
 		alermMypage();
 		function alermMypage(){
 			const mem_id = "${MEMBER_LOGININFO.mem_id}";
-			if(mem_id == ""){
+			if(mem_id == "" || "${MEMBER_LOGININFO.category_no}" == "1"){
 				return;
 			}else{
 				$.ajax({
@@ -369,17 +370,36 @@
 						alert('마이페이지 기술 체크 에러');
 					},
 					success : function(result){
-						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${MEMBER_LOGININFO.category_no}' == '2'){
+					
+						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null && '${TECHNOLOGIESCHECK}' == 'false' ){
 							
-							Swal.fire(
-									  'Warning',
-									  '중요 기능들을 이용하시려면 마이페이지에서 보유 기술을 작성해주세요.',
-									  'warning'
-									)
-									
-									return;
-							
-							
+							Swal.fire({
+								  title: '보유하신 기술이 없습니다.',
+								  text: "마이페이지에서 기술을 등록해주세요.",
+								  icon: 'warning',
+								  showCancelButton: true,
+								  confirmButtonColor: '#3085d6',
+								  cancelButtonColor: '#d33',
+								  confirmButtonText: '등록',
+								  cancelButtonText: '취소'
+								}).then((result) => {
+									  if (result.value) {
+										  
+										  $.ajax({      
+												url : "${pageContext.request.contextPath}/user/mypage/skillCheck.do",
+												type : "POST",
+												data : {SKILLCHECK :"1"},
+												dataType : "json",
+												error : function(err){
+													alert('마이페이지 123412312기술 체크 에러');
+												},
+												success : function(result){
+													
+												  location.href = '${pageContext.request.contextPath}/user/mypage/myPageView.do?mem_id=${MEMBER_LOGININFO.mem_id}&category_no=${MEMBER_LOGININFO.category_no}';
+												}
+										  	})
+									  } 
+								});
 						}
 					}
 				});

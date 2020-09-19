@@ -97,9 +97,13 @@ public class myprofileController {
 @RequestMapping("updateMemberInfo")	
 		public String updateMember(MemberVO memberInfo
 				,HttpSession session  ) throws Exception{
-this.service.updateMemberInfo(memberInfo);
 
-session.invalidate();
+
+	
+	
+	this.service.updateMemberInfo(memberInfo);
+
+session.setAttribute("MEMBER_LOGININFO",memberInfo);
 
 String taskResult = "success";
 String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
@@ -124,24 +128,27 @@ public void myprofiledelete(){}
 
 	 
 @RequestMapping("deleteMemberInfo")
-public String memberDelete( String mem_pass,HttpServletRequest request, HttpSession session) throws Exception {
+public String memberDelete( String mem_passs,HttpServletRequest request, HttpSession session) throws Exception {
 
 	String mem_id = request.getParameter("mem_id");
 	
+	MemberVO member = (MemberVO)session.getAttribute("member");
 	Map<String,String> params = new HashMap<String,String>();
 	params.put("mem_id", mem_id);
-	params.put("mem_pass", mem_pass);
-	 MemberVO memberInfo = this.service.memberInfo(params);
+	params.put("mem_passs", mem_passs);
 	
-	 String temp = memberInfo.getMem_pass();
+	 MemberVO memberInfo = this.service.memberInfo(params);
+	 String temp2 = memberInfo.getMem_pass();
 	 String taskResult = "success";
 	 String message = URLEncoder.encode("삭제 되었습니다.","UTF-8");
-	 if(mem_pass != temp){
+	 String taskResult1 = "warning";
+	 String message1 = URLEncoder.encode("비밀번호가 다릅니다.","UTF-8");
+	 if(temp2.equals(mem_passs)){
 		 this.service.deleteMemberInfo(params);
 		 session.invalidate();
 		 return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult + "&message=" + message;
 	 }else{
-		 return "redirect:/user/myprofile/myprofile.do";
+		 return "redirect:/user/portfolio/portfolioList.do?taskResult=" + taskResult1 + "&message=" + message1;
 	}
 	 }
 

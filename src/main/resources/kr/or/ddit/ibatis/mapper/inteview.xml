@@ -230,7 +230,8 @@
 	</select>
 	
 	<update id="updateInterview" parameterClass="map">
-		UPDATE INTERVIEW SET INTERVIEW_CUSTOMIZING = #interview_customizing#
+		UPDATE INTERVIEW SET INTERVIEW_CUSTOMIZING = #interview_customizing#,
+							 INTERVIEW_ENDINPUT = #interview_endinput#
 		WHERE PROJECT_NO = #project_no#
 	</update>
 	

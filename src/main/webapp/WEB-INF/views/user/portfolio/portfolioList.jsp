@@ -156,7 +156,7 @@
 				</div>
 				<div style="display: flex; align-items: flex-end; width: 100%; height: 100%;">
 					<div style="margin: 0px 0px 20px 20px;">
-						<button type="button" class="btn btn-outline-success" style="border-radius: 25px; color: white;">Visit Site</button>
+						<button type="button" class="btn btn-outline-success" style="border-radius: 25px; color: white;" onclick="window.open('${MainportfolioInfo.PORTFOLIO_URL}')" >Visit Site</button>
 <!-- 						<a href="https://twks.ch/" data-identifier="twks" -->
 <!-- 							class="bt-default green-fill" target="_blank" -->
 <!-- 							rel="noopener nofollow">Visit Site</a> -->
@@ -438,21 +438,63 @@
 	    const contentScore = '${mainScoreChart.PORTFOLIO_CONTENTSCORE}';
 	    const developScore = '${mainScoreChart.PORTFOLIO_DEVELOP}';
 	    
-	      const designSpan = designScore.charAt(0)+'.';	
-	      const designSmall = designScore.charAt(1);
- 	      
-	      const useabilitySpan =  useabilityScore.charAt(0)+'.';
-	      const useabilitySmall = useabilityScore.charAt(1);
+	    let designSpan = "";	
+	    let designSmall ="";
+	    
 	      
-	      const creativitySpan =creativityScore.charAt(0)+'.';
-	      const creativitySmall = creativityScore.charAt(1);
-	      
-	      const contentSpan = contentScore.charAt(0)+'.';
-	      const contentSmall = contentScore.charAt(0);
-	      
-	      const developSpan = developScore.charAt(0)+'.';
-	      const developSmall = developScore.charAt(1);
-	      
+	    if(designScore =='100'){
+	    	designSpan ="10.";
+	    	designSmall=".0";
+	    }else{
+		    designSpan = designScore.charAt(0)+'.';	
+		    designSmall = designScore.charAt(1);
+	    }
+	    
+	    let useabilitySpan = "";	
+	    let useabilitySmall ="";
+	    
+	    if(useabilityScore =='100'){
+	    	useabilitySpan ="10.";
+	    	useabilitySmall=".0";
+	    }else{
+	    	useabilitySpan = designScore.charAt(0)+'.';	
+		    useabilitySmall = designScore.charAt(1);
+	    }
+	    
+	    let creativitySpan = "";	
+	    let creativitySmall ="";
+	    
+	    if(creativityScore =='100'){
+	    	creativitySpan ="10.";
+	    	creativitySmall=".0";
+	    }else{
+	    	creativitySpan = designScore.charAt(0)+'.';	
+	    	creativitySmall = designScore.charAt(1);
+	    }
+	    
+	    let contentSpan = "";	
+	    let contentSmall ="";
+	    
+	    if(contentScore =='100'){
+	    	contentSpan ="10.";
+	    	contentSmall=".0";
+	    }else{
+	    	contentSpan = designScore.charAt(0)+'.';	
+	    	contentSmall = designScore.charAt(1);
+	    }
+	    
+	   	let developSpan = "";	
+	    let developSmall ="";
+	    
+	    if(developScore =='100'){
+	    	developSpan ="10.";
+	    	developSmall=".0";
+	    }else{
+	    	developSpan = designScore.charAt(0)+'.';	
+	    	developSmall = designScore.charAt(1);
+	    }
+	    
+
 	    $('.designSpan').text(designSpan);
 	    $('.designSmall').text(designSmall);
 	    $('.useabilitySpan').text(useabilitySpan);
@@ -529,6 +571,8 @@
   		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
   	  }
 
+
+  	  
   </script>
 
 

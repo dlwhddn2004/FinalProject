@@ -287,6 +287,10 @@ SELECT PROJECT.PROJECT_NO PROJECT_NO,
 		UPDATE PROJECT SET PROJECT_HIRESTATUS = 'Y'
 		WHERE PROJECT_NO = #project_no#
 	</update>
+	
+	<delete id="deleteProject" parameterClass="map">
+		DELETE PROJECT WHERE PROJECT_NO = #project_no#
+	</delete>
 
 </sqlMap>
 

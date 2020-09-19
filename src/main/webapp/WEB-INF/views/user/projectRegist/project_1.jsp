@@ -17,6 +17,7 @@
 	href="${pageContext.request.contextPath}/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css"
 	type="text/css">
 <!-- Page plugins -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/vendor/sweetalert2/dist/sweetalert2.min.css">
 <!-- Argon CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/argon.css?v=1.2.0"
@@ -149,12 +150,94 @@
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/select2/dist/js/select2.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/vendor/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Argon JS -->
 <script src="${pageContext.request.contextPath}/assets/js/argon.js?v=1.2.0"></script>
 <!-- Demo JS - remove this in your project -->
 <script src="${pageContext.request.contextPath}/assets/js/demo.min.js"></script>
 
 <script type="text/javascript">
+	<!-- 이전에 작성 중이던 프로젝트가 있는지 확인하고 있다면 이어서 작성하게 해준다. (무조건이 아닌 선택 할 수 있도록 한다.) -->
+	chkWritingProjectRegist();
+	// 1페이지 : PROJECT_TITLE
+	// 2페이지 : PROJECT_REFERENCE
+	// 3페이지 : PROJECT_TECHNOLOGIES
+	// 4페이지 : PROJECT_DURATION
+	// 5페이지 : PROJECT_CLIENTLOCATION
+	// 6페이지 : PROJECT_ESSENTIALREQUIREMENTS
+	// 7페이지 : PROJECT_PRIORITY
+	
+	// 8페이지부터는 면접 페이지 (DB 구조상 이어서 하기 어려움) - 면접 설정은 도중에 관두면 
+	function chkWritingProjectRegist() {
+		$.ajax({
+		    url: '${pageContext.request.contextPath}/user/interview/chkWritingProjectRegist.do',
+		    type: 'POST',
+		    async: false,
+		    data: {
+		    	mem_id: '${MEMBER_LOGININFO.mem_id}'
+		    },
+		    success: function (data) {
+		    	if (data.chk != null) {
+		    		Swal.fire({
+		    			  title: '안내',
+		    			  text: "작성 중인 프로젝트가 있습니다. 계속 작성하시겠습니까?",
+		    			  icon: 'info',
+		    			  showCancelButton: true,
+		    			  confirmButtonColor: '#3085d6',
+		    			  cancelButtonColor: '#d33',
+		    			  confirmButtonText: '작성',
+		    			  cancelButtonText: '삭제'
+		    			}).then((result) => {
+		    			  if (result.value) {
+		  		    		if (data.chk == 8) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_2.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 7) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_3.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 6) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_4.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 5) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_5.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 4) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_6.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 3) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_7.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 2) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_interview_1.do?endStatus=Y&endProject_no=' + data.project_no;
+					    	} else if (data.chk == 1) {
+					    		location.href = '${pageContext.request.contextPath}/user/projectRegist/project_interview_2.do?endStatus=Y&endProject_no=' + data.project_no + '&endInterview_no=' + data.interview_no;
+					    	}
+		    			  } else {
+		    					$.ajax({
+		    					    url: '${pageContext.request.contextPath}/user/projectRegist/deleteWritingProject.do',
+		    					    type: 'POST',
+		    					    async: false,
+		    					    data: {
+		    					    	project_no: data.project_no
+		    					    },
+		    					    success: function (data) {
+		    					    	if (!data) {
+		    					    		Swal.fire(
+		    			    				  '오류',
+		    			    				  '작성 중이던 프로젝트를 삭제하던 중 에러 발생!',
+		    			    				  'danger'
+		    			    				);
+		    					    	}
+		    					    },
+		    					    error: function (xhr, err) {
+		    					        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		    					        alert("responseText: " + xhr.responseText);
+		    					    }
+		    					});
+		    			  }
+		    			});
+		    	}
+		    },
+		    error: function (xhr, err) {
+		        alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+		        alert("responseText: " + xhr.responseText);
+		    }
+		});
+	}
 
 	<!-- 등록 버튼 -->
 	$("#btnRegist").on("click", function() {
