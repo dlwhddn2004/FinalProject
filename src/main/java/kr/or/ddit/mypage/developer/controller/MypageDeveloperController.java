@@ -144,6 +144,9 @@ public class MypageDeveloperController {
 			}
 		}
 		
+		//이력 사항
+		List<Map<String,String>> CarrerList = this.mypageService.carrerList(params);
+		
 		modelAndView.addObject("breadcrumb_title", "MyPage");
         modelAndView.addObject("breadcrumb_first", "MyPage_ProFile");
         modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/mypage/myPageView.do");
@@ -165,8 +168,8 @@ public class MypageDeveloperController {
 			modelAndView.addObject("memberAttribute", memberAttribute);
 			// 기술 숙련도
 			modelAndView.addObject("mypage_techexperience", mypage_techexperience_ipt);
+			modelAndView.addObject("CarrerList", CarrerList);
 			modelAndView.setViewName("user/mypage/myPageView");
-			// 맴버 생일
 		
 		return modelAndView;
 	}
@@ -301,6 +304,20 @@ public class MypageDeveloperController {
 		
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping("selectCareer")
+	public ModelAndView selectCareer(String mem_id) throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Map<String,String> params = new HashMap<String, String>();
+		params.put("mem_id", mem_id);
+		
+		List<Map<String,String>> CarrerList = this.mypageService.carrerList(params);
+		
+		modelAndView.addObject("CarrerList",CarrerList);
+		modelAndView.setViewName("jsonConvertView");
+		return modelAndView;
 	}
 	
 }

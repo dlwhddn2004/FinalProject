@@ -11,6 +11,12 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
 $(function(){
+
+
+
+
+	
+	
       function settingDisernNum(){
       	var disernHtml = '<option value="010">010</option>' +
       				    '<option value="011">011</option>' +
@@ -28,7 +34,9 @@ $(function(){
 		
 		$('select[name=mem_tel1]').val("${MemberInfoTel[0]}");
 		$('input[name=mem_tel2]').val(${MemberInfoTel[1]});
-		$('input[name=mem_tel3]').val(${MemberInfoTel[2]}); 
+		$('input[name=mem_tel3]').val(${MemberInfoTel[2]});
+	
+		
 $('form[name=memberForm]')
 .submit(
    function() {
@@ -40,9 +48,26 @@ $('form[name=memberForm]')
 				$('input[name=mem_tel2]').val()+"-"+
 				$('input[name=mem_tel3]').val());
       
+			
+		var mem_pass = $('input[name = mem_pass]').val();
+		var mem_pass1 = $('input[name = mem_pass1]').val();
+		if (mem_pass != mem_pass1) {
+			alert('비밀번호를 바르게 입력해주세요.');
+			return false;
+		}
+		if (mem_pass == null) {
+			alert('비밀번호를 바르게 입력해주세요.');
+			return false;
+		}
+		if (mem_pass1 == null) {
+			alert('비밀번호를 바르게 입력해주세요.');
+			return false;
+		}
+		if (mem_pass == "" && mem_pass1 == "") {
+			alert('비밀번호를 바르게 입력해주세요.');
+			return false;
+		}
 		
-		
-   
 
       var mem_addr = $('input[name=mem_addr1]').val()
             + '-' + $('input[name=mem_addr2]').val()
@@ -50,6 +75,8 @@ $('form[name=memberForm]')
             + '-' + $('input[name=mem_addr4]').val(); 
 
       $('input[name=mem_addr]').val(mem_addr);
+      
+     
 
 });   
 
@@ -72,7 +99,10 @@ $('#btn-primary').click(function(){
 	});
 });
 
+
+
 }); 
+
 </script>
 <style>
 .one{
@@ -131,8 +161,9 @@ $('#btn-primary').click(function(){
 								<div class="form-group flex-column">
 									<label class="col-form-label form-control-label">비밀번호
 										확인</label> <label style="color: tomato">*</label> <input
-										type="password" name="mem_pass1" class="form-control"
+										type="password" name="mem_pass1"  id= "mem_pass1" class="form-control"
 										value="${memberInfo.mem_pass}">
+										
 								</div>
 							</div>
 						</div>
@@ -194,7 +225,7 @@ $('#btn-primary').click(function(){
 										<label style="color: tomato">*</label>
 								<div class="row">
 									<div class="col">
-									<input type="hidden" name="mem_tel" class="form-control" />
+									<input type="hidden" name="mem_tel"  class="form-control" />
 									<select name="mem_tel1" class="form-control">
 												<option >선택하세요</option>
 												
@@ -331,33 +362,7 @@ $('#btn-primary').click(function(){
 	$(function() {
 		
 
-		
-
-		var a = "${memberInfo.mem_tel}";
-		var b = a.split("-");
-
-		$('form[name=memberForm]')
-				.submit(
-						function() {
-							$(this)
-									.attr('action',
-											'${pageContext.request.contextPath}/user/myprofile/updateMemberInfo.do');
-
-						/* 	var mem_tel = $('select[name=mem_tel1]').val()
-									+ '-' + $('input[name=mem_tel2]').val()
-									+ '-' + $('input[name=mem_tel3]').val();
-
-							$('input[name=mem_tel]').val(mem_tel); */
-
-							var mem_addr = $('input[name=mem_addr1]').val()
-									+ '-' + $('input[name=mem_addr2]').val()
-									+ '-' + $('input[name=mem_addr3]').val();
-									
-
-							$('input[name=mem_addr]').val(mem_addr);
-
-						});
-
+	
 	});
 
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

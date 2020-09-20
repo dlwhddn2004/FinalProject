@@ -395,7 +395,7 @@
 	          objectType:"feed"
 	        , content : {
 	              title:"커넥터 프로젝트 확인"   // 콘텐츠의 타이틀
-	            , description:"신나라씨 확인하고 수정해주세요."   // 콘텐츠 상세설명
+	            , description:"확인 후 수정 부탁 드립니다."   // 콘텐츠 상세설명
 	            , imageUrl:"http://dn.api1.kage.kakao.co.kr/14/dn/btqa9B90G1b/GESkkYjKCwJdYOkLvIBKZ0/o.jpg"   // 썸네일 이미지
 	            , link : {
 	                  mobileWebUrl:"http://localhost:80/"   // 모바일 카카오톡에서 사용하는 웹 링크 URL

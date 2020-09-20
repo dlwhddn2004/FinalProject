@@ -89,4 +89,10 @@ public class IMypageDaoImpl implements IMypageDao {
 	public void updateTechnologiesCount(Map<String,String> params) throws Exception {
 		client.update("mypageDeverloper.updateTechnologiesCount", params);
 	}
+
+	@Override
+	public List<Map<String, String>> carrerList(Map<String, String> params)
+			throws Exception {
+		return client.queryForList("mypageDeverloper.selectCarrerList", params);
+	}
 }

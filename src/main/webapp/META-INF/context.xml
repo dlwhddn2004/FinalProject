@@ -2,7 +2,7 @@
 <Context>
 	<WatchedResource>WEB-INF/web.xml</WatchedResource>
 
-<!-- 		 <Resource name="jdbc/ddit"  -->
+<!-- 		<Resource name="jdbc/ddit"  -->
 <!-- 				  auth="CONNECTOR"  -->
 <!-- 				  type="javax.sql.DataSource"  -->
 <!-- 				  driverClassName="oracle.jdbc.driver.OracleDriver"  -->
@@ -17,14 +17,14 @@
 <!-- 				  removeAbandonedTimeout="60" -->
 <!-- 				  maxWait="-1" -->
 <!-- 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> -->
-<!-- 		</Resource>  -->
+<!-- 		</Resource> -->
 
 			<Resource name="jdbc/ddit" 
 				  auth="CONNECTOR" 
 				  type="javax.sql.DataSource" 
 				  driverClassName="oracle.jdbc.driver.OracleDriver" 
-				  url="jdbc:oracle:thin:@localhost:1522:XE"
-				  username="FinalProjectLocal" 
+				  url="jdbc:oracle:thin:@localhost:1521:oracle"
+				  username="FinalProject" 
 				  password="oracle" 
 				  initialSize="10"
 				  maxActive="7" 
