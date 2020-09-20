@@ -108,7 +108,7 @@
                         <div class="row align-items-center">
                            <div class="col-auto">
                               <!-- Avatar -->
-                             <img alt="Image_placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                             <img alt="Image placeholder" src="${pageContext.request.contextPath }/assets/img/theme/team-1.jpg" class="avatar rounded-circle">
                              
                            </div>
                            <div class="col ml--2">
@@ -310,7 +310,7 @@
 			                </div>
 			                <div class="search">
 			                  <span><a href="#" data-toggle="modal" data-target="#ID-form"><small>아이디 찾기</small></a></span>
-			                  <span><a href="#"><small>비밀번호 찾기</small></a></span>
+			                  <span><a href="#" data-toggle="modal" data-target="#FindPw-form"><small>비밀번호 찾기</small></a></span>
 			                </div>
 			                <!-- 로그인 상태 유지 체크 박스!!-->
 			
@@ -402,6 +402,52 @@
 							        </div>
 							    </div>
 							</div>
+			            </div>
+			          </div>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+		<!-- 비밀번호 찾기 -->
+		<div class="modal fade" id="FindPw-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+			    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
+			      <div class="modal-content">
+			        <div class="modal-body p-0">
+			          <div class="card bg-secondary border-0 mb-0">
+			            <div class="card-header bg-transparent pb-5">
+			              <div class="text-muted text-center mt-2 mb-3"><h3>비밀번호 찾기</h3></div>
+			            </div>
+			            <div class="card-body">
+			              <form role="form" method="post">
+			                <div class="form-group mb-3">
+			                  <div class="input-group input-group-merge input-group-alternative">
+			                    <div class="input-group-prepend">
+			                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
+			                    </div>
+			                    <input id="validationCustom01" class="form-control" placeholder="이름" type="text" name="findpw_name">
+			                  </div>
+			                </div>
+			                <div class="form-group">
+			                  <div class="input-group input-group-merge input-group-alternative">
+			                    <div class="input-group-prepend">
+			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+			                    </div>
+			                    <input class="form-control" placeholder="아이디" type="text" name="findpw_id">
+			                  </div>
+			                </div>
+			                <div class="form-group">
+			                  <div class="input-group input-group-merge input-group-alternative">
+			                    <div class="input-group-prepend">
+			                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+			                    </div>
+			                    <input class="form-control" placeholder="이메일" type="text" name="findpw_mail">
+			                  </div>
+			                </div>
+			                <div class="text-center">
+			                  <button id="findpwbtn" onclick="findpwBtn();" type="button" class="btn btn-primary my-4 loginBtn">찾기</button>
+							  <button id="findpwcancle" type="button" class="btn btn-primary my-4 loginBtn">취소</button>
+			                </div>
+			              </form>
 			            </div>
 			          </div>
 			        </div>
@@ -548,29 +594,16 @@
 			
 			
             $('#btnRegistMember').on('click', function() {
-//             	invalidClass = $('form[name=regist] .form-control:invalid').length;
+            	invalidClass = $('form[name=regist] .form-control:invalid').length;
             	
-//             	if(invalidClass > 0){
-//     				Swal.fire(
-//     						'Warning',
-//     						'회원 정보를 바르게 입력해 주세요.',
-//     						'warning'
-//     					)
-//     					return;
-//             	}else{
-// 	            	category = $('input[name=category]:checked').val();
-// 	            	pass = $('input[name=password]').val();
-	
-	            	
-// 					$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
-// 					$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
-// 					$('form[name=regist]').append($inputCAT);
-// 					$('form[name=regist]').append($inputPass);
-					
-// 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
-// 					$('form[name=regist]').submit();
-
-//             	}
+            	if(invalidClass > 0){
+    				Swal.fire(
+    						'Warning',
+    						'회원 정보를 바르게 입력해 주세요.',
+    						'warning'
+    					)
+    					return;
+            	}else{
 	            	category = $('input[name=category]:checked').val();
 	            	pass = $('input[name=password]').val();
 	
@@ -582,6 +615,8 @@
 					
 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
 					$('form[name=regist]').submit();
+
+            	}
 			});
             
             $('#btnLogout').on('click', function() {
@@ -786,6 +821,37 @@
 					)
 		        
 		       $('#ID-form').hide();
+
+		       
+			}
+		})
+	}
+	//비밀번호 찾기
+	function findpwBtn(){
+		const findpw_name =$('input[name=findpw_name]').val();
+		const findpw_id =$('input[name=findpw_id]').val(); 
+		const findpw_mail =$('input[name=findpw_mail]').val();
+		$.ajax({
+			url : "${pageContext.request.contextPath}/user/find/findPW.do",
+			data : {mem_name : findpw_name, mem_id: findpw_id, mem_mail:findpw_mail},
+			dataType : 'json',
+			type : 'POST',
+			error : function(result){
+				Swal.fire(
+						'Warning',
+						'등록된 회원정보가 없습니다.',
+						'warning'
+					)
+			},
+			success : function(result){
+				
+				Swal.fire(
+						'info',
+						'회원님의 비밀번호를 이메일로 전송했습니다.',
+						'info'
+					)
+		        memMailConfirm = document.getElementById("result");
+		       $('#FindPw-form').hide();
 
 		       
 			}
