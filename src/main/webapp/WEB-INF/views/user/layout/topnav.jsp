@@ -340,17 +340,17 @@
 			                <div class="nav-wrapper">
 							    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
 							        <li class="nav-item">
-							            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>이메일로 찾기</a>
+							            <a class="nav-link mb-sm-3 mb-md-0 active" id="find-icons-text-1-tab" data-toggle="tab" href="#find-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>이메일로 찾기</a>
 							        </li>
 							        <li class="nav-item">
-							            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>전화번호로 찾기</a>
+							            <a class="nav-link mb-sm-3 mb-md-0" id="find-icons-text-2-tab" data-toggle="tab" href="#find-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>전화번호로 찾기</a>
 							        </li>
 							    </ul>
 							</div>
 							<div class="card shadow">
 							    <div class="card-body">
 							        <div class="tab-content" id="myTabContent">
-							            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
+							            <div class="tab-pane fade show active" id="find-icons-text-1" role="tabpanel" aria-labelledby="find-icons-text-1-tab">
 							            	<%--  작업중 <form role="form" action="${pageContext.request.contextPath}/user/find/findIDMail.do" method ="post"> --%>
 								                <div class="form-group mb-3">
 								                  <div class="input-group input-group-merge input-group-alternative">
@@ -375,7 +375,7 @@
 								                </div>
 							              <!-- </form> -->
 							            </div>
-							            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
+							            <div class="tab-pane fade" id="find-icons-text-2" role="tabpanel" aria-labelledby="find-icons-text-2-tab">
 							            	<form role="form" method="post">
 								                <div class="form-group mb-3">
 								                  <div class="input-group input-group-merge input-group-alternative">
