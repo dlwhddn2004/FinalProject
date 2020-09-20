@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="find">
+	<typeAlias alias="memberVO" type="kr.or.ddit.vo.MemberVO" />
+	
+	<select id="findIDMail" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT * FROM MEMBER
+		WHERE MEM_NAME = #mem_name#
+		AND MEM_MAIL = #mem_mail#
+	</select>
+	
+	<select id="findIDTel" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT * FROM MEMBER
+		WHERE MEM_NAME = #mem_name#
+		AND MEM_TEL = #mem_tel#
+	</select>
+	
+	<select id="findPW" parameterClass="map" resultClass="java.util.HashMap">
+		SELECT * FROM MEMBER
+		WHERE MEM_NAME = #mem_name#
+		AND MEM_ID = #mem_id#
+		AND MEM_MAIL = #mem_mail#
+	</select>
+	
+	<update id="updatePW" parameterClass="map">
+		UPDATE MEMBER SET  MEM_PASS = #mem_pass#
+		WHERE MEM_NAME = #mem_name#
+	</update>
+	
+</sqlMap>
+
+ 
+
+
