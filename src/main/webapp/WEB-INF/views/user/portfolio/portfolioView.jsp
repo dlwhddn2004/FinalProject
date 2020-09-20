@@ -1037,8 +1037,8 @@
 		    	useabilitySpan ="10.";
 		    	useabilitySmall=".0";
 		    }else{
-		    	useabilitySpan = designScore.charAt(0)+'.';	
-			    useabilitySmall = designScore.charAt(1);
+		    	useabilitySpan = useabilityScore.charAt(0)+'.';	
+			    useabilitySmall = useabilityScore.charAt(1);
 		    }
 		    
 		    let creativitySpan = "";	
@@ -1048,8 +1048,8 @@
 		    	creativitySpan ="10.";
 		    	creativitySmall=".0";
 		    }else{
-		    	creativitySpan = designScore.charAt(0)+'.';	
-		    	creativitySmall = designScore.charAt(1);
+		    	creativitySpan = creativityScore.charAt(0)+'.';	
+		    	creativitySmall = creativityScore.charAt(1);
 		    }
 		    
 		    let contentSpan = "";	
@@ -1059,8 +1059,8 @@
 		    	contentSpan ="10.";
 		    	contentSmall=".0";
 		    }else{
-		    	contentSpan = designScore.charAt(0)+'.';	
-		    	contentSmall = designScore.charAt(1);
+		    	contentSpan = contentScore.charAt(0)+'.';	
+		    	contentSmall = contentScore.charAt(1);
 		    }
 		    
 		   	let developSpan = "";	
@@ -1070,8 +1070,8 @@
 		    	developSpan ="10.";
 		    	developSmall=".0";
 		    }else{
-		    	developSpan = designScore.charAt(0)+'.';	
-		    	developSmall = designScore.charAt(1);
+		    	developSpan = developScore.charAt(0)+'.';	
+		    	developSmall = developScore.charAt(1);
 		    }
 
 			$('.designSpan').text(designSpan);
