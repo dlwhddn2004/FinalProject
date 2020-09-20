@@ -39,6 +39,7 @@
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/career.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/projectApplyInfo.xml"/>	
 	<sqlMap resource="kr/or/ddit/ibatis/mapper/interviewee.xml"/>	
+	<sqlMap resource="kr/or/ddit/ibatis/mapper/find.xml"/>	
 </sqlMapConfig>
 
 

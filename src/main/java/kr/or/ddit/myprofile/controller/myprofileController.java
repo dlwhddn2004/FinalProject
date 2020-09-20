@@ -95,15 +95,14 @@ public class myprofileController {
 	 
 	
 @RequestMapping("updateMemberInfo")	
-		public String updateMember(MemberVO memberInfo
-				,HttpSession session  ) throws Exception{
-
-
-	
-	
+		public String updateMember( String mem_id, 	MemberVO memberInfo ,
+				HttpServletRequest request,HttpSession session  ) throws Exception{
+	 Map<String, String> params = new HashMap<String, String>();
+	params.put("MEMBER_LOGININFO", mem_id);
 	this.service.updateMemberInfo(memberInfo);
 
-session.setAttribute("MEMBER_LOGININFO",memberInfo);
+ this.service.memberInfo(params);
+	request.getSession().setAttribute("MEMBER_LOGININFO",memberInfo);
 
 String taskResult = "success";
 String message = URLEncoder.encode(" 완료되었습니다.","UTF-8");
