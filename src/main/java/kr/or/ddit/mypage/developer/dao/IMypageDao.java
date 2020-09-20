@@ -17,7 +17,8 @@ public interface IMypageDao {
 	public Mypage_memberVO selectMypageInfo(Map<String,String> params) throws Exception;
 	
 	public String modifyMyabout(Mypage_memberVO vo ) throws Exception; 
-
+	public String modifyPartnerAbout(Mypage_memberVO vo) throws Exception;
+	
 	
 	public void insertMypageDeveloper(Mypage_memberVO mypageInfo) throws Exception;
 	
@@ -33,5 +34,10 @@ public interface IMypageDao {
 	
 	//이력사항 등록
 	public List<Map<String,String>> carrerList (Map<String,String> params) throws Exception;
+	
+	public void insertPartnersmypage (Mypage_memberVO mypageInfo) throws Exception;
+	public List<Map<String,String>> partnersProjectChart (Map<String,String> params) throws Exception;
+	public Mypage_memberVO partnersmypageInfo (Map<String,String> params) throws Exception;
+	public int partnersProjectNum(Map<String,String> params) throws Exception;
 	
 }

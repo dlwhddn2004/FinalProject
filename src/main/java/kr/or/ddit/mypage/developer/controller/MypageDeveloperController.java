@@ -59,13 +59,17 @@ public class MypageDeveloperController {
 		params.put("mem_id", mem_id);
 		params.put("category_no",category_no);
 		
+
+		
 		// 보유기술 선택했을때 세션 선택.
 		int protfolioNum = this.mypageService.portfolioFinishNumber(params);
-		int projectNum = this.mypageService.projectFinishNumber(params);
+		int projectNum;
 		
 		ProfileFileVO profileFileInfo = this.profileService.selectProfileFileInfo(params);
+		
+		// 디벨로퍼 
 		// 마이페이지 테이블에 정보있는지 조회
-		Mypage_memberVO mypageMemberInfo = this.mypageService.selectMypageInfo(params);
+		Mypage_memberVO mypageMemberInfo = null;
 		
 		// 본인이 작성한 포트폴리오 알려주기
 		List<Map<String,String>> mypagePortfolioList = this.mypageService.portfolioMypageList(params);
@@ -86,89 +90,119 @@ public class MypageDeveloperController {
 		 //기타 회원관련된것들 넣어주자.
 		 memberAttribute.put("MEM_AGE", mem_age);
 		 
-		 //마이 페이지 보유 기술 수 나타냄
-		 String[] mypage_technologies_ipt=null;
-		 //마이 페이지 숙련도.
-		 String[]  mypage_techexperience = mypageMemberInfo.getMypage_techexperience().split(",");
-		 //배열을 List로 넣어서 스크립트단에 표현.
-		 List<String> mypage_techexperience_ipt = new ArrayList<String>();
-		 for(int i=0; i<mypage_techexperience.length; i++ ){
-			mypage_techexperience_ipt.add(mypage_techexperience[i]); 
-		 }
-		 int technologiesNum =0;
-		 
-		 if(mypageMemberInfo.getMypage_technologies() !=null ){
-			 //마이페이지 기술 컬럼값 을 짤라서 넣어줌
-			 mypage_technologies_ipt = mypageMemberInfo.getMypage_technologies().split(",");
-			 // 마이페이지 숙련도 컬럼 값을 짤라
+			//차트표현
+			MemberRateVO memberRateInfo = new MemberRateVO();
+			memberRateInfo = this.memberRate.selectMemberRateInfo(params);
 			
-			 for(int i=0; i<mypage_technologies_ipt.length; i++){
-					 	technologiesNum ++;
-			 }
-			 memberAttribute.put("technologiesNum", String.valueOf(technologiesNum));
-		 }
-			 
+			//참가한 프로젝트의 기술 별  숫자
+			Map<String,String> projectChartInfo = new HashMap<String, String>();
+			// projectChart 기본값 넣어주기.
+			for(int i=0; i<4; i++){
+				if(i == 0){
+					projectChartInfo.put("Angular", "0");
+				}else if(i == 1){
+					projectChartInfo.put("Bootstrap", "0");
+				}else if(i == 2){
+					projectChartInfo.put("React", "0");
+				}else{
+					projectChartInfo.put("Vue", "0");
+				}
+			}
+
 		 
+		 if(category_no.equals("2")){
+			  mypageMemberInfo = this.mypageService.selectMypageInfo(params);
+			  projectNum = this.mypageService.projectFinishNumber(params);
+			 //마이 페이지 보유 기술 수 나타냄
+			 String[] mypage_technologies_ipt=null;
+			 //마이 페이지 숙련도.
+			 String[]  mypage_techexperience = mypageMemberInfo.getMypage_techexperience().split(",");
+			 //배열을 List로 넣어서 스크립트단에 표현.
+			 List<String> mypage_techexperience_ipt = new ArrayList<String>();
+			 for(int i=0; i<mypage_techexperience.length; i++ ){
+				mypage_techexperience_ipt.add(mypage_techexperience[i]); 
+			 }
+			 int technologiesNum =0;
+			 
+			 if(mypageMemberInfo.getMypage_technologies() !=null ){
+				 //마이페이지 기술 컬럼값 을 짤라서 넣어줌
+				 mypage_technologies_ipt = mypageMemberInfo.getMypage_technologies().split(",");
+				 // 마이페이지 숙련도 컬럼 값을 짤라
+				
+				 for(int i=0; i<mypage_technologies_ipt.length; i++){
+						 	technologiesNum ++;
+				 }
+				 memberAttribute.put("technologiesNum", String.valueOf(technologiesNum));
+			 }
+			 
+				List<Map<String,String>> projectChartList = this.mypageService.projectTechnologiesChart(params);
+			
+				for(int i =0; i <projectChartList.size(); i++){
+					if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("1")){
+						projectChartInfo.put("Angular", String.valueOf(projectChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("2")){
+						projectChartInfo.put("Bootstrap", String.valueOf(projectChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("3")){
+						projectChartInfo.put("React", String.valueOf(projectChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("4")){
+						projectChartInfo.put("Vue", String.valueOf(projectChartList.get(i).get("SUM")));
+					}
+				}
+					
+				//포트폴리오 올린 숫자
+				modelAndView.addObject("portfolioNum",protfolioNum);
+				//이력 사항 및 기술숙련도
+				List<Map<String,String>> CarrerList = this.mypageService.carrerList(params);
+				modelAndView.addObject("mypage_techexperience", mypage_techexperience_ipt);
+				modelAndView.addObject("CarrerList", CarrerList);
+				// 본인이 작성한 포트폴리오
+				modelAndView.addObject("mypagePortfolioList",mypagePortfolioList);
+		 }else{
+			 
+			 projectNum = this.mypageService.partnersProjectNum(params);
+				List<Map<String,String>> partnersChartList = this.mypageService.partnersProjectChart(params);
+				
+				for(int i =0; i <partnersChartList.size(); i++){
+					if(String.valueOf(partnersChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("1")){
+						projectChartInfo.put("Angular", String.valueOf(partnersChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(partnersChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("2")){
+						projectChartInfo.put("Bootstrap", String.valueOf(partnersChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(partnersChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("3")){
+						projectChartInfo.put("React", String.valueOf(partnersChartList.get(i).get("SUM")));
+					}
+					if(String.valueOf(partnersChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("4")){
+						projectChartInfo.put("Vue", String.valueOf(partnersChartList.get(i).get("SUM")));
+					}
+				}
+				mypageMemberInfo = this.mypageService.partnersmypageInfo(params);
+				modelAndView.addObject("mypage_techexperience", 1);
+		 }
+
+
+			modelAndView.addObject("breadcrumb_title", "MyPage");
+	        modelAndView.addObject("breadcrumb_first", "MyPage_ProFile");
+	        modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/mypage/myPageView.do");
 		
-		//차트표현
-		MemberRateVO memberRateInfo = new MemberRateVO();
-		memberRateInfo = this.memberRate.selectMemberRateInfo(params);
-		
-		//참가한 프로젝트의 기술 별  숫자
-		Map<String,String> projectChartInfo = new HashMap<String, String>();
-		// projectChart 기본값 넣어주기.
-		for(int i=0; i<4; i++){
-			if(i == 0){
-				projectChartInfo.put("Angular", "0");
-			}else if(i == 1){
-				projectChartInfo.put("Bootstrap", "0");
-			}else if(i == 2){
-				projectChartInfo.put("React", "0");
-			}else{
-				projectChartInfo.put("Vue", "0");
-			}
-		}
-		List<Map<String,String>> projectChartList = this.mypageService.projectTechnologiesChart(params);
-		for(int i =0; i <projectChartList.size(); i++){
-			if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("1")){
-				projectChartInfo.put("Angular", String.valueOf(projectChartList.get(i).get("SUM")));
-			}
-			if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("2")){
-				projectChartInfo.put("Bootstrap", String.valueOf(projectChartList.get(i).get("SUM")));
-			}
-			if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("3")){
-				projectChartInfo.put("React", String.valueOf(projectChartList.get(i).get("SUM")));
-			}
-			if(String.valueOf(projectChartList.get(i).get("PROJECT_TECHNOLOGIES")).equals("4")){
-				projectChartInfo.put("Vue", String.valueOf(projectChartList.get(i).get("SUM")));
-			}
-		}
-		
-		//이력 사항
-		List<Map<String,String>> CarrerList = this.mypageService.carrerList(params);
-		
-		modelAndView.addObject("breadcrumb_title", "MyPage");
-        modelAndView.addObject("breadcrumb_first", "MyPage_ProFile");
-        modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/mypage/myPageView.do");
-		
-		
-			//프로젝트 성공, 포트폴리오 올린 숫자
+			//프로젝트 성공
 			modelAndView.addObject("projectNum",projectNum);
-			modelAndView.addObject("portfolioNum",protfolioNum);
+		
 			// 회원 평가 점수 차트에 씀
 			modelAndView.addObject("memberRate",memberRateInfo);
 			// 프로젝트 차트
 			modelAndView.addObject("projectChartInfo", projectChartInfo);
 			// 회원 프로필 사진 저장 및 보유
 			modelAndView.addObject("profileFileInfo",profileFileInfo);
-			// 본인이 작성한 포트폴리오
-			modelAndView.addObject("mypagePortfolioList",mypagePortfolioList);
+
 			// 마이프로필에 정보가 있는지를 조회 하려고함 .
 			modelAndView.addObject("mypageMemberInfo", mypageMemberInfo);
 			modelAndView.addObject("memberAttribute", memberAttribute);
-			// 기술 숙련도
-			modelAndView.addObject("mypage_techexperience", mypage_techexperience_ipt);
-			modelAndView.addObject("CarrerList", CarrerList);
+			
+
 			modelAndView.setViewName("user/mypage/myPageView");
 		
 		return modelAndView;
@@ -184,7 +218,12 @@ public class MypageDeveloperController {
 		mypageInfo.setCategory_no(category_no);
 		mypageInfo.setMypage_aboutme(mypage_aboutme);
 		
-		this.mypageService.modifyMyabout(mypageInfo, files);
+		//마이페이지 기본정보!
+		if(category_no.equals("2")){
+			this.mypageService.modifyMyabout(mypageInfo, files);
+		}else{
+			this.mypageService.modifyPartnerAbout(mypageInfo, files);
+		}
 		
 		 String taskResult = null;
 		 String message = null;
@@ -193,7 +232,7 @@ public class MypageDeveloperController {
 			message = URLEncoder.encode("회원정보가 정상적으로 수정되었습니다.", "UTF-8");
 	
 		
-		return "redirect:/user/mypage/myPageView.do?mem_id=" +mem_id +"&category_no"+ category_no +"&taskResult=" + taskResult + "&message=" + message;
+		return "redirect:/user/mypage/myPageView.do?mem_id=" +mem_id +"&category_no="+ category_no +"&taskResult=" + taskResult + "&message=" + message;
 	}
 	
 

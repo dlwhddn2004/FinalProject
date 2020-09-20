@@ -199,24 +199,35 @@ input[type="file"]::-webkit-file-upload-button {
 				<div class="row">
 					<div class="col">
 						<div class="card-profile-stats d-flex justify-content-center">
-							<div>
-								<span class="heading">${portfolioNum}</span> <label
-									class="col-form-label form-control-label">포트폴리오</label>
-							</div>
-							<div>
-								<span class="heading">${projectNum }</span> <label
-									class="col-form-label form-control-label">프로젝트</label>
-							</div>
-							<div>
-								<c:if test="${empty memberAttribute.technologiesNum }">
-									<span class="heading technologiesNum">0</span>
-								</c:if>
-								<c:if test="${!empty memberAttribute.technologiesNum }">
-									<span class="heading technologiesNum">${memberAttribute.technologiesNum }</span>
-								</c:if>
+						<!-- 작업 중 -->
+						<c:if test="${MEMBER_LOGININFO.category_no == '2'}">
+								<div>
+									<span class="heading">${portfolioNum}</span> <label
+										class="col-form-label form-control-label">포트폴리오</label>
+								</div>
+								<div>
+									<span class="heading">${projectNum }</span> <label
+										class="col-form-label form-control-label">프로젝트</label>
+								</div>
+								<div>
+									<c:if test="${empty memberAttribute.technologiesNum }">
+										<span class="heading technologiesNum">0</span>
+									</c:if>
+									<c:if test="${!empty memberAttribute.technologiesNum }">
+										<span class="heading technologiesNum">${memberAttribute.technologiesNum }</span>
+									</c:if>
 
-								<label class="col-form-label form-control-label">보유 기술</label>
-							</div>
+									<label class="col-form-label form-control-label">보유 기술</label>
+								</div>
+							</c:if>
+
+
+							<c:if test="${MEMBER_LOGININFO.category_no == '1'}">
+								<div>
+									<span class="heading">${projectNum}</span> 
+									<label class="col-form-label form-control-label">프로젝트</label>
+								</div>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -417,7 +428,10 @@ input[type="file"]::-webkit-file-upload-button {
 								</div>
 							</div>
 						</div>
-						<div class="card">
+						
+						<!-- 작업중 -->
+						<c:if test="${mypageMemberInfo.category_no =='2' }">
+													<div class="card">
 							<div class="card-header bg-success" id="headingThree"
 								data-toggle="collapse" data-target="#collapseThree"
 								aria-expanded="false" aria-controls="collapseThree">
@@ -483,8 +497,8 @@ input[type="file"]::-webkit-file-upload-button {
 								</div>
 							</div>
 						</div>
-
-						<div class="card">
+						
+												<div class="card">
 							<div class="card-header bg-success" id="headingOne"
 								data-toggle="collapse" data-target="#collapseOne"
 								aria-expanded="true" aria-controls="collapseOne">
@@ -708,7 +722,6 @@ input[type="file"]::-webkit-file-upload-button {
 											<div id="faqcollapse1-4" class="collapse"
 												aria-labelledby="faqHeading1-4" data-parent="#faq1">
 												<div class="card-body">
-												<!-- 작업 중! -->
 													<div class="row career-table">
 														<div class="col">
 																<div class="table-responsive">
@@ -748,6 +761,11 @@ input[type="file"]::-webkit-file-upload-button {
 								</div>
 							</div>
 						</div>
+						
+						</c:if>
+
+
+
 					</div>
 				</div>
 			</div>
@@ -815,7 +833,6 @@ input[type="file"]::-webkit-file-upload-button {
                 </div>
                 <div style="display: flex; justify-content: flex-end;">
                   <div style="margin: 0px 10px 0px 0px;">
-                        <!-- 작업 중 -->
                     <button type="button" class="btn btn-outline-primary btn-sm btn-career-insert">등록</button>
                   </div>
                   <div style="margin: 0px 0px 10px 0px;">
@@ -880,17 +897,28 @@ input[type="file"]::-webkit-file-upload-button {
 <script>
 	//마이페이지 자기소개 글
 	let mypage_aboutme = "${mypageMemberInfo.mypage_aboutme}";
-	if(mypage_aboutme != ""){
-		$('textarea[name=mypage_aboutme]').val("${mypageMemberInfo.mypage_aboutme}");
-	}
-		
-
+	
+	let mypage_techexperience_ipt;
+			  //디벨로퍼만 !
+	if('${MEMBER_LOGININFO.category_no == "2" }'){
+		  loadCareer();
 			// 보유 기술 값 표현.
-		let mypage_techexperience_ipt = ${mypage_techexperience};
-		$('.angularBar').css('width', mypage_techexperience_ipt[0]+'%');
-		$('.bootstrapBar').css('width', mypage_techexperience_ipt[1]+'%');
-		$('.reactBar').css('width', mypage_techexperience_ipt[2]+'%');
-		$('.vuebar').css('width', mypage_techexperience_ipt[3]+'%');
+			mypage_techexperience_ipt = ${mypage_techexperience};
+			$('.angularBar').css('width', mypage_techexperience_ipt[0]+'%');
+			$('.bootstrapBar').css('width', mypage_techexperience_ipt[1]+'%');
+			$('.reactBar').css('width', mypage_techexperience_ipt[2]+'%');
+			$('.vuebar').css('width', mypage_techexperience_ipt[3]+'%');	
+			
+		}
+			  
+	  
+			  
+			  
+	 if(mypage_aboutme != ""){
+			$('textarea[name=mypage_aboutme]').val("${mypageMemberInfo.mypage_aboutme}");
+		}
+
+
 	
 	
 	var myChart = new Chart(document.getElementById("chartjs-3"), {
@@ -938,6 +966,9 @@ input[type="file"]::-webkit-file-upload-button {
 			},
 		}
 	});
+	
+	
+	
 	if("${projectChartInfo.Bootstrap}" == "0" && "${projectChartInfo.Vue}" == "0"
 		&& "${projectChartInfo.Angular}" == "0" && "${projectChartInfo.React}" == "0"){
 		const pieChart = new Chart(document.getElementById("pieChart"), {
@@ -1085,7 +1116,6 @@ input[type="file"]::-webkit-file-upload-button {
 		});  
 		
 		$('#modalButton').on('click',function(){
-			// 작업 중
 			// 보유 기술 등록
 			
 			const angular_slider_value = $('#Angular-slider-value').text();
@@ -1204,7 +1234,6 @@ input[type="file"]::-webkit-file-upload-button {
  		 location.href="${pageContext.request.contextPath}/user/portfolio/portfolioView.do?portfolio_no="+ portfolio_no +"&mem_id=" +mem_id;
  	  }
 	
- 	 <!-- 작업 중 -->
  	 function careerModalClick(){
  	    $('#modal-carrer-form .companyname').val('');
  	    $('#modal-carrer-form .department').val('');
@@ -1235,7 +1264,7 @@ input[type="file"]::-webkit-file-upload-button {
 	 	  			career_startdate: career_startdate,
 	 	  			career_enddate : career_enddate
 	 	  		},
-	 	  		async: false,
+	 	  		//async: false,
 	 	  		success: function(data) {
 	 	  			if (data.result == 'Y') {
 	 	  				loadCareer();
@@ -1285,9 +1314,8 @@ input[type="file"]::-webkit-file-upload-button {
 				    }
 			  });
 		  });	
-		
-		
-		  loadCareer();
+
+
 		  function loadCareer() {
 			  $.ajax({
 			    type: 'POST',
@@ -1301,7 +1329,6 @@ input[type="file"]::-webkit-file-upload-button {
 		  			console.log(data);
 		  			$('.career-table tbody').empty();
 		  			let tableNO = 1;
-		  			<!-- 작업 중-->
 		  			$.each(data.CarrerList, function(index, item) {
 		  				const trHTML = '<tr class="checklist-entry">\n' +
 		  	            '                              <input type="hidden" name="career_seq" value="' + item.CAREER_SEQ + '">\n' +

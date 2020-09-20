@@ -26,4 +26,25 @@ public class faqController {
 		return modelAndView;
 	}
 	
+	@RequestMapping("partnersGuide")
+	public ModelAndView partnersGuide( HttpServletRequest request, ModelAndView modelAndView){
+		modelAndView.addObject("breadcrumb_title", "가이드");
+		modelAndView.addObject("breadcrumb_first", "파트너스 이용방법");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/guide/partnersGuide.do");
+		modelAndView.setViewName("user/guide/partnersGuide");
+		
+		return modelAndView;
+		
+	}
+	@RequestMapping("developerGuide")
+	public ModelAndView developerGuide( HttpServletRequest request, ModelAndView modelAndView){
+		modelAndView.addObject("breadcrumb_title", "가이드");
+		modelAndView.addObject("breadcrumb_first", "디벨로퍼 이용방법");
+		modelAndView.addObject("breadcrumb_first_url", request.getContextPath() + "/user/guide/developerGuide.do");
+		modelAndView.setViewName("user/guide/developerGuide");
+		
+		return modelAndView;
+		
+	}
+	
 }

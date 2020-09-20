@@ -83,7 +83,7 @@
 							style="font-size: 30px;">${MainportfolioInfo.PORTFOLIO_NAME }</span>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center;">
-						<span class="h3 font-weight-light text-cyan"> by ${MainportfolioInfo.MEM_ID } FROM TotalScore ${maxportfolioAvg.TOTALAVG}</span>
+						<span class="h2 font-weight-light text-cyan"> by ${MainportfolioInfo.MEM_ID } FROM TotalScore ${maxportfolioAvg.TOTALAVG}</span>
 					</div>
 				</div>
 				<div style="display: flex; justify-content: center; align-items: center;">

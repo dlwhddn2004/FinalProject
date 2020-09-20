@@ -1017,21 +1017,62 @@
 						});
 			}
 			// 만약 댓글이 없을경우 0점 처리 해줘야 한다.
-
-			const designSpan = designScore.charAt(0) + '.';
-			const designSmall = designScore.charAt(1);
-
-			const useabilitySpan = useabilityScore.charAt(0) + '.';
-			const useabilitySmall = useabilityScore.charAt(1);
-
-			const creativitySpan = creativityScore.charAt(0) + '.';
-			const creativitySmall = creativityScore.charAt(1);
-
-			const contentSpan = contentScore.charAt(0) + '.';
-			const contentSmall = contentScore.charAt(0);
-
-			const developSpan = developScore.charAt(0) + '.';
-			const developSmall = developScore.charAt(1);	
+			
+		    let designSpan = "";	
+		    let designSmall ="";
+		    
+		      
+		    if(designScore =='100'){
+		    	designSpan ="10.";
+		    	designSmall=".0";
+		    }else{
+			    designSpan = designScore.charAt(0)+'.';	
+			    designSmall = designScore.charAt(1);
+		    }
+		    
+		    let useabilitySpan = "";	
+		    let useabilitySmall ="";
+		    
+		    if(useabilityScore =='100'){
+		    	useabilitySpan ="10.";
+		    	useabilitySmall=".0";
+		    }else{
+		    	useabilitySpan = designScore.charAt(0)+'.';	
+			    useabilitySmall = designScore.charAt(1);
+		    }
+		    
+		    let creativitySpan = "";	
+		    let creativitySmall ="";
+		    
+		    if(creativityScore =='100'){
+		    	creativitySpan ="10.";
+		    	creativitySmall=".0";
+		    }else{
+		    	creativitySpan = designScore.charAt(0)+'.';	
+		    	creativitySmall = designScore.charAt(1);
+		    }
+		    
+		    let contentSpan = "";	
+		    let contentSmall ="";
+		    
+		    if(contentScore =='100'){
+		    	contentSpan ="10.";
+		    	contentSmall=".0";
+		    }else{
+		    	contentSpan = designScore.charAt(0)+'.';	
+		    	contentSmall = designScore.charAt(1);
+		    }
+		    
+		   	let developSpan = "";	
+		    let developSmall ="";
+		    
+		    if(developScore =='100'){
+		    	developSpan ="10.";
+		    	developSmall=".0";
+		    }else{
+		    	developSpan = designScore.charAt(0)+'.';	
+		    	developSmall = designScore.charAt(1);
+		    }
 
 			$('.designSpan').text(designSpan);
 			$('.designSmall').text(designSmall);
@@ -1067,7 +1108,7 @@
                $('.noUi-origin').css('transform', 'translate(-' + (100 - ${portfolioInfo.PORTFOLIO_PARTICIPATIONRATE}) + '%, 0px)');
                $('.noUi-origin').css('z-index', '4');
                
-               const contentHTML = '${portfolioInfo.PORTFOLIO_DESCRIPTION}';
+               const contentHTML = "${portfolioInfo.PORTFOLIO_DESCRIPTION}";
 				quill.clipboard.dangerouslyPasteHTML(contentHTML);
 				
 				//포트폴리오 이름
@@ -1667,7 +1708,7 @@
 	    				let creativitySmallReview = "";
 	            		
 	            		
-	            		if(useabilityReview == '100'){
+	            		if(creativityReview == '100'){
 	            			creativitySpanReview = "10.";
 	            			creativitySmallReview = "0";
 	            		}else{

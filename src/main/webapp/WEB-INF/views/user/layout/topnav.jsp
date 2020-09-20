@@ -454,6 +454,86 @@
 			      </div>
 			    </div>
 			  </div>
+<!--     <div class="modal fade" id="ID-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true"> -->
+<!-- 			    <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document"> -->
+<!-- 			      <div class="modal-content"> -->
+<!-- 			        <div class="modal-body p-0"> -->
+<!-- 			          <div class="card bg-secondary border-0 mb-0"> -->
+<!-- 			            <div class="card-header bg-transparent pb-5"> -->
+<!-- 			              <div class="text-muted text-center mt-2 mb-3"><h3>아이디 찾기</h3></div> -->
+<!-- 			            </div> -->
+<!-- 			            <div class="card-body"> -->
+<!-- 			                <div class="nav-wrapper"> -->
+<!-- 							    <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist"> -->
+<!-- 							        <li class="nav-item"> -->
+<!-- 							            <a class="nav-link mb-sm-3 mb-md-0 active" id="tabs-icons-text-1-tab" data-toggle="tab" href="#tabs-icons-text-1" role="tab" aria-controls="tabs-icons-text-1" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>이메일로 찾기</a> -->
+<!-- 							        </li> -->
+<!-- 							        <li class="nav-item"> -->
+<!-- 							            <a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-2-tab" data-toggle="tab" href="#tabs-icons-text-2" role="tab" aria-controls="tabs-icons-text-2" aria-selected="false"><i class="ni ni-bell-55 mr-2"></i>전화번호로 찾기</a> -->
+<!-- 							        </li> -->
+<!-- 							    </ul> -->
+<!-- 							</div> -->
+<!-- 							<div class="card shadow"> -->
+<!-- 							    <div class="card-body"> -->
+<!-- 							        <div class="tab-content" id="myTabContent"> -->
+<!-- 							            <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab"> -->
+<%-- 							            	 작업중 <form role="form" action="${pageContext.request.contextPath}/user/find/findIDMail.do" method ="post"> --%>
+<!-- 								                <div class="form-group mb-3"> -->
+<!-- 								                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 								                    <div class="input-group-prepend"> -->
+<!-- 								                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span> -->
+<!-- 								                    </div> -->
+<!-- 								                    <input class="form-control" placeholder="이름" type="text" name="Search_mem_name"> -->
+<!-- 								                  </div> -->
+<!-- 								                </div> -->
+<!-- 								                <div class="form-group div-email"> -->
+<!-- 								                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 								                    <div class="input-group-prepend"> -->
+<!-- 								                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span> -->
+<!-- 								                    </div> -->
+<!-- 								                    <input class="form-control" placeholder="이메일" type="text" name="Search_mem_mail" /> -->
+<!-- 								                  </div> -->
+
+<!-- 								                </div> -->
+<!-- 								                <div class="text-center"> -->
+<!-- 								                  <button id="btnFind" onclick="searchBtn();" type="submit" class="btn btn-primary my-4 FindBtn">찾기</button> -->
+<!-- 								                   <button id="btnLogin" type="button" class="btn btn-primary my-4 loginBtn">취소</button> -->
+<!-- 								                </div> -->
+<!-- 							              </form> -->
+<!-- 							            </div> -->
+<!-- 							            <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab"> -->
+<!-- 							            	<form role="form" method="post"> -->
+<!-- 								                <div class="form-group mb-3"> -->
+<!-- 								                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 								                    <div class="input-group-prepend"> -->
+<!-- 								                      <span class="input-group-text"><i class="fas fa-id-card-alt"></i></span> -->
+<!-- 								                    </div> -->
+<!-- 								                    <input id="validationCustom01" class="form-control" placeholder="이름" type="text" name="find_mem_name"> -->
+<!-- 								                  </div> -->
+<!-- 								                </div> -->
+<!-- 								                <div class="form-group"> -->
+<!-- 								                  <div class="input-group input-group-merge input-group-alternative"> -->
+<!-- 								                    <div class="input-group-prepend"> -->
+<!-- 								                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span> -->
+<!-- 								                    </div> -->
+<!-- 								                    <input class="form-control" placeholder="전화번호" type="text" name="find_mem_tel"> -->
+<!-- 								                  </div> -->
+<!-- 								                </div> -->
+<!-- 								                <div class="text-center"> -->
+<!-- 								                  <button id="findbtn" onclick="findBtn();" type="button" class="btn btn-primary my-4 loginBtn">찾기</button> -->
+<!-- 								                   <button id="findcancle" type="button" class="btn btn-primary my-4 loginBtn">취소</button> -->
+<!-- 								                </div> -->
+<!-- 							              </form> -->
+<!-- 							            </div> -->
+<!-- 							        </div> -->
+<!-- 							    </div> -->
+<!-- 							</div> -->
+<!-- 			            </div> -->
+<!-- 			          </div> -->
+<!-- 			        </div> -->
+<!-- 			      </div> -->
+<!-- 			    </div> -->
+<!-- 			  </div> -->
    
    
 <div class="modal fade" id="signIn-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
@@ -617,6 +697,17 @@
 					$('form[name=regist]').submit();
 
             	}
+// 	            	category = $('input[name=category]:checked').val();
+// 	            	pass = $('input[name=password]').val();
+	
+	            	
+// 					$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
+// 					$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
+// 					$('form[name=regist]').append($inputCAT);
+// 					$('form[name=regist]').append($inputPass);
+					
+// 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
+// 					$('form[name=regist]').submit();
 			});
             
             $('#btnLogout').on('click', function() {
@@ -759,73 +850,73 @@
     	});
 	}
 	
-	//이메일로 아이디 찾기
-	function searchBtn(){
-		const mem_name123 = $('input[name=Search_mem_name]').val();
-		const mem_mail123 =$('input[name=Search_mem_mail]').val();
-		$.ajax({
-			url : "${pageContext.request.contextPath}/user/find/findIDMail.do",
-			data : {mem_name : mem_name123, mem_mail: mem_mail123},
-			dataType : 'json',
-			type : 'POST',
-			error : function(result){
-				Swal.fire(
-						'Warning',
-						'이름과 이메일을 다시한번 확인해주세요.',
-						'warning'
-					)
-			},
-			success : function(result){
+// 	//이메일로 아이디 찾기
+// 	function searchBtn(){
+// 		const mem_name123 = $('input[name=Search_mem_name]').val();
+// 		const mem_mail123 =$('input[name=Search_mem_mail]').val();
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/user/find/findIDMail.do",
+// 			data : {mem_name : mem_name123, mem_mail: mem_mail123},
+// 			dataType : 'json',
+// 			type : 'POST',
+// 			error : function(result){
+// 				Swal.fire(
+// 						'Warning',
+// 						'이름과 이메일을 다시한번 확인해주세요.',
+// 						'warning'
+// 					)
+// 			},
+// 			success : function(result){
 				
-				/* var $frm = $('.div-email');
-		        var $findID= $('<span style="color : #fb6340; font-size : 80%">'+ "회원님의 이름으로 등록된 아이디는 " + result.MEM_ID + "입니다." +'</span>');    
+// 				/* var $frm = $('.div-email');
+// 		        var $findID= $('<span style="color : #fb6340; font-size : 80%">'+ "회원님의 이름으로 등록된 아이디는 " + result.MEM_ID + "입니다." +'</span>');    
 		        
-		        $frm.append($findID); */
-				Swal.fire(
-						result.MEM_ID,
-						'회원님의 이메일로 등록된 아이디입니다.',
-						'info'
-					)
-/* 					return; */
+// 		        $frm.append($findID); */
+// 				Swal.fire(
+// 						result.MEM_ID,
+// 						'회원님의 이메일로 등록된 아이디입니다.',
+// 						'info'
+// 					)
+// /* 					return; */
 		        
-		       $('#ID-form').hide();
+// 		       $('#ID-form').hide();
 
 		       
-			}
-		})
+// 			}
+// 		})
 		
-	}
+// 	}
 	
-	//등록된 Tel로 아이디 찾기
-	function findBtn(){
-		const mem_name2 =$('input[name=find_mem_name]').val();
-		const mem_tel2 =$('input[name=find_mem_tel]').val();
-		$.ajax({
-			url : "${pageContext.request.contextPath}/user/find/findIDTel.do",
-			data : {mem_name : mem_name2, mem_tel: mem_tel2},
-			dataType : 'json',
-			type : 'POST',
-			error : function(result){
-				Swal.fire(
-						'Warning',
-						'이름과 전화번호를 다시한번 확인해주세요.',
-						'warning'
-					)
-			},
-			success : function(result){
+// 	//등록된 Tel로 아이디 찾기
+// 	function findBtn(){
+// 		const mem_name2 =$('input[name=find_mem_name]').val();
+// 		const mem_tel2 =$('input[name=find_mem_tel]').val();
+// 		$.ajax({
+// 			url : "${pageContext.request.contextPath}/user/find/findIDTel.do",
+// 			data : {mem_name : mem_name2, mem_tel: mem_tel2},
+// 			dataType : 'json',
+// 			type : 'POST',
+// 			error : function(result){
+// 				Swal.fire(
+// 						'Warning',
+// 						'이름과 전화번호를 다시한번 확인해주세요.',
+// 						'warning'
+// 					)
+// 			},
+// 			success : function(result){
 				
-				Swal.fire(
-						result.MEM_ID,
-						'회원님의 이메일로 등록된 아이디입니다.',
-						'info'
-					)
+// 				Swal.fire(
+// 						result.MEM_ID,
+// 						'회원님의 이메일로 등록된 아이디입니다.',
+// 						'info'
+// 					)
 		        
-		       $('#ID-form').hide();
+// 		       $('#ID-form').hide();
 
 		       
-			}
+/* 			}
 		})
-	}
+	} */
 	//비밀번호 찾기
 	function findpwBtn(){
 		const findpw_name =$('input[name=findpw_name]').val();
@@ -857,6 +948,9 @@
 			}
 		})
 	}
+// 			}
+// 		})
+// 	}
   </script>
   
 

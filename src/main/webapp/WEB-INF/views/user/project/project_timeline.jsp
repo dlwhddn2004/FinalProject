@@ -147,10 +147,10 @@
 								<select class="form-control todo-category"
 									data-toggle="select" title="Simple select"
 									data-placeholder="카테고리">
-									<option>SUCCESS</option>
-									<option>INFORMATION</option>
-									<option>WARNING</option>
-									<option>DANGER</option>
+									<option value="success">SUCCESS</option>
+									<option value="info">INFORMATION</option>
+									<option value="warning">WARNING</option>
+									<option value="danger">DANGER</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -323,15 +323,6 @@
       const todo_title = $('.ipt-todo-title').val();
       let project_no = $('.project-category').select2('val');
       let todo_category = $('.todo-category').select2('val');
-      if (todo_category === "SUCCESS") {
-        todo_category = "success";
-      } else if (todo_category === "INFORMATION") {
-        todo_category = "info";
-      } else if (todo_category === "WARNING") {
-        todo_category = "warning";
-      } else if (todo_category === "DANGER") {
-        todo_category = "danger";
-      }
       const todo_regdate = $('.ipt-todo-regdate').val();
 
       // ajax로 데이터 추가

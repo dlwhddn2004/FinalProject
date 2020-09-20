@@ -128,6 +128,10 @@ public class MemberController {
 			this.mypageService.insertMypageDeveloper(mypageInfo);			
 		}
 		
+		if(mypageInfo.getCategory_no().equals("1")){
+			this.mypageService.insertPartnersmypage(mypageInfo);
+		}
+		
 		
 		
 		String taskResult = "success";

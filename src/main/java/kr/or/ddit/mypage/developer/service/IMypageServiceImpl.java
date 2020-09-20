@@ -66,14 +66,14 @@ public class IMypageServiceImpl implements IMypageService{
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
 	@Override
 	public String modifyMyabout(Mypage_memberVO vo, MultipartFile[] items) throws Exception {
-		String mypasge_no = dao.modifyMyabout(vo);
+		String mypasge_no = null;
+			mypasge_no = dao.modifyMyabout(vo);
+			
 		String mem_id =vo.getMem_id();
 		List<ProfileFileVO> fileItemList = AttachFileMapperMember.mapper(items, mypasge_no, mem_id);
 		fileDao.insertMypageFileInfo(fileItemList);
 		
 		return mypasge_no;
-		
-		
 		
 	}
 	
@@ -118,6 +118,45 @@ public class IMypageServiceImpl implements IMypageService{
 	public List<Map<String, String>> carrerList(Map<String, String> params)
 			throws Exception {
 		return dao.carrerList(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public void insertPartnersmypage(Mypage_memberVO mypageInfo)
+			throws Exception {
+		dao.insertPartnersmypage(mypageInfo);
+		
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public List<Map<String, String>> partnersProjectChart(
+			Map<String, String> params) throws Exception {
+		return dao.partnersProjectChart(params);
+	}
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public Mypage_memberVO partnersmypageInfo(Map<String, String> params)
+			throws Exception {
+		return dao.partnersmypageInfo(params);
+	}
+	
+	
+	@Transactional(propagation=Propagation.REQUIRED, rollbackFor={Exception.class})
+	@Override
+	public String modifyPartnerAbout(Mypage_memberVO vo, MultipartFile[] items)
+			throws Exception {
+		String mypasge_no = dao.modifyPartnerAbout(vo);
+		String mem_id =vo.getMem_id();
+		List<ProfileFileVO> fileItemList = AttachFileMapperMember.mapper(items, mypasge_no, mem_id);
+		fileDao.insertMypageFileInfo(fileItemList);
+		
+		return mypasge_no;
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=true)
+	@Override
+	public int partnersProjectNum(Map<String, String> params) throws Exception {
+		return dao.partnersProjectNum(params);
 	}
 
 }

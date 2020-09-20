@@ -926,7 +926,7 @@
   });
 
   // 이력서 내용 등록
-  $('#modal-insert-form .btn-insert').on('click', function () {
+  $('#modal-insert-form .career-insert').on('click', function () {
     // 모달창에서 입력값 추출
     const career_companyname = $('#modal-insert-form .companyname').val();
     const career_department = $('#modal-insert-form .department').val();

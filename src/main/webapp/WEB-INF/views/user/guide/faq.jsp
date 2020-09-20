@@ -28,7 +28,7 @@
             <!--                   카드헤더                     -->
             <div class="card-header">
               <h3 class="mb-0">가이드</h3>
-              <p class="text-sm mb-0">도와드립니당!!!!!!!!!!!!!!!!!!!!!</p>
+              <p class="text-sm mb-0">커넥터의 이용을 도와드립니다.</p>
             </div>
             <div class="card-body"></div>
           </div>
