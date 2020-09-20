@@ -281,15 +281,15 @@
 		}
 		
 		let interviewAlarmChk = false;
-		chkInterviewTime = setInterval(function() {
+ 		chkInterviewTime = setInterval(function() {
 			console.log('${interviewAttendStatus}');
 			if (${interviewAttendStatus != 'Y'} && interviewAlarmChk == false) {
 				interviewTimeChk();
 			}
 		}, 10000);
-
+ 
 		// 면접 시간을 확인
-		function interviewTimeChk() {
+ 		function interviewTimeChk() {
 			if (${!empty MEMBER_LOGININFO}) {
 				$.ajax({
 					type: 'POST'
@@ -332,7 +332,7 @@
 				    }
 				});
 			}
-		}
+		} 
 		
 		function setSession(key, value) {
 			$.ajax({

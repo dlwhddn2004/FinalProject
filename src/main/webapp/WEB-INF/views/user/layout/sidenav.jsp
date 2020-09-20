@@ -27,7 +27,51 @@
   	  			$(location).attr('href', '${pageContext.request.contextPath }/user/projectRegist/project_1.do?mem_id=${MEMBER_LOGININFO.mem_id}');
   	  		}
   	  	});
+  		
+  		$('.portfolioInsert').on('click',function(){
+  			
+  			if(${MEMBER_LOGININFO.category_no != '2'}){
+  				
+	  			Swal.fire(
+		                  'Warning',
+		                  '디벨로퍼 회원만 사용할 수 있습니다.',
+		                  'warning'
+		                )
+			
+			return;
+  			}	
+				$.ajax({
+					url : "${pageContext.request.contextPath}/user/mypage/mypageTechnologiesCheck.do",
+					type : "POST",
+					data : {mem_id : "${MEMBER_LOGININFO.mem_id}"},
+					dataType : "json",
+					error : function(err){
+						alert('마이페이지 기술 체크 에러');
+					},
+					success : function(result){
+					
+						if(result.TechnologiesCheckInfo.MYPAGE_TECHNOLOGIES == null ){
+				  			Swal.fire(
+					                  'Warning',
+					                  '보유 기술을 등록한 디벨로퍼만 사용할 수 있습니다.',
+					                  'warning'
+					                )
+						
+						return;
+						
+						}else{
+							 location.href = '${pageContext.request.contextPath}/user/portfolio/portfolioForm.do';
+						}
+					}
+				});	
+  		});
+  		
   	});
+  	
+  	
+
+  	
+
   </script>
 
 <!-- Sidenav -->
@@ -114,7 +158,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/examples/login.html" class="nav-link">
+                    <a class="nav-link portfolioInsert" style="cursor: pointer;">
                       <span class="sidenav-mini-icon"> 등록 </span>
                       <span class="sidenav-normal"> 포트폴리오 등록 </span>
                     </a>
