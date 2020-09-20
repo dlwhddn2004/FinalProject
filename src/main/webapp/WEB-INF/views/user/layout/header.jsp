@@ -204,9 +204,9 @@
 		
 		loadRate();
 		
-// 		playAlert = setInterval(function() {
-// 			loadRate();
-// 		}, 30000);
+		playAlert = setInterval(function() {
+			loadRate();
+		}, 30000);
 		
 		function loadRate() {
 			$.ajax({
