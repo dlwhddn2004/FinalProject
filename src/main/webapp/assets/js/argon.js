@@ -1885,7 +1885,6 @@ var Scrollbar = (function() {
 
 var Fullcalendar = (function() {
 	
-	// 작업 중!
 	var modify_id = null;
 	var modify_date = null;
 	let var_first_description = null;
