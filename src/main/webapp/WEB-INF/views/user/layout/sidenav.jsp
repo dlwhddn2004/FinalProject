@@ -136,13 +136,13 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/components/cards.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/guide/developerGuide.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 이용 </span>
                       <span class="sidenav-normal"> 디벨로퍼 이용 방법 </span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../pages/components/grid.html" class="nav-link">
+                    <a href="${pageContext.request.contextPath}/user/guide/partnersGuide.do" class="nav-link">
                       <span class="sidenav-mini-icon"> 이용 </span>
                       <span class="sidenav-normal"> 파트너스 이용 방법 </span>
                     </a>
