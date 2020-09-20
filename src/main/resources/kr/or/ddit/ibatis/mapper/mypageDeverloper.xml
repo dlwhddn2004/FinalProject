@@ -131,10 +131,10 @@
 	</select>
 		<!-- 작업중 -->
 	<select id="partnersProjectChart" parameterClass="map" resultClass="java.util.HashMap">
-		SELECT PROJECT_NO, PROJECT_TECHNOLOGIES , count(PROJECT_TECHNOLOGIES) sum
+		SELECT  PROJECT_TECHNOLOGIES , count(PROJECT_TECHNOLOGIES) sum
 		FROM PROJECT
 		WHERE mem_id= #mem_id#
-		GROUP BY PROJECT_TECHNOLOGIES,PROJECT_NO
+		GROUP BY PROJECT_TECHNOLOGIES
 	</select>
 	
 	
