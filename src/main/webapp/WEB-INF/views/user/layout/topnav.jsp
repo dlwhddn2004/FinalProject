@@ -548,29 +548,16 @@
 			
 			
             $('#btnRegistMember').on('click', function() {
-//             	invalidClass = $('form[name=regist] .form-control:invalid').length;
+            	invalidClass = $('form[name=regist] .form-control:invalid').length;
             	
-//             	if(invalidClass > 0){
-//     				Swal.fire(
-//     						'Warning',
-//     						'회원 정보를 바르게 입력해 주세요.',
-//     						'warning'
-//     					)
-//     					return;
-//             	}else{
-// 	            	category = $('input[name=category]:checked').val();
-// 	            	pass = $('input[name=password]').val();
-	
-	            	
-// 					$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
-// 					$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
-// 					$('form[name=regist]').append($inputCAT);
-// 					$('form[name=regist]').append($inputPass);
-					
-// 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
-// 					$('form[name=regist]').submit();
-
-//             	}
+            	if(invalidClass > 0){
+    				Swal.fire(
+    						'Warning',
+    						'회원 정보를 바르게 입력해 주세요.',
+    						'warning'
+    					)
+    					return;
+            	}else{
 	            	category = $('input[name=category]:checked').val();
 	            	pass = $('input[name=password]').val();
 	
@@ -582,6 +569,19 @@
 					
 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
 					$('form[name=regist]').submit();
+
+            	}
+// 	            	category = $('input[name=category]:checked').val();
+// 	            	pass = $('input[name=password]').val();
+	
+	            	
+// 					$inputCAT = $('<input type ="hidden" value="' + category + '" name="category_no" />');
+// 					$inputPass = $('<input type ="hidden" value="' + pass + '" name="mem_pass" />');
+// 					$('form[name=regist]').append($inputCAT);
+// 					$('form[name=regist]').append($inputPass);
+					
+// 					$('form[name=regist]').attr('action', '${pageContext.request.contextPath}/user/member/insertMember.do');
+// 					$('form[name=regist]').submit();
 			});
             
             $('#btnLogout').on('click', function() {
