@@ -35,4 +35,6 @@
 				  maxWait="-1" 
 				  factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"> 
 			</Resource>  
+			
+<!-- 			수정!! -->
 </Context>
