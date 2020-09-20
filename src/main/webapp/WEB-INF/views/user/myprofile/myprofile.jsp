@@ -239,6 +239,7 @@ $('#btn-primary').click(function(){
 									 </div>
 								</div>
 							</div>
+							<input type="hidden" name="category_no" value="${memberInfo.category_no}">
 						</div>
 					</div>
 
